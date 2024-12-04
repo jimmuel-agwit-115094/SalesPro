@@ -127,13 +127,27 @@ public static class DgFormatAttribute
 
     public static void BasicGridFormat(DataGridView dataGridView)
     {
+        // Null check
         if (dataGridView != null)
         {
-            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = dataGridView.ColumnHeadersDefaultCellStyle.BackColor;
+            // Prevent color change of column headers when selected
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor =
+                dataGridView.ColumnHeadersDefaultCellStyle.BackColor;
         }
+
+        // Disable sorting for all columns
         foreach (DataGridViewColumn column in dataGridView.Columns)
         {
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
+
+        // Suppress F3 key press
+        dataGridView.KeyDown += (s, ev) =>
+        {
+            if (ev.KeyCode == Keys.F3)
+            {
+                ev.Handled = true;
+            }
+        };
     }
 }

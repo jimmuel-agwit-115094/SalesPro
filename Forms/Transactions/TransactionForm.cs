@@ -32,5 +32,10 @@ namespace SalesPro.Forms.Transactions
             DgShowOnlyFieldHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
             DgFormatAttribute.BasicGridFormat(dgTrans);
         }
+
+        private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
