@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
 {
-    public partial class TransactionForm : Form
+    public partial class ManageTransactionForm : Form
     {
-        public TransactionForm()
+        public ManageTransactionForm()
         {
             InitializeComponent();
-        }
-
-        private void new_btn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
