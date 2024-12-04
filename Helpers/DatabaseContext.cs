@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SalesPro.Models;
-using System;
 using System.Configuration;
 
 namespace POS_Generic.Helpers

@@ -35,7 +35,7 @@
             // 
             this.user_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_tx.ForeColor = System.Drawing.Color.Black;
-            this.user_tx.Location = new System.Drawing.Point(323, 215);
+            this.user_tx.Location = new System.Drawing.Point(634, 9);
             this.user_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.user_tx.Name = "user_tx";
             this.user_tx.Size = new System.Drawing.Size(155, 20);
