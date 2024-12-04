@@ -1,8 +1,11 @@
 ﻿using System.Windows.Forms;
 using System;
 using System.Drawing;
+using SalesPro.Helpers;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-public static class DgFormatAttribute
+public static class DgFormatHelper
 {
     public static void AutoFormat(this DataGridView dataGridView)
     {
@@ -149,5 +152,58 @@ public static class DgFormatAttribute
                 ev.Handled = true;
             }
         };
+    }
+
+    public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
+    {
+        // Validate inputs
+        if (dataGridView == null)
+            throw new ArgumentNullException(nameof(dataGridView));
+        if (fieldsToShow == null || fieldsToShow.Length == 0)
+            throw new ArgumentException("At least one field must be specified", nameof(fieldsToShow));
+
+        // Hide all columns initially
+        foreach (DataGridViewColumn column in dataGridView.Columns)
+        {
+            column.Visible = false;
+        }
+
+        // Show only specified columns
+        foreach (string field in fieldsToShow)
+        {
+            // Try to find the column by name (case-insensitive)
+            DataGridViewColumn columnToShow = dataGridView.Columns
+                .Cast<DataGridViewColumn>()
+                .FirstOrDefault(col =>
+                    col.DataPropertyName.Equals(field, StringComparison.OrdinalIgnoreCase) ||
+                    col.Name.Equals(field, StringComparison.OrdinalIgnoreCase));
+
+            if (columnToShow != null)
+            {
+                columnToShow.Visible = true;
+
+                // Add space before capital letters for display
+                columnToShow.HeaderText = AddSpacesToCamelCase(field);
+            }
+            else
+            {
+                // Optional: Log or throw an exception if the field is not found
+                MessageHandler.ShowError($"Column {field} not found in the DataGridView");
+            }
+        }
+    }
+
+    private static string AddSpacesToCamelCase(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        // Use Regex to insert spaces before capital letters
+        // The regex looks for a lowercase letter followed by an uppercase letter
+        // and inserts a space between them
+        return Regex.Replace(input,
+            "(?<!^)(?=[A-Z])",
+            " ",
+            RegexOptions.Compiled);
     }
 }

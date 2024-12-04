@@ -23,14 +23,18 @@ namespace SalesPro.Forms.Transactions
             form.ShowDialog();
         }
 
+        private void ShowCurrentTranscations()
+        {
+            transactionsTabControl.SelectedIndex = 0;
+        }
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             var trans = await _accessor.GetAllAsync();
             dgTrans.DataSource = trans;
             dgTrans.AutoFormat();
-            DgFormatAttribute.SetupLinkId(dgTrans, 0);
-            DgShowOnlyFieldHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
-            DgFormatAttribute.BasicGridFormat(dgTrans);
+            DgFormatHelper.SetupLinkId(dgTrans, 0);
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
+            DgFormatHelper.BasicGridFormat(dgTrans);
         }
 
         private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
