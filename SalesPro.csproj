@@ -172,11 +172,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Transactions\ManageTransactionForm.cs">
+    <Compile Include="Forms\Transactions\TransactionDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Transactions\ManageTransactionForm.Designer.cs">
-      <DependentUpon>ManageTransactionForm.cs</DependentUpon>
+    <Compile Include="Forms\Transactions\TransactionDetailsForm.Designer.cs">
+      <DependentUpon>TransactionDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Transactions\TransactionForm.cs">
       <SubType>Form</SubType>
@@ -196,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Transactions\TransactionDetailsForm.resx">
+      <DependentUpon>TransactionDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Transactions\TransactionForm.resx">
       <DependentUpon>TransactionForm.cs</DependentUpon>

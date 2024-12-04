@@ -19,7 +19,8 @@ namespace SalesPro.Forms.Transactions
 
         private void new_btn_Click(object sender, EventArgs e)
         {
-
+            var form = new TransactionDetailsForm();
+            form.ShowDialog();
         }
     }
 }

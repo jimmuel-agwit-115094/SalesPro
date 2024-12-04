@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
 {
-    public partial class ManageTransactionForm : Form
+    public partial class TransactionDetailsForm : Form
     {
-        public ManageTransactionForm()
+        public TransactionDetailsForm()
         {
             InitializeComponent();
         }
