@@ -93,9 +93,9 @@
             this.login_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.ForeColor = System.Drawing.Color.White;
-            this.login_btn.Location = new System.Drawing.Point(128, 233);
+            this.login_btn.Location = new System.Drawing.Point(128, 229);
             this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(153, 30);
+            this.login_btn.Size = new System.Drawing.Size(153, 34);
             this.login_btn.TabIndex = 445;
             this.login_btn.Text = "Login";
             this.login_btn.UseVisualStyleBackColor = false;
