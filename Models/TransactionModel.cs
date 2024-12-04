@@ -6,7 +6,7 @@ namespace SalesPro.Models
     public class TransactionModel : BaseEntity
     {
         [Key]
-        public int TransactionId { get; set; }
+        public int TransactionId { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal BeginningBalance { get; set; }
@@ -16,8 +16,7 @@ namespace SalesPro.Models
         public decimal EndingCash { get; set; }
         public string OpenedBy { get; set; }
         public string ClosedBy { get; set; }
-        public string IsClosed { get; set; }
+        public bool IsClosed { get; set; }
         public string BalanceStatus { get; set; }
-        public long RowVersion { get; set; }
     }
 }

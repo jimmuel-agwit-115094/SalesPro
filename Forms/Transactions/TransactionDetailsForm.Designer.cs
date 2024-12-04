@@ -145,6 +145,7 @@
             this.closedBy_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.closedBy_tx.Location = new System.Drawing.Point(217, 119);
             this.closedBy_tx.Name = "closedBy_tx";
+            this.closedBy_tx.ReadOnly = true;
             this.closedBy_tx.Size = new System.Drawing.Size(308, 27);
             this.closedBy_tx.TabIndex = 504;
             // 
@@ -164,6 +165,7 @@
             this.openedBy_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.openedBy_tx.Location = new System.Drawing.Point(217, 74);
             this.openedBy_tx.Name = "openedBy_tx";
+            this.openedBy_tx.ReadOnly = true;
             this.openedBy_tx.Size = new System.Drawing.Size(308, 27);
             this.openedBy_tx.TabIndex = 502;
             // 

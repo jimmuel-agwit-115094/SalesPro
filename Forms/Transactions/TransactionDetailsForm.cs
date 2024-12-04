@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
@@ -13,10 +14,11 @@ namespace SalesPro.Forms.Transactions
         private readonly GenericAccessor<TransactionModel> _accessor;
         public TransactionDetailsForm()
         {
+            InitializeComponent();
             _context = new DatabaseContext();
             _accessor = new GenericAccessor<TransactionModel>(_context);
-            InitializeComponent();
             CurrencyTextboxHelper.AttachCurrencyValidation(this, "Decimal");
+   
         }
 
         private void begBal_tx_TextChanged(object sender, EventArgs e)
@@ -25,23 +27,25 @@ namespace SalesPro.Forms.Transactions
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
+            var date = await ServerDateTimeHelper.GetServerDateTime();
             var transaction = new TransactionModel
             {
-                StartDate = startDtp.Value,
-                EndDate = endDtp.Value,
+                StartDate = date.Date,
+                EndDate = date.Date,
                 BeginningBalance = decimal.Parse(begBal_tx.Text),
                 TotalSales = decimal.Parse(totalSales_tx.Text),
                 TotalExpenses = decimal.Parse(totalExp_tx.Text),
                 ExpectedCash = decimal.Parse(expCash_tx.Text),
-                EndingCash = decimal.Parse(endCash_tx.Text),
-                OpenedBy = openedBy_tx.Text,
+                EndingCash = decimal.Parse(endingCash_tx.Text),
+                OpenedBy = UserSession.FullName,
                 ClosedBy = closedBy_tx.Text,
-                IsClosed = isClosed_tx.Text,
-                BalanceStatus = balStatus_tx.Text
+                IsClosed = false,
+                BalanceStatus = Constants.SystemConstants.NotSet
             };
 
             await _accessor.AddAsync(transaction);
-            this.Close();
+            MessageHandler.SuccessfullyAdded();
+            Close();
         }
     }
 }
