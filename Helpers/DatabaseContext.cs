@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SalesPro.Models;
+using SalesPro.Models.ModelHelpers;
 using System.Configuration;
 
 namespace POS_Generic.Helpers
@@ -17,7 +18,7 @@ namespace POS_Generic.Helpers
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure the keyless entity type in the modelBuilder
-            //modelBuilder.Entity<ServerDateTime>().HasNoKey();
+            modelBuilder.Entity<ServerDateTimeModel>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
         }
