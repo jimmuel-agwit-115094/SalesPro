@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-public static class DgExtenstions
+public static class DgShowOnlyFieldHelper
 {
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
     {
@@ -45,11 +45,6 @@ public static class DgExtenstions
         }
     }
 
-    /// <summary>
-    /// Adds spaces before capital letters in a camel case string
-    /// </summary>
-    /// <param name="input">The input string in camel case</param>
-    /// <returns>A string with spaces added before capital letters</returns>
     private static string AddSpacesToCamelCase(string input)
     {
         if (string.IsNullOrEmpty(input))

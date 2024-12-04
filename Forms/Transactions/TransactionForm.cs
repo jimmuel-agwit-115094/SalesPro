@@ -27,7 +27,10 @@ namespace SalesPro.Forms.Transactions
         {
             var trans = await _accessor.GetAllAsync();
             dgTrans.DataSource = trans;
-            DgExtenstions.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance");
+            dgTrans.AutoFormat();
+            DgFormatAttribute.SetupLinkId(dgTrans, 0);
+            DgShowOnlyFieldHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
+            DgFormatAttribute.BasicGridFormat(dgTrans);
         }
     }
 }
