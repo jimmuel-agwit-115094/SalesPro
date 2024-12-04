@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Helpers\DatabaseContext.cs" />
     <Compile Include="Helpers\MessageHandler.cs" />
+    <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />

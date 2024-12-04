@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesPro.Helpers.UiHelpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace SalesPro.Forms.Transactions
         public TransactionDetailsForm()
         {
             InitializeComponent();
+            CurrencyTextboxHelper.AttachCurrencyValidation(this, "Decimal");
+        }
+
+        private void begBal_tx_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -32,6 +32,21 @@
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
             this.transactionData_tab = new System.Windows.Forms.TabPage();
+            this.balStatus_tx = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.closedBy_tx = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.openedBy_tx = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.endingCash_tx = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.expCash_tx = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.totalExp_tx = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.totalSales_tx = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.begBal_tx = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -59,7 +74,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(933, 439);
+            this.save_btn.Location = new System.Drawing.Point(397, 402);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(128, 34);
             this.save_btn.TabIndex = 3;
@@ -74,20 +89,179 @@
             this.detailTabControl.Location = new System.Drawing.Point(12, 66);
             this.detailTabControl.Name = "detailTabControl";
             this.detailTabControl.SelectedIndex = 0;
-            this.detailTabControl.Size = new System.Drawing.Size(1090, 535);
+            this.detailTabControl.Size = new System.Drawing.Size(667, 490);
             this.detailTabControl.TabIndex = 6;
             // 
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.transactionData_tab.Controls.Add(this.balStatus_tx);
+            this.transactionData_tab.Controls.Add(this.label6);
+            this.transactionData_tab.Controls.Add(this.closedBy_tx);
+            this.transactionData_tab.Controls.Add(this.label5);
+            this.transactionData_tab.Controls.Add(this.openedBy_tx);
+            this.transactionData_tab.Controls.Add(this.label4);
+            this.transactionData_tab.Controls.Add(this.endingCash_tx);
+            this.transactionData_tab.Controls.Add(this.label3);
+            this.transactionData_tab.Controls.Add(this.expCash_tx);
+            this.transactionData_tab.Controls.Add(this.label2);
+            this.transactionData_tab.Controls.Add(this.totalExp_tx);
+            this.transactionData_tab.Controls.Add(this.label1);
+            this.transactionData_tab.Controls.Add(this.totalSales_tx);
+            this.transactionData_tab.Controls.Add(this.label8);
+            this.transactionData_tab.Controls.Add(this.begBal_tx);
             this.transactionData_tab.Controls.Add(this.panel6);
             this.transactionData_tab.Controls.Add(this.save_btn);
             this.transactionData_tab.Location = new System.Drawing.Point(4, 29);
             this.transactionData_tab.Name = "transactionData_tab";
             this.transactionData_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.transactionData_tab.Size = new System.Drawing.Size(1082, 502);
+            this.transactionData_tab.Size = new System.Drawing.Size(659, 457);
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
+            // 
+            // balStatus_tx
+            // 
+            this.balStatus_tx.AutoSize = true;
+            this.balStatus_tx.Location = new System.Drawing.Point(524, 18);
+            this.balStatus_tx.Name = "balStatus_tx";
+            this.balStatus_tx.Size = new System.Drawing.Size(107, 20);
+            this.balStatus_tx.TabIndex = 506;
+            this.balStatus_tx.Text = "Balance Status";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(133, 123);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 20);
+            this.label6.TabIndex = 505;
+            this.label6.Text = "Closed By :";
+            // 
+            // closedBy_tx
+            // 
+            this.closedBy_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.closedBy_tx.Location = new System.Drawing.Point(217, 119);
+            this.closedBy_tx.Name = "closedBy_tx";
+            this.closedBy_tx.Size = new System.Drawing.Size(308, 27);
+            this.closedBy_tx.TabIndex = 504;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(126, 78);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 20);
+            this.label5.TabIndex = 503;
+            this.label5.Text = "Opened By :";
+            // 
+            // openedBy_tx
+            // 
+            this.openedBy_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.openedBy_tx.Location = new System.Drawing.Point(217, 74);
+            this.openedBy_tx.Name = "openedBy_tx";
+            this.openedBy_tx.Size = new System.Drawing.Size(308, 27);
+            this.openedBy_tx.TabIndex = 502;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(118, 353);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 20);
+            this.label4.TabIndex = 501;
+            this.label4.Text = "Ending Cash :";
+            // 
+            // endingCash_tx
+            // 
+            this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.endingCash_tx.Location = new System.Drawing.Point(217, 350);
+            this.endingCash_tx.Name = "endingCash_tx";
+            this.endingCash_tx.Size = new System.Drawing.Size(308, 27);
+            this.endingCash_tx.TabIndex = 500;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(102, 309);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 20);
+            this.label3.TabIndex = 499;
+            this.label3.Text = "Expected Cash :";
+            // 
+            // expCash_tx
+            // 
+            this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.expCash_tx.Location = new System.Drawing.Point(217, 305);
+            this.expCash_tx.Name = "expCash_tx";
+            this.expCash_tx.Size = new System.Drawing.Size(308, 27);
+            this.expCash_tx.TabIndex = 498;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(102, 267);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 20);
+            this.label2.TabIndex = 497;
+            this.label2.Text = "Total Expenses :";
+            // 
+            // totalExp_tx
+            // 
+            this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.totalExp_tx.Location = new System.Drawing.Point(217, 263);
+            this.totalExp_tx.Name = "totalExp_tx";
+            this.totalExp_tx.Size = new System.Drawing.Size(308, 27);
+            this.totalExp_tx.TabIndex = 496;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(128, 225);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 20);
+            this.label1.TabIndex = 495;
+            this.label1.Text = "Total Sales :";
+            // 
+            // totalSales_tx
+            // 
+            this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.totalSales_tx.Location = new System.Drawing.Point(217, 221);
+            this.totalSales_tx.Name = "totalSales_tx";
+            this.totalSales_tx.Size = new System.Drawing.Size(308, 27);
+            this.totalSales_tx.TabIndex = 494;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(75, 182);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(139, 20);
+            this.label8.TabIndex = 493;
+            this.label8.Text = "Beginning Balance :";
+            // 
+            // begBal_tx
+            // 
+            this.begBal_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.begBal_tx.Location = new System.Drawing.Point(217, 178);
+            this.begBal_tx.Name = "begBal_tx";
+            this.begBal_tx.Size = new System.Drawing.Size(308, 27);
+            this.begBal_tx.TabIndex = 6;
+            this.begBal_tx.Tag = "Decimal";
+            this.begBal_tx.TextChanged += new System.EventHandler(this.begBal_tx_TextChanged);
             // 
             // panel6
             // 
@@ -103,7 +277,7 @@
             this.transactionLog_tab.Location = new System.Drawing.Point(4, 29);
             this.transactionLog_tab.Name = "transactionLog_tab";
             this.transactionLog_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.transactionLog_tab.Size = new System.Drawing.Size(1082, 502);
+            this.transactionLog_tab.Size = new System.Drawing.Size(659, 457);
             this.transactionLog_tab.TabIndex = 1;
             this.transactionLog_tab.Text = "     Transaction Logs   ";
             this.transactionLog_tab.UseVisualStyleBackColor = true;
@@ -121,7 +295,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1113, 613);
+            this.ClientSize = new System.Drawing.Size(692, 566);
             this.Controls.Add(this.detailTabControl);
             this.Controls.Add(this.title_lbl);
             this.MaximizeBox = false;
@@ -133,6 +307,7 @@
             this.Text = "Manage Transaction";
             this.detailTabControl.ResumeLayout(false);
             this.transactionData_tab.ResumeLayout(false);
+            this.transactionData_tab.PerformLayout();
             this.transactionLog_tab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,5 +323,20 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TabPage transactionLog_tab;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox begBal_tx;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox totalSales_tx;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox totalExp_tx;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox expCash_tx;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox endingCash_tx;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox openedBy_tx;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox closedBy_tx;
+        private System.Windows.Forms.Label balStatus_tx;
     }
 }
