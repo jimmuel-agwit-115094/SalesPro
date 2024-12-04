@@ -86,10 +86,10 @@
             // 
             this.content_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.content_panel.BackColor = System.Drawing.Color.White;
-            this.content_panel.Location = new System.Drawing.Point(0, 33);
+            this.content_panel.Location = new System.Drawing.Point(0, 2);
             this.content_panel.Margin = new System.Windows.Forms.Padding(2);
             this.content_panel.Name = "content_panel";
-            this.content_panel.Size = new System.Drawing.Size(1170, 690);
+            this.content_panel.Size = new System.Drawing.Size(1166, 692);
             this.content_panel.TabIndex = 0;
             // 
             // logout_lnk
@@ -353,6 +353,7 @@
             this.transactions_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.transactions_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.transactions_btn.UseVisualStyleBackColor = false;
+            this.transactions_btn.Click += new System.EventHandler(this.transactions_btn_Click);
             // 
             // serttings_btn
             // 
@@ -386,6 +387,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.main_panel.ResumeLayout(false);
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
