@@ -1,0 +1,47 @@
+﻿using System.Windows.Forms;
+
+namespace SalesPro.Helpers
+{
+    public class MessageHandler
+    {
+        public static void SuccessfullyAdded()
+        {
+            MessageBox.Show("Record added successfully!", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void SuccessfullyUpdated()
+        {
+            MessageBox.Show("Record updated successfully!", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void SuccessfullyDeleted()
+        {
+            MessageBox.Show("Record deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void MissingDataError(string missingfield)
+        {
+            MessageBox.Show("Please fill in all required fields for: " + missingfield, "Incomplete Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        public static void ShowInfo(string message)
+        {
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void ShowWarning(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public static void ShowError(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static DialogResult ShowQuestion(string message)
+        {
+            return MessageBox.Show(message, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+    }
+}
