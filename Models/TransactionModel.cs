@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class Transaction
+    public class TransactionModel : BaseEntity
     {
         [Key]
         public int TransactionId { get; set; }

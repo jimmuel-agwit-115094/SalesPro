@@ -80,6 +80,7 @@
             this.save_btn.TabIndex = 3;
             this.save_btn.Text = "Save";
             this.save_btn.UseVisualStyleBackColor = false;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // detailTabControl
             // 
@@ -182,8 +183,12 @@
             this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.endingCash_tx.Location = new System.Drawing.Point(217, 350);
             this.endingCash_tx.Name = "endingCash_tx";
+            this.endingCash_tx.ReadOnly = true;
             this.endingCash_tx.Size = new System.Drawing.Size(308, 27);
             this.endingCash_tx.TabIndex = 500;
+            this.endingCash_tx.Tag = "Decimal";
+            this.endingCash_tx.Text = "0.00";
+            this.endingCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -201,8 +206,12 @@
             this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.expCash_tx.Location = new System.Drawing.Point(217, 305);
             this.expCash_tx.Name = "expCash_tx";
+            this.expCash_tx.ReadOnly = true;
             this.expCash_tx.Size = new System.Drawing.Size(308, 27);
             this.expCash_tx.TabIndex = 498;
+            this.expCash_tx.Tag = "Decimal";
+            this.expCash_tx.Text = "0.00";
+            this.expCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -220,8 +229,12 @@
             this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.totalExp_tx.Location = new System.Drawing.Point(217, 263);
             this.totalExp_tx.Name = "totalExp_tx";
+            this.totalExp_tx.ReadOnly = true;
             this.totalExp_tx.Size = new System.Drawing.Size(308, 27);
             this.totalExp_tx.TabIndex = 496;
+            this.totalExp_tx.Tag = "Decimal";
+            this.totalExp_tx.Text = "0.00";
+            this.totalExp_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -239,8 +252,12 @@
             this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.totalSales_tx.Location = new System.Drawing.Point(217, 221);
             this.totalSales_tx.Name = "totalSales_tx";
+            this.totalSales_tx.ReadOnly = true;
             this.totalSales_tx.Size = new System.Drawing.Size(308, 27);
             this.totalSales_tx.TabIndex = 494;
+            this.totalSales_tx.Tag = "Decimal";
+            this.totalSales_tx.Text = "0.00";
+            this.totalSales_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
@@ -261,7 +278,8 @@
             this.begBal_tx.Size = new System.Drawing.Size(308, 27);
             this.begBal_tx.TabIndex = 6;
             this.begBal_tx.Tag = "Decimal";
-            this.begBal_tx.TextChanged += new System.EventHandler(this.begBal_tx_TextChanged);
+            this.begBal_tx.Text = "0.00";
+            this.begBal_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel6
             // 
