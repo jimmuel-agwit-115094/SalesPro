@@ -325,6 +325,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Transaction";
+            this.Load += new System.EventHandler(this.TransactionDetailsForm_Load);
             this.detailTabControl.ResumeLayout(false);
             this.transactionData_tab.ResumeLayout(false);
             this.transactionData_tab.PerformLayout();

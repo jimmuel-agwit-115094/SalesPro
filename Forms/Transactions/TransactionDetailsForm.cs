@@ -14,11 +14,10 @@ namespace SalesPro.Forms.Transactions
         private readonly GenericAccessor<TransactionModel> _accessor;
         public TransactionDetailsForm()
         {
-            InitializeComponent();
             _context = new DatabaseContext();
             _accessor = new GenericAccessor<TransactionModel>(_context);
             CurrencyTextboxHelper.AttachCurrencyValidation(this, "Decimal");
-   
+            InitializeComponent();
         }
 
         private void begBal_tx_TextChanged(object sender, EventArgs e)
@@ -46,6 +45,11 @@ namespace SalesPro.Forms.Transactions
             await _accessor.AddAsync(transaction);
             MessageHandler.SuccessfullyAdded();
             Close();
+        }
+
+        private void TransactionDetailsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
