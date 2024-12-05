@@ -96,8 +96,8 @@ namespace SalesPro.Forms.Transactions
 
         private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int? selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
-
+            int selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
+            if (selectedId == 0) return;
             TransactionDetailsForm form = new TransactionDetailsForm();
             form.FormClosed += TransactionDetailsForm_FormClosed;
             form.actionType = Constants.SystemConstants.Edit;

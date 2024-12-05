@@ -51,6 +51,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
@@ -80,7 +81,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(397, 404);
+            this.save_btn.Location = new System.Drawing.Point(414, 407);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(128, 34);
             this.save_btn.TabIndex = 3;
@@ -102,6 +103,7 @@
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.transactionData_tab.Controls.Add(this.button1);
             this.transactionData_tab.Controls.Add(this.endingCash_tx);
             this.transactionData_tab.Controls.Add(this.expCash_tx);
             this.transactionData_tab.Controls.Add(this.totalExp_tx);
@@ -229,7 +231,7 @@
             this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.close_btn.ForeColor = System.Drawing.Color.White;
-            this.close_btn.Location = new System.Drawing.Point(236, 404);
+            this.close_btn.Location = new System.Drawing.Point(253, 407);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(145, 34);
             this.close_btn.TabIndex = 507;
@@ -238,7 +240,7 @@
             // 
             // balStatus_tx
             // 
-            this.balStatus_tx.Location = new System.Drawing.Point(397, 24);
+            this.balStatus_tx.Location = new System.Drawing.Point(397, 18);
             this.balStatus_tx.Name = "balStatus_tx";
             this.balStatus_tx.Size = new System.Drawing.Size(128, 20);
             this.balStatus_tx.TabIndex = 506;
@@ -367,6 +369,20 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(96, 407);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 34);
+            this.button1.TabIndex = 513;
+            this.button1.Text = "Undo Transaction";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // TransactionDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,5 +438,6 @@
         private System.Windows.Forms.NumericUpDown endingCash_tx;
         private System.Windows.Forms.NumericUpDown expCash_tx;
         private System.Windows.Forms.NumericUpDown totalExp_tx;
+        private System.Windows.Forms.Button button1;
     }
 }

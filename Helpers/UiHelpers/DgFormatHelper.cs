@@ -234,7 +234,7 @@ public static class DgFormatHelper
         }
     }
 
-    public static int? GetSelectedId(DataGridView dgv, DataGridViewCellEventArgs e, string columnName)
+    public static int GetSelectedId(DataGridView dgv, DataGridViewCellEventArgs e, string columnName)
     {
         if (e.ColumnIndex == dgv.Columns[columnName].Index && e.RowIndex >= 0)
         {
@@ -249,8 +249,8 @@ public static class DgFormatHelper
             }
         }
 
-        MessageHandler.ShowWarning("Not a valid id clicked on the record. Please try again.");
-        return null;
+      
+        return 0;
     }
 
 }
