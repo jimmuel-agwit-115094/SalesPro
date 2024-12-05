@@ -50,12 +50,41 @@ namespace SalesPro.Forms.Transactions
             Close();
         }
 
+        private async void GetTransactionData()
+        {
+            var transactionData = await _accessor.GetByIdAsync(transactionId);
+            if (transactionData != null)
+            {
+                switch (transactionData.BalanceStatus)
+                {
+                    case Constants.SystemConstants.NotSet:
+                        balStatus_tx.Text = "Not Set";
+                        break;
+                    case Constants.SystemConstants.Balanced:
+                        balStatus_tx.Text = "Balanced";
+                        break;
+                    default:
+                        balStatus_tx.Text = "Not Balanced";
+                        break;
+                }
+
+                openedBy_tx.Text = transactionData.OpenedBy;
+                closedBy_tx.Text = transactionData.ClosedBy;
+                begBal_tx.Text = transactionData.BeginningBalance.ToString();
+                totalSales_tx.Text = transactionData.TotalSales.ToString();
+                totalExp_tx.Text = transactionData.TotalExpenses.ToString();
+                expCash_tx.Text = transactionData.ExpectedCash.ToString();
+                endingCash_tx.Text = transactionData.EndingCash.ToString();
+            }
+        }
+
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
             _curDate = await ServerDateTimeHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
             openedBy_tx.Text = _userFullname;
 
+            GetTransactionData();
             if (actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
