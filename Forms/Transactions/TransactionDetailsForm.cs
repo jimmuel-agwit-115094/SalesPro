@@ -10,6 +10,8 @@ namespace SalesPro.Forms.Transactions
 {
     public partial class TransactionDetailsForm : Form
     {
+        private DateTime _curDate;
+        private string _userFullname;
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
         public TransactionDetailsForm()
@@ -26,17 +28,16 @@ namespace SalesPro.Forms.Transactions
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
-            var date = await ServerDateTimeHelper.GetServerDateTime();
             var transaction = new TransactionModel
             {
-                StartDate = date.Date,
-                EndDate = date.Date,
+                StartDate = _curDate,
+                EndDate = _curDate,
                 BeginningBalance = decimal.Parse(begBal_tx.Text),
                 TotalSales = decimal.Parse(totalSales_tx.Text),
                 TotalExpenses = decimal.Parse(totalExp_tx.Text),
                 ExpectedCash = decimal.Parse(expCash_tx.Text),
                 EndingCash = decimal.Parse(endingCash_tx.Text),
-                OpenedBy = UserSession.FullName,
+                OpenedBy = _userFullname,
                 ClosedBy = closedBy_tx.Text,
                 IsClosed = false,
                 BalanceStatus = Constants.SystemConstants.NotSet
@@ -47,9 +48,10 @@ namespace SalesPro.Forms.Transactions
             Close();
         }
 
-        private void TransactionDetailsForm_Load(object sender, EventArgs e)
+        private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
-
+            _curDate = await ServerDateTimeHelper.GetServerDateTime();
+            _userFullname = UserSession.FullName;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SalesPro.Forms.Transactions
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
         private readonly TransactionAccessor _transactionAccessor;
-        private DateTime? _curDate;
+        private DateTime _curDate;
         public TransactionForm()
         {
             _context = new DatabaseContext();
@@ -50,7 +50,7 @@ namespace SalesPro.Forms.Transactions
             switch (transactionsTabControl.SelectedIndex)
             {
                 case 0:
-                    var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Value.Date).ToList();
+                    var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Date).ToList();
                     dgTrans.DataSource = curTrans;
                     break;
                 case 1:
@@ -70,7 +70,7 @@ namespace SalesPro.Forms.Transactions
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;
                 noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
-            if(date == _curDate.Value.Date)
+            if(date == _curDate.Date)
                 noRecordDate_lbl.Visible = false;
             FormatGrid();
 
