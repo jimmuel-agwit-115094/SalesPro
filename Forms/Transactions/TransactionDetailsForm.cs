@@ -20,7 +20,7 @@ namespace SalesPro.Forms.Transactions
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>(_context);
-          
+
             InitializeComponent();
         }
 
@@ -30,6 +30,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
+            if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
             var transaction = new TransactionModel
             {
                 StartDate = _curDate,
