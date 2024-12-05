@@ -47,7 +47,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var allTrans = await _accessor.GetAllAsync();
+            var allTrans = (await _accessor.GetAllAsync()).OrderByDescending(x => x.TransactionId).ToList();
             switch (transactionsTabControl.SelectedIndex)
             {
                 case 0:
@@ -67,7 +67,7 @@ namespace SalesPro.Forms.Transactions
             var date = date_cb.Value.Date;
 
             var filteredTrans = await _transactionAccessor.GetTransactionByDate(date);
-            dgTrans.DataSource = filteredTrans;
+            dgTrans.DataSource = filteredTrans.OrderBy(x=>x.TransactionId);
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;
             noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
