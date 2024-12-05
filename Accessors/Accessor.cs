@@ -35,15 +35,12 @@ namespace SalesPro.Accessors
             {
                 using (var _dbContext = new DatabaseContext())
                 {
+                    bool primaryKeyFound = false;
                     var entity = await _dbContext.Set<TModel>().FindAsync(id);
                     if (entity != null)
                     {
                         var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TModel))
-                            .FindPrimaryKey()
-                            .Properties
-                            .FirstOrDefault();
-
-                        bool primaryKeyFound = false;
+                            .FindPrimaryKey().Properties.FirstOrDefault();
 
                         foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
                         {
@@ -71,12 +68,6 @@ namespace SalesPro.Accessors
                 throw;
             }
         }
-
-
-
-
-
-
 
 
         public async Task SoftDeleteAsync(int id)
