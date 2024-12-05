@@ -10,6 +10,7 @@ namespace SalesPro.Forms.Transactions
 {
     public partial class TransactionDetailsForm : Form
     {
+        public string actionType;
         private DateTime _curDate;
         private string _userFullname;
         private readonly DatabaseContext _context;
@@ -52,6 +53,18 @@ namespace SalesPro.Forms.Transactions
         {
             _curDate = await ServerDateTimeHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
+            openedBy_tx.Text = _userFullname;
+
+            if (actionType == Constants.SystemConstants.New)
+            {
+                Text = "New Transaction";
+                save_btn.Text = "Save";
+            }
+            else
+            {
+                Text = "Edit Transaction";
+                save_btn.Text = "Update";
+            }
         }
     }
 }

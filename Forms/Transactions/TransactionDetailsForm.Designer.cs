@@ -50,6 +50,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.close_btn = new System.Windows.Forms.Button();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
             this.transactionLog_tab.SuspendLayout();
@@ -96,6 +97,7 @@
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.transactionData_tab.Controls.Add(this.close_btn);
             this.transactionData_tab.Controls.Add(this.balStatus_tx);
             this.transactionData_tab.Controls.Add(this.label6);
             this.transactionData_tab.Controls.Add(this.closedBy_tx);
@@ -123,7 +125,7 @@
             // balStatus_tx
             // 
             this.balStatus_tx.AutoSize = true;
-            this.balStatus_tx.Location = new System.Drawing.Point(524, 18);
+            this.balStatus_tx.Location = new System.Drawing.Point(418, 24);
             this.balStatus_tx.Name = "balStatus_tx";
             this.balStatus_tx.Size = new System.Drawing.Size(107, 20);
             this.balStatus_tx.TabIndex = 506;
@@ -310,6 +312,20 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
+            // close_btn
+            // 
+            this.close_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.close_btn.FlatAppearance.BorderSize = 0;
+            this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.close_btn.ForeColor = System.Drawing.Color.White;
+            this.close_btn.Location = new System.Drawing.Point(236, 402);
+            this.close_btn.Name = "close_btn";
+            this.close_btn.Size = new System.Drawing.Size(145, 34);
+            this.close_btn.TabIndex = 507;
+            this.close_btn.Text = "Close Transaction";
+            this.close_btn.UseVisualStyleBackColor = false;
+            // 
             // TransactionDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,5 +375,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox closedBy_tx;
         private System.Windows.Forms.Label balStatus_tx;
+        private System.Windows.Forms.Button close_btn;
     }
 }
