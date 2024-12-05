@@ -32,6 +32,10 @@
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
             this.transactionData_tab = new System.Windows.Forms.TabPage();
+            this.endingCash_tx = new System.Windows.Forms.NumericUpDown();
+            this.expCash_tx = new System.Windows.Forms.NumericUpDown();
+            this.totalExp_tx = new System.Windows.Forms.NumericUpDown();
+            this.totalSales_tx = new System.Windows.Forms.NumericUpDown();
             this.begBal_tx = new System.Windows.Forms.NumericUpDown();
             this.close_btn = new System.Windows.Forms.Button();
             this.balStatus_tx = new System.Windows.Forms.Label();
@@ -47,18 +51,14 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.totalSales_tx = new System.Windows.Forms.NumericUpDown();
-            this.expCash_tx = new System.Windows.Forms.NumericUpDown();
-            this.totalExp_tx = new System.Windows.Forms.NumericUpDown();
-            this.endingCash_tx = new System.Windows.Forms.NumericUpDown();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).BeginInit();
-            this.transactionLog_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).BeginInit();
+            this.transactionLog_tab.SuspendLayout();
             this.SuspendLayout();
             // 
             // title_lbl
@@ -127,6 +127,82 @@
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
             this.transactionData_tab.Click += new System.EventHandler(this.transactionData_tab_Click);
+            // 
+            // endingCash_tx
+            // 
+            this.endingCash_tx.DecimalPlaces = 2;
+            this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.endingCash_tx.Location = new System.Drawing.Point(217, 351);
+            this.endingCash_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.endingCash_tx.Name = "endingCash_tx";
+            this.endingCash_tx.ReadOnly = true;
+            this.endingCash_tx.Size = new System.Drawing.Size(308, 27);
+            this.endingCash_tx.TabIndex = 512;
+            this.endingCash_tx.Tag = "IsNumeric";
+            this.endingCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.endingCash_tx.ThousandsSeparator = true;
+            this.endingCash_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // expCash_tx
+            // 
+            this.expCash_tx.DecimalPlaces = 2;
+            this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.expCash_tx.Location = new System.Drawing.Point(217, 309);
+            this.expCash_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.expCash_tx.Name = "expCash_tx";
+            this.expCash_tx.ReadOnly = true;
+            this.expCash_tx.Size = new System.Drawing.Size(308, 27);
+            this.expCash_tx.TabIndex = 511;
+            this.expCash_tx.Tag = "IsNumeric";
+            this.expCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.expCash_tx.ThousandsSeparator = true;
+            this.expCash_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // totalExp_tx
+            // 
+            this.totalExp_tx.DecimalPlaces = 2;
+            this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.totalExp_tx.Location = new System.Drawing.Point(217, 263);
+            this.totalExp_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.totalExp_tx.Name = "totalExp_tx";
+            this.totalExp_tx.ReadOnly = true;
+            this.totalExp_tx.Size = new System.Drawing.Size(308, 27);
+            this.totalExp_tx.TabIndex = 510;
+            this.totalExp_tx.Tag = "IsNumeric";
+            this.totalExp_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.totalExp_tx.ThousandsSeparator = true;
+            this.totalExp_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // totalSales_tx
+            // 
+            this.totalSales_tx.DecimalPlaces = 2;
+            this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.totalSales_tx.Location = new System.Drawing.Point(217, 219);
+            this.totalSales_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.totalSales_tx.Name = "totalSales_tx";
+            this.totalSales_tx.ReadOnly = true;
+            this.totalSales_tx.Size = new System.Drawing.Size(308, 27);
+            this.totalSales_tx.TabIndex = 509;
+            this.totalSales_tx.Tag = "IsNumeric";
+            this.totalSales_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.totalSales_tx.ThousandsSeparator = true;
+            this.totalSales_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // begBal_tx
             // 
@@ -291,78 +367,6 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
-            // totalSales_tx
-            // 
-            this.totalSales_tx.DecimalPlaces = 2;
-            this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalSales_tx.Location = new System.Drawing.Point(217, 219);
-            this.totalSales_tx.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.totalSales_tx.Name = "totalSales_tx";
-            this.totalSales_tx.Size = new System.Drawing.Size(308, 27);
-            this.totalSales_tx.TabIndex = 509;
-            this.totalSales_tx.Tag = "IsNumeric";
-            this.totalSales_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.totalSales_tx.ThousandsSeparator = true;
-            this.totalSales_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // expCash_tx
-            // 
-            this.expCash_tx.DecimalPlaces = 2;
-            this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.expCash_tx.Location = new System.Drawing.Point(217, 309);
-            this.expCash_tx.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.expCash_tx.Name = "expCash_tx";
-            this.expCash_tx.Size = new System.Drawing.Size(308, 27);
-            this.expCash_tx.TabIndex = 511;
-            this.expCash_tx.Tag = "IsNumeric";
-            this.expCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.expCash_tx.ThousandsSeparator = true;
-            this.expCash_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // totalExp_tx
-            // 
-            this.totalExp_tx.DecimalPlaces = 2;
-            this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalExp_tx.Location = new System.Drawing.Point(217, 263);
-            this.totalExp_tx.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.totalExp_tx.Name = "totalExp_tx";
-            this.totalExp_tx.Size = new System.Drawing.Size(308, 27);
-            this.totalExp_tx.TabIndex = 510;
-            this.totalExp_tx.Tag = "IsNumeric";
-            this.totalExp_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.totalExp_tx.ThousandsSeparator = true;
-            this.totalExp_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // endingCash_tx
-            // 
-            this.endingCash_tx.DecimalPlaces = 2;
-            this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.endingCash_tx.Location = new System.Drawing.Point(217, 351);
-            this.endingCash_tx.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.endingCash_tx.Name = "endingCash_tx";
-            this.endingCash_tx.Size = new System.Drawing.Size(308, 27);
-            this.endingCash_tx.TabIndex = 512;
-            this.endingCash_tx.Tag = "IsNumeric";
-            this.endingCash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.endingCash_tx.ThousandsSeparator = true;
-            this.endingCash_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
             // TransactionDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,12 +386,12 @@
             this.detailTabControl.ResumeLayout(false);
             this.transactionData_tab.ResumeLayout(false);
             this.transactionData_tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).EndInit();
-            this.transactionLog_tab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).EndInit();
+            this.transactionLog_tab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

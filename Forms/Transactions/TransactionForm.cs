@@ -31,12 +31,19 @@ namespace SalesPro.Forms.Transactions
             transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
         }
 
+        private void TransactionDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ProcessTransactionLoad();
+        }
+
         private void new_btn_Click(object sender, EventArgs e)
         {
-            var form = new TransactionDetailsForm();
+            TransactionDetailsForm form = new TransactionDetailsForm();
+            form.FormClosed += TransactionDetailsForm_FormClosed;
             form.actionType = Constants.SystemConstants.New;
             form.ShowDialog();
         }
+
 
         private void FormatGrid()
         {
@@ -45,7 +52,7 @@ namespace SalesPro.Forms.Transactions
             notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
-        private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private async void ProcessTransactionLoad()
         {
             var allTrans = (await _accessor.GetAllAsync()).OrderByDescending(x => x.TransactionId).ToList();
             switch (transactionsTabControl.SelectedIndex)
@@ -62,12 +69,17 @@ namespace SalesPro.Forms.Transactions
             FormatGrid();
         }
 
+        private void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProcessTransactionLoad();
+        }
+
         private async void find_btn_Click(object sender, EventArgs e)
         {
             var date = date_cb.Value.Date;
 
             var filteredTrans = await _transactionAccessor.GetTransactionByDate(date);
-            dgTrans.DataSource = filteredTrans.OrderBy(x=>x.TransactionId);
+            dgTrans.DataSource = filteredTrans.OrderBy(x => x.TransactionId);
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;
             noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
@@ -86,7 +98,8 @@ namespace SalesPro.Forms.Transactions
         {
             int? selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
 
-            var form = new TransactionDetailsForm();
+            TransactionDetailsForm form = new TransactionDetailsForm();
+            form.FormClosed += TransactionDetailsForm_FormClosed;
             form.actionType = Constants.SystemConstants.Edit;
             form.transactionId = (int)selectedId;
             form.ShowDialog();
