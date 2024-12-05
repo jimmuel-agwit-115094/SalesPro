@@ -20,7 +20,7 @@ namespace SalesPro.Forms.Transactions
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>(_context);
-            CurrencyTextboxHelper.AttachCurrencyValidation(this, "Decimal");
+          
             InitializeComponent();
         }
 
@@ -80,6 +80,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
+            CurrencyTextboxHelper.ApplyTagBehavior(transactionData_tab);
             _curDate = await ServerDateTimeHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
             openedBy_tx.Text = _userFullname;
@@ -95,6 +96,11 @@ namespace SalesPro.Forms.Transactions
                 Text = "Edit Transaction";
                 save_btn.Text = "Update";
             }
+        }
+
+        private void transactionData_tab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
