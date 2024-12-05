@@ -302,7 +302,6 @@
             0,
             0});
             this.totalSales_tx.Name = "totalSales_tx";
-            this.totalSales_tx.ReadOnly = true;
             this.totalSales_tx.Size = new System.Drawing.Size(308, 27);
             this.totalSales_tx.TabIndex = 509;
             this.totalSales_tx.Tag = "IsNumeric";
@@ -321,7 +320,6 @@
             0,
             0});
             this.expCash_tx.Name = "expCash_tx";
-            this.expCash_tx.ReadOnly = true;
             this.expCash_tx.Size = new System.Drawing.Size(308, 27);
             this.expCash_tx.TabIndex = 511;
             this.expCash_tx.Tag = "IsNumeric";
@@ -340,7 +338,6 @@
             0,
             0});
             this.totalExp_tx.Name = "totalExp_tx";
-            this.totalExp_tx.ReadOnly = true;
             this.totalExp_tx.Size = new System.Drawing.Size(308, 27);
             this.totalExp_tx.TabIndex = 510;
             this.totalExp_tx.Tag = "IsNumeric";
@@ -359,7 +356,6 @@
             0,
             0});
             this.endingCash_tx.Name = "endingCash_tx";
-            this.endingCash_tx.ReadOnly = true;
             this.endingCash_tx.Size = new System.Drawing.Size(308, 27);
             this.endingCash_tx.TabIndex = 512;
             this.endingCash_tx.Tag = "IsNumeric";

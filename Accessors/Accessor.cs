@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using POS_Generic.Helpers;
 using SalesPro.Helpers;
 using SalesPro.Models;
@@ -29,42 +30,40 @@ namespace SalesPro.Accessors
             }
         }
 
-        public async Task<T> UpdateAsync<TModel>(int id, TModel model) where TModel : class
+        public async Task<bool> UpdateAsync<TModel>(int id, TModel model) where TModel : class
         {
             try
             {
                 using (var _dbContext = new DatabaseContext())
                 {
-                    bool primaryKeyFound = false;
                     var entity = await _dbContext.Set<TModel>().FindAsync(id);
-                    if (entity != null)
+                    if (entity == null)
                     {
-                        var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TModel))
-                            .FindPrimaryKey().Properties.FirstOrDefault();
-
-                        foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
-                        {
-                            if (property.Name == primaryKeyProperty?.Name)
-                            {
-                                primaryKeyFound = true;
-                                break;
-                            }
-
-                            _dbContext.Entry(entity).CurrentValues[property.Name] = property.PropertyInfo.GetValue(model);
-                        }
-
-                        if (primaryKeyFound)
-                        {
-                            await _dbContext.SaveChangesAsync();
-                        }
+                        return false;
                     }
 
-                    return null;
+                    var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TModel))
+                        .FindDeclaredPrimaryKey()
+                        .Properties
+                        .FirstOrDefault();
+
+                    foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
+                    {
+                        if (property.Name == primaryKeyProperty?.Name)
+                        {
+                            continue;
+                        }
+
+                        _dbContext.Entry(entity).CurrentValues[property.Name] = property.PropertyInfo.GetValue(model);
+                    }
+
+                    await _dbContext.SaveChangesAsync();
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error updating entity. Error details: {ex.Message}");
+                MessageHandler.ShowError($"Error updating {model} with id {id}. Error details: {ex.Message}");
                 throw;
             }
         }
