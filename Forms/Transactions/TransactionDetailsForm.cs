@@ -11,11 +11,11 @@ namespace SalesPro.Forms.Transactions
     public partial class TransactionDetailsForm : Form
     {
         private readonly DatabaseContext _context;
-        private readonly GenericAccessor<TransactionModel> _accessor;
+        private readonly Accessor<TransactionModel> _accessor;
         public TransactionDetailsForm()
         {
             _context = new DatabaseContext();
-            _accessor = new GenericAccessor<TransactionModel>(_context);
+            _accessor = new Accessor<TransactionModel>(_context);
             CurrencyTextboxHelper.AttachCurrencyValidation(this, "Decimal");
             InitializeComponent();
         }

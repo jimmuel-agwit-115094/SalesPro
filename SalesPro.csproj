@@ -158,7 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accessors\GenericAccessor.cs" />
+    <Compile Include="Accessors\Accessor.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SalesPro.Accessors
 {
-    public class GenericAccessor<T> where T : BaseEntity
+    public class Accessor<T> where T : BaseEntity
     {
         private readonly DatabaseContext _dbContext;
-        public GenericAccessor(DatabaseContext dbContext)
+        public Accessor(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
         }

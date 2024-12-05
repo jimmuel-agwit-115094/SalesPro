@@ -13,12 +13,12 @@ namespace SalesPro.Forms.Transactions
     public partial class TransactionForm : Form
     {
         private readonly DatabaseContext _context;
-        private readonly GenericAccessor<TransactionModel> _accessor;
+        private readonly Accessor<TransactionModel> _accessor;
         private DateTime? _curDate;
         public TransactionForm()
         {
             _context = new DatabaseContext();
-            _accessor = new GenericAccessor<TransactionModel>(_context);
+            _accessor = new Accessor<TransactionModel>(_context);
             InitializeComponent();
         }
 
@@ -61,7 +61,7 @@ namespace SalesPro.Forms.Transactions
                     break;
             }
             DgExtenstions.FormatDataGrid(dgTrans, true);
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy"); 
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
             notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
@@ -70,6 +70,17 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-      
+        private async void find_btn_Click(object sender, EventArgs e)
+        {
+            var trans = await _accessor.GetAllAsync();
+            var date = date_cb.Value.Date;
+            if (trans != null)
+            {
+                dgTrans.DataSource = trans;
+                DgExtenstions.FormatDataGrid(dgTrans, true);
+                DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
+                notFound_lbl.Visible = dgTrans.Rows.Count == 0;
+            }
+        }
     }
 }
