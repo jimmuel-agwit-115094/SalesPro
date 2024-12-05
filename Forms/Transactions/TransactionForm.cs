@@ -37,12 +37,6 @@ namespace SalesPro.Forms.Transactions
             form.ShowDialog();
         }
 
-        private async void ShowCurrentTransaction()
-        {
-            var trans = await _accessor.GetAllAsync();
-
-        }
-
         private void FormatGrid()
         {
             DgExtenstions.FormatDataGrid(dgTrans, true);
@@ -65,11 +59,6 @@ namespace SalesPro.Forms.Transactions
             }
             noRecordDate_lbl.Visible = false;
             FormatGrid();
-        }
-
-        private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private async void find_btn_Click(object sender, EventArgs e)

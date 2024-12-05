@@ -228,7 +228,6 @@
             this.dgTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTrans.Size = new System.Drawing.Size(1204, 429);
             this.dgTrans.TabIndex = 457;
-            this.dgTrans.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTrans_CellContentClick);
             // 
             // panel9
             // 
