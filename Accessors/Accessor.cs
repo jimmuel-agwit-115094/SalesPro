@@ -4,25 +4,23 @@ using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SalesPro.Accessors
 {
     public class Accessor<T> where T : BaseEntity
     {
-        private readonly DatabaseContext _dbContext;
-        public Accessor(DatabaseContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<T> AddAsync(T entity)
         {
             try
             {
-                _dbContext.Set<T>().Add(entity);
-                await _dbContext.SaveChangesAsync();
-                return entity;
+                using (var _dbContext = new DatabaseContext())
+                {
+                    _dbContext.Set<T>().Add(entity);
+                    await _dbContext.SaveChangesAsync();
+                    return entity;
+                }
             }
             catch (Exception ex)
             {
@@ -31,36 +29,75 @@ namespace SalesPro.Accessors
             }
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync<TModel>(int id, TModel model) where TModel : class
         {
             try
             {
-                _dbContext.Set<T>().Update(entity);
-                await _dbContext.SaveChangesAsync();
-                return entity;
+                using (var _dbContext = new DatabaseContext())
+                {
+                    var entity = await _dbContext.Set<TModel>().FindAsync(id);
+                    if (entity != null)
+                    {
+                        var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TModel))
+                            .FindPrimaryKey()
+                            .Properties
+                            .FirstOrDefault();
+
+                        bool primaryKeyFound = false;
+
+                        foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
+                        {
+                            if (property.Name == primaryKeyProperty?.Name)
+                            {
+                                primaryKeyFound = true;
+                                break;
+                            }
+
+                            _dbContext.Entry(entity).CurrentValues[property.Name] = property.PropertyInfo.GetValue(model);
+                        }
+
+                        if (primaryKeyFound)
+                        {
+                            await _dbContext.SaveChangesAsync();
+                        }
+                    }
+
+                    return null;
+                }
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error updating {entity}. Error details: {ex.Message}");
+                MessageHandler.ShowError($"Error updating entity. Error details: {ex.Message}");
                 throw;
             }
         }
+
+
+
+
+
+
+
 
         public async Task SoftDeleteAsync(int id)
         {
             try
             {
-                var entity = await _dbContext.Set<T>().FindAsync(id);
-
-                if (entity == null)
+                using (var _dbContext = new DatabaseContext())
                 {
-                    MessageHandler.ShowError($"Entity with id {id} not found.");
-                    return;
+                    var entity = await _dbContext.Set<T>().FindAsync(id);
+
+                    if (entity == null)
+                    {
+                        MessageHandler.ShowError($"Entity with id {id} not found.");
+                        return;
+                    }
+
+                    entity.IsDeleted = true;
+
+                    await _dbContext.SaveChangesAsync();
                 }
 
-                entity.IsDeleted = true;
-
-                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -74,7 +111,10 @@ namespace SalesPro.Accessors
         {
             try
             {
-                return await _dbContext.Set<T>().FindAsync(id);
+                using (var _dbContext = new DatabaseContext())
+                {
+                    return await _dbContext.Set<T>().FindAsync(id);
+                }
             }
             catch (Exception ex)
             {
@@ -87,7 +127,10 @@ namespace SalesPro.Accessors
         {
             try
             {
-                return await _dbContext.Set<T>().ToListAsync();
+                using (var _dbContext = new DatabaseContext())
+                {
+                    return await _dbContext.Set<T>().ToListAsync();
+                }
             }
             catch (Exception ex)
             {

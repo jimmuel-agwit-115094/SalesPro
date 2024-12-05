@@ -18,7 +18,7 @@ namespace SalesPro.Forms.Transactions
         public TransactionForm()
         {
             _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>(_context);
+            _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
             InitializeComponent();
         }

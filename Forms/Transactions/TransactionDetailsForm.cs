@@ -1,9 +1,9 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
 using SalesPro.Helpers;
-using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
@@ -14,12 +14,14 @@ namespace SalesPro.Forms.Transactions
         private DateTime _curDate;
         public int transactionId;
         private string _userFullname;
+        public int _rowVersion;
+
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
         public TransactionDetailsForm()
         {
             _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>(_context);
+            _accessor = new Accessor<TransactionModel>();
 
             InitializeComponent();
         }
@@ -46,8 +48,16 @@ namespace SalesPro.Forms.Transactions
                 BalanceStatus = Constants.SystemConstants.NotSet
             };
 
-            await _accessor.AddAsync(transaction);
-            MessageHandler.SuccessfullyAdded();
+            if (actionType == Constants.SystemConstants.New)
+            {
+                await _accessor.AddAsync(transaction);
+                MessageHandler.SuccessfullyAdded();
+            }
+            else
+            {
+                await _accessor.UpdateAsync(transactionId,transaction);
+                MessageHandler.SuccessfullyUpdated();
+            }
             Close();
         }
 
@@ -56,6 +66,8 @@ namespace SalesPro.Forms.Transactions
             var transactionData = await _accessor.GetByIdAsync(transactionId);
             if (transactionData != null)
             {
+                // Get the row version
+                _rowVersion = transactionData.RowVersion;
                 switch (transactionData.BalanceStatus)
                 {
                     case Constants.SystemConstants.NotSet:
@@ -91,11 +103,13 @@ namespace SalesPro.Forms.Transactions
             {
                 Text = "New Transaction";
                 save_btn.Text = "Save";
+                save_btn.BackColor = Color.Green;
             }
             else
             {
                 Text = "Edit Transaction";
                 save_btn.Text = "Update";
+                save_btn.BackColor = SystemColors.HotTrack;
             }
         }
 
