@@ -206,4 +206,31 @@ public static class DgFormatHelper
             " ",
             RegexOptions.Compiled);
     }
+
+    public static void FilterDataGridViewOnSearchText(DataGridView dataGridView, TextBox searchTextBox)
+    {
+        try
+        {
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataGridView.CurrentCell = null;
+                bool shouldRowBeVisible = false;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchTextBox.Text.ToLower()))
+                    {
+                        shouldRowBeVisible = true;
+                        break;
+                    }
+                }
+
+                row.Visible = shouldRowBeVisible;
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageHandler.ShowError("Error on search on datagrid: " + ex.Message);
+        }
+    }
 }

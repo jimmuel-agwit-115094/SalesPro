@@ -40,7 +40,7 @@ namespace SalesPro.Forms.Transactions
         private void FormatGrid()
         {
             DgExtenstions.FormatDataGrid(dgTrans, true);
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "OpenedBy", "ClosedBy", "EndDate", "BalanceStatus", "BeginningBalance", "EndingCash");
             notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
@@ -74,6 +74,11 @@ namespace SalesPro.Forms.Transactions
                 noRecordDate_lbl.Visible = false;
             FormatGrid();
 
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.FilterDataGridViewOnSearchText(dgTrans, search_tx);
         }
     }
 }
