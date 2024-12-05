@@ -12,6 +12,7 @@ namespace SalesPro.Forms.Transactions
     {
         public string actionType;
         private DateTime _curDate;
+        public int transactionId;
         private string _userFullname;
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;

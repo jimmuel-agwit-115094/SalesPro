@@ -233,4 +233,24 @@ public static class DgFormatHelper
             MessageHandler.ShowError("Error on search on datagrid: " + ex.Message);
         }
     }
+
+    public static int? GetSelectedId(DataGridView dgv, DataGridViewCellEventArgs e, string columnName)
+    {
+        if (e.ColumnIndex == dgv.Columns[columnName].Index && e.RowIndex >= 0)
+        {
+            object cellValue = dgv.Rows[e.RowIndex].Cells[columnName].Value;
+
+            if (cellValue != null && int.TryParse(cellValue.ToString(), out int selectedId))
+            {
+                if (selectedId != 0)
+                {
+                    return selectedId;
+                }
+            }
+        }
+
+        MessageHandler.ShowWarning("Not a valid id clicked on the record. Please try again.");
+        return null;
+    }
+
 }

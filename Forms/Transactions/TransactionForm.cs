@@ -70,8 +70,8 @@ namespace SalesPro.Forms.Transactions
             dgTrans.DataSource = filteredTrans;
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;
-                noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
-            if(date == _curDate.Date)
+            noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
+            if (date == _curDate.Date)
                 noRecordDate_lbl.Visible = false;
             FormatGrid();
 
@@ -80,6 +80,17 @@ namespace SalesPro.Forms.Transactions
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.FilterDataGridViewOnSearchText(dgTrans, search_tx);
+        }
+
+        private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int? selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
+
+            var form = new TransactionDetailsForm();
+            form.actionType = Constants.SystemConstants.Edit;
+            form.transactionId = (int)selectedId;
+            form.ShowDialog();
+
         }
     }
 }
