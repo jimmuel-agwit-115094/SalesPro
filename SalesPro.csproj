@@ -188,6 +188,7 @@
     <Compile Include="Helpers\MessageHandler.cs" />
     <Compile Include="Helpers\ServerDateTimeHelper.cs" />
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
+    <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\ModelHelpers\ServerDateTimeModel.cs" />

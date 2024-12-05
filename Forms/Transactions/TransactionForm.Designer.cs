@@ -53,6 +53,7 @@
             this.new_btn = new System.Windows.Forms.Button();
             this.title_lbl = new System.Windows.Forms.Label();
             this.Panel1 = new System.Windows.Forms.Panel();
+            this.notFound_lbl = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -153,6 +154,7 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Controls.Add(this.notFound_lbl);
             this.panel10.Controls.Add(this.dgTrans);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 40);
@@ -333,6 +335,19 @@
             this.Panel1.Size = new System.Drawing.Size(1208, 43);
             this.Panel1.TabIndex = 435;
             // 
+            // notFound_lbl
+            // 
+            this.notFound_lbl.AutoSize = true;
+            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
+            this.notFound_lbl.Location = new System.Drawing.Point(466, 193);
+            this.notFound_lbl.Name = "notFound_lbl";
+            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
+            this.notFound_lbl.TabIndex = 458;
+            this.notFound_lbl.Text = "No Record";
+            this.notFound_lbl.Visible = false;
+            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,7 +357,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.Panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TransactionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TransactionForm";
@@ -352,6 +367,7 @@
             this.panel5.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
@@ -387,5 +403,6 @@
         internal System.Windows.Forms.DataGridView dgTrans;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label notFound_lbl;
     }
 }

@@ -1,8 +1,10 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,6 +20,14 @@ namespace SalesPro.Forms.Transactions
             _context = new DatabaseContext();
             _accessor = new GenericAccessor<TransactionModel>(_context);
             InitializeComponent();
+        }
+
+        private async void TransactionForm_Load(object sender, EventArgs e)
+        {
+            _curDate = await ServerDateTimeHelper.GetServerDateTime();
+            // Triggers the SelectedIndexChanged event
+            transactionsTabControl.SelectedIndex = 0;
+            transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
         }
 
         private void new_btn_Click(object sender, EventArgs e)
@@ -39,21 +49,20 @@ namespace SalesPro.Forms.Transactions
 
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DgFormatHelper.BasicGridFormat(dgTrans);
             var allTrans = await _accessor.GetAllAsync();
             switch (transactionsTabControl.SelectedIndex)
             {
                 case 0:
-                    var curTrans = allTrans.Select(x => x.StartDate == _curDate).ToList();
+                    var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Value.Date).ToList();
                     dgTrans.DataSource = curTrans;
                     break;
                 case 1:
                     dgTrans.DataSource = allTrans;
                     break;
             }
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
-            dgTrans.AutoFormat();
-            DgFormatHelper.SetupLinkId(dgTrans, 0);
+            DgExtenstions.FormatDataGrid(dgTrans, true);
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy"); 
+            notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
         private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,9 +70,6 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private void TransactionForm_Load(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
