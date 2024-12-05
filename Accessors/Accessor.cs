@@ -95,7 +95,5 @@ namespace SalesPro.Accessors
                 throw;
             }
         }
-
-
     }
 }

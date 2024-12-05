@@ -4,7 +4,6 @@ using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,11 +13,13 @@ namespace SalesPro.Forms.Transactions
     {
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
+        private readonly TransactionAccessor _transactionAccessor;
         private DateTime? _curDate;
         public TransactionForm()
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>(_context);
+            _transactionAccessor = new TransactionAccessor();
             InitializeComponent();
         }
 
@@ -36,15 +37,17 @@ namespace SalesPro.Forms.Transactions
             form.ShowDialog();
         }
 
-        private void ShowCurrentTranscations()
-        {
-            transactionsTabControl.SelectedIndex = 0;
-        }
-
         private async void ShowCurrentTransaction()
         {
             var trans = await _accessor.GetAllAsync();
 
+        }
+
+        private void FormatGrid()
+        {
+            DgExtenstions.FormatDataGrid(dgTrans, true);
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
+            notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,9 +63,8 @@ namespace SalesPro.Forms.Transactions
                     dgTrans.DataSource = allTrans;
                     break;
             }
-            DgExtenstions.FormatDataGrid(dgTrans, true);
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
-            notFound_lbl.Visible = dgTrans.Rows.Count == 0;
+            noRecordDate_lbl.Visible = false;
+            FormatGrid();
         }
 
         private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -72,15 +74,17 @@ namespace SalesPro.Forms.Transactions
 
         private async void find_btn_Click(object sender, EventArgs e)
         {
-            var trans = await _accessor.GetAllAsync();
             var date = date_cb.Value.Date;
-            if (trans != null)
-            {
-                dgTrans.DataSource = trans;
-                DgExtenstions.FormatDataGrid(dgTrans, true);
-                DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "EndDate", "BeginningBalance", "EndingCash", "OpenedBy");
-                notFound_lbl.Visible = dgTrans.Rows.Count == 0;
-            }
+
+            var filteredTrans = await _transactionAccessor.GetTransactionByDate(date);
+            dgTrans.DataSource = filteredTrans;
+            if (filteredTrans.Count() == 0)
+                noRecordDate_lbl.Visible = true;
+                noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
+            if(date == _curDate.Value.Date)
+                noRecordDate_lbl.Visible = false;
+            FormatGrid();
+
         }
     }
 }
