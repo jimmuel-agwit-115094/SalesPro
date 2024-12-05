@@ -9,6 +9,9 @@ public static class DgFormatHelper
 {
     public static void AutoFormat(this DataGridView dataGridView)
     {
+        if (dataGridView == null || dataGridView.Rows.Count == 0)
+            return; // Exit if no rows are present
+
         foreach (DataGridViewColumn column in dataGridView.Columns)
         {
             // DateTime formatting
@@ -17,7 +20,6 @@ public static class DgFormatHelper
                 column.DefaultCellStyle.Format = "MMM. dd, yy h:mm tt";
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
-
             // Decimal formatting
             else if (column.ValueType == typeof(decimal) || column.ValueType == typeof(double))
             {
@@ -30,8 +32,7 @@ public static class DgFormatHelper
                 column.DefaultCellStyle.Format = "N0";
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
-
-            // string
+            // String formatting
             else if (column.ValueType == typeof(string))
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -39,24 +40,25 @@ public static class DgFormatHelper
         }
     }
 
+
     public static void SetupLinkId(DataGridView dataGridView, int columnIndex)
     {
-        string formattedIndex = columnIndex.ToString("D7");
-        DataGridViewCellStyle style = new DataGridViewCellStyle();
-        style.ForeColor = Color.Blue;
-        style.Font = new Font(dataGridView.DefaultCellStyle.Font, FontStyle.Underline);
-        style.SelectionForeColor = Color.Blue;
-        // Center the content
-        style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        if (dataGridView == null || dataGridView.Rows.Count == 0)
+            return; // Exit if no rows are present
+
+        DataGridViewCellStyle style = new DataGridViewCellStyle
+        {
+            ForeColor = Color.Blue,
+            Font = new Font(dataGridView.DefaultCellStyle.Font, FontStyle.Underline),
+            SelectionForeColor = Color.Blue,
+            Alignment = DataGridViewContentAlignment.MiddleCenter
+        };
         dataGridView.Columns[columnIndex].DefaultCellStyle = style;
 
         dataGridView.Columns[columnIndex].DefaultCellStyle.Format = "000000000";
 
         // Event handlers
-        DataGridViewCellEventHandler cellMouseEnterHandler = null;
-        DataGridViewCellEventHandler cellMouseLeaveHandler = null;
-
-        cellMouseEnterHandler = (sender, e) =>
+        DataGridViewCellEventHandler cellMouseEnterHandler = (sender, e) =>
         {
             if (e.ColumnIndex == columnIndex && e.RowIndex >= 0)
             {
@@ -65,7 +67,7 @@ public static class DgFormatHelper
             }
         };
 
-        cellMouseLeaveHandler = (sender, e) =>
+        DataGridViewCellEventHandler cellMouseLeaveHandler = (sender, e) =>
         {
             if (e.ColumnIndex == columnIndex && e.RowIndex >= 0)
             {
@@ -84,6 +86,7 @@ public static class DgFormatHelper
             dataGridView.CellMouseLeave -= cellMouseLeaveHandler;
         };
     }
+
 
     public static void SetupLinkColumnsForString(DataGridView dataGridView, int columnIndex)
     {
@@ -156,9 +159,9 @@ public static class DgFormatHelper
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
     {
-        // Validate inputs
-        if (dataGridView == null)
-            throw new ArgumentNullException(nameof(dataGridView));
+        if (dataGridView == null || dataGridView.Rows.Count == 0)
+            return; // Exit if no rows are present
+
         if (fieldsToShow == null || fieldsToShow.Length == 0)
             throw new ArgumentException("At least one field must be specified", nameof(fieldsToShow));
 
@@ -171,7 +174,6 @@ public static class DgFormatHelper
         // Show only specified columns
         foreach (string field in fieldsToShow)
         {
-            // Try to find the column by name (case-insensitive)
             DataGridViewColumn columnToShow = dataGridView.Columns
                 .Cast<DataGridViewColumn>()
                 .FirstOrDefault(col =>
@@ -181,17 +183,15 @@ public static class DgFormatHelper
             if (columnToShow != null)
             {
                 columnToShow.Visible = true;
-
-                // Add space before capital letters for display
                 columnToShow.HeaderText = AddSpacesToCamelCase(field);
             }
             else
             {
-                // Optional: Log or throw an exception if the field is not found
                 MessageHandler.ShowError($"Column {field} not found in the DataGridView");
             }
         }
     }
+
 
     private static string AddSpacesToCamelCase(string input)
     {

@@ -234,5 +234,8 @@
   <ItemGroup>
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
