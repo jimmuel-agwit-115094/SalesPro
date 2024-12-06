@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
@@ -65,6 +65,8 @@
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.dgTransLogs = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.find_btn = new System.Windows.Forms.Button();
+            this.date_cb = new System.Windows.Forms.DateTimePicker();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -479,6 +481,8 @@
             // 
             // transactionLog_tab
             // 
+            this.transactionLog_tab.Controls.Add(this.date_cb);
+            this.transactionLog_tab.Controls.Add(this.find_btn);
             this.transactionLog_tab.Controls.Add(this.dgTransLogs);
             this.transactionLog_tab.Controls.Add(this.panel7);
             this.transactionLog_tab.Location = new System.Drawing.Point(4, 29);
@@ -494,33 +498,33 @@
             this.dgTransLogs.AllowUserToAddRows = false;
             this.dgTransLogs.AllowUserToDeleteRows = false;
             this.dgTransLogs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgTransLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTransLogs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTransLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTransLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgTransLogs.ColumnHeadersHeight = 40;
             this.dgTransLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgTransLogs.EnableHeadersVisualStyles = false;
             this.dgTransLogs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgTransLogs.Location = new System.Drawing.Point(6, 10);
+            this.dgTransLogs.Location = new System.Drawing.Point(6, 57);
             this.dgTransLogs.MultiSelect = false;
             this.dgTransLogs.Name = "dgTransLogs";
             this.dgTransLogs.ReadOnly = true;
@@ -528,7 +532,7 @@
             this.dgTransLogs.RowHeadersWidth = 51;
             this.dgTransLogs.RowTemplate.Height = 32;
             this.dgTransLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTransLogs.Size = new System.Drawing.Size(747, 441);
+            this.dgTransLogs.Size = new System.Drawing.Size(747, 394);
             this.dgTransLogs.TabIndex = 458;
             // 
             // panel7
@@ -538,6 +542,33 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
+            // 
+            // find_btn
+            // 
+            this.find_btn.BackColor = System.Drawing.Color.Green;
+            this.find_btn.FlatAppearance.BorderSize = 0;
+            this.find_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.find_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.find_btn.ForeColor = System.Drawing.Color.White;
+            this.find_btn.Image = ((System.Drawing.Image)(resources.GetObject("find_btn.Image")));
+            this.find_btn.Location = new System.Drawing.Point(611, 18);
+            this.find_btn.Name = "find_btn";
+            this.find_btn.Size = new System.Drawing.Size(142, 28);
+            this.find_btn.TabIndex = 489;
+            this.find_btn.Text = "  Find";
+            this.find_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.find_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.find_btn.UseVisualStyleBackColor = false;
+            // 
+            // date_cb
+            // 
+            this.date_cb.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.date_cb.CustomFormat = "MMMM dd, yyyy";
+            this.date_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_cb.Location = new System.Drawing.Point(370, 19);
+            this.date_cb.Name = "date_cb";
+            this.date_cb.Size = new System.Drawing.Size(235, 27);
+            this.date_cb.TabIndex = 490;
             // 
             // TransactionDetailsForm
             // 
@@ -610,5 +641,7 @@
         private System.Windows.Forms.Label closedBy_tx;
         private System.Windows.Forms.Label openedBy_tx;
         private System.Windows.Forms.Label date_tx;
+        private System.Windows.Forms.Button find_btn;
+        private System.Windows.Forms.DateTimePicker date_cb;
     }
 }
