@@ -29,17 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
             this.transactionData_tab = new System.Windows.Forms.TabPage();
-            this.close_panel = new System.Windows.Forms.Panel();
-            this.closeStatus_tx = new System.Windows.Forms.Label();
+            this.date_tx = new System.Windows.Forms.Label();
+            this.closedBy_tx = new System.Windows.Forms.Label();
+            this.openedBy_tx = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.bal_panel = new System.Windows.Forms.Panel();
             this.balStatus_tx = new System.Windows.Forms.Label();
+            this.balStat_pb = new System.Windows.Forms.PictureBox();
+            this.close_panel = new System.Windows.Forms.Panel();
+            this.closeStatus_tx = new System.Windows.Forms.Label();
+            this.closeStat_pb = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.endingCash_tx = new System.Windows.Forms.NumericUpDown();
             this.expCash_tx = new System.Windows.Forms.NumericUpDown();
@@ -56,28 +63,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.closeStat_pb = new System.Windows.Forms.PictureBox();
-            this.balStat_pb = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dgTransLogs = new System.Windows.Forms.DataGridView();
-            this.label7 = new System.Windows.Forms.Label();
-            this.closedBy_tx = new System.Windows.Forms.Label();
-            this.openedBy_tx = new System.Windows.Forms.Label();
-            this.date_tx = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
-            this.close_panel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.bal_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).BeginInit();
+            this.close_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).BeginInit();
             this.transactionLog_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTransLogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,26 +151,59 @@
             this.transactionData_tab.Text = "    Transaction Data    ";
             this.transactionData_tab.Click += new System.EventHandler(this.transactionData_tab_Click);
             // 
-            // close_panel
+            // date_tx
             // 
-            this.close_panel.Controls.Add(this.closeStatus_tx);
-            this.close_panel.Controls.Add(this.closeStat_pb);
-            this.close_panel.Location = new System.Drawing.Point(115, 5);
-            this.close_panel.Name = "close_panel";
-            this.close_panel.Size = new System.Drawing.Size(159, 20);
-            this.close_panel.TabIndex = 517;
+            this.date_tx.AutoSize = true;
+            this.date_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_tx.Location = new System.Drawing.Point(308, 98);
+            this.date_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.date_tx.Name = "date_tx";
+            this.date_tx.Size = new System.Drawing.Size(15, 20);
+            this.date_tx.TabIndex = 523;
+            this.date_tx.Text = "-";
             // 
-            // closeStatus_tx
+            // closedBy_tx
             // 
-            this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeStatus_tx.ForeColor = System.Drawing.Color.Gray;
-            this.closeStatus_tx.Location = new System.Drawing.Point(22, 1);
-            this.closeStatus_tx.Name = "closeStatus_tx";
-            this.closeStatus_tx.Size = new System.Drawing.Size(124, 17);
-            this.closeStatus_tx.TabIndex = 514;
-            this.closeStatus_tx.Text = "Closed Transaction";
-            this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.closeStatus_tx.Visible = false;
+            this.closedBy_tx.AutoSize = true;
+            this.closedBy_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closedBy_tx.Location = new System.Drawing.Point(308, 78);
+            this.closedBy_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.closedBy_tx.Name = "closedBy_tx";
+            this.closedBy_tx.Size = new System.Drawing.Size(15, 20);
+            this.closedBy_tx.TabIndex = 522;
+            this.closedBy_tx.Text = "-";
+            // 
+            // openedBy_tx
+            // 
+            this.openedBy_tx.AutoSize = true;
+            this.openedBy_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openedBy_tx.Location = new System.Drawing.Point(308, 58);
+            this.openedBy_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.openedBy_tx.Name = "openedBy_tx";
+            this.openedBy_tx.Size = new System.Drawing.Size(92, 20);
+            this.openedBy_tx.TabIndex = 521;
+            this.openedBy_tx.Text = "Opened By :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(256, 98);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 20);
+            this.label7.TabIndex = 520;
+            this.label7.Text = "Date :";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.bal_panel);
+            this.panel1.Controls.Add(this.close_panel);
+            this.panel1.Location = new System.Drawing.Point(6, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(747, 31);
+            this.panel1.TabIndex = 518;
             // 
             // bal_panel
             // 
@@ -193,6 +226,49 @@
             this.balStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.balStatus_tx.Visible = false;
             // 
+            // balStat_pb
+            // 
+            this.balStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("balStat_pb.Image")));
+            this.balStat_pb.Location = new System.Drawing.Point(3, 2);
+            this.balStat_pb.Name = "balStat_pb";
+            this.balStat_pb.Size = new System.Drawing.Size(15, 15);
+            this.balStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.balStat_pb.TabIndex = 0;
+            this.balStat_pb.TabStop = false;
+            this.balStat_pb.Visible = false;
+            // 
+            // close_panel
+            // 
+            this.close_panel.Controls.Add(this.closeStatus_tx);
+            this.close_panel.Controls.Add(this.closeStat_pb);
+            this.close_panel.Location = new System.Drawing.Point(115, 5);
+            this.close_panel.Name = "close_panel";
+            this.close_panel.Size = new System.Drawing.Size(159, 20);
+            this.close_panel.TabIndex = 517;
+            // 
+            // closeStatus_tx
+            // 
+            this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeStatus_tx.ForeColor = System.Drawing.Color.Gray;
+            this.closeStatus_tx.Location = new System.Drawing.Point(22, 1);
+            this.closeStatus_tx.Name = "closeStatus_tx";
+            this.closeStatus_tx.Size = new System.Drawing.Size(124, 17);
+            this.closeStatus_tx.TabIndex = 514;
+            this.closeStatus_tx.Text = "Closed Transaction";
+            this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.closeStatus_tx.Visible = false;
+            // 
+            // closeStat_pb
+            // 
+            this.closeStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("closeStat_pb.Image")));
+            this.closeStat_pb.Location = new System.Drawing.Point(3, 2);
+            this.closeStat_pb.Name = "closeStat_pb";
+            this.closeStat_pb.Size = new System.Drawing.Size(15, 15);
+            this.closeStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.closeStat_pb.TabIndex = 515;
+            this.closeStat_pb.TabStop = false;
+            this.closeStat_pb.Visible = false;
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -200,7 +276,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(167, 399);
+            this.button1.Location = new System.Drawing.Point(165, 399);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 34);
             this.button1.TabIndex = 513;
@@ -314,6 +390,7 @@
             this.close_btn.TabIndex = 507;
             this.close_btn.Text = "Close Transaction";
             this.close_btn.UseVisualStyleBackColor = false;
+            this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
             // 
             // label6
             // 
@@ -412,75 +489,35 @@
             this.transactionLog_tab.Text = "     Transaction Logs   ";
             this.transactionLog_tab.UseVisualStyleBackColor = true;
             // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(169, -1);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(140, 5);
-            this.panel7.TabIndex = 6;
-            // 
-            // closeStat_pb
-            // 
-            this.closeStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("closeStat_pb.Image")));
-            this.closeStat_pb.Location = new System.Drawing.Point(3, 2);
-            this.closeStat_pb.Name = "closeStat_pb";
-            this.closeStat_pb.Size = new System.Drawing.Size(15, 15);
-            this.closeStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.closeStat_pb.TabIndex = 515;
-            this.closeStat_pb.TabStop = false;
-            this.closeStat_pb.Visible = false;
-            // 
-            // balStat_pb
-            // 
-            this.balStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("balStat_pb.Image")));
-            this.balStat_pb.Location = new System.Drawing.Point(3, 2);
-            this.balStat_pb.Name = "balStat_pb";
-            this.balStat_pb.Size = new System.Drawing.Size(15, 15);
-            this.balStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.balStat_pb.TabIndex = 0;
-            this.balStat_pb.TabStop = false;
-            this.balStat_pb.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.bal_panel);
-            this.panel1.Controls.Add(this.close_panel);
-            this.panel1.Location = new System.Drawing.Point(6, 10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(747, 31);
-            this.panel1.TabIndex = 518;
-            // 
             // dgTransLogs
             // 
             this.dgTransLogs.AllowUserToAddRows = false;
             this.dgTransLogs.AllowUserToDeleteRows = false;
             this.dgTransLogs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgTransLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTransLogs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTransLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTransLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgTransLogs.ColumnHeadersHeight = 40;
             this.dgTransLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgTransLogs.EnableHeadersVisualStyles = false;
             this.dgTransLogs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgTransLogs.Location = new System.Drawing.Point(6, 10);
@@ -494,49 +531,13 @@
             this.dgTransLogs.Size = new System.Drawing.Size(747, 441);
             this.dgTransLogs.TabIndex = 458;
             // 
-            // label7
+            // panel7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(256, 98);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 20);
-            this.label7.TabIndex = 520;
-            this.label7.Text = "Date :";
-            // 
-            // closedBy_tx
-            // 
-            this.closedBy_tx.AutoSize = true;
-            this.closedBy_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closedBy_tx.Location = new System.Drawing.Point(308, 78);
-            this.closedBy_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.closedBy_tx.Name = "closedBy_tx";
-            this.closedBy_tx.Size = new System.Drawing.Size(15, 20);
-            this.closedBy_tx.TabIndex = 522;
-            this.closedBy_tx.Text = "-";
-            // 
-            // openedBy_tx
-            // 
-            this.openedBy_tx.AutoSize = true;
-            this.openedBy_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openedBy_tx.Location = new System.Drawing.Point(308, 58);
-            this.openedBy_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.openedBy_tx.Name = "openedBy_tx";
-            this.openedBy_tx.Size = new System.Drawing.Size(92, 20);
-            this.openedBy_tx.TabIndex = 521;
-            this.openedBy_tx.Text = "Opened By :";
-            // 
-            // date_tx
-            // 
-            this.date_tx.AutoSize = true;
-            this.date_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_tx.Location = new System.Drawing.Point(308, 98);
-            this.date_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.date_tx.Name = "date_tx";
-            this.date_tx.Size = new System.Drawing.Size(15, 20);
-            this.date_tx.TabIndex = 523;
-            this.date_tx.Text = "-";
+            this.panel7.BackColor = System.Drawing.Color.Green;
+            this.panel7.Location = new System.Drawing.Point(169, -1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(140, 5);
+            this.panel7.TabIndex = 6;
             // 
             // TransactionDetailsForm
             // 
@@ -557,17 +558,17 @@
             this.detailTabControl.ResumeLayout(false);
             this.transactionData_tab.ResumeLayout(false);
             this.transactionData_tab.PerformLayout();
-            this.close_panel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.bal_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).EndInit();
+            this.close_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).EndInit();
             this.transactionLog_tab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).EndInit();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgTransLogs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

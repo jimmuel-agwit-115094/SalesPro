@@ -166,5 +166,10 @@ namespace SalesPro.Forms.Transactions
         {
 
         }
+
+        private void close_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
