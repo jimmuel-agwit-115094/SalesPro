@@ -19,7 +19,7 @@ namespace SalesPro.Accessors
             }
         }
 
-        public async Task<TransactionModel> UpdateTransaction(int transactionId)
+        public async Task<TransactionModel> UpdateTransaction(int transactionId, Action<TransactionModel> updateAction)
         {
             using (var _dbContext = new DatabaseContext())
             {
@@ -30,7 +30,9 @@ namespace SalesPro.Accessors
                     return null;
                 }
 
-                toUpdate.IsClosed = true;
+                // Apply the specific update action passed in
+                updateAction(toUpdate);
+
                 await _dbContext.SaveChangesAsync();
                 return toUpdate;
             }

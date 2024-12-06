@@ -128,5 +128,31 @@ namespace SalesPro.Accessors
                 throw;
             }
         }
+
+        public async Task<TEntity> UpdatePartialAsync<TEntity>(int id, Action<TEntity> updateAction) where TEntity : class
+        {
+            try
+            {
+                using (var _dbContext = new DatabaseContext())
+                {
+                    var toUpdate = await _dbContext.Set<TEntity>().FindAsync(id);
+                    if (toUpdate == null)
+                    {
+                        MessageHandler.ShowError($"{typeof(TEntity).Name} not found for id: {id}");
+                        return null;
+                    }
+
+                    // Apply the specific update action passed in
+                    updateAction(toUpdate);
+                    await _dbContext.SaveChangesAsync();
+                    return toUpdate;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error geting all data. Error details: {ex.Message}");
+                throw;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using SalesPro.Models;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
@@ -90,7 +91,7 @@ namespace SalesPro.Forms.Transactions
         private async void GetTransactionLogs(int transactionId)
         {
             var logs = await _transactionLogAccessor.GetTransactionLogsById(transactionId);
-            dgTransLogs.DataSource = logs.OrderByDescending(x=>x.TransactionLogId).ToList();
+            dgTransLogs.DataSource = logs.OrderByDescending(x => x.TransactionLogId).ToList();
             FormatGrid();
         }
 
@@ -167,9 +168,21 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private void close_btn_Click(object sender, EventArgs e)
+        private async Task<bool> CloseTransactionAsync(int transactionId)
         {
+            var updatedTransaction = await _accessor.UpdatePartialAsync<TransactionModel>(transactionId,
+                t => t.IsClosed = true
+            );
 
+            return updatedTransaction != null;
+        }
+
+        private async void close_btn_Click(object sender, EventArgs e)
+        {
+            if (await CloseTransactionAsync(transactionId))
+            {
+                MessageHandler.SuccessfullyUpdated();
+            }
         }
     }
 }
