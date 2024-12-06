@@ -55,7 +55,7 @@ namespace SalesPro.Forms.Transactions
         private void FormatGrid()
         {
             DgExtenstions.FormatDataGrid(dgTrans, true);
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "OpenedBy", "ClosedBy", "EndDate", "BalanceStatus", "BeginningBalance", "EndingCash");
+            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "OpenedBy", "ClosedBy", "EndDate", "BalanceStatus", "BeginningBalance", "EndingCash", "IsClosed");
             notFound_lbl.Visible = dgTrans.Rows.Count == 0;
         }
 
