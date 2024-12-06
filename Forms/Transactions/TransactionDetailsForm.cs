@@ -184,5 +184,10 @@ namespace SalesPro.Forms.Transactions
                 MessageHandler.SuccessfullyUpdated();
             }
         }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
+        }
     }
 }
