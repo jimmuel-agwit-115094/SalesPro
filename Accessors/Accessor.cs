@@ -142,7 +142,6 @@ namespace SalesPro.Accessors
                         return null;
                     }
 
-                    // Apply the specific update action passed in
                     updateAction(toUpdate);
                     await _dbContext.SaveChangesAsync();
                     return toUpdate;
@@ -150,7 +149,7 @@ namespace SalesPro.Accessors
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error geting all data. Error details: {ex.Message}");
+                MessageHandler.ShowError($"Error updating data. Id {id} is not found: {ex.Message}");
                 throw;
             }
         }

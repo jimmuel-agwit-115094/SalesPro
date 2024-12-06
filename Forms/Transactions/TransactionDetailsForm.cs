@@ -168,7 +168,7 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private async Task<bool> CloseTransactionAsync(int transactionId)
+        private async Task<bool> CloseTransactionAsync()
         {
             var updatedTransaction = await _accessor.UpdatePartialAsync<TransactionModel>(transactionId,
                 t => t.IsClosed = true
@@ -179,7 +179,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            if (await CloseTransactionAsync(transactionId))
+            if (await CloseTransactionAsync())
             {
                 MessageHandler.SuccessfullyUpdated();
             }
