@@ -7,9 +7,4 @@
         Warning,
         Exclamation
     }
-    public enum BalanceStatus
-    {
-        Balanced,
-        Unbalanced
-    }
 }

@@ -9,6 +9,7 @@ namespace POS_Generic.Helpers
     {
         public DbSet<User> Users { get; set; }
         public DbSet<TransactionModel> Transactions { get; set; }
+        public DbSet<TransactionLogModel> TransactionLogs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;

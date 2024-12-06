@@ -155,9 +155,9 @@
             // 
             this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeStatus_tx.ForeColor = System.Drawing.Color.Gray;
-            this.closeStatus_tx.Location = new System.Drawing.Point(22, 0);
+            this.closeStatus_tx.Location = new System.Drawing.Point(22, 1);
             this.closeStatus_tx.Name = "closeStatus_tx";
-            this.closeStatus_tx.Size = new System.Drawing.Size(124, 18);
+            this.closeStatus_tx.Size = new System.Drawing.Size(124, 17);
             this.closeStatus_tx.TabIndex = 514;
             this.closeStatus_tx.Text = "Closed Transaction";
             this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

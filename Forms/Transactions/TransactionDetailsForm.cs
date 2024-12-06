@@ -20,12 +20,14 @@ namespace SalesPro.Forms.Transactions
 
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
+        private readonly Accessor<TransactionLogModel> _transactionLogAccessor;
         private readonly TransactionAccessor _transactionAccessor;
         public TransactionDetailsForm()
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
+            _transactionLogAccessor = new Accessor<TransactionLogModel>();
             InitializeComponent();
         }
 
@@ -59,14 +61,27 @@ namespace SalesPro.Forms.Transactions
                 BalanceStatus = Constants.SystemConstants.NotSet
             };
 
+            var transactionLog = new TransactionLogModel
+            {
+                TransactionId = transaction.TransactionId,
+                BeginningBalance = transaction.BeginningBalance,
+                EndingBalance = transaction.EndingCash,
+                DateUpdated = _curDate,
+                UserFullname = _userFullname,
+                ActionTaken = Constants.SystemConstants.Addded
+            };
+
             if (actionType == Constants.SystemConstants.New)
             {
                 await _accessor.AddAsync(transaction);
+                await _transactionLogAccessor.AddAsync(transactionLog);
                 MessageHandler.SuccessfullyAdded();
             }
             else
             {
                 await _accessor.UpdateAsync(transactionId, transaction);
+                transactionLog.ActionTaken = Constants.SystemConstants.Updated;
+                await _transactionLogAccessor.AddAsync(transactionLog);
                 MessageHandler.SuccessfullyUpdated();
             }
             Close();
@@ -80,9 +95,9 @@ namespace SalesPro.Forms.Transactions
                 // Get the row version
                 _rowVersion = transactionData.RowVersion;
 
+                // Properties
                 balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
-
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
                 openedBy_tx.Text = transactionData.OpenedBy;
                 closedBy_tx.Text = transactionData.ClosedBy;
@@ -93,8 +108,6 @@ namespace SalesPro.Forms.Transactions
                 endingCash_tx.Text = transactionData.EndingCash.ToString();
                 closedBy_tx.Text = transactionData.IsClosed.ToString();
 
-
-
                 // Notifications
                 if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
                 {
@@ -104,7 +117,6 @@ namespace SalesPro.Forms.Transactions
                 {
                     StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
                 }
-
                 if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
                 {
                     StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
