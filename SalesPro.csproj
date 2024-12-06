@@ -220,6 +220,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -236,6 +237,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\dot.png" />
+    <None Include="Resources\goal.png" />
+    <None Include="Resources\check %281%29.png" />
+    <None Include="Resources\checkmark.png" />
+    <None Include="Resources\on.png" />
+    <None Include="Resources\question.png" />
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
   <ItemGroup>

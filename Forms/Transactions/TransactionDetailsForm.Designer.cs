@@ -32,6 +32,7 @@
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
             this.transactionData_tab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.endingCash_tx = new System.Windows.Forms.NumericUpDown();
             this.expCash_tx = new System.Windows.Forms.NumericUpDown();
             this.totalExp_tx = new System.Windows.Forms.NumericUpDown();
@@ -51,7 +52,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.closeStatus_tx = new System.Windows.Forms.Label();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
@@ -103,6 +104,8 @@
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.transactionData_tab.Controls.Add(this.balStatus_tx);
+            this.transactionData_tab.Controls.Add(this.closeStatus_tx);
             this.transactionData_tab.Controls.Add(this.button1);
             this.transactionData_tab.Controls.Add(this.endingCash_tx);
             this.transactionData_tab.Controls.Add(this.expCash_tx);
@@ -110,7 +113,6 @@
             this.transactionData_tab.Controls.Add(this.totalSales_tx);
             this.transactionData_tab.Controls.Add(this.begBal_tx);
             this.transactionData_tab.Controls.Add(this.close_btn);
-            this.transactionData_tab.Controls.Add(this.balStatus_tx);
             this.transactionData_tab.Controls.Add(this.label6);
             this.transactionData_tab.Controls.Add(this.closedBy_tx);
             this.transactionData_tab.Controls.Add(this.label5);
@@ -129,6 +131,20 @@
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
             this.transactionData_tab.Click += new System.EventHandler(this.transactionData_tab_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(96, 407);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 34);
+            this.button1.TabIndex = 513;
+            this.button1.Text = "Undo Transaction";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // endingCash_tx
             // 
@@ -240,6 +256,8 @@
             // 
             // balStatus_tx
             // 
+            this.balStatus_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balStatus_tx.ForeColor = System.Drawing.Color.Black;
             this.balStatus_tx.Location = new System.Drawing.Point(397, 18);
             this.balStatus_tx.Name = "balStatus_tx";
             this.balStatus_tx.Size = new System.Drawing.Size(128, 20);
@@ -369,19 +387,16 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
-            // button1
+            // closeStatus_tx
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(96, 407);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 34);
-            this.button1.TabIndex = 513;
-            this.button1.Text = "Undo Transaction";
-            this.button1.UseVisualStyleBackColor = false;
+            this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeStatus_tx.ForeColor = System.Drawing.Color.Black;
+            this.closeStatus_tx.Location = new System.Drawing.Point(396, 39);
+            this.closeStatus_tx.Name = "closeStatus_tx";
+            this.closeStatus_tx.Size = new System.Drawing.Size(128, 20);
+            this.closeStatus_tx.TabIndex = 514;
+            this.closeStatus_tx.Text = "Close Status";
+            this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TransactionDetailsForm
             // 
@@ -439,5 +454,6 @@
         private System.Windows.Forms.NumericUpDown expCash_tx;
         private System.Windows.Forms.NumericUpDown totalExp_tx;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label closeStatus_tx;
     }
 }

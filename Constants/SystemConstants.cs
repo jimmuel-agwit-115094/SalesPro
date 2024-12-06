@@ -7,7 +7,7 @@
         public const string Delete = "Delete";
         public const string NotSet = "NotSet";
         public const string Balanced = "Balanced";
-        public const string Unbalanced = "Unbalanced";
+        public const string NotBalance = "NotBalance";
 
     }
 }

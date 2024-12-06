@@ -78,19 +78,9 @@ namespace SalesPro.Forms.Transactions
             {
                 // Get the row version
                 _rowVersion = transactionData.RowVersion;
-                switch (transactionData.BalanceStatus)
-                {
-                    case Constants.SystemConstants.NotSet:
-                        balStatus_tx.Text = "Not Set";
-                        break;
-                    case Constants.SystemConstants.Balanced:
-                        balStatus_tx.Text = "Balanced";
-                        break;
-                    default:
-                        balStatus_tx.Text = "Not Balanced";
-                        break;
-                }
-
+               
+                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced": "Discrepancy";
+                closeStatus_tx.Visible = transactionData.IsClosed == true;
                 openedBy_tx.Text = transactionData.OpenedBy;
                 closedBy_tx.Text = transactionData.ClosedBy;
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
@@ -98,6 +88,7 @@ namespace SalesPro.Forms.Transactions
                 totalExp_tx.Text = transactionData.TotalExpenses.ToString();
                 expCash_tx.Text = transactionData.ExpectedCash.ToString();
                 endingCash_tx.Text = transactionData.EndingCash.ToString();
+                closedBy_tx.Text = transactionData.IsClosed.ToString();
             }
         }
 
