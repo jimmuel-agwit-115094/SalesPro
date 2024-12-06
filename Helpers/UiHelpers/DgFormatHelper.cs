@@ -249,8 +249,23 @@ public static class DgFormatHelper
             }
         }
 
-      
+
         return 0;
     }
+
+
+
+    public static void SetDataGridStyles(DataGridView dataGrid)
+    {
+        // Apply styles for the column headers
+        foreach (DataGridViewColumn column in dataGrid.Columns)
+        {
+            column.HeaderCell.Style.Font = new Font("Segoe UI", 9.75f, FontStyle.Bold);
+        }
+
+        // Apply styles for the cell content
+        dataGrid.DefaultCellStyle.Font = new Font("Consolas", 9.75f);
+    }
+
 
 }

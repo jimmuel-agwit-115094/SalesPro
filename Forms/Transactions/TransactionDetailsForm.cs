@@ -56,7 +56,7 @@ namespace SalesPro.Forms.Transactions
                 ExpectedCash = decimal.Parse(expCash_tx.Text),
                 EndingCash = decimal.Parse(endingCash_tx.Text),
                 OpenedBy = _userFullname,
-                ClosedBy = closedBy_tx.Text,
+                ClosedBy = string.Empty,
                 IsClosed = false,
                 BalanceStatus = Constants.SystemConstants.NotSet
             };
@@ -87,6 +87,13 @@ namespace SalesPro.Forms.Transactions
             Close();
         }
 
+        private async void GetTransactionLogs()
+        {
+            var logs = await _transactionLogAccessor.GetAllAsync();
+            dgTransLogs.DataSource = logs;
+            FormatGrid();
+        }
+
         private async void GetTransactionData()
         {
             var transactionData = await _accessor.GetByIdAsync(transactionId);
@@ -101,12 +108,12 @@ namespace SalesPro.Forms.Transactions
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
                 openedBy_tx.Text = transactionData.OpenedBy;
                 closedBy_tx.Text = transactionData.ClosedBy;
+                date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
                 totalSales_tx.Text = transactionData.TotalSales.ToString();
                 totalExp_tx.Text = transactionData.TotalExpenses.ToString();
                 expCash_tx.Text = transactionData.ExpectedCash.ToString();
                 endingCash_tx.Text = transactionData.EndingCash.ToString();
-                closedBy_tx.Text = transactionData.IsClosed.ToString();
 
                 // Notifications
                 if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
@@ -124,6 +131,13 @@ namespace SalesPro.Forms.Transactions
             }
         }
 
+        private void FormatGrid()
+        {
+            DgExtenstions.FormatDataGrid(dgTransLogs, false);
+            DgFormatHelper.ShowOnlyField(dgTransLogs, "DateUpdated", "BeginningBalance", "EndingBalance", "UserFullname", "ActionTaken");
+            DgFormatHelper.SetDataGridStyles(dgTransLogs);
+        }
+
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
             CurrencyTextboxHelper.ApplyTagBehavior(transactionData_tab);
@@ -132,11 +146,13 @@ namespace SalesPro.Forms.Transactions
             openedBy_tx.Text = _userFullname;
 
             GetTransactionData();
+            GetTransactionLogs();
             if (actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
                 save_btn.Text = "Save";
                 save_btn.BackColor = Color.Green;
+                date_tx.Text = DateFormatHelper.FormatDate(_curDate);
             }
             else
             {
