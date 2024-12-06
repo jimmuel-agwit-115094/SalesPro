@@ -20,14 +20,16 @@ namespace SalesPro.Forms.Transactions
 
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
-        private readonly Accessor<TransactionLogModel> _transactionLogAccessor;
+        private readonly Accessor<TransactionLogModel> _baseLogAccessor;
         private readonly TransactionAccessor _transactionAccessor;
+        private readonly TransactionLogAccessor _transactionLogAccessor;
         public TransactionDetailsForm()
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
-            _transactionLogAccessor = new Accessor<TransactionLogModel>();
+            _baseLogAccessor = new Accessor<TransactionLogModel>();
+            _transactionLogAccessor = new TransactionLogAccessor();
             InitializeComponent();
         }
 
@@ -73,23 +75,28 @@ namespace SalesPro.Forms.Transactions
 
             if (actionType == Constants.SystemConstants.New)
             {
-                await _accessor.AddAsync(transaction);
-                await _transactionLogAccessor.AddAsync(transactionLog);
+                var x = await _accessor.AddAsync(transaction);
+                // Logs
+                transactionLog.TransactionId = x.TransactionId;
+                await _baseLogAccessor.AddAsync(transactionLog);
+
                 MessageHandler.SuccessfullyAdded();
             }
             else
             {
                 await _accessor.UpdateAsync(transactionId, transaction);
+                // Logs
                 transactionLog.ActionTaken = Constants.SystemConstants.Updated;
-                await _transactionLogAccessor.AddAsync(transactionLog);
+                await _baseLogAccessor.AddAsync(transactionLog);
+
                 MessageHandler.SuccessfullyUpdated();
             }
             Close();
         }
 
-        private async void GetTransactionLogs()
+        private async void GetTransactionLogs(int transactionId)
         {
-            var logs = await _transactionLogAccessor.GetAllAsync();
+            var logs = await _transactionLogAccessor.GetTransactionLogsById(transactionId);
             dgTransLogs.DataSource = logs;
             FormatGrid();
         }
@@ -146,7 +153,7 @@ namespace SalesPro.Forms.Transactions
             openedBy_tx.Text = _userFullname;
 
             GetTransactionData();
-            GetTransactionLogs();
+            GetTransactionLogs(transactionId);
             if (actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
