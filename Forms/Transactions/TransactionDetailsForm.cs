@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
-using POS_Generic.Helpers;
+﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
@@ -39,13 +39,6 @@ namespace SalesPro.Forms.Transactions
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
-            var currentTransactions = await _transactionAccessor.GetTransactionByDate(_curDate);
-
-            if (currentTransactions.Any() && actionType == Constants.SystemConstants.New)
-            {
-                MessageHandler.ShowWarning("Transaction already exists for the current date");
-                return;
-            }
             if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
 
             var transaction = new TransactionModel
@@ -65,7 +58,6 @@ namespace SalesPro.Forms.Transactions
 
             var transactionLog = new TransactionLogModel
             {
-                TransactionId = transaction.TransactionId,
                 BeginningBalance = transaction.BeginningBalance,
                 EndingBalance = transaction.EndingCash,
                 DateUpdated = _curDate,
@@ -87,6 +79,7 @@ namespace SalesPro.Forms.Transactions
                 await _accessor.UpdateAsync(transactionId, transaction);
                 // Logs
                 transactionLog.ActionTaken = Constants.SystemConstants.Updated;
+                transactionLog.TransactionId = transactionId;
                 await _baseLogAccessor.AddAsync(transactionLog);
 
                 MessageHandler.SuccessfullyUpdated();
@@ -97,7 +90,7 @@ namespace SalesPro.Forms.Transactions
         private async void GetTransactionLogs(int transactionId)
         {
             var logs = await _transactionLogAccessor.GetTransactionLogsById(transactionId);
-            dgTransLogs.DataSource = logs;
+            dgTransLogs.DataSource = logs.OrderByDescending(x=>x.TransactionLogId).ToList();
             FormatGrid();
         }
 

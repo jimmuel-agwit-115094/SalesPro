@@ -36,8 +36,15 @@ namespace SalesPro.Forms.Transactions
             ProcessTransactionLoad();
         }
 
-        private void new_btn_Click(object sender, EventArgs e)
+        private async void new_btn_Click(object sender, EventArgs e)
         {
+            var currentTransactions = await _transactionAccessor.GetTransactionByDate(_curDate);
+            if (currentTransactions.Any())
+            {
+                MessageHandler.ShowWarning("Transaction already exists for the current date");
+                return;
+            }
+
             TransactionDetailsForm form = new TransactionDetailsForm();
             form.FormClosed += TransactionDetailsForm_FormClosed;
             form.actionType = Constants.SystemConstants.New;
