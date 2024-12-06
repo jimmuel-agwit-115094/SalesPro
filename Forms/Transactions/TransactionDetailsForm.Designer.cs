@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
             this.transactionData_tab = new System.Windows.Forms.TabPage();
+            this.close_panel = new System.Windows.Forms.Panel();
+            this.closeStatus_tx = new System.Windows.Forms.Label();
+            this.bal_panel = new System.Windows.Forms.Panel();
+            this.balStatus_tx = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.endingCash_tx = new System.Windows.Forms.NumericUpDown();
             this.expCash_tx = new System.Windows.Forms.NumericUpDown();
@@ -39,7 +44,6 @@
             this.totalSales_tx = new System.Windows.Forms.NumericUpDown();
             this.begBal_tx = new System.Windows.Forms.NumericUpDown();
             this.close_btn = new System.Windows.Forms.Button();
-            this.balStatus_tx = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.closedBy_tx = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -52,15 +56,22 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.closeStatus_tx = new System.Windows.Forms.Label();
+            this.closeStat_pb = new System.Windows.Forms.PictureBox();
+            this.balStat_pb = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
+            this.close_panel.SuspendLayout();
+            this.bal_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).BeginInit();
             this.transactionLog_tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // title_lbl
@@ -104,8 +115,7 @@
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.transactionData_tab.Controls.Add(this.balStatus_tx);
-            this.transactionData_tab.Controls.Add(this.closeStatus_tx);
+            this.transactionData_tab.Controls.Add(this.panel1);
             this.transactionData_tab.Controls.Add(this.button1);
             this.transactionData_tab.Controls.Add(this.endingCash_tx);
             this.transactionData_tab.Controls.Add(this.expCash_tx);
@@ -131,6 +141,48 @@
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
             this.transactionData_tab.Click += new System.EventHandler(this.transactionData_tab_Click);
+            // 
+            // close_panel
+            // 
+            this.close_panel.Controls.Add(this.closeStatus_tx);
+            this.close_panel.Controls.Add(this.closeStat_pb);
+            this.close_panel.Location = new System.Drawing.Point(115, 5);
+            this.close_panel.Name = "close_panel";
+            this.close_panel.Size = new System.Drawing.Size(159, 20);
+            this.close_panel.TabIndex = 517;
+            // 
+            // closeStatus_tx
+            // 
+            this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeStatus_tx.ForeColor = System.Drawing.Color.Gray;
+            this.closeStatus_tx.Location = new System.Drawing.Point(22, 0);
+            this.closeStatus_tx.Name = "closeStatus_tx";
+            this.closeStatus_tx.Size = new System.Drawing.Size(124, 18);
+            this.closeStatus_tx.TabIndex = 514;
+            this.closeStatus_tx.Text = "Closed Transaction";
+            this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.closeStatus_tx.Visible = false;
+            // 
+            // bal_panel
+            // 
+            this.bal_panel.Controls.Add(this.balStatus_tx);
+            this.bal_panel.Controls.Add(this.balStat_pb);
+            this.bal_panel.Location = new System.Drawing.Point(3, 5);
+            this.bal_panel.Name = "bal_panel";
+            this.bal_panel.Size = new System.Drawing.Size(101, 20);
+            this.bal_panel.TabIndex = 516;
+            // 
+            // balStatus_tx
+            // 
+            this.balStatus_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balStatus_tx.ForeColor = System.Drawing.Color.Gray;
+            this.balStatus_tx.Location = new System.Drawing.Point(19, 1);
+            this.balStatus_tx.Name = "balStatus_tx";
+            this.balStatus_tx.Size = new System.Drawing.Size(103, 17);
+            this.balStatus_tx.TabIndex = 506;
+            this.balStatus_tx.Text = "Balanced";
+            this.balStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.balStatus_tx.Visible = false;
             // 
             // button1
             // 
@@ -254,17 +306,6 @@
             this.close_btn.Text = "Close Transaction";
             this.close_btn.UseVisualStyleBackColor = false;
             // 
-            // balStatus_tx
-            // 
-            this.balStatus_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balStatus_tx.ForeColor = System.Drawing.Color.Black;
-            this.balStatus_tx.Location = new System.Drawing.Point(397, 18);
-            this.balStatus_tx.Name = "balStatus_tx";
-            this.balStatus_tx.Size = new System.Drawing.Size(128, 20);
-            this.balStatus_tx.TabIndex = 506;
-            this.balStatus_tx.Text = "Balance Status";
-            this.balStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -387,16 +428,37 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
-            // closeStatus_tx
+            // closeStat_pb
             // 
-            this.closeStatus_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeStatus_tx.ForeColor = System.Drawing.Color.Black;
-            this.closeStatus_tx.Location = new System.Drawing.Point(396, 39);
-            this.closeStatus_tx.Name = "closeStatus_tx";
-            this.closeStatus_tx.Size = new System.Drawing.Size(128, 20);
-            this.closeStatus_tx.TabIndex = 514;
-            this.closeStatus_tx.Text = "Close Status";
-            this.closeStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.closeStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("closeStat_pb.Image")));
+            this.closeStat_pb.Location = new System.Drawing.Point(3, 2);
+            this.closeStat_pb.Name = "closeStat_pb";
+            this.closeStat_pb.Size = new System.Drawing.Size(15, 15);
+            this.closeStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.closeStat_pb.TabIndex = 515;
+            this.closeStat_pb.TabStop = false;
+            this.closeStat_pb.Visible = false;
+            // 
+            // balStat_pb
+            // 
+            this.balStat_pb.Image = ((System.Drawing.Image)(resources.GetObject("balStat_pb.Image")));
+            this.balStat_pb.Location = new System.Drawing.Point(3, 2);
+            this.balStat_pb.Name = "balStat_pb";
+            this.balStat_pb.Size = new System.Drawing.Size(15, 15);
+            this.balStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.balStat_pb.TabIndex = 0;
+            this.balStat_pb.TabStop = false;
+            this.balStat_pb.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.bal_panel);
+            this.panel1.Controls.Add(this.close_panel);
+            this.panel1.Location = new System.Drawing.Point(6, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(647, 31);
+            this.panel1.TabIndex = 518;
             // 
             // TransactionDetailsForm
             // 
@@ -417,12 +479,17 @@
             this.detailTabControl.ResumeLayout(false);
             this.transactionData_tab.ResumeLayout(false);
             this.transactionData_tab.PerformLayout();
+            this.close_panel.ResumeLayout(false);
+            this.bal_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.endingCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expCash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalExp_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalSales_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).EndInit();
             this.transactionLog_tab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,5 +522,10 @@
         private System.Windows.Forms.NumericUpDown totalExp_tx;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label closeStatus_tx;
+        private System.Windows.Forms.PictureBox balStat_pb;
+        private System.Windows.Forms.PictureBox closeStat_pb;
+        private System.Windows.Forms.Panel bal_panel;
+        private System.Windows.Forms.Panel close_panel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

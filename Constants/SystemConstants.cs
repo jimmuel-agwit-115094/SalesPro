@@ -9,5 +9,9 @@
         public const string Balanced = "Balanced";
         public const string NotBalance = "NotBalance";
 
+        public const string Bad = "Bad";
+        public const string Good = "Good";
+        public const string Closed = "Closed";
+
     }
 }

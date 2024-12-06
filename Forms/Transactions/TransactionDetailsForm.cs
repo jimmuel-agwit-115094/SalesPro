@@ -2,6 +2,7 @@
 using POS_Generic.Helpers;
 using SalesPro.Accessors;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
 using System.Drawing;
@@ -78,8 +79,10 @@ namespace SalesPro.Forms.Transactions
             {
                 // Get the row version
                 _rowVersion = transactionData.RowVersion;
-               
-                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced": "Discrepancy";
+
+                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
+                closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
+
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
                 openedBy_tx.Text = transactionData.OpenedBy;
                 closedBy_tx.Text = transactionData.ClosedBy;
@@ -89,6 +92,23 @@ namespace SalesPro.Forms.Transactions
                 expCash_tx.Text = transactionData.ExpectedCash.ToString();
                 endingCash_tx.Text = transactionData.EndingCash.ToString();
                 closedBy_tx.Text = transactionData.IsClosed.ToString();
+
+
+
+                // Notifications
+                if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
+                }
+                else
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
+                }
+
+                if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
+                }
             }
         }
 

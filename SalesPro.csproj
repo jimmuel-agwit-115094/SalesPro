@@ -191,8 +191,10 @@
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />
+    <Compile Include="Helpers\UiHelpers\StatusIconHelper.cs" />
     <Compile Include="Helpers\VersionCheckerHelper.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Enums\StatusEnum.cs" />
     <Compile Include="Models\ModelHelpers\ServerDateTimeModel.cs" />
     <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -242,10 +244,10 @@
     <None Include="Resources\remove.png" />
     <None Include="Resources\dot.png" />
     <None Include="Resources\goal.png" />
-    <None Include="Resources\check %281%29.png" />
-    <None Include="Resources\checkmark.png" />
     <None Include="Resources\on.png" />
     <None Include="Resources\question.png" />
+    <None Include="Resources\checkmark.png" />
+    <None Include="Resources\check %281%29.png" />
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
   <ItemGroup>
