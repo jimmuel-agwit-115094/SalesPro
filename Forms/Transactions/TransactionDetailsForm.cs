@@ -29,11 +29,22 @@ namespace SalesPro.Forms.Transactions
         {
         }
 
-        private async void save_btn_Click(object sender, EventArgs e)
+        private TransactionLogModel BuildTransactionLogModel(string action)
         {
-            if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
+            return new TransactionLogModel
+            {
+                TransactionId = transactionId,
+                BeginningBalance = decimal.Parse(begBal_tx.Text),
+                EndingBalance = decimal.Parse(endingCash_tx.Text),
+                DateUpdated = _curDate,
+                UserFullname = _userFullname,
+                ActionTaken = action
+            };
+        }
 
-            var transaction = new TransactionModel
+        private TransactionModel BuilTransactionModel()
+        {
+            return new TransactionModel
             {
                 StartDate = _curDate,
                 EndDate = _curDate,
@@ -43,27 +54,27 @@ namespace SalesPro.Forms.Transactions
                 ExpectedCash = decimal.Parse(expCash_tx.Text),
                 EndingCash = decimal.Parse(endingCash_tx.Text),
                 OpenedBy = _userFullname,
-                ClosedBy = string.Empty,
+                ClosedBy = _userFullname,
                 IsClosed = false,
                 BalanceStatus = Constants.SystemConstants.NotSet
             };
+        }
 
-            var transactionLog = new TransactionLogModel
-            {
-                BeginningBalance = transaction.BeginningBalance,
-                EndingBalance = transaction.EndingCash,
-                DateUpdated = _curDate,
-                UserFullname = _userFullname,
-                ActionTaken = Constants.SystemConstants.Addded
-            };
+        private async void save_btn_Click(object sender, EventArgs e)
+        {
+            if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
 
             if (actionType == Constants.SystemConstants.New)
             {
-                await _transactionService.SaveTransaction(transaction, transactionLog);
+                var transaction = BuilTransactionModel();
+                var saveLogModel = BuildTransactionLogModel(Constants.SystemConstants.New);
+                await _transactionService.SaveTransaction(transaction, saveLogModel);
             }
             else
             {
-                await _transactionService.UpdateTransaction(transactionId, transaction, transactionLog);
+                var updateLogModel = BuildTransactionLogModel(Constants.SystemConstants.Updated);
+                var begBal = decimal.Parse(begBal_tx.Text);
+                await _transactionService.UpdateTransaction(transactionId, begBal, updateLogModel);
             }
             Close();
         }
@@ -86,10 +97,11 @@ namespace SalesPro.Forms.Transactions
                 closedBy_tx.Text = transactionData.ClosedBy;
                 date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
-                totalSales_tx.Text = transactionData.TotalSales.ToString();
-                totalExp_tx.Text = transactionData.TotalExpenses.ToString();
-                expCash_tx.Text = transactionData.ExpectedCash.ToString();
-                endingCash_tx.Text = transactionData.EndingCash.ToString();
+                // System Generated Data
+                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "69";
+                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "69";
+                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "69";
+                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "69";
 
                 // Notifications
                 if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
@@ -120,7 +132,7 @@ namespace SalesPro.Forms.Transactions
         {
             _curDate = await ClockHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
-           
+
             if (actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
@@ -148,20 +160,10 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            var model = new TransactionModel()
-            {
+            var transaction = BuilTransactionModel();
+            var transactionLog = BuildTransactionLogModel(Constants.SystemConstants.Closed);
 
-            };
-            var transactionLog = new TransactionLogModel
-            {
-                BeginningBalance = balStatus_tx.Text == Constants.SystemConstants.Balanced ? decimal.Parse(begBal_tx.Text) : 0,
-                EndingBalance = endingCash_tx.Value,
-                DateUpdated = _curDate,
-                UserFullname = _userFullname,
-                ActionTaken = Constants.SystemConstants.Addded
-            };
-
-            await _transactionService.CloseTransaction(transactionId, model, transactionLog);
+            await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }
 

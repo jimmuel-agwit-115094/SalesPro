@@ -158,7 +158,7 @@
             // 
             this.date_tx.AutoSize = true;
             this.date_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_tx.Location = new System.Drawing.Point(308, 98);
+            this.date_tx.Location = new System.Drawing.Point(308, 99);
             this.date_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.date_tx.Name = "date_tx";
             this.date_tx.Size = new System.Drawing.Size(15, 20);
@@ -169,7 +169,7 @@
             // 
             this.closedBy_tx.AutoSize = true;
             this.closedBy_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closedBy_tx.Location = new System.Drawing.Point(308, 78);
+            this.closedBy_tx.Location = new System.Drawing.Point(308, 79);
             this.closedBy_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.closedBy_tx.Name = "closedBy_tx";
             this.closedBy_tx.Size = new System.Drawing.Size(15, 20);
@@ -191,7 +191,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(256, 98);
+            this.label7.Location = new System.Drawing.Point(256, 99);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 20);
@@ -399,7 +399,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(223, 78);
+            this.label6.Location = new System.Drawing.Point(223, 79);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 20);
