@@ -2,7 +2,7 @@
 
 public static class CurrencyTextboxHelper
 {
-    public static void ApplyTagBehavior(Control container)
+    public static void ApplyNumericProperty(Control container)
     {
         foreach (Control control in container.Controls)
         {

@@ -22,6 +22,7 @@ namespace SalesPro.Forms.Transactions
         {
             _transactionService = new TransactionService();
             InitializeComponent();
+            CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
         }
 
         private void begBal_tx_TextChanged(object sender, EventArgs e)
@@ -117,25 +118,26 @@ namespace SalesPro.Forms.Transactions
 
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
-            CurrencyTextboxHelper.ApplyTagBehavior(transactionData_tab);
             _curDate = await ClockHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
-            openedBy_tx.Text = _userFullname;
-
-            GetTransactionData();
-            GetTransactionLogs(transactionId);
+           
             if (actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
                 save_btn.Text = "Save";
                 save_btn.BackColor = Color.Green;
                 date_tx.Text = DateFormatHelper.FormatDate(_curDate);
+
+                openedBy_tx.Text = _userFullname;
             }
             else
             {
                 Text = "Edit Transaction";
                 save_btn.Text = "Update";
                 save_btn.BackColor = SystemColors.HotTrack;
+
+                GetTransactionData();
+                GetTransactionLogs(transactionId);
             }
         }
 
