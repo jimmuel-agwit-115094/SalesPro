@@ -622,7 +622,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balStatus_tx;
         private System.Windows.Forms.Button close_btn;
-        private System.Windows.Forms.NumericUpDown begBal_tx;
         private System.Windows.Forms.NumericUpDown totalSales_tx;
         private System.Windows.Forms.NumericUpDown endingCash_tx;
         private System.Windows.Forms.NumericUpDown expCash_tx;
@@ -641,5 +640,6 @@
         private System.Windows.Forms.Label date_tx;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
+        public System.Windows.Forms.NumericUpDown begBal_tx;
     }
 }

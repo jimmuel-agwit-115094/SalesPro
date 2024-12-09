@@ -76,33 +76,36 @@ namespace SalesPro.Forms.Transactions
         private async void GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(transactionId);
-            if (transactionData == null) return;
-            balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
-            closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
-            closeStatus_tx.Visible = transactionData.IsClosed == true;
-            openedBy_tx.Text = transactionData.OpenedBy;
-            closedBy_tx.Text = transactionData.ClosedBy;
-            date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
-            begBal_tx.Text = transactionData.BeginningBalance.ToString();
-            totalSales_tx.Text = transactionData.TotalSales.ToString();
-            totalExp_tx.Text = transactionData.TotalExpenses.ToString();
-            expCash_tx.Text = transactionData.ExpectedCash.ToString();
-            endingCash_tx.Text = transactionData.EndingCash.ToString();
+            if (transactionData != null)
+            {
+                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
+                closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
+                closeStatus_tx.Visible = transactionData.IsClosed == true;
+                openedBy_tx.Text = transactionData.OpenedBy;
+                closedBy_tx.Text = transactionData.ClosedBy;
+                date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
+                begBal_tx.Text = transactionData.BeginningBalance.ToString();
+                totalSales_tx.Text = transactionData.TotalSales.ToString();
+                totalExp_tx.Text = transactionData.TotalExpenses.ToString();
+                expCash_tx.Text = transactionData.ExpectedCash.ToString();
+                endingCash_tx.Text = transactionData.EndingCash.ToString();
 
-            // Notifications
-            if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
-            {
-                StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
-            }
-            else
-            {
-                StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
-            }
-            if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
-            {
-                StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
+                // Notifications
+                if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
+                }
+                else
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
+                }
+                if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
+                {
+                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
 
+                }
             }
+
         }
 
         private void FormatGrid()
@@ -143,7 +146,20 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            await _transactionService.CloseTransaction(transactionId);
+            var model = new TransactionModel()
+            {
+
+            };
+            var transactionLog = new TransactionLogModel
+            {
+                BeginningBalance = balStatus_tx.Text == Constants.SystemConstants.Balanced ? decimal.Parse(begBal_tx.Text) : 0,
+                EndingBalance = endingCash_tx.Value,
+                DateUpdated = _curDate,
+                UserFullname = _userFullname,
+                ActionTaken = Constants.SystemConstants.Addded
+            };
+
+            await _transactionService.CloseTransaction(transactionId, model, transactionLog);
             Close();
         }
 

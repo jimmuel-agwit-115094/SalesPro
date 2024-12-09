@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
+using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
@@ -13,7 +14,7 @@ namespace SalesPro.Services
     {
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
-        private readonly Accessor<TransactionLogModel> _baseLogAccessor;
+        private readonly Accessor<TransactionLogModel> _baseTransactionLogAccessor;
         private readonly TransactionAccessor _transactionAccessor;
         private readonly TransactionLogAccessor _transactionLogAccessor;
 
@@ -22,7 +23,7 @@ namespace SalesPro.Services
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>(_context);
             _transactionAccessor = new TransactionAccessor();
-            _baseLogAccessor = new Accessor<TransactionLogModel>(_context);
+            _baseTransactionLogAccessor = new Accessor<TransactionLogModel>(_context);
             _transactionLogAccessor = new TransactionLogAccessor();
         }
 
@@ -32,7 +33,7 @@ namespace SalesPro.Services
             {
                 var addedTransaction = await _accessor.AddAsync(transaction);
                 log.TransactionId = addedTransaction.TransactionId; // Set the transaction ID for logging
-                await _baseLogAccessor.AddAsync(log);
+                await _baseTransactionLogAccessor.AddAsync(log);
                 MessageHandler.SuccessfullyAdded();
             });
         }
@@ -44,30 +45,41 @@ namespace SalesPro.Services
                 await _accessor.UpdateAsync(transaction, transactionId);
                 log.ActionTaken = Constants.SystemConstants.Updated;
                 log.TransactionId = transactionId;
-                await _baseLogAccessor.AddAsync(log);
+                await _baseTransactionLogAccessor.AddAsync(log);
                 MessageHandler.SuccessfullyUpdated();
             });
         }
 
-        public async Task CloseTransaction(int transactionId)
+        public async Task CloseTransaction(int transactionId, TransactionModel tr, TransactionLogModel log)
         {
             var date = await ClockHelper.GetServerDateTime();
-            var updatedTransaction = await _accessor.UpdatePartialAsync<TransactionModel>(
-                transactionId,
-                t =>
-                {
-                    t.IsClosed = true;
-                    t.ClosedBy = UserSession.FullName;
-                    t.EndDate =  date;
-                }
-            );
+            await _context.ExecuteInTransactionAsync(async () =>
+            {
 
-            MessageHandler.SuccessfullyUpdated();
+                var form = new TransactionDetailsForm();
+                await _accessor.UpdatePartialAsync<TransactionModel>(
+                      transactionId,
+                      t =>
+                      {
+                          t.TotalSales = tr.TotalSales;
+                          t.TotalExpenses = tr.TotalExpenses;
+                          t.ExpectedCash = tr.ExpectedCash;
+                          t.EndingCash = tr.EndingCash;
+                          t.ClosedBy = UserSession.FullName;
+                          t.IsClosed = true;
+                          t.EndDate = date;
+                      }
+                );
 
+                await _baseTransactionLogAccessor.AddAsync(log);
+                MessageHandler.SuccessfullyUpdated();
+            });
+           
         }
 
         public async Task<List<TransactionLogModel>> GetAllTransactionLogs(int transactionId)
         {
+
             // Directly await the result of the Task
             var transactionLogs = await _transactionLogAccessor.GetTransactionLogsById(transactionId);
 
