@@ -26,22 +26,5 @@ namespace SalesPro
             Application.Run(new LoginForm());
         }
 
-
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            // Register the services and dependencies here
-            services.AddScoped<DatabaseContext>();
-            services.AddScoped<Accessor<TransactionModel>>();
-            services.AddScoped<Accessor<TransactionLogModel>>();
-            services.AddScoped<TransactionAccessor>();
-            services.AddScoped<TransactionLogAccessor>();
-            services.AddScoped<TransactionService>();
-
-            // Register your form or UI
-            services.AddScoped<MainForm>();
-            // Registering the form
-            services.AddScoped<TransactionDetailsForm>();
-            services.AddScoped<TransactionForm>();
-        }
     }
 }
