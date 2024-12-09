@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 namespace SalesPro.Helpers
 {
 
-    public class ServerDateTimeHelper : DbContext
+    public class ClockHelper : DbContext
     {
-        // add summary
         /// <summary>
         /// Gets the server date and time
         /// 
@@ -42,4 +41,6 @@ namespace SalesPro.Helpers
         }
 
     }
+
+   
 }

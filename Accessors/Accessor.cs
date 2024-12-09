@@ -59,7 +59,10 @@ namespace SalesPro.Accessors
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            using (var _context = new DatabaseContext())
+            {
+                return await _context.Set<T>().ToListAsync();
+            }
         }
 
         public async Task<TEntity> UpdatePartialAsync<TEntity>(int id, Action<TEntity> updateAction) where TEntity : class

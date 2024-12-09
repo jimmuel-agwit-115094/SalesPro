@@ -43,5 +43,12 @@ namespace SalesPro.Helpers
         {
             return MessageBox.Show(message, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
+
+        public static void ShowConcurrencyWarning()
+        {
+            const string message = "This action could not be completed because another user has modified the data. Please refresh and try again.";
+            MessageBox.Show(message, "Concurrency Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
     }
 }

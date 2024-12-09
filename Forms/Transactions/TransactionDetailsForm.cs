@@ -1,15 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using POS_Generic.Helpers;
-using SalesPro.Accessors;
-using SalesPro.Helpers;
+﻿using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
@@ -82,6 +76,7 @@ namespace SalesPro.Forms.Transactions
         private async void GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(transactionId);
+            if (transactionData == null) return;
             balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
             closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
             closeStatus_tx.Visible = transactionData.IsClosed == true;
@@ -120,7 +115,7 @@ namespace SalesPro.Forms.Transactions
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
             CurrencyTextboxHelper.ApplyTagBehavior(transactionData_tab);
-            _curDate = await ServerDateTimeHelper.GetServerDateTime();
+            _curDate = await ClockHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
             openedBy_tx.Text = _userFullname;
 
@@ -149,6 +144,7 @@ namespace SalesPro.Forms.Transactions
         private async void close_btn_Click(object sender, EventArgs e)
         {
             await _transactionService.CloseTransaction(transactionId);
+            Close();
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)

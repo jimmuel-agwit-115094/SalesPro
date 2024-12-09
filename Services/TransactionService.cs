@@ -2,6 +2,7 @@
 using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,16 +51,19 @@ namespace SalesPro.Services
 
         public async Task CloseTransaction(int transactionId)
         {
+            var date = await ClockHelper.GetServerDateTime();
             var updatedTransaction = await _accessor.UpdatePartialAsync<TransactionModel>(
                 transactionId,
-                t => t.IsClosed = true
+                t =>
+                {
+                    t.IsClosed = true;
+                    t.ClosedBy = UserSession.FullName;
+                    t.EndDate =  date;
+                }
             );
 
-            if (updatedTransaction != null)
-            {
-                MessageHandler.SuccessfullyUpdated();
-            }
-            MessageHandler.ShowError("Failed to close the transaction. Please try again.");
+            MessageHandler.SuccessfullyUpdated();
+
         }
 
         public async Task<List<TransactionLogModel>> GetAllTransactionLogs(int transactionId)
@@ -72,13 +76,7 @@ namespace SalesPro.Services
 
         public async Task<TransactionModel> GetTransactionById(int transactionId)
         {
-            var transaction = await _accessor.GetByIdAsync(transactionId);
-
-            if (transaction == null)
-            {
-                return null; 
-            }
-            return transaction;
+            return await _accessor.GetByIdAsync(transactionId);
         }
 
     }

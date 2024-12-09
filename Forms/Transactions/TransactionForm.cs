@@ -25,7 +25,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void TransactionForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ServerDateTimeHelper.GetServerDateTime();
+            _curDate = await ClockHelper.GetServerDateTime();
             // Triggers the SelectedIndexChanged event
             transactionsTabControl.SelectedIndex = 0;
             transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
