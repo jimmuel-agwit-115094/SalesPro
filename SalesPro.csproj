@@ -186,10 +186,11 @@
     <Compile Include="Forms\Transactions\TransactionForm.Designer.cs">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DatabaseContext.cs" />
+    <Compile Include="Services\DatabaseContext.cs" />
     <Compile Include="Helpers\DateFormatHelper.cs" />
     <Compile Include="Helpers\MessageHandler.cs" />
     <Compile Include="Helpers\ServerDateTimeHelper.cs" />
+    <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />
@@ -253,8 +254,6 @@
     <None Include="Resources\check %281%29.png" />
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

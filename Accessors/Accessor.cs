@@ -12,146 +12,70 @@ namespace SalesPro.Accessors
 {
     public class Accessor<T> where T : BaseEntity
     {
+        private readonly DbContext _dbContext;
+        public Accessor(DatabaseContext context)
+        {
+            _dbContext = context;
+        }
+
         public async Task<T> AddAsync(T entity)
         {
-            try
-            {
-                using (var _dbContext = new DatabaseContext())
-                {
-                    _dbContext.Set<T>().Add(entity);
-                    await _dbContext.SaveChangesAsync();
-                    return entity;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error saving {entity}. Error details: {ex.Message}");
-                throw;
-            }
+            _dbContext.Set<T>().Add(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public async Task<bool> UpdateAsync<TModel>(int id, TModel model) where TModel : class
+        public async Task UpdateAsync<TEntity>(TEntity updatedEntity, object key) where TEntity : class
         {
-            try
+            var entity = await _dbContext.Set<TEntity>().FindAsync(key);
+            if (entity == null)
             {
-                using (var _dbContext = new DatabaseContext())
-                {
-                    var entity = await _dbContext.Set<TModel>().FindAsync(id);
-                    if (entity == null)
-                    {
-                        return false;
-                    }
-
-                    var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TModel))
-                        .FindDeclaredPrimaryKey()
-                        .Properties
-                        .FirstOrDefault();
-
-                    foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
-                    {
-                        if (property.Name == primaryKeyProperty?.Name)
-                        {
-                            continue;
-                        }
-
-                        _dbContext.Entry(entity).CurrentValues[property.Name] = property.PropertyInfo.GetValue(model);
-                    }
-
-                    await _dbContext.SaveChangesAsync();
-                    return true;
-                }
+                throw new KeyNotFoundException($"Entity of type {typeof(TEntity).Name} not found.");
             }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error updating {model} with id {id}. Error details: {ex.Message}");
-                throw;
-            }
-        }
 
+            var primaryKeyProperty = _dbContext.Model.FindEntityType(typeof(TEntity))
+                    .FindDeclaredPrimaryKey()
+                    .Properties
+                    .FirstOrDefault();
 
-        public async Task SoftDeleteAsync(int id)
-        {
-            try
+            foreach (var property in _dbContext.Entry(entity).CurrentValues.Properties)
             {
-                using (var _dbContext = new DatabaseContext())
+                if (property.Name == primaryKeyProperty?.Name)
                 {
-                    var entity = await _dbContext.Set<T>().FindAsync(id);
-
-                    if (entity == null)
-                    {
-                        MessageHandler.ShowError($"Entity with id {id} not found.");
-                        return;
-                    }
-
-                    entity.IsDeleted = true;
-
-                    await _dbContext.SaveChangesAsync();
+                    continue;
                 }
 
+                _dbContext.Entry(entity).CurrentValues[property.Name] = property.PropertyInfo.GetValue(updatedEntity);
             }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error soft deleting entity with id {id}. Error details: {ex.Message}");
-                throw;
-            }
-        }
 
+            await _dbContext.SaveChangesAsync();
+        }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            try
-            {
-                using (var _dbContext = new DatabaseContext())
-                {
-                    return await _dbContext.Set<T>().FindAsync(id);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error geting entity with id {id}. Error details: {ex.Message}");
-                throw;
-            }
+            return await _dbContext.Set<T>().FindAsync(id);
         }
+
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            try
-            {
-                using (var _dbContext = new DatabaseContext())
-                {
-                    return await _dbContext.Set<T>().ToListAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error geting all data. Error details: {ex.Message}");
-                throw;
-            }
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public async Task<TEntity> UpdatePartialAsync<TEntity>(int id, Action<TEntity> updateAction) where TEntity : class
         {
-            try
+            var toUpdate = await _dbContext.Set<TEntity>().FindAsync(id);
+            if (toUpdate == null)
             {
-                using (var _dbContext = new DatabaseContext())
-                {
-                    var toUpdate = await _dbContext.Set<TEntity>().FindAsync(id);
-                    if (toUpdate == null)
-                    {
-                        MessageHandler.ShowError($"{typeof(TEntity).Name} not found for id: {id}");
-                        return null;
-                    }
+                MessageHandler.ShowError($"{typeof(TEntity).Name} not found for id: {id}");
+                return null;
+            }
 
-                    updateAction(toUpdate);
-                    await _dbContext.SaveChangesAsync();
-                    return toUpdate;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error updating data. Id {id} is not found: {ex.Message}");
-                throw;
-            }
+            updateAction(toUpdate);
+            await _dbContext.SaveChangesAsync();
+            return toUpdate;
         }
+
     }
+
 }

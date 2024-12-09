@@ -1,4 +1,5 @@
-﻿using POS_Generic.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using POS_Generic.Helpers;
 using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -6,6 +7,7 @@ using SalesPro.Models;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,9 +29,9 @@ namespace SalesPro.Forms.Transactions
         public TransactionDetailsForm()
         {
             _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>();
+            _accessor = new Accessor<TransactionModel>(_context);
             _transactionAccessor = new TransactionAccessor();
-            _baseLogAccessor = new Accessor<TransactionLogModel>();
+            _baseLogAccessor = new Accessor<TransactionLogModel>(_context);
             _transactionLogAccessor = new TransactionLogAccessor();
             InitializeComponent();
         }
@@ -77,13 +79,16 @@ namespace SalesPro.Forms.Transactions
             }
             else
             {
-                await _accessor.UpdateAsync(transactionId, transaction);
-                // Logs
-                transactionLog.ActionTaken = Constants.SystemConstants.Updated;
-                transactionLog.TransactionId = transactionId;
-                await _baseLogAccessor.AddAsync(transactionLog);
+                await _context.ExecuteInTransactionAsync(async () =>
+                {
+                    await _accessor.UpdateAsync(transaction, transactionId);
+                    // Logs
+                    transactionLog.ActionTaken = Constants.SystemConstants.Updated;
+                    transactionLog.TransactionId = transactionId;
+                    await _baseLogAccessor.AddAsync(transactionLog);
 
-                MessageHandler.SuccessfullyUpdated();
+                    MessageHandler.SuccessfullyUpdated();
+                });
             }
             Close();
         }
@@ -189,5 +194,8 @@ namespace SalesPro.Forms.Transactions
         {
             DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
         }
+
+       
     }
 }
+
