@@ -4,6 +4,7 @@ using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Services;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -21,18 +22,11 @@ namespace SalesPro.Forms.Transactions
         private string _userFullname;
         public int _rowVersion;
 
-        private readonly DatabaseContext _context;
-        private readonly Accessor<TransactionModel> _accessor;
-        private readonly Accessor<TransactionLogModel> _baseLogAccessor;
-        private readonly TransactionAccessor _transactionAccessor;
-        private readonly TransactionLogAccessor _transactionLogAccessor;
+
+        private readonly TransactionService _transactionService;
         public TransactionDetailsForm()
         {
-            _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>(_context);
-            _transactionAccessor = new TransactionAccessor();
-            _baseLogAccessor = new Accessor<TransactionLogModel>(_context);
-            _transactionLogAccessor = new TransactionLogAccessor();
+            _transactionService = new TransactionService();
             InitializeComponent();
         }
 
@@ -70,67 +64,49 @@ namespace SalesPro.Forms.Transactions
 
             if (actionType == Constants.SystemConstants.New)
             {
-                var x = await _accessor.AddAsync(transaction);
-                // Logs
-                transactionLog.TransactionId = x.TransactionId;
-                await _baseLogAccessor.AddAsync(transactionLog);
-
-                MessageHandler.SuccessfullyAdded();
+                await _transactionService.SaveTransaction(transaction, transactionLog);
             }
             else
             {
-                await _context.ExecuteInTransactionAsync(async () =>
-                {
-                    await _accessor.UpdateAsync(transaction, transactionId);
-                    // Logs
-                    transactionLog.ActionTaken = Constants.SystemConstants.Updated;
-                    transactionLog.TransactionId = transactionId;
-                    await _baseLogAccessor.AddAsync(transactionLog);
-
-                    MessageHandler.SuccessfullyUpdated();
-                });
+                await _transactionService.UpdateTransaction(transactionId, transaction, transactionLog);
             }
             Close();
         }
 
         private async void GetTransactionLogs(int transactionId)
         {
-            var logs = await _transactionLogAccessor.GetTransactionLogsById(transactionId);
-            dgTransLogs.DataSource = logs.OrderByDescending(x => x.TransactionLogId).ToList();
+            dgTransLogs.DataSource = await _transactionService.GetAllTransactionLogs(transactionId);
             FormatGrid();
         }
 
         private async void GetTransactionData()
         {
-            var transactionData = await _accessor.GetByIdAsync(transactionId);
-            if (transactionData != null)
-            {
-                // Properties
-                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
-                closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
-                closeStatus_tx.Visible = transactionData.IsClosed == true;
-                openedBy_tx.Text = transactionData.OpenedBy;
-                closedBy_tx.Text = transactionData.ClosedBy;
-                date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
-                begBal_tx.Text = transactionData.BeginningBalance.ToString();
-                totalSales_tx.Text = transactionData.TotalSales.ToString();
-                totalExp_tx.Text = transactionData.TotalExpenses.ToString();
-                expCash_tx.Text = transactionData.ExpectedCash.ToString();
-                endingCash_tx.Text = transactionData.EndingCash.ToString();
+            var transactionData = await _transactionService.GetTransactionById(transactionId);
+            balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
+            closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
+            closeStatus_tx.Visible = transactionData.IsClosed == true;
+            openedBy_tx.Text = transactionData.OpenedBy;
+            closedBy_tx.Text = transactionData.ClosedBy;
+            date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
+            begBal_tx.Text = transactionData.BeginningBalance.ToString();
+            totalSales_tx.Text = transactionData.TotalSales.ToString();
+            totalExp_tx.Text = transactionData.TotalExpenses.ToString();
+            expCash_tx.Text = transactionData.ExpectedCash.ToString();
+            endingCash_tx.Text = transactionData.EndingCash.ToString();
 
-                // Notifications
-                if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
-                {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
-                }
-                else
-                {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
-                }
-                if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
-                {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
-                }
+            // Notifications
+            if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
+            {
+                StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
+            }
+            else
+            {
+                StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
+            }
+            if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
+            {
+                StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
+
             }
         }
 
@@ -170,29 +146,15 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private async Task<bool> CloseTransactionAsync()
-        {
-            var updatedTransaction = await _accessor.UpdatePartialAsync<TransactionModel>(transactionId,
-                t => t.IsClosed = true
-            );
-
-            return updatedTransaction != null;
-        }
-
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            if (await CloseTransactionAsync())
-            {
-                MessageHandler.SuccessfullyUpdated();
-            }
+            await _transactionService.CloseTransaction(transactionId);
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
         }
-
-       
     }
 }
 

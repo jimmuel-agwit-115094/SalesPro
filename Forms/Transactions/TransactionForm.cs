@@ -110,7 +110,6 @@ namespace SalesPro.Forms.Transactions
             form.actionType = Constants.SystemConstants.Edit;
             form.transactionId = (int)selectedId;
             form.ShowDialog();
-
         }
     }
 }
