@@ -190,7 +190,7 @@
     <Compile Include="Helpers\DateFormatHelper.cs" />
     <Compile Include="Helpers\MessageHandler.cs" />
     <Compile Include="Helpers\ServerDateTimeHelper.cs" />
-    <Compile Include="Services\TransactionService.cs" />
+    <Compile Include="Services\DatabaseTransactionHelper.cs" />
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />

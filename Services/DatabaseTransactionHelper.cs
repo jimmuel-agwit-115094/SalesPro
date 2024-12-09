@@ -4,7 +4,7 @@ using System;
 
 namespace SalesPro.Helpers
 {
-    public static class TransactionService
+    public static class DatabaseTransactionHelper
     {
         public static async Task ExecuteInTransactionAsync(this DbContext context, Func<Task> transactionalAction)
         {
