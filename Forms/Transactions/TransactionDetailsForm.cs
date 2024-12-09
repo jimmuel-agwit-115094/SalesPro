@@ -105,9 +105,6 @@ namespace SalesPro.Forms.Transactions
             var transactionData = await _accessor.GetByIdAsync(transactionId);
             if (transactionData != null)
             {
-                // Get the row version
-                _rowVersion = transactionData.RowVersion;
-
                 // Properties
                 balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;

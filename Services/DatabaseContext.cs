@@ -22,7 +22,7 @@ namespace POS_Generic.Helpers
             // Configure the keyless entity type in the modelBuilder
             modelBuilder.Entity<ServerDateTimeModel>().HasNoKey();
 
-            modelBuilder.Entity<TransactionModel>().Property(e => e.RowVersion) .IsRowVersion();
+            modelBuilder.Entity<TransactionModel>() .Property(e => e.RowVersion).IsConcurrencyToken().ValueGeneratedOnAddOrUpdate();
 
             base.OnModelCreating(modelBuilder);
         }
