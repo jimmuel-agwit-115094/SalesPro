@@ -162,7 +162,6 @@ namespace SalesPro.Forms.Transactions
         {
             var transaction = BuilTransactionModel();
             var transactionLog = BuildTransactionLogModel(Constants.SystemConstants.Closed);
-
             await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }
