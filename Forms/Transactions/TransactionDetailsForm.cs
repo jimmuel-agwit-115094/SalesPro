@@ -11,12 +11,11 @@ namespace SalesPro.Forms.Transactions
 {
     public partial class TransactionDetailsForm : Form
     {
-        public string actionType;
+        public string _actionType;
         private DateTime _curDate;
-        public int transactionId;
+        public int _transactionId;
         private string _userFullname;
         public int _rowVersion;
-
 
         private readonly TransactionService _transactionService;
         public TransactionDetailsForm()
@@ -65,7 +64,7 @@ namespace SalesPro.Forms.Transactions
         {
             if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
 
-            if (actionType == Constants.SystemConstants.New)
+            if (_actionType == Constants.SystemConstants.New)
             {
                 var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
                 var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
@@ -73,9 +72,9 @@ namespace SalesPro.Forms.Transactions
             }
             else
             {
-                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, transactionId);
+                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                 var begBal = decimal.Parse(begBal_tx.Text);
-                await _transactionService.UpdateTransaction(transactionId, begBal, updateLogModel);
+                await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel);
             }
             Close();
         }
@@ -84,16 +83,16 @@ namespace SalesPro.Forms.Transactions
         {
             var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
             var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, transactionId);
-            await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
+            await _transactionService.CloseTransaction(_transactionId, transaction, transactionLog);
             Close();
         }
 
         private async void undo_btn_Click(object sender, EventArgs e)
         {
             var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, transactionId);
-            await _transactionService.UndoCloseTransaction(transactionId, transaction, transactionLog);
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
+            await _transactionService.UndoCloseTransaction(_transactionId, transaction, transactionLog);
             Close();
         }
 
@@ -106,9 +105,11 @@ namespace SalesPro.Forms.Transactions
         // Todo : Refactor this method to add the value of the sales base on other tables in the database
         private async void GetTransactionData()
         {
-            var transactionData = await _transactionService.GetTransactionById(transactionId);
+            var transactionData = await _transactionService.GetTransactionById(_transactionId);
             if (transactionData != null)
             {
+                var isClosed = transactionData.IsClosed;
+
                 balStatus_tx.Text = transactionData.BalanceStatus == BalanceStatusEnum.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
@@ -135,6 +136,12 @@ namespace SalesPro.Forms.Transactions
                 {
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, close_panel, "Closed Transaction");
                 }
+
+                // Controls
+                save_btn.Enabled = isClosed == false;
+                close_btn.Enabled = isClosed == false;
+                undo_btn.Enabled = isClosed == true;
+                begBal_tx.ReadOnly = isClosed == true;
             }
         }
 
@@ -150,14 +157,19 @@ namespace SalesPro.Forms.Transactions
             _curDate = await ClockHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
 
-            if (actionType == Constants.SystemConstants.New)
+            if (_actionType == Constants.SystemConstants.New)
             {
                 Text = "New Transaction";
                 save_btn.Text = "Save";
                 save_btn.BackColor = Color.Green;
                 date_tx.Text = DateFormatHelper.FormatDate(_curDate);
 
-                openedBy_tx.Text = _userFullname;
+                openedBy_tx.Text = _userFullname; 
+
+                // Controls
+                close_btn.Enabled = false;
+                undo_btn.Enabled = false;
+                begBal_tx.ReadOnly = false;
             }
             else
             {
@@ -166,7 +178,7 @@ namespace SalesPro.Forms.Transactions
                 save_btn.BackColor = SystemColors.HotTrack;
 
                 GetTransactionData();
-                GetTransactionLogs(transactionId);
+                GetTransactionLogs(_transactionId);
             }
         }
 

@@ -55,8 +55,6 @@ namespace SalesPro.Accessors
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
-
-
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             using (var _context = new DatabaseContext())

@@ -47,7 +47,7 @@ namespace SalesPro.Forms.Transactions
 
             TransactionDetailsForm form = new TransactionDetailsForm();
             form.FormClosed += TransactionDetailsForm_FormClosed;
-            form.actionType = Constants.SystemConstants.New;
+            form._actionType = Constants.SystemConstants.New;
             form.ShowDialog();
         }
 
@@ -107,8 +107,8 @@ namespace SalesPro.Forms.Transactions
             if (selectedId == 0) return;
             TransactionDetailsForm form = new TransactionDetailsForm();
             form.FormClosed += TransactionDetailsForm_FormClosed;
-            form.actionType = Constants.SystemConstants.Edit;
-            form.transactionId = (int)selectedId;
+            form._actionType = Constants.SystemConstants.Edit;
+            form._transactionId = (int)selectedId;
             form.ShowDialog();
         }
     }
