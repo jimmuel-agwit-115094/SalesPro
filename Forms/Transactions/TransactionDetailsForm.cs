@@ -106,15 +106,15 @@ namespace SalesPro.Forms.Transactions
                 // Notifications
                 if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
                 {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, bal_panel, "Balanced");
+                    StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, bal_panel, "Balanced");
                 }
                 else
                 {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Bad, bal_panel, "Unbalanced");
+                    StatusIconHelper.ShowStatus(Enums.IconStatusType.Bad, bal_panel, "Unbalanced");
                 }
                 if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
                 {
-                    StatusIconHelper.ShowStatus(Enums.StatusType.Good, close_panel, "Closed Transaction");
+                    StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, close_panel, "Closed Transaction");
 
                 }
             }
