@@ -1,4 +1,5 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -71,7 +72,7 @@ namespace SalesPro.Forms.Transactions
 
             if (_actionType == Constants.SystemConstants.New)
             {
-                if (MessageHandler.ShowQuestion(Resources.ConfirmSave, "Tranasction"))
+                if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
                 {
                     var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
                     var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
@@ -80,7 +81,7 @@ namespace SalesPro.Forms.Transactions
             }
             else
             {
-                if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, "Transaction"))
+                if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, FormConstants.Transaction))
                 {
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
@@ -92,7 +93,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            if (MessageHandler.ShowQuestion(Resources.ConfirmClose, "Tranasction"))
+            if (MessageHandler.ShowQuestion(Resources.ConfirmClose, FormConstants.Transaction))
             {
                 var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
                 var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
@@ -104,7 +105,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void undo_btn_Click(object sender, EventArgs e)
         {
-            if (MessageHandler.ShowQuestion(Resources.ConfirmUndo , "Tranasction"))
+            if (MessageHandler.ShowQuestion(Resources.ConfirmUndo, FormConstants.Transaction))
             {
                 var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
@@ -123,10 +124,16 @@ namespace SalesPro.Forms.Transactions
         private async Task GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(_transactionId);
-            if (transactionData != null)
+            if (transactionData == null)
+            {
+                MessageHandler.ShowError("Transaction not found");
+                Close();
+            }
+            else
             {
                 var isClosed = transactionData.IsClosed;
                 _rowVersion = transactionData.RowVersion;
+                //Properties
                 balStatus_tx.Text = transactionData.BalanceStatus == BalanceStatusEnum.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
