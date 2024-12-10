@@ -39,9 +39,10 @@ namespace SalesPro.Helpers
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public static DialogResult ShowQuestion(string message)
+        public static bool ShowQuestion(string question, string obj)
         {
-            return MessageBox.Show(message, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"{ question } {obj}?", "Confirm?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
         }
 
         public static void ShowConcurrencyWarning()

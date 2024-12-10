@@ -2,6 +2,7 @@
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Drawing;
@@ -66,34 +67,46 @@ namespace SalesPro.Forms.Transactions
 
             if (_actionType == Constants.SystemConstants.New)
             {
-                var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
-                var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
-                await _transactionService.SaveTransaction(transaction, saveLogModel);
+                if (MessageHandler.ShowQuestion(Resources.ConfirmSave, "Tranasction"))
+                {
+                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+                    var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
+                    await _transactionService.SaveTransaction(transaction, saveLogModel);
+                }
             }
             else
             {
-                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
-                var begBal = decimal.Parse(begBal_tx.Text);
-                await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel);
+                if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, "Transaction"))
+                {
+                    var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
+                    var begBal = decimal.Parse(begBal_tx.Text);
+                    await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel);
+                }
             }
             Close();
         }
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
-            var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
-            await _transactionService.CloseTransaction(_transactionId, transaction, transactionLog);
-            Close();
+            if (MessageHandler.ShowQuestion(Resources.ConfirmClose, "Tranasction"))
+            {
+                var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
+                var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
+                var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
+                await _transactionService.CloseTransaction(_transactionId, transaction, transactionLog);
+                Close();
+            }
         }
 
         private async void undo_btn_Click(object sender, EventArgs e)
         {
-            var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
-            await _transactionService.UndoCloseTransaction(_transactionId, transaction, transactionLog);
-            Close();
+            if (MessageHandler.ShowQuestion(Resources.ConfirmUndo , "Tranasction"))
+            {
+                var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+                var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
+                await _transactionService.UndoCloseTransaction(_transactionId, transaction, transactionLog);
+                Close();
+            }
         }
 
         private async void GetTransactionLogs(int transactionId)
@@ -164,7 +177,7 @@ namespace SalesPro.Forms.Transactions
                 save_btn.BackColor = Color.Green;
                 date_tx.Text = DateFormatHelper.FormatDate(_curDate);
 
-                openedBy_tx.Text = _userFullname; 
+                openedBy_tx.Text = _userFullname;
 
                 // Controls
                 close_btn.Enabled = false;
