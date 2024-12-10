@@ -18,7 +18,7 @@ namespace SalesPro.Forms.Transactions
         public TransactionForm()
         {
             _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>(_context);
+            _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
             InitializeComponent();
         }
@@ -44,7 +44,6 @@ namespace SalesPro.Forms.Transactions
                 MessageHandler.ShowWarning("Transaction already exists for the current date");
                 return;
             }
-
             TransactionDetailsForm form = new TransactionDetailsForm();
             form.FormClosed += TransactionDetailsForm_FormClosed;
             form._actionType = Constants.SystemConstants.New;

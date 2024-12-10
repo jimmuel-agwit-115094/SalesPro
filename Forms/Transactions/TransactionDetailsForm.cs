@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using POS_Generic.Helpers;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -6,6 +7,7 @@ using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
@@ -19,9 +21,11 @@ namespace SalesPro.Forms.Transactions
         public int _rowVersion;
 
         private readonly TransactionService _transactionService;
+        private readonly DatabaseContext _context;
         public TransactionDetailsForm()
         {
-            _transactionService = new TransactionService();
+            _context = new DatabaseContext();
+            _transactionService = new TransactionService(_context);
             InitializeComponent();
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
         }
@@ -80,7 +84,7 @@ namespace SalesPro.Forms.Transactions
                 {
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
-                    await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel);
+                    await _transactionService.UpdateTransaction(_transactionId, _rowVersion, begBal, updateLogModel);
                 }
             }
             Close();
@@ -93,7 +97,7 @@ namespace SalesPro.Forms.Transactions
                 var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
                 var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
-                await _transactionService.CloseTransaction(_transactionId, transaction, transactionLog);
+                await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                 Close();
             }
         }
@@ -104,25 +108,25 @@ namespace SalesPro.Forms.Transactions
             {
                 var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
-                await _transactionService.UndoCloseTransaction(_transactionId, transaction, transactionLog);
+                await _transactionService.UndoCloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                 Close();
             }
         }
 
-        private async void GetTransactionLogs(int transactionId)
+        private async Task GetTransactionLogs(int transactionId)
         {
             dgTransLogs.DataSource = await _transactionService.GetAllTransactionLogs(transactionId);
             FormatGrid();
         }
 
         // Todo : Refactor this method to add the value of the sales base on other tables in the database
-        private async void GetTransactionData()
+        private async Task GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(_transactionId);
             if (transactionData != null)
             {
                 var isClosed = transactionData.IsClosed;
-
+                _rowVersion = transactionData.RowVersion;
                 balStatus_tx.Text = transactionData.BalanceStatus == BalanceStatusEnum.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
@@ -190,8 +194,8 @@ namespace SalesPro.Forms.Transactions
                 save_btn.Text = "Update";
                 save_btn.BackColor = SystemColors.HotTrack;
 
-                GetTransactionData();
-                GetTransactionLogs(_transactionId);
+                await GetTransactionData();
+                await GetTransactionLogs(_transactionId);
             }
         }
 
@@ -205,6 +209,7 @@ namespace SalesPro.Forms.Transactions
         {
             DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
         }
+
     }
 }
 

@@ -10,18 +10,19 @@ namespace SalesPro.Services
 {
     public class TransactionService
     {
+
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
         private readonly Accessor<TransactionLogModel> _baseTransactionLogAccessor;
         private readonly TransactionAccessor _transactionAccessor;
         private readonly TransactionLogAccessor _transactionLogAccessor;
 
-        public TransactionService()
+        public TransactionService(DatabaseContext context)
         {
-            _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>(_context);
+            _context = context;
+            _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
-            _baseTransactionLogAccessor = new Accessor<TransactionLogModel>(_context);
+            _baseTransactionLogAccessor = new Accessor<TransactionLogModel>();
             _transactionLogAccessor = new TransactionLogAccessor();
         }
 
@@ -35,12 +36,13 @@ namespace SalesPro.Services
             });
         }
 
-        public async Task UpdateTransaction(int transactionId, decimal begBalance, TransactionLogModel log)
+        public async Task UpdateTransaction(int transactionId, int rowVersion, decimal begBalance, TransactionLogModel log)
         {
             await _context.ExecuteInTransactionAsync(async () =>
             {
                 await _accessor.UpdatePartialAsync<TransactionModel>(
                      transactionId,
+                     rowVersion,
                      t =>
                      {
                          t.BeginningBalance = begBalance;
@@ -51,13 +53,14 @@ namespace SalesPro.Services
             });
         }
 
-        public async Task CloseTransaction(int transactionId, TransactionModel tr, TransactionLogModel log)
+        public async Task CloseTransaction(int transactionId, int rowVersion, TransactionModel tr, TransactionLogModel log)
         {
             var date = await ClockHelper.GetServerDateTime();
             await _context.ExecuteInTransactionAsync(async () =>
             {
                 await _accessor.UpdatePartialAsync<TransactionModel>(
                         transactionId,
+                        rowVersion,
                         t =>
                         {
                             t.TotalSales = tr.TotalSales;
@@ -75,13 +78,14 @@ namespace SalesPro.Services
             });
         }
 
-        public async Task UndoCloseTransaction(int transactionId, TransactionModel tr, TransactionLogModel log)
+        public async Task UndoCloseTransaction(int transactionId, int rowVersion, TransactionModel tr, TransactionLogModel log)
         {
             var date = await ClockHelper.GetServerDateTime();
             await _context.ExecuteInTransactionAsync(async () =>
             {
                 await _accessor.UpdatePartialAsync<TransactionModel>(
                         transactionId,
+                        rowVersion,
                         t =>
                         {
                             t.IsClosed = false;
