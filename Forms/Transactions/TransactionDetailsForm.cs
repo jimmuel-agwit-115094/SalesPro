@@ -80,6 +80,19 @@ namespace SalesPro.Forms.Transactions
             Close();
         }
 
+        private void undo_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void close_btn_Click(object sender, EventArgs e)
+        {
+            var transaction = BuilTransactionModel();
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed);
+            await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
+            Close();
+        }
+
         private async void GetTransactionLogs(int transactionId)
         {
             dgTransLogs.DataSource = await _transactionService.GetAllTransactionLogs(transactionId);
@@ -157,13 +170,6 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private async void close_btn_Click(object sender, EventArgs e)
-        {
-            var transaction = BuilTransactionModel();
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed);
-            await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
-            Close();
-        }
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
