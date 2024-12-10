@@ -47,7 +47,7 @@ namespace SalesPro.Services
                      {
                          t.BeginningBalance = begBalance;
                      }
-               );
+                );
                 await _baseTransactionLogAccessor.AddAsync(log);
                 MessageHandler.SuccessfullyUpdated();
             });

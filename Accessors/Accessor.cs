@@ -72,34 +72,23 @@ namespace SalesPro.Accessors
         {
             using (var _dbContext = new DatabaseContext())
             {
-                // Fetch the entity to update
                 var toUpdate = await _dbContext.Set<TEntity>().FindAsync(id);
 
-                // Check if the entity is found
                 if (toUpdate == null)
-                {
-                    throw new KeyNotFoundException($"{typeof(TEntity).Name} not found for id: {id}");
-                }
+                    throw new KeyNotFoundException($"The data you are trying to update could not be found. It may have been deleted or altered.");
 
-                // Get the row version from the entity
-                var currentRowVersion = (byte[])_dbContext.Entry(toUpdate).Property("RowVersion").CurrentValue;
+                var rowVersionProperty = _dbContext.Model.FindEntityType(typeof(TEntity)).FindProperty(Constants.SystemConstants.RowVersion);
 
-                // Check if the provided row version matches the current row version
-                if (!currentRowVersion.SequenceEqual(BitConverter.GetBytes(rowVersion)))
-                {
-                    throw new DbUpdateConcurrencyException("The entity has been modified by another user.");
-                }
+                var rowVersionValue = rowVersionProperty.PropertyInfo.GetValue(toUpdate);
+                if ((int)rowVersionValue != rowVersion)
+                    throw new DbUpdateConcurrencyException($"The data you are trying to update been modified or deleted by another user since you last retrieved it. \n" +
+                        $"Please reload the data and try again.");
 
-                // Apply the updates via the action
                 updateAction(toUpdate);
-
-                // Save the changes
                 await _dbContext.SaveChangesAsync();
-
                 return toUpdate;
             }
         }
-
 
     }
 

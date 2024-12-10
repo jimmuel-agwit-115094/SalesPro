@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -17,9 +18,9 @@ namespace SalesPro.Helpers
 
                     transactionScope.Complete();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageHandler.ShowWarning("The information you were trying to update has already been changed or removed by another user. Please refresh the data and try again.");
+                    MessageHandler.ShowError($"Error Occured:\n{ex.Message}");
                 }
             }
         }
