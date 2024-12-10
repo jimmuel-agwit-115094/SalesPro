@@ -30,7 +30,7 @@ namespace SalesPro.Forms.Transactions
         {
         }
 
-        private TransactionLogModel BuildTransactionLogModel(ActionsEnum action)
+        private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
         {
             return new TransactionLogModel
             {
@@ -43,7 +43,7 @@ namespace SalesPro.Forms.Transactions
             };
         }
 
-        private TransactionModel BuilTransactionModel()
+        private TransactionModel BuilTransactionModel(BalanceStatusEnum balanceStatus)
         {
             return new TransactionModel
             {
@@ -57,7 +57,7 @@ namespace SalesPro.Forms.Transactions
                 OpenedBy = _userFullname,
                 ClosedBy = _userFullname,
                 IsClosed = false,
-                BalanceStatus = BalanceStatusEnum.Balanced
+                BalanceStatus = balanceStatus
             };
         }
 
@@ -67,13 +67,13 @@ namespace SalesPro.Forms.Transactions
 
             if (actionType == Constants.SystemConstants.New)
             {
-                var transaction = BuilTransactionModel();
-                var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded);
+                var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+                var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
                 await _transactionService.SaveTransaction(transaction, saveLogModel);
             }
             else
             {
-                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated);
+                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, transactionId);
                 var begBal = decimal.Parse(begBal_tx.Text);
                 await _transactionService.UpdateTransaction(transactionId, begBal, updateLogModel);
             }
@@ -82,16 +82,17 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            var transaction = BuilTransactionModel();
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed);
+            var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
+            var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, transactionId);
             await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }
 
         private async void undo_btn_Click(object sender, EventArgs e)
         {
-            var transaction = BuilTransactionModel();
-            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed);
+            var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, transactionId);
             await _transactionService.UndoCloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }
@@ -116,10 +117,10 @@ namespace SalesPro.Forms.Transactions
                 date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
                 // System Generated Data
-                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "69"; // Need to be updated
-                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "69"; // Need to be updated
-                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "69"; // Need to be updated
-                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "69"; // Need to be updated
+                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "11"; // Need to be updated
+                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "22"; // Need to be updated
+                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "33"; // Need to be updated
+                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "44"; // Need to be updated
 
                 // Notifications
                 if (balStatus_tx.Text == BalanceStatusEnum.Balanced.ToString())
