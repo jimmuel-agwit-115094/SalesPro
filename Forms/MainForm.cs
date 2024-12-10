@@ -14,6 +14,7 @@ namespace SalesPro.Forms
 
         private void Panel1_Resize(object sender, EventArgs e)
         {
+            // Center the content panel within the main panel
             int centerX = (main_panel.Width - content_panel.Width) / 2;
             int centerY = (main_panel.Height - content_panel.Height) / 2;
             content_panel.Location = new Point(centerX, centerY);
@@ -21,6 +22,7 @@ namespace SalesPro.Forms
 
         private void LoadFormInPanel(Form form)
         {
+            // Clear the content panel and load the specified form
             content_panel.Controls.Clear();
             form.TopLevel = false;
             form.Dock = DockStyle.Fill;
@@ -29,23 +31,25 @@ namespace SalesPro.Forms
             form.Show();
         }
 
-        private void SetFormSize()
+        private void AdjustFormSizeToScreen()
         {
-            WindowState = FormWindowState.Maximized;
+            // Maximize the form within the working area of the screen
             Rectangle workingArea = Screen.GetWorkingArea(this);
-            Size = workingArea.Size;
-            Location = workingArea.Location;
+            Size = workingArea.Size; // Set form size to the working area size
+            Location = workingArea.Location; // Set form location to match the working area
         }
 
         private void transactions_btn_Click(object sender, EventArgs e)
         {
+            // Load the TransactionForm inside the content panel
             var form = new TransactionForm();
             LoadFormInPanel(form);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SetFormSize();
+            // Adjust the form size to fit the screen's working area on load
+            AdjustFormSizeToScreen();
         }
     }
 }
