@@ -102,6 +102,7 @@ namespace SalesPro.Forms.Transactions
             FormatGrid();
         }
 
+        // Todo : Refactor this method to add the value of the sales base on other tables in the database
         private async void GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(transactionId);
@@ -115,10 +116,10 @@ namespace SalesPro.Forms.Transactions
                 date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
                 // System Generated Data
-                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "69";
-                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "69";
-                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "69";
-                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "69";
+                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "69"; // Need to be updated
+                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "69"; // Need to be updated
+                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "69"; // Need to be updated
+                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "69"; // Need to be updated
 
                 // Notifications
                 if (balStatus_tx.Text == BalanceStatusEnum.Balanced.ToString())
