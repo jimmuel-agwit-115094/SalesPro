@@ -7,7 +7,7 @@ namespace SalesPro.Helpers.UiHelpers
 {
     public class StatusIconHelper
     {
-        public static void ShowStatus(StatusType status, Panel statusPanel, string statusMessage)
+        public static void ShowStatus(IconStatusType status, Panel statusPanel, string statusMessage)
         {
             // Assuming the panel contains the PictureBox and Label
             PictureBox statusPictureBox = statusPanel.Controls.OfType<PictureBox>().FirstOrDefault();
@@ -28,13 +28,13 @@ namespace SalesPro.Helpers.UiHelpers
             // Change the PictureBox's image based on the status
             switch (status)
             {
-                case StatusType.Good:
+                case IconStatusType.Good:
                     statusPictureBox.Image = Properties.Resources.good;  // Green icon for "Good"
                     break;
-                case StatusType.Bad:
+                case IconStatusType.Bad:
                     statusPictureBox.Image = Properties.Resources.bad;  // Red icon for "Bad"
                     break;
-                case StatusType.Warning:
+                case IconStatusType.Warning:
                     statusPictureBox.Image = Properties.Resources.warning;  // Yellow icon for "Warning"
                     break;
             }

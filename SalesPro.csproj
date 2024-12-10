@@ -197,7 +197,7 @@
     <Compile Include="Helpers\UiHelpers\StatusIconHelper.cs" />
     <Compile Include="Helpers\VersionCheckerHelper.cs" />
     <Compile Include="Models\BaseEntity.cs" />
-    <Compile Include="Enums\StatusEnum.cs" />
+    <Compile Include="Enums\IconStatusEnum.cs" />
     <Compile Include="Models\ModelHelpers\ServerDateTimeModel.cs" />
     <Compile Include="Models\TransactionLogModel.cs" />
     <Compile Include="Models\TransactionModel.cs" />

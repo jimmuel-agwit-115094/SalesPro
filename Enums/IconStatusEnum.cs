@@ -1,6 +1,6 @@
 ﻿namespace SalesPro.Enums
 {
-    public enum StatusType
+    public enum IconStatusType
     {
         Good,
         Bad,
