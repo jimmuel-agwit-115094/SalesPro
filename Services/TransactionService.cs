@@ -73,7 +73,24 @@ namespace SalesPro.Services
                 await _baseTransactionLogAccessor.AddAsync(log);
                 MessageHandler.SuccessfullyUpdated();
             });
+        }
 
+        public async Task UndoCloseTransaction(int transactionId, TransactionModel tr, TransactionLogModel log)
+        {
+            var date = await ClockHelper.GetServerDateTime();
+            await _context.ExecuteInTransactionAsync(async () =>
+            {
+                await _accessor.UpdatePartialAsync<TransactionModel>(
+                        transactionId,
+                        t =>
+                        {
+                            t.IsClosed = false;
+                        }
+                  );
+
+                await _baseTransactionLogAccessor.AddAsync(log);
+                MessageHandler.SuccessfullyUpdated();
+            });
         }
 
         public async Task<List<TransactionLogModel>> GetAllTransactionLogs(int transactionId)

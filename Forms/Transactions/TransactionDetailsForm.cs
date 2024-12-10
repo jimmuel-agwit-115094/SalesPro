@@ -80,16 +80,19 @@ namespace SalesPro.Forms.Transactions
             Close();
         }
 
-        private void undo_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void close_btn_Click(object sender, EventArgs e)
         {
             var transaction = BuilTransactionModel();
             var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed);
             await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
+            Close();
+        }
+
+        private async void undo_btn_Click(object sender, EventArgs e)
+        {
+            var transaction = BuilTransactionModel();
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed);
+            await _transactionService.UndoCloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }
 
