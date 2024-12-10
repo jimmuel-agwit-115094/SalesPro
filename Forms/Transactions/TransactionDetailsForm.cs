@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
@@ -29,7 +30,7 @@ namespace SalesPro.Forms.Transactions
         {
         }
 
-        private TransactionLogModel BuildTransactionLogModel(string action)
+        private TransactionLogModel BuildTransactionLogModel(ActionsEnum action)
         {
             return new TransactionLogModel
             {
@@ -56,7 +57,7 @@ namespace SalesPro.Forms.Transactions
                 OpenedBy = _userFullname,
                 ClosedBy = _userFullname,
                 IsClosed = false,
-                BalanceStatus = Constants.SystemConstants.NotSet
+                BalanceStatus = BalanceStatusEnum.Balanced
             };
         }
 
@@ -67,12 +68,12 @@ namespace SalesPro.Forms.Transactions
             if (actionType == Constants.SystemConstants.New)
             {
                 var transaction = BuilTransactionModel();
-                var saveLogModel = BuildTransactionLogModel(Constants.SystemConstants.New);
+                var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded);
                 await _transactionService.SaveTransaction(transaction, saveLogModel);
             }
             else
             {
-                var updateLogModel = BuildTransactionLogModel(Constants.SystemConstants.Updated);
+                var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated);
                 var begBal = decimal.Parse(begBal_tx.Text);
                 await _transactionService.UpdateTransaction(transactionId, begBal, updateLogModel);
             }
@@ -90,7 +91,7 @@ namespace SalesPro.Forms.Transactions
             var transactionData = await _transactionService.GetTransactionById(transactionId);
             if (transactionData != null)
             {
-                balStatus_tx.Text = transactionData.BalanceStatus == Constants.SystemConstants.Balanced ? "Balanced" : "Unbalanced";
+                balStatus_tx.Text = transactionData.BalanceStatus == BalanceStatusEnum.Balanced ? "Balanced" : "Unbalanced";
                 closeStatus_tx.Text = transactionData.IsClosed ? "Closed" : string.Empty;
                 closeStatus_tx.Visible = transactionData.IsClosed == true;
                 openedBy_tx.Text = transactionData.OpenedBy;
@@ -104,7 +105,7 @@ namespace SalesPro.Forms.Transactions
                 endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "69";
 
                 // Notifications
-                if (balStatus_tx.Text == Constants.SystemConstants.Balanced)
+                if (balStatus_tx.Text == BalanceStatusEnum.Balanced.ToString())
                 {
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, bal_panel, "Balanced");
                 }
@@ -112,13 +113,11 @@ namespace SalesPro.Forms.Transactions
                 {
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Bad, bal_panel, "Unbalanced");
                 }
-                if (closeStatus_tx.Text == Constants.SystemConstants.Closed)
+                if (closeStatus_tx.Text == ActionsEnum.Closed.ToString())
                 {
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, close_panel, "Closed Transaction");
-
                 }
             }
-
         }
 
         private void FormatGrid()
@@ -161,7 +160,7 @@ namespace SalesPro.Forms.Transactions
         private async void close_btn_Click(object sender, EventArgs e)
         {
             var transaction = BuilTransactionModel();
-            var transactionLog = BuildTransactionLogModel(Constants.SystemConstants.Closed);
+            var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed);
             await _transactionService.CloseTransaction(transactionId, transaction, transactionLog);
             Close();
         }

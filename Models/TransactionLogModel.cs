@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesPro.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
@@ -12,6 +13,6 @@ namespace SalesPro.Models
         public decimal  BeginningBalance { get; set; }
         public decimal EndingBalance { get; set; }
         public string UserFullname { get; set; }
-        public string ActionTaken { get; set; }
+        public ActionsEnum ActionTaken { get; set; }
     }
 }

@@ -162,6 +162,8 @@
     <Compile Include="Accessors\Transactions\TransactionAccessor.cs" />
     <Compile Include="Accessors\Transactions\TransactionLogAccessor.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
+    <Compile Include="Enums\ActionsEnum.cs" />
+    <Compile Include="Enums\BalanceStatusEnum.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

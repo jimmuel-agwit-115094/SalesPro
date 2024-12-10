@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesPro.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
@@ -17,6 +18,6 @@ namespace SalesPro.Models
         public string OpenedBy { get; set; }
         public string ClosedBy { get; set; }
         public bool IsClosed { get; set; }
-        public string BalanceStatus { get; set; }
+        public BalanceStatusEnum BalanceStatus { get; set; }
     }
 }
