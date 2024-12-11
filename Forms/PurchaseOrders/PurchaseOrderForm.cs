@@ -16,5 +16,10 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             InitializeComponent();
         }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
