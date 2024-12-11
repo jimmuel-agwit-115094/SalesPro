@@ -60,9 +60,9 @@ namespace SalesPro.Accessors
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            using (var _context = new DatabaseContext())
+            using (var _dbContext = new DatabaseContext())
             {
-                return await _context.Set<T>().ToListAsync();
+                return await _dbContext.Set<T>().ToListAsync();
             }
         }
 
@@ -103,5 +103,4 @@ namespace SalesPro.Accessors
             }
         }
     }
-
 }
