@@ -395,6 +395,7 @@
             this.Name = "PurchaseOrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PurchaseOrderForm";
+            this.Load += new System.EventHandler(this.PurchaseOrderForm_Load);
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
