@@ -141,6 +141,7 @@ public static class DgFormatHelper
                 dataGridView.ColumnHeadersDefaultCellStyle.BackColor;
         }
 
+        SetDataGridStyles(dataGridView);
         // Disable sorting for all columns
         foreach (DataGridViewColumn column in dataGridView.Columns)
         {

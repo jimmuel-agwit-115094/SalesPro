@@ -113,6 +113,7 @@ namespace SalesPro.Forms.Transactions
         private async Task GetTransactionLogs(int transactionId)
         {
             dgTransLogs.DataSource = await _transactionService.GetAllTransactionLogs(transactionId);
+            FormatGrid();
         }
 
         // Todo : Refactor this method to add the value of the sales base on other tables in the database
@@ -201,7 +202,6 @@ namespace SalesPro.Forms.Transactions
 
                 await GetTransactionData();
                 await GetTransactionLogs(_transactionId);
-                FormatGrid();
             }
         }
 
