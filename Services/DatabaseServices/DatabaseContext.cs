@@ -10,6 +10,7 @@ namespace POS_Generic.Helpers
         public DbSet<User> Users { get; set; }
         public DbSet<TransactionModel> Transactions { get; set; }
         public DbSet<TransactionLogModel> TransactionLogs { get; set; }
+        public DbSet<SupplierModel> Suppliers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
@@ -21,7 +22,7 @@ namespace POS_Generic.Helpers
             // Configure the keyless entity type in the modelBuilder
             modelBuilder.Entity<ServerDateTimeModel>().HasNoKey();
 
-            modelBuilder.Entity<TransactionModel>() .Property(e => e.RowVersion).IsConcurrencyToken().ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<TransactionModel>().Property(e => e.RowVersion).IsConcurrencyToken().ValueGeneratedOnAddOrUpdate();
 
             base.OnModelCreating(modelBuilder);
         }
