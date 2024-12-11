@@ -352,6 +352,7 @@
             this.addSupplier_btn.TabIndex = 530;
             this.addSupplier_btn.Text = "Add Supplier";
             this.addSupplier_btn.UseVisualStyleBackColor = false;
+            this.addSupplier_btn.Click += new System.EventHandler(this.addSupplier_btn_Click);
             // 
             // addProduct_btn
             // 
