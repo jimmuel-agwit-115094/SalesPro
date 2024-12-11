@@ -1,14 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using POS_Generic.Helpers;
-using SalesPro.Accessors;
-using SalesPro.Forms;
-using SalesPro.Forms.Transactions;
-using SalesPro.Models;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro

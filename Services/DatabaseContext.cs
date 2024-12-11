@@ -2,7 +2,6 @@
 using SalesPro.Models;
 using SalesPro.Models.ModelHelpers;
 using System.Configuration;
-using System.Xml;
 
 namespace POS_Generic.Helpers
 {

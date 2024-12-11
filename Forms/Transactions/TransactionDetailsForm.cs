@@ -70,7 +70,7 @@ namespace SalesPro.Forms.Transactions
         {
             if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
 
-            if (_actionType == Constants.SystemConstants.New)
+            if (_actionType == SystemConstants.New)
             {
                 if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
                 {
