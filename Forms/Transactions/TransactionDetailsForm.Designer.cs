@@ -68,6 +68,11 @@
             this.search_tx = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgTransLogs = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.detailTabControl.SuspendLayout();
             this.transactionData_tab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -126,17 +131,22 @@
             // transactionData_tab
             // 
             this.transactionData_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.transactionData_tab.Controls.Add(this.panel8);
+            this.transactionData_tab.Controls.Add(this.panel5);
+            this.transactionData_tab.Controls.Add(this.panel4);
+            this.transactionData_tab.Controls.Add(this.panel3);
+            this.transactionData_tab.Controls.Add(this.panel2);
+            this.transactionData_tab.Controls.Add(this.begBal_tx);
+            this.transactionData_tab.Controls.Add(this.totalSales_tx);
+            this.transactionData_tab.Controls.Add(this.totalExp_tx);
             this.transactionData_tab.Controls.Add(this.date_tx);
+            this.transactionData_tab.Controls.Add(this.expCash_tx);
             this.transactionData_tab.Controls.Add(this.closedBy_tx);
+            this.transactionData_tab.Controls.Add(this.endingCash_tx);
             this.transactionData_tab.Controls.Add(this.openedBy_tx);
             this.transactionData_tab.Controls.Add(this.label7);
             this.transactionData_tab.Controls.Add(this.panel1);
             this.transactionData_tab.Controls.Add(this.undo_btn);
-            this.transactionData_tab.Controls.Add(this.endingCash_tx);
-            this.transactionData_tab.Controls.Add(this.expCash_tx);
-            this.transactionData_tab.Controls.Add(this.totalExp_tx);
-            this.transactionData_tab.Controls.Add(this.totalSales_tx);
-            this.transactionData_tab.Controls.Add(this.begBal_tx);
             this.transactionData_tab.Controls.Add(this.close_btn);
             this.transactionData_tab.Controls.Add(this.label6);
             this.transactionData_tab.Controls.Add(this.label5);
@@ -291,7 +301,7 @@
             // 
             this.endingCash_tx.DecimalPlaces = 2;
             this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.endingCash_tx.Location = new System.Drawing.Point(307, 323);
+            this.endingCash_tx.Location = new System.Drawing.Point(312, 322);
             this.endingCash_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -310,7 +320,7 @@
             // 
             this.expCash_tx.DecimalPlaces = 2;
             this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.expCash_tx.Location = new System.Drawing.Point(307, 281);
+            this.expCash_tx.Location = new System.Drawing.Point(312, 280);
             this.expCash_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -329,7 +339,7 @@
             // 
             this.totalExp_tx.DecimalPlaces = 2;
             this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalExp_tx.Location = new System.Drawing.Point(307, 235);
+            this.totalExp_tx.Location = new System.Drawing.Point(312, 234);
             this.totalExp_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -348,7 +358,7 @@
             // 
             this.totalSales_tx.DecimalPlaces = 2;
             this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalSales_tx.Location = new System.Drawing.Point(307, 191);
+            this.totalSales_tx.Location = new System.Drawing.Point(312, 190);
             this.totalSales_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -367,7 +377,7 @@
             // 
             this.begBal_tx.DecimalPlaces = 2;
             this.begBal_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.begBal_tx.Location = new System.Drawing.Point(307, 147);
+            this.begBal_tx.Location = new System.Drawing.Point(312, 146);
             this.begBal_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -380,6 +390,7 @@
             this.begBal_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.begBal_tx.ThousandsSeparator = true;
             this.begBal_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.begBal_tx.ValueChanged += new System.EventHandler(this.begBal_tx_ValueChanged);
             // 
             // close_btn
             // 
@@ -529,6 +540,7 @@
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
             this.search_tx.TabIndex = 459;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // panel7
             // 
@@ -579,6 +591,46 @@
             this.dgTransLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTransLogs.Size = new System.Drawing.Size(747, 399);
             this.dgTransLogs.TabIndex = 461;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Location = new System.Drawing.Point(313, 148);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(18, 23);
+            this.panel2.TabIndex = 524;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Location = new System.Drawing.Point(313, 192);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(18, 23);
+            this.panel3.TabIndex = 525;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Location = new System.Drawing.Point(313, 236);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(18, 23);
+            this.panel4.TabIndex = 526;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
+            this.panel5.Location = new System.Drawing.Point(313, 282);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(18, 23);
+            this.panel5.TabIndex = 527;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.Control;
+            this.panel8.Location = new System.Drawing.Point(313, 324);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(18, 23);
+            this.panel8.TabIndex = 528;
             // 
             // TransactionDetailsForm
             // 
@@ -656,5 +708,10 @@
         public System.Windows.Forms.NumericUpDown begBal_tx;
         private System.Windows.Forms.Label notFound_lbl;
         internal System.Windows.Forms.DataGridView dgTransLogs;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
     }
 }
