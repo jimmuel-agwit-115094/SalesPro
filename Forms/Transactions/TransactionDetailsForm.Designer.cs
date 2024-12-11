@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
@@ -63,6 +63,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.transactionLog_tab = new System.Windows.Forms.TabPage();
+            this.notFound_lbl = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.dgTransLogs = new System.Windows.Forms.DataGridView();
@@ -152,7 +153,6 @@
             this.transactionData_tab.Size = new System.Drawing.Size(759, 457);
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
-            this.transactionData_tab.Click += new System.EventHandler(this.transactionData_tab_Click);
             // 
             // date_tx
             // 
@@ -483,6 +483,7 @@
             // 
             // transactionLog_tab
             // 
+            this.transactionLog_tab.Controls.Add(this.notFound_lbl);
             this.transactionLog_tab.Controls.Add(this.pictureBox1);
             this.transactionLog_tab.Controls.Add(this.search_tx);
             this.transactionLog_tab.Controls.Add(this.dgTransLogs);
@@ -494,6 +495,19 @@
             this.transactionLog_tab.TabIndex = 1;
             this.transactionLog_tab.Text = "     Transaction Logs   ";
             this.transactionLog_tab.UseVisualStyleBackColor = true;
+            // 
+            // notFound_lbl
+            // 
+            this.notFound_lbl.AutoSize = true;
+            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
+            this.notFound_lbl.Location = new System.Drawing.Point(286, 241);
+            this.notFound_lbl.Name = "notFound_lbl";
+            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
+            this.notFound_lbl.TabIndex = 461;
+            this.notFound_lbl.Text = "No Record";
+            this.notFound_lbl.Visible = false;
             // 
             // pictureBox1
             // 
@@ -515,37 +529,36 @@
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
             this.search_tx.TabIndex = 459;
-            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // dgTransLogs
             // 
             this.dgTransLogs.AllowUserToAddRows = false;
             this.dgTransLogs.AllowUserToDeleteRows = false;
             this.dgTransLogs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgTransLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTransLogs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTransLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTransLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgTransLogs.ColumnHeadersHeight = 40;
             this.dgTransLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgTransLogs.EnableHeadersVisualStyles = false;
             this.dgTransLogs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgTransLogs.Location = new System.Drawing.Point(6, 57);
@@ -642,5 +655,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
         public System.Windows.Forms.NumericUpDown begBal_tx;
+        private System.Windows.Forms.Label notFound_lbl;
     }
 }

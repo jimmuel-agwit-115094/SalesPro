@@ -171,9 +171,12 @@ namespace SalesPro.Forms.Transactions
 
         private void FormatGrid()
         {
-            DgExtenstions.FormatDataGrid(dgTransLogs, false);
-            DgFormatHelper.ShowOnlyField(dgTransLogs, "DateUpdated", "BeginningBalance", "EndingBalance", "UserFullname", "ActionTaken");
-            DgFormatHelper.SetDataGridStyles(dgTransLogs);
+            DgExtensions.ConfigureDataGrid(dgTransLogs, false, notFound_lbl,
+             "DateUpdated",
+             "BeginningBalance",
+             "EndingBalance",
+             "UserFullname",
+             "ActionTaken");
         }
 
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
@@ -204,17 +207,6 @@ namespace SalesPro.Forms.Transactions
                 await GetTransactionData();
                 await GetTransactionLogs(_transactionId);
             }
-        }
-
-        private void transactionData_tab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void search_tx_TextChanged(object sender, EventArgs e)
-        {
-            DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
         }
 
     }

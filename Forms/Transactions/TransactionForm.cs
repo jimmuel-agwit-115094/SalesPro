@@ -58,12 +58,18 @@ namespace SalesPro.Forms.Transactions
             form.ShowDialog();
         }
 
-
         private void FormatGrid()
         {
-            DgExtenstions.FormatDataGrid(dgTrans, true);
-            DgFormatHelper.ShowOnlyField(dgTrans, "TransactionId", "StartDate", "OpenedBy", "ClosedBy", "EndDate", "BalanceStatus", "BeginningBalance", "EndingCash", "IsClosed");
-            notFound_lbl.Visible = dgTrans.Rows.Count == 0;
+            DgExtensions.ConfigureDataGrid(dgTrans, true, notFound_lbl,
+             "TransactionId",
+             "StartDate",
+             "OpenedBy",
+             "ClosedBy",
+             "EndDate",
+             "BalanceStatus",
+             "BeginningBalance",
+             "EndingCash",
+             "IsClosed");
         }
 
         private async void ProcessTransactionLoad()
