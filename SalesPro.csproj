@@ -189,11 +189,11 @@
     <Compile Include="Forms\Transactions\TransactionForm.Designer.cs">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\DatabaseContext.cs" />
+    <Compile Include="Services\DatabaseServices\DatabaseContext.cs" />
     <Compile Include="Helpers\DateFormatHelper.cs" />
     <Compile Include="Helpers\MessageHandler.cs" />
     <Compile Include="Helpers\ClockHelper.cs" />
-    <Compile Include="Services\DatabaseTransactionHelper.cs" />
+    <Compile Include="Services\DatabaseServices\DatabaseTransactionHelper.cs" />
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />
