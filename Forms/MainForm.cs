@@ -1,6 +1,8 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Constants;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Drawing;
@@ -67,6 +69,16 @@ namespace SalesPro.Forms
             // Adjust the form size to fit the screen's working area on load
             AdjustFormSizeToScreen();
             await EnableDisableMenuPanel();
+        }
+
+        private void logout_lnk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageHandler.ShowQuestion("Confirm logout", String.Empty))
+            {
+                Close();
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
         }
     }
 }

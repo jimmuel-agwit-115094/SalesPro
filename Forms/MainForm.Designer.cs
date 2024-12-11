@@ -103,6 +103,7 @@
             this.logout_lnk.TabIndex = 2;
             this.logout_lnk.TabStop = true;
             this.logout_lnk.Text = "Sign Out";
+            this.logout_lnk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_lnk_LinkClicked);
             // 
             // Panel1
             // 
