@@ -88,6 +88,20 @@ namespace SalesPro.Accessors
             }
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            using (var _dbContext = new DatabaseContext())
+            {
+                var entity = await _dbContext.Set<T>().FindAsync(id);
+                if (entity == null)
+                {
+                    throw new KeyNotFoundException($"Entity of type {typeof(T).Name} not found.");
+                }
+
+                _dbContext.Set<T>().Remove(entity);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 
 }

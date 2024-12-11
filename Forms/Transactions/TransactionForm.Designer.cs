@@ -76,9 +76,9 @@
             this.panel4.Controls.Add(this.find_btn);
             this.panel4.Controls.Add(this.date_cb);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(774, 0);
+            this.panel4.Location = new System.Drawing.Point(772, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(434, 57);
+            this.panel4.Size = new System.Drawing.Size(434, 55);
             this.panel4.TabIndex = 0;
             // 
             // find_btn
@@ -320,6 +320,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.new_btn);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;

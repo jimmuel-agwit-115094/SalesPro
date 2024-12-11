@@ -382,7 +382,6 @@
             this.Controls.Add(this.top_nav);
             this.Controls.Add(this.left_nav);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";

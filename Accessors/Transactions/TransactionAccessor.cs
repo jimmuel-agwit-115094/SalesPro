@@ -19,23 +19,5 @@ namespace SalesPro.Accessors
             }
         }
 
-        public async Task<TransactionModel> UpdateTransaction(int transactionId, Action<TransactionModel> updateAction)
-        {
-            using (var _dbContext = new DatabaseContext())
-            {
-                var toUpdate = await _dbContext.Transactions.FindAsync(transactionId);
-                if (toUpdate == null)
-                {
-                    MessageHandler.ShowError($"Transaction not found for id: {transactionId}");
-                    return null;
-                }
-
-                // Apply the specific update action passed in
-                updateAction(toUpdate);
-
-                await _dbContext.SaveChangesAsync();
-                return toUpdate;
-            }
-        }
     }
 }

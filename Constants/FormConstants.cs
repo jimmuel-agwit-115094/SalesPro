@@ -3,5 +3,6 @@
     public class FormConstants
     {
         public const string Transaction = "Transaction";
+        public const string PurchaseOrder = "PurchaseOrder";
     }
 }
