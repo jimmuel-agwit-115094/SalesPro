@@ -15,6 +15,7 @@ namespace SalesPro.Forms.Transactions
 {
     public partial class TransactionDetailsForm : Form
     {
+        private TransactionForm _transactionForm;
         public string _actionType;
         private DateTime _curDate;
         public int _transactionId;
@@ -23,12 +24,13 @@ namespace SalesPro.Forms.Transactions
 
         private readonly TransactionService _transactionService;
         private readonly DatabaseContext _context;
-        public TransactionDetailsForm()
+        public TransactionDetailsForm(TransactionForm transactionForm)
         {
             _context = new DatabaseContext();
             _transactionService = new TransactionService(_context);
             InitializeComponent();
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
+            _transactionForm = transactionForm;
         }
 
         private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
@@ -73,6 +75,7 @@ namespace SalesPro.Forms.Transactions
                     var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
                     var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
                     await _transactionService.SaveTransaction(transaction, saveLogModel);
+                    await _transactionForm.EnableDisableMenuPanel();
                 }
             }
             else

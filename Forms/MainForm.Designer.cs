@@ -214,6 +214,7 @@
             this.menuPanel.Controls.Add(this.credits_btn);
             this.menuPanel.Controls.Add(this.inventory_btn);
             this.menuPanel.Controls.Add(this.reports_btn);
+            this.menuPanel.Enabled = false;
             this.menuPanel.Location = new System.Drawing.Point(4, 142);
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(194, 310);

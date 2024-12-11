@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SalesPro.Forms;
 using SalesPro.Services;
 using System;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace SalesPro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new LoginForm());
         }
 

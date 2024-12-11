@@ -1,15 +1,24 @@
-﻿using SalesPro.Forms.Transactions;
+﻿using POS_Generic.Helpers;
+using SalesPro.Forms.Transactions;
+using SalesPro.Helpers;
+using SalesPro.Services;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms
 {
     public partial class MainForm : Form
     {
+        private DateTime _curDate;
+        private readonly DatabaseContext _context;
+        private readonly TransactionService _transactionService;
         public MainForm()
         {
             InitializeComponent();
+            _context = new DatabaseContext();
+            _transactionService = new TransactionService(_context);
         }
 
         private void Panel1_Resize(object sender, EventArgs e)
@@ -42,14 +51,22 @@ namespace SalesPro.Forms
         private void transactions_btn_Click(object sender, EventArgs e)
         {
             // Load the TransactionForm inside the content panel
-            var form = new TransactionForm();
+            var form = new TransactionForm(this);
             LoadFormInPanel(form);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public async Task EnableDisableMenuPanel()
         {
+            var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
+            menuPanel.Enabled = result;
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            _curDate = await ClockHelper.GetServerDateTime();
             // Adjust the form size to fit the screen's working area on load
             AdjustFormSizeToScreen();
+            await EnableDisableMenuPanel();
         }
     }
 }

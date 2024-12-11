@@ -2,6 +2,7 @@
 using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,5 +110,14 @@ namespace SalesPro.Services
             return await _accessor.GetByIdAsync(transactionId);
         }
 
+        public async Task<bool> HasTransactionsCurrentDay(DateTime currentDate)
+        {
+            var result = await _transactionAccessor.GetTransactionByDate(currentDate.Date);
+            if (result != null && result.Any())
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

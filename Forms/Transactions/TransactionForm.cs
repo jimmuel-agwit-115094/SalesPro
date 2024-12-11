@@ -5,22 +5,25 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Transactions
 {
     public partial class TransactionForm : Form
     {
+        private MainForm _mainForm;
         private readonly DatabaseContext _context;
         private readonly Accessor<TransactionModel> _accessor;
         private readonly TransactionAccessor _transactionAccessor;
         private DateTime _curDate;
-        public TransactionForm()
+        public TransactionForm(MainForm mainForm)
         {
             _context = new DatabaseContext();
             _accessor = new Accessor<TransactionModel>();
             _transactionAccessor = new TransactionAccessor();
             InitializeComponent();
+            _mainForm = mainForm;
         }
 
         private async void TransactionForm_Load(object sender, EventArgs e)
@@ -52,10 +55,15 @@ namespace SalesPro.Forms.Transactions
                 MessageHandler.ShowWarning("Past transaction not yet closed. Please close transaction first");
                 return;
             }
-            TransactionDetailsForm form = new TransactionDetailsForm();
+            TransactionDetailsForm form = new TransactionDetailsForm(this);
             form.FormClosed += TransactionDetailsForm_FormClosed;
             form._actionType = Constants.SystemConstants.New;
             form.ShowDialog();
+        }
+
+        public async Task EnableDisableMenuPanel()
+        {
+            await _mainForm.EnableDisableMenuPanel();
         }
 
         private void FormatGrid()
@@ -118,7 +126,7 @@ namespace SalesPro.Forms.Transactions
         {
             int selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
             if (selectedId == 0) return;
-            TransactionDetailsForm form = new TransactionDetailsForm();
+            TransactionDetailsForm form = new TransactionDetailsForm(this);
             form.FormClosed += TransactionDetailsForm_FormClosed;
             form._actionType = Constants.SystemConstants.Edit;
             form._transactionId = (int)selectedId;
