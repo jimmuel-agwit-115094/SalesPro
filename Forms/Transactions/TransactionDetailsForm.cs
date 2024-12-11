@@ -31,10 +31,6 @@ namespace SalesPro.Forms.Transactions
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
         }
 
-        private void begBal_tx_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
         {
             return new TransactionLogModel
@@ -117,7 +113,6 @@ namespace SalesPro.Forms.Transactions
         private async Task GetTransactionLogs(int transactionId)
         {
             dgTransLogs.DataSource = await _transactionService.GetAllTransactionLogs(transactionId);
-            FormatGrid();
         }
 
         // Todo : Refactor this method to add the value of the sales base on other tables in the database
@@ -206,6 +201,7 @@ namespace SalesPro.Forms.Transactions
 
                 await GetTransactionData();
                 await GetTransactionLogs(_transactionId);
+                FormatGrid();
             }
         }
 

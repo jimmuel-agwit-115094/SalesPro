@@ -70,6 +70,7 @@ namespace SalesPro.Services
                             t.ClosedBy = UserSession.FullName;
                             t.IsClosed = true;
                             t.EndDate = date;
+                            t.BalanceStatus = tr.BalanceStatus;
                         }
                   );
 
