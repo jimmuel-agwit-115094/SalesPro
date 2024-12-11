@@ -254,6 +254,7 @@
             this.po_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.po_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.po_btn.UseVisualStyleBackColor = false;
+            this.po_btn.Click += new System.EventHandler(this.po_btn_Click);
             // 
             // products_btn
             // 
@@ -284,7 +285,7 @@
             this.credits_btn.Name = "credits_btn";
             this.credits_btn.Size = new System.Drawing.Size(189, 32);
             this.credits_btn.TabIndex = 11;
-            this.credits_btn.Text = "   Customer Credits";
+            this.credits_btn.Text = "   Accounting   ";
             this.credits_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.credits_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.credits_btn.UseVisualStyleBackColor = false;

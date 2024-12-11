@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Constants;
+using SalesPro.Forms.PurchaseOrders;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
 using SalesPro.Properties;
@@ -79,6 +80,12 @@ namespace SalesPro.Forms
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
             }
+        }
+
+        private void po_btn_Click(object sender, EventArgs e)
+        {
+            var form = new PurchaseOrderForm();
+            LoadFormInPanel(form);
         }
     }
 }
