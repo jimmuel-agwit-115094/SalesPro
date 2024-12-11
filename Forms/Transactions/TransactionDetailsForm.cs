@@ -210,7 +210,7 @@ namespace SalesPro.Forms.Transactions
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
-            DgFormatHelper.FilterDataGridViewOnSearchText(dgTransLogs, search_tx);
+            DgFormatHelper.SearchOnGrid(dgTransLogs, search_tx);
         }
 
         private void begBal_tx_ValueChanged(object sender, EventArgs e)

@@ -119,7 +119,7 @@ namespace SalesPro.Forms.Transactions
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
-            DgFormatHelper.FilterDataGridViewOnSearchText(dgTrans, search_tx);
+            DgFormatHelper.SearchOnGrid(dgTrans, search_tx);
         }
 
         private void dgTrans_CellContentClick(object sender, DataGridViewCellEventArgs e)

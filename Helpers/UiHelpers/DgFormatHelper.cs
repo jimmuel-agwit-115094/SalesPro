@@ -35,7 +35,7 @@ public static class DgFormatHelper
             // String formatting
             else if (column.ValueType == typeof(string))
             {
-                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
         }
     }
@@ -208,7 +208,7 @@ public static class DgFormatHelper
             RegexOptions.Compiled);
     }
 
-    public static void FilterDataGridViewOnSearchText(DataGridView dataGridView, TextBox searchTextBox)
+    public static void SearchOnGrid(DataGridView dataGridView, TextBox searchTextBox)
     {
         try
         {
