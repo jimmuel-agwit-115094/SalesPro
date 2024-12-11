@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SalesPro.Forms.Transactions;
+using System;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.PurchaseOrders
@@ -17,9 +11,10 @@ namespace SalesPro.Forms.PurchaseOrders
             InitializeComponent();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void new_btn_Click(object sender, EventArgs e)
         {
-
+            PurchaseOrderDetailsForm form = new PurchaseOrderDetailsForm();
+            form.ShowDialog();
         }
     }
 }

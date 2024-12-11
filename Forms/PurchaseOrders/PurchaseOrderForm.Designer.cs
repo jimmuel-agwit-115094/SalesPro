@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -45,30 +45,30 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.sent_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.search_tx = new System.Windows.Forms.TextBox();
-            this.noRecordDate_lbl = new System.Windows.Forms.Label();
-            this.notFound_lbl = new System.Windows.Forms.Label();
-            this.dgTrans = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.all_tab = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.search_tx = new System.Windows.Forms.TextBox();
+            this.noRecordDate_lbl = new System.Windows.Forms.Label();
+            this.notFound_lbl = new System.Windows.Forms.Label();
+            this.dgTrans = new System.Windows.Forms.DataGridView();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.transactionsTabControl.SuspendLayout();
             this.created_tab.SuspendLayout();
             this.sent_tab.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.all_tab.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel1
@@ -119,6 +119,7 @@
             this.new_btn.TabIndex = 494;
             this.new_btn.Text = "New ";
             this.new_btn.UseVisualStyleBackColor = false;
+            this.new_btn.Click += new System.EventHandler(this.new_btn_Click);
             // 
             // panel4
             // 
@@ -211,6 +212,63 @@
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1200, 5);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "       Completed       ";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Green;
+            this.panel2.Location = new System.Drawing.Point(295, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(140, 5);
+            this.panel2.TabIndex = 7;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1200, 5);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "        Cancelled       ";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Green;
+            this.panel5.Location = new System.Drawing.Point(435, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(140, 5);
+            this.panel5.TabIndex = 8;
+            // 
+            // all_tab
+            // 
+            this.all_tab.Controls.Add(this.panel8);
+            this.all_tab.Location = new System.Drawing.Point(4, 29);
+            this.all_tab.Name = "all_tab";
+            this.all_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.all_tab.Size = new System.Drawing.Size(1200, 5);
+            this.all_tab.TabIndex = 4;
+            this.all_tab.Text = "All Purchase Order";
+            this.all_tab.UseVisualStyleBackColor = true;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Green;
+            this.panel8.Location = new System.Drawing.Point(574, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(140, 5);
+            this.panel8.TabIndex = 9;
+            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -274,30 +332,30 @@
             this.dgTrans.AllowUserToAddRows = false;
             this.dgTrans.AllowUserToDeleteRows = false;
             this.dgTrans.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTrans.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTrans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgTrans.ColumnHeadersHeight = 30;
             this.dgTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgTrans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTrans.EnableHeadersVisualStyles = false;
             this.dgTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -305,78 +363,20 @@
             this.dgTrans.MultiSelect = false;
             this.dgTrans.Name = "dgTrans";
             this.dgTrans.ReadOnly = true;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgTrans.RowHeadersVisible = false;
             this.dgTrans.RowHeadersWidth = 51;
             this.dgTrans.RowTemplate.Height = 32;
             this.dgTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTrans.Size = new System.Drawing.Size(1208, 431);
             this.dgTrans.TabIndex = 460;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.panel2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1200, 5);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "       Completed       ";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Green;
-            this.panel2.Location = new System.Drawing.Point(295, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(140, 5);
-            this.panel2.TabIndex = 7;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.panel5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1200, 5);
-            this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "        Cancelled       ";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Green;
-            this.panel5.Location = new System.Drawing.Point(435, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(140, 5);
-            this.panel5.TabIndex = 8;
-            // 
-            // all_tab
-            // 
-            this.all_tab.Controls.Add(this.panel8);
-            this.all_tab.Location = new System.Drawing.Point(4, 29);
-            this.all_tab.Name = "all_tab";
-            this.all_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.all_tab.Size = new System.Drawing.Size(1200, 5);
-            this.all_tab.TabIndex = 4;
-            this.all_tab.Text = "All Purchase Order";
-            this.all_tab.UseVisualStyleBackColor = true;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Green;
-            this.panel8.Location = new System.Drawing.Point(574, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(140, 5);
-            this.panel8.TabIndex = 9;
             // 
             // PurchaseOrderForm
             // 
@@ -402,13 +402,13 @@
             this.transactionsTabControl.ResumeLayout(false);
             this.created_tab.ResumeLayout(false);
             this.sent_tab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.all_tab.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.all_tab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
