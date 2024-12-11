@@ -42,31 +42,31 @@
             this.Panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.transactionsTabControl = new System.Windows.Forms.TabControl();
-            this.allTransactions_tab = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.cuurent_tab = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.allTransactions_tab = new System.Windows.Forms.TabPage();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.search_tx = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.dgTrans = new System.Windows.Forms.DataGridView();
-            this.notFound_lbl = new System.Windows.Forms.Label();
             this.noRecordDate_lbl = new System.Windows.Forms.Label();
+            this.notFound_lbl = new System.Windows.Forms.Label();
+            this.dgTrans = new System.Windows.Forms.DataGridView();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.search_tx = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.Panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.transactionsTabControl.SuspendLayout();
-            this.allTransactions_tab.SuspendLayout();
             this.cuurent_tab.SuspendLayout();
+            this.allTransactions_tab.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,25 +182,6 @@
             this.transactionsTabControl.TabIndex = 5;
             this.transactionsTabControl.SelectedIndexChanged += new System.EventHandler(this.transactionsTabControl_SelectedIndexChanged);
             // 
-            // allTransactions_tab
-            // 
-            this.allTransactions_tab.Controls.Add(this.panel7);
-            this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
-            this.allTransactions_tab.Name = "allTransactions_tab";
-            this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.allTransactions_tab.Size = new System.Drawing.Size(1196, 5);
-            this.allTransactions_tab.TabIndex = 1;
-            this.allTransactions_tab.Text = "     All Transactions    ";
-            this.allTransactions_tab.UseVisualStyleBackColor = true;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(182, -1);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(140, 5);
-            this.panel7.TabIndex = 6;
-            // 
             // cuurent_tab
             // 
             this.cuurent_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -220,6 +201,25 @@
             this.panel6.Size = new System.Drawing.Size(150, 5);
             this.panel6.TabIndex = 5;
             // 
+            // allTransactions_tab
+            // 
+            this.allTransactions_tab.Controls.Add(this.panel7);
+            this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
+            this.allTransactions_tab.Name = "allTransactions_tab";
+            this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.allTransactions_tab.Size = new System.Drawing.Size(1196, 5);
+            this.allTransactions_tab.TabIndex = 1;
+            this.allTransactions_tab.Text = "     All Transactions    ";
+            this.allTransactions_tab.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Green;
+            this.panel7.Location = new System.Drawing.Point(182, -1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(140, 5);
+            this.panel7.TabIndex = 6;
+            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
@@ -230,39 +230,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1204, 469);
             this.panel8.TabIndex = 438;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Controls.Add(this.search_tx);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1204, 40);
-            this.panel9.TabIndex = 458;
-            // 
-            // search_tx
-            // 
-            this.search_tx.BackColor = System.Drawing.Color.White;
-            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(772, 7);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
-            this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(389, 27);
-            this.search_tx.TabIndex = 386;
-            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1134, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 433;
-            this.pictureBox1.TabStop = false;
             // 
             // panel10
             // 
@@ -275,6 +242,32 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1204, 429);
             this.panel10.TabIndex = 459;
+            // 
+            // noRecordDate_lbl
+            // 
+            this.noRecordDate_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.noRecordDate_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noRecordDate_lbl.ForeColor = System.Drawing.Color.IndianRed;
+            this.noRecordDate_lbl.Location = new System.Drawing.Point(333, 231);
+            this.noRecordDate_lbl.Name = "noRecordDate_lbl";
+            this.noRecordDate_lbl.Size = new System.Drawing.Size(437, 26);
+            this.noRecordDate_lbl.TabIndex = 459;
+            this.noRecordDate_lbl.Text = "No Record";
+            this.noRecordDate_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.noRecordDate_lbl.Visible = false;
+            // 
+            // notFound_lbl
+            // 
+            this.notFound_lbl.AutoSize = true;
+            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
+            this.notFound_lbl.Location = new System.Drawing.Point(466, 193);
+            this.notFound_lbl.Name = "notFound_lbl";
+            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
+            this.notFound_lbl.TabIndex = 458;
+            this.notFound_lbl.Text = "No Record";
+            this.notFound_lbl.Visible = false;
             // 
             // dgTrans
             // 
@@ -328,35 +321,42 @@
             this.dgTrans.TabIndex = 457;
             this.dgTrans.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTrans_CellContentClick);
             // 
-            // notFound_lbl
+            // panel9
             // 
-            this.notFound_lbl.AutoSize = true;
-            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(466, 193);
-            this.notFound_lbl.Name = "notFound_lbl";
-            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
-            this.notFound_lbl.TabIndex = 458;
-            this.notFound_lbl.Text = "No Record";
-            this.notFound_lbl.Visible = false;
+            this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel9.Controls.Add(this.pictureBox1);
+            this.panel9.Controls.Add(this.search_tx);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1204, 40);
+            this.panel9.TabIndex = 458;
             // 
-            // noRecordDate_lbl
+            // pictureBox1
             // 
-            this.noRecordDate_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.noRecordDate_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noRecordDate_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.noRecordDate_lbl.Location = new System.Drawing.Point(333, 231);
-            this.noRecordDate_lbl.Name = "noRecordDate_lbl";
-            this.noRecordDate_lbl.Size = new System.Drawing.Size(437, 26);
-            this.noRecordDate_lbl.TabIndex = 459;
-            this.noRecordDate_lbl.Text = "No Record";
-            this.noRecordDate_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.noRecordDate_lbl.Visible = false;
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1134, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 433;
+            this.pictureBox1.TabStop = false;
+            // 
+            // search_tx
+            // 
+            this.search_tx.BackColor = System.Drawing.Color.White;
+            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_tx.Location = new System.Drawing.Point(772, 7);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.search_tx.Name = "search_tx";
+            this.search_tx.Size = new System.Drawing.Size(389, 27);
+            this.search_tx.TabIndex = 386;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.Controls.Add(this.panel8);
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -387,15 +387,15 @@
             this.Panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.transactionsTabControl.ResumeLayout(false);
-            this.allTransactions_tab.ResumeLayout(false);
             this.cuurent_tab.ResumeLayout(false);
+            this.allTransactions_tab.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
