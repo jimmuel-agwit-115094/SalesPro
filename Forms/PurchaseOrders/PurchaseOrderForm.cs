@@ -69,6 +69,9 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
+            // Triggers the SelectedIndexChanged event
+            transactionsTabControl.SelectedIndex = 0;
+            transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
             _curDate = await ClockHelper.GetServerDateTime();
         }
 

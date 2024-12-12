@@ -58,10 +58,10 @@ namespace SalesPro.Services
                               ProcessStatus = po.ProcessStatus,
                               PaymentStatus = po.PaymentStatus,
                               CancellationReason = po.CancellationReason,
-                              Remarks   = po.Remarks,
+                              Remarks = po.Remarks,
                               UserFullName = u.Fullname,
                               SupplierName = s.SupplierName
-                          }).OrderByDescending(x=>x.PurchaseOrderId).ToListAsync();
+                          }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
         }
     }
 }
