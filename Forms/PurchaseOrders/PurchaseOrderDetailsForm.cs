@@ -1,4 +1,5 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Helpers;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
@@ -39,17 +40,26 @@ namespace SalesPro.Forms.PurchaseOrders
 
         public async Task SetSupplierDataOnControls(int supplierId)
         {
-            // Set the supplier data on the controls
-            var supplier = await _service.GetSupplierById(supplierId);
-            if (supplier != null)
+            try
             {
-                supplier_tx.Text = supplier.SupplierName;
-                address_tx.Text = supplier.SupplierAddress;
-                contactPerson_tx.Text = supplier.SupplierContactPerson;
-                number_tx.Text = supplier.SupplierNumber;
+                // Set the supplier data on the controls
+                var supplier = await _service.GetSupplierById(supplierId);
+                if (supplier != null)
+                {
+                    supplier_tx.Text = supplier.SupplierName;
+                    address_tx.Text = supplier.SupplierAddress;
+                    contactPerson_tx.Text = supplier.SupplierContactPerson;
+                    number_tx.Text = supplier.SupplierNumber;
+                }
+                //Update PO to set the supplier id
+                await _service.UpdatePurchaseOrder(_poId, _rowVersion, supplierId);
             }
-            //Update PO to set the supplier id
-            await _service.UpdatePurchaseOrder(_poId, _rowVersion, supplierId);
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error setting supplier data {ex.Message}");
+                throw;
+            }
+           
         }
 
         private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)

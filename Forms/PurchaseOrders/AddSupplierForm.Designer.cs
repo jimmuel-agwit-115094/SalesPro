@@ -94,8 +94,10 @@
             this.dgSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSupplier.Size = new System.Drawing.Size(732, 408);
             this.dgSupplier.TabIndex = 464;
-            this.dgSupplier.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSupplier_CellClick);
+            this.dgSupplier.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSupplier_CellContentClick);
+            this.dgSupplier.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSupplier_CellDoubleClick);
             this.dgSupplier.SelectionChanged += new System.EventHandler(this.dgSupplier_SelectionChanged);
+            this.dgSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgSupplier_KeyDown);
             // 
             // notFound_lbl
             // 

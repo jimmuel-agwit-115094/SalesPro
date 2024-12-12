@@ -40,18 +40,26 @@ namespace SalesPro.Forms.PurchaseOrders
             _supplierId = DgFormatHelper.GetSelectedRowId(dgSupplier, "SupplierId");
         }
 
-        private async void dgSupplier_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgSupplier_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter && dgSupplier.Rows.Count > 0)
             {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
                 await _form.SetSupplierDataOnControls(_supplierId);
                 Close();
             }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError(ex.Message);
-                throw;
-            }
+        }
+
+        private void dgSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private async void dgSupplier_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            await _form.SetSupplierDataOnControls(_supplierId);
+            Close();
         }
     }
 }
