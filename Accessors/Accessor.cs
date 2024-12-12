@@ -5,6 +5,7 @@ using SalesPro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SalesPro.Accessors
@@ -55,6 +56,14 @@ namespace SalesPro.Accessors
             using (var _dbContext = new DatabaseContext())
             {
                 return await _dbContext.Set<T>().FindAsync(id);
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetAllDataByIdAsync(Expression<Func<T, bool>> predicate)
+        {
+            using (var _dbContext = new DatabaseContext())
+            {
+                return await _dbContext.Set<T>().Where(predicate).ToListAsync();
             }
         }
 

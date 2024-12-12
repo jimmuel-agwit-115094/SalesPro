@@ -15,17 +15,25 @@ namespace SalesPro.Services
         private readonly DatabaseContext _context;
         private readonly Accessor<SupplierModel> _supplierBaseAccessor;
         private readonly Accessor<PurchaseOrderModel> _purchaseOrderBaseAccessor;
-        private readonly Accessor<UserModel> _userBaseAccessor;
+        private readonly Accessor<ProductModel> _productBaseAccessor;
+        private readonly Accessor<PurchaseOrderItemModel> _poItemsBaseAccessor;
         public PurchaseOrderService(DatabaseContext context)
         {
             _context = context;
             _supplierBaseAccessor = new Accessor<SupplierModel>();
             _purchaseOrderBaseAccessor = new Accessor<PurchaseOrderModel>();
+            _productBaseAccessor = new Accessor<ProductModel>();
+            _poItemsBaseAccessor = new Accessor<PurchaseOrderItemModel>();
         }
 
         public async Task<List<SupplierModel>> LoadSuppliers()
         {
             return (await _supplierBaseAccessor.GetAllAsync()).ToList();
+        }
+
+        public async Task<List<PurchaseOrderModel>> LoadPurchaseOrders()
+        {
+            return (await _purchaseOrderBaseAccessor.GetAllAsync()).ToList();
         }
 
         public async Task<PurchaseOrderModel> SavePurchaseOrder(PurchaseOrderModel purchaseOrder)
@@ -81,5 +89,17 @@ namespace SalesPro.Services
                 );
             });
         }
+
+        public async Task<List<ProductModel>> LoadProducts()
+        {
+            return (await _productBaseAccessor.GetAllAsync()).ToList();
+        }
+
+        public async Task<List<PurchaseOrderItemModel>> LoadPurchaseOrderItemsByPoId(int purchaseOrderId)
+        {
+            var d = (await _poItemsBaseAccessor.GetAllDataByIdAsync(x => x.PurchaseOrderId == purchaseOrderId)).ToList();
+            return d;
+        }
+
     }
 }

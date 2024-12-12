@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderDetailsForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
-            this.dgPo = new System.Windows.Forms.DataGridView();
+            this.dgPoItems = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,7 +58,7 @@
             this.addProduct_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.poId_tx = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.bal_panel.SuspendLayout();
@@ -93,48 +93,48 @@
             this.notFound_lbl.Text = "No Record";
             this.notFound_lbl.Visible = false;
             // 
-            // dgPo
+            // dgPoItems
             // 
-            this.dgPo.AllowUserToAddRows = false;
-            this.dgPo.AllowUserToDeleteRows = false;
-            this.dgPo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgPo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgPo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgPo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgPo.ColumnHeadersHeight = 30;
-            this.dgPo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgPo.EnableHeadersVisualStyles = false;
-            this.dgPo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgPo.Location = new System.Drawing.Point(16, 219);
-            this.dgPo.MultiSelect = false;
-            this.dgPo.Name = "dgPo";
-            this.dgPo.ReadOnly = true;
-            this.dgPo.RowHeadersVisible = false;
-            this.dgPo.RowHeadersWidth = 51;
-            this.dgPo.RowTemplate.Height = 32;
-            this.dgPo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPo.Size = new System.Drawing.Size(753, 411);
-            this.dgPo.TabIndex = 463;
-            this.dgPo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPo_KeyDown);
+            this.dgPoItems.AllowUserToAddRows = false;
+            this.dgPoItems.AllowUserToDeleteRows = false;
+            this.dgPoItems.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgPoItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgPoItems.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPoItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgPoItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgPoItems.ColumnHeadersHeight = 30;
+            this.dgPoItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgPoItems.EnableHeadersVisualStyles = false;
+            this.dgPoItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgPoItems.Location = new System.Drawing.Point(16, 219);
+            this.dgPoItems.MultiSelect = false;
+            this.dgPoItems.Name = "dgPoItems";
+            this.dgPoItems.ReadOnly = true;
+            this.dgPoItems.RowHeadersVisible = false;
+            this.dgPoItems.RowHeadersWidth = 51;
+            this.dgPoItems.RowTemplate.Height = 32;
+            this.dgPoItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPoItems.Size = new System.Drawing.Size(753, 411);
+            this.dgPoItems.TabIndex = 463;
+            this.dgPoItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPo_KeyDown);
             // 
             // pictureBox1
             // 
@@ -234,7 +234,7 @@
             this.action_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.action_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.action_btn.ForeColor = System.Drawing.Color.White;
-            this.action_btn.Location = new System.Drawing.Point(615, 657);
+            this.action_btn.Location = new System.Drawing.Point(615, 652);
             this.action_btn.Name = "action_btn";
             this.action_btn.Size = new System.Drawing.Size(154, 34);
             this.action_btn.TabIndex = 520;
@@ -248,7 +248,7 @@
             this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.close_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.close_btn.Location = new System.Drawing.Point(455, 657);
+            this.close_btn.Location = new System.Drawing.Point(455, 652);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(145, 34);
             this.close_btn.TabIndex = 521;
@@ -417,7 +417,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.notFound_lbl);
-            this.Controls.Add(this.dgPo);
+            this.Controls.Add(this.dgPoItems);
             this.Controls.Add(this.title_lbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -429,7 +429,7 @@
             this.Text = "Manage Order Details";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PurchaseOrderDetailsForm_FormClosed);
             this.Load += new System.EventHandler(this.PurchaseOrderDetailsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgPo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.bal_panel.ResumeLayout(false);
@@ -447,7 +447,7 @@
 
         internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Label notFound_lbl;
-        internal System.Windows.Forms.DataGridView dgPo;
+        internal System.Windows.Forms.DataGridView dgPoItems;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
         private System.Windows.Forms.Panel panel1;

@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
@@ -28,14 +29,27 @@ namespace SalesPro.Forms.PurchaseOrders
             addSupplierForm.ShowDialog();
         }
 
-        private void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
+        private async void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
         {
+            await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
+        }
+
+
+        public async Task LoadPurchaseOrderItemsByPoId()
+        {
+            var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
+            if (poItems != null)
+            {
+                dgPoItems.DataSource = poItems;
+                DgExtensions.ConfigureDataGrid(dgPoItems, false, 0, notFound_lbl,
+                    "ProductName", "UnitOfMeasure", "Quantity", "UnitPrice", "TotalPrice");
+            }
         }
 
         private void dgPo_KeyDown(object sender, KeyEventArgs e)
         {
-            DgFormatHelper.HandleEnterKey(e, dgPo);
+            DgFormatHelper.HandleEnterKey(e, dgPoItems);
         }
 
         public async Task SetSupplierDataOnControls(int supplierId)
@@ -59,8 +73,9 @@ namespace SalesPro.Forms.PurchaseOrders
                 MessageHandler.ShowError($"Error setting supplier data {ex.Message}");
                 throw;
             }
-           
         }
+
+
 
         private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -281,6 +281,20 @@ public static class DgFormatHelper
         return 0;
     }
 
+    public static string GetSelectedRowString(DataGridView dataGridView, string columnToGet)
+    {
+        if (dataGridView.SelectedRows.Count > 0)
+        {
+            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+            var cellValue = selectedRow.Cells[columnToGet].Value;
+            if (cellValue != null)
+            {
+               return cellValue.ToString();
+            }
+        }
+        return string.Empty;
+    }
+
 
     public static void HandleEnterKey(KeyEventArgs e, DataGridView dataGridView)
     {

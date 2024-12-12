@@ -165,6 +165,7 @@
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
+    <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Enums\PurchaseOrderEnums.cs" />
     <Compile Include="Enums\UsersEnums.cs" />
     <Compile Include="Forms\LoginForm.cs">
@@ -216,6 +217,7 @@
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\PurchaseOrderItemModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />
     <Compile Include="Models\SupplierModel.cs" />
     <Compile Include="Services\DatabaseServices\DatabaseContext.cs" />
