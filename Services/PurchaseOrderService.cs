@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Accessors;
+using SalesPro.Accessors.PurchaseOrders;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
@@ -14,11 +15,13 @@ namespace SalesPro.Services
         private readonly DatabaseContext _context;
         private readonly Accessor<SupplierModel> _supplierBaseAccessor;
         private readonly Accessor<PurchaseOrderModel> _purchaseOrderBaseAccessor;
+        private readonly PurchaseOrderAccessor _purchaseOrderAccessor;
         public PurchaseOrderService(DatabaseContext context)
         {
             _context = context;
             _supplierBaseAccessor = new Accessor<SupplierModel>();
             _purchaseOrderBaseAccessor = new Accessor<PurchaseOrderModel>();
+            _purchaseOrderAccessor = new PurchaseOrderAccessor();
         }
 
         public async Task<List<SupplierModel>> LoadSuppliers()
@@ -30,13 +33,18 @@ namespace SalesPro.Services
         {
             await _context.ExecuteInTransactionAsync(async () =>
             {
-                await _purchaseOrderBaseAccessor.AddAsync(purchaseOrder);     
+                await _purchaseOrderBaseAccessor.AddAsync(purchaseOrder);
             });
         }
 
         public async Task<List<PurchaseOrderModel>> GetAllPurchaseOrders()
         {
             return (await _purchaseOrderBaseAccessor.GetAllAsync()).ToList();
+        }
+
+        public async Task<List<PurchaseOrderModel>> GetPurchaseOrdersByProcessStatus(ProcessStatus status)
+        {
+            return (await _purchaseOrderAccessor.GetPurchaseOrderByProcessStatus(status)).ToList();
         }
     }
 }

@@ -7,6 +7,7 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -68,6 +69,22 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
             _curDate = await ClockHelper.GetServerDateTime();
+        }
+
+        private async Task LoadPurchaseOrdersByProcessStatus(ProcessStatus processStatus)
+        {
+            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
+            if (purchaseOrders != null)
+            {
+                dgPo.DataSource = purchaseOrders;
+            }
+        }
+        private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Note : The order of the tabs in the tab control should match the order of the ProcessStatus enum
+            var processStatus = (ProcessStatus)transactionsTabControl.SelectedIndex;
+            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
+            dgPo.DataSource = purchaseOrders;
         }
     }
 }

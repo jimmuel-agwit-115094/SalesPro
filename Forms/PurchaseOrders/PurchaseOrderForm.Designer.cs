@@ -56,7 +56,7 @@
             this.search_tx = new System.Windows.Forms.TextBox();
             this.noRecordDate_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
-            this.dgTrans = new System.Windows.Forms.DataGridView();
+            this.dgPo = new System.Windows.Forms.DataGridView();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -68,7 +68,7 @@
             this.all_tab.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPo)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel1
@@ -173,6 +173,7 @@
             this.transactionsTabControl.SelectedIndex = 0;
             this.transactionsTabControl.Size = new System.Drawing.Size(1208, 38);
             this.transactionsTabControl.TabIndex = 438;
+            this.transactionsTabControl.SelectedIndexChanged += new System.EventHandler(this.transactionsTabControl_SelectedIndexChanged);
             // 
             // created_tab
             // 
@@ -327,17 +328,17 @@
             this.notFound_lbl.Text = "No Record";
             this.notFound_lbl.Visible = false;
             // 
-            // dgTrans
+            // dgPo
             // 
-            this.dgTrans.AllowUserToAddRows = false;
-            this.dgTrans.AllowUserToDeleteRows = false;
-            this.dgTrans.AllowUserToResizeRows = false;
+            this.dgPo.AllowUserToAddRows = false;
+            this.dgPo.AllowUserToDeleteRows = false;
+            this.dgPo.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgTrans.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgPo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgPo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgPo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgPo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -345,9 +346,9 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgTrans.ColumnHeadersHeight = 30;
-            this.dgTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgPo.ColumnHeadersHeight = 30;
+            this.dgPo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,14 +356,14 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgTrans.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgTrans.EnableHeadersVisualStyles = false;
-            this.dgTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgTrans.Location = new System.Drawing.Point(0, 178);
-            this.dgTrans.MultiSelect = false;
-            this.dgTrans.Name = "dgTrans";
-            this.dgTrans.ReadOnly = true;
+            this.dgPo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgPo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgPo.EnableHeadersVisualStyles = false;
+            this.dgPo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgPo.Location = new System.Drawing.Point(0, 178);
+            this.dgPo.MultiSelect = false;
+            this.dgPo.Name = "dgPo";
+            this.dgPo.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -370,13 +371,13 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgTrans.RowHeadersVisible = false;
-            this.dgTrans.RowHeadersWidth = 51;
-            this.dgTrans.RowTemplate.Height = 32;
-            this.dgTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTrans.Size = new System.Drawing.Size(1208, 431);
-            this.dgTrans.TabIndex = 460;
+            this.dgPo.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgPo.RowHeadersVisible = false;
+            this.dgPo.RowHeadersWidth = 51;
+            this.dgPo.RowTemplate.Height = 32;
+            this.dgPo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPo.Size = new System.Drawing.Size(1208, 431);
+            this.dgPo.TabIndex = 460;
             // 
             // PurchaseOrderForm
             // 
@@ -386,7 +387,7 @@
             this.ClientSize = new System.Drawing.Size(1208, 609);
             this.Controls.Add(this.noRecordDate_lbl);
             this.Controls.Add(this.notFound_lbl);
-            this.Controls.Add(this.dgTrans);
+            this.Controls.Add(this.dgPo);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.transactionsTabControl);
             this.Controls.Add(this.panel3);
@@ -409,7 +410,7 @@
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,7 +435,7 @@
         internal System.Windows.Forms.TextBox search_tx;
         private System.Windows.Forms.Label noRecordDate_lbl;
         private System.Windows.Forms.Label notFound_lbl;
-        internal System.Windows.Forms.DataGridView dgTrans;
+        internal System.Windows.Forms.DataGridView dgPo;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage tabPage2;
