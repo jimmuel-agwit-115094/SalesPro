@@ -66,5 +66,13 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
         }
+
+        private void addProduct_btn_Click(object sender, EventArgs e)
+        {
+            AddPurchaseProductForm form = new AddPurchaseProductForm(this);
+            form._poId = _poId;
+            form._rowVersion = _rowVersion;
+            form.ShowDialog();
+        }
     }
 }

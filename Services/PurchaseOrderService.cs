@@ -15,6 +15,7 @@ namespace SalesPro.Services
         private readonly DatabaseContext _context;
         private readonly Accessor<SupplierModel> _supplierBaseAccessor;
         private readonly Accessor<PurchaseOrderModel> _purchaseOrderBaseAccessor;
+        private readonly Accessor<UserModel> _userBaseAccessor;
         public PurchaseOrderService(DatabaseContext context)
         {
             _context = context;

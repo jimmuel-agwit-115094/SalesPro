@@ -12,6 +12,7 @@ namespace POS_Generic.Helpers
         public DbSet<TransactionLogModel> TransactionLogs { get; set; }
         public DbSet<SupplierModel> Suppliers { get; set; }
         public DbSet<PurchaseOrderModel> PurchaseOrders { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
