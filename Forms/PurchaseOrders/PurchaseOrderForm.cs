@@ -86,8 +86,20 @@ namespace SalesPro.Forms.PurchaseOrders
             var processStatus = (ProcessStatus)transactionsTabControl.SelectedIndex;
             var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
             dgPo.DataSource = purchaseOrders;
-            DgExtensions.ConfigureDataGrid(dgPo, true, notFound_lbl, 
-                "PurchaseOrderId");
+            DgExtensions.ConfigureDataGrid(dgPo, true, 2, notFound_lbl,
+                "PurchaseOrderId",
+                "DateCreated",
+                "SupplierName",
+                "UserFullName",
+                "DueDate",
+                "CreditTerms",
+                "PoTotal",
+                "PaymentStatus");
+        }
+
+        private void find_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

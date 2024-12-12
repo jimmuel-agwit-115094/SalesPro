@@ -28,7 +28,7 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             var suppliers = await _service.LoadSuppliers();
             dgSupplier.DataSource = suppliers;
-            DgExtensions.ConfigureDataGrid(dgSupplier, false, notFound_lbl, "SupplierName", "SupplierAddress", "SupplierNumber");
+            DgExtensions.ConfigureDataGrid(dgSupplier, false, 0, notFound_lbl, "SupplierName", "SupplierAddress", "SupplierNumber");
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)

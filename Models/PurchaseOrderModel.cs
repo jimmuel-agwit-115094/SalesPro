@@ -24,6 +24,6 @@ namespace SalesPro.Models
     public class PurchaseOrderModelExtended : PurchaseOrderModel
     {
         public string SupplierName { get; set; }
-        public string UserName { get; set; }
+        public string UserFullName { get; set; }
     }
 }

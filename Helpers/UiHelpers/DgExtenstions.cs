@@ -4,7 +4,7 @@ namespace SalesPro.Helpers.UiHelpers
 {
     public class DgExtensions
     {
-        public static void ConfigureDataGrid(DataGridView dataGrid, bool setUpIdLink, Label notFoundLabel, params string[] fieldsToShow)
+        public static void ConfigureDataGrid(DataGridView dataGrid, bool setUpIdLink, int columnIndex, Label notFoundLabel, params string[] fieldsToShow)
         {
             // Apply basic formatting
             DgFormatHelper.BasicGridFormat(dataGrid);
@@ -13,7 +13,7 @@ namespace SalesPro.Helpers.UiHelpers
             // Set up ID link if needed
             if (setUpIdLink)
             {
-                DgFormatHelper.SetupLinkId(dataGrid, 0);
+                DgFormatHelper.SetupLinkId(dataGrid, columnIndex);
             }
 
             // Show only specified fields

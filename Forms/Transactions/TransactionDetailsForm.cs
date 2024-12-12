@@ -170,7 +170,7 @@ namespace SalesPro.Forms.Transactions
 
         private void FormatGrid()
         {
-            DgExtensions.ConfigureDataGrid(dgTransLogs, false, notFound_lbl,
+            DgExtensions.ConfigureDataGrid(dgTransLogs, false, 0, notFound_lbl,
              "DateUpdated",
              "BeginningBalance",
              "EndingBalance",

@@ -57,6 +57,9 @@ public static class DgFormatHelper
 
         dataGridView.Columns[columnIndex].DefaultCellStyle.Format = "000000000";
 
+        DataGridViewColumn primaryKeyColumn = dataGridView.Columns[columnIndex];
+        primaryKeyColumn.DisplayIndex = 0;
+
         // Event handlers
         DataGridViewCellEventHandler cellMouseEnterHandler = (sender, e) =>
         {

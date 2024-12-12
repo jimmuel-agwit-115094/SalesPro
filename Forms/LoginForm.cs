@@ -35,7 +35,7 @@ namespace SalesPro
                 return;
             }
 
-            var userInput = new User
+            var userInput = new UserModel
             {
                 Username = username_tx.Text,
                 Password = password_tx.Text
@@ -52,7 +52,7 @@ namespace SalesPro
                         // Set user's full name in the UserSession class
                         UserSession.SetUserFullName(user.Fullname);
                         UserSession.SetUserId(user.UserId);
-                        UserSession.SetUserAccess(user.UserAccess);
+                        UserSession.SetUserAccess(user.UserAccess.ToString());
 
                         Hide();
                         MainForm mainForm = new MainForm();

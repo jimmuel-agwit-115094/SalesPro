@@ -68,7 +68,7 @@ namespace SalesPro.Forms.Transactions
 
         private void FormatGrid()
         {
-            DgExtensions.ConfigureDataGrid(dgTrans, true, notFound_lbl,
+            DgExtensions.ConfigureDataGrid(dgTrans, true, 0, notFound_lbl,
              "TransactionId",
              "StartDate",
              "OpenedBy",

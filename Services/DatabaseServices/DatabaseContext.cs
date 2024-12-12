@@ -7,7 +7,7 @@ namespace POS_Generic.Helpers
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<TransactionModel> Transactions { get; set; }
         public DbSet<TransactionLogModel> TransactionLogs { get; set; }
         public DbSet<SupplierModel> Suppliers { get; set; }

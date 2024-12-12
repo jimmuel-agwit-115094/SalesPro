@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SalesPro.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace SalesPro.Models
 {
-    public class User
+    public class UserModel : BaseEntity
     {
         [Key]
         public int UserId { get; set; }
@@ -13,8 +14,8 @@ namespace SalesPro.Models
         public string Password { get; set; }
         public string Pin { get; set; }
         public string Fullname { get; set; }
-        public string UserAccess { get; set; }
-        public string AccountStatus { get; set; }
+        public UserAccess UserAccess { get; set; }
+        public AccountStatus AccountStatus { get; set; }
         public DateTime DateAdded { get; set; }
 
         // Method to validate the password using SHA-256

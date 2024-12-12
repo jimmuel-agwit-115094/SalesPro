@@ -148,6 +148,7 @@
             this.find_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.find_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.find_btn.UseVisualStyleBackColor = false;
+            this.find_btn.Click += new System.EventHandler(this.find_btn_Click);
             // 
             // date_cb
             // 
