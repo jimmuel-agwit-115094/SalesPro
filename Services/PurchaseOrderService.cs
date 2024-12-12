@@ -7,6 +7,7 @@ using SalesPro.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
@@ -75,7 +76,48 @@ namespace SalesPro.Services
             return (await _supplierBaseAccessor.GetByIdAsync(supplierId));
         }
 
-        public async Task UpdatePurchaseOrder(int purchaseOrderId, int rowVersion, int supplierId)
+        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int rowVersion, int supplierId)
+        {
+            await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
+                 purchaseOrderId,
+                 rowVersion,
+                 t =>
+                 {
+                     t.SupplierId = supplierId;
+                 }
+            );
+        }
+
+        public async Task<List<ProductModel>> LoadProducts()
+        {
+            return (await _productBaseAccessor.GetAllAsync()).ToList();
+        }
+
+        public async Task<List<PurchaseOrderItemModelExntended>> LoadPurchaseOrderItemsByPoId(int purchaseOrderId)
+        {
+            return await (from pt in _context.PurchaseOrderItems
+                          join p in _context.Products on pt.ProductId equals p.ProductId
+                          where pt.PurchaseOrderId == purchaseOrderId
+                          select new PurchaseOrderItemModelExntended
+                          {
+                              PurchaseOrderItemId = pt.PurchaseOrderItemId,
+                              PurchaseOrderId = pt.PurchaseOrderId,
+                              ProductId = pt.ProductId,
+                              ProductName = p.ProductName,
+                              Quantity = pt.Quantity,
+                              SupplierPrice = pt.SupplierPrice,
+                              MarkUpPrice = pt.MarkUpPrice,
+                              RetailPrice = pt.RetailPrice,
+                              TotalPrice = pt.TotalPrice
+                          }).OrderByDescending(x => x.PurchaseOrderItemId).ToListAsync();
+        }
+
+        public async Task<PurchaseOrderItemModel> SavePurchaseOrderItem(PurchaseOrderItemModel poItem)
+        {
+            return await _poItemsBaseAccessor.AddAsync(poItem);
+        }
+
+        public async Task UpdatePurchaseOrder_PoTotal(int purchaseOrderId, int rowVersion, decimal poTotal)
         {
             await _context.ExecuteInTransactionAsync(async () =>
             {
@@ -84,22 +126,11 @@ namespace SalesPro.Services
                      rowVersion,
                      t =>
                      {
-                         t.SupplierId = supplierId;
+                         t.PoTotal = poTotal;
                      }
                 );
+
             });
         }
-
-        public async Task<List<ProductModel>> LoadProducts()
-        {
-            return (await _productBaseAccessor.GetAllAsync()).ToList();
-        }
-
-        public async Task<List<PurchaseOrderItemModel>> LoadPurchaseOrderItemsByPoId(int purchaseOrderId)
-        {
-            var d = (await _poItemsBaseAccessor.GetAllDataByIdAsync(x => x.PurchaseOrderId == purchaseOrderId)).ToList();
-            return d;
-        }
-
     }
 }

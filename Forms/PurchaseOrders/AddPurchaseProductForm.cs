@@ -1,6 +1,8 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
@@ -92,9 +94,45 @@ namespace SalesPro.Forms.PurchaseOrders
             ComputeTotal();
         }
 
-        private void add_btn_Click(object sender, EventArgs e)
+        // build purchase order item model
+        private PurchaseOrderItemModel BuildPurchaseOrderItem()
         {
+            var poItem = new PurchaseOrderItemModel
+            {
+                PurchaseOrderId = _poId,
+                ProductId = _productId,
+                Quantity = int.Parse(qty_tx.Text),
+                SupplierPrice = decimal.Parse(supplierPrice_tx.Text),
+                MarkUpPrice = decimal.Parse(markUpPrice_tx.Text),
+                RetailPrice = decimal.Parse(retailPrice_tx.Text),
+                TotalPrice = decimal.Parse(retailPrice_tx.Text) * int.Parse(qty_tx.Text)
+            };
+            return poItem;
+        }
 
+        private async Task SavePurchaseOrderAndUpdatePo()
+        {
+            // Todo : Add the total of the purchase order
+            decimal poTotal = 0;
+            var poItem = BuildPurchaseOrderItem();
+            await _service.SavePurchaseOrderItem(poItem);
+            await _service.UpdatePurchaseOrder_PoTotal(_poId, _rowVersion, poTotal);
+        }
+
+        private async void add_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await SavePurchaseOrderAndUpdatePo();
+                await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error adding product: {ex.Message}");
+                throw;
+            }
         }
     }
 }
+

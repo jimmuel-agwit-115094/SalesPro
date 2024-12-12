@@ -42,8 +42,8 @@ namespace SalesPro.Forms.PurchaseOrders
             if (poItems != null)
             {
                 dgPoItems.DataSource = poItems;
-                DgExtensions.ConfigureDataGrid(dgPoItems, false, 0, notFound_lbl,
-                    "ProductName", "UnitOfMeasure", "Quantity", "UnitPrice", "TotalPrice");
+                DgExtensions.ConfigureDataGrid(dgPoItems, true, 1, notFound_lbl,
+                    "PurchaseOrderItemId", "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
             }
         }
 
@@ -66,7 +66,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     number_tx.Text = supplier.SupplierNumber;
                 }
                 //Update PO to set the supplier id
-                await _service.UpdatePurchaseOrder(_poId, _rowVersion, supplierId);
+                await _service.UpdatePurchaseOrder_SupploerId(_poId, _rowVersion, supplierId);
             }
             catch (Exception ex)
             {
