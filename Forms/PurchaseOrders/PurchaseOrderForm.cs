@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
 using POS_Generic.Helpers;
+using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -25,17 +27,18 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void new_btn_Click(object sender, EventArgs e)
         {
-            var pos = await _service.GetAllPurchaseOrders();
-            // Check if there are no purchase orders or none with a "Created" status
-            if (!pos.Any() || !pos.Any(s => s.ProcessStatus == ProcessStatus.Created))
+            var purchaseOrders = await _service.GetAllPurchaseOrders();
+            var existingPO = purchaseOrders.FirstOrDefault(po => po.ProcessStatus == ProcessStatus.Created);
+
+            if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n {Resources.ConfirmNew}", FormConstants.PurchaseOrder))
             {
-                await SavePurchaseOrder();
+                var savedPO = await SavePurchaseOrder();
+                var form = new PurchaseOrderDetailsForm { _poId = savedPO };
+                form.ShowDialog();
             }
-            PurchaseOrderDetailsForm form = new PurchaseOrderDetailsForm();
-            form.ShowDialog();
         }
 
-        private async Task SavePurchaseOrder()
+        private async Task<int> SavePurchaseOrder()
         {
             try
             {
@@ -53,6 +56,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     Remarks = string.Empty
                 };
                 await _service.SavePurchaseOrder(po);
+                return po.PurchaseOrderId;
             }
             catch (Exception ex)
             {

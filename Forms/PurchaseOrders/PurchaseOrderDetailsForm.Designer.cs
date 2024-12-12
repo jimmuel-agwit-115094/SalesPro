@@ -389,12 +389,12 @@
             // 
             // poId_tx
             // 
-            this.poId_tx.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.poId_tx.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poId_tx.ForeColor = System.Drawing.Color.Navy;
-            this.poId_tx.Location = new System.Drawing.Point(601, 10);
+            this.poId_tx.Location = new System.Drawing.Point(506, 10);
             this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.poId_tx.Name = "poId_tx";
-            this.poId_tx.Size = new System.Drawing.Size(170, 20);
+            this.poId_tx.Size = new System.Drawing.Size(263, 20);
             this.poId_tx.TabIndex = 533;
             this.poId_tx.Text = "000000000";
             this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

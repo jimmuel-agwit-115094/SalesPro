@@ -89,6 +89,15 @@ namespace SalesPro.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to create new.
+        /// </summary>
+        internal static string ConfirmNew {
+            get {
+                return ResourceManager.GetString("ConfirmNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to save.
         /// </summary>
         internal static string ConfirmSave {

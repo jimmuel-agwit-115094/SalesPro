@@ -19,7 +19,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
         {
-
+            poId_tx.Text = _poId.ToString("D9");
         }
     }
 }
