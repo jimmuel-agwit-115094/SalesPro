@@ -27,12 +27,9 @@ namespace SalesPro.Services
             return (await _supplierBaseAccessor.GetAllAsync()).ToList();
         }
 
-        public async Task SavePurchaseOrder(PurchaseOrderModel purchaseOrder)
+        public async Task<PurchaseOrderModel> SavePurchaseOrder(PurchaseOrderModel purchaseOrder)
         {
-            await _context.ExecuteInTransactionAsync(async () =>
-            {
-                await _purchaseOrderBaseAccessor.AddAsync(purchaseOrder);
-            });
+            return await _purchaseOrderBaseAccessor.AddAsync(purchaseOrder);
         }
 
         public async Task<List<PurchaseOrderModel>> GetAllPurchaseOrders()
@@ -62,6 +59,26 @@ namespace SalesPro.Services
                               UserFullName = u.Fullname,
                               SupplierName = s.SupplierName
                           }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
+        }
+
+        public async Task<SupplierModel> GetSupplierById(int supplierId)
+        {
+            return (await _supplierBaseAccessor.GetByIdAsync(supplierId));
+        }
+
+        public async Task UpdatePurchaseOrder(int purchaseOrderId, int rowVersion, int supplierId)
+        {
+            await _context.ExecuteInTransactionAsync(async () =>
+            {
+                await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
+                     purchaseOrderId,
+                     rowVersion,
+                     t =>
+                     {
+                         t.SupplierId = supplierId;
+                     }
+                );
+            });
         }
     }
 }

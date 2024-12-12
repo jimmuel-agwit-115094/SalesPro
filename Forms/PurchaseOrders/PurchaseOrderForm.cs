@@ -35,12 +35,16 @@ namespace SalesPro.Forms.PurchaseOrders
             if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n {Resources.ConfirmNew}", FormConstants.PurchaseOrder))
             {
                 var savedPO = await SavePurchaseOrder();
-                var form = new PurchaseOrderDetailsForm { _poId = savedPO };
+                var form = new PurchaseOrderDetailsForm(this)
+                {
+                    _poId = savedPO.PurchaseOrderId,
+                    _rowVersion = savedPO.RowVersion
+                };
                 form.ShowDialog();
             }
         }
 
-        private async Task<int> SavePurchaseOrder()
+        private async Task<PurchaseOrderModel> SavePurchaseOrder()
         {
             try
             {
@@ -57,8 +61,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     CancellationReason = string.Empty,
                     Remarks = string.Empty
                 };
-                await _service.SavePurchaseOrder(po);
-                return po.PurchaseOrderId;
+                return await _service.SavePurchaseOrder(po);
             }
             catch (Exception ex)
             {
@@ -75,29 +78,29 @@ namespace SalesPro.Forms.PurchaseOrders
             _curDate = await ClockHelper.GetServerDateTime();
         }
 
-        private async Task LoadPurchaseOrdersByProcessStatus(ProcessStatus processStatus)
+        public async Task LoadPurchaseOrdersByProcessStatus()
         {
-            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
+            // Note : The order of the tabs in the tab control should match the order of the ProcessStatus enum
+            var tabProcess = (ProcessStatus)transactionsTabControl.SelectedIndex;
+            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(tabProcess);
             if (purchaseOrders != null)
             {
                 dgPo.DataSource = purchaseOrders;
+                DgExtensions.ConfigureDataGrid(dgPo, true, 2, notFound_lbl,
+                    "PurchaseOrderId",
+                    "DateCreated",
+                    "SupplierName",
+                    "UserFullName",
+                    "DueDate",
+                    "CreditTerms",
+                    "PoTotal",
+                    "PaymentStatus");
             }
         }
+
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Note : The order of the tabs in the tab control should match the order of the ProcessStatus enum
-            var processStatus = (ProcessStatus)transactionsTabControl.SelectedIndex;
-            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
-            dgPo.DataSource = purchaseOrders;
-            DgExtensions.ConfigureDataGrid(dgPo, true, 2, notFound_lbl,
-                "PurchaseOrderId",
-                "DateCreated",
-                "SupplierName",
-                "UserFullName",
-                "DueDate",
-                "CreditTerms",
-                "PoTotal",
-                "PaymentStatus");
+            await LoadPurchaseOrdersByProcessStatus();
         }
 
         private void find_btn_Click(object sender, EventArgs e)

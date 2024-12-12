@@ -124,7 +124,7 @@
             this.dgPo.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgPo.EnableHeadersVisualStyles = false;
             this.dgPo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgPo.Location = new System.Drawing.Point(16, 231);
+            this.dgPo.Location = new System.Drawing.Point(16, 219);
             this.dgPo.MultiSelect = false;
             this.dgPo.Name = "dgPo";
             this.dgPo.ReadOnly = true;
@@ -132,14 +132,15 @@
             this.dgPo.RowHeadersWidth = 51;
             this.dgPo.RowTemplate.Height = 32;
             this.dgPo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPo.Size = new System.Drawing.Size(753, 399);
+            this.dgPo.Size = new System.Drawing.Size(753, 411);
             this.dgPo.TabIndex = 463;
+            this.dgPo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPo_KeyDown);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(740, 196);
+            this.pictureBox1.Location = new System.Drawing.Point(740, 188);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -150,7 +151,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(378, 195);
+            this.search_tx.Location = new System.Drawing.Point(378, 187);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
@@ -257,90 +258,90 @@
             // supplier_tx
             // 
             this.supplier_tx.AutoSize = true;
-            this.supplier_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supplier_tx.Location = new System.Drawing.Point(85, 7);
+            this.supplier_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supplier_tx.Location = new System.Drawing.Point(85, 6);
             this.supplier_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.supplier_tx.Name = "supplier_tx";
-            this.supplier_tx.Size = new System.Drawing.Size(191, 20);
+            this.supplier_tx.Size = new System.Drawing.Size(13, 17);
             this.supplier_tx.TabIndex = 523;
-            this.supplier_tx.Text = "Supplier Name And Family";
+            this.supplier_tx.Text = "-";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 7);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(10, 6);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 20);
+            this.label5.Size = new System.Drawing.Size(63, 17);
             this.label5.TabIndex = 522;
             this.label5.Text = "Supplier :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 30);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 524;
             this.label1.Text = "Address :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(368, 7);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(368, 6);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 20);
+            this.label2.Size = new System.Drawing.Size(103, 17);
             this.label2.TabIndex = 525;
             this.label2.Text = "Contact Person :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(357, 30);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(360, 28);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 20);
+            this.label3.Size = new System.Drawing.Size(111, 17);
             this.label3.TabIndex = 526;
             this.label3.Text = "Contact Number :";
             // 
             // address_tx
             // 
             this.address_tx.AutoSize = true;
-            this.address_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.address_tx.Location = new System.Drawing.Point(85, 30);
+            this.address_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.address_tx.Location = new System.Drawing.Point(85, 28);
             this.address_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.address_tx.Name = "address_tx";
-            this.address_tx.Size = new System.Drawing.Size(92, 20);
+            this.address_tx.Size = new System.Drawing.Size(13, 17);
             this.address_tx.TabIndex = 527;
-            this.address_tx.Text = "Opened By :";
+            this.address_tx.Text = "-";
             // 
             // contactPerson_tx
             // 
             this.contactPerson_tx.AutoSize = true;
-            this.contactPerson_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contactPerson_tx.Location = new System.Drawing.Point(485, 7);
+            this.contactPerson_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contactPerson_tx.Location = new System.Drawing.Point(485, 6);
             this.contactPerson_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.contactPerson_tx.Name = "contactPerson_tx";
-            this.contactPerson_tx.Size = new System.Drawing.Size(92, 20);
+            this.contactPerson_tx.Size = new System.Drawing.Size(13, 17);
             this.contactPerson_tx.TabIndex = 528;
-            this.contactPerson_tx.Text = "Opened By :";
+            this.contactPerson_tx.Text = "-";
             // 
             // number_tx
             // 
             this.number_tx.AutoSize = true;
-            this.number_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.number_tx.Location = new System.Drawing.Point(486, 30);
+            this.number_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.number_tx.Location = new System.Drawing.Point(486, 28);
             this.number_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.number_tx.Name = "number_tx";
-            this.number_tx.Size = new System.Drawing.Size(92, 20);
+            this.number_tx.Size = new System.Drawing.Size(13, 17);
             this.number_tx.TabIndex = 529;
-            this.number_tx.Text = "Opened By :";
+            this.number_tx.Text = "-";
             // 
             // addSupplier_btn
             // 
@@ -349,7 +350,7 @@
             this.addSupplier_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addSupplier_btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addSupplier_btn.ForeColor = System.Drawing.Color.White;
-            this.addSupplier_btn.Location = new System.Drawing.Point(16, 74);
+            this.addSupplier_btn.Location = new System.Drawing.Point(16, 78);
             this.addSupplier_btn.Name = "addSupplier_btn";
             this.addSupplier_btn.Size = new System.Drawing.Size(128, 27);
             this.addSupplier_btn.TabIndex = 530;
@@ -364,7 +365,7 @@
             this.addProduct_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addProduct_btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addProduct_btn.ForeColor = System.Drawing.Color.White;
-            this.addProduct_btn.Location = new System.Drawing.Point(16, 194);
+            this.addProduct_btn.Location = new System.Drawing.Point(16, 186);
             this.addProduct_btn.Name = "addProduct_btn";
             this.addProduct_btn.Size = new System.Drawing.Size(128, 27);
             this.addProduct_btn.TabIndex = 531;
@@ -382,9 +383,9 @@
             this.panel2.Controls.Add(this.contactPerson_tx);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.address_tx);
-            this.panel2.Location = new System.Drawing.Point(16, 107);
+            this.panel2.Location = new System.Drawing.Point(16, 114);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(753, 59);
+            this.panel2.Size = new System.Drawing.Size(753, 53);
             this.panel2.TabIndex = 532;
             // 
             // poId_tx
@@ -425,6 +426,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Order Details";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PurchaseOrderDetailsForm_FormClosed);
             this.Load += new System.EventHandler(this.PurchaseOrderDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

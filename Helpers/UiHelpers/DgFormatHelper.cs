@@ -280,4 +280,16 @@ public static class DgFormatHelper
         }
         return 0;
     }
+
+
+    public static void HandleEnterKey(KeyEventArgs e, DataGridView dataGridView)
+    {
+        if (e.KeyCode == Keys.Enter && dataGridView.Rows.Count > 0)
+        {
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
+    }
+
+
 }
