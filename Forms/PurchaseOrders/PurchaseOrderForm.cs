@@ -46,11 +46,11 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 var po = new PurchaseOrderModel
                 {
-                    SupplierId = 0,
+                    SupplierId = 1,
                     UserId = UserSession.Session_UserId,
                     DateCreated = _curDate.Date,
-                    DueDate = _curDate.Date.AddDays(30),
-                    CreditTerms = 30,
+                    DueDate = _curDate.Date,
+                    CreditTerms = 0,
                     PoTotal = 0,
                     ProcessStatus = ProcessStatus.Created,
                     PaymentStatus = PaymentStatus.Unpaid,

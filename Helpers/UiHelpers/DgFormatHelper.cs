@@ -252,12 +252,8 @@ public static class DgFormatHelper
                 }
             }
         }
-
-
         return 0;
     }
-
-
 
     public static void SetDataGridStyles(DataGridView dataGrid)
     {
@@ -271,5 +267,17 @@ public static class DgFormatHelper
         dataGrid.DefaultCellStyle.Font = new Font("Consolas", 9.75f);
     }
 
-
+    public static int GetSelectedRowId(DataGridView dataGridView, string columnToConvertAsId)
+    {
+        if (dataGridView.SelectedRows.Count > 0)
+        {
+            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+            var cellValue = selectedRow.Cells[columnToConvertAsId].Value;
+            if (cellValue != null)
+            {
+                return Convert.ToInt32(cellValue);
+            }
+        }
+        return 0;
+    }
 }
