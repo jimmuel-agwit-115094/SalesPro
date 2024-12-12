@@ -42,9 +42,14 @@ namespace SalesPro.Services
             return (await _purchaseOrderBaseAccessor.GetAllAsync()).ToList();
         }
 
-        public async Task<List<PurchaseOrderModel>> GetPurchaseOrdersByProcessStatus(ProcessStatus status)
+        public async Task<List<PurchaseOrderModelExtended>> GetPurchaseOrdersByProcessStatus(ProcessStatus status)
         {
-            return (await _purchaseOrderAccessor.GetPurchaseOrderByProcessStatus(status)).ToList();
+            var pos = (await _purchaseOrderAccessor.GetPurchaseOrderByProcessStatus(status)).ToList();
+            var suppliers = (await _supplierBaseAccessor.GetAllAsync()).ToList();
+            return pos with
+            {
+                SupplierName = suppliers.FirstOrDefault(s => s.SupplierId == pos.SupplierId)?.SupplierName
+            };
         }
     }
 }

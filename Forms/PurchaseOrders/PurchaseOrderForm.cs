@@ -3,6 +3,7 @@ using POS_Generic.Helpers;
 using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
@@ -85,6 +86,8 @@ namespace SalesPro.Forms.PurchaseOrders
             var processStatus = (ProcessStatus)transactionsTabControl.SelectedIndex;
             var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(processStatus);
             dgPo.DataSource = purchaseOrders;
+            DgExtensions.ConfigureDataGrid(dgPo, true, notFound_lbl, 
+                "PurchaseOrderId");
         }
     }
 }

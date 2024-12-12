@@ -20,4 +20,10 @@ namespace SalesPro.Models
         public string CancellationReason { get; set; }
         public string Remarks { get; set; }
     }
+
+    public class PurchaseOrderModelExtended : PurchaseOrderModel
+    {
+        public string SupplierName { get; set; }
+        public string UserName { get; set; }
+    }
 }
