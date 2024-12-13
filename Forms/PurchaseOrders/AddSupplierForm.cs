@@ -1,6 +1,8 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Data;
@@ -12,22 +14,24 @@ namespace SalesPro.Forms.PurchaseOrders
     public partial class AddSupplierForm : Form
     {
         private readonly DatabaseContext _context;
-        private readonly PurchaseOrderService _service;
+        private readonly Accessor<PurchaseOrderModel> _purchaseOrderAccessor;
         private readonly PurchaseOrderDetailsForm _form;
         private int _supplierId;
         public AddSupplierForm(PurchaseOrderDetailsForm form)
         {
             _context = new DatabaseContext();
             InitializeComponent();
-            _service = new PurchaseOrderService(_context);
             _form = form;
         }
 
         private async void AddSupplierForm_Load(object sender, EventArgs e)
         {
-            var suppliers = await _service.LoadSuppliers();
-            dgSupplier.DataSource = suppliers.Where(x => x.SupplierId != 1).ToList();
-            DgExtensions.ConfigureDataGrid(dgSupplier, false, 0, notFound_lbl, "SupplierName", "SupplierAddress", "SupplierNumber");
+            using (var _context = new DatabaseContext())
+            {
+                var suppliers = await _context.dgSupplier.DataSource = suppliers.Where(x => x.SupplierId != 1).ToList();
+                DgExtensions.ConfigureDataGrid(dgSupplier, false, 0, notFound_lbl, "SupplierName", "SupplierAddress", "SupplierNumber");
+            }
+
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)

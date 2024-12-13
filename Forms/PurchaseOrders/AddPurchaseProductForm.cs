@@ -1,4 +1,5 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Accessors;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -8,6 +9,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SalesPro.Forms.PurchaseOrders
 {
@@ -19,23 +21,26 @@ namespace SalesPro.Forms.PurchaseOrders
         private bool _isProductSelected;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
         private readonly DatabaseContext _context;
-        private readonly PurchaseOrderService _service;
         public AddPurchaseProductForm(PurchaseOrderDetailsForm purchaseOrderDetailsForm)
         {
             InitializeComponent();
             _purchaseOrderDetailsForm = purchaseOrderDetailsForm;
             _context = new DatabaseContext();
-            _service = new PurchaseOrderService(_context);
         }
 
         private async Task LoadProducts()
         {
-            var products = await _service.LoadProducts();
-            if (products != null)
+            using (var dbContext = new DatabaseContext())
             {
-                dgProducts.DataSource = products;
-                DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
+                var accessor = new Accessor<ProductModel>(dbContext);
+                var products = await accessor.GetAllAsync();
+                if (products != null)
+                {
+                    dgProducts.DataSource = products;
+                    DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
+                }
             }
+
         }
 
         private async void AddPurchaseProductForm_Load(object sender, EventArgs e)
