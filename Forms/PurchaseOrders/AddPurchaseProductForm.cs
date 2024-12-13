@@ -59,8 +59,8 @@ namespace SalesPro.Forms.PurchaseOrders
             }
             catch (Exception ex)
             {
+                _isProductSelected = false;
                 MessageHandler.ShowError($"Error getting product properties {ex.Message}");
-                throw;
             }
         }
 
@@ -124,6 +124,15 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void add_btn_Click(object sender, EventArgs e)
         {
+            if(!_isProductSelected)
+            {
+                MessageHandler.ShowError("Please select a product");
+                return;
+            }
+            if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
+            if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
+            if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
+            if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
             try
             {
                 await SavePurchaseOrderAndUpdatePo();

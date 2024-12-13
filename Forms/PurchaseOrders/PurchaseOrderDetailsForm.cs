@@ -48,6 +48,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     "PurchaseOrderItemId", "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
                 _totalPrice = poItems.Sum(x => x.TotalPrice);
                 total_tx.Text = _totalPrice.ToString("N2");
+                rowCount_tx.Text = $"Product Count : {poItems.Count.ToString()}";
             }
         }
 
@@ -92,6 +93,11 @@ namespace SalesPro.Forms.PurchaseOrders
             form._poId = _poId;
             form._rowVersion = _rowVersion;
             form.ShowDialog();
+        }
+
+        private void dgPoItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
