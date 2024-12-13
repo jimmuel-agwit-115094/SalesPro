@@ -1,6 +1,8 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace SalesPro.Forms.PurchaseOrders
         public int _poId;
         public int _rowVersion;
         public decimal _totalPrice;
+        private DateTime _curDate;
         private readonly DatabaseContext _context;
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -33,10 +36,22 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
         {
+            _curDate = await ClockHelper.GetServerDateTime();
             await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
         }
 
+        private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus, string reason)
+        {
+            return new PurchaseOrderLogsModel
+            {
+                PurchaseOrderId = _poId,
+                UserId = UserSession.Session_UserId,
+                ProcessStatus = processStatus,
+                Reason = reason,
+                Date = _curDate.Date
+            };
+        }
 
         public async Task LoadPurchaseOrderItemsByPoId()
         {
@@ -80,8 +95,6 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-
-
         private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
@@ -100,9 +113,25 @@ namespace SalesPro.Forms.PurchaseOrders
 
         }
 
-        private void action_btn_Click(object sender, EventArgs e)
-        {
 
+        //private async Task UpdatePurchseOrderByStatus(ProcessStatus processStatus)
+        //{
+        //    await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, processStatus);
+        //}
+
+        private async void action_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
+                await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
+                MessageHandler.SuccessfullyAdded();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error updating PO. {ex.Message}");
+            }
         }
     }
 }

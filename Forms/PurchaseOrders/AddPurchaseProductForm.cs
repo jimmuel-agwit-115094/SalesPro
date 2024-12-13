@@ -111,15 +111,13 @@ namespace SalesPro.Forms.PurchaseOrders
             return poItem;
         }
 
-        private async Task SavePurchaseOrderAndUpdatePo()
+        private async Task SavePurchaseOrderItem()
         {
             var poItem = BuildPurchaseOrderItem();
-            await _service.SavePurchaseOrderItem(poItem);
-
             // We are calling this method to get the total price of the purchase order
             var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
             decimal poTotal = poItems.Sum(x => x.TotalPrice);
-            await _service.UpdatePurchaseOrder_PoTotal(_poId, _rowVersion, poTotal);
+            await _service.SavePurchaseOrderItem(_poId, _rowVersion, poTotal, poItem);
         }
 
         private async void add_btn_Click(object sender, EventArgs e)
@@ -135,7 +133,7 @@ namespace SalesPro.Forms.PurchaseOrders
             if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
             try
             {
-                await SavePurchaseOrderAndUpdatePo();
+                await SavePurchaseOrderItem();
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
                 Close();
             }

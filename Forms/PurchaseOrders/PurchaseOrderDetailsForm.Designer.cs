@@ -44,6 +44,7 @@
             this.close_panel = new System.Windows.Forms.Panel();
             this.paymentStatus_tx = new System.Windows.Forms.Label();
             this.closeStat_pb = new System.Windows.Forms.PictureBox();
+            this.total_tx = new System.Windows.Forms.Label();
             this.action_btn = new System.Windows.Forms.Button();
             this.close_btn = new System.Windows.Forms.Button();
             this.supplier_tx = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.addProduct_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.poId_tx = new System.Windows.Forms.Label();
-            this.total_tx = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rowCount_tx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
@@ -232,6 +232,17 @@
             this.closeStat_pb.TabIndex = 515;
             this.closeStat_pb.TabStop = false;
             // 
+            // total_tx
+            // 
+            this.total_tx.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_tx.Location = new System.Drawing.Point(605, 1);
+            this.total_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.total_tx.Name = "total_tx";
+            this.total_tx.Size = new System.Drawing.Size(234, 28);
+            this.total_tx.TabIndex = 534;
+            this.total_tx.Text = "0.00";
+            this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // action_btn
             // 
             this.action_btn.BackColor = System.Drawing.Color.Green;
@@ -239,7 +250,7 @@
             this.action_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.action_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.action_btn.ForeColor = System.Drawing.Color.White;
-            this.action_btn.Location = new System.Drawing.Point(701, 653);
+            this.action_btn.Location = new System.Drawing.Point(700, 651);
             this.action_btn.Name = "action_btn";
             this.action_btn.Size = new System.Drawing.Size(159, 34);
             this.action_btn.TabIndex = 520;
@@ -254,7 +265,7 @@
             this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.close_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.close_btn.Location = new System.Drawing.Point(548, 653);
+            this.close_btn.Location = new System.Drawing.Point(547, 651);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(140, 34);
             this.close_btn.TabIndex = 521;
@@ -398,24 +409,13 @@
             // 
             this.poId_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poId_tx.ForeColor = System.Drawing.Color.Navy;
-            this.poId_tx.Location = new System.Drawing.Point(16, 658);
+            this.poId_tx.Location = new System.Drawing.Point(16, 665);
             this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.poId_tx.Name = "poId_tx";
             this.poId_tx.Size = new System.Drawing.Size(263, 20);
             this.poId_tx.TabIndex = 533;
             this.poId_tx.Text = "000000000";
             this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // total_tx
-            // 
-            this.total_tx.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_tx.Location = new System.Drawing.Point(605, 1);
-            this.total_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.total_tx.Name = "total_tx";
-            this.total_tx.Size = new System.Drawing.Size(234, 28);
-            this.total_tx.TabIndex = 534;
-            this.total_tx.Text = "0.00";
-            this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
@@ -432,7 +432,7 @@
             // 
             this.rowCount_tx.AutoSize = true;
             this.rowCount_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowCount_tx.Location = new System.Drawing.Point(16, 641);
+            this.rowCount_tx.Location = new System.Drawing.Point(16, 648);
             this.rowCount_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rowCount_tx.Name = "rowCount_tx";
             this.rowCount_tx.Size = new System.Drawing.Size(98, 17);

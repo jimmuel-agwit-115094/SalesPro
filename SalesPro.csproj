@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />
+    <Compile Include="Models\PurchaseOrderLogsModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />
     <Compile Include="Models\SupplierModel.cs" />
     <Compile Include="Services\DatabaseServices\DatabaseContext.cs" />

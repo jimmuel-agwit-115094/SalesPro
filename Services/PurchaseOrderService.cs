@@ -7,7 +7,6 @@ using SalesPro.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
@@ -18,6 +17,7 @@ namespace SalesPro.Services
         private readonly Accessor<PurchaseOrderModel> _purchaseOrderBaseAccessor;
         private readonly Accessor<ProductModel> _productBaseAccessor;
         private readonly Accessor<PurchaseOrderItemModel> _poItemsBaseAccessor;
+        private readonly Accessor<PurchaseOrderLogsModel> _purchaseOrderLogsBaseAccessor;
         public PurchaseOrderService(DatabaseContext context)
         {
             _context = context;
@@ -25,6 +25,7 @@ namespace SalesPro.Services
             _purchaseOrderBaseAccessor = new Accessor<PurchaseOrderModel>();
             _productBaseAccessor = new Accessor<ProductModel>();
             _poItemsBaseAccessor = new Accessor<PurchaseOrderItemModel>();
+            _purchaseOrderLogsBaseAccessor = new Accessor<PurchaseOrderLogsModel>();
         }
 
         public async Task<List<SupplierModel>> LoadSuppliers()
@@ -112,15 +113,11 @@ namespace SalesPro.Services
                           }).OrderByDescending(x => x.PurchaseOrderItemId).ToListAsync();
         }
 
-        public async Task<PurchaseOrderItemModel> SavePurchaseOrderItem(PurchaseOrderItemModel poItem)
-        {
-            return await _poItemsBaseAccessor.AddAsync(poItem);
-        }
-
-        public async Task UpdatePurchaseOrder_PoTotal(int purchaseOrderId, int rowVersion, decimal poTotal)
+        public async Task SavePurchaseOrderItem(int purchaseOrderId, int rowVersion, decimal poTotal, PurchaseOrderItemModel poItem)
         {
             await _context.ExecuteInTransactionAsync(async () =>
             {
+                await _poItemsBaseAccessor.AddAsync(poItem);
                 await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
                      purchaseOrderId,
                      rowVersion,
@@ -129,7 +126,22 @@ namespace SalesPro.Services
                          t.PoTotal = poTotal;
                      }
                 );
+            });
+        }
 
+        public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
+        {
+            await _context.ExecuteInTransactionAsync(async () =>
+            {
+                await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
+                     purchaseOrderId,
+                     rowVersion,
+                     t =>
+                     {
+                         t.ProcessStatus = status;
+                     }
+                );
+                await _purchaseOrderLogsBaseAccessor.AddAsync(purchaseOrderLogs);
             });
         }
     }
