@@ -4,6 +4,7 @@ using SalesPro.Accessors;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,6 +78,11 @@ namespace SalesPro.Services
             return (await _supplierBaseAccessor.GetByIdAsync(supplierId));
         }
 
+        public async Task<PurchaseOrderModel> GetPurchaseorderById(int purchaseOrderId)
+        {
+            return (await _purchaseOrderBaseAccessor.GetByIdAsync(purchaseOrderId));
+        }
+
         public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int rowVersion, int supplierId)
         {
             await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
@@ -113,20 +119,28 @@ namespace SalesPro.Services
                           }).OrderByDescending(x => x.PurchaseOrderItemId).ToListAsync();
         }
 
-        public async Task SavePurchaseOrderItem(int purchaseOrderId, int rowVersion, decimal poTotal, PurchaseOrderItemModel poItem)
+        public async Task<int> SaveItemAndUpdatePo(int purchaseOrderId, int rowVersion, PurchaseOrderItemModel poItem)
         {
+            var updatedPo = new PurchaseOrderModel();
+            //Should not get total from db
+            // add random total
+            Random random = new Random();
+            decimal randomDecimal = (decimal)random.NextDouble();
+
             await _context.ExecuteInTransactionAsync(async () =>
             {
-                await _poItemsBaseAccessor.AddAsync(poItem);
-                await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
+                updatedPo = await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
                      purchaseOrderId,
                      rowVersion,
                      t =>
                      {
-                         t.PoTotal = poTotal;
+                         t.PoTotal = randomDecimal;
                      }
                 );
+                await _poItemsBaseAccessor.AddAsync(poItem);
+               
             });
+            return updatedPo.RowVersion;
         }
 
         public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
@@ -142,6 +156,7 @@ namespace SalesPro.Services
                      }
                 );
                 await _purchaseOrderLogsBaseAccessor.AddAsync(purchaseOrderLogs);
+                MessageHandler.SuccessfullyAdded();
             });
         }
     }

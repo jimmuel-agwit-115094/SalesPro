@@ -125,7 +125,6 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
                 await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
-                MessageHandler.SuccessfullyAdded();
                 Close();
             }
             catch (Exception ex)
