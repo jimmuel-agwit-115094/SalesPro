@@ -163,8 +163,8 @@ public static class DgFormatHelper
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
     {
-        if (dataGridView == null || dataGridView.Rows.Count == 0)
-            return; // Exit if no rows are present
+        //if (dataGridView == null || dataGridView.Rows.Count == 0)
+        //    return; // Exit if no rows are present
 
         if (fieldsToShow == null || fieldsToShow.Length == 0)
             throw new ArgumentException("At least one field must be specified", nameof(fieldsToShow));

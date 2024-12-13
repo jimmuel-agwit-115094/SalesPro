@@ -5,6 +5,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -105,17 +106,19 @@ namespace SalesPro.Forms.PurchaseOrders
                 SupplierPrice = decimal.Parse(supplierPrice_tx.Text),
                 MarkUpPrice = decimal.Parse(markUpPrice_tx.Text),
                 RetailPrice = decimal.Parse(retailPrice_tx.Text),
-                TotalPrice = decimal.Parse(retailPrice_tx.Text) * int.Parse(qty_tx.Text)
+                TotalPrice = decimal.Parse(retailPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text)
             };
             return poItem;
         }
 
         private async Task SavePurchaseOrderAndUpdatePo()
         {
-            // Todo : Add the total of the purchase order
-            decimal poTotal = 0;
             var poItem = BuildPurchaseOrderItem();
             await _service.SavePurchaseOrderItem(poItem);
+
+            // We are calling this method to get the total price of the purchase order
+            var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
+            decimal poTotal = poItems.Sum(x => x.TotalPrice);
             await _service.UpdatePurchaseOrder_PoTotal(_poId, _rowVersion, poTotal);
         }
 

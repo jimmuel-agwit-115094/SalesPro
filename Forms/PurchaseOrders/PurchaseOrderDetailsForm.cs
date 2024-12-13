@@ -3,6 +3,7 @@ using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace SalesPro.Forms.PurchaseOrders
     {
         public int _poId;
         public int _rowVersion;
+        public decimal _totalPrice;
         private readonly DatabaseContext _context;
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -44,6 +46,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 dgPoItems.DataSource = poItems;
                 DgExtensions.ConfigureDataGrid(dgPoItems, true, 1, notFound_lbl,
                     "PurchaseOrderItemId", "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
+                _totalPrice = poItems.Sum(x => x.TotalPrice);
+                total_tx.Text = _totalPrice.ToString("N2");
             }
         }
 
