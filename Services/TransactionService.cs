@@ -119,7 +119,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<IEnumerable<TransactionModel>> GetTransactionByDate(DateTime datte)
+        public async Task<List<TransactionModel>> GetTransactionByDate(DateTime datte)
         {
             using (var _dbContext = new DatabaseContext())
             {
@@ -127,7 +127,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<IEnumerable<TransactionModel>> GetAllTransactions()
+        public async Task<List<TransactionModel>> GetAllTransactions()
         {
             using (var _dbContext = new DatabaseContext())
             {

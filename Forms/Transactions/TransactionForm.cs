@@ -102,7 +102,7 @@ namespace SalesPro.Forms.Transactions
             var date = date_cb.Value.Date;
 
             var filteredTrans = await _service.GetTransactionByDate(date);
-            dgTrans.DataSource = filteredTrans.OrderBy(x => x.TransactionId);
+            dgTrans.DataSource = filteredTrans.OrderBy(x => x.TransactionId).ToList();
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;
             noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
