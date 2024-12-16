@@ -35,14 +35,12 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
 
-                    if (toUpdate != null)
+                    NullCheckerHelper.NullChecker(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
-                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                        {
-                            toUpdate.BeginningBalance = begBalance;
-                            await context.TransactionLogs.AddAsync(log);
-                            await context.SaveChangesAsync();
-                        }
+                        toUpdate.BeginningBalance = begBalance;
+                        await context.TransactionLogs.AddAsync(log);
+                        await context.SaveChangesAsync();
                     }
                 });
             }

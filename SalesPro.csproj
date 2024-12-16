@@ -216,6 +216,7 @@
     <Compile Include="Forms\Transactions\TransactionForm.Designer.cs">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\NullCheckerHelper.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />
     <Compile Include="Models\PurchaseOrderLogsModel.cs" />
