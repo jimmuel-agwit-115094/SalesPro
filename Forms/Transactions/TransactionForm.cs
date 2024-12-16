@@ -1,8 +1,6 @@
 ﻿using POS_Generic.Helpers;
-using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
-using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -14,12 +12,10 @@ namespace SalesPro.Forms.Transactions
     public partial class TransactionForm : Form
     {
         private MainForm _mainForm;
-        private readonly DatabaseContext _context;
         private readonly TransactionService _service;
         private DateTime _curDate;
         public TransactionForm(MainForm mainForm)
         {
-            _context = new DatabaseContext();
             _service = new TransactionService();
             InitializeComponent();
             _mainForm = mainForm;

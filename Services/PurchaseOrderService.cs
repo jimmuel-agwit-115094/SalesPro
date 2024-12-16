@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using POS_Generic.Helpers;
-using SalesPro.Accessors;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 
 namespace SalesPro.Services
 {
     public class PurchaseOrderService
     {
-
         public async Task<List<SupplierModel>> LoadSuppliers()
         {
             using (var context = new DatabaseContext())

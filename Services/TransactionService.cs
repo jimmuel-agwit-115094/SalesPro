@@ -26,7 +26,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdateTransaction(int transactionId, TransactionModel transaction, TransactionLogModel log)
+        public async Task UpdateTransaction(int transactionId, decimal begBalance, TransactionLogModel log)
         {
             using (var context = new DatabaseContext())
             {
@@ -36,7 +36,7 @@ namespace SalesPro.Services
 
                     if (toUpdate != null)
                     {
-                        toUpdate = transaction;
+                        toUpdate.BeginningBalance = begBalance;
                         await context.TransactionLogs.AddAsync(log);
                         await context.SaveChangesAsync();
                     }
@@ -53,8 +53,15 @@ namespace SalesPro.Services
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
                     if (toUpdate != null)
                     {
-                        context.Entry(transaction).CurrentValues.SetValues(transaction);
-                        context.Add(log);
+                        toUpdate.EndDate = transaction.EndDate;
+                        toUpdate.TotalSales = transaction.TotalSales;
+                        toUpdate.TotalExpenses = transaction.TotalExpenses;
+                        toUpdate.ExpectedCash = transaction.ExpectedCash;
+                        toUpdate.EndingCash = transaction.EndingCash;
+                        toUpdate.ClosedBy = transaction.ClosedBy;
+                        toUpdate.IsClosed = transaction.IsClosed;
+                        toUpdate.BalanceStatus = transaction.BalanceStatus;
+                        await context.AddAsync(log);
                         await context.SaveChangesAsync();
                     }
                 });
@@ -70,8 +77,8 @@ namespace SalesPro.Services
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
                     if (toUpdate != null)
                     {
-                        context.Entry(transaction).CurrentValues.SetValues(transaction);
-                        context.Add(log);
+                        toUpdate.IsClosed = transaction.IsClosed;
+                        await context.AddAsync(log);
                         await context.SaveChangesAsync();
                     }
                 });
@@ -84,7 +91,7 @@ namespace SalesPro.Services
             {
                 return await context.TransactionLogs
                   .Where(x => x.TransactionId == transactionId)
-                  .OrderByDescending(x => x.TransactionId)
+                  .OrderByDescending(x => x.TransactionLogId)
                   .ToListAsync();
             }
         }

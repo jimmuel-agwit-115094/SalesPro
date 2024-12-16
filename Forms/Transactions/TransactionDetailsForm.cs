@@ -46,7 +46,7 @@ namespace SalesPro.Forms.Transactions
             };
         }
 
-        private TransactionModel BuilTransactionModel(BalanceStatusEnum balanceStatus)
+        private TransactionModel BuilTransactionModel(BalanceStatusEnum balanceStatus, bool isClosed)
         {
             return new TransactionModel
             {
@@ -59,7 +59,7 @@ namespace SalesPro.Forms.Transactions
                 EndingCash = decimal.Parse(endingCash_tx.Text),
                 OpenedBy = _userFullname,
                 ClosedBy = _userFullname,
-                IsClosed = false,
+                IsClosed = isClosed,
                 BalanceStatus = balanceStatus
             };
         }
@@ -72,7 +72,7 @@ namespace SalesPro.Forms.Transactions
             {
                 if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
                 {
-                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed:false);
                     var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
                     await _transactionService.SaveTransaction(transaction, saveLogModel);
                     await _transactionForm.EnableDisableMenuPanel();
@@ -82,11 +82,9 @@ namespace SalesPro.Forms.Transactions
             {
                 if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, FormConstants.Transaction))
                 {
-                    // Todo add new valid model
-                    var model = new TransactionModel();
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
-                    await _transactionService.UpdateTransaction(_transactionId, model, updateLogModel);
+                    await _transactionService.UpdateTransaction(_transactionId, begBal,  updateLogModel);
                 }
             }
             Close();
@@ -97,7 +95,7 @@ namespace SalesPro.Forms.Transactions
             if (MessageHandler.ShowQuestion(Resources.ConfirmClose, FormConstants.Transaction))
             {
                 var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
-                var transaction = BuilTransactionModel(balanceStatus: balanceStatus);
+                var transaction = BuilTransactionModel(balanceStatus: balanceStatus, isClosed: true);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
                 await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                 Close();
@@ -108,7 +106,7 @@ namespace SalesPro.Forms.Transactions
         {
             if (MessageHandler.ShowQuestion(Resources.ConfirmUndo, FormConstants.Transaction))
             {
-                var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet);
+                var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
                 await _transactionService.UndoCloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                 Close();
@@ -185,7 +183,7 @@ namespace SalesPro.Forms.Transactions
             _curDate = await ClockHelper.GetServerDateTime();
             _userFullname = UserSession.FullName;
 
-            if (_actionType == Constants.SystemConstants.New)
+            if (_actionType == SystemConstants.New)
             {
                 Text = "New Transaction";
                 save_btn.Text = "Save";
