@@ -89,7 +89,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int supplierId)
+        public async Task UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId)
         {
             using (var context = new DatabaseContext())
             {
@@ -136,24 +136,26 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                //Should not get total from db
-                // add random total
-                Random random = new Random();
-                decimal randomDecimal = (decimal)random.NextDouble();
-
                 await context.ExecuteInTransactionAsync(async () =>
                 {
-                    var toUpdate = context.PurchaseOrders.FindAsync(purchaseOrderId);
-                    if (toUpdate != null)
-                    {
-                        toUpdate.Result.PoTotal = poTotal;
-                    }
-                    //context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
+                    var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
+                    NullCheckerHelper.NullChecker(toUpdate);
+
+                    toUpdate.PoTotal = poTotal;
                     await context.AddAsync(poItem);
                     await context.SaveChangesAsync();
+
                 });
             }
+        }
 
+
+        public async Task<List<PurchaseOrderItemModel>> GetPurchaseOrderItemsByPoid(int poId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrderItems.Where(x => x.PurchaseOrderId == poId).ToListAsync();
+            }
         }
 
         public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)

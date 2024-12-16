@@ -84,7 +84,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     number_tx.Text = supplier.SupplierNumber;
                 }
                 //Update PO to set the supplier id
-                await _service.UpdatePurchaseOrder_SupploerId(_poId, supplierId);
+                await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId);
             }
             catch (Exception ex)
             {
@@ -110,12 +110,6 @@ namespace SalesPro.Forms.PurchaseOrders
         {
 
         }
-
-
-        //private async Task UpdatePurchseOrderByStatus(ProcessStatus processStatus)
-        //{
-        //    await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, processStatus);
-        //}
 
         private async void action_btn_Click(object sender, EventArgs e)
         {

@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -133,17 +134,14 @@ namespace SalesPro.Forms.PurchaseOrders
             if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
             if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
             if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
+            
             try
             {
-                using (var _context = new DatabaseContext())
-                {
-                    var poItem = BuildPurchaseOrderItem();
-                    // We are passing the total from the accessor
-                    await _service.SavePurchaseOrderItem(_poId, 123, poItem);
-                    await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-                    Close();
-                }
-               
+                var poItem = BuildPurchaseOrderItem();
+                decimal total = (await _service.GetPurchaseOrderItemsByPoid(_poId)).Sum(x => x.TotalPrice) + decimal.Parse(retailPrice_tx.Text);
+                await _service.SavePurchaseOrderItem(_poId, total, poItem);
+                await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                Close();
             }
             catch (Exception ex)
             {

@@ -19,6 +19,7 @@ namespace SalesPro.Models
         public PaymentStatus PaymentStatus { get; set; }
         public string CancellationReason { get; set; }
         public string Remarks { get; set; }
+        public bool IsLocked { get; set; } = false;
     }
 
     public class PurchaseOrderModelExtended : PurchaseOrderModel
