@@ -158,9 +158,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accessors\Accessor.cs" />
-    <Compile Include="Accessors\Transactions\TransactionAccessor.cs" />
-    <Compile Include="Accessors\Transactions\TransactionLogAccessor.cs" />
     <Compile Include="Constants\FormConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
@@ -305,7 +302,6 @@
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Accessors\Users\" />
     <Folder Include="Forms\Suppliers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

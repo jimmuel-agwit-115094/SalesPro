@@ -174,7 +174,27 @@ namespace SalesPro.Services
                     }
                 });
             }
+        }
 
+        public async Task UpdatePurchaseOrderLockStatus(int poId, bool isLocked)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var toUpdate = await context.PurchaseOrders.FindAsync(poId);
+                NullCheckerHelper.NullChecker(toUpdate);
+                toUpdate.IsLocked = isLocked;
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<bool> CheckPurchaseOrderLockState(int poId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var po = await context.PurchaseOrders.FindAsync(poId);
+                NullCheckerHelper.NullChecker(po);
+                return po.IsLocked;
+            }
         }
     }
 }

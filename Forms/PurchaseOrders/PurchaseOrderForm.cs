@@ -108,5 +108,22 @@ namespace SalesPro.Forms.PurchaseOrders
         {
 
         }
+
+        private async void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedId = DgFormatHelper.GetSelectedId(dgPo, e, "PurchaseOrderId");
+            if (selectedId == 0) return;
+            var isLocked = await _service.CheckPurchaseOrderLockState(selectedId);
+            if (isLocked)
+            {
+                MessageHandler.ShowError("The Purchase Order is currently locked and being edited by another user.");
+                return;
+            }
+            var form = new PurchaseOrderDetailsForm(this)
+            {
+                _poId = selectedId
+            };
+            form.ShowDialog();
+        }
     }
 }

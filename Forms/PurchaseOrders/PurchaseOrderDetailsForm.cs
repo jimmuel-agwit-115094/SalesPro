@@ -37,6 +37,16 @@ namespace SalesPro.Forms.PurchaseOrders
             _curDate = await ClockHelper.GetServerDateTime();
             await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
+
+            try
+            {
+                await _service.UpdatePurchaseOrderLockStatus(_poId, true);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error loading add product form: {ex.Message}");
+                throw;
+            }
         }
 
         private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus, string reason)
@@ -95,7 +105,16 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
+            try
+            {
+                await _service.UpdatePurchaseOrderLockStatus(_poId, false);
+                await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error Closing PO: {ex.Message}");
+                throw;
+            }
         }
 
         private void addProduct_btn_Click(object sender, EventArgs e)

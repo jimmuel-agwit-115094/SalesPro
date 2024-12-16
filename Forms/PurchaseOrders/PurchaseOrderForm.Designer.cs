@@ -379,6 +379,7 @@
             this.dgPo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPo.Size = new System.Drawing.Size(1208, 431);
             this.dgPo.TabIndex = 460;
+            this.dgPo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPo_CellContentClick);
             // 
             // PurchaseOrderForm
             // 
