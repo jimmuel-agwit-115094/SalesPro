@@ -27,7 +27,7 @@ namespace SalesPro.Forms.Transactions
         public TransactionDetailsForm(TransactionForm transactionForm)
         {
             _context = new DatabaseContext();
-            _transactionService = new TransactionService(_context);
+            _transactionService = new TransactionService();
             InitializeComponent();
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
             _transactionForm = transactionForm;
@@ -82,9 +82,11 @@ namespace SalesPro.Forms.Transactions
             {
                 if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, FormConstants.Transaction))
                 {
+                    // Todo add new valid model
+                    var model = new TransactionModel();
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
-                    await _transactionService.UpdateTransaction(_transactionId, _rowVersion, begBal, updateLogModel);
+                    await _transactionService.UpdateTransaction(_transactionId, model, updateLogModel);
                 }
             }
             Close();

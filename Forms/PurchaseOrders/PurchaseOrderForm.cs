@@ -23,7 +23,7 @@ namespace SalesPro.Forms.PurchaseOrders
         public PurchaseOrderForm()
         {
             _context = new DatabaseContext();
-            _service = new PurchaseOrderService(_context);
+            _service = new PurchaseOrderService();
             InitializeComponent();
         }
 

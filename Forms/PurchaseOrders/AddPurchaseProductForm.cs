@@ -15,19 +15,20 @@ namespace SalesPro.Forms.PurchaseOrders
         public int _rowVersion;
         private int _productId;
         private bool _isProductSelected;
+        private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
         public AddPurchaseProductForm(PurchaseOrderDetailsForm purchaseOrderDetailsForm)
         {
             InitializeComponent();
             _purchaseOrderDetailsForm = purchaseOrderDetailsForm;
+            _service = new PurchaseOrderService();
         }
 
         private async Task LoadProducts()
         {
             using (var _context = new DatabaseContext())
             {
-                var service = new PurchaseOrderService(_context);
-                var products = await service.LoadProducts();
+                var products = await _service.LoadProducts();
                 if (products != null)
                 {
                     dgProducts.DataSource = products;
@@ -93,7 +94,6 @@ namespace SalesPro.Forms.PurchaseOrders
             ComputeTotal();
         }
 
-        // build purchase order item model
         private PurchaseOrderItemModel BuildPurchaseOrderItem()
         {
             var poItem = new PurchaseOrderItemModel
@@ -105,6 +105,18 @@ namespace SalesPro.Forms.PurchaseOrders
                 MarkUpPrice = decimal.Parse(markUpPrice_tx.Text),
                 RetailPrice = decimal.Parse(retailPrice_tx.Text),
                 TotalPrice = decimal.Parse(retailPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text)
+            };
+            return poItem;
+        }
+
+        private PurchaseOrderModel BuildPurchaseOrder(int supplierId)
+        {
+            var poItem = new PurchaseOrderModel
+            {
+                PurchaseOrderId = _poId,
+                SupplierId = supplierId,
+                UserId = UserSession.Session_UserId,
+
             };
             return poItem;
         }
@@ -125,12 +137,10 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 using (var _context = new DatabaseContext())
                 {
-                    var service = new PurchaseOrderService(_context);
                     var poItem = BuildPurchaseOrderItem();
                     // We are passing the total from the accessor
-                    await service.SaveItemAndUpdatePo(_poId, _rowVersion, poItem);
+                    await _service.SavePurchaseOrderItem(_poId, 123, poItem);
                     await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-                    _rowVersion = (await service.GetPurchaseorderById(_poId)).RowVersion;
                     Close();
                 }
                

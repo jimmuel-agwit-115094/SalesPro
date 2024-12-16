@@ -35,37 +35,45 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.PurchaseOrders.ToListAsync();
+                var saved = await context.AddAsync(purchaseOrder);
+                await context.SaveChangesAsync();
+                return saved.Entity;
             }
         }
 
         public async Task<List<PurchaseOrderModel>> GetAllPurchaseOrders()
         {
-            return (await _purchaseOrderBaseAccessor.GetAllAsync()).ToList();
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrders.ToListAsync();
+            }
         }
 
         public async Task<List<PurchaseOrderModelExtended>> GetPurchaseOrdersByProcessStatus(ProcessStatus status)
         {
-            return await (from po in _context.PurchaseOrders
-                          join u in _context.Users on po.UserId equals u.UserId
-                          join s in _context.Suppliers on po.SupplierId equals s.SupplierId
-                          where po.ProcessStatus == status
-                          select new PurchaseOrderModelExtended
-                          {
-                              PurchaseOrderId = po.PurchaseOrderId,
-                              SupplierId = po.SupplierId,
-                              UserId = po.UserId,
-                              DateCreated = po.DateCreated,
-                              DueDate = po.DueDate,
-                              CreditTerms = po.CreditTerms,
-                              PoTotal = po.PoTotal,
-                              ProcessStatus = po.ProcessStatus,
-                              PaymentStatus = po.PaymentStatus,
-                              CancellationReason = po.CancellationReason,
-                              Remarks = po.Remarks,
-                              UserFullName = u.Fullname,
-                              SupplierName = s.SupplierName
-                          }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
+            using (var context = new DatabaseContext())
+            {
+                return await (from po in context.PurchaseOrders
+                              join u in context.Users on po.UserId equals u.UserId
+                              join s in context.Suppliers on po.SupplierId equals s.SupplierId
+                              where po.ProcessStatus == status
+                              select new PurchaseOrderModelExtended
+                              {
+                                  PurchaseOrderId = po.PurchaseOrderId,
+                                  SupplierId = po.SupplierId,
+                                  UserId = po.UserId,
+                                  DateCreated = po.DateCreated,
+                                  DueDate = po.DueDate,
+                                  CreditTerms = po.CreditTerms,
+                                  PoTotal = po.PoTotal,
+                                  ProcessStatus = po.ProcessStatus,
+                                  PaymentStatus = po.PaymentStatus,
+                                  CancellationReason = po.CancellationReason,
+                                  Remarks = po.Remarks,
+                                  UserFullName = u.Fullname,
+                                  SupplierName = s.SupplierName
+                              }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
+            }
         }
 
         public async Task<SupplierModel> GetSupplierById(int supplierId)
@@ -84,14 +92,14 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int rowVersion, PurchaseOrderItemModel purchaseOrder)
+        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int supplierId)
         {
             using (var context = new DatabaseContext())
             {
                 var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                 if (toUpdate != null)
                 {
-                    context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
+                    toUpdate.SupplierId = supplierId;
                     await context.SaveChangesAsync();
                 }
             }
@@ -127,11 +135,10 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<int> AddPurchaseOrderItem(int purchaseOrderId, int rowVersion, PurchaseOrderModel purchaseOrder, PurchaseOrderItemModel poItem)
+        public async Task SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem)
         {
             using (var context = new DatabaseContext())
             {
-                var updatedPo = new PurchaseOrderModel();
                 //Should not get total from db
                 // add random total
                 Random random = new Random();
@@ -140,11 +147,14 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = context.PurchaseOrders.FindAsync(purchaseOrderId);
-                    context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
-                    context.Add(poItem);
+                    if (toUpdate != null)
+                    {
+                        toUpdate.Result.PoTotal = poTotal;
+                    }
+                    //context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
+                    await context.AddAsync(poItem);
                     await context.SaveChangesAsync();
                 });
-                return updatedPo.RowVersion;
             }
 
         }
@@ -157,23 +167,15 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
 
-                    if(toUpdate != null)
+                    if (toUpdate != null)
                     {
-                        context.PurchaseOrders.ExecuteUpdate(s => s.SetProperty(e => e.Salary, e => e.Salary + 1000));
+                        toUpdate.ProcessStatus = status;
+                        await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
+                        await context.SaveChangesAsync();
                     }
-                    await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
-                         purchaseOrderId,
-                         rowVersion,
-                         t =>
-                         {
-                             t.ProcessStatus = status;
-                         }
-                    );
-                    await _purchaseOrderLogsBaseAccessor.AddAsync(purchaseOrderLogs);
-                    MessageHandler.SuccessfullyAdded();
                 });
             }
-           
+
         }
     }
 }

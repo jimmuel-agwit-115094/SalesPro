@@ -17,14 +17,12 @@ namespace SalesPro.Forms.PurchaseOrders
         public int _rowVersion;
         public decimal _totalPrice;
         private DateTime _curDate;
-        private readonly DatabaseContext _context;
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
         public PurchaseOrderDetailsForm(PurchaseOrderForm purchaseOrderForm)
         {
             InitializeComponent();
-            _context = new DatabaseContext();
-            _service = new PurchaseOrderService(_context);
+            _service = new PurchaseOrderService();
             _purchaseOrderForm = purchaseOrderForm;
         }
 
@@ -86,7 +84,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     number_tx.Text = supplier.SupplierNumber;
                 }
                 //Update PO to set the supplier id
-                await _service.UpdatePurchaseOrder_SupploerId(_poId, _rowVersion, supplierId);
+                await _service.UpdatePurchaseOrder_SupploerId(_poId, supplierId);
             }
             catch (Exception ex)
             {

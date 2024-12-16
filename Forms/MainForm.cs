@@ -21,7 +21,7 @@ namespace SalesPro.Forms
         {
             InitializeComponent();
             _context = new DatabaseContext();
-            _transactionService = new TransactionService(_context);
+            _transactionService = new TransactionService();
         }
 
         private void Panel1_Resize(object sender, EventArgs e)

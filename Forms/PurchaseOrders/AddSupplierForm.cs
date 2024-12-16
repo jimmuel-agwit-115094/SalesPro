@@ -11,15 +11,13 @@ namespace SalesPro.Forms.PurchaseOrders
 {
     public partial class AddSupplierForm : Form
     {
-        private readonly DatabaseContext _context;
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _form;
         private int _supplierId;
         public AddSupplierForm(PurchaseOrderDetailsForm form)
         {
-            _context = new DatabaseContext();
             InitializeComponent();
-            _service = new PurchaseOrderService(_context);
+            _service = new PurchaseOrderService();
             _form = form;
         }
 
