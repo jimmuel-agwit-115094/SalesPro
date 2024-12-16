@@ -72,7 +72,7 @@ namespace SalesPro.Forms.Transactions
             {
                 if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
                 {
-                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed:false);
+                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
                     var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
                     await _transactionService.SaveTransaction(transaction, saveLogModel);
                     await _transactionForm.EnableDisableMenuPanel();
@@ -84,10 +84,11 @@ namespace SalesPro.Forms.Transactions
                 {
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
-                    await _transactionService.UpdateTransaction(_transactionId, begBal,  updateLogModel);
+                    await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel, _rowVersion);
                 }
             }
             Close();
+
         }
 
         private async void close_btn_Click(object sender, EventArgs e)

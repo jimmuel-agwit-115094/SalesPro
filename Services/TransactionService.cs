@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static System.Windows.Forms.AxHost;
 
 namespace SalesPro.Services
@@ -26,31 +27,24 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdateTransaction(int transactionId, decimal begBalance, TransactionLogModel log)
+        public async Task UpdateTransaction(int transactionId, decimal begBalance, TransactionLogModel log, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-
-                try
+                await context.ExecuteInTransactionAsync(async () =>
                 {
-                    await context.ExecuteInTransactionAsync(async () =>
-                    {
-                        var toUpdate = await context.Transactions.FindAsync(transactionId);
+                    var toUpdate = await context.Transactions.FindAsync(transactionId);
 
-                        if (toUpdate != null)
+                    if (toUpdate != null)
+                    {
+                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                         {
                             toUpdate.BeginningBalance = begBalance;
                             await context.TransactionLogs.AddAsync(log);
                             await context.SaveChangesAsync();
                         }
-                    });
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    MessageHandler.ShowError(ex.Message);
-                    throw;
-                }
-               
+                    }
+                });
             }
         }
 
