@@ -67,9 +67,15 @@ namespace SalesPro.Forms.Transactions
         private async void save_btn_Click(object sender, EventArgs e)
         {
             if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
+            var hasTransaction = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
 
             if (_actionType == SystemConstants.New)
             {
+                if (hasTransaction)
+                {
+                    MessageHandler.ShowWarning("Transaction already exists for the current date");
+                    return;
+                }
                 if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
                 {
                     var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);

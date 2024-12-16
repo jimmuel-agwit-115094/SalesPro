@@ -53,7 +53,9 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
-                    if (toUpdate != null)
+
+                    NullCheckerHelper.NullChecker(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
                         toUpdate.EndDate = transaction.EndDate;
                         toUpdate.TotalSales = transaction.TotalSales;
@@ -77,7 +79,8 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
-                    if (toUpdate != null)
+                    NullCheckerHelper.NullChecker(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
                         toUpdate.IsClosed = transaction.IsClosed;
                         await context.AddAsync(log);
