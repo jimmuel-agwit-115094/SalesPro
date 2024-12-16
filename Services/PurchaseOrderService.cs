@@ -7,41 +7,36 @@ using SalesPro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 
 namespace SalesPro.Services
 {
     public class PurchaseOrderService
     {
-        private readonly DatabaseContext _context;
-        private readonly Accessor<SupplierModel> _supplierBaseAccessor;
-        private readonly Accessor<PurchaseOrderModel> _purchaseOrderBaseAccessor;
-        private readonly Accessor<ProductModel> _productBaseAccessor;
-        private readonly Accessor<PurchaseOrderItemModel> _poItemsBaseAccessor;
-        private readonly Accessor<PurchaseOrderLogsModel> _purchaseOrderLogsBaseAccessor;
-        public PurchaseOrderService(DatabaseContext context)
-        {
-            _context = context;
-            _supplierBaseAccessor = new Accessor<SupplierModel>();
-            _purchaseOrderBaseAccessor = new Accessor<PurchaseOrderModel>();
-            _productBaseAccessor = new Accessor<ProductModel>();
-            _poItemsBaseAccessor = new Accessor<PurchaseOrderItemModel>();
-            _purchaseOrderLogsBaseAccessor = new Accessor<PurchaseOrderLogsModel>();
-        }
 
         public async Task<List<SupplierModel>> LoadSuppliers()
         {
-            return (await _supplierBaseAccessor.GetAllAsync()).ToList();
+            using (var context = new DatabaseContext())
+            {
+                return await context.Suppliers.ToListAsync();
+            }
         }
 
         public async Task<List<PurchaseOrderModel>> LoadPurchaseOrders()
         {
-            return (await _purchaseOrderBaseAccessor.GetAllAsync()).ToList();
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrders.ToListAsync();
+            }
         }
 
         public async Task<PurchaseOrderModel> SavePurchaseOrder(PurchaseOrderModel purchaseOrder)
         {
-            return await _purchaseOrderBaseAccessor.AddAsync(purchaseOrder);
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrders.ToListAsync();
+            }
         }
 
         public async Task<List<PurchaseOrderModel>> GetAllPurchaseOrders()
@@ -75,89 +70,110 @@ namespace SalesPro.Services
 
         public async Task<SupplierModel> GetSupplierById(int supplierId)
         {
-            return (await _supplierBaseAccessor.GetByIdAsync(supplierId));
+            using (var context = new DatabaseContext())
+            {
+                return await context.Suppliers.FindAsync(supplierId);
+            }
         }
 
         public async Task<PurchaseOrderModel> GetPurchaseorderById(int purchaseOrderId)
         {
-            return (await _purchaseOrderBaseAccessor.GetByIdAsync(purchaseOrderId));
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrders.FindAsync(purchaseOrderId);
+            }
         }
 
-        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int rowVersion, int supplierId)
+        public async Task UpdatePurchaseOrder_SupploerId(int purchaseOrderId, int rowVersion, PurchaseOrderItemModel purchaseOrder)
         {
-            await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
-                 purchaseOrderId,
-                 rowVersion,
-                 t =>
-                 {
-                     t.SupplierId = supplierId;
-                 }
-            );
+            using (var context = new DatabaseContext())
+            {
+                var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
+                if (toUpdate != null)
+                {
+                    context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
+                    await context.SaveChangesAsync();
+                }
+            }
         }
 
         public async Task<List<ProductModel>> LoadProducts()
         {
-            return (await _productBaseAccessor.GetAllAsync()).ToList();
+            using (var context = new DatabaseContext())
+            {
+                return await context.Products.ToListAsync();
+            }
         }
 
         public async Task<List<PurchaseOrderItemModelExntended>> LoadPurchaseOrderItemsByPoId(int purchaseOrderId)
         {
-            return await (from pt in _context.PurchaseOrderItems
-                          join p in _context.Products on pt.ProductId equals p.ProductId
-                          where pt.PurchaseOrderId == purchaseOrderId
-                          select new PurchaseOrderItemModelExntended
-                          {
-                              PurchaseOrderItemId = pt.PurchaseOrderItemId,
-                              PurchaseOrderId = pt.PurchaseOrderId,
-                              ProductId = pt.ProductId,
-                              ProductName = p.ProductName,
-                              Quantity = pt.Quantity,
-                              SupplierPrice = pt.SupplierPrice,
-                              MarkUpPrice = pt.MarkUpPrice,
-                              RetailPrice = pt.RetailPrice,
-                              TotalPrice = pt.TotalPrice
-                          }).OrderByDescending(x => x.PurchaseOrderItemId).ToListAsync();
+            using (var context = new DatabaseContext())
+            {
+                return await (from pt in context.PurchaseOrderItems
+                              join p in context.Products on pt.ProductId equals p.ProductId
+                              where pt.PurchaseOrderId == purchaseOrderId
+                              select new PurchaseOrderItemModelExntended
+                              {
+                                  PurchaseOrderItemId = pt.PurchaseOrderItemId,
+                                  PurchaseOrderId = pt.PurchaseOrderId,
+                                  ProductId = pt.ProductId,
+                                  ProductName = p.ProductName,
+                                  Quantity = pt.Quantity,
+                                  SupplierPrice = pt.SupplierPrice,
+                                  MarkUpPrice = pt.MarkUpPrice,
+                                  RetailPrice = pt.RetailPrice,
+                                  TotalPrice = pt.TotalPrice
+                              }).OrderByDescending(x => x.PurchaseOrderItemId).ToListAsync();
+            }
         }
 
-        public async Task<int> SaveItemAndUpdatePo(int purchaseOrderId, int rowVersion, PurchaseOrderItemModel poItem)
+        public async Task<int> AddPurchaseOrderItem(int purchaseOrderId, int rowVersion, PurchaseOrderModel purchaseOrder, PurchaseOrderItemModel poItem)
         {
-            var updatedPo = new PurchaseOrderModel();
-            //Should not get total from db
-            // add random total
-            Random random = new Random();
-            decimal randomDecimal = (decimal)random.NextDouble();
-
-            await _context.ExecuteInTransactionAsync(async () =>
+            using (var context = new DatabaseContext())
             {
-                updatedPo = await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
-                     purchaseOrderId,
-                     rowVersion,
-                     t =>
-                     {
-                         t.PoTotal = randomDecimal;
-                     }
-                );
-                await _poItemsBaseAccessor.AddAsync(poItem);
-               
-            });
-            return updatedPo.RowVersion;
+                var updatedPo = new PurchaseOrderModel();
+                //Should not get total from db
+                // add random total
+                Random random = new Random();
+                decimal randomDecimal = (decimal)random.NextDouble();
+
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var toUpdate = context.PurchaseOrders.FindAsync(purchaseOrderId);
+                    context.Entry(purchaseOrder).CurrentValues.SetValues(toUpdate);
+                    context.Add(poItem);
+                    await context.SaveChangesAsync();
+                });
+                return updatedPo.RowVersion;
+            }
+
         }
 
         public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
         {
-            await _context.ExecuteInTransactionAsync(async () =>
+            using (var context = new DatabaseContext())
             {
-                await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
-                     purchaseOrderId,
-                     rowVersion,
-                     t =>
-                     {
-                         t.ProcessStatus = status;
-                     }
-                );
-                await _purchaseOrderLogsBaseAccessor.AddAsync(purchaseOrderLogs);
-                MessageHandler.SuccessfullyAdded();
-            });
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
+
+                    if(toUpdate != null)
+                    {
+                        context.PurchaseOrders.ExecuteUpdate(s => s.SetProperty(e => e.Salary, e => e.Salary + 1000));
+                    }
+                    await _purchaseOrderBaseAccessor.UpdatePartialAsync<PurchaseOrderModel>(
+                         purchaseOrderId,
+                         rowVersion,
+                         t =>
+                         {
+                             t.ProcessStatus = status;
+                         }
+                    );
+                    await _purchaseOrderLogsBaseAccessor.AddAsync(purchaseOrderLogs);
+                    MessageHandler.SuccessfullyAdded();
+                });
+            }
+           
         }
     }
 }

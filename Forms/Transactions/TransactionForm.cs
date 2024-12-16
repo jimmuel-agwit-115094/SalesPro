@@ -3,6 +3,7 @@ using SalesPro.Accessors;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,12 @@ namespace SalesPro.Forms.Transactions
     {
         private MainForm _mainForm;
         private readonly DatabaseContext _context;
-        private readonly Accessor<TransactionModel> _accessor;
-        private readonly TransactionAccessor _transactionAccessor;
+        private readonly TransactionService _service;
         private DateTime _curDate;
         public TransactionForm(MainForm mainForm)
         {
             _context = new DatabaseContext();
-            _accessor = new Accessor<TransactionModel>();
-            _transactionAccessor = new TransactionAccessor();
+            _service = new TransactionService();
             InitializeComponent();
             _mainForm = mainForm;
         }
@@ -42,8 +41,8 @@ namespace SalesPro.Forms.Transactions
         private async void new_btn_Click(object sender, EventArgs e)
         {
             var pastDate = _curDate.AddDays(-1);
-            var currentTransactions = await _ser.GetTransactionByDate(_curDate.Date);
-            var pastTransactions = await _transactionAccessor.GetTransactionByDate(pastDate.Date);
+            var currentTransactions = await _service.GetTransactionByDate(_curDate.Date);
+            var pastTransactions = await _service.GetTransactionByDate(pastDate.Date);
 
             if (currentTransactions.Any())
             {
@@ -82,7 +81,7 @@ namespace SalesPro.Forms.Transactions
 
         private async void ProcessTransactionLoad()
         {
-            var allTrans = (await _accessor.GetAllAsync()).OrderByDescending(x => x.TransactionId).ToList();
+            var allTrans = await _service.GetAllTransactions();
             switch (transactionsTabControl.SelectedIndex)
             {
                 case 0:
@@ -106,7 +105,7 @@ namespace SalesPro.Forms.Transactions
         {
             var date = date_cb.Value.Date;
 
-            var filteredTrans = await _transactionAccessor.GetTransactionByDate(date);
+            var filteredTrans = await _service.GetTransactionByDate(date);
             dgTrans.DataSource = filteredTrans.OrderBy(x => x.TransactionId);
             if (filteredTrans.Count() == 0)
                 noRecordDate_lbl.Visible = true;

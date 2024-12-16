@@ -1,11 +1,9 @@
 ﻿using POS_Generic.Helpers;
-using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,23 +16,23 @@ namespace SalesPro.Forms.PurchaseOrders
         private int _productId;
         private bool _isProductSelected;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
-        private readonly DatabaseContext _context;
-        private readonly PurchaseOrderService _service;
         public AddPurchaseProductForm(PurchaseOrderDetailsForm purchaseOrderDetailsForm)
         {
             InitializeComponent();
             _purchaseOrderDetailsForm = purchaseOrderDetailsForm;
-            _context = new DatabaseContext();
-            _service = new PurchaseOrderService(_context);
         }
 
         private async Task LoadProducts()
         {
-            var products = await _service.LoadProducts();
-            if (products != null)
+            using (var _context = new DatabaseContext())
             {
-                dgProducts.DataSource = products;
-                DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
+                var service = new PurchaseOrderService(_context);
+                var products = await service.LoadProducts();
+                if (products != null)
+                {
+                    dgProducts.DataSource = products;
+                    DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
+                }
             }
         }
 
@@ -125,13 +123,17 @@ namespace SalesPro.Forms.PurchaseOrders
             if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
             try
             {
-                var poItem = BuildPurchaseOrderItem();
-                // We are passing the total from the accessor
-                _rowVersion = (await _service.GetPurchaseorderById(_poId)).RowVersion;
-                await _service.SaveItemAndUpdatePo(_poId, _rowVersion, poItem);
-                await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-              
-                Close();
+                using (var _context = new DatabaseContext())
+                {
+                    var service = new PurchaseOrderService(_context);
+                    var poItem = BuildPurchaseOrderItem();
+                    // We are passing the total from the accessor
+                    await service.SaveItemAndUpdatePo(_poId, _rowVersion, poItem);
+                    await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                    _rowVersion = (await service.GetPurchaseorderById(_poId)).RowVersion;
+                    Close();
+                }
+               
             }
             catch (Exception ex)
             {
