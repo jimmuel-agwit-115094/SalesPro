@@ -42,7 +42,7 @@ namespace SalesPro.Forms.Transactions
         private async void new_btn_Click(object sender, EventArgs e)
         {
             var pastDate = _curDate.AddDays(-1);
-            var currentTransactions = await _transactionAccessor.GetTransactionByDate(_curDate.Date);
+            var currentTransactions = await _ser.GetTransactionByDate(_curDate.Date);
             var pastTransactions = await _transactionAccessor.GetTransactionByDate(pastDate.Date);
 
             if (currentTransactions.Any())
