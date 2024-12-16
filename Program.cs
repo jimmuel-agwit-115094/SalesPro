@@ -19,12 +19,5 @@ namespace SalesPro
 
             Application.Run(new LoginForm());
         }
-
-        public static ServiceProvider ConfigureServices()
-        {
-            var services = new ServiceCollection();
-            services.AddSingleton<TransactionService>();
-            return services.BuildServiceProvider();
-        }
     }
 }

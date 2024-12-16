@@ -98,6 +98,7 @@ namespace SalesPro.Forms.Transactions
                 var transaction = BuilTransactionModel(balanceStatus: balanceStatus, isClosed: true);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
                 await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
+                await _transactionForm.EnableDisableMenuPanel();
                 Close();
             }
         }
@@ -109,6 +110,7 @@ namespace SalesPro.Forms.Transactions
                 var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
                 await _transactionService.UndoCloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
+                await _transactionForm.EnableDisableMenuPanel();
                 Close();
             }
         }

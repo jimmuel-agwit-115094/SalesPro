@@ -30,17 +30,27 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                await context.ExecuteInTransactionAsync(async () =>
-                {
-                    var toUpdate = await context.Transactions.FindAsync(transactionId);
 
-                    if (toUpdate != null)
+                try
+                {
+                    await context.ExecuteInTransactionAsync(async () =>
                     {
-                        toUpdate.BeginningBalance = begBalance;
-                        await context.TransactionLogs.AddAsync(log);
-                        await context.SaveChangesAsync();
-                    }
-                });
+                        var toUpdate = await context.Transactions.FindAsync(transactionId);
+
+                        if (toUpdate != null)
+                        {
+                            toUpdate.BeginningBalance = begBalance;
+                            await context.TransactionLogs.AddAsync(log);
+                            await context.SaveChangesAsync();
+                        }
+                    });
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    MessageHandler.ShowError(ex.Message);
+                    throw;
+                }
+               
             }
         }
 
@@ -109,7 +119,7 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 var result = await context.Transactions
-                    .FirstOrDefaultAsync(x => x.StartDate.Date == currentDate.Date);
+                    .FirstOrDefaultAsync(x => x.StartDate.Date == currentDate.Date && x.IsClosed == false);
                 return result != null;
             }
         }
