@@ -102,22 +102,22 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<int> UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId, int rowVersion)
+        public async Task<bool> UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                int newRow = 0;
+                bool success = false;
                 var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                 if (NullCheckerHelper.NullCheck(toUpdate))
                 {
-                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
+                    success = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                    if (success)
                     {
                         toUpdate.SupplierId = supplierId;
                         await context.SaveChangesAsync();
-                        newRow = toUpdate.RowVersion;
                     }
                 }
-                return newRow;
+                return success;
             }
         }
 

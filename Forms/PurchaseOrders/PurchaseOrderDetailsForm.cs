@@ -29,9 +29,10 @@ namespace SalesPro.Forms.PurchaseOrders
             _purchaseOrderForm = purchaseOrderForm;
         }
 
-        private void addSupplier_btn_Click(object sender, EventArgs e)
+        private async void addSupplier_btn_Click(object sender, EventArgs e)
         {
             AddSupplierForm addSupplierForm = new AddSupplierForm(this);
+            _rowVersion = await _service.GetPoRowVersion(_poId);
             addSupplierForm.ShowDialog();
         }
 
@@ -88,7 +89,12 @@ namespace SalesPro.Forms.PurchaseOrders
                     _isSupplierSelected = true;
                 }
                 //Update PO to set the supplier id
-                _rowVersion = await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId, _rowVersion);
+                bool success = await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId, _rowVersion);
+                if (!success)
+                {
+                    Close();
+                }
+                _rowVersion = await _service.GetPoRowVersion(_poId);
             }
             catch (Exception ex)
             {

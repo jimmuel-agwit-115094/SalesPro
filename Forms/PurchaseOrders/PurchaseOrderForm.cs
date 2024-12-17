@@ -36,6 +36,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 var form = new PurchaseOrderDetailsForm(this);
                 form._poId = savedPO.PurchaseOrderId;
                 form._actionType = SystemConstants.New;
+               //form._rowVersion = await _service.GetPoRowVersion(savedPO.PurchaseOrderId);
                 form.ShowDialog();
             }
         }
@@ -104,7 +105,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         }
 
-        private async void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -114,7 +115,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 var form = new PurchaseOrderDetailsForm(this);
                 form._poId = poId;
                 form._actionType = SystemConstants.Edit;
-                form._rowVersion = await _service.GetPoRowVersion(poId);
+                
                 form.ShowDialog();
             }
             catch (Exception ex)

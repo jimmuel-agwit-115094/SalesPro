@@ -55,6 +55,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void dgSupplier_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             await _form.SetSupplierDataOnControls(_supplierId);
+            await _form.LoadPurchaseOrderItemsByPoId();
             Close();
         }
     }
