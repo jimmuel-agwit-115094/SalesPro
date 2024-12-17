@@ -17,8 +17,8 @@ namespace SalesPro.Services
             {
                 await context.ExecuteInTransactionAsync(async () =>
                 {
-                    context.Add(transaction);
-                    context.Add(log);
+                    await context.Transactions.AddAsync(transaction);
+                    await context.TransactionLogs.AddAsync(log);
                     await context.SaveChangesAsync();
                 });
             }

@@ -107,7 +107,7 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
-                if (toUpdate != null)
+                if (NullCheckerHelper.NullCheck(toUpdate))
                 {
                     toUpdate.SupplierId = supplierId;
                     await context.SaveChangesAsync();
