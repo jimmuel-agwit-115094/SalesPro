@@ -128,5 +128,10 @@ namespace SalesPro.Forms.PurchaseOrders
                 MessageHandler.ShowError($"Error updating PO. {ex.Message}");
             }
         }
+
+        private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
+        }
     }
 }
