@@ -2,6 +2,7 @@
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -203,6 +204,24 @@ namespace SalesPro.Forms.PurchaseOrders
         private void qty_tx_ValueChanged(object sender, EventArgs e)
         {
             ComputeTotal();
+        }
+
+        private async void delete_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageHandler.ShowQuestion(Resources.ConfirmDelete, Constants.FormConstants.PurchaseOrderItem);
+                {
+                    await _service.DeletePurchaseOrderItem(_poId, _poItemId, _rowVersion);
+                    Close();
+                    await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                }
+            }
+            catch (Exception)
+            {
+                MessageHandler.ShowError($"Error deleting product with Id : {_poItemId}");
+                throw;
+            }
         }
     }
 }

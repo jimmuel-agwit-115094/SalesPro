@@ -1,6 +1,4 @@
-﻿using POS_Generic.Helpers;
-using SalesPro.Helpers;
-using SalesPro.Helpers.UiHelpers;
+﻿using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
 using System.Data;

@@ -6,7 +6,6 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +18,7 @@ namespace SalesPro.Forms.PurchaseOrders
         public decimal _totalPrice;
         private DateTime _curDate;
         public string _actionType;
+        private bool _isSupplierSelected;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -85,9 +85,10 @@ namespace SalesPro.Forms.PurchaseOrders
                     address_tx.Text = supplier.SupplierAddress;
                     contactPerson_tx.Text = supplier.SupplierContactPerson;
                     number_tx.Text = supplier.SupplierNumber;
+                    _isSupplierSelected = true;
                 }
                 //Update PO to set the supplier id
-                await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId);
+                _rowVersion = await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId, _rowVersion);
             }
             catch (Exception ex)
             {
@@ -128,6 +129,11 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
+                if (!_isSupplierSelected)
+                {
+                    MessageHandler.ShowWarning("Please select a supplier.");
+                    return;
+                }
                 var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
                 await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
                 Close();

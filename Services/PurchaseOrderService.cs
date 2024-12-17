@@ -102,18 +102,25 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId)
+        public async Task<int> UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                int newRow = 0;
                 var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                 if (NullCheckerHelper.NullCheck(toUpdate))
                 {
-                    toUpdate.SupplierId = supplierId;
-                    await context.SaveChangesAsync();
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
+                    {
+                        toUpdate.SupplierId = supplierId;
+                        await context.SaveChangesAsync();
+                        newRow = toUpdate.RowVersion;
+                    }
                 }
+                return newRow;
             }
         }
+
 
         public async Task<List<ProductModel>> LoadProducts()
         {
@@ -208,9 +215,12 @@ namespace SalesPro.Services
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                     if (NullCheckerHelper.NullCheck(toUpdate))
                     {
-                        toUpdate.ProcessStatus = status;
-                        await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
-                        await context.SaveChangesAsync();
+                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
+                        {
+                            toUpdate.ProcessStatus = status;
+                            await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
+                            await context.SaveChangesAsync();
+                        }
                     }
                 });
             }
@@ -236,6 +246,7 @@ namespace SalesPro.Services
                             itemUpdate.MarkUpPrice = poItem.MarkUpPrice;
                             itemUpdate.RetailPrice = poItem.RetailPrice;
                             itemUpdate.TotalPrice = poItem.TotalPrice;
+                            itemUpdate.ProductId = poItem.ProductId;
                             await context.SaveChangesAsync();
 
                             // get total price
@@ -246,6 +257,39 @@ namespace SalesPro.Services
                             poUpdate.PoTotal = totalPrice;
                             await context.SaveChangesAsync();
                         };
+                    }
+                });
+                return checker;
+            }
+        }
+
+        // Delete purchae order item and update total price
+        public async Task<bool> DeletePurchaseOrderItem(int poId, int poItemId, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                bool checker = false;
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var poUpdate = await context.PurchaseOrders.FindAsync(poId);
+                    var itemToDelete = await context.PurchaseOrderItems.FindAsync(poItemId);
+                    if (NullCheckerHelper.NullCheck(poUpdate))
+                    {
+                        checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, poUpdate.RowVersion);
+                        if (checker)
+                        {
+                            // delete item
+                            context.PurchaseOrderItems.Remove(itemToDelete);
+                            await context.SaveChangesAsync();
+
+                            // get total price
+                            var totalPrice = await context.PurchaseOrderItems
+                                        .Where(x => x.PurchaseOrderId == poId)
+                                        .SumAsync(x => x.TotalPrice);
+                            // update total price
+                            poUpdate.PoTotal = totalPrice;
+                            await context.SaveChangesAsync();
+                        }
                     }
                 });
                 return checker;
