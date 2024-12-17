@@ -13,9 +13,12 @@ namespace SalesPro.Forms.PurchaseOrders
     public partial class AddPurchaseProductForm : Form
     {
         public int _poId;
+        public int _poItemId;
         public int _rowVersion;
         private int _productId;
         private bool _isProductSelected;
+        public string _actionType;
+
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
         public AddPurchaseProductForm(PurchaseOrderDetailsForm purchaseOrderDetailsForm)
@@ -41,6 +44,15 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void AddPurchaseProductForm_Load(object sender, EventArgs e)
         {
             await LoadProducts();
+            if (_actionType == Constants.SystemConstants.Edit)
+            {
+                var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
+                NullCheckerHelper.NullChecker(poItem);
+                qty_tx.Text = poItem.Quantity.ToString();
+                supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
+                markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
+                retailPrice_tx.Text = poItem.RetailPrice.ToString();
+            }
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)

@@ -240,19 +240,28 @@ public static class DgFormatHelper
 
     public static int GetSelectedId(DataGridView dgv, DataGridViewCellEventArgs e, string columnName)
     {
-        if (e.ColumnIndex == dgv.Columns[columnName].Index && e.RowIndex >= 0)
+        try
         {
-            object cellValue = dgv.Rows[e.RowIndex].Cells[columnName].Value;
-
-            if (cellValue != null && int.TryParse(cellValue.ToString(), out int selectedId))
+            if (e.ColumnIndex == dgv.Columns[columnName].Index && e.RowIndex >= 0)
             {
-                if (selectedId != 0)
+                object cellValue = dgv.Rows[e.RowIndex].Cells[columnName].Value;
+
+                if (cellValue != null && int.TryParse(cellValue.ToString(), out int selectedId))
                 {
-                    return selectedId;
+                    if (selectedId != 0)
+                    {
+                        return selectedId;
+                    }
                 }
             }
+            return 0;
         }
-        return 0;
+        catch (Exception ex)
+        {
+            MessageHandler.ShowError($"Error getting selected id {ex.Message}");
+            throw;
+        }
+       
     }
 
     public static void SetDataGridStyles(DataGridView dataGrid)

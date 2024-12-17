@@ -93,7 +93,7 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.PurchaseOrders.Where(x=>x.PurchaseOrderId == purchaseOrderId).Select(x => x.RowVersion).FirstOrDefaultAsync();
+                return await context.PurchaseOrders.Where(x => x.PurchaseOrderId == purchaseOrderId).Select(x => x.RowVersion).FirstOrDefaultAsync();
             }
         }
 
@@ -170,6 +170,14 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<PurchaseOrderItemModel> GetPurchaseOrderItemByPoItemId(int poItemId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrderItems.Where(x => x.PurchaseOrderItemId == poItemId).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
         {
             using (var context = new DatabaseContext())
@@ -185,5 +193,7 @@ namespace SalesPro.Services
                 });
             }
         }
+
+
     }
 }

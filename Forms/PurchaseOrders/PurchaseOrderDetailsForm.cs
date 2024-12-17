@@ -112,7 +112,16 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void dgPoItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            int poItemId = DgFormatHelper.GetSelectedId(dgPoItems, e, "PurchaseOrderItemId");
+            if (poItemId == 0) return;
+            var form = new AddPurchaseProductForm(this)
+            {
+                _poId = _poId,
+                _rowVersion = _rowVersion,
+                _actionType = SystemConstants.Edit,
+                _poItemId = poItemId
+            };
+            form.ShowDialog();
         }
 
         private async void action_btn_Click(object sender, EventArgs e)
@@ -132,6 +141,11 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgPoItems, search_tx);
         }
     }
 }
