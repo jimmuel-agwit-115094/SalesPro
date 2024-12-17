@@ -89,6 +89,14 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<int> GetPoRowVersion(int purchaseOrderId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.PurchaseOrders.Where(x=>x.PurchaseOrderId == purchaseOrderId).Select(x => x.RowVersion).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task UpdatePurchaseOrder_SupplierId(int purchaseOrderId, int supplierId)
         {
             using (var context = new DatabaseContext())
@@ -132,7 +140,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem)
+        public async Task SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -140,11 +148,12 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                     NullCheckerHelper.NullChecker(toUpdate);
-
-                    toUpdate.PoTotal = poTotal;
-                    await context.AddAsync(poItem);
-                    await context.SaveChangesAsync();
-
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
+                    {
+                        toUpdate.PoTotal = poTotal;
+                        await context.AddAsync(poItem);
+                        await context.SaveChangesAsync();
+                    }
                 });
             }
         }
@@ -165,35 +174,12 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
+                    NullCheckerHelper.NullChecker(toUpdate);
+                    toUpdate.ProcessStatus = status;
+                    await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
+                    await context.SaveChangesAsync();
 
-                    if (toUpdate != null)
-                    {
-                        toUpdate.ProcessStatus = status;
-                        await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
-                        await context.SaveChangesAsync();
-                    }
                 });
-            }
-        }
-
-        public async Task UpdatePurchaseOrderLockStatus(int poId, bool isLocked)
-        {
-            using (var context = new DatabaseContext())
-            {
-                var toUpdate = await context.PurchaseOrders.FindAsync(poId);
-                NullCheckerHelper.NullChecker(toUpdate);
-                toUpdate.IsLocked = isLocked;
-                await context.SaveChangesAsync();
-            }
-        }
-
-        public async Task<bool> CheckPurchaseOrderLockState(int poId)
-        {
-            using (var context = new DatabaseContext())
-            {
-                var po = await context.PurchaseOrders.FindAsync(poId);
-                NullCheckerHelper.NullChecker(po);
-                return po.IsLocked;
             }
         }
     }

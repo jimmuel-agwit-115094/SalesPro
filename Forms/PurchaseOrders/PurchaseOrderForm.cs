@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
-using POS_Generic.Helpers;
+﻿using POS_Generic.Helpers;
 using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
@@ -8,7 +7,6 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,7 +36,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 var form = new PurchaseOrderDetailsForm(this)
                 {
                     _poId = savedPO.PurchaseOrderId,
-                    _rowVersion = savedPO.RowVersion
+                    _actionType = SystemConstants.New
                 };
                 form.ShowDialog();
             }
@@ -60,7 +58,6 @@ namespace SalesPro.Forms.PurchaseOrders
                     PaymentStatus = PaymentStatus.Unpaid,
                     CancellationReason = string.Empty,
                     Remarks = string.Empty,
-                    IsLocked = true,
                 };
                 return await _service.SavePurchaseOrder(po);
             }
@@ -111,19 +108,23 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int selectedId = DgFormatHelper.GetSelectedId(dgPo, e, "PurchaseOrderId");
-            if (selectedId == 0) return;
-            var isLocked = await _service.CheckPurchaseOrderLockState(selectedId);
-            if (isLocked)
+            try
             {
-                MessageHandler.ShowError("The Purchase Order is currently locked and being edited by another user.");
-                return;
+                int poId = DgFormatHelper.GetSelectedId(dgPo, e, "PurchaseOrderId");
+                if (poId == 0) return;
+                var form = new PurchaseOrderDetailsForm(this)
+                {
+                    _poId = poId,
+                    _actionType = SystemConstants.Edit
+                };
+                form._rowVersion = await _service.GetPoRowVersion(poId);
+                form.ShowDialog();
             }
-            var form = new PurchaseOrderDetailsForm(this)
+            catch (Exception ex)
             {
-                _poId = selectedId
-            };
-            form.ShowDialog();
+                MessageHandler.ShowError($"Error purchase order cell click: {ex.Message}");
+                throw;
+            }
         }
     }
 }

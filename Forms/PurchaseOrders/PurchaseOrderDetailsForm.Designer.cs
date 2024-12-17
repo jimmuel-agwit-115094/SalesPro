@@ -467,7 +467,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Order Details";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PurchaseOrderDetailsForm_FormClosed);
             this.Load += new System.EventHandler(this.PurchaseOrderDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

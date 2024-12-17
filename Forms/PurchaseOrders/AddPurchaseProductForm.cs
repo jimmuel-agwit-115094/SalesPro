@@ -117,11 +117,9 @@ namespace SalesPro.Forms.PurchaseOrders
                 PurchaseOrderId = _poId,
                 SupplierId = supplierId,
                 UserId = UserSession.Session_UserId,
-
             };
             return poItem;
         }
-
 
         private async void add_btn_Click(object sender, EventArgs e)
         {
@@ -134,12 +132,12 @@ namespace SalesPro.Forms.PurchaseOrders
             if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
             if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
             if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
-            
+
             try
             {
                 var poItem = BuildPurchaseOrderItem();
                 decimal total = (await _service.GetPurchaseOrderItemsByPoid(_poId)).Sum(x => x.TotalPrice) + decimal.Parse(retailPrice_tx.Text);
-                await _service.SavePurchaseOrderItem(_poId, total, poItem);
+                await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
                 Close();
             }

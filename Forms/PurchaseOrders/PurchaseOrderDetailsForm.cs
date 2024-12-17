@@ -1,4 +1,4 @@
-﻿using POS_Generic.Helpers;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -17,6 +17,8 @@ namespace SalesPro.Forms.PurchaseOrders
         public int _rowVersion;
         public decimal _totalPrice;
         private DateTime _curDate;
+        public string _actionType;
+
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
         public PurchaseOrderDetailsForm(PurchaseOrderForm purchaseOrderForm)
@@ -37,16 +39,6 @@ namespace SalesPro.Forms.PurchaseOrders
             _curDate = await ClockHelper.GetServerDateTime();
             await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
-
-            try
-            {
-                await _service.UpdatePurchaseOrderLockStatus(_poId, true);
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error loading add product form: {ex.Message}");
-                throw;
-            }
         }
 
         private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus, string reason)
@@ -103,25 +95,18 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private async void PurchaseOrderDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                await _service.UpdatePurchaseOrderLockStatus(_poId, false);
-                await _purchaseOrderForm.LoadPurchaseOrdersByProcessStatus();
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error Closing PO: {ex.Message}");
-                throw;
-            }
-        }
-
-        private void addProduct_btn_Click(object sender, EventArgs e)
+        private async void addProduct_btn_Click(object sender, EventArgs e)
         {
             AddPurchaseProductForm form = new AddPurchaseProductForm(this);
+            if (_actionType == SystemConstants.New)
+            {
+                form._rowVersion = await _service.GetPoRowVersion(_poId);
+            }
+            else
+            {
+                form._rowVersion = _rowVersion;
+            }
             form._poId = _poId;
-            form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
 
