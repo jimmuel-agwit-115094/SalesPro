@@ -44,22 +44,37 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void AddPurchaseProductForm_Load(object sender, EventArgs e)
         {
-            await LoadProducts();
-            if (_actionType == Constants.SystemConstants.New)
+            try
             {
-                add_btn.Text = "Add";
-            }
-            else
-            {
-                var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
-                NullCheckerHelper.NullChecker(poItem);
-                qty_tx.Text = poItem.Quantity.ToString();
-                supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
-                markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
-                retailPrice_tx.Text = poItem.RetailPrice.ToString();
+                await LoadProducts();
+                if (_actionType == Constants.SystemConstants.New)
+                {
+                    add_btn.Text = "Add";
+                }
+                else
+                {
+                    var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
+                    if (poItem != null)
+                    {
+                        qty_tx.Text = poItem.Quantity.ToString();
+                        supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
+                        markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
+                        retailPrice_tx.Text = poItem.RetailPrice.ToString();
+                    }
+                    else
+                    {
+                        MessageHandler.ShowError($"Error getting purchase order item: {_poItemId} {_actionType}");
+                    }
 
-                add_btn.Text = "Update";
+                    add_btn.Text = "Update";
+                }
             }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error add prodcut form load: {ex.Message}");
+                throw;
+            }
+
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)
@@ -176,7 +191,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     }
                 }
                 Close();
-               await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
             }
             catch (Exception ex)
             {

@@ -153,21 +153,22 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
-                    NullCheckerHelper.NullChecker(toUpdate);
-
-                    checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
-                    if (checker)
+                    if (NullCheckerHelper.NullCheck(toUpdate))
                     {
-                        // save items
-                        await context.PurchaseOrderItems.AddAsync(poItem);
-                        await context.SaveChangesAsync();
+                        checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                        if (checker)
+                        {
+                            // save items
+                            await context.PurchaseOrderItems.AddAsync(poItem);
+                            await context.SaveChangesAsync();
 
-                        // get total price
-                        var totalPrice = await context.PurchaseOrderItems
-                                    .Where(x => x.PurchaseOrderId == purchaseOrderId)
-                                    .SumAsync(x => x.TotalPrice);
-                        toUpdate.PoTotal = totalPrice;
-                        await context.SaveChangesAsync();
+                            // get total price
+                            var totalPrice = await context.PurchaseOrderItems
+                                        .Where(x => x.PurchaseOrderId == purchaseOrderId)
+                                        .SumAsync(x => x.TotalPrice);
+                            toUpdate.PoTotal = totalPrice;
+                            await context.SaveChangesAsync();
+                        }
                     }
                 });
                 return checker;
@@ -205,10 +206,12 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
-                    NullCheckerHelper.NullChecker(toUpdate);
-                    toUpdate.ProcessStatus = status;
-                    await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
-                    await context.SaveChangesAsync();
+                    if (NullCheckerHelper.NullCheck(toUpdate))
+                    {
+                        toUpdate.ProcessStatus = status;
+                        await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
+                        await context.SaveChangesAsync();
+                    }
                 });
             }
         }
@@ -222,27 +225,28 @@ namespace SalesPro.Services
                 {
                     var poUpdate = await context.PurchaseOrders.FindAsync(poId);
                     var itemUpdate = await context.PurchaseOrderItems.FindAsync(poItemId);
-                    NullCheckerHelper.NullChecker(poUpdate);
-                    NullCheckerHelper.NullChecker(itemUpdate);
-                    checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, poUpdate.RowVersion);
-                    if (checker)
+                    if (NullCheckerHelper.NullCheck(poUpdate))
                     {
-                        // update items
-                        itemUpdate.Quantity = poItem.Quantity;
-                        itemUpdate.SupplierPrice = poItem.SupplierPrice;
-                        itemUpdate.MarkUpPrice = poItem.MarkUpPrice;
-                        itemUpdate.RetailPrice = poItem.RetailPrice;
-                        itemUpdate.TotalPrice = poItem.TotalPrice;
-                        await context.SaveChangesAsync();
+                        checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, poUpdate.RowVersion);
+                        if (checker)
+                        {
+                            // update items
+                            itemUpdate.Quantity = poItem.Quantity;
+                            itemUpdate.SupplierPrice = poItem.SupplierPrice;
+                            itemUpdate.MarkUpPrice = poItem.MarkUpPrice;
+                            itemUpdate.RetailPrice = poItem.RetailPrice;
+                            itemUpdate.TotalPrice = poItem.TotalPrice;
+                            await context.SaveChangesAsync();
 
-                        // get total price
-                        var totalPrice = await context.PurchaseOrderItems
-                                    .Where(x => x.PurchaseOrderId == poId)
-                                    .SumAsync(x => x.TotalPrice);
-                        // update total price
-                        poUpdate.PoTotal = totalPrice;
-                        await context.SaveChangesAsync();
-                    };
+                            // get total price
+                            var totalPrice = await context.PurchaseOrderItems
+                                        .Where(x => x.PurchaseOrderId == poId)
+                                        .SumAsync(x => x.TotalPrice);
+                            // update total price
+                            poUpdate.PoTotal = totalPrice;
+                            await context.SaveChangesAsync();
+                        };
+                    }
                 });
                 return checker;
             }

@@ -5,12 +5,14 @@ namespace POS_Generic.Helpers
 {
     public class NullCheckerHelper
     {
-        public static void NullChecker<T>(T value) where T : class
+        public static bool NullCheck(object obj)
         {
-            if (value == null)
+            if (obj == null)
             {
-                throw new ArgumentNullException("The data you are trying to update cannot be found. Please try again.");
+                MessageHandler.ShowError($"Error getting data for: {obj}");
+                return false;
             }
+            return true;
         }
     }
 }

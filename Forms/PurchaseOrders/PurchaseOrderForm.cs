@@ -33,11 +33,9 @@ namespace SalesPro.Forms.PurchaseOrders
             if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n {Resources.ConfirmNew}", FormConstants.PurchaseOrder))
             {
                 var savedPO = await SavePurchaseOrder();
-                var form = new PurchaseOrderDetailsForm(this)
-                {
-                    _poId = savedPO.PurchaseOrderId,
-                    _actionType = SystemConstants.New
-                };
+                var form = new PurchaseOrderDetailsForm(this);
+                form._poId = savedPO.PurchaseOrderId;
+                form._actionType = SystemConstants.New;
                 form.ShowDialog();
             }
         }
@@ -112,11 +110,10 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 int poId = DgFormatHelper.GetSelectedId(dgPo, e, "PurchaseOrderId");
                 if (poId == 0) return;
-                var form = new PurchaseOrderDetailsForm(this)
-                {
-                    _poId = poId,
-                    _actionType = SystemConstants.Edit
-                };
+
+                var form = new PurchaseOrderDetailsForm(this);
+                form._poId = poId;
+                form._actionType = SystemConstants.Edit;
                 form._rowVersion = await _service.GetPoRowVersion(poId);
                 form.ShowDialog();
             }

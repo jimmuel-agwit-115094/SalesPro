@@ -99,16 +99,8 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void addProduct_btn_Click(object sender, EventArgs e)
         {
             AddPurchaseProductForm form = new AddPurchaseProductForm(this);
-            if (_actionType == SystemConstants.New)
-            {
-                form._rowVersion = await _service.GetPoRowVersion(_poId);
-                form._actionType = SystemConstants.New;
-            }
-            else
-            {
-                form._rowVersion = _rowVersion;
-                form._actionType = SystemConstants.Edit;
-            }
+            form._rowVersion = await _service.GetPoRowVersion(_poId);
+            form._actionType = SystemConstants.New;
             form._poId = _poId;
             form.ShowDialog();
         }
