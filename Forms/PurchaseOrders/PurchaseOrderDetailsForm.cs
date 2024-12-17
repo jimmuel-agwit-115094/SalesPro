@@ -140,6 +140,11 @@ namespace SalesPro.Forms.PurchaseOrders
                     MessageHandler.ShowWarning("Please select a supplier.");
                     return;
                 }
+                if (dgPoItems.Rows.Count == 0)
+                {
+                    MessageHandler.ShowWarning("Please add products to the purchase order.");
+                    return;
+                }
                 var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
                 await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
                 Close();

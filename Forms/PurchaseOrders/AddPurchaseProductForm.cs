@@ -193,7 +193,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 }
                 Close();
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-                _rowVersion = await _service.GetPoRowVersion(_poId);
+                _purchaseOrderDetailsForm._rowVersion = await _service.GetPoRowVersion(_poId);
             }
             catch (Exception ex)
             {
