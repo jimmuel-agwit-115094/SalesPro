@@ -156,12 +156,11 @@ namespace SalesPro.Forms.PurchaseOrders
 
             try
             {
-                decimal dbTotal = await _service.GetTotalPriceByPoId(_poId);
-                decimal total =   _totalPrice + dbTotal;
+                // Note : Logic for calculating the total is done on the data access side.
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     var poItem = BuildPurchaseOrderItem();
-                    var success = await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
+                    var success = await _service.SavePurchaseOrderItem(_poId, poItem, _rowVersion);
                     if (!success)
                     {
                         _purchaseOrderDetailsForm.Close();
@@ -170,15 +169,14 @@ namespace SalesPro.Forms.PurchaseOrders
                 else
                 {
                     var updatedPoItem = BuildPurchaseOrderItem();
-                    var success = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, total, updatedPoItem, _rowVersion);
+                    var success = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, updatedPoItem, _rowVersion);
                     if (!success)
                     {
                         _purchaseOrderDetailsForm.Close();
                     }
                 }
-                decimal dbTotal2 = await _service.GetTotalPriceByPoId(_poId);
                 Close();
-                var total2 = await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+               await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
             }
             catch (Exception ex)
             {

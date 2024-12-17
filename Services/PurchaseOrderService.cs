@@ -145,7 +145,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<bool> SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem, int rowVersion)
+        public async Task<bool> SavePurchaseOrderItem(int purchaseOrderId, PurchaseOrderItemModel poItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -158,8 +158,15 @@ namespace SalesPro.Services
                     checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
                     if (checker)
                     {
-                        toUpdate.PoTotal = poTotal;
+                        // save items
                         await context.PurchaseOrderItems.AddAsync(poItem);
+                        await context.SaveChangesAsync();
+
+                        // get total price
+                        var totalPrice = await context.PurchaseOrderItems
+                                    .Where(x => x.PurchaseOrderId == purchaseOrderId)
+                                    .SumAsync(x => x.TotalPrice);
+                        toUpdate.PoTotal = totalPrice;
                         await context.SaveChangesAsync();
                     }
                 });
@@ -206,7 +213,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<bool> UpdatePurchaseOrderItems(int poId, int poItemId, decimal total, PurchaseOrderItemModel poItem, int rowVersion)
+        public async Task<bool> UpdatePurchaseOrderItems(int poId, int poItemId, PurchaseOrderItemModel poItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -226,9 +233,14 @@ namespace SalesPro.Services
                         itemUpdate.MarkUpPrice = poItem.MarkUpPrice;
                         itemUpdate.RetailPrice = poItem.RetailPrice;
                         itemUpdate.TotalPrice = poItem.TotalPrice;
+                        await context.SaveChangesAsync();
 
+                        // get total price
+                        var totalPrice = await context.PurchaseOrderItems
+                                    .Where(x => x.PurchaseOrderId == poId)
+                                    .SumAsync(x => x.TotalPrice);
                         // update total price
-                        poUpdate.PoTotal = total;
+                        poUpdate.PoTotal = totalPrice;
                         await context.SaveChangesAsync();
                     };
                 });
