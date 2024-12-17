@@ -137,8 +137,12 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 var poItem = BuildPurchaseOrderItem();
                 decimal total = (await _service.GetPurchaseOrderItemsByPoid(_poId)).Sum(x => x.TotalPrice) + decimal.Parse(retailPrice_tx.Text);
-                await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
+                var success = await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                if (!success)
+                {
+                    _purchaseOrderDetailsForm.Close();
+                }
                 Close();
             }
             catch (Exception ex)

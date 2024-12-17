@@ -140,24 +140,27 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem, int rowVersion)
+        public async Task<bool> SavePurchaseOrderItem(int purchaseOrderId, decimal poTotal, PurchaseOrderItemModel poItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                bool checker = false;
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.PurchaseOrders.FindAsync(purchaseOrderId);
                     NullCheckerHelper.NullChecker(toUpdate);
-                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
+
+                    checker = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                    if (checker)
                     {
                         toUpdate.PoTotal = poTotal;
                         await context.AddAsync(poItem);
                         await context.SaveChangesAsync();
                     }
                 });
+                return checker;
             }
         }
-
 
         public async Task<List<PurchaseOrderItemModel>> GetPurchaseOrderItemsByPoid(int poId)
         {

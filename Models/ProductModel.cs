@@ -11,6 +11,5 @@ namespace SalesPro.Models
         public string UnitOfMeasure { get; set; }
         public string Description { get; set; }
         public int ReorderLevel { get; set; }
-
     }
 }
