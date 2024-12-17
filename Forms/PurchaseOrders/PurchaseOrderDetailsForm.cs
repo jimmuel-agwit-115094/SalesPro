@@ -6,6 +6,7 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -101,27 +102,34 @@ namespace SalesPro.Forms.PurchaseOrders
             if (_actionType == SystemConstants.New)
             {
                 form._rowVersion = await _service.GetPoRowVersion(_poId);
+                form._actionType = SystemConstants.New;
             }
             else
             {
                 form._rowVersion = _rowVersion;
+                form._actionType = SystemConstants.Edit;
             }
             form._poId = _poId;
             form.ShowDialog();
         }
 
-        private void dgPoItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgPoItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int poItemId = DgFormatHelper.GetSelectedId(dgPoItems, e, "PurchaseOrderItemId");
-            if (poItemId == 0) return;
-            var form = new AddPurchaseProductForm(this)
+            try
             {
-                _poId = _poId,
-                _rowVersion = _rowVersion,
-                _actionType = SystemConstants.Edit,
-                _poItemId = poItemId
-            };
-            form.ShowDialog();
+                int poItemId = DgFormatHelper.GetSelectedId(dgPoItems, e, "PurchaseOrderItemId");
+                if (poItemId == 0) return;
+                var form = new AddPurchaseProductForm(this);
+                form._poId = _poId;
+                form._rowVersion = await _service.GetPoRowVersion(_poId);
+                form._actionType = SystemConstants.Edit;
+                form._poItemId = poItemId;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error getting product : {ex.Message}");
+            }
         }
 
         private async void action_btn_Click(object sender, EventArgs e)

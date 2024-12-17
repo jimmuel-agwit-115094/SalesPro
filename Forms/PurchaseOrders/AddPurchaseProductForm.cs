@@ -18,6 +18,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private int _productId;
         private bool _isProductSelected;
         public string _actionType;
+        public decimal _totalPrice;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
@@ -44,7 +45,11 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void AddPurchaseProductForm_Load(object sender, EventArgs e)
         {
             await LoadProducts();
-            if (_actionType == Constants.SystemConstants.Edit)
+            if (_actionType == Constants.SystemConstants.New)
+            {
+                add_btn.Text = "Add";
+            }
+            else
             {
                 var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
                 NullCheckerHelper.NullChecker(poItem);
@@ -52,6 +57,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
                 markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
                 retailPrice_tx.Text = poItem.RetailPrice.ToString();
+
+                add_btn.Text = "Update";
             }
         }
 
@@ -80,6 +87,8 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             var retailPrice = decimal.Parse(supplierPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text);
             retailPrice_tx.Text = retailPrice.ToString();
+            _totalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text);
+            total_tx.Text = _totalPrice.ToString("N2");
         }
 
         private void dgProducts_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -117,7 +126,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 SupplierPrice = decimal.Parse(supplierPrice_tx.Text),
                 MarkUpPrice = decimal.Parse(markUpPrice_tx.Text),
                 RetailPrice = decimal.Parse(retailPrice_tx.Text),
-                TotalPrice = decimal.Parse(retailPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text)
+                TotalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text)
             };
             return poItem;
         }
@@ -147,21 +156,40 @@ namespace SalesPro.Forms.PurchaseOrders
 
             try
             {
-                var poItem = BuildPurchaseOrderItem();
-                decimal total = (await _service.GetPurchaseOrderItemsByPoid(_poId)).Sum(x => x.TotalPrice) + decimal.Parse(retailPrice_tx.Text);
-                var success = await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
-                await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-                if (!success)
+                decimal dbTotal = await _service.GetTotalPriceByPoId(_poId);
+                decimal total =   _totalPrice + dbTotal;
+                if (_actionType == Constants.SystemConstants.New)
                 {
-                    _purchaseOrderDetailsForm.Close();
+                    var poItem = BuildPurchaseOrderItem();
+                    var success = await _service.SavePurchaseOrderItem(_poId, total, poItem, _rowVersion);
+                    if (!success)
+                    {
+                        _purchaseOrderDetailsForm.Close();
+                    }
                 }
+                else
+                {
+                    var updatedPoItem = BuildPurchaseOrderItem();
+                    var success = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, total, updatedPoItem, _rowVersion);
+                    if (!success)
+                    {
+                        _purchaseOrderDetailsForm.Close();
+                    }
+                }
+                decimal dbTotal2 = await _service.GetTotalPriceByPoId(_poId);
                 Close();
+                var total2 = await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error adding product: {ex.Message}");
                 throw;
             }
+        }
+
+        private void qty_tx_ValueChanged(object sender, EventArgs e)
+        {
+            ComputeTotal();
         }
     }
 }
