@@ -44,21 +44,30 @@ namespace SalesPro.Forms.PurchaseOrders
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 await _form.SetSupplierDataOnControls(_supplierId);
+                await _form.ReloadRowVersion();
                 Close();
             }
         }
 
-        private void dgSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private async void dgSupplier_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Disable column header click
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
             await _form.SetSupplierDataOnControls(_supplierId);
             await _form.LoadPurchaseOrderItemsByPoId();
             await _form.ReloadRowVersion();
             Close();
+        }
+
+        private void dgSupplier_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                return; // Do nothing
+            }
         }
     }
 }

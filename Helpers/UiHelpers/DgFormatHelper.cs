@@ -159,6 +159,17 @@ public static class DgFormatHelper
                 ev.Handled = true;
             }
         };
+        // Disable column header double-click
+        dataGridView.MouseDoubleClick += (s, ev) =>
+        {
+            // Check if the double-click occurred on the column header
+            var hitTestInfo = dataGridView.HitTest(ev.X, ev.Y);
+            if (hitTestInfo.Type == DataGridViewHitTestType.ColumnHeader)
+            {
+                // Suppress the double-click event
+                ev = null; // No action will be taken
+            }
+        };
     }
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
