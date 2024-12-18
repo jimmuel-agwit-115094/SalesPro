@@ -3,6 +3,7 @@ using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SalesPro.Forms.PurchaseOrders
         public decimal _totalPrice;
         private DateTime _curDate;
         public string _actionType;
-        private bool _isSupplierSelected;
+        private bool _isSupplierSelected = false;
         public ProcessStatus _poTabProcess;
 
         private readonly PurchaseOrderService _service;
@@ -45,31 +46,59 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
         {
             _curDate = await ClockHelper.GetServerDateTime();
+            var po = await _service.GetPurchaseorderById(_poId);
+            if (po == null) return;
+
+            var supplier = await _service.GetSupplierById(po.SupplierId);
+            if (supplier != null)
+            {
+                supplier_tx.Text = supplier.SupplierName;
+                address_tx.Text = supplier.SupplierAddress;
+                contactPerson_tx.Text = supplier.SupplierContactPerson;
+                number_tx.Text = supplier.SupplierNumber;
+                _isSupplierSelected = supplier.SupplierId != 1;
+            }
             await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
-          
 
             switch (_poTabProcess)
             {
                 case ProcessStatus.Created:
                     action_btn.Text = "Send To Supplier";
+                    undo_btn.Text = "Cancel PO";
                     action_btn.Visible = true;
-                    undo_btn.Visible = false;
+                    undo_btn.Visible = true;
+                    creditTermsPanel.Visible = false;
+
+                    addProduct_btn.Visible = true;
+                    addSupplier_btn.Visible = true;
                     break;
                 case ProcessStatus.Sent:
                     action_btn.Text = "Receive";
                     undo_btn.Text = "Undo Process";
                     action_btn.Visible = true;
                     undo_btn.Visible = true;
+                    creditTermsPanel.Visible = true;
+
+                    addProduct_btn.Visible = false;
+                    addSupplier_btn.Visible = false;
                     break;
                 case ProcessStatus.Completed:
                     action_btn.Visible = false;
                     undo_btn.Visible = false;
+                    creditTermsPanel.Visible = false;
+
+                    addProduct_btn.Visible = false;
+                    addSupplier_btn.Visible = false;
                     break;
                 case ProcessStatus.Cancelled:
                     action_btn.Text = "Re-Activate";
                     action_btn.Visible = true;
                     undo_btn.Visible = false;
+                    creditTermsPanel.Visible = false;
+
+                    addProduct_btn.Visible = false;
+                    addSupplier_btn.Visible = false;
                     break;
             }
 
@@ -180,12 +209,21 @@ namespace SalesPro.Forms.PurchaseOrders
                 switch (_poTabProcess)
                 {
                     case ProcessStatus.Created:
-                        var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
-                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to send to supplier?"))
+                        {
+                            var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Sent, sentLog);
+                            Close();
+                        }
                         break;
                     case ProcessStatus.Sent:
-                        var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed, string.Empty);
-                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Completed, completedLog);
+                        if (!Validators.IntValidator(creditTerms_tx.Text, "Credit Terms")) return;
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to receive purchase order?"))
+                        {
+                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed, string.Empty);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog);
+                            Close();
+                        }
                         break;
                     case ProcessStatus.Completed:
                         Close();
@@ -194,7 +232,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         Close();
                         break;
                 }
-                Close();
+
             }
             catch (Exception ex)
             {
@@ -219,18 +257,31 @@ namespace SalesPro.Forms.PurchaseOrders
                 switch (_poTabProcess)
                 {
                     case ProcessStatus.Created:
-
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Cancel Purchase Order?"))
+                        {
+                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Cancelled, undoLog);
+                            Close();
+                        }
                         break;
                     case ProcessStatus.Sent:
-                        var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created, string.Empty);
-                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Created, undoLog);
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Undo Purchase Order to created?"))
+                        {
+                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created, string.Empty);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, undoLog);
+                            Close();
+                        }
                         break;
                     case ProcessStatus.Completed:
 
                         break;
                     case ProcessStatus.Cancelled:
-                        var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
-                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Created, cancelledLog);
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Reactivate Purchase order?"))
+                        {
+                            var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, cancelledLog);
+                            Close();
+                        }
                         break;
                 }
             }
@@ -239,6 +290,11 @@ namespace SalesPro.Forms.PurchaseOrders
                 MessageHandler.ShowError($"Error undoing process. {ex.Message}");
                 throw;
             }
+        }
+
+        private void creditTerms_tx_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

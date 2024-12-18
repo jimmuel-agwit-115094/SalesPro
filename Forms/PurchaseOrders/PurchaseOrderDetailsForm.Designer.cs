@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderDetailsForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
@@ -61,6 +61,9 @@
             this.poId_tx = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rowCount_tx = new System.Windows.Forms.Label();
+            this.creditTerms_tx = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.creditTermsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -69,6 +72,8 @@
             this.close_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.creditTerms_tx)).BeginInit();
+            this.creditTermsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // title_lbl
@@ -101,30 +106,30 @@
             this.dgPoItems.AllowUserToAddRows = false;
             this.dgPoItems.AllowUserToDeleteRows = false;
             this.dgPoItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgPoItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgPoItems.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgPoItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgPoItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgPoItems.ColumnHeadersHeight = 37;
             this.dgPoItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgPoItems.EnableHeadersVisualStyles = false;
             this.dgPoItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgPoItems.Location = new System.Drawing.Point(16, 171);
@@ -251,7 +256,7 @@
             this.action_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.action_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.action_btn.ForeColor = System.Drawing.Color.White;
-            this.action_btn.Location = new System.Drawing.Point(700, 651);
+            this.action_btn.Location = new System.Drawing.Point(700, 678);
             this.action_btn.Name = "action_btn";
             this.action_btn.Size = new System.Drawing.Size(159, 34);
             this.action_btn.TabIndex = 520;
@@ -266,7 +271,7 @@
             this.undo_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.undo_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.undo_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.undo_btn.Location = new System.Drawing.Point(547, 651);
+            this.undo_btn.Location = new System.Drawing.Point(547, 678);
             this.undo_btn.Name = "undo_btn";
             this.undo_btn.Size = new System.Drawing.Size(140, 34);
             this.undo_btn.TabIndex = 521;
@@ -411,7 +416,7 @@
             // 
             this.poId_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poId_tx.ForeColor = System.Drawing.Color.Navy;
-            this.poId_tx.Location = new System.Drawing.Point(16, 665);
+            this.poId_tx.Location = new System.Drawing.Point(16, 660);
             this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.poId_tx.Name = "poId_tx";
             this.poId_tx.Size = new System.Drawing.Size(263, 20);
@@ -434,19 +439,62 @@
             // 
             this.rowCount_tx.AutoSize = true;
             this.rowCount_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowCount_tx.Location = new System.Drawing.Point(16, 648);
+            this.rowCount_tx.Location = new System.Drawing.Point(16, 643);
             this.rowCount_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rowCount_tx.Name = "rowCount_tx";
             this.rowCount_tx.Size = new System.Drawing.Size(98, 17);
             this.rowCount_tx.TabIndex = 536;
             this.rowCount_tx.Text = "Product Count :";
             // 
+            // creditTerms_tx
+            // 
+            this.creditTerms_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.creditTerms_tx.Location = new System.Drawing.Point(185, 2);
+            this.creditTerms_tx.Maximum = new decimal(new int[] {
+            365,
+            0,
+            0,
+            0});
+            this.creditTerms_tx.Name = "creditTerms_tx";
+            this.creditTerms_tx.Size = new System.Drawing.Size(114, 27);
+            this.creditTerms_tx.TabIndex = 543;
+            this.creditTerms_tx.Tag = "IsNumeric";
+            this.creditTerms_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.creditTerms_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.creditTerms_tx.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.creditTerms_tx.ValueChanged += new System.EventHandler(this.creditTerms_tx_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(9, 7);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 17);
+            this.label6.TabIndex = 544;
+            this.label6.Text = "Credit Terms (No. Of Days) :";
+            // 
+            // creditTermsPanel
+            // 
+            this.creditTermsPanel.Controls.Add(this.creditTerms_tx);
+            this.creditTermsPanel.Controls.Add(this.label6);
+            this.creditTermsPanel.Location = new System.Drawing.Point(559, 641);
+            this.creditTermsPanel.Name = "creditTermsPanel";
+            this.creditTermsPanel.Size = new System.Drawing.Size(304, 31);
+            this.creditTermsPanel.TabIndex = 545;
+            // 
             // PurchaseOrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(871, 703);
+            this.ClientSize = new System.Drawing.Size(871, 722);
+            this.Controls.Add(this.creditTermsPanel);
             this.Controls.Add(this.rowCount_tx);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.poId_tx);
@@ -480,6 +528,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.creditTerms_tx)).EndInit();
+            this.creditTermsPanel.ResumeLayout(false);
+            this.creditTermsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +567,8 @@
         private System.Windows.Forms.Label total_tx;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label rowCount_tx;
+        public System.Windows.Forms.NumericUpDown creditTerms_tx;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel creditTermsPanel;
     }
 }

@@ -45,6 +45,12 @@ namespace SalesPro.Helpers
             return result == DialogResult.Yes;
         }
 
+        public static bool ShowQuestionGeneric(string question)
+        {
+            DialogResult result = MessageBox.Show($"{question}", "Confirm?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
+        }
+
         public static void ShowConcurrencyWarning()
         {
             const string message = "This action could not be completed because another user has modified the data. Please refresh and try again.";

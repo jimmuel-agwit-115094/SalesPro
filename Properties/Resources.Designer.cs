@@ -98,6 +98,15 @@ namespace SalesPro.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to proceed.
+        /// </summary>
+        internal static string ConfirmProceed {
+            get {
+                return ResourceManager.GetString("ConfirmProceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to save.
         /// </summary>
         internal static string ConfirmSave {

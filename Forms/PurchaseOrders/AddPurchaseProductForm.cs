@@ -51,6 +51,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     add_btn.Text = "Add";
+                    delete_btn.Visible = false;
                 }
                 else
                 {
@@ -66,7 +67,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     {
                         MessageHandler.ShowError($"Error getting purchase order item: {_poItemId} {_actionType}");
                     }
-
+                    delete_btn.Visible = true;
                     add_btn.Text = "Update";
                 }
             }

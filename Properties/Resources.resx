@@ -130,6 +130,9 @@
   <data name="ConfirmNew" xml:space="preserve">
     <value>Are you sure you want to create new</value>
   </data>
+  <data name="ConfirmProceed" xml:space="preserve">
+    <value>Are you sure you want to proceed</value>
+  </data>
   <data name="ConfirmSave" xml:space="preserve">
     <value>Are you sure you want to save</value>
   </data>

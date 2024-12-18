@@ -89,7 +89,8 @@ namespace SalesPro.Forms.PurchaseOrders
                     "DueDate",
                     "CreditTerms",
                     "PoTotal",
-                    "PaymentStatus");
+                    "PaymentStatus",
+                    "ProcessStatus");
             }
         }
 

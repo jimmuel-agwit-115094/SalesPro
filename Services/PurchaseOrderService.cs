@@ -206,7 +206,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
+        public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, int creditTerms, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
         {
             using (var context = new DatabaseContext())
             {
@@ -218,6 +218,7 @@ namespace SalesPro.Services
                         if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                         {
                             toUpdate.ProcessStatus = status;
+                            toUpdate.CreditTerms = creditTerms;
                             await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
                             await context.SaveChangesAsync();
                         }
