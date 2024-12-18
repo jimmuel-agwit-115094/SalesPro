@@ -225,11 +225,11 @@
     <Compile Include="Models\PurchaseOrderLogsModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />
     <Compile Include="Models\SupplierModel.cs" />
-    <Compile Include="Services\DatabaseServices\DatabaseContext.cs" />
+    <Compile Include="DatabaseContext\DatabaseContext.cs" />
     <Compile Include="Helpers\DateFormatHelper.cs" />
     <Compile Include="Helpers\MessageHandler.cs" />
     <Compile Include="Helpers\ClockHelper.cs" />
-    <Compile Include="Services\DatabaseServices\DatabaseTransactionHelper.cs" />
+    <Compile Include="DatabaseContext\DatabaseTransactionHelper.cs" />
     <Compile Include="Helpers\UiHelpers\CurrencyTextboxHelper.cs" />
     <Compile Include="Helpers\UiHelpers\DgExtenstions.cs" />
     <Compile Include="Helpers\UiHelpers\DgFormatHelper.cs" />
