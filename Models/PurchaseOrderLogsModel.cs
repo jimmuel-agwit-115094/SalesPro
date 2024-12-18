@@ -11,7 +11,6 @@ namespace SalesPro.Models
         public int PurchaseOrderId { get; set; }
         public int UserId { get; set; }
         public ProcessStatus ProcessStatus { get; set; }
-        public string Reason { get; set; }
         public DateTime Date { get; set; }
     }
 }

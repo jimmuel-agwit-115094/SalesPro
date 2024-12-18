@@ -49,6 +49,7 @@ namespace SalesPro.Forms.PurchaseOrders
             var po = await _service.GetPurchaseorderById(_poId);
             if (po == null) return;
 
+            creditTerms_tx.Text = po.CreditTerms.ToString();
             var supplier = await _service.GetSupplierById(po.SupplierId);
             if (supplier != null)
             {
@@ -79,6 +80,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     action_btn.Visible = true;
                     undo_btn.Visible = true;
                     creditTermsPanel.Visible = true;
+                    creditTerms_tx.ReadOnly = false;
 
                     addProduct_btn.Visible = false;
                     addSupplier_btn.Visible = false;
@@ -87,7 +89,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 case ProcessStatus.Completed:
                     action_btn.Visible = false;
                     undo_btn.Visible = false;
-                    creditTermsPanel.Visible = false;
+                    creditTermsPanel.Visible = true;
+                    creditTerms_tx.ReadOnly = true;
 
                     addProduct_btn.Visible = false;
                     addSupplier_btn.Visible = false;
@@ -107,14 +110,13 @@ namespace SalesPro.Forms.PurchaseOrders
 
         }
 
-        private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus, string reason)
+        private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus)
         {
             return new PurchaseOrderLogsModel
             {
                 PurchaseOrderId = _poId,
                 UserId = UserSession.Session_UserId,
                 ProcessStatus = processStatus,
-                Reason = reason,
                 Date = _curDate.Date
             };
         }
@@ -198,7 +200,7 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
-                if (!_isSupplierSelected)
+                if (!_isSupplierSelected && _poTabProcess!= ProcessStatus.Cancelled)
                 {
                     MessageHandler.ShowWarning("Please select a supplier.");
                     return;
@@ -214,7 +216,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Created:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to send to supplier?"))
                         {
-                            var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
+                            var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Sent, sentLog);
                             Close();
                         }
@@ -223,7 +225,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         if (!Validators.IntValidator(creditTerms_tx.Text, "Credit Terms")) return;
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to receive purchase order?"))
                         {
-                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed, string.Empty);
+                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog);
                             Close();
                         }
@@ -232,7 +234,12 @@ namespace SalesPro.Forms.PurchaseOrders
                         Close();
                         break;
                     case ProcessStatus.Cancelled:
-                        Close();
+                        if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Reactivate purchase order?"))
+                        {
+                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Created, completedLog);
+                            Close();
+                        }
                         break;
                 }
 
@@ -262,7 +269,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Created:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Cancel Purchase Order?"))
                         {
-                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
+                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Cancelled, undoLog);
                             Close();
                         }
@@ -270,7 +277,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Sent:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Undo Purchase Order to created?"))
                         {
-                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created, string.Empty);
+                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, undoLog);
                             Close();
                         }
@@ -281,7 +288,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Cancelled:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Reactivate Purchase order?"))
                         {
-                            var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
+                            var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, cancelledLog);
                             Close();
                         }

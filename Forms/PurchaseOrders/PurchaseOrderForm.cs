@@ -53,7 +53,6 @@ namespace SalesPro.Forms.PurchaseOrders
                     PoTotal = 0,
                     ProcessStatus = ProcessStatus.Created,
                     PaymentStatus = PaymentStatus.Unpaid,
-                    CancellationReason = string.Empty,
                     Remarks = string.Empty,
                 };
                 return await _service.SavePurchaseOrder(po);

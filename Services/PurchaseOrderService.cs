@@ -65,7 +65,6 @@ namespace SalesPro.Services
                                   PoTotal = po.PoTotal,
                                   ProcessStatus = po.ProcessStatus,
                                   PaymentStatus = po.PaymentStatus,
-                                  CancellationReason = po.CancellationReason,
                                   Remarks = po.Remarks,
                                   UserFullName = u.Fullname,
                                   SupplierName = s.SupplierName

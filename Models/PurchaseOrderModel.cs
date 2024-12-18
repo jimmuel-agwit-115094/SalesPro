@@ -17,7 +17,6 @@ namespace SalesPro.Models
         public decimal PoTotal { get; set; }
         public ProcessStatus ProcessStatus { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
-        public string CancellationReason { get; set; }
         public string Remarks { get; set; }
     }
 
