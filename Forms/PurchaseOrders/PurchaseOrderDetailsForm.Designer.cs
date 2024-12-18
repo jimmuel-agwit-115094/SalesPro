@@ -46,7 +46,7 @@
             this.closeStat_pb = new System.Windows.Forms.PictureBox();
             this.total_tx = new System.Windows.Forms.Label();
             this.action_btn = new System.Windows.Forms.Button();
-            this.close_btn = new System.Windows.Forms.Button();
+            this.undo_btn = new System.Windows.Forms.Button();
             this.supplier_tx = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -259,19 +259,20 @@
             this.action_btn.UseVisualStyleBackColor = false;
             this.action_btn.Click += new System.EventHandler(this.action_btn_Click);
             // 
-            // close_btn
+            // undo_btn
             // 
-            this.close_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.close_btn.FlatAppearance.BorderSize = 0;
-            this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.close_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.close_btn.Location = new System.Drawing.Point(547, 651);
-            this.close_btn.Name = "close_btn";
-            this.close_btn.Size = new System.Drawing.Size(140, 34);
-            this.close_btn.TabIndex = 521;
-            this.close_btn.Text = "Undo Process";
-            this.close_btn.UseVisualStyleBackColor = false;
+            this.undo_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.undo_btn.FlatAppearance.BorderSize = 0;
+            this.undo_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.undo_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.undo_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.undo_btn.Location = new System.Drawing.Point(547, 651);
+            this.undo_btn.Name = "undo_btn";
+            this.undo_btn.Size = new System.Drawing.Size(140, 34);
+            this.undo_btn.TabIndex = 521;
+            this.undo_btn.Text = "Undo Process";
+            this.undo_btn.UseVisualStyleBackColor = false;
+            this.undo_btn.Click += new System.EventHandler(this.undo_btn_Click);
             // 
             // supplier_tx
             // 
@@ -452,7 +453,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.addProduct_btn);
             this.Controls.Add(this.addSupplier_btn);
-            this.Controls.Add(this.close_btn);
+            this.Controls.Add(this.undo_btn);
             this.Controls.Add(this.action_btn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
@@ -499,7 +500,7 @@
         private System.Windows.Forms.Label paymentStatus_tx;
         private System.Windows.Forms.PictureBox closeStat_pb;
         private System.Windows.Forms.Button action_btn;
-        private System.Windows.Forms.Button close_btn;
+        private System.Windows.Forms.Button undo_btn;
         private System.Windows.Forms.Label supplier_tx;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

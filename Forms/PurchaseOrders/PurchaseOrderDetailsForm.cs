@@ -19,6 +19,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private DateTime _curDate;
         public string _actionType;
         private bool _isSupplierSelected;
+        public ProcessStatus _poTabProcess;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -29,11 +30,16 @@ namespace SalesPro.Forms.PurchaseOrders
             _purchaseOrderForm = purchaseOrderForm;
         }
 
-        private async void addSupplier_btn_Click(object sender, EventArgs e)
+        private void addSupplier_btn_Click(object sender, EventArgs e)
         {
             AddSupplierForm addSupplierForm = new AddSupplierForm(this);
-            _rowVersion = await _service.GetPoRowVersion(_poId);
+            addSupplierForm._rowVersion = _rowVersion;
             addSupplierForm.ShowDialog();
+        }
+
+        public async Task ReloadRowVersion()
+        {
+            _rowVersion = await _service.GetPoRowVersion(_poId);
         }
 
         private async void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
@@ -41,6 +47,32 @@ namespace SalesPro.Forms.PurchaseOrders
             _curDate = await ClockHelper.GetServerDateTime();
             await LoadPurchaseOrderItemsByPoId();
             poId_tx.Text = _poId.ToString("D9");
+          
+
+            switch (_poTabProcess)
+            {
+                case ProcessStatus.Created:
+                    action_btn.Text = "Send To Supplier";
+                    action_btn.Visible = true;
+                    undo_btn.Visible = false;
+                    break;
+                case ProcessStatus.Sent:
+                    action_btn.Text = "Receive";
+                    undo_btn.Text = "Undo Process";
+                    action_btn.Visible = true;
+                    undo_btn.Visible = true;
+                    break;
+                case ProcessStatus.Completed:
+                    action_btn.Visible = false;
+                    undo_btn.Visible = false;
+                    break;
+                case ProcessStatus.Cancelled:
+                    action_btn.Text = "Re-Activate";
+                    action_btn.Visible = true;
+                    undo_btn.Visible = false;
+                    break;
+            }
+
         }
 
         private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus, string reason)
@@ -94,7 +126,6 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     Close();
                 }
-                _rowVersion = await _service.GetPoRowVersion(_poId);
             }
             catch (Exception ex)
             {
@@ -103,10 +134,10 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private async void addProduct_btn_Click(object sender, EventArgs e)
+        private void addProduct_btn_Click(object sender, EventArgs e)
         {
             AddPurchaseProductForm form = new AddPurchaseProductForm(this);
-            form._rowVersion = await _service.GetPoRowVersion(_poId);
+            form._rowVersion = _rowVersion;
             form._actionType = SystemConstants.New;
             form._poId = _poId;
             form.ShowDialog();
@@ -145,8 +176,24 @@ namespace SalesPro.Forms.PurchaseOrders
                     MessageHandler.ShowWarning("Please add products to the purchase order.");
                     return;
                 }
-                var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
-                await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
+
+                switch (_poTabProcess)
+                {
+                    case ProcessStatus.Created:
+                        var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent, string.Empty);
+                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Sent, sentLog);
+                        break;
+                    case ProcessStatus.Sent:
+                        var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed, string.Empty);
+                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Completed, completedLog);
+                        break;
+                    case ProcessStatus.Completed:
+                        Close();
+                        break;
+                    case ProcessStatus.Cancelled:
+                        Close();
+                        break;
+                }
                 Close();
             }
             catch (Exception ex)
@@ -163,6 +210,35 @@ namespace SalesPro.Forms.PurchaseOrders
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgPoItems, search_tx);
+        }
+
+        private async void undo_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (_poTabProcess)
+                {
+                    case ProcessStatus.Created:
+
+                        break;
+                    case ProcessStatus.Sent:
+                        var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created, string.Empty);
+                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Created, undoLog);
+                        break;
+                    case ProcessStatus.Completed:
+
+                        break;
+                    case ProcessStatus.Cancelled:
+                        var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled, string.Empty);
+                        await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, ProcessStatus.Created, cancelledLog);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error undoing process. {ex.Message}");
+                throw;
+            }
         }
     }
 }

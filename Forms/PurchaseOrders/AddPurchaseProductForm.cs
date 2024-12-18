@@ -193,7 +193,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 }
                 Close();
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
-                _purchaseOrderDetailsForm._rowVersion = await _service.GetPoRowVersion(_poId);
+                await _purchaseOrderDetailsForm.ReloadRowVersion();
             }
             catch (Exception ex)
             {
@@ -216,6 +216,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     await _service.DeletePurchaseOrderItem(_poId, _poItemId, _rowVersion);
                     Close();
                     await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();
+                    await _purchaseOrderDetailsForm.ReloadRowVersion();
                 }
             }
             catch (Exception)

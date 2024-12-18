@@ -7,7 +7,7 @@
         Created,
         Sent,
         Completed,
-        Cancelled
+        Cancelled,
     }
 
     public enum PaymentStatus

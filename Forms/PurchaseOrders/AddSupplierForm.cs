@@ -12,6 +12,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _form;
         private int _supplierId;
+        public int _rowVersion;
         public AddSupplierForm(PurchaseOrderDetailsForm form)
         {
             InitializeComponent();
@@ -56,6 +57,7 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             await _form.SetSupplierDataOnControls(_supplierId);
             await _form.LoadPurchaseOrderItemsByPoId();
+            await _form.ReloadRowVersion();
             Close();
         }
     }

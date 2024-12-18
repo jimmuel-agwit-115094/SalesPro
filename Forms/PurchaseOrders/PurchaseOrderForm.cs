@@ -1,5 +1,4 @@
-﻿using POS_Generic.Helpers;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -15,12 +14,11 @@ namespace SalesPro.Forms.PurchaseOrders
 {
     public partial class PurchaseOrderForm : Form
     {
-        private readonly DatabaseContext _context;
+        private ProcessStatus _tabProcess;
         private readonly PurchaseOrderService _service;
         private DateTime _curDate;
         public PurchaseOrderForm()
         {
-            _context = new DatabaseContext();
             _service = new PurchaseOrderService();
             InitializeComponent();
         }
@@ -98,6 +96,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             await LoadPurchaseOrdersByProcessStatus();
+            _tabProcess = (ProcessStatus)transactionsTabControl.SelectedIndex;
         }
 
         private void find_btn_Click(object sender, EventArgs e)
@@ -105,7 +104,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         }
 
-        private void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -115,7 +114,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 var form = new PurchaseOrderDetailsForm(this);
                 form._poId = poId;
                 form._actionType = SystemConstants.Edit;
-                
+                form._poTabProcess = _tabProcess;
+                form._rowVersion = await _service.GetPoRowVersion(poId);
                 form.ShowDialog();
             }
             catch (Exception ex)
