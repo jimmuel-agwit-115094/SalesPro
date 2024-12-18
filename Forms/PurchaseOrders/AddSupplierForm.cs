@@ -69,5 +69,10 @@ namespace SalesPro.Forms.PurchaseOrders
                 return; // Do nothing
             }
         }
+
+        private void dgSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

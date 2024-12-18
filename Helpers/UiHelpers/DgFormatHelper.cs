@@ -378,4 +378,14 @@ public static class DgFormatHelper
             }
         };
     }
+
+    public static void SelectCurrentRow(DataGridView dataGridView)
+    {
+        if (dataGridView.CurrentCell != null)
+        {
+            int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+            dataGridView.Rows[currentRowIndex].Selected = true;
+            dataGridView.CurrentCell = dataGridView.CurrentCell;
+        }
+    }
 }
