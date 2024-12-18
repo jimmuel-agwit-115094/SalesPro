@@ -45,69 +45,103 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void PurchaseOrderDetailsForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ClockHelper.GetServerDateTime();
-            var po = await _service.GetPurchaseorderById(_poId);
-            if (po == null) return;
-
-            creditTerms_tx.Text = po.CreditTerms.ToString();
-            var supplier = await _service.GetSupplierById(po.SupplierId);
-            if (supplier != null)
+            try
             {
-                supplier_tx.Text = supplier.SupplierName;
-                address_tx.Text = supplier.SupplierAddress;
-                contactPerson_tx.Text = supplier.SupplierContactPerson;
-                number_tx.Text = supplier.SupplierNumber;
-                _isSupplierSelected = supplier.SupplierId != 1;
-            }
-            await LoadPurchaseOrderItemsByPoId();
-            poId_tx.Text = _poId.ToString("D9");
+                _curDate = await ClockHelper.GetServerDateTime();
+                var po = await _service.GetPurchaseorderById(_poId);
+                if (po == null) return;
 
-            switch (_poTabProcess)
+                // Notifications
+                switch (po.ProcessStatus)
+                {
+                    case ProcessStatus.Created:
+                        StatusIconHelper.ShowStatus(IconStatusType.Created, process_panel, "Created PO");
+                        break;
+                    case ProcessStatus.Sent:
+                        StatusIconHelper.ShowStatus(IconStatusType.Sent, process_panel, "Sent To Sup.");
+                        break;
+                    case ProcessStatus.Completed:
+                        StatusIconHelper.ShowStatus(IconStatusType.Completed, process_panel, "Completed");
+                        break;
+                    case ProcessStatus.Cancelled:
+                        StatusIconHelper.ShowStatus(IconStatusType.Cancelled, process_panel, "Cancelled");
+                        break;
+                }
+
+                switch (po.PaymentStatus)
+                {
+                    case PaymentStatus.Paid:
+                        StatusIconHelper.ShowStatus(IconStatusType.Good, payment_panel, "Paid");
+                        break;
+                    case PaymentStatus.Unpaid:
+                        StatusIconHelper.ShowStatus(IconStatusType.Cancelled, payment_panel, "Unpaid");
+                        break;
+                  
+                }
+
+                creditTerms_tx.Text = po.CreditTerms.ToString();
+                var supplier = await _service.GetSupplierById(po.SupplierId);
+                if (supplier != null)
+                {
+                    supplier_tx.Text = supplier.SupplierName;
+                    address_tx.Text = supplier.SupplierAddress;
+                    contactPerson_tx.Text = supplier.SupplierContactPerson;
+                    number_tx.Text = supplier.SupplierNumber;
+                    _isSupplierSelected = supplier.SupplierId != 1;
+                }
+                await LoadPurchaseOrderItemsByPoId();
+                poId_tx.Text = _poId.ToString("D9");
+
+                switch (_poTabProcess)
+                {
+                    case ProcessStatus.Created:
+                        action_btn.Text = "Send To Supplier";
+                        undo_btn.Text = "Cancel PO";
+                        action_btn.Visible = true;
+                        undo_btn.Visible = true;
+                        creditTermsPanel.Visible = false;
+
+                        addProduct_btn.Visible = true;
+                        addSupplier_btn.Visible = true;
+                        break;
+                    case ProcessStatus.Sent:
+                        action_btn.Text = "Receive";
+                        undo_btn.Text = "Undo Process";
+                        action_btn.Visible = true;
+                        undo_btn.Visible = true;
+                        creditTermsPanel.Visible = true;
+                        creditTerms_tx.ReadOnly = false;
+
+                        addProduct_btn.Visible = false;
+                        addSupplier_btn.Visible = false;
+                        DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
+                        break;
+                    case ProcessStatus.Completed:
+                        action_btn.Visible = false;
+                        undo_btn.Visible = false;
+                        creditTermsPanel.Visible = true;
+                        creditTerms_tx.ReadOnly = true;
+
+                        addProduct_btn.Visible = false;
+                        addSupplier_btn.Visible = false;
+                        DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
+                        break;
+                    case ProcessStatus.Cancelled:
+                        action_btn.Text = "Re-Activate";
+                        action_btn.Visible = true;
+                        undo_btn.Visible = false;
+                        creditTermsPanel.Visible = false;
+
+                        addProduct_btn.Visible = false;
+                        addSupplier_btn.Visible = false;
+                        DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
+                        break;
+                }
+            }
+            catch (Exception ex)
             {
-                case ProcessStatus.Created:
-                    action_btn.Text = "Send To Supplier";
-                    undo_btn.Text = "Cancel PO";
-                    action_btn.Visible = true;
-                    undo_btn.Visible = true;
-                    creditTermsPanel.Visible = false;
-
-                    addProduct_btn.Visible = true;
-                    addSupplier_btn.Visible = true;
-                    break;
-                case ProcessStatus.Sent:
-                    action_btn.Text = "Receive";
-                    undo_btn.Text = "Undo Process";
-                    action_btn.Visible = true;
-                    undo_btn.Visible = true;
-                    creditTermsPanel.Visible = true;
-                    creditTerms_tx.ReadOnly = false;
-
-                    addProduct_btn.Visible = false;
-                    addSupplier_btn.Visible = false;
-                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
-                    break;
-                case ProcessStatus.Completed:
-                    action_btn.Visible = false;
-                    undo_btn.Visible = false;
-                    creditTermsPanel.Visible = true;
-                    creditTerms_tx.ReadOnly = true;
-
-                    addProduct_btn.Visible = false;
-                    addSupplier_btn.Visible = false;
-                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
-                    break;
-                case ProcessStatus.Cancelled:
-                    action_btn.Text = "Re-Activate";
-                    action_btn.Visible = true;
-                    undo_btn.Visible = false;
-                    creditTermsPanel.Visible = false;
-
-                    addProduct_btn.Visible = false;
-                    addSupplier_btn.Visible = false;
-                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
-                    break;
+                MessageHandler.ShowError($"Error on Purchase order detail form load: {ex.Message}");
             }
-
         }
 
         private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus)
@@ -200,7 +234,7 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
-                if (!_isSupplierSelected && _poTabProcess!= ProcessStatus.Cancelled)
+                if (!_isSupplierSelected && _poTabProcess != ProcessStatus.Cancelled)
                 {
                     MessageHandler.ShowWarning("Please select a supplier.");
                     return;

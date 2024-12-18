@@ -5,6 +5,10 @@
         Good,
         Bad,
         Warning,
-        Exclamation
+        Exclamation,
+        Created,
+        Sent,
+        Completed,
+        Cancelled,
     }
 }

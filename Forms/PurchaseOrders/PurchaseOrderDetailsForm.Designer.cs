@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderDetailsForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgPoItems = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bal_panel = new System.Windows.Forms.Panel();
+            this.poPanel = new System.Windows.Forms.Panel();
+            this.process_panel = new System.Windows.Forms.Panel();
             this.processStatus_tx = new System.Windows.Forms.Label();
             this.balStat_pb = new System.Windows.Forms.PictureBox();
-            this.close_panel = new System.Windows.Forms.Panel();
+            this.payment_panel = new System.Windows.Forms.Panel();
             this.paymentStatus_tx = new System.Windows.Forms.Label();
             this.closeStat_pb = new System.Windows.Forms.PictureBox();
             this.total_tx = new System.Windows.Forms.Label();
@@ -67,10 +67,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.bal_panel.SuspendLayout();
+            this.poPanel.SuspendLayout();
+            this.process_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).BeginInit();
-            this.close_panel.SuspendLayout();
+            this.payment_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creditTerms_tx)).BeginInit();
@@ -107,30 +107,30 @@
             this.dgPoItems.AllowUserToAddRows = false;
             this.dgPoItems.AllowUserToDeleteRows = false;
             this.dgPoItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPoItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgPoItems.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgPoItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgPoItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgPoItems.ColumnHeadersHeight = 37;
             this.dgPoItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgPoItems.EnableHeadersVisualStyles = false;
             this.dgPoItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgPoItems.Location = new System.Drawing.Point(16, 171);
@@ -168,25 +168,25 @@
             this.search_tx.TabIndex = 465;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
-            // panel1
+            // poPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.bal_panel);
-            this.panel1.Controls.Add(this.close_panel);
-            this.panel1.Controls.Add(this.total_tx);
-            this.panel1.Location = new System.Drawing.Point(16, 37);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(841, 31);
-            this.panel1.TabIndex = 519;
+            this.poPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.poPanel.Controls.Add(this.process_panel);
+            this.poPanel.Controls.Add(this.payment_panel);
+            this.poPanel.Controls.Add(this.total_tx);
+            this.poPanel.Location = new System.Drawing.Point(16, 37);
+            this.poPanel.Name = "poPanel";
+            this.poPanel.Size = new System.Drawing.Size(841, 31);
+            this.poPanel.TabIndex = 519;
             // 
-            // bal_panel
+            // process_panel
             // 
-            this.bal_panel.Controls.Add(this.processStatus_tx);
-            this.bal_panel.Controls.Add(this.balStat_pb);
-            this.bal_panel.Location = new System.Drawing.Point(3, 5);
-            this.bal_panel.Name = "bal_panel";
-            this.bal_panel.Size = new System.Drawing.Size(101, 20);
-            this.bal_panel.TabIndex = 516;
+            this.process_panel.Controls.Add(this.processStatus_tx);
+            this.process_panel.Controls.Add(this.balStat_pb);
+            this.process_panel.Location = new System.Drawing.Point(3, 5);
+            this.process_panel.Name = "process_panel";
+            this.process_panel.Size = new System.Drawing.Size(101, 20);
+            this.process_panel.TabIndex = 516;
             // 
             // processStatus_tx
             // 
@@ -196,7 +196,7 @@
             this.processStatus_tx.Name = "processStatus_tx";
             this.processStatus_tx.Size = new System.Drawing.Size(103, 17);
             this.processStatus_tx.TabIndex = 506;
-            this.processStatus_tx.Text = "Balanced";
+            this.processStatus_tx.Text = "Process";
             this.processStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // balStat_pb
@@ -209,14 +209,14 @@
             this.balStat_pb.TabIndex = 0;
             this.balStat_pb.TabStop = false;
             // 
-            // close_panel
+            // payment_panel
             // 
-            this.close_panel.Controls.Add(this.paymentStatus_tx);
-            this.close_panel.Controls.Add(this.closeStat_pb);
-            this.close_panel.Location = new System.Drawing.Point(115, 5);
-            this.close_panel.Name = "close_panel";
-            this.close_panel.Size = new System.Drawing.Size(159, 20);
-            this.close_panel.TabIndex = 517;
+            this.payment_panel.Controls.Add(this.paymentStatus_tx);
+            this.payment_panel.Controls.Add(this.closeStat_pb);
+            this.payment_panel.Location = new System.Drawing.Point(115, 5);
+            this.payment_panel.Name = "payment_panel";
+            this.payment_panel.Size = new System.Drawing.Size(159, 20);
+            this.payment_panel.TabIndex = 517;
             // 
             // paymentStatus_tx
             // 
@@ -226,7 +226,7 @@
             this.paymentStatus_tx.Name = "paymentStatus_tx";
             this.paymentStatus_tx.Size = new System.Drawing.Size(124, 17);
             this.paymentStatus_tx.TabIndex = 514;
-            this.paymentStatus_tx.Text = "Closed Transaction";
+            this.paymentStatus_tx.Text = "Payment";
             this.paymentStatus_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // closeStat_pb
@@ -503,7 +503,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(871, 722);
+            this.ClientSize = new System.Drawing.Size(870, 722);
             this.Controls.Add(this.creditTermsPanel);
             this.Controls.Add(this.rowCount_tx);
             this.Controls.Add(this.label4);
@@ -513,7 +513,7 @@
             this.Controls.Add(this.addSupplier_btn);
             this.Controls.Add(this.undo_btn);
             this.Controls.Add(this.action_btn);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.poPanel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.notFound_lbl);
@@ -531,10 +531,10 @@
             this.Load += new System.EventHandler(this.PurchaseOrderDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.bal_panel.ResumeLayout(false);
+            this.poPanel.ResumeLayout(false);
+            this.process_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.balStat_pb)).EndInit();
-            this.close_panel.ResumeLayout(false);
+            this.payment_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.closeStat_pb)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -553,11 +553,11 @@
         internal System.Windows.Forms.DataGridView dgPoItems;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel bal_panel;
+        private System.Windows.Forms.Panel poPanel;
+        private System.Windows.Forms.Panel process_panel;
         private System.Windows.Forms.Label processStatus_tx;
         private System.Windows.Forms.PictureBox balStat_pb;
-        private System.Windows.Forms.Panel close_panel;
+        private System.Windows.Forms.Panel payment_panel;
         private System.Windows.Forms.Label paymentStatus_tx;
         private System.Windows.Forms.PictureBox closeStat_pb;
         private System.Windows.Forms.Button action_btn;

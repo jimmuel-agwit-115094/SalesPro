@@ -37,6 +37,21 @@ namespace SalesPro.Helpers.UiHelpers
                 case IconStatusType.Warning:
                     statusPictureBox.Image = Properties.Resources.warning;  // Yellow icon for "Warning"
                     break;
+                case IconStatusType.Exclamation:
+                    statusPictureBox.Image = Properties.Resources.bad;  // Yellow icon for "Warning"
+                    break;
+                case IconStatusType.Created:
+                    statusPictureBox.Image = Properties.Resources.created;  // Blue icon for "Created"
+                    break;
+                case IconStatusType.Sent:
+                    statusPictureBox.Image = Properties.Resources.sent;  // Blue icon for "Sent"
+                    break;
+                case IconStatusType.Completed:
+                    statusPictureBox.Image = Properties.Resources.good;  // Blue icon for "Completed"
+                    break;
+                case IconStatusType.Cancelled:
+                    statusPictureBox.Image = Properties.Resources.canceled;  // Blue icon for "Cancelled"
+                    break;
             }
         }
     }
