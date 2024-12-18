@@ -161,18 +161,19 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void add_btn_Click(object sender, EventArgs e)
         {
-            if (!_isProductSelected)
-            {
-                MessageHandler.ShowError("Please select a product");
-                return;
-            }
-            if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
-            if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
-            if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
-            //if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
-
             try
             {
+                if (!_isProductSelected)
+                {
+                    MessageHandler.ShowError("Please select a product");
+                    return;
+                }
+                if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
+                if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
+                if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
+                //if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
+
+
                 // Note : Logic for calculating the total is done on the data access side.
                 if (_actionType == Constants.SystemConstants.New)
                 {
