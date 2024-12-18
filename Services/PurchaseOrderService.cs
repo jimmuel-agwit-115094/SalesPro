@@ -29,13 +29,28 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<PurchaseOrderModel> SavePurchaseOrder(PurchaseOrderModel purchaseOrder)
+        public async Task<PurchaseOrderModel> SavePurchaseOrder(PurchaseOrderModel purchaseOrder, DateTime date)
         {
             using (var context = new DatabaseContext())
             {
-                var saved = await context.AddAsync(purchaseOrder);
-                await context.SaveChangesAsync();
-                return saved.Entity;
+                var savedPo = new PurchaseOrderModel();
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var saved = await context.AddAsync(purchaseOrder);
+                    await context.SaveChangesAsync();
+
+                    var logs = new PurchaseOrderLogsModel
+                    {
+                        PurchaseOrderId = saved.Entity.PurchaseOrderId,
+                        UserId = saved.Entity.UserId,
+                        PoLogActionStatus = PoLogActionStatus.CreatedPo,
+                        Date = date
+                    };
+                    await context.PurchaseOrderLogs.AddAsync(logs);
+                    await context.SaveChangesAsync();
+                    savedPo =  saved.Entity;
+                });
+                return savedPo;
             }
         }
 

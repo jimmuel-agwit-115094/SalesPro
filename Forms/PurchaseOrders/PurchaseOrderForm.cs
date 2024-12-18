@@ -58,7 +58,8 @@ namespace SalesPro.Forms.PurchaseOrders
                     PaymentStatus = PaymentStatus.Unpaid,
                     Remarks = string.Empty,
                 };
-                return await _service.SavePurchaseOrder(po);
+
+                return await _service.SavePurchaseOrder(po, _curDate);
             }
             catch (Exception ex)
             {
