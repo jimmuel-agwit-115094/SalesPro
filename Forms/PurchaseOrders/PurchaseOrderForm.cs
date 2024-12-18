@@ -27,6 +27,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void new_btn_Click(object sender, EventArgs e)
         {
+            transactionsTabControl.SelectedIndex = 0;
             var purchaseOrders = await _service.GetAllPurchaseOrders();
             var existingPO = purchaseOrders.FirstOrDefault(po => po.ProcessStatus == ProcessStatus.Created);
 

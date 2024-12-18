@@ -252,6 +252,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var sentLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.SentToSupplier);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Sent, sentLog);
+                            _purchaseOrderForm.transactionsTabControl.SelectedIndex = 1;
                             Close();
                         }
                         break;
@@ -261,6 +262,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CompletedPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog);
+                            _purchaseOrderForm.transactionsTabControl.SelectedIndex = 2;
                             Close();
                         }
                         break;
@@ -272,6 +274,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.ReactivatedPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Created, completedLog);
+                            _purchaseOrderForm.transactionsTabControl.SelectedIndex = 0;
                             Close();
                         }
                         break;
@@ -305,6 +308,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var undoLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CancelledPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Cancelled, undoLog);
+                            _purchaseOrderForm.transactionsTabControl.SelectedIndex = 3;
                             Close();
                         }
                         break;
@@ -313,6 +317,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var undoLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.UndoPoToCreated);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, undoLog);
+                            _purchaseOrderForm.transactionsTabControl.SelectedIndex = 0;
                             Close();
                         }
                         break;

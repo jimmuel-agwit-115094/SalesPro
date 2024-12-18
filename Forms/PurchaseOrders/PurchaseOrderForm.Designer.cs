@@ -389,7 +389,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button find_btn;
         private System.Windows.Forms.DateTimePicker date_cb;
-        private System.Windows.Forms.TabControl transactionsTabControl;
         private System.Windows.Forms.TabPage created_tab;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TabPage sent_tab;
@@ -403,5 +402,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.TabControl transactionsTabControl;
     }
 }
