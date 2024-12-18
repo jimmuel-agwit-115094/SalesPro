@@ -161,7 +161,7 @@ namespace SalesPro.Forms.PurchaseOrders
             if (poItems != null)
             {
                 dgPoItems.DataSource = poItems;
-                DgExtensions.ConfigureDataGrid(dgPoItems, true, 1, notFound_lbl,
+                DgExtensions.ConfigureDataGrid(dgPoItems, true, 2, notFound_lbl,
                     "PurchaseOrderItemId", "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
                 _totalPrice = poItems.Sum(x => x.TotalPrice);
                 total_tx.Text = _totalPrice.ToString("N2");

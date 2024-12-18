@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
@@ -48,7 +47,7 @@ namespace SalesPro.Services
                     };
                     await context.PurchaseOrderLogs.AddAsync(logs);
                     await context.SaveChangesAsync();
-                    savedPo =  saved.Entity;
+                    savedPo = saved.Entity;
                 });
                 return savedPo;
             }
@@ -213,11 +212,26 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<PurchaseOrderItemModel> GetPurchaseOrderItemByPoItemId(int poItemId)
+        public async Task<PurchaseOrderItemModelExntended> GetPurchaseOrderItemByPoItemId(int poItemId)
         {
             using (var context = new DatabaseContext())
             {
-                return await context.PurchaseOrderItems.Where(x => x.PurchaseOrderItemId == poItemId).FirstOrDefaultAsync();
+                return await (from pt in context.PurchaseOrderItems
+                              join p in context.Products on pt.ProductId equals p.ProductId
+                              where pt.PurchaseOrderItemId == poItemId
+                              select new PurchaseOrderItemModelExntended
+                              {
+                                  PurchaseOrderItemId = pt.PurchaseOrderItemId,
+                                  PurchaseOrderId = pt.PurchaseOrderId,
+                                  ProductId = pt.ProductId,
+                                  ProductName = p.ProductName,
+                                  Quantity = pt.Quantity,
+                                  SupplierPrice = pt.SupplierPrice,
+                                  MarkUpPrice = pt.MarkUpPrice,
+                                  RetailPrice = pt.RetailPrice,
+                                  TotalPrice = pt.TotalPrice,
+                                  UnitOfMeasure = p.UnitOfMeasure
+                              }).FirstOrDefaultAsync();
             }
         }
 

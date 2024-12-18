@@ -18,5 +18,6 @@ namespace SalesPro.Models
     public class PurchaseOrderItemModelExntended : PurchaseOrderItemModel
     {
         public string ProductName { get; set; }
+        public string UnitOfMeasure { get; set; }
     }
 }

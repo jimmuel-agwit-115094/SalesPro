@@ -37,6 +37,11 @@ public static class DgFormatHelper
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
+            // Enum formatting
+            else if (column.ValueType.IsEnum)
+            {
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            }
         }
     }
 
@@ -386,6 +391,16 @@ public static class DgFormatHelper
             int currentRowIndex = dataGridView.CurrentCell.RowIndex;
             dataGridView.Rows[currentRowIndex].Selected = true;
             dataGridView.CurrentCell = dataGridView.CurrentCell;
+        }
+    }
+
+    public static void DisableDatagrid(DataGridView dataGridView)
+    {
+        dataGridView.Enabled = false;
+        foreach (DataGridViewRow row in dataGridView.Rows)
+        {
+            row.DefaultCellStyle.BackColor = SystemColors.Control;
+            row.DefaultCellStyle.ForeColor = Color.DarkGray;
         }
     }
 }

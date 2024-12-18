@@ -5,6 +5,7 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private bool _isProductSelected;
         public string _actionType;
         public decimal _totalPrice;
+        private string _productName;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
@@ -38,6 +40,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 if (products != null)
                 {
                     dgProducts.DataSource = products;
+                    dgProducts.ClearSelection();
                     DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
                 }
             }
@@ -47,21 +50,31 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
+                qty_tx.Select();
                 await LoadProducts();
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     add_btn.Text = "Add";
                     delete_btn.Visible = false;
+                    dgProducts.Enabled = true;
+                    search_tx.ReadOnly = false;
                 }
                 else
                 {
+                    DgFormatHelper.DisableDatagrid(dgProducts);
+                    search_tx.ReadOnly = true;
+                   
                     var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
                     if (poItem != null)
                     {
+                        productName_tx.Text = poItem.ProductName;
+                        unitOfMeasure_tx.Text = poItem.UnitOfMeasure;
                         qty_tx.Text = poItem.Quantity.ToString();
                         supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
                         markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
                         retailPrice_tx.Text = poItem.RetailPrice.ToString();
+                        _isProductSelected = poItem.ProductId != 0;
+                        _productId = poItem.ProductId;
                     }
                     else
                     {
@@ -91,7 +104,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 _productId = DgFormatHelper.GetSelectedRowId(dgProducts, "ProductId");
                 productName_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "ProductName");
                 unitOfMeasure_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "UnitOfMeasure");
-                _isProductSelected = true;
+                _isProductSelected = productName_tx.Text != string.Empty;
             }
             catch (Exception ex)
             {
@@ -165,14 +178,22 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 if (!_isProductSelected)
                 {
-                    MessageHandler.ShowError("Please select a product");
+                    MessageHandler.ShowWarning("Please select a product");
                     return;
                 }
                 if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
                 if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
                 if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
-                //if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
 
+                // Check if product already exists in the purchase order
+                var existingItems = await _service.GetPurchaseOrderItemsByPoid(_poId);
+                var productExist = existingItems.Where(x => x.ProductId == _productId && x.SupplierPrice == decimal.Parse(supplierPrice_tx.Text)).FirstOrDefault();
+                if (productExist != null && productExist.PurchaseOrderItemId != _poItemId)
+                {
+                    MessageHandler.ShowWarning($"Duplicated Entry :\nProduct: '{productName_tx.Text}' with Supplier Price : '{supplierPrice_tx.Text}' already exists in the purchase order.");
+                    return;
+                }
+                //if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
 
                 // Note : Logic for calculating the total is done on the data access side.
                 if (_actionType == Constants.SystemConstants.New)
