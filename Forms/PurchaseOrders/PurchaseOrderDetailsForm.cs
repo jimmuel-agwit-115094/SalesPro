@@ -239,7 +239,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     MessageHandler.ShowWarning("Please select a supplier.");
                     return;
                 }
-                if (dgPoItems.Rows.Count == 0)
+                if (dgPoItems.Rows.Count == 0 && _poTabProcess != ProcessStatus.Cancelled)
                 {
                     MessageHandler.ShowWarning("Please add products to the purchase order.");
                     return;

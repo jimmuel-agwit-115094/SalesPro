@@ -26,6 +26,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     dgLogs.DataSource = logs;
                     DgExtensions.ConfigureDataGrid(dgLogs, false, 1, notFound_lbl, "Date", "PoLogActionStatus", "UserFullName");
+                    notFound_lbl.Visible = logs.Count == 0;
                 }
             }
             catch (Exception ex)
