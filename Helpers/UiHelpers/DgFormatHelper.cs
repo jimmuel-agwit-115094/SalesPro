@@ -261,7 +261,7 @@ public static class DgFormatHelper
             MessageHandler.ShowError($"Error getting selected id {ex.Message}");
             throw;
         }
-       
+
     }
 
     public static void SetDataGridStyles(DataGridView dataGrid)
@@ -298,7 +298,7 @@ public static class DgFormatHelper
             var cellValue = selectedRow.Cells[columnToGet].Value;
             if (cellValue != null)
             {
-               return cellValue.ToString();
+                return cellValue.ToString();
             }
         }
         return string.Empty;
@@ -314,5 +314,57 @@ public static class DgFormatHelper
         }
     }
 
+    public static void DisableColumnClick(DataGridView dataGridView, string columnName)
+    {
+        // Validate input
+        if (dataGridView == null || string.IsNullOrWhiteSpace(columnName))
+        {
+            throw new ArgumentException("Invalid column name or DataGridView");
+        }
 
+        // Find the column by name
+        DataGridViewColumn column = dataGridView.Columns[columnName];
+        if (column == null)
+        {
+            throw new ArgumentException($"Column '{columnName}' not found in the DataGridView");
+        }
+
+        // Disable column header clicking
+        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+        // Make the column read-only
+        column.ReadOnly = true;
+
+        // Attach event handler to prevent cell interactions and change cursor
+        dataGridView.CellMouseEnter += (sender, e) =>
+        {
+            // Check if the mouse is over the specified column
+            if (e.ColumnIndex == column.Index)
+            {
+                // Change cursor to not allowed
+                dataGridView.Cursor = Cursors.No;
+            }
+        };
+
+        // Reset cursor when mouse leaves the column
+        dataGridView.CellMouseLeave += (sender, e) =>
+        {
+            // Reset cursor to default
+            dataGridView.Cursor = Cursors.Default;
+        };
+
+        // Attach event handler to prevent cell interactions
+        dataGridView.CellClick += (sender, e) =>
+        {
+            // Check if the clicked cell is in the specified column
+            if (e.ColumnIndex == column.Index)
+            {
+                // Prevent further processing by setting column interactions to null
+                if (sender is DataGridView dgv)
+                {
+                    dgv.CurrentCell = null;
+                }
+            }
+        };
+    }
 }

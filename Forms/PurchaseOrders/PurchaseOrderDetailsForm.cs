@@ -82,6 +82,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
                     addProduct_btn.Visible = false;
                     addSupplier_btn.Visible = false;
+                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
                     break;
                 case ProcessStatus.Completed:
                     action_btn.Visible = false;
@@ -90,6 +91,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
                     addProduct_btn.Visible = false;
                     addSupplier_btn.Visible = false;
+                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
                     break;
                 case ProcessStatus.Cancelled:
                     action_btn.Text = "Re-Activate";
@@ -99,6 +101,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
                     addProduct_btn.Visible = false;
                     addSupplier_btn.Visible = false;
+                    DgFormatHelper.DisableColumnClick(dgPoItems, "PurchaseOrderItemId");
                     break;
             }
 
