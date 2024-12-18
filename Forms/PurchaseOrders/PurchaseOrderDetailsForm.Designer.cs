@@ -65,6 +65,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.creditTermsPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.showLogs_link = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.poPanel.SuspendLayout();
@@ -498,12 +499,25 @@
             this.panel3.Size = new System.Drawing.Size(18, 23);
             this.panel3.TabIndex = 546;
             // 
+            // showLogs_link
+            // 
+            this.showLogs_link.AutoSize = true;
+            this.showLogs_link.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showLogs_link.Location = new System.Drawing.Point(16, 678);
+            this.showLogs_link.Name = "showLogs_link";
+            this.showLogs_link.Size = new System.Drawing.Size(71, 17);
+            this.showLogs_link.TabIndex = 546;
+            this.showLogs_link.TabStop = true;
+            this.showLogs_link.Text = "Show Logs";
+            this.showLogs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.showLogs_link_LinkClicked);
+            // 
             // PurchaseOrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(870, 722);
+            this.Controls.Add(this.showLogs_link);
             this.Controls.Add(this.creditTermsPanel);
             this.Controls.Add(this.rowCount_tx);
             this.Controls.Add(this.label4);
@@ -581,5 +595,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel creditTermsPanel;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.LinkLabel showLogs_link;
     }
 }

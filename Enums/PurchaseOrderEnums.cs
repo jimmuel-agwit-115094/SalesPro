@@ -10,6 +10,16 @@
         Cancelled,
     }
 
+    public enum PoLogActionStatus 
+    {
+        CreatedPo,
+        SentToSupplier,
+        CompletedPo,
+        CancelledPo,
+        UndoPoToCreated,
+        ReactivatedPo
+    }
+
     public enum PaymentStatus
     {
         Unpaid,

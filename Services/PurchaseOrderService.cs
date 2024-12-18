@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
@@ -293,6 +294,25 @@ namespace SalesPro.Services
                     }
                 });
                 return checker;
+            }
+        }
+
+        public async Task<List<PurchaseOrderLogsModelExtended>> GetPurchaseOrderLogsByPoId(int poId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from po in context.PurchaseOrderLogs
+                              join u in context.Users on po.UserId equals u.UserId
+                              where po.PurchaseOrderId == poId
+                              select new PurchaseOrderLogsModelExtended
+                              {
+                                  PurchaseOrderLogsId = po.PurchaseOrderLogsId,
+                                  Date = po.Date,
+                                  PurchaseOrderId = po.PurchaseOrderId,
+                                  UserFullName = u.Fullname,
+                                  PoLogActionStatus = po.PoLogActionStatus
+
+                              }).OrderByDescending(x => x.PurchaseOrderLogsId).ToListAsync();
             }
         }
     }

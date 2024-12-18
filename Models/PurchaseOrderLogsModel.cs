@@ -10,7 +10,12 @@ namespace SalesPro.Models
         public int PurchaseOrderLogsId { get; set; }
         public int PurchaseOrderId { get; set; }
         public int UserId { get; set; }
-        public ProcessStatus ProcessStatus { get; set; }
+        public PoLogActionStatus PoLogActionStatus { get; set; }
         public DateTime Date { get; set; }
+    }
+
+    public class PurchaseOrderLogsModelExtended : PurchaseOrderLogsModel
+    {
+        public string UserFullName { get; set; }
     }
 }

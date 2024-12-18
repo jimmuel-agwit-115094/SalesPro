@@ -144,14 +144,14 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(ProcessStatus processStatus)
+        private PurchaseOrderLogsModel BuildPurchaseOrderLogsModel(PoLogActionStatus processStatus)
         {
             return new PurchaseOrderLogsModel
             {
                 PurchaseOrderId = _poId,
                 UserId = UserSession.Session_UserId,
-                ProcessStatus = processStatus,
-                Date = _curDate.Date
+                PoLogActionStatus = processStatus,
+                Date = _curDate
             };
         }
 
@@ -250,7 +250,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Created:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to send to supplier?"))
                         {
-                            var sentLog = BuildPurchaseOrderLogsModel(ProcessStatus.Sent);
+                            var sentLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.SentToSupplier);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Sent, sentLog);
                             Close();
                         }
@@ -259,7 +259,7 @@ namespace SalesPro.Forms.PurchaseOrders
                         if (!Validators.IntValidator(creditTerms_tx.Text, "Credit Terms")) return;
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to receive purchase order?"))
                         {
-                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Completed);
+                            var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CompletedPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog);
                             Close();
                         }
@@ -270,7 +270,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Cancelled:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Reactivate purchase order?"))
                         {
-                            var completedLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created);
+                            var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.ReactivatedPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Created, completedLog);
                             Close();
                         }
@@ -280,7 +280,7 @@ namespace SalesPro.Forms.PurchaseOrders
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error updating PO. {ex.Message}");
+                MessageHandler.ShowError($"Error updating PO. {ex}");
             }
         }
 
@@ -303,7 +303,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Created:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Cancel Purchase Order?"))
                         {
-                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled);
+                            var undoLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CancelledPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Cancelled, undoLog);
                             Close();
                         }
@@ -311,7 +311,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Sent:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Undo Purchase Order to created?"))
                         {
-                            var undoLog = BuildPurchaseOrderLogsModel(ProcessStatus.Created);
+                            var undoLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.UndoPoToCreated);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, undoLog);
                             Close();
                         }
@@ -322,7 +322,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     case ProcessStatus.Cancelled:
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to Reactivate Purchase order?"))
                         {
-                            var cancelledLog = BuildPurchaseOrderLogsModel(ProcessStatus.Cancelled);
+                            var cancelledLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.ReactivatedPo);
                             await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, 0, ProcessStatus.Created, cancelledLog);
                             Close();
                         }
@@ -339,6 +339,13 @@ namespace SalesPro.Forms.PurchaseOrders
         private void creditTerms_tx_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void showLogs_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var form = new PoLogsForm();
+            form._poId = _poId;
+            form.ShowDialog();
         }
     }
 }

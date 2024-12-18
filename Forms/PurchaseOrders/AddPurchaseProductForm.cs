@@ -169,7 +169,7 @@ namespace SalesPro.Forms.PurchaseOrders
             if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
             if (!Validators.AmountValidator(supplierPrice_tx.Text, "Supplier Price")) return;
             if (!Validators.AmountValidator(markUpPrice_tx.Text, "Markup Price")) return;
-            if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
+            //if (!Validators.AmountComparisonValidator(markUpPrice_tx.Text, supplierPrice_tx.Text, "Markup Price", "Supplier Price")) return;
 
             try
             {
