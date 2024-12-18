@@ -6,6 +6,7 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private ProcessStatus _tabProcess;
         private readonly PurchaseOrderService _service;
         private DateTime _curDate;
+        private List<PurchaseOrderModelExtended> _purchaseOrderList;
         public PurchaseOrderForm()
         {
             _service = new PurchaseOrderService();
@@ -34,7 +36,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 var form = new PurchaseOrderDetailsForm(this);
                 form._poId = savedPO.PurchaseOrderId;
                 form._actionType = SystemConstants.New;
-               //form._rowVersion = await _service.GetPoRowVersion(savedPO.PurchaseOrderId);
+                //form._rowVersion = await _service.GetPoRowVersion(savedPO.PurchaseOrderId);
                 form.ShowDialog();
             }
         }
@@ -72,11 +74,12 @@ namespace SalesPro.Forms.PurchaseOrders
             _curDate = await ClockHelper.GetServerDateTime();
         }
 
-        public async Task LoadPurchaseOrdersByProcessStatus()
+        public async Task<List<PurchaseOrderModelExtended>> LoadPurchaseOrdersByProcessStatus()
         {
+            var purchaseOrders = new List<PurchaseOrderModelExtended>();
             // Note : The order of the tabs in the tab control should match the order of the ProcessStatus enum
             var tabProcess = (ProcessStatus)transactionsTabControl.SelectedIndex;
-            var purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(tabProcess);
+            purchaseOrders = await _service.GetPurchaseOrdersByProcessStatus(tabProcess);
             if (purchaseOrders != null)
             {
                 dgPo.DataSource = purchaseOrders;
@@ -91,17 +94,32 @@ namespace SalesPro.Forms.PurchaseOrders
                     "PaymentStatus",
                     "ProcessStatus");
             }
+            return purchaseOrders;
         }
 
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            await LoadPurchaseOrdersByProcessStatus();
+            _purchaseOrderList = await LoadPurchaseOrdersByProcessStatus();
             _tabProcess = (ProcessStatus)transactionsTabControl.SelectedIndex;
         }
 
         private void find_btn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var date = date_cb.Value.Date;
+                if (_purchaseOrderList != null || _purchaseOrderList.Count != 0)
+                {
+                    var filteredPos = _purchaseOrderList.Where(x => x.DateCreated.Date == date).ToList();
+                    dgPo.DataSource = filteredPos;
+                    notFound_lbl.Visible = filteredPos.Count == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error finding date on Purchase Order: {ex.Message}");
+                throw;
+            }
         }
 
         private async void dgPo_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -123,6 +141,11 @@ namespace SalesPro.Forms.PurchaseOrders
                 MessageHandler.ShowError($"Error purchase order cell click: {ex.Message}");
                 throw;
             }
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgPo, search_tx);
         }
     }
 }
