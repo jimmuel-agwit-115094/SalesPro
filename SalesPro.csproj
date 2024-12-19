@@ -162,9 +162,16 @@
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
+    <Compile Include="Enums\InventoryEnum.cs" />
     <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Enums\PurchaseOrderEnums.cs" />
     <Compile Include="Enums\UsersEnums.cs" />
+    <Compile Include="Forms\Inventory\InventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Inventory\InventoryForm.Designer.cs">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +227,7 @@
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\NullCheckerHelper.cs" />
+    <Compile Include="Models\InventoryModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />
     <Compile Include="Models\PurchaseOrderLogsModel.cs" />
@@ -247,6 +255,9 @@
     <Compile Include="Services\PurchaseOrderService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Validators\Validators.cs" />
+    <EmbeddedResource Include="Forms\Inventory\InventoryForm.resx">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

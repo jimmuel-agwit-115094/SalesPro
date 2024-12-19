@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Constants;
+using SalesPro.Forms.Inventory;
 using SalesPro.Forms.PurchaseOrders;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
@@ -85,6 +86,12 @@ namespace SalesPro.Forms
         private void po_btn_Click(object sender, EventArgs e)
         {
             var form = new PurchaseOrderForm();
+            LoadFormInPanel(form);
+        }
+
+        private void inventory_btn_Click(object sender, EventArgs e)
+        {
+            var form = new InventoryForm();
             LoadFormInPanel(form);
         }
     }

@@ -306,6 +306,7 @@
             this.inventory_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.inventory_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.inventory_btn.UseVisualStyleBackColor = false;
+            this.inventory_btn.Click += new System.EventHandler(this.inventory_btn_Click);
             // 
             // reports_btn
             // 
