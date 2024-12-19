@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class InventoryModel
+    public class InventoryModel : BaseEntity
     {
         [Key]
         public int InventoryId { get; set; }
@@ -20,8 +20,6 @@ namespace SalesPro.Models
         public decimal SupplierPrice { get; set; }
         public decimal RetailPrice { get; set; }
         public string Remarks { get; set; }
-        public bool IsDeleted { get; set; }
-        public int RowVersion { get; set; }
     }
 
     public class InventoryModelExtended : InventoryModel

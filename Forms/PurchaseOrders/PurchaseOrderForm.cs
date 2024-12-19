@@ -149,5 +149,10 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             DgFormatHelper.SearchOnGrid(dgPo, search_tx);
         }
+
+        private void cancelledTab_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
