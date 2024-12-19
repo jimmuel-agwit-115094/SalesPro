@@ -11,12 +11,12 @@ namespace SalesPro.Forms.Inventory
 {
     public partial class InventoryForm : Form
     {
+        private int _inventoryId;
         private readonly InventoryService _service;
-        private InventoryStatus _tabProcess;
         public InventoryForm()
         {
             InitializeComponent();
-            action_cb.DataSource = Enum.GetValues(typeof(InventoryStatus));
+            action_cb.DataSource = Enum.GetValues(typeof(InventoryAction));
             _service = new InventoryService();
         }
 
@@ -97,13 +97,22 @@ namespace SalesPro.Forms.Inventory
             }
         }
 
-        private async void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dgInventory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private async void dgInventory_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                int inventoryId = DgFormatHelper.GetSelectedId(dgInventory, e, "InventoryId");
-                if (inventoryId == 0) return;
-                await GetInventoryData(inventoryId);
+                _inventoryId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgInventory, "InventoryId");
+                if (_inventoryId == 0) return;
+                await GetInventoryData(_inventoryId);
             }
             catch (Exception ex)
             {

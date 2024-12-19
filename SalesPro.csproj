@@ -227,6 +227,7 @@
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\NullCheckerHelper.cs" />
+    <Compile Include="Models\InventoryLogModel.cs" />
     <Compile Include="Models\InventoryModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />

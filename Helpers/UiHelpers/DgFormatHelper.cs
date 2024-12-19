@@ -277,8 +277,33 @@ public static class DgFormatHelper
             MessageHandler.ShowError($"Error getting selected id {ex.Message}");
             throw;
         }
-
     }
+
+    public static int GetSelectedIdOnSelectionChange(DataGridView dgv, string columnName)
+    {
+        try
+        {
+            if (dgv.CurrentRow != null && dgv.Columns.Contains(columnName))
+            {
+                object cellValue = dgv.CurrentRow.Cells[columnName].Value;
+
+                if (cellValue != null && int.TryParse(cellValue.ToString(), out int selectedId))
+                {
+                    if (selectedId != 0)
+                    {
+                        return selectedId;
+                    }
+                }
+            }
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            MessageHandler.ShowError($"Error getting selected id: {ex.Message}");
+            throw;
+        }
+    }
+
 
     public static void SetDataGridStyles(DataGridView dataGrid)
     {

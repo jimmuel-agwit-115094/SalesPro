@@ -1,9 +1,9 @@
 ﻿
 namespace SalesPro.Enums
 {
-    public enum InventoryStatus
+    public enum InventoryAction
     {
-        Active,
-        Inactive,
+        Positive_Adjustment,
+        Negative_Adjustment,
     }
 }
