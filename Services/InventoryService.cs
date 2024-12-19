@@ -26,7 +26,6 @@ namespace SalesPro.Services
                                   ProductId = i.ProductId,
                                   SupplierId = i.SupplierId,
                                   UserId = i.UserId,
-                                  InventoryStatus = i.InventoryStatus,
                                   Size = i.Size,
                                   DateAdded = i.DateAdded,
                                   QuantityFromPo = i.QuantityFromPo,
@@ -41,7 +40,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<InventoryModelExtended>> GetInventoryByInventoryStatus(InventoryStatus status)
+        public async Task<List<InventoryModelExtended>> GetFilteredInventories(bool isOutOfStock)
         {
             using (var context = new DatabaseContext())
             {
@@ -50,7 +49,7 @@ namespace SalesPro.Services
                               join p in context.Products on i.ProductId equals p.ProductId
                               join u in context.Users on i.UserId equals u.UserId
                               join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                              where i.InventoryStatus == status
+                              where isOutOfStock ? i.QuantityFromPo == 0 : i.QuantityFromPo > 0
                               select new InventoryModelExtended
                               {
                                   InventoryId = i.InventoryId,
@@ -58,7 +57,6 @@ namespace SalesPro.Services
                                   ProductId = i.ProductId,
                                   SupplierId = i.SupplierId,
                                   UserId = i.UserId,
-                                  InventoryStatus = i.InventoryStatus,
                                   Size = i.Size,
                                   DateAdded = i.DateAdded,
                                   QuantityFromPo = i.QuantityFromPo,
@@ -90,7 +88,6 @@ namespace SalesPro.Services
                                   ProductId = i.ProductId,
                                   SupplierId = i.SupplierId,
                                   UserId = i.UserId,
-                                  InventoryStatus = i.InventoryStatus,
                                   Size = i.Size,
                                   DateAdded = i.DateAdded,
                                   QuantityFromPo = i.QuantityFromPo,

@@ -22,7 +22,7 @@ namespace SalesPro.Forms.Inventory
 
         private async void InventoryForm_Load(object sender, EventArgs e)
         {
-            await LoadInventoriesByInventoryStatus(InventoryStatus.Active);
+            await LoadFilteredInventories(false);
         }
 
         private void FormatGrid()
@@ -41,9 +41,9 @@ namespace SalesPro.Forms.Inventory
             FormatGrid();
         }
 
-        private async Task LoadInventoriesByInventoryStatus(InventoryStatus status)
+        private async Task LoadFilteredInventories(bool isOutofStock)
         {
-            var inv = await _service.GetInventoryByInventoryStatus(status);
+            var inv = await _service.GetFilteredInventories(isOutofStock);
             dgInventory.DataSource = inv;
             FormatGrid();
         }
@@ -64,10 +64,10 @@ namespace SalesPro.Forms.Inventory
             switch (selectedTab)
             {
                 case 0:
-                    await LoadInventoriesByInventoryStatus(InventoryStatus.Active);
+                    await LoadFilteredInventories(false);
                     break;
                 case 1:
-                    await LoadInventoriesByInventoryStatus(InventoryStatus.Inactive);
+                    await LoadFilteredInventories(true);
                     break;
                 case 2:
                     await LoadAllInventories();
@@ -91,8 +91,8 @@ namespace SalesPro.Forms.Inventory
                 dateAdded_tx.Text = inv.DateAdded.ToString("MMM dd, yyyy");
                 qtyFromPo_tx.Text = inv.QuantityFromPo.ToString();
                 qtyOnHand_tx.Text = inv.QuantityOnHand.ToString();
-                suppPrice_tx.Text = inv.SupplierPrice.ToString();
-                retailPrice_tx.Text = inv.RetailPrice.ToString();
+                suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
+                retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
                 remakrs_tx.Text = inv.Remarks;
             }
         }

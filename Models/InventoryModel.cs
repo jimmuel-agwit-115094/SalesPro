@@ -12,7 +12,6 @@ namespace SalesPro.Models
         public int ProductId { get; set; }
         public int SupplierId { get; set; }
         public int UserId { get; set; }
-        public InventoryStatus InventoryStatus { get; set; }
         public string Size { get; set; }
         public DateTime DateAdded { get; set; }
         public int QuantityFromPo { get; set; }
