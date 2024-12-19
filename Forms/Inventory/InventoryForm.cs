@@ -20,14 +20,7 @@ namespace SalesPro.Forms.Inventory
 
         private async void InventoryForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error Occured on inventory form load:\n{ex.Message}");
-            }
+            await LoadInventoriesByInventoryStatus(InventoryStatus.Active);
         }
 
         private void FormatGrid()
@@ -41,14 +34,16 @@ namespace SalesPro.Forms.Inventory
 
         private async Task LoadAllInventories()
         {
-            var allInv = await _service.GetAllInventories();
-            dgInventory.DataSource = allInv;
+            var allInventory = await _service.GetAllInventories();
+            dgInventory.DataSource = allInventory;
+            FormatGrid();
         }
 
         private async Task LoadInventoriesByInventoryStatus(InventoryStatus status)
         {
             var inv = await _service.GetInventoryByInventoryStatus(status);
             dgInventory.DataSource = inv;
+            FormatGrid();
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -76,7 +71,6 @@ namespace SalesPro.Forms.Inventory
                     await LoadAllInventories();
                     break;
             }
-            FormatGrid();
         }
 
         private void allTab_Click(object sender, EventArgs e)
