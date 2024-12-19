@@ -6,6 +6,7 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace SalesPro.Forms.PurchaseOrders
         public string _actionType;
         private bool _isSupplierSelected = false;
         public ProcessStatus _poTabProcess;
+        private int _supplierId;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -76,13 +78,14 @@ namespace SalesPro.Forms.PurchaseOrders
                     case PaymentStatus.Unpaid:
                         StatusIconHelper.ShowStatus(IconStatusType.Cancelled, payment_panel, "Unpaid");
                         break;
-                  
+
                 }
 
                 creditTerms_tx.Text = po.CreditTerms.ToString();
                 var supplier = await _service.GetSupplierById(po.SupplierId);
                 if (supplier != null)
                 {
+                    _supplierId = supplier.SupplierId;
                     supplier_tx.Text = supplier.SupplierName;
                     address_tx.Text = supplier.SupplierAddress;
                     contactPerson_tx.Text = supplier.SupplierContactPerson;
@@ -154,6 +157,32 @@ namespace SalesPro.Forms.PurchaseOrders
                 Date = _curDate
             };
         }
+
+        private async Task<List<InventoryModel>> BuildInventoryModel(int purchaseOrderId, int supplierId)
+        {
+            var poItems = await _service.GetPurchaseOrderItemsByPoid(purchaseOrderId);
+            var inventoryModels = new List<InventoryModel>();
+
+            foreach (var poItem in poItems)
+            {
+                inventoryModels.Add(new InventoryModel
+                {
+                    PurchaseOrderId = poItem.PurchaseOrderId,
+                    ProductId = poItem.ProductId,
+                    SupplierId = supplierId,
+                    UserId = UserSession.Session_UserId,
+                    QuantityFromPo = poItem.Quantity,
+                    QuantityOnHand = poItem.Quantity,
+                    SupplierPrice = poItem.SupplierPrice,
+                    RetailPrice = poItem.RetailPrice,
+                    Remarks = "",
+                    DateAdded = _curDate,
+                });
+            }
+
+            return inventoryModels;
+        }
+
 
         public async Task LoadPurchaseOrderItemsByPoId()
         {
@@ -261,7 +290,8 @@ namespace SalesPro.Forms.PurchaseOrders
                         if (MessageHandler.ShowQuestionGeneric("Are you sure you want to receive purchase order?"))
                         {
                             var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CompletedPo);
-                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog);
+                            var inventory = await BuildInventoryModel(_poId, _supplierId);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog, inventory);
                             _purchaseOrderForm.transactionsTabControl.SelectedIndex = 2;
                             Close();
                         }

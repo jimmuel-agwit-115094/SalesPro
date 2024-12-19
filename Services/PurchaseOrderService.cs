@@ -235,7 +235,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, int creditTerms, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs)
+        public async Task UpdatePurchaseOrder_ProcessStatus(int purchaseOrderId, int rowVersion, int creditTerms, ProcessStatus status, PurchaseOrderLogsModel purchaseOrderLogs, List<InventoryModel> inventories = null)
         {
             using (var context = new DatabaseContext())
             {
@@ -248,6 +248,10 @@ namespace SalesPro.Services
                         {
                             toUpdate.ProcessStatus = status;
                             toUpdate.CreditTerms = creditTerms;
+                            if (inventories != null && inventories.Any()) // Add inventories if provided
+                            {
+                                await context.Inventories.AddRangeAsync(inventories);
+                            }
                             await context.PurchaseOrderLogs.AddAsync(purchaseOrderLogs);
                             await context.SaveChangesAsync();
                         }
