@@ -53,10 +53,6 @@ namespace SalesPro.Forms.Inventory
 
         }
 
-        private void add_btn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -117,6 +113,18 @@ namespace SalesPro.Forms.Inventory
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error getting inventory data: {ex.Message}");
+            }
+        }
+
+        private void update_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error updating inventory: {ex.Message}");
             }
         }
     }

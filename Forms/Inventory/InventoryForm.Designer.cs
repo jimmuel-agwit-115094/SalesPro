@@ -153,7 +153,7 @@
             this.dgInventory.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgInventory.EnableHeadersVisualStyles = false;
             this.dgInventory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgInventory.Location = new System.Drawing.Point(3, 53);
+            this.dgInventory.Location = new System.Drawing.Point(3, 46);
             this.dgInventory.MultiSelect = false;
             this.dgInventory.Name = "dgInventory";
             this.dgInventory.ReadOnly = true;
@@ -169,7 +169,7 @@
             this.dgInventory.RowHeadersWidth = 51;
             this.dgInventory.RowTemplate.Height = 32;
             this.dgInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgInventory.Size = new System.Drawing.Size(823, 603);
+            this.dgInventory.Size = new System.Drawing.Size(823, 610);
             this.dgInventory.TabIndex = 461;
             this.dgInventory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellClick);
             this.dgInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellContentClick);
@@ -182,7 +182,7 @@
             this.activeTab.Location = new System.Drawing.Point(4, 29);
             this.activeTab.Name = "activeTab";
             this.activeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activeTab.Size = new System.Drawing.Size(801, 4);
+            this.activeTab.Size = new System.Drawing.Size(816, 4);
             this.activeTab.TabIndex = 0;
             this.activeTab.Text = "   Active Inventory   ";
             this.activeTab.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@
             this.inventoryTabControl.Location = new System.Drawing.Point(4, 10);
             this.inventoryTabControl.Name = "inventoryTabControl";
             this.inventoryTabControl.SelectedIndex = 0;
-            this.inventoryTabControl.Size = new System.Drawing.Size(809, 37);
+            this.inventoryTabControl.Size = new System.Drawing.Size(824, 37);
             this.inventoryTabControl.TabIndex = 439;
             this.inventoryTabControl.SelectedIndexChanged += new System.EventHandler(this.inventoryTabControl_SelectedIndexChanged);
             // 
@@ -548,7 +548,7 @@
             this.update_btn.TabIndex = 552;
             this.update_btn.Text = "Update";
             this.update_btn.UseVisualStyleBackColor = false;
-            this.update_btn.Click += new System.EventHandler(this.add_btn_Click);
+            this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
             // 
             // label1
             // 
