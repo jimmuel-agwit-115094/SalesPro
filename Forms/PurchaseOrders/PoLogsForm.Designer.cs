@@ -141,6 +141,7 @@
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.dgLogs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PoLogsForm";

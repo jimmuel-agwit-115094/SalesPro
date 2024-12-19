@@ -430,12 +430,12 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(816, 17);
+            this.label4.Location = new System.Drawing.Point(770, 17);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 17);
+            this.label4.Size = new System.Drawing.Size(85, 17);
             this.label4.TabIndex = 535;
-            this.label4.Text = "Total";
+            this.label4.Text = "Total Payable";
             // 
             // rowCount_tx
             // 

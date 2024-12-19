@@ -159,6 +159,7 @@
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.dgSupplier);
             this.Controls.Add(this.title_lbl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddSupplierForm";

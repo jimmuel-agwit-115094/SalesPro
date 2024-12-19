@@ -31,7 +31,7 @@ namespace SalesPro.Forms.PurchaseOrders
             var purchaseOrders = await _service.GetAllPurchaseOrders();
             var existingPO = purchaseOrders.FirstOrDefault(po => po.ProcessStatus == ProcessStatus.Created);
 
-            if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n {Resources.ConfirmNew}", FormConstants.PurchaseOrder))
+            if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n{Resources.ConfirmNew}", FormConstants.PurchaseOrder))
             {
                 var savedPO = await SavePurchaseOrder();
                 var form = new PurchaseOrderDetailsForm(this);
