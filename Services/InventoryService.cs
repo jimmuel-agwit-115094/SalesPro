@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using SalesPro.Enums;
+using SalesPro.Helpers;
 
 namespace SalesPro.Services
 {
@@ -69,7 +70,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<InventoryModelExtended> GetInventoryById(int inventoryId)
+        public async Task<InventoryModelExtended> GetExtendedInventoryById(int inventoryId)
         {
             using (var context = new DatabaseContext())
             {
@@ -96,6 +97,44 @@ namespace SalesPro.Services
                                   SupplierName = s.SupplierName,
                                   UserFullName = u.Fullname
                               }).FirstOrDefaultAsync();
+            }
+        }
+
+
+        // Get inventory by id
+        public async Task<InventoryModel> GetInventoryById(int inventoryId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Inventories.FindAsync(inventoryId);
+            }
+        }
+
+        public async Task<bool> UpdateInventory(int inventoryId, int adjustingQty, InventoryAction action, InventoryLogModel invLog, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                bool success = false;
+                var toUpdate = await context.Inventories.FindAsync(inventoryId);
+                if (NullCheckerHelper.NullCheck(toUpdate))
+                {
+                    await context.ExecuteInTransactionAsync(async () =>
+                    {
+                        success = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                        if (success)
+                        {
+                            int updateQty = action == InventoryAction.Positive_Adjustment
+                                ? toUpdate.QuantityOnHand + adjustingQty
+                                : toUpdate.QuantityOnHand - adjustingQty;
+
+                            toUpdate.QuantityOnHand = updateQty;
+                            await context.InventoryLogs.AddAsync(invLog);
+                            await context.SaveChangesAsync();
+                        }
+                    });
+
+                }
+                return success;
             }
         }
     }

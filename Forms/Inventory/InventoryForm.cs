@@ -1,17 +1,19 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Forms.Inventory
 {
     public partial class InventoryForm : Form
     {
         private int _inventoryId;
+        private int _rowVersion;
         private readonly InventoryService _service;
         public InventoryForm()
         {
@@ -78,7 +80,7 @@ namespace SalesPro.Forms.Inventory
 
         private async Task GetInventoryData(int inventoryId)
         {
-            var inv = await _service.GetInventoryById(inventoryId);
+            var inv = await _service.GetExtendedInventoryById(inventoryId);
             if (inv != null)
             {
                 productName_tx.Text = inv.ProductName;
@@ -116,11 +118,33 @@ namespace SalesPro.Forms.Inventory
             }
         }
 
-        private void update_btn_Click(object sender, EventArgs e)
+        private async void update_btn_Click(object sender, EventArgs e)
         {
+            InventoryAction selectedAction = (InventoryAction)action_cb.SelectedItem;
             try
             {
+                if (MessageHandler.ShowQuestionGeneric("Are you sure to adjust the inventory?"))
+                {
+                    var log = new InventoryLogModel();
+                    var inv = await _service.GetInventoryById(_inventoryId);
+                    if (inv != null)
+                    {
+                        log.InventoryId = inv.InventoryId;
+                        log.UserId = inv.UserId;
+                        log.DateAdded = inv.DateAdded;
+                        log.DateAdjusted = DateTime.Now;
+                        log.InventoryAction = selectedAction;
+                        log.Reason = reason_tx.Text;
+                        log.CurrentQuantity = inv.QuantityOnHand;
+                        log.AdjustmentQuantity = int.Parse(adjustingQty_tx.Text);
 
+                        log.FinalQuantity = selectedAction == InventoryAction.Positive_Adjustment
+                            ? log.CurrentQuantity + log.AdjustmentQuantity
+                            : log.CurrentQuantity - log.AdjustmentQuantity;
+
+                    }
+                    await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
+                }
             }
             catch (Exception ex)
             {
