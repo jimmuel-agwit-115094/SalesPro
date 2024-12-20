@@ -32,7 +32,6 @@ namespace SalesPro.Services
                                   QuantityOnHand = i.QuantityOnHand,
                                   SupplierPrice = i.SupplierPrice,
                                   RetailPrice = i.RetailPrice,
-                                  Remarks = i.Remarks,
                                   ProductName = p.ProductName,
                                   SupplierName = s.SupplierName,
                                   UserFullName = u.Fullname
@@ -62,7 +61,6 @@ namespace SalesPro.Services
                                   QuantityOnHand = i.QuantityOnHand,
                                   SupplierPrice = i.SupplierPrice,
                                   RetailPrice = i.RetailPrice,
-                                  Remarks = i.Remarks,
                                   ProductName = p.ProductName,
                                   SupplierName = s.SupplierName,
                                   UserFullName = u.Fullname
@@ -92,10 +90,10 @@ namespace SalesPro.Services
                                   QuantityOnHand = i.QuantityOnHand,
                                   SupplierPrice = i.SupplierPrice,
                                   RetailPrice = i.RetailPrice,
-                                  Remarks = i.Remarks,
                                   ProductName = p.ProductName,
                                   SupplierName = s.SupplierName,
-                                  UserFullName = u.Fullname
+                                  UserFullName = u.Fullname,
+                                  RowVersion= i.RowVersion,
                               }).FirstOrDefaultAsync();
             }
         }
@@ -154,7 +152,6 @@ namespace SalesPro.Services
                                   DateAdded = i.DateAdded,
                                   DateAdjusted = i.DateAdjusted,
                                   InventoryAction = i.InventoryAction,
-                                  Reason = i.Reason,
                                   CurrentQuantity = i.CurrentQuantity,
                                   AdjustmentQuantity = i.AdjustmentQuantity,
                                   FinalQuantity = i.FinalQuantity,

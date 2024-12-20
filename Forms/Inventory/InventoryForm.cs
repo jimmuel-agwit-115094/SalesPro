@@ -6,7 +6,6 @@ using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Forms.Inventory
 {
@@ -51,13 +50,7 @@ namespace SalesPro.Forms.Inventory
             FormatGrid();
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private async Task LoadInventoriesBaseOnTabSelected()
         {
             var selectedTab = inventoryTabControl.SelectedIndex;
             switch (selectedTab)
@@ -72,6 +65,11 @@ namespace SalesPro.Forms.Inventory
                     await LoadAllInventories();
                     break;
             }
+        }
+
+        private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await LoadInventoriesBaseOnTabSelected();
         }
 
         private void allTab_Click(object sender, EventArgs e)
@@ -92,7 +90,7 @@ namespace SalesPro.Forms.Inventory
                 qtyOnHand_tx.Text = inv.QuantityOnHand.ToString();
                 suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
                 retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
-                remakrs_tx.Text = inv.Remarks;
+                _rowVersion = inv.RowVersion;
             }
         }
 
@@ -148,7 +146,7 @@ namespace SalesPro.Forms.Inventory
                         log.DateAdded = inv.DateAdded;
                         log.DateAdjusted = _curDate;
                         log.InventoryAction = selectedAction;
-                        log.Reason = reason_tx.Text;
+                        log.Remarks = reason_tx.Text;
                         log.CurrentQuantity = inv.QuantityOnHand;
                         log.AdjustmentQuantity = int.Parse(adjustingQty_tx.Text);
 
@@ -158,6 +156,8 @@ namespace SalesPro.Forms.Inventory
 
                     }
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
+                    await LoadInventoriesBaseOnTabSelected();
+                    dgInventory.ClearSelection();
                 }
             }
             catch (Exception ex)

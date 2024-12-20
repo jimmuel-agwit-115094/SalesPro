@@ -175,7 +175,6 @@ namespace SalesPro.Forms.PurchaseOrders
                     QuantityOnHand = poItem.Quantity,
                     SupplierPrice = poItem.SupplierPrice,
                     RetailPrice = poItem.RetailPrice,
-                    Remarks = "",
                     DateAdded = _curDate,
                 });
             }
@@ -195,7 +194,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     DateAdded = _curDate,
                     DateAdjusted = _curDate,
                     InventoryAction = InventoryAction.AddedToInventory,
-                    Reason = "Added from Purchase Order",
+                    Remarks = "Added from Purchase Order",
                     AdjustmentQuantity = 0,
                     CurrentQuantity = item.Quantity,
                     FinalQuantity = item.Quantity

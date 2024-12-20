@@ -21,7 +21,6 @@ namespace SalesPro.Forms.PurchaseOrders
         private bool _isProductSelected;
         public string _actionType;
         public decimal _totalPrice;
-        private string _productName;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;

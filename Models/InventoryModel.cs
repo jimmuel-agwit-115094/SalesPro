@@ -17,7 +17,6 @@ namespace SalesPro.Models
         public int QuantityOnHand { get; set; }
         public decimal SupplierPrice { get; set; }
         public decimal RetailPrice { get; set; }
-        public string Remarks { get; set; }
     }
 
     public class InventoryModelExtended : InventoryModel
