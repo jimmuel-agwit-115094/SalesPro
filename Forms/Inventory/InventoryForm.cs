@@ -104,6 +104,7 @@ namespace SalesPro.Forms.Inventory
                 if (invId == 0) return;
                 var form = new InventoryLogsForm();
                 form._inventoryId = invId;
+                form.total_tx.Text = qtyOnHand_tx.Text;
                 form.ShowDialog();
             }
             catch (Exception ex)

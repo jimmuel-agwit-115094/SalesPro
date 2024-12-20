@@ -179,10 +179,30 @@ namespace SalesPro.Forms.PurchaseOrders
                     DateAdded = _curDate,
                 });
             }
-
             return inventoryModels;
         }
 
+        private async Task<List<InventoryLogModel>> BuildInventoryLogsModel(int purchaseOrderId)
+        {
+            var poItems = await _service.GetPurchaseOrderItemsByPoid(purchaseOrderId);
+            var inventoryLogsModel = new List<InventoryLogModel>();
+            foreach(var  item in poItems)
+            {
+                inventoryLogsModel.Add(new InventoryLogModel
+                {
+                    InventoryId = item.PurchaseOrderItemId,
+                    UserId = UserSession.Session_UserId,
+                    DateAdded = _curDate,
+                    DateAdjusted = _curDate,
+                    InventoryAction = InventoryAction.AddedToInventory,
+                    Reason = "Added from Purchase Order",
+                    AdjustmentQuantity = 0,
+                    CurrentQuantity = item.Quantity,
+                    FinalQuantity = item.Quantity
+                });
+            }
+            return inventoryLogsModel;
+        }
 
         public async Task LoadPurchaseOrderItemsByPoId()
         {
@@ -291,7 +311,8 @@ namespace SalesPro.Forms.PurchaseOrders
                         {
                             var completedLog = BuildPurchaseOrderLogsModel(PoLogActionStatus.CompletedPo);
                             var inventory = await BuildInventoryModel(_poId, _supplierId);
-                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog, inventory);
+                            var inventoryLogs = await BuildInventoryLogsModel(_poId);
+                            await _service.UpdatePurchaseOrder_ProcessStatus(_poId, _rowVersion, int.Parse(creditTerms_tx.Text), ProcessStatus.Completed, completedLog, inventory, inventoryLogs);
                             _purchaseOrderForm.transactionsTabControl.SelectedIndex = 2;
                             Close();
                         }

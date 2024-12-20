@@ -24,7 +24,7 @@ namespace SalesPro.Forms.Inventory
                 dgLogs.DataSource = logs;
                 DgExtensions.ConfigureDataGrid(dgLogs, false, 3, notFound_lbl,
                     "UserFullName", "DateAdded", "DateAdjusted", "InventoryAction",
-                    "CurrentQuantity", "AdjustmentQuantity", "FinalQuantity");
+                    "CurrentQuantity", "AdjustmentQuantity", "FinalQuantity","Reason");
 
                 var inv = await _service.GetExtendedInventoryById(_inventoryId);
                 if (inv != null)

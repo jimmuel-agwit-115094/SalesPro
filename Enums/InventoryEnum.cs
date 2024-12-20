@@ -5,5 +5,6 @@ namespace SalesPro.Enums
     {
         Positive_Adjustment,
         Negative_Adjustment,
+        AddedToInventory,
     }
 }

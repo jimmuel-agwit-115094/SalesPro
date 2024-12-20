@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
@@ -109,7 +109,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(490, 395);
+            this.save_btn.Location = new System.Drawing.Point(485, 385);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(128, 34);
             this.save_btn.TabIndex = 3;
@@ -135,6 +135,8 @@
             this.transactionData_tab.Controls.Add(this.panel5);
             this.transactionData_tab.Controls.Add(this.panel4);
             this.transactionData_tab.Controls.Add(this.panel3);
+            this.transactionData_tab.Controls.Add(this.endingCash_tx);
+            this.transactionData_tab.Controls.Add(this.label4);
             this.transactionData_tab.Controls.Add(this.panel2);
             this.transactionData_tab.Controls.Add(this.begBal_tx);
             this.transactionData_tab.Controls.Add(this.totalSales_tx);
@@ -142,7 +144,6 @@
             this.transactionData_tab.Controls.Add(this.date_tx);
             this.transactionData_tab.Controls.Add(this.expCash_tx);
             this.transactionData_tab.Controls.Add(this.closedBy_tx);
-            this.transactionData_tab.Controls.Add(this.endingCash_tx);
             this.transactionData_tab.Controls.Add(this.openedBy_tx);
             this.transactionData_tab.Controls.Add(this.label7);
             this.transactionData_tab.Controls.Add(this.panel1);
@@ -150,7 +151,6 @@
             this.transactionData_tab.Controls.Add(this.close_btn);
             this.transactionData_tab.Controls.Add(this.label6);
             this.transactionData_tab.Controls.Add(this.label5);
-            this.transactionData_tab.Controls.Add(this.label4);
             this.transactionData_tab.Controls.Add(this.label3);
             this.transactionData_tab.Controls.Add(this.label2);
             this.transactionData_tab.Controls.Add(this.label1);
@@ -167,7 +167,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.SystemColors.Control;
-            this.panel8.Location = new System.Drawing.Point(313, 324);
+            this.panel8.Location = new System.Drawing.Point(313, 187);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(18, 23);
             this.panel8.TabIndex = 528;
@@ -175,7 +175,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Control;
-            this.panel5.Location = new System.Drawing.Point(313, 282);
+            this.panel5.Location = new System.Drawing.Point(313, 312);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(18, 23);
             this.panel5.TabIndex = 527;
@@ -183,7 +183,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Location = new System.Drawing.Point(313, 236);
+            this.panel4.Location = new System.Drawing.Point(313, 270);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(18, 23);
             this.panel4.TabIndex = 526;
@@ -191,7 +191,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
-            this.panel3.Location = new System.Drawing.Point(313, 192);
+            this.panel3.Location = new System.Drawing.Point(313, 228);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(18, 23);
             this.panel3.TabIndex = 525;
@@ -227,7 +227,7 @@
             // 
             this.totalSales_tx.DecimalPlaces = 2;
             this.totalSales_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalSales_tx.Location = new System.Drawing.Point(312, 190);
+            this.totalSales_tx.Location = new System.Drawing.Point(312, 226);
             this.totalSales_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -246,7 +246,7 @@
             // 
             this.totalExp_tx.DecimalPlaces = 2;
             this.totalExp_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.totalExp_tx.Location = new System.Drawing.Point(312, 234);
+            this.totalExp_tx.Location = new System.Drawing.Point(312, 268);
             this.totalExp_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -276,7 +276,7 @@
             // 
             this.expCash_tx.DecimalPlaces = 2;
             this.expCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.expCash_tx.Location = new System.Drawing.Point(312, 280);
+            this.expCash_tx.Location = new System.Drawing.Point(312, 310);
             this.expCash_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -306,14 +306,13 @@
             // 
             this.endingCash_tx.DecimalPlaces = 2;
             this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.endingCash_tx.Location = new System.Drawing.Point(312, 322);
+            this.endingCash_tx.Location = new System.Drawing.Point(312, 185);
             this.endingCash_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.endingCash_tx.Name = "endingCash_tx";
-            this.endingCash_tx.ReadOnly = true;
             this.endingCash_tx.Size = new System.Drawing.Size(261, 27);
             this.endingCash_tx.TabIndex = 512;
             this.endingCash_tx.Tag = "IsNumeric";
@@ -424,7 +423,7 @@
             this.undo_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.undo_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.undo_btn.ForeColor = System.Drawing.Color.Blue;
-            this.undo_btn.Location = new System.Drawing.Point(169, 395);
+            this.undo_btn.Location = new System.Drawing.Point(164, 385);
             this.undo_btn.Name = "undo_btn";
             this.undo_btn.Size = new System.Drawing.Size(145, 34);
             this.undo_btn.TabIndex = 513;
@@ -439,7 +438,7 @@
             this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.close_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.close_btn.Location = new System.Drawing.Point(329, 395);
+            this.close_btn.Location = new System.Drawing.Point(324, 385);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(145, 34);
             this.close_btn.TabIndex = 507;
@@ -473,7 +472,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(207, 327);
+            this.label4.Location = new System.Drawing.Point(212, 189);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 20);
@@ -484,7 +483,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(192, 286);
+            this.label3.Location = new System.Drawing.Point(197, 314);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 20);
@@ -495,7 +494,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(191, 240);
+            this.label2.Location = new System.Drawing.Point(196, 271);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
@@ -506,7 +505,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(217, 196);
+            this.label1.Location = new System.Drawing.Point(221, 230);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 20);
@@ -517,7 +516,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(165, 152);
+            this.label8.Location = new System.Drawing.Point(170, 150);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(139, 20);
@@ -565,30 +564,30 @@
             this.dgTransLogs.AllowUserToAddRows = false;
             this.dgTransLogs.AllowUserToDeleteRows = false;
             this.dgTransLogs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgTransLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTransLogs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTransLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTransLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgTransLogs.ColumnHeadersHeight = 30;
             this.dgTransLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgTransLogs.EnableHeadersVisualStyles = false;
             this.dgTransLogs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgTransLogs.Location = new System.Drawing.Point(6, 52);
