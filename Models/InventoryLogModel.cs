@@ -17,5 +17,11 @@ namespace SalesPro.Models
         public int AdjustmentQuantity { get; set; }
         public int FinalQuantity { get; set; }
     }
+
+    public class InventoryLogModelExtended : InventoryLogModel
+    {
+        public string UserFullName { get; set; }
+        public string ProductName { get; set; }
+    }
 }
 

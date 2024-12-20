@@ -137,5 +137,31 @@ namespace SalesPro.Services
                 return success;
             }
         }
+
+        public async Task<List<InventoryLogModelExtended>> GetInventoryLogsById(int inventoryId)
+        {
+
+            using (var context = new DatabaseContext())
+            {
+                return await (from i in context.InventoryLogs
+                              join s in context.Users on i.UserId equals s.UserId
+                              where i.InventoryId == inventoryId
+                              select new InventoryLogModelExtended
+                              {
+                                  InventoryLogId = i.InventoryLogId,
+                                  InventoryId = i.InventoryId,
+                                  UserId = i.UserId,
+                                  DateAdded = i.DateAdded,
+                                  DateAdjusted = i.DateAdjusted,
+                                  InventoryAction = i.InventoryAction,
+                                  Reason = i.Reason,
+                                  CurrentQuantity = i.CurrentQuantity,
+                                  AdjustmentQuantity = i.AdjustmentQuantity,
+                                  FinalQuantity = i.FinalQuantity,
+                                  UserFullName = s.Fullname
+                              }).OrderByDescending(x => x.InventoryLogId).ToListAsync();
+            }
+        }
+
     }
 }

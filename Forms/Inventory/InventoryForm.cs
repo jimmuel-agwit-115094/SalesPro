@@ -14,6 +14,7 @@ namespace SalesPro.Forms.Inventory
     {
         private int _inventoryId;
         private int _rowVersion;
+        private DateTime _curDate;
         private readonly InventoryService _service;
         public InventoryForm()
         {
@@ -24,6 +25,7 @@ namespace SalesPro.Forms.Inventory
 
         private async void InventoryForm_Load(object sender, EventArgs e)
         {
+            _curDate = await ClockHelper.GetServerDateTime();
             await LoadFilteredInventories(false);
         }
 
@@ -32,8 +34,7 @@ namespace SalesPro.Forms.Inventory
             DgExtensions.ConfigureDataGrid(dgInventory, true, 3, notFound_lbl,
                    "InventoryId", "SupplierName",
                    "ProductName", "DateAdded",
-                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice"
-                   );
+                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
         }
 
         private async Task LoadAllInventories()
@@ -97,6 +98,18 @@ namespace SalesPro.Forms.Inventory
 
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                int invId = DgFormatHelper.GetSelectedId(dgInventory, e, "InventoryId");
+                if (invId == 0) return;
+                var form = new InventoryLogsForm();
+                form._inventoryId = invId;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on cell content click: {ex.Message}");
+            }
         }
 
         private void dgInventory_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -132,7 +145,7 @@ namespace SalesPro.Forms.Inventory
                         log.InventoryId = inv.InventoryId;
                         log.UserId = inv.UserId;
                         log.DateAdded = inv.DateAdded;
-                        log.DateAdjusted = DateTime.Now;
+                        log.DateAdjusted = _curDate;
                         log.InventoryAction = selectedAction;
                         log.Reason = reason_tx.Text;
                         log.CurrentQuantity = inv.QuantityOnHand;
