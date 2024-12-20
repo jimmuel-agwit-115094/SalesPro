@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,7 +19,11 @@ namespace SalesPro.Forms.Inventory
         public InventoryForm()
         {
             InitializeComponent();
-            action_cb.DataSource = Enum.GetValues(typeof(InventoryAction));
+            var filtteredInvAction = Enum.GetValues(typeof(InventoryAction))
+                                  .Cast<InventoryAction>()
+                                  .Where(x => x != InventoryAction.AddedToInventory)
+                                  .ToList();
+            action_cb.DataSource = filtteredInvAction;
             _service = new InventoryService();
         }
 
@@ -26,6 +31,7 @@ namespace SalesPro.Forms.Inventory
         {
             _curDate = await ClockHelper.GetServerDateTime();
             await LoadFilteredInventories(false);
+            action_cb.SelectedIndex = -1;
         }
 
         private void FormatGrid()
@@ -132,11 +138,19 @@ namespace SalesPro.Forms.Inventory
 
         private async void update_btn_Click(object sender, EventArgs e)
         {
-            InventoryAction selectedAction = (InventoryAction)action_cb.SelectedItem;
             try
             {
+                if (!Validators.IntValidator(adjustingQty_tx.Text, "Adjusting Quantity"))
+                    return;
+
+                if (!Validators.ComboBoxValidator(action_cb, "Action"))
+                    return;
+
+                if (!Validators.EmptyStringValidator(reason_tx.Text, "Reason"))
+                    return;
                 if (MessageHandler.ShowQuestionGeneric("Are you sure to adjust the inventory?"))
                 {
+                    InventoryAction selectedAction = (InventoryAction)action_cb.SelectedItem;
                     var log = new InventoryLogModel();
                     var inv = await _service.GetInventoryById(_inventoryId);
                     if (inv != null)
@@ -164,6 +178,16 @@ namespace SalesPro.Forms.Inventory
             {
                 MessageHandler.ShowError($"Error updating inventory: {ex.Message}");
             }
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void search_tx_TextChanged_1(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgInventory, search_tx);
         }
     }
 }

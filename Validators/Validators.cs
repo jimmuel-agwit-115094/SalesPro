@@ -66,6 +66,17 @@ public static class Validators
         return true;
     }
 
+    // Combo box validator
+    public static bool ComboBoxValidator(ComboBox comboBox, string name)
+    {
+        if (comboBox.SelectedIndex == -1)
+        {
+            MessageHandler.ShowWarning($"{name} cannot be empty.");
+            return false;
+        }
+
+        return true;
+    }
     // Amount 1 shhould not be greater than amount 2
     public static bool AmountComparisonValidator(string amount1, string amount2, string name1, string name2)
     {
