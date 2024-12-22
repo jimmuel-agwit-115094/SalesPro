@@ -174,6 +174,15 @@ namespace SalesPro.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have the necessary permissions to perform this action. Only administrators are allowed to proceed..
+        /// </summary>
+        internal static string UserRestrictionMessage {
+            get {
+                return ResourceManager.GetString("UserRestrictionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap warning {

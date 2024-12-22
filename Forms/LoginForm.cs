@@ -52,7 +52,7 @@ namespace SalesPro
                         // Set user's full name in the UserSession class
                         UserSession.SetUserFullName(user.Fullname);
                         UserSession.SetUserId(user.UserId);
-                        UserSession.SetUserAccess(user.UserAccess.ToString());
+                        UserSession.SetUserAccess(user.UserAccess);
 
                         Hide();
                         MainForm mainForm = new MainForm();
