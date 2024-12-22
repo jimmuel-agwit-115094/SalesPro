@@ -11,7 +11,7 @@ namespace SalesPro.Models
         public int UserId { get; set; }
         public DateTime DateAdded { get; set; }
         public DateTime DateAdjusted { get; set; }
-        public InventoryAction InventoryAction { get; set; }
+        public InventoryAction InventoryAction { get; set; }    
         public string Remarks { get; set; }
         public int CurrentQuantity { get; set; }
         public int AdjustmentQuantity { get; set; }

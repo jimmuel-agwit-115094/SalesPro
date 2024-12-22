@@ -2,6 +2,7 @@
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Linq;
@@ -36,10 +37,18 @@ namespace SalesPro.Forms.Inventory
 
         private void FormatGrid()
         {
-            DgExtensions.ConfigureDataGrid(dgInventory, true, 3, notFound_lbl,
-                   "InventoryId", "SupplierName",
-                   "ProductName", "DateAdded",
-                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
+            try
+            {
+                DgExtensions.ConfigureDataGrid(dgInventory, true, 3, notFound_lbl,
+                  "InventoryId", "SupplierName",
+                  "ProductName", "DateAdded",
+                  "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
+                DgFormatHelper.NegativeCellValues(dgInventory, "QuantityOnHand");
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error formatting grid: {ex.Message}");
+            }
         }
 
         private async Task LoadAllInventories()
@@ -171,6 +180,10 @@ namespace SalesPro.Forms.Inventory
                     }
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
                     await LoadInventoriesBaseOnTabSelected();
+                    // Clear controls
+                    adjustingQty_tx.Value = 0;
+                    action_cb.SelectedIndex = -1;
+                    reason_tx.Clear();
                     dgInventory.ClearSelection();
                 }
             }

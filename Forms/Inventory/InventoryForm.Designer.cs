@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.productName_tx = new System.Windows.Forms.Label();
             this.processedBy_tx = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.action_cb = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInventory)).BeginInit();
             this.activeTab.SuspendLayout();
@@ -130,50 +130,50 @@
             this.dgInventory.AllowUserToAddRows = false;
             this.dgInventory.AllowUserToDeleteRows = false;
             this.dgInventory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgInventory.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgInventory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgInventory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgInventory.ColumnHeadersHeight = 40;
             this.dgInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgInventory.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgInventory.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgInventory.EnableHeadersVisualStyles = false;
             this.dgInventory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgInventory.Location = new System.Drawing.Point(4, 97);
-            this.dgInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgInventory.Margin = new System.Windows.Forms.Padding(4);
             this.dgInventory.MultiSelect = false;
             this.dgInventory.Name = "dgInventory";
             this.dgInventory.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgInventory.RowHeadersVisible = false;
             this.dgInventory.RowHeadersWidth = 51;
             this.dgInventory.RowTemplate.Height = 32;
             this.dgInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgInventory.Size = new System.Drawing.Size(1097, 702);
+            this.dgInventory.Size = new System.Drawing.Size(1097, 693);
             this.dgInventory.TabIndex = 461;
             this.dgInventory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellClick);
             this.dgInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellContentClick);
@@ -184,9 +184,9 @@
             this.activeTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.activeTab.Controls.Add(this.panel6);
             this.activeTab.Location = new System.Drawing.Point(4, 34);
-            this.activeTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.activeTab.Margin = new System.Windows.Forms.Padding(4);
             this.activeTab.Name = "activeTab";
-            this.activeTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.activeTab.Padding = new System.Windows.Forms.Padding(4);
             this.activeTab.Size = new System.Drawing.Size(1091, 8);
             this.activeTab.TabIndex = 0;
             this.activeTab.Text = "   Active Inventory   ";
@@ -196,7 +196,7 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.Green;
             this.panel6.Location = new System.Drawing.Point(-4, -1);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(200, 6);
             this.panel6.TabIndex = 5;
@@ -208,7 +208,7 @@
             this.inventoryTabControl.Controls.Add(this.allTab);
             this.inventoryTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inventoryTabControl.Location = new System.Drawing.Point(5, 12);
-            this.inventoryTabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inventoryTabControl.Margin = new System.Windows.Forms.Padding(4);
             this.inventoryTabControl.Name = "inventoryTabControl";
             this.inventoryTabControl.SelectedIndex = 0;
             this.inventoryTabControl.Size = new System.Drawing.Size(1099, 46);
@@ -219,9 +219,9 @@
             // 
             this.outTab.Controls.Add(this.panel7);
             this.outTab.Location = new System.Drawing.Point(4, 34);
-            this.outTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outTab.Margin = new System.Windows.Forms.Padding(4);
             this.outTab.Name = "outTab";
-            this.outTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outTab.Padding = new System.Windows.Forms.Padding(4);
             this.outTab.Size = new System.Drawing.Size(1091, 8);
             this.outTab.TabIndex = 1;
             this.outTab.Text = "     Out of Stock       ";
@@ -231,7 +231,7 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.Green;
             this.panel7.Location = new System.Drawing.Point(203, -1);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(187, 6);
             this.panel7.TabIndex = 6;
@@ -240,9 +240,9 @@
             // 
             this.allTab.Controls.Add(this.panel2);
             this.allTab.Location = new System.Drawing.Point(4, 34);
-            this.allTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.allTab.Margin = new System.Windows.Forms.Padding(4);
             this.allTab.Name = "allTab";
-            this.allTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.allTab.Padding = new System.Windows.Forms.Padding(4);
             this.allTab.Size = new System.Drawing.Size(1091, 8);
             this.allTab.TabIndex = 2;
             this.allTab.Text = "     All Inventory    ";
@@ -253,7 +253,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Green;
             this.panel2.Location = new System.Drawing.Point(387, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(187, 6);
             this.panel2.TabIndex = 7;
@@ -265,7 +265,7 @@
             this.panel5.Controls.Add(this.panel3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 53);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1547, 813);
             this.panel5.TabIndex = 463;
@@ -284,7 +284,7 @@
             this.panel13.Controls.Add(this.supplier_tx);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(1108, 0);
-            this.panel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(437, 811);
             this.panel13.TabIndex = 560;
@@ -295,7 +295,7 @@
             this.panel4.Controls.Add(this.qtyOnHand_tx);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(24, 231);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(393, 25);
             this.panel4.TabIndex = 561;
@@ -329,9 +329,9 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(24, 187);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(393, 133);
             this.groupBox2.TabIndex = 560;
             this.groupBox2.TabStop = false;
@@ -439,12 +439,23 @@
             this.groupBox1.Controls.Add(this.reason_tx);
             this.groupBox1.Controls.Add(this.adjustingQty_tx);
             this.groupBox1.Location = new System.Drawing.Point(27, 327);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(391, 261);
             this.groupBox1.TabIndex = 549;
             this.groupBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(141, 158);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(17, 23);
+            this.label3.TabIndex = 561;
+            this.label3.Text = "*";
             // 
             // label14
             // 
@@ -462,7 +473,7 @@
             this.action_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.action_cb.FormattingEnabled = true;
             this.action_cb.Location = new System.Drawing.Point(21, 114);
-            this.action_cb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.action_cb.Margin = new System.Windows.Forms.Padding(4);
             this.action_cb.Name = "action_cb";
             this.action_cb.Size = new System.Drawing.Size(348, 33);
             this.action_cb.TabIndex = 559;
@@ -502,7 +513,7 @@
             // 
             this.adjustingQty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.adjustingQty_tx.Location = new System.Drawing.Point(23, 48);
-            this.adjustingQty_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adjustingQty_tx.Margin = new System.Windows.Forms.Padding(4);
             this.adjustingQty_tx.Maximum = new decimal(new int[] {
             410065408,
             2,
@@ -533,8 +544,8 @@
             this.update_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.update_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.update_btn.ForeColor = System.Drawing.Color.White;
-            this.update_btn.Location = new System.Drawing.Point(231, 737);
-            this.update_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.update_btn.Location = new System.Drawing.Point(232, 746);
+            this.update_btn.Margin = new System.Windows.Forms.Padding(4);
             this.update_btn.Name = "update_btn";
             this.update_btn.Size = new System.Drawing.Size(187, 42);
             this.update_btn.TabIndex = 552;
@@ -573,7 +584,7 @@
             this.panel3.Controls.Add(this.inventoryTabControl);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1108, 811);
             this.panel3.TabIndex = 489;
@@ -601,17 +612,6 @@
             this.search_tx.TabIndex = 467;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged_1);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(141, 158);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(17, 23);
-            this.label3.TabIndex = 561;
-            this.label3.Text = "*";
-            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -621,7 +621,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InventoryForm";

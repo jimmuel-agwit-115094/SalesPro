@@ -428,4 +428,27 @@ public static class DgFormatHelper
             row.DefaultCellStyle.ForeColor = Color.DarkGray;
         }
     }
+
+    public static void NegativeCellValues(DataGridView dataGridView, string columnToFormat)
+    {
+        foreach (DataGridViewRow row in dataGridView.Rows)
+        {
+            if (row.Cells[columnToFormat] is DataGridViewCell cell &&
+                decimal.TryParse(cell.Value?.ToString(), out decimal cellValue) && cellValue < 0)
+            {
+                // Apply red color and Consolas font with size 9.75pt for negative values
+                cell.Style.ForeColor = Color.Red;
+                cell.Style.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+
+                // Ensure styling persists even when the row is selected
+                cell.Style.SelectionForeColor = Color.Red;
+                cell.Style.SelectionBackColor = cell.Style.BackColor; // Retain original background color
+            }
+        }
+    }
+
+
+
+
+
 }
