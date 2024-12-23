@@ -149,6 +149,13 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
+                var inventory = new InventoryModel();
+                var inv = await _service.GetInventoryById(_inventoryId);
+                if (inv != null)
+                {
+                    inventory = inv;
+                }
+
                 if (UserSession.UserAccess != UserAccess.Admin && UserSession.UserAccess != UserAccess.Developer)
                 {
                     MessageHandler.ShowRestrictionMessage(Resources.UserRestrictionMessage);
@@ -162,20 +169,33 @@ namespace SalesPro.Forms.Inventory
 
                 if (!Validators.EmptyStringValidator(reason_tx.Text, "Reason"))
                     return;
+
+                if (action_cb.SelectedIndex == 1 && inventory.QuantityOnHand <= 0)
+                {
+                    MessageHandler.ShowWarning("Cannot perform negative adjustment on zero quantity.");
+                    return;
+                }
+
+                if (action_cb.SelectedIndex == 1 && decimal.Parse(adjustingQty_tx.Text) > inventory.QuantityOnHand)
+                {
+                    MessageHandler.ShowWarning("The adjusted quantity will result in a negative value for the Quantity On Hand. This operation is not allowed. Please check the adjustment amount and try again.");
+                    return;
+                }
+
                 if (MessageHandler.ShowQuestionGeneric("Are you sure to adjust the inventory?"))
                 {
                     InventoryAction selectedAction = (InventoryAction)action_cb.SelectedItem;
                     var log = new InventoryLogModel();
-                    var inv = await _service.GetInventoryById(_inventoryId);
-                    if (inv != null)
+
+                    if (inventory != null)
                     {
-                        log.InventoryId = inv.InventoryId;
-                        log.UserId = inv.UserId;
-                        log.DateAdded = inv.DateAdded;
+                        log.InventoryId = inventory.InventoryId;
+                        log.UserId = inventory.UserId;
+                        log.DateAdded = inventory.DateAdded;
                         log.DateAdjusted = _curDate;
                         log.InventoryAction = selectedAction;
                         log.Remarks = reason_tx.Text;
-                        log.CurrentQuantity = inv.QuantityOnHand;
+                        log.CurrentQuantity = inventory.QuantityOnHand;
                         log.AdjustmentQuantity = int.Parse(adjustingQty_tx.Text);
 
                         log.FinalQuantity = selectedAction == InventoryAction.Positive_Adjustment
@@ -189,7 +209,6 @@ namespace SalesPro.Forms.Inventory
                     adjustingQty_tx.Value = 0;
                     action_cb.SelectedIndex = -1;
                     reason_tx.Clear();
-                    dgInventory.ClearSelection();
                 }
             }
             catch (Exception ex)

@@ -434,7 +434,7 @@ public static class DgFormatHelper
         foreach (DataGridViewRow row in dataGridView.Rows)
         {
             if (row.Cells[columnToFormat] is DataGridViewCell cell &&
-                decimal.TryParse(cell.Value?.ToString(), out decimal cellValue) && cellValue < 0)
+                decimal.TryParse(cell.Value?.ToString(), out decimal cellValue) && cellValue <= 0)
             {
                 // Apply red color and Consolas font with size 9.75pt for negative values
                 cell.Style.ForeColor = Color.Red;
