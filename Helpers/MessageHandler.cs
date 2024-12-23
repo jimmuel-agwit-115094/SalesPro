@@ -57,5 +57,9 @@ namespace SalesPro.Helpers
             MessageBox.Show(message, "Concurrency Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        public static void ShowRestrictionMessage(string message)
+        {
+            MessageBox.Show(message, "Restriction", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
     }
 }

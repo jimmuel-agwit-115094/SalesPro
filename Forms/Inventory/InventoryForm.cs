@@ -151,7 +151,7 @@ namespace SalesPro.Forms.Inventory
             {
                 if (UserSession.UserAccess != UserAccess.Admin && UserSession.UserAccess != UserAccess.Developer)
                 {
-                    MessageHandler.ShowWarning(Resources.UserRestrictionMessage);
+                    MessageHandler.ShowRestrictionMessage(Resources.UserRestrictionMessage);
                     return;
                 }
                 if (!Validators.IntValidator(adjustingQty_tx.Text, "Adjusting Quantity"))
