@@ -20,19 +20,20 @@ namespace SalesPro.Forms.Inventory
         public InventoryForm()
         {
             InitializeComponent();
-            var filtteredInvAction = Enum.GetValues(typeof(InventoryAction))
-                                  .Cast<InventoryAction>()
-                                  .Where(x => x != InventoryAction.AddedToInventory)
-                                  .ToList();
-            action_cb.DataSource = filtteredInvAction;
             _service = new InventoryService();
         }
 
         private async void InventoryForm_Load(object sender, EventArgs e)
         {
+            dgInventory.SelectionChanged -= dgInventory_SelectionChanged;
             _curDate = await ClockHelper.GetServerDateTime();
+            var filtteredInvAction = Enum.GetValues(typeof(InventoryAction))
+                                .Cast<InventoryAction>()
+                                .Where(x => x != InventoryAction.AddedToInventory)
+                                .ToList();
+            action_cb.DataSource = filtteredInvAction;
             await LoadFilteredInventories(false);
-            action_cb.SelectedIndex = -1;
+            dgInventory.SelectionChanged += dgInventory_SelectionChanged;
         }
 
         private void FormatGrid()
@@ -44,6 +45,7 @@ namespace SalesPro.Forms.Inventory
                   "ProductName", "DateAdded",
                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
                 DgFormatHelper.NegativeCellValues(dgInventory, "QuantityOnHand");
+                ResetControls();
             }
             catch (Exception ex)
             {
@@ -137,12 +139,34 @@ namespace SalesPro.Forms.Inventory
             {
                 _inventoryId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgInventory, "InventoryId");
                 if (_inventoryId == 0) return;
+                update_btn.Enabled = true;
                 await GetInventoryData(_inventoryId);
+
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error getting inventory data: {ex.Message}");
             }
+        }
+
+        private void ResetControls()
+        {
+            productName_tx.Text = "-";
+            supplier_tx.Text = "-";
+            processedBy_tx.Text = "-";
+            dateAdded_tx.Text = "-";
+
+            qtyFromPo_tx.Text = "0";
+            qtyOnHand_tx.Text = "0";
+            suppPrice_tx.Text = "0.00";
+            retailPrice_tx.Text = "0.00";
+
+            adjustingQty_tx.Value = 0;
+            action_cb.SelectedIndex = -1;
+            reason_tx.Clear();
+            dgInventory.ClearSelection();
+
+            update_btn.Enabled = false;
         }
 
         private async void update_btn_Click(object sender, EventArgs e)
@@ -156,6 +180,11 @@ namespace SalesPro.Forms.Inventory
                     inventory = inv;
                 }
 
+                if (dgInventory.SelectedRows.Count == 0)
+                {
+                    MessageHandler.ShowWarning("Please select an inventory to update.");
+                    return;
+                }
                 if (UserSession.UserAccess != UserAccess.Admin && UserSession.UserAccess != UserAccess.Developer)
                 {
                     MessageHandler.ShowRestrictionMessage(Resources.UserRestrictionMessage);
@@ -204,11 +233,10 @@ namespace SalesPro.Forms.Inventory
 
                     }
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
+                    dgInventory.SelectionChanged -= dgInventory_SelectionChanged;
                     await LoadInventoriesBaseOnTabSelected();
-                    // Clear controls
-                    adjustingQty_tx.Value = 0;
-                    action_cb.SelectedIndex = -1;
-                    reason_tx.Clear();
+                    ResetControls();
+                    dgInventory.SelectionChanged += dgInventory_SelectionChanged;
                 }
             }
             catch (Exception ex)
@@ -225,6 +253,11 @@ namespace SalesPro.Forms.Inventory
         private void search_tx_TextChanged_1(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgInventory, search_tx);
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
