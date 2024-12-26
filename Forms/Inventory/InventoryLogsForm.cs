@@ -31,6 +31,8 @@ namespace SalesPro.Forms.Inventory
                 {
                     product_tx.Text = inv.ProductName;
                 }
+
+                DgFormatHelper.FormatColumnBasedOnCondition(dgLogs, "InventoryAction", "Negative_Adjustment", "InventoryAction");
             }
             catch (Exception ex)
             {

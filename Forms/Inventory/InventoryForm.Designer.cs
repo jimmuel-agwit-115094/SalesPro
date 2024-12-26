@@ -101,7 +101,6 @@
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(1547, 53);
             this.Panel1.TabIndex = 437;
-            this.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // title_lbl
             // 
@@ -625,7 +624,7 @@
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(517, 32);
             this.search_tx.TabIndex = 467;
-            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged_1);
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // InventoryForm
             // 

@@ -25,15 +25,21 @@ namespace SalesPro.Forms.Inventory
 
         private async void InventoryForm_Load(object sender, EventArgs e)
         {
-            dgInventory.SelectionChanged -= dgInventory_SelectionChanged;
-            _curDate = await ClockHelper.GetServerDateTime();
-            var filtteredInvAction = Enum.GetValues(typeof(InventoryAction))
-                                .Cast<InventoryAction>()
-                                .Where(x => x != InventoryAction.AddedToInventory)
-                                .ToList();
-            action_cb.DataSource = filtteredInvAction;
-            await LoadFilteredInventories(false);
-            dgInventory.SelectionChanged += dgInventory_SelectionChanged;
+            try
+            {
+                _curDate = await ClockHelper.GetServerDateTime();
+                var filtteredInvAction = Enum.GetValues(typeof(InventoryAction))
+                                    .Cast<InventoryAction>()
+                                    .Where(x => x != InventoryAction.AddedToInventory)
+                                    .ToList();
+                action_cb.DataSource = filtteredInvAction;
+                await LoadFilteredInventories(false);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error loading inventory form: {ex.Message}");
+            }
+
         }
 
         private void FormatGrid()
@@ -44,8 +50,7 @@ namespace SalesPro.Forms.Inventory
                   "InventoryId", "SupplierName",
                   "ProductName", "DateAdded",
                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
-                DgFormatHelper.NegativeCellValues(dgInventory, "QuantityOnHand");
-                ResetControls();
+                DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
             }
             catch (Exception ex)
             {
@@ -130,7 +135,6 @@ namespace SalesPro.Forms.Inventory
 
         private void dgInventory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private async void dgInventory_SelectionChanged(object sender, EventArgs e)
@@ -141,7 +145,7 @@ namespace SalesPro.Forms.Inventory
                 if (_inventoryId == 0) return;
                 update_btn.Enabled = true;
                 await GetInventoryData(_inventoryId);
-
+           
             }
             catch (Exception ex)
             {
@@ -247,17 +251,7 @@ namespace SalesPro.Forms.Inventory
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void search_tx_TextChanged_1(object sender, EventArgs e)
-        {
             DgFormatHelper.SearchOnGrid(dgInventory, search_tx);
-        }
-
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

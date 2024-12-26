@@ -429,12 +429,12 @@ public static class DgFormatHelper
         }
     }
 
-    public static void NegativeCellValues(DataGridView dataGridView, string columnToFormat)
+    public static void ZeroCellValuesFormat(DataGridView dataGridView, string columnToFormat)
     {
         foreach (DataGridViewRow row in dataGridView.Rows)
         {
             if (row.Cells[columnToFormat] is DataGridViewCell cell &&
-                decimal.TryParse(cell.Value?.ToString(), out decimal cellValue) && cellValue <= 0)
+                decimal.TryParse(cell.Value?.ToString(), out decimal cellValue) && cellValue == 0)
             {
                 // Apply red color and Consolas font with size 9.75pt for negative values
                 cell.Style.ForeColor = Color.Red;
@@ -447,7 +447,30 @@ public static class DgFormatHelper
         }
     }
 
+    public static void FormatColumnBasedOnCondition(DataGridView dataGridView, string columnToCheck, string targetValue, string columnToFormat)
+    {
+        foreach (DataGridViewRow row in dataGridView.Rows)
+        {
+            if (row.Cells[columnToCheck]?.Value?.ToString() == targetValue)
+            {
+                foreach (DataGridViewRow formatRow in dataGridView.Rows)
+                {
+                    if (formatRow.Cells[columnToFormat] is DataGridViewCell cell)
+                    {
+                        // Apply red color and Consolas font with size 9.75pt
+                        cell.Style.ForeColor = Color.Red;
+                        cell.Style.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
 
+                        // Ensure styling persists even when the row is selected
+                        cell.Style.SelectionForeColor = Color.Red;
+                        cell.Style.SelectionBackColor = cell.Style.BackColor; // Retain original background color
+                    }
+                }
+
+                break; // Exit loop after formatting the column
+            }
+        }
+    }
 
 
 
