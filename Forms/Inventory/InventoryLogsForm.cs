@@ -2,6 +2,7 @@
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Inventory
@@ -31,12 +32,32 @@ namespace SalesPro.Forms.Inventory
                 {
                     product_tx.Text = inv.ProductName;
                 }
-
-                DgFormatHelper.FormatColumnBasedOnCondition(dgLogs, "InventoryAction", "Negative_Adjustment", "InventoryAction");
+              
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error on inv logs form load: {ex.Message}");
+            }
+        }
+
+        private void dgLogs_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgLogs.Columns[e.ColumnIndex].Name == "InventoryAction") // Replace with your column name
+            {
+                if (e.Value != null && e.Value.ToString() == "Negative_Adjustment") // Replace "SpecificString" with your condition
+                {
+                    e.CellStyle.ForeColor = Color.Red; // Change the fore color to green
+                    e.CellStyle.SelectionForeColor = Color.Red;
+                }
+                else if (e.Value != null && e.Value.ToString() == "Positive_Adjustment")
+                {
+                    e.CellStyle.ForeColor = Color.Green; // Change the fore color to red
+                    e.CellStyle.SelectionForeColor = Color.Green;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // Default color
+                }
             }
         }
     }
