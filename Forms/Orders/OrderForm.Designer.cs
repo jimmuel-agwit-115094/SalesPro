@@ -1,6 +1,6 @@
-﻿namespace SalesPro.Forms.Order
+﻿namespace SalesPro.Forms.Orders
 {
-    partial class Order
+    partial class OrderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
             this.SuspendLayout();
             // 
-            // Order
+            // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1086, 495);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Order";
-            this.ShowIcon = false;
+            this.ClientSize = new System.Drawing.Size(1134, 506);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "OrderForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "OrderForm";
-            this.Load += new System.EventHandler(this.Order_Load);
+            this.Text = "Order";
+            this.Load += new System.EventHandler(this.OrderForm_Load);
             this.ResumeLayout(false);
 
         }

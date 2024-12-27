@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SalesPro.Forms.Order
+namespace SalesPro.Forms.Orders
 {
-    public partial class Order : Form
+    public partial class OrderForm : Form
     {
-        public Order()
+        public OrderForm()
         {
             InitializeComponent();
+        }
+
+        private void OrderForm_Load(object sender, EventArgs e)
+        {
+            SetFormSize();
         }
 
         private void SetFormSize()
@@ -23,10 +28,6 @@ namespace SalesPro.Forms.Order
             Rectangle workingArea = Screen.GetWorkingArea(this);
             Size = workingArea.Size;
             Location = workingArea.Location;
-        }
-        private void Order_Load(object sender, EventArgs e)
-        {
-            SetFormSize();
         }
     }
 }
