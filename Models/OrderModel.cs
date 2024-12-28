@@ -28,4 +28,9 @@ namespace SalesPro.Models
         public DateTime? DatePaid { get; set; }
     }
 
+    public class OrderModelExtended : OrderModel
+    {
+        public string CustomerName { get; set; }
+        public string UserName { get; set; }
+    }
 }

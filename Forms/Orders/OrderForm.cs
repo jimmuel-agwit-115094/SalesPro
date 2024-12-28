@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
@@ -28,6 +22,12 @@ namespace SalesPro.Forms.Orders
             Rectangle workingArea = Screen.GetWorkingArea(this);
             Size = workingArea.Size;
             Location = workingArea.Location;
+        }
+
+        private void search_btn_Click(object sender, EventArgs e)
+        {
+            var form = new AddOrderItemForm();
+            form.ShowDialog();
         }
     }
 }

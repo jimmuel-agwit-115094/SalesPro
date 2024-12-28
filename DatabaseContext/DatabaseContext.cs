@@ -8,6 +8,7 @@ namespace POS_Generic.Helpers
     public class DatabaseContext : DbContext
     {
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<CustomerModel> Customers { get; set; }
         public DbSet<TransactionModel> Transactions { get; set; }
         public DbSet<TransactionLogModel> TransactionLogs { get; set; }
         public DbSet<SupplierModel> Suppliers { get; set; }
@@ -17,6 +18,8 @@ namespace POS_Generic.Helpers
         public DbSet<PurchaseOrderLogsModel> PurchaseOrderLogs { get; set; }
         public DbSet<InventoryModel> Inventories { get; set; }
         public DbSet<InventoryLogModel> InventoryLogs { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderItemModel> OrderItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
