@@ -98,7 +98,7 @@
             this.resume_btn = new System.Windows.Forms.Button();
             this.priceInquiry_btn = new System.Windows.Forms.Button();
             this.returnProduct_btn = new System.Windows.Forms.Button();
-            this.search_btn = new System.Windows.Forms.Button();
+            this.add_btn = new System.Windows.Forms.Button();
             this.pay_btn = new System.Windows.Forms.Button();
             this.charge_btn = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -479,7 +479,7 @@
             this.panel4.Controls.Add(this.resume_btn);
             this.panel4.Controls.Add(this.priceInquiry_btn);
             this.panel4.Controls.Add(this.returnProduct_btn);
-            this.panel4.Controls.Add(this.search_btn);
+            this.panel4.Controls.Add(this.add_btn);
             this.panel4.Controls.Add(this.pay_btn);
             this.panel4.Controls.Add(this.charge_btn);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -990,20 +990,21 @@
             this.returnProduct_btn.Text = "RETURN PROD. (F7)";
             this.returnProduct_btn.UseVisualStyleBackColor = false;
             // 
-            // search_btn
+            // add_btn
             // 
-            this.search_btn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.search_btn.FlatAppearance.BorderSize = 0;
-            this.search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.search_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_btn.ForeColor = System.Drawing.Color.White;
-            this.search_btn.Location = new System.Drawing.Point(16, 129);
-            this.search_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.search_btn.Name = "search_btn";
-            this.search_btn.Size = new System.Drawing.Size(166, 40);
-            this.search_btn.TabIndex = 3;
-            this.search_btn.Text = "SEARCH (F1)";
-            this.search_btn.UseVisualStyleBackColor = false;
+            this.add_btn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.add_btn.FlatAppearance.BorderSize = 0;
+            this.add_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_btn.ForeColor = System.Drawing.Color.White;
+            this.add_btn.Location = new System.Drawing.Point(16, 129);
+            this.add_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(166, 40);
+            this.add_btn.TabIndex = 3;
+            this.add_btn.Text = "ADD PROD. (F1)";
+            this.add_btn.UseVisualStyleBackColor = false;
+            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
             // pay_btn
             // 
@@ -1193,7 +1194,7 @@
         private System.Windows.Forms.Button resume_btn;
         private System.Windows.Forms.Button priceInquiry_btn;
         private System.Windows.Forms.Button returnProduct_btn;
-        private System.Windows.Forms.Button search_btn;
+        private System.Windows.Forms.Button add_btn;
         internal System.Windows.Forms.Button pay_btn;
         internal System.Windows.Forms.Button charge_btn;
         private System.Windows.Forms.Panel panel13;

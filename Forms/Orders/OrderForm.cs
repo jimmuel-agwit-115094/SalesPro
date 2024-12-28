@@ -12,6 +12,7 @@ namespace SalesPro.Forms.Orders
     {
         private DateTime _curDate;
         private int _rowVersion;
+        private int _orderId;
         private readonly OrderService _service;
         public OrderForm()
         {
@@ -64,6 +65,14 @@ namespace SalesPro.Forms.Orders
             Rectangle workingArea = Screen.GetWorkingArea(this);
             Size = workingArea.Size;
             Location = workingArea.Location;
+        }
+
+        private void add_btn_Click(object sender, EventArgs e)
+        {
+            var form = new AddOrderItemForm();
+            form._orderId = _orderId;
+            form._rowVersion = _rowVersion;
+            form.ShowDialog();
         }
     }
 }
