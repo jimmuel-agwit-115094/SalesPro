@@ -104,6 +104,14 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<InventoryModel> GetInventoryById(int inventoryId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Inventories.FindAsync(inventoryId);
+            }
+        }
+
         public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, OrderItemStatus itemStatus, OrderItemModel orderItem)
         {
             using (var context = new DatabaseContext())
