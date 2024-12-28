@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelRight = new System.Windows.Forms.Panel();
@@ -59,6 +59,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.change_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.amountTendered_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.discount_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.gross_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.neet_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.vat_tx = new System.Windows.Forms.NumericUpDown();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.vatRate_tx = new System.Windows.Forms.NumericUpDown();
             this.cancel_btn = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -88,25 +102,11 @@
             this.pay_btn = new System.Windows.Forms.Button();
             this.charge_btn = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.qty_tx = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.barcode_tx = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.begBal_tx = new System.Windows.Forms.NumericUpDown();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -115,15 +115,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.change_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountTendered_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discount_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gross_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.neet_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vat_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vatRate_tx)).BeginInit();
             this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qty_tx)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -237,8 +237,8 @@
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.AllowUserToResizeRows = false;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -247,25 +247,25 @@
             this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView3.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView3.ColumnHeadersHeight = 30;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView3.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView3.EnableHeadersVisualStyles = false;
             this.dataGridView3.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView3.Location = new System.Drawing.Point(13, 306);
@@ -274,9 +274,9 @@
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowHeadersWidth = 51;
-            dataGridViewCellStyle40.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView3.RowTemplate.Height = 26;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(197, 7);
@@ -332,8 +332,8 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -342,25 +342,25 @@
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView2.ColumnHeadersHeight = 30;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView2.Location = new System.Drawing.Point(13, 306);
@@ -369,9 +369,9 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
-            dataGridViewCellStyle44.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView2.RowTemplate.Height = 26;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(123, 7);
@@ -392,8 +392,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle45.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -402,25 +402,25 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.Location = new System.Drawing.Point(13, 306);
@@ -429,9 +429,9 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView1.RowTemplate.Height = 26;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1185, 7);
@@ -441,19 +441,19 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FloralWhite;
             this.panel4.Controls.Add(this.panel14);
-            this.panel4.Controls.Add(this.numericUpDown7);
+            this.panel4.Controls.Add(this.change_tx);
             this.panel4.Controls.Add(this.panel12);
-            this.panel4.Controls.Add(this.numericUpDown6);
+            this.panel4.Controls.Add(this.amountTendered_tx);
             this.panel4.Controls.Add(this.panel11);
-            this.panel4.Controls.Add(this.numericUpDown5);
+            this.panel4.Controls.Add(this.discount_tx);
             this.panel4.Controls.Add(this.panel10);
-            this.panel4.Controls.Add(this.numericUpDown4);
+            this.panel4.Controls.Add(this.gross_tx);
             this.panel4.Controls.Add(this.panel9);
-            this.panel4.Controls.Add(this.numericUpDown3);
+            this.panel4.Controls.Add(this.neet_tx);
             this.panel4.Controls.Add(this.panel8);
-            this.panel4.Controls.Add(this.numericUpDown2);
+            this.panel4.Controls.Add(this.vat_tx);
             this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.numericUpDown1);
+            this.panel4.Controls.Add(this.vatRate_tx);
             this.panel4.Controls.Add(this.cancel_btn);
             this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.label14);
@@ -488,6 +488,188 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(376, 791);
             this.panel4.TabIndex = 394;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Location = new System.Drawing.Point(177, 707);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(18, 23);
+            this.panel14.TabIndex = 538;
+            // 
+            // change_tx
+            // 
+            this.change_tx.DecimalPlaces = 2;
+            this.change_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.change_tx.Location = new System.Drawing.Point(176, 705);
+            this.change_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.change_tx.Name = "change_tx";
+            this.change_tx.Size = new System.Drawing.Size(186, 27);
+            this.change_tx.TabIndex = 537;
+            this.change_tx.Tag = "IsNumeric";
+            this.change_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.change_tx.ThousandsSeparator = true;
+            this.change_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Location = new System.Drawing.Point(177, 671);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(18, 23);
+            this.panel12.TabIndex = 536;
+            // 
+            // amountTendered_tx
+            // 
+            this.amountTendered_tx.DecimalPlaces = 2;
+            this.amountTendered_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.amountTendered_tx.Location = new System.Drawing.Point(176, 669);
+            this.amountTendered_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.amountTendered_tx.Name = "amountTendered_tx";
+            this.amountTendered_tx.Size = new System.Drawing.Size(186, 27);
+            this.amountTendered_tx.TabIndex = 535;
+            this.amountTendered_tx.Tag = "IsNumeric";
+            this.amountTendered_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amountTendered_tx.ThousandsSeparator = true;
+            this.amountTendered_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Location = new System.Drawing.Point(177, 635);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(18, 23);
+            this.panel11.TabIndex = 534;
+            // 
+            // discount_tx
+            // 
+            this.discount_tx.DecimalPlaces = 2;
+            this.discount_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.discount_tx.Location = new System.Drawing.Point(176, 633);
+            this.discount_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.discount_tx.Name = "discount_tx";
+            this.discount_tx.Size = new System.Drawing.Size(186, 27);
+            this.discount_tx.TabIndex = 533;
+            this.discount_tx.Tag = "IsNumeric";
+            this.discount_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.discount_tx.ThousandsSeparator = true;
+            this.discount_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Location = new System.Drawing.Point(177, 599);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(18, 23);
+            this.panel10.TabIndex = 532;
+            // 
+            // gross_tx
+            // 
+            this.gross_tx.DecimalPlaces = 2;
+            this.gross_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.gross_tx.Location = new System.Drawing.Point(176, 597);
+            this.gross_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.gross_tx.Name = "gross_tx";
+            this.gross_tx.Size = new System.Drawing.Size(186, 27);
+            this.gross_tx.TabIndex = 531;
+            this.gross_tx.Tag = "IsNumeric";
+            this.gross_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.gross_tx.ThousandsSeparator = true;
+            this.gross_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Location = new System.Drawing.Point(178, 563);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(18, 23);
+            this.panel9.TabIndex = 530;
+            // 
+            // neet_tx
+            // 
+            this.neet_tx.DecimalPlaces = 2;
+            this.neet_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.neet_tx.Location = new System.Drawing.Point(177, 561);
+            this.neet_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.neet_tx.Name = "neet_tx";
+            this.neet_tx.Size = new System.Drawing.Size(186, 27);
+            this.neet_tx.TabIndex = 529;
+            this.neet_tx.Tag = "IsNumeric";
+            this.neet_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.neet_tx.ThousandsSeparator = true;
+            this.neet_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Location = new System.Drawing.Point(177, 527);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(18, 23);
+            this.panel8.TabIndex = 528;
+            // 
+            // vat_tx
+            // 
+            this.vat_tx.DecimalPlaces = 2;
+            this.vat_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.vat_tx.Location = new System.Drawing.Point(176, 525);
+            this.vat_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.vat_tx.Name = "vat_tx";
+            this.vat_tx.Size = new System.Drawing.Size(186, 27);
+            this.vat_tx.TabIndex = 527;
+            this.vat_tx.Tag = "IsNumeric";
+            this.vat_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.vat_tx.ThousandsSeparator = true;
+            this.vat_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Location = new System.Drawing.Point(179, 491);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(18, 23);
+            this.panel5.TabIndex = 526;
+            // 
+            // vatRate_tx
+            // 
+            this.vatRate_tx.DecimalPlaces = 2;
+            this.vatRate_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.vatRate_tx.Location = new System.Drawing.Point(178, 489);
+            this.vatRate_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.vatRate_tx.Name = "vatRate_tx";
+            this.vatRate_tx.Size = new System.Drawing.Size(186, 27);
+            this.vatRate_tx.TabIndex = 525;
+            this.vatRate_tx.Tag = "IsNumeric";
+            this.vatRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.vatRate_tx.ThousandsSeparator = true;
+            this.vatRate_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // cancel_btn
             // 
@@ -855,7 +1037,7 @@
             // 
             this.panel13.BackColor = System.Drawing.Color.BurlyWood;
             this.panel13.Controls.Add(this.panel3);
-            this.panel13.Controls.Add(this.begBal_tx);
+            this.panel13.Controls.Add(this.qty_tx);
             this.panel13.Controls.Add(this.label20);
             this.panel13.Controls.Add(this.label19);
             this.panel13.Controls.Add(this.barcode_tx);
@@ -864,6 +1046,31 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(1051, 81);
             this.panel13.TabIndex = 395;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(816, 15);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(18, 47);
+            this.panel3.TabIndex = 526;
+            // 
+            // qty_tx
+            // 
+            this.qty_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
+            this.qty_tx.Location = new System.Drawing.Point(815, 13);
+            this.qty_tx.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.qty_tx.Name = "qty_tx";
+            this.qty_tx.Size = new System.Drawing.Size(221, 50);
+            this.qty_tx.TabIndex = 525;
+            this.qty_tx.Tag = "IsNumeric";
+            this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.qty_tx.ThousandsSeparator = true;
+            this.qty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // label20
             // 
@@ -893,214 +1100,6 @@
             this.barcode_tx.Size = new System.Drawing.Size(310, 50);
             this.barcode_tx.TabIndex = 0;
             this.barcode_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(816, 15);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(18, 47);
-            this.panel3.TabIndex = 526;
-            // 
-            // begBal_tx
-            // 
-            this.begBal_tx.DecimalPlaces = 2;
-            this.begBal_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
-            this.begBal_tx.Location = new System.Drawing.Point(815, 13);
-            this.begBal_tx.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.begBal_tx.Name = "begBal_tx";
-            this.begBal_tx.Size = new System.Drawing.Size(221, 50);
-            this.begBal_tx.TabIndex = 525;
-            this.begBal_tx.Tag = "IsNumeric";
-            this.begBal_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.begBal_tx.ThousandsSeparator = true;
-            this.begBal_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(179, 491);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(18, 23);
-            this.panel5.TabIndex = 526;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown1.Location = new System.Drawing.Point(178, 489);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown1.TabIndex = 525;
-            this.numericUpDown1.Tag = "IsNumeric";
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown1.ThousandsSeparator = true;
-            this.numericUpDown1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Location = new System.Drawing.Point(177, 527);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(18, 23);
-            this.panel8.TabIndex = 528;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.DecimalPlaces = 2;
-            this.numericUpDown2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown2.Location = new System.Drawing.Point(176, 525);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown2.TabIndex = 527;
-            this.numericUpDown2.Tag = "IsNumeric";
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown2.ThousandsSeparator = true;
-            this.numericUpDown2.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Location = new System.Drawing.Point(178, 563);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(18, 23);
-            this.panel9.TabIndex = 530;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.DecimalPlaces = 2;
-            this.numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown3.Location = new System.Drawing.Point(177, 561);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown3.TabIndex = 529;
-            this.numericUpDown3.Tag = "IsNumeric";
-            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown3.ThousandsSeparator = true;
-            this.numericUpDown3.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Location = new System.Drawing.Point(177, 599);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(18, 23);
-            this.panel10.TabIndex = 532;
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.DecimalPlaces = 2;
-            this.numericUpDown4.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown4.Location = new System.Drawing.Point(176, 597);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown4.TabIndex = 531;
-            this.numericUpDown4.Tag = "IsNumeric";
-            this.numericUpDown4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown4.ThousandsSeparator = true;
-            this.numericUpDown4.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Location = new System.Drawing.Point(177, 635);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(18, 23);
-            this.panel11.TabIndex = 534;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.DecimalPlaces = 2;
-            this.numericUpDown5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown5.Location = new System.Drawing.Point(176, 633);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown5.TabIndex = 533;
-            this.numericUpDown5.Tag = "IsNumeric";
-            this.numericUpDown5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown5.ThousandsSeparator = true;
-            this.numericUpDown5.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Location = new System.Drawing.Point(177, 671);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(18, 23);
-            this.panel12.TabIndex = 536;
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.DecimalPlaces = 2;
-            this.numericUpDown6.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown6.Location = new System.Drawing.Point(176, 669);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown6.TabIndex = 535;
-            this.numericUpDown6.Tag = "IsNumeric";
-            this.numericUpDown6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown6.ThousandsSeparator = true;
-            this.numericUpDown6.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Location = new System.Drawing.Point(177, 707);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(18, 23);
-            this.panel14.TabIndex = 538;
-            // 
-            // numericUpDown7
-            // 
-            this.numericUpDown7.DecimalPlaces = 2;
-            this.numericUpDown7.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown7.Location = new System.Drawing.Point(176, 705);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(186, 27);
-            this.numericUpDown7.TabIndex = 537;
-            this.numericUpDown7.Tag = "IsNumeric";
-            this.numericUpDown7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown7.ThousandsSeparator = true;
-            this.numericUpDown7.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // OrderForm
             // 
@@ -1135,16 +1134,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountTendered_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discount_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gross_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.neet_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vat_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vatRate_tx)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.begBal_tx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qty_tx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1202,20 +1201,20 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox barcode_tx;
         private System.Windows.Forms.Panel panel3;
-        public System.Windows.Forms.NumericUpDown begBal_tx;
+        public System.Windows.Forms.NumericUpDown qty_tx;
         private System.Windows.Forms.Panel panel14;
-        public System.Windows.Forms.NumericUpDown numericUpDown7;
+        public System.Windows.Forms.NumericUpDown change_tx;
         private System.Windows.Forms.Panel panel12;
-        public System.Windows.Forms.NumericUpDown numericUpDown6;
+        public System.Windows.Forms.NumericUpDown amountTendered_tx;
         private System.Windows.Forms.Panel panel11;
-        public System.Windows.Forms.NumericUpDown numericUpDown5;
+        public System.Windows.Forms.NumericUpDown discount_tx;
         private System.Windows.Forms.Panel panel10;
-        public System.Windows.Forms.NumericUpDown numericUpDown4;
+        public System.Windows.Forms.NumericUpDown gross_tx;
         private System.Windows.Forms.Panel panel9;
-        public System.Windows.Forms.NumericUpDown numericUpDown3;
+        public System.Windows.Forms.NumericUpDown neet_tx;
         private System.Windows.Forms.Panel panel8;
-        public System.Windows.Forms.NumericUpDown numericUpDown2;
+        public System.Windows.Forms.NumericUpDown vat_tx;
         private System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.NumericUpDown numericUpDown1;
+        public System.Windows.Forms.NumericUpDown vatRate_tx;
     }
 }
