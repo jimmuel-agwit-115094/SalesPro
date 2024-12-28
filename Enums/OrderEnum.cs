@@ -12,7 +12,8 @@
         CreditCard,
         DebitCard,
         Cheque,
-        BankTransfer
+        BankTransfer,
+        NotSet
     }
 
     public enum OrderItemStatus

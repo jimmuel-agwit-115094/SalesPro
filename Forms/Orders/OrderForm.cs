@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
@@ -18,35 +19,42 @@ namespace SalesPro.Forms.Orders
             _service = new OrderService();
         }
 
+        private OrderModel BuildOrderModel()
+        {
+            return new OrderModel
+            {
+                AmountDue = 0,
+                AmountPaid = 0,
+                Change = 0,
+                CustomerId = 1,
+                DatePaid = DateTime.Now,
+                DateTaken = DateTime.Now,
+                DiscountAmount = 0,
+                DiscountRate = 0,
+                NetAmount = 0,
+                OrderStatus = OrderStatus.Active,
+                PaymentMethod = PaymentMethod.NotSet,
+                PaymentStatus = PaymentStatus.Unpaid,
+                Total = 0,
+                UserId = 1,
+                Vat = 0,
+                VatAmount = 0
+            };
+        }
+
         private async void OrderForm_Load(object sender, EventArgs e)
         {
             try
             {
                 _curDate = await ClockHelper.GetServerDateTime();
                 SetFormSize();
-                _service.SaveOrder(new OrderModel
-                {
-                    AmountDue = 0,
-                    AmountPaid = 0,
-                    Change = 0,
-                    CustomerId = 1,
-                    DatePaid = DateTime.Now,
-                    DateTaken = DateTime.Now,
-                    DiscountAmount = 0,
-                    DiscountRate = 0,
-                    NetAmount = 0,
-                    OrderStatus = "Open",
-                    PaymentMethod = "Cash",
-                    PaymentStatus = "Unpaid",
-                    Total = 0,
-                    UserId = 1,
-                    Vat = 0,
-                    VatAmount = 0
-                });
+                var orderModel = BuildOrderModel();
+                var savedOrder = await _service.SaveOrder(orderModel);
+                _rowVersion = savedOrder.RowVersion;
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error order form load : {ex.Message}");
+                MessageHandler.ShowError($"Error order form load : {ex}");
             }
         }
 
@@ -56,12 +64,6 @@ namespace SalesPro.Forms.Orders
             Rectangle workingArea = Screen.GetWorkingArea(this);
             Size = workingArea.Size;
             Location = workingArea.Location;
-        }
-
-        private void search_btn_Click(object sender, EventArgs e)
-        {
-            var form = new AddOrderItemForm();
-            form.ShowDialog();
         }
     }
 }
