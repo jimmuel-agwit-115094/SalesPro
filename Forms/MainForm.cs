@@ -68,10 +68,18 @@ namespace SalesPro.Forms
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ClockHelper.GetServerDateTime();
-            // Adjust the form size to fit the screen's working area on load
-            AdjustFormSizeToScreen();
-            await EnableDisableMenuPanel();
+            try
+            {
+                _curDate = await ClockHelper.GetServerDateTime();
+                // Adjust the form size to fit the screen's working area on load
+                AdjustFormSizeToScreen();
+                await EnableDisableMenuPanel();
+                await _transactionService.GetMaxTransactionId();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error main form load : {ex}");
+            }
         }
 
         private void logout_lnk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

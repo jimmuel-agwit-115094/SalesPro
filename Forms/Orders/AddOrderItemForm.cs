@@ -71,14 +71,20 @@ namespace SalesPro.Forms.Orders
                 _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
                 _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
                 _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
-                _orderForm.gross_tx.Text = savedOrder.AmountDue.ToString();
-                _orderForm.discount_tx.Text = savedOrder.AmountPaid.ToString();
+                _orderForm.gross_tx.Text = savedOrder.Total.ToString();
+                _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
+                _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
 
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error adding order item : {ex}");
             }
+        }
+
+        private void search_btn_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

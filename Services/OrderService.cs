@@ -128,12 +128,18 @@ namespace SalesPro.Services
                     if (order != null)
                     {
                         var orderedItems = await LoadOrderItemsByOrderId(orderId);
+                        // Calculations
                         decimal total = orderedItems.Sum(oi => oi.TotalPrice);
+                        decimal vatAmount = total / Constants.SystemConstants.VatRate;
+                        decimal netAmount = total - vatAmount;
+                        decimal grossAmount = vatAmount + netAmount;
+
+                        // Update order
                         order.Total = total;
-                        order.DiscountAmount = total * (order.DiscountRate / 100);
-                        order.NetAmount = total - order.DiscountAmount;
-                        order.VatAmount = order.NetAmount * (order.Vat / 100);
+                        order.VatAmount = vatAmount;
+                        order.NetAmount = netAmount;
                         order.AmountDue = total;
+                        order.GrossAmount = grossAmount;
                         await context.SaveChangesAsync();
                     }
 

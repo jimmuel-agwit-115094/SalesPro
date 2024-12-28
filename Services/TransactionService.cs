@@ -137,5 +137,14 @@ namespace SalesPro.Services
                 return await _dbContext.Transactions.OrderByDescending(x => x.TransactionId).ToListAsync();
             }
         }
+
+        public async Task GetMaxTransactionId()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var transactionId = await context.Transactions.MaxAsync(x => x.TransactionId);
+                TransactionSession.SetTransactionId(transactionId);
+            }
+        }
     }
 }

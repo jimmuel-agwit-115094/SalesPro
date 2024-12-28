@@ -16,9 +16,10 @@ namespace SalesPro.Models
         public decimal DiscountRate { get; set; }
         public decimal DiscountAmount { get; set; }
         public decimal Vat { get; set; }
-        public decimal NetAmount { get; set; }
         public decimal VatAmount { get; set; }
+        public decimal NetAmount { get; set; }
         public decimal AmountDue { get; set; }
+        public decimal GrossAmount { get; set; }
         public decimal AmountPaid { get; set; }
         public decimal Change { get; set; }
         public PaymentStatus PaymentStatus { get; set; }

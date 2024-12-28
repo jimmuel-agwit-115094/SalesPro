@@ -51,7 +51,7 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.change_tx = new System.Windows.Forms.NumericUpDown();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.amountTendered_tx = new System.Windows.Forms.NumericUpDown();
+            this.amountPaid_tx = new System.Windows.Forms.NumericUpDown();
             this.panel11 = new System.Windows.Forms.Panel();
             this.discount_tx = new System.Windows.Forms.NumericUpDown();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -105,7 +105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.amountTendered_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountPaid_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discount_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gross_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.net_tx)).BeginInit();
@@ -279,10 +279,11 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FloralWhite;
+            this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.panel14);
             this.panel4.Controls.Add(this.change_tx);
             this.panel4.Controls.Add(this.panel12);
-            this.panel4.Controls.Add(this.amountTendered_tx);
+            this.panel4.Controls.Add(this.amountPaid_tx);
             this.panel4.Controls.Add(this.panel11);
             this.panel4.Controls.Add(this.discount_tx);
             this.panel4.Controls.Add(this.panel10);
@@ -304,7 +305,6 @@
             this.panel4.Controls.Add(this.orderList_btn);
             this.panel4.Controls.Add(this.edit_btn);
             this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.label10);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label7);
@@ -362,23 +362,23 @@
             this.panel12.Size = new System.Drawing.Size(18, 23);
             this.panel12.TabIndex = 536;
             // 
-            // amountTendered_tx
+            // amountPaid_tx
             // 
-            this.amountTendered_tx.DecimalPlaces = 2;
-            this.amountTendered_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.amountTendered_tx.Location = new System.Drawing.Point(176, 669);
-            this.amountTendered_tx.Maximum = new decimal(new int[] {
+            this.amountPaid_tx.DecimalPlaces = 2;
+            this.amountPaid_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.amountPaid_tx.Location = new System.Drawing.Point(176, 669);
+            this.amountPaid_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.amountTendered_tx.Name = "amountTendered_tx";
-            this.amountTendered_tx.Size = new System.Drawing.Size(186, 27);
-            this.amountTendered_tx.TabIndex = 535;
-            this.amountTendered_tx.Tag = "IsNumeric";
-            this.amountTendered_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amountTendered_tx.ThousandsSeparator = true;
-            this.amountTendered_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.amountPaid_tx.Name = "amountPaid_tx";
+            this.amountPaid_tx.Size = new System.Drawing.Size(186, 27);
+            this.amountPaid_tx.TabIndex = 535;
+            this.amountPaid_tx.Tag = "IsNumeric";
+            this.amountPaid_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amountPaid_tx.ThousandsSeparator = true;
+            this.amountPaid_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // panel11
             // 
@@ -654,9 +654,9 @@
             this.label11.Location = new System.Drawing.Point(23, 674);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 17);
+            this.label11.Size = new System.Drawing.Size(62, 14);
             this.label11.TabIndex = 15;
-            this.label11.Text = "AMT. TENDERED :";
+            this.label11.Text = "AMT. PAID :";
             // 
             // label10
             // 
@@ -1049,7 +1049,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.amountTendered_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountPaid_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discount_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gross_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.net_tx)).EndInit();
@@ -1119,7 +1119,7 @@
         private System.Windows.Forms.Panel panel14;
         public System.Windows.Forms.NumericUpDown change_tx;
         private System.Windows.Forms.Panel panel12;
-        public System.Windows.Forms.NumericUpDown amountTendered_tx;
+        public System.Windows.Forms.NumericUpDown amountPaid_tx;
         private System.Windows.Forms.Panel panel11;
         public System.Windows.Forms.NumericUpDown discount_tx;
         private System.Windows.Forms.Panel panel10;

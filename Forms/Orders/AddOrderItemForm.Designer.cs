@@ -157,6 +157,7 @@
             this.search_btn.TabIndex = 457;
             this.search_btn.Text = "Enter";
             this.search_btn.UseVisualStyleBackColor = false;
+            this.search_btn.Click += new System.EventHandler(this.search_btn_Click_1);
             // 
             // AddOrderItemForm
             // 

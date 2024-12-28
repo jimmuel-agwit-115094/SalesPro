@@ -13,6 +13,7 @@ namespace SalesPro.Forms.Orders
         private DateTime _curDate;
         private int _rowVersion;
         private int _orderId;
+
         private readonly OrderService _service;
         public OrderForm()
         {
@@ -24,12 +25,13 @@ namespace SalesPro.Forms.Orders
         {
             return new OrderModel
             {
+                TransactionId = TransactionSession._transactionId,
                 AmountDue = 0,
                 AmountPaid = 0,
                 Change = 0,
                 CustomerId = 1,
-                DatePaid = DateTime.Now,
-                DateTaken = DateTime.Now,
+                DateTaken = _curDate,
+                DatePaid = _curDate,
                 DiscountAmount = 0,
                 DiscountRate = 0,
                 NetAmount = 0,
@@ -38,7 +40,7 @@ namespace SalesPro.Forms.Orders
                 PaymentStatus = PaymentStatus.Unpaid,
                 Total = 0,
                 UserId = 1,
-                Vat = 0,
+                Vat = 12,
                 VatAmount = 0
             };
         }
@@ -52,6 +54,7 @@ namespace SalesPro.Forms.Orders
                 var orderModel = BuildOrderModel();
                 var savedOrder = await _service.SaveOrder(orderModel);
                 _rowVersion = savedOrder.RowVersion;
+                _orderId = savedOrder.OrderId;
             }
             catch (Exception ex)
             {
