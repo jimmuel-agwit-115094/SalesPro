@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderItemForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderItemForm));
             this.notFound_lbl = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
-            this.search_btn = new System.Windows.Forms.Button();
             this.dgProduct = new System.Windows.Forms.DataGridView();
             this.title_lbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.search_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // notFound_lbl
@@ -56,18 +56,6 @@
             this.notFound_lbl.TabIndex = 454;
             this.notFound_lbl.Text = "Product Not Found";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1126, 60);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 52);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 453;
-            this.pictureBox1.TabStop = false;
-            // 
             // search_tx
             // 
             this.search_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -77,21 +65,6 @@
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(1111, 43);
             this.search_tx.TabIndex = 451;
-            // 
-            // search_btn
-            // 
-            this.search_btn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.search_btn.FlatAppearance.BorderSize = 0;
-            this.search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.search_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_btn.ForeColor = System.Drawing.Color.White;
-            this.search_btn.Location = new System.Drawing.Point(1191, 60);
-            this.search_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.search_btn.Name = "search_btn";
-            this.search_btn.Size = new System.Drawing.Size(211, 53);
-            this.search_btn.TabIndex = 452;
-            this.search_btn.Text = "Enter";
-            this.search_btn.UseVisualStyleBackColor = false;
             // 
             // dgProduct
             // 
@@ -144,6 +117,9 @@
             this.dgProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgProduct.Size = new System.Drawing.Size(1384, 627);
             this.dgProduct.TabIndex = 455;
+            this.dgProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellContentClick);
+            this.dgProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellDoubleClick);
+            this.dgProduct.SelectionChanged += new System.EventHandler(this.dgProduct_SelectionChanged);
             // 
             // title_lbl
             // 
@@ -155,17 +131,44 @@
             this.title_lbl.TabIndex = 456;
             this.title_lbl.Text = "Select Product";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1128, 61);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(46, 42);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 458;
+            this.pictureBox1.TabStop = false;
+            // 
+            // search_btn
+            // 
+            this.search_btn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.search_btn.FlatAppearance.BorderSize = 0;
+            this.search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.search_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_btn.ForeColor = System.Drawing.Color.White;
+            this.search_btn.Location = new System.Drawing.Point(1191, 60);
+            this.search_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.search_btn.Name = "search_btn";
+            this.search_btn.Size = new System.Drawing.Size(211, 43);
+            this.search_btn.TabIndex = 457;
+            this.search_btn.Text = "Enter";
+            this.search_btn.UseVisualStyleBackColor = false;
+            // 
             // AddOrderItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1415, 762);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.search_btn);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.notFound_lbl);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.search_tx);
-            this.Controls.Add(this.search_btn);
             this.Controls.Add(this.dgProduct);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -175,8 +178,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Order";
             this.Load += new System.EventHandler(this.AddOrderItemForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,10 +187,10 @@
 
         #endregion
         private System.Windows.Forms.Label notFound_lbl;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox search_tx;
-        private System.Windows.Forms.Button search_btn;
         internal System.Windows.Forms.DataGridView dgProduct;
         internal System.Windows.Forms.Label title_lbl;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button search_btn;
     }
 }
