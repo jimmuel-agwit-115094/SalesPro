@@ -57,17 +57,30 @@ namespace SalesPro.Forms.Orders
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
         }
 
+
+        private async Task SetCustomer(int customerId)
+        {
+            var customer = await _service.GetCustomerById(customerId);
+            customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
+        }
+
         private async void OrderForm_Load(object sender, EventArgs e)
         {
             try
             {
                 SetFormSize();
+                // Save order
                 var orderModel = BuildOrderModel();
                 var savedOrder = await _service.SaveOrder(orderModel);
                 await LoadOrderedItemsById();
+
+                // Controls
                 _rowVersion = savedOrder.RowVersion;
                 _orderId = savedOrder.OrderId;
                 _curDate = await ClockHelper.GetServerDateTime();
+                orderId_lbl.Text = _orderId.ToString();
+                status_lbl.Text = savedOrder.OrderStatus.ToString();
+                await SetCustomer(savedOrder.CustomerId);
             }
             catch (Exception ex)
             {

@@ -159,5 +159,12 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<CustomerModel> GetCustomerById(int customerId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Customers.FindAsync(customerId);
+            }
+        }
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelRight = new System.Windows.Forms.Panel();
@@ -232,9 +232,9 @@
             this.order_lbl.Location = new System.Drawing.Point(-2, 0);
             this.order_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.order_lbl.Name = "order_lbl";
-            this.order_lbl.Size = new System.Drawing.Size(296, 65);
+            this.order_lbl.Size = new System.Drawing.Size(309, 65);
             this.order_lbl.TabIndex = 1;
-            this.order_lbl.Text = "CASH SALES";
+            this.order_lbl.Text = "TOTAL SALES";
             // 
             // panel7
             // 
@@ -334,7 +334,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.FloralWhite;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(23, 674);
+            this.label11.Location = new System.Drawing.Point(23, 675);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(78, 17);
@@ -344,7 +344,7 @@
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Location = new System.Drawing.Point(177, 707);
+            this.panel14.Location = new System.Drawing.Point(140, 707);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(18, 23);
             this.panel14.TabIndex = 538;
@@ -353,14 +353,14 @@
             // 
             this.change_tx.DecimalPlaces = 2;
             this.change_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.change_tx.Location = new System.Drawing.Point(176, 705);
+            this.change_tx.Location = new System.Drawing.Point(139, 705);
             this.change_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.change_tx.Name = "change_tx";
-            this.change_tx.Size = new System.Drawing.Size(186, 27);
+            this.change_tx.Size = new System.Drawing.Size(220, 27);
             this.change_tx.TabIndex = 537;
             this.change_tx.Tag = "IsNumeric";
             this.change_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -370,7 +370,7 @@
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Location = new System.Drawing.Point(177, 671);
+            this.panel12.Location = new System.Drawing.Point(140, 671);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(18, 23);
             this.panel12.TabIndex = 536;
@@ -379,14 +379,14 @@
             // 
             this.amountPaid_tx.DecimalPlaces = 2;
             this.amountPaid_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.amountPaid_tx.Location = new System.Drawing.Point(176, 669);
+            this.amountPaid_tx.Location = new System.Drawing.Point(139, 669);
             this.amountPaid_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.amountPaid_tx.Name = "amountPaid_tx";
-            this.amountPaid_tx.Size = new System.Drawing.Size(186, 27);
+            this.amountPaid_tx.Size = new System.Drawing.Size(220, 27);
             this.amountPaid_tx.TabIndex = 535;
             this.amountPaid_tx.Tag = "IsNumeric";
             this.amountPaid_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -396,7 +396,7 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Location = new System.Drawing.Point(177, 635);
+            this.panel11.Location = new System.Drawing.Point(140, 635);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(18, 23);
             this.panel11.TabIndex = 534;
@@ -405,14 +405,14 @@
             // 
             this.discount_tx.DecimalPlaces = 2;
             this.discount_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.discount_tx.Location = new System.Drawing.Point(176, 633);
+            this.discount_tx.Location = new System.Drawing.Point(139, 633);
             this.discount_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.discount_tx.Name = "discount_tx";
-            this.discount_tx.Size = new System.Drawing.Size(186, 27);
+            this.discount_tx.Size = new System.Drawing.Size(220, 27);
             this.discount_tx.TabIndex = 533;
             this.discount_tx.Tag = "IsNumeric";
             this.discount_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -422,7 +422,7 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Location = new System.Drawing.Point(177, 599);
+            this.panel10.Location = new System.Drawing.Point(140, 599);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(18, 23);
             this.panel10.TabIndex = 532;
@@ -431,14 +431,14 @@
             // 
             this.gross_tx.DecimalPlaces = 2;
             this.gross_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.gross_tx.Location = new System.Drawing.Point(176, 597);
+            this.gross_tx.Location = new System.Drawing.Point(139, 597);
             this.gross_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.gross_tx.Name = "gross_tx";
-            this.gross_tx.Size = new System.Drawing.Size(186, 27);
+            this.gross_tx.Size = new System.Drawing.Size(220, 27);
             this.gross_tx.TabIndex = 531;
             this.gross_tx.Tag = "IsNumeric";
             this.gross_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -448,7 +448,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Location = new System.Drawing.Point(178, 563);
+            this.panel9.Location = new System.Drawing.Point(141, 563);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(18, 23);
             this.panel9.TabIndex = 530;
@@ -457,14 +457,14 @@
             // 
             this.net_tx.DecimalPlaces = 2;
             this.net_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.net_tx.Location = new System.Drawing.Point(177, 561);
+            this.net_tx.Location = new System.Drawing.Point(140, 561);
             this.net_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.net_tx.Name = "net_tx";
-            this.net_tx.Size = new System.Drawing.Size(186, 27);
+            this.net_tx.Size = new System.Drawing.Size(220, 27);
             this.net_tx.TabIndex = 529;
             this.net_tx.Tag = "IsNumeric";
             this.net_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -474,7 +474,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Location = new System.Drawing.Point(177, 527);
+            this.panel8.Location = new System.Drawing.Point(140, 527);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(18, 23);
             this.panel8.TabIndex = 528;
@@ -483,14 +483,14 @@
             // 
             this.vat_tx.DecimalPlaces = 2;
             this.vat_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.vat_tx.Location = new System.Drawing.Point(176, 525);
+            this.vat_tx.Location = new System.Drawing.Point(139, 525);
             this.vat_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.vat_tx.Name = "vat_tx";
-            this.vat_tx.Size = new System.Drawing.Size(186, 27);
+            this.vat_tx.Size = new System.Drawing.Size(220, 27);
             this.vat_tx.TabIndex = 527;
             this.vat_tx.Tag = "IsNumeric";
             this.vat_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -500,7 +500,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(179, 491);
+            this.panel5.Location = new System.Drawing.Point(142, 491);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(18, 23);
             this.panel5.TabIndex = 526;
@@ -509,14 +509,14 @@
             // 
             this.vatRate_tx.DecimalPlaces = 2;
             this.vatRate_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.vatRate_tx.Location = new System.Drawing.Point(178, 489);
+            this.vatRate_tx.Location = new System.Drawing.Point(141, 489);
             this.vatRate_tx.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.vatRate_tx.Name = "vatRate_tx";
-            this.vatRate_tx.Size = new System.Drawing.Size(186, 27);
+            this.vatRate_tx.Size = new System.Drawing.Size(220, 27);
             this.vatRate_tx.TabIndex = 525;
             this.vatRate_tx.Tag = "IsNumeric";
             this.vatRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -652,7 +652,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.FloralWhite;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(24, 709);
+            this.label12.Location = new System.Drawing.Point(24, 710);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 17);
@@ -688,7 +688,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FloralWhite;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(23, 493);
+            this.label7.Location = new System.Drawing.Point(23, 495);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 17);
@@ -905,13 +905,23 @@
             0,
             0,
             0});
+            this.qty_tx.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.qty_tx.Name = "qty_tx";
-            this.qty_tx.Size = new System.Drawing.Size(221, 50);
+            this.qty_tx.Size = new System.Drawing.Size(175, 50);
             this.qty_tx.TabIndex = 525;
             this.qty_tx.Tag = "IsNumeric";
-            this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.qty_tx.ThousandsSeparator = true;
             this.qty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.qty_tx.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label20
             // 
@@ -972,30 +982,30 @@
             this.dgItems.AllowUserToDeleteRows = false;
             this.dgItems.AllowUserToResizeColumns = false;
             this.dgItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
             this.dgItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgItems.BackgroundColor = System.Drawing.Color.White;
             this.dgItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
             this.dgItems.ColumnHeadersHeight = 40;
             this.dgItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgItems.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgItems.DefaultCellStyle = dataGridViewCellStyle39;
             this.dgItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgItems.EnableHeadersVisualStyles = false;
             this.dgItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -1004,14 +1014,14 @@
             this.dgItems.MultiSelect = false;
             this.dgItems.Name = "dgItems";
             this.dgItems.ReadOnly = true;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.dgItems.RowHeadersVisible = false;
             this.dgItems.RowHeadersWidth = 51;
             this.dgItems.RowTemplate.Height = 45;
