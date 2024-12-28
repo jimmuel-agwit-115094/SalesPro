@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Data;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -20,7 +19,7 @@ namespace SalesPro.Helpers
                 }
                 catch (Exception ex)
                 {
-                    MessageHandler.ShowError($"Error Occured:\n{ex.Message}");
+                    MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex}");
                 }
             }
         }

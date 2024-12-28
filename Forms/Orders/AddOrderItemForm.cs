@@ -55,7 +55,7 @@ namespace SalesPro.Forms.Orders
 
         }
 
-        private async Task ProcessOrderItem(OrderItemStatus status)
+        private async Task ProcessOrderItem(OrderItemStatus itemStatus)
         {
             var prodInventory = await _service.GetInventoryById(_inventoryId);
             if (prodInventory == null)
@@ -64,7 +64,7 @@ namespace SalesPro.Forms.Orders
                 return;
             }
             // Assess if item is for addition or returned
-            int newQuantity = status == OrderItemStatus.Added ? _quantity : -_quantity;
+            int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
 
             // Save order item
             var orderItem = new OrderItemModel
@@ -75,9 +75,9 @@ namespace SalesPro.Forms.Orders
                 OrderQuantity = newQuantity,
                 Price = prodInventory.RetailPrice,
                 TotalPrice = newQuantity * prodInventory.RetailPrice,
-                OrderItemStatus = OrderItemStatus.Added,
+                OrderItemStatus = itemStatus,
             };
-            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, OrderItemStatus.Added, orderItem);
+            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, itemStatus, orderItem);
           
             // Set controls
             _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();

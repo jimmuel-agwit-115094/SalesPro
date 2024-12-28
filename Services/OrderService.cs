@@ -120,13 +120,13 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     // Check if the product is already in the order item
-                    var inventoryProduct = await context.OrderItems.Where(x => x.InventoryId == inventoryId && x.OrderId == orderId).FirstOrDefaultAsync();
+                    var inventoryProductExist = await context.OrderItems.Where(x => x.InventoryId == inventoryId && x.OrderId == orderId).FirstOrDefaultAsync();
 
-                    if (inventoryProduct != null)
+                    if (inventoryProductExist != null)
                     {
                         // Update the existing order item
-                        inventoryProduct.OrderQuantity += orderItem.OrderQuantity;
-                        inventoryProduct.TotalPrice = inventoryProduct.OrderQuantity * inventoryProduct.Price;
+                        inventoryProductExist.OrderQuantity += orderItem.OrderQuantity;
+                        inventoryProductExist.TotalPrice = inventoryProductExist.OrderQuantity * inventoryProductExist.Price;
                         await context.SaveChangesAsync();
                     }
                     else
