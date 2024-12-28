@@ -163,6 +163,7 @@
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
     <Compile Include="Enums\InventoryEnum.cs" />
+    <Compile Include="Enums\OrderEnum.cs" />
     <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Enums\PurchaseOrderEnums.cs" />
     <Compile Include="Enums\UsersEnums.cs" />
@@ -189,6 +190,12 @@
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\AddOrderItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\AddOrderItemForm.Designer.cs">
+      <DependentUpon>AddOrderItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Orders\OrderForm.cs">
       <SubType>Form</SubType>
@@ -241,6 +248,7 @@
     <Compile Include="Helpers\NullCheckerHelper.cs" />
     <Compile Include="Models\InventoryLogModel.cs" />
     <Compile Include="Models\InventoryModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />
     <Compile Include="Models\PurchaseOrderLogsModel.cs" />
@@ -280,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\AddOrderItemForm.resx">
+      <DependentUpon>AddOrderItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
