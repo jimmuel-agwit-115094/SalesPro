@@ -68,7 +68,12 @@ namespace SalesPro.Forms.Orders
                     OrderItemStatus = OrderItemStatus.Added,
                 };
                 var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, OrderItemStatus.Added, orderItem);
-                _orderForm.
+                _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
+                _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
+                _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
+                _orderForm.gross_tx.Text = savedOrder.AmountDue.ToString();
+                _orderForm.discount_tx.Text = savedOrder.AmountPaid.ToString();
+
             }
             catch (Exception ex)
             {
