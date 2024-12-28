@@ -1,5 +1,6 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
@@ -29,6 +30,7 @@ namespace SalesPro.Forms.Orders
             {
                 var prods = await _service.LoadProductsFromInventory();
                 dgProduct.DataSource = prods;
+                DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
             }
             catch (Exception ex)
             {
@@ -74,6 +76,8 @@ namespace SalesPro.Forms.Orders
                 _orderForm.gross_tx.Text = savedOrder.Total.ToString();
                 _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
                 _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
+                await _orderForm.LoadOrderedItemsById();
+                Close();
 
             }
             catch (Exception ex)

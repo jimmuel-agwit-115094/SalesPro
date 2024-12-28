@@ -1,9 +1,12 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
@@ -45,16 +48,26 @@ namespace SalesPro.Forms.Orders
             };
         }
 
+
+        public async Task LoadOrderedItemsById()
+        {
+            var items = await _service.LoadOrderItemsByOrderId(_orderId);
+            dgItems.DataSource = items;
+            DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice");
+            total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
+        }
+
         private async void OrderForm_Load(object sender, EventArgs e)
         {
             try
             {
-                _curDate = await ClockHelper.GetServerDateTime();
                 SetFormSize();
                 var orderModel = BuildOrderModel();
                 var savedOrder = await _service.SaveOrder(orderModel);
+                await LoadOrderedItemsById();
                 _rowVersion = savedOrder.RowVersion;
                 _orderId = savedOrder.OrderId;
+                _curDate = await ClockHelper.GetServerDateTime();
             }
             catch (Exception ex)
             {

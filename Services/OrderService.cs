@@ -62,7 +62,7 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 return await (from oi in context.OrderItems
-                              join p in context.Products on oi.OrderId equals p.ProductId
+                              join p in context.Products on oi.ProductId equals p.ProductId
                               where oi.OrderId == orderId && oi.OrderItemStatus == OrderItemStatus.Added
                               select new OrderItemModelExtended
                               {
