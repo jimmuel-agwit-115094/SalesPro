@@ -22,6 +22,7 @@ namespace SalesPro.Forms.Orders
         {
             InitializeComponent();
             _service = new OrderService();
+            KeyPreview = true;
         }
 
         private OrderModel BuildOrderModel()
@@ -61,7 +62,8 @@ namespace SalesPro.Forms.Orders
         private async Task SetCustomer(int customerId)
         {
             var customer = await _service.GetCustomerById(customerId);
-            customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
+            if(customer != null)
+                customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
         }
 
         private async void OrderForm_Load(object sender, EventArgs e)
@@ -78,7 +80,7 @@ namespace SalesPro.Forms.Orders
                 _rowVersion = savedOrder.RowVersion;
                 _orderId = savedOrder.OrderId;
                 _curDate = await ClockHelper.GetServerDateTime();
-                orderId_lbl.Text = _orderId.ToString();
+                orderId_lbl.Text = _orderId.ToString("D10");
                 status_lbl.Text = savedOrder.OrderStatus.ToString();
                 await SetCustomer(savedOrder.CustomerId);
             }
@@ -103,6 +105,49 @@ namespace SalesPro.Forms.Orders
             form._rowVersion = _rowVersion;
             form._quantity = int.Parse(qty_tx.Text);
             form.ShowDialog();
+        }
+
+        private void OrderForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.F1:
+                    add_btn.PerformClick();
+                    break;
+                case Keys.F2:
+                    edit_btn.PerformClick();
+                    break;
+                case Keys.F3:
+                    delete_btn.PerformClick();
+                    break;
+                case Keys.F4:
+                    priceInquiry_btn.PerformClick();
+                    break;
+                case Keys.F5:
+                    suspend_btn.PerformClick();
+                    break;
+                case Keys.F6:
+                    resume_btn.PerformClick();
+                    break;
+                case Keys.F7:
+                    returnProduct_btn.PerformClick();
+                    break;
+                case Keys.Delete:
+                    cancel_btn.PerformClick();
+                    break;
+                case Keys.F8:
+                    addCustomer_btn.PerformClick();
+                    break;
+                case Keys.F9:
+                    orderList_btn.PerformClick();
+                    break;
+                case Keys.F10:
+                    pay_btn.PerformClick();
+                    break;
+                case Keys.F11:
+                    charge_btn.PerformClick();
+                    break;
+            }
         }
     }
 }

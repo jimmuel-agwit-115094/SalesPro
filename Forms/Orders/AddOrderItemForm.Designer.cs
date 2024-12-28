@@ -49,7 +49,7 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(518, 367);
+            this.notFound_lbl.Location = new System.Drawing.Point(418, 374);
             this.notFound_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.notFound_lbl.Name = "notFound_lbl";
             this.notFound_lbl.Size = new System.Drawing.Size(301, 45);
@@ -60,11 +60,12 @@
             // 
             this.search_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(18, 60);
+            this.search_tx.Location = new System.Drawing.Point(13, 61);
             this.search_tx.Margin = new System.Windows.Forms.Padding(4);
             this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(1111, 43);
+            this.search_tx.Size = new System.Drawing.Size(856, 43);
             this.search_tx.TabIndex = 451;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // dgProduct
             // 
@@ -98,7 +99,7 @@
             this.dgProduct.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgProduct.EnableHeadersVisualStyles = false;
             this.dgProduct.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgProduct.Location = new System.Drawing.Point(18, 122);
+            this.dgProduct.Location = new System.Drawing.Point(15, 111);
             this.dgProduct.Margin = new System.Windows.Forms.Padding(4);
             this.dgProduct.MultiSelect = false;
             this.dgProduct.Name = "dgProduct";
@@ -115,11 +116,12 @@
             this.dgProduct.RowHeadersWidth = 51;
             this.dgProduct.RowTemplate.Height = 45;
             this.dgProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgProduct.Size = new System.Drawing.Size(1384, 627);
+            this.dgProduct.Size = new System.Drawing.Size(1101, 557);
             this.dgProduct.TabIndex = 455;
             this.dgProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellContentClick);
             this.dgProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellDoubleClick);
             this.dgProduct.SelectionChanged += new System.EventHandler(this.dgProduct_SelectionChanged);
+            this.dgProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgProduct_KeyDown);
             // 
             // title_lbl
             // 
@@ -135,7 +137,7 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1128, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(877, 62);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(46, 42);
@@ -150,10 +152,10 @@
             this.search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.search_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_btn.ForeColor = System.Drawing.Color.White;
-            this.search_btn.Location = new System.Drawing.Point(1191, 60);
+            this.search_btn.Location = new System.Drawing.Point(942, 61);
             this.search_btn.Margin = new System.Windows.Forms.Padding(4);
             this.search_btn.Name = "search_btn";
-            this.search_btn.Size = new System.Drawing.Size(211, 43);
+            this.search_btn.Size = new System.Drawing.Size(174, 43);
             this.search_btn.TabIndex = 457;
             this.search_btn.Text = "Enter";
             this.search_btn.UseVisualStyleBackColor = false;
@@ -164,7 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1415, 762);
+            this.ClientSize = new System.Drawing.Size(1129, 681);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.search_btn);
             this.Controls.Add(this.title_lbl);

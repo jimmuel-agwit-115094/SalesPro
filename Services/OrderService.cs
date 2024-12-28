@@ -112,17 +112,30 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, OrderItemStatus itemStatus, OrderItemModel orderItem)
+        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem)
         {
             using (var context = new DatabaseContext())
             {
                 var updatedOrder = new OrderModel();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
-                    // Add the order item
-                    await context.OrderItems.AddAsync(orderItem);
-                    await context.SaveChangesAsync();
+                    // Check if the product is already in the order item
+                    var inventoryProduct = await context.OrderItems.Where(x => x.InventoryId == inventoryId && x.OrderId == orderId).FirstOrDefaultAsync();
 
+                    if (inventoryProduct != null)
+                    {
+                        // Update the existing order item
+                        inventoryProduct.OrderQuantity += orderItem.OrderQuantity;
+                        inventoryProduct.TotalPrice = inventoryProduct.OrderQuantity * inventoryProduct.Price;
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        // Add the order items
+                        await context.OrderItems.AddAsync(orderItem);
+                        await context.SaveChangesAsync();
+                    }
+                 
                     // Fetch the order and compute totals
                     var order = await context.Orders.FindAsync(orderId);
                     if (order != null)

@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
@@ -54,31 +55,43 @@ namespace SalesPro.Forms.Orders
 
         }
 
+        private async Task ProcessOrderItem(OrderItemStatus status)
+        {
+            var prodInventory = await _service.GetInventoryById(_inventoryId);
+            if (prodInventory == null)
+            {
+                MessageHandler.ShowError("Product not found on inventory.");
+                return;
+            }
+            // Assess if item is for addition or returned
+            int newQuantity = status == OrderItemStatus.Added ? _quantity : -_quantity;
+
+            var orderItem = new OrderItemModel
+            {
+                OrderId = _orderId,
+                InventoryId = _inventoryId,
+                ProductId = prodInventory.ProductId,
+                OrderQuantity = newQuantity,
+                Price = prodInventory.RetailPrice,
+                TotalPrice = newQuantity * prodInventory.RetailPrice,
+                OrderItemStatus = OrderItemStatus.Added,
+            };
+            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, OrderItemStatus.Added, orderItem);
+            _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
+            _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
+            _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
+            _orderForm.gross_tx.Text = savedOrder.Total.ToString();
+            _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
+            _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
+            await _orderForm.LoadOrderedItemsById();
+            Close();
+        }
+
         private async void dgProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                var prodInventory = await _service.GetInventoryById(_inventoryId);
-                var orderItem = new OrderItemModel
-                {
-                    OrderId = _orderId,
-                    InventoryId = _inventoryId,
-                    ProductId = prodInventory.ProductId,
-                    OrderQuantity = _quantity,
-                    Price = prodInventory.RetailPrice,
-                    TotalPrice = _quantity * prodInventory.RetailPrice,
-                    OrderItemStatus = OrderItemStatus.Added,
-                };
-                var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, OrderItemStatus.Added, orderItem);
-                _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
-                _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
-                _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
-                _orderForm.gross_tx.Text = savedOrder.Total.ToString();
-                _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
-                _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
-                await _orderForm.LoadOrderedItemsById();
-                Close();
-
+                await ProcessOrderItem(OrderItemStatus.Added);
             }
             catch (Exception ex)
             {
@@ -88,6 +101,28 @@ namespace SalesPro.Forms.Orders
 
         private void search_btn_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgProduct, search_tx);
+        }
+
+        private async void dgProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.Handled = true;
+                    await ProcessOrderItem(OrderItemStatus.Added);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error adding order item  via enter key press: {ex}");
+            }
 
         }
     }
