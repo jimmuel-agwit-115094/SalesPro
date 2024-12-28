@@ -66,6 +66,7 @@ namespace SalesPro.Forms.Orders
             // Assess if item is for addition or returned
             int newQuantity = status == OrderItemStatus.Added ? _quantity : -_quantity;
 
+            // Save order item
             var orderItem = new OrderItemModel
             {
                 OrderId = _orderId,
@@ -77,12 +78,16 @@ namespace SalesPro.Forms.Orders
                 OrderItemStatus = OrderItemStatus.Added,
             };
             var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, OrderItemStatus.Added, orderItem);
+          
+            // Set controls
             _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
             _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
             _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
             _orderForm.gross_tx.Text = savedOrder.Total.ToString();
             _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
             _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
+
+            //Load ordered items
             await _orderForm.LoadOrderedItemsById();
             Close();
         }
