@@ -56,6 +56,94 @@ namespace SalesPro.Services
                               }).FirstOrDefaultAsync();
             }
         }
+
+        public async Task<List<OrderItemModelExtended>> LoadOrderItemsByOrderId(int orderId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from oi in context.OrderItems
+                              join p in context.Products on oi.OrderId equals p.ProductId
+                              where oi.OrderId == orderId && oi.OrderItemStatus == OrderItemStatus.Added
+                              select new OrderItemModelExtended
+                              {
+                                  OrderId = orderId,
+                                  InventoryId = oi.InventoryId,
+                                  OrderItemId = oi.OrderItemId,
+                                  OrderItemStatus = oi.OrderItemStatus,
+                                  OrderQuantity = oi.OrderQuantity,
+                                  Price = oi.Price,
+                                  ProductId = oi.ProductId,
+                                  ProductName = p.ProductName,
+                                  TotalPrice = oi.TotalPrice
+                              }).ToListAsync();
+            }
+        }
+
+        public async Task<List<InventoryModelExtended>> LoadProductsFromInventory()
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from i in context.Inventories
+                              join p in context.Products on i.ProductId equals p.ProductId
+                              where i.QuantityOnHand > 0
+                              select new InventoryModelExtended
+                              {
+                                  DateAdded = i.DateAdded,
+                                  InventoryId = i.InventoryId,
+                                  ProductId = i.ProductId,
+                                  PurchaseOrderId = i.PurchaseOrderId,
+                                  QuantityFromPo = i.QuantityFromPo,
+                                  QuantityOnHand = i.QuantityOnHand,
+                                  RetailPrice = i.RetailPrice,
+                                  SupplierId = i.SupplierId,
+                                  SupplierPrice = i.SupplierPrice,
+                                  UserId = i.UserId,
+                                  ProductName = p.ProductName
+                              }).ToListAsync();
+
+            }
+        }
+
+        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, OrderItemStatus itemStatus, OrderItemModel orderItem)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var updatedOrder = new OrderModel();
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    // Add the order item
+                    await context.OrderItems.AddAsync(orderItem);
+                    await context.SaveChangesAsync();
+
+                    // Fetch the order and compute totals
+                    var order = await context.Orders.FindAsync(orderId);
+                    if (order != null)
+                    {
+                        var orderedItems = await LoadOrderItemsByOrderId(orderId);
+                        decimal total = orderedItems.Sum(oi => oi.TotalPrice);
+                        order.Total = total;
+                        order.DiscountAmount = total * (order.DiscountRate / 100);
+                        order.NetAmount = total - order.DiscountAmount;
+                        order.VatAmount = order.NetAmount * (order.Vat / 100);
+                        order.AmountDue = total;
+                        await context.SaveChangesAsync();
+                    }
+
+                    // Update inventory
+                    var inventory = await context.Inventories.FindAsync(orderItem.InventoryId);
+                    if (inventory != null)
+                    {
+                        inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
+                        ? orderItem.OrderQuantity
+                        : -orderItem.OrderQuantity;
+
+                        await context.SaveChangesAsync();
+                    }
+                    updatedOrder = await context.Orders.FindAsync(orderId);
+                });
+                return updatedOrder;
+            }
+        }
+
     }
-}
 }

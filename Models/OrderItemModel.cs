@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class OrderItemModel : BaseEntity
+    public class OrderItemModel
     {
         [Key]
         public int OrderItemId { get; set; }
@@ -14,5 +14,11 @@ namespace SalesPro.Models
         public decimal Price { get; set; }
         public decimal TotalPrice { get; set; }
         public OrderItemStatus OrderItemStatus { get; set; }
+        public bool IsDeleted { get; set; } 
+    }
+
+    public class OrderItemModelExtended : OrderItemModel
+    {
+        public string ProductName { get; set; }
     }
 }
