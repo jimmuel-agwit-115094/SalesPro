@@ -69,9 +69,10 @@ namespace SalesPro.Forms.Orders
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            var form = new AddOrderItemForm();
+            var form = new AddOrderItemForm(this);
             form._orderId = _orderId;
             form._rowVersion = _rowVersion;
+            form._quantity = int.Parse(qty_tx.Text);
             form.ShowDialog();
         }
     }
