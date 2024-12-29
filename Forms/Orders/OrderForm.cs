@@ -166,5 +166,11 @@ namespace SalesPro.Forms.Orders
         {
             total_tx.ForeColor = decimal.Parse(total_tx.Text) < 0 ? Color.Yellow : Color.White;
         }
+
+        private void edit_btn_Click(object sender, EventArgs e)
+        {
+            var form = new EditQuantityForm();
+            form.ShowDialog();
+        }
     }
 }
