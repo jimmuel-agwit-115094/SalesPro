@@ -149,10 +149,13 @@ namespace SalesPro.Services
                     // Fetch and update order
                     var order = await context.Orders.FindAsync(orderId);
                     NullCheckerHelper.NullCheck(order);
-                    var checker = VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
-                    if (checker)
+                    var isVersionValid = VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
+                    if (!isVersionValid)
                     {
-                        var orderedItems = await LoadOrderItemsByOrderId(orderId);
+                        throw new OperationCanceledException($"validation failed.");
+                    }
+
+                    var orderedItems = await LoadOrderItemsByOrderId(orderId);
                         // Calculations
                         decimal total = orderedItems.Sum(oi => oi.TotalPrice);
                         decimal vatAmount = total / Constants.SystemConstants.VatRate;
@@ -166,7 +169,7 @@ namespace SalesPro.Services
                         order.AmountDue = total;
                         order.GrossAmount = grossAmount;
                         await context.SaveChangesAsync();
-                    }
+                    
                     // Update inventory
                     var inventory = await context.Inventories.FindAsync(orderItem.InventoryId);
                     NullCheckerHelper.NullCheck(inventory);
