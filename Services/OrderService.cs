@@ -22,7 +22,6 @@ namespace SalesPro.Services
             }
         }
 
-        // Get row version
         public async Task<int> GetRowVersion(int orderId)
         {
             using (var context = new DatabaseContext())
@@ -31,6 +30,7 @@ namespace SalesPro.Services
                 return order.RowVersion;
             }
         }
+
         public async Task<OrderModelExtended> GetOrderById(int orderId)
         {
             using (var context = new DatabaseContext())
@@ -148,7 +148,7 @@ namespace SalesPro.Services
                     // Fetch and update order
                     var order = await context.Orders.FindAsync(orderId);
                     NullCheckerHelper.NullCheck(order);
-                    VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, order.RowVersion);
 
                     var orderedItems = await LoadOrderItemsByOrderId(orderId);
                     // Calculations
@@ -174,8 +174,12 @@ namespace SalesPro.Services
 
                     await context.SaveChangesAsync();
 
+                    // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
+                    await context.Entry(updatedOrder).ReloadAsync();
+
                 });
+
                 return updatedOrder;
             }
         }

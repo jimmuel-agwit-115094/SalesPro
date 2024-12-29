@@ -25,10 +25,16 @@ namespace SalesPro.Forms.Orders
             _orderForm = orderForm;
         }
 
+        private async Task ReloadRowVersion()
+        {
+            _rowVersion = await _service.GetRowVersion(_orderId);
+        }
+
         private async void AddOrderItemForm_Load(object sender, EventArgs e)
         {
             try
             {
+                await ReloadRowVersion();
                 var prods = await _service.LoadProductsFromInventory();
                 dgProduct.DataSource = prods;
                 DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
@@ -77,8 +83,9 @@ namespace SalesPro.Forms.Orders
                 TotalPrice = newQuantity * prodInventory.RetailPrice,
                 OrderItemStatus = itemStatus,
             };
+
             var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
-          
+
             // Set controls
             _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
             _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
@@ -86,10 +93,8 @@ namespace SalesPro.Forms.Orders
             _orderForm.gross_tx.Text = savedOrder.Total.ToString();
             _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
             _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
-
             //Load ordered items
             await _orderForm.LoadOrderedItemsById();
-   
             Close();
         }
 

@@ -66,11 +66,6 @@ namespace SalesPro.Forms.Orders
                 customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
         }
 
-        private async Task ReloadRowVersion()
-        {
-            _rowVersion = await _service.GetRowVersion(_orderId);
-        }
-
         private async void OrderForm_Load(object sender, EventArgs e)
         {
             try
