@@ -20,5 +20,6 @@ namespace SalesPro.Models
     public class OrderItemModelExtended : OrderItemModel
     {
         public string ProductName { get; set; }
+        public string UnitOfMeasure { get; set; }
     }
 }

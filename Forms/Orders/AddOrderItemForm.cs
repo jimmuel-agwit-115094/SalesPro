@@ -25,16 +25,10 @@ namespace SalesPro.Forms.Orders
             _orderForm = orderForm;
         }
 
-        private async Task ReloadRowVersion()
-        {
-            _rowVersion = await _service.GetRowVersion(_orderId);
-        }
-
         private async void AddOrderItemForm_Load(object sender, EventArgs e)
         {
             try
             {
-                await ReloadRowVersion();
                 var prods = await _service.LoadProductsFromInventory();
                 dgProduct.DataSource = prods;
                 DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
@@ -95,6 +89,7 @@ namespace SalesPro.Forms.Orders
             _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
             //Load ordered items
             await _orderForm.LoadOrderedItemsById();
+            await _orderForm.ReloadRowVersion();
             Close();
         }
 

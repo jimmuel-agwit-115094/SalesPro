@@ -83,7 +83,8 @@ namespace SalesPro.Services
                                   Price = oi.Price,
                                   ProductId = oi.ProductId,
                                   ProductName = p.ProductName,
-                                  TotalPrice = oi.TotalPrice
+                                  TotalPrice = oi.TotalPrice,
+                                  UnitOfMeasure = p.UnitOfMeasure
                               }).ToListAsync();
             }
         }

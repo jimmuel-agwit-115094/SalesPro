@@ -49,15 +49,18 @@ namespace SalesPro.Forms.Orders
             };
         }
 
+        public async Task ReloadRowVersion()
+        {
+            _rowVersion = await _service.GetRowVersion(_orderId);
+        }
 
         public async Task LoadOrderedItemsById()
         {
             var items = await _service.LoadOrderItemsByOrderId(_orderId);
             dgItems.DataSource = items;
-            DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice");
+            DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice", "UnitOfMeasure");
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
         }
-
 
         private async Task SetCustomer(int customerId)
         {
@@ -71,6 +74,8 @@ namespace SalesPro.Forms.Orders
             try
             {
                 SetFormSize();
+                _curDate = await ClockHelper.GetServerDateTime();
+               
                 // Save order
                 var orderModel = BuildOrderModel();
                 var savedOrder = await _service.SaveOrder(orderModel);
@@ -79,8 +84,6 @@ namespace SalesPro.Forms.Orders
                 // Marks
                 _rowVersion = savedOrder.RowVersion;
                 _orderId = savedOrder.OrderId;
-                _curDate = await ClockHelper.GetServerDateTime();
-
                 // Controls
                 orderId_lbl.Text = _orderId.ToString("D10");
                 status_lbl.Text = savedOrder.OrderStatus.ToString();
