@@ -212,6 +212,7 @@
             this.total_tx.TabIndex = 395;
             this.total_tx.Text = "0.00";
             this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.total_tx.TextChanged += new System.EventHandler(this.total_tx_TextChanged);
             // 
             // label5
             // 

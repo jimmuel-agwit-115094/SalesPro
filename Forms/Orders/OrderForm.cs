@@ -161,5 +161,10 @@ namespace SalesPro.Forms.Orders
                     break;
             }
         }
+
+        private void total_tx_TextChanged(object sender, EventArgs e)
+        {
+            total_tx.ForeColor = decimal.Parse(total_tx.Text) < 0 ? Color.Yellow : Color.White;
+        }
     }
 }
