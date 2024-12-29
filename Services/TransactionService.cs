@@ -32,13 +32,10 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
                     NullCheckerHelper.NullCheck(toUpdate);
-                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                    {
-                        toUpdate.BeginningBalance = begBalance;
-                        await context.TransactionLogs.AddAsync(log);
-                        await context.SaveChangesAsync();
-                    }
-
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                    toUpdate.BeginningBalance = begBalance;
+                    await context.TransactionLogs.AddAsync(log);
+                    await context.SaveChangesAsync();
                 });
             }
         }
@@ -51,19 +48,19 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
                     NullCheckerHelper.NullCheck(toUpdate);
-                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                    {
-                        toUpdate.EndDate = transaction.EndDate;
-                        toUpdate.TotalSales = transaction.TotalSales;
-                        toUpdate.TotalExpenses = transaction.TotalExpenses;
-                        toUpdate.ExpectedCash = transaction.ExpectedCash;
-                        toUpdate.EndingCash = transaction.EndingCash;
-                        toUpdate.ClosedBy = transaction.ClosedBy;
-                        toUpdate.IsClosed = transaction.IsClosed;
-                        toUpdate.BalanceStatus = transaction.BalanceStatus;
-                        await context.AddAsync(log);
-                        await context.SaveChangesAsync();
-                    }
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+
+                    toUpdate.EndDate = transaction.EndDate;
+                    toUpdate.TotalSales = transaction.TotalSales;
+                    toUpdate.TotalExpenses = transaction.TotalExpenses;
+                    toUpdate.ExpectedCash = transaction.ExpectedCash;
+                    toUpdate.EndingCash = transaction.EndingCash;
+                    toUpdate.ClosedBy = transaction.ClosedBy;
+                    toUpdate.IsClosed = transaction.IsClosed;
+                    toUpdate.BalanceStatus = transaction.BalanceStatus;
+                    await context.AddAsync(log);
+                    await context.SaveChangesAsync();
+
                 });
             }
         }
@@ -76,12 +73,11 @@ namespace SalesPro.Services
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
                     NullCheckerHelper.NullCheck(toUpdate);
-                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                    {
-                        toUpdate.IsClosed = transaction.IsClosed;
-                        await context.AddAsync(log);
-                        await context.SaveChangesAsync();
-                    }
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+
+                    toUpdate.IsClosed = transaction.IsClosed;
+                    await context.AddAsync(log);
+                    await context.SaveChangesAsync();
                 });
             }
         }

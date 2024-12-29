@@ -109,28 +109,26 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<bool> UpdateInventory(int inventoryId, int adjustingQty, InventoryAction action, InventoryLogModel invLog, int rowVersion)
+        public async Task<int> UpdateInventory(int inventoryId, int adjustingQty, InventoryAction action, InventoryLogModel invLog, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                bool success = false;
+                int result = 0;
                 var toUpdate = await context.Inventories.FindAsync(inventoryId);
                 NullCheckerHelper.NullCheck(toUpdate);
                 await context.ExecuteInTransactionAsync(async () =>
                 {
-                    success = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
-                    if (success)
-                    {
-                        int updateQty = action == InventoryAction.Positive_Adjustment
-                            ? toUpdate.QuantityOnHand + adjustingQty
-                            : toUpdate.QuantityOnHand - adjustingQty;
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
 
-                        toUpdate.QuantityOnHand = updateQty;
-                        await context.InventoryLogs.AddAsync(invLog);
-                        await context.SaveChangesAsync();
-                    }
+                    int updateQty = action == InventoryAction.Positive_Adjustment
+                        ? toUpdate.QuantityOnHand + adjustingQty
+                        : toUpdate.QuantityOnHand - adjustingQty;
+
+                    toUpdate.QuantityOnHand = updateQty;
+                    await context.InventoryLogs.AddAsync(invLog);
+                    result = await context.SaveChangesAsync();
                 });
-                return success;
+                return result > 0 ? result : 0; 
             }
         }
 

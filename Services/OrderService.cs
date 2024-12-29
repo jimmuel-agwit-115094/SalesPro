@@ -3,7 +3,6 @@ using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -149,27 +148,23 @@ namespace SalesPro.Services
                     // Fetch and update order
                     var order = await context.Orders.FindAsync(orderId);
                     NullCheckerHelper.NullCheck(order);
-                    var isVersionValid = VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
-                    if (!isVersionValid)
-                    {
-                        throw new OperationCanceledException($"validation failed.");
-                    }
+                    VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
 
                     var orderedItems = await LoadOrderItemsByOrderId(orderId);
-                        // Calculations
-                        decimal total = orderedItems.Sum(oi => oi.TotalPrice);
-                        decimal vatAmount = total / Constants.SystemConstants.VatRate;
-                        decimal netAmount = total - vatAmount;
-                        decimal grossAmount = vatAmount + netAmount;
+                    // Calculations
+                    decimal total = orderedItems.Sum(oi => oi.TotalPrice);
+                    decimal vatAmount = total / Constants.SystemConstants.VatRate;
+                    decimal netAmount = total - vatAmount;
+                    decimal grossAmount = vatAmount + netAmount;
 
-                        // Update order
-                        order.Total = total;
-                        order.VatAmount = vatAmount;
-                        order.NetAmount = netAmount;
-                        order.AmountDue = total;
-                        order.GrossAmount = grossAmount;
-                        await context.SaveChangesAsync();
-                    
+                    // Update order
+                    order.Total = total;
+                    order.VatAmount = vatAmount;
+                    order.NetAmount = netAmount;
+                    order.AmountDue = total;
+                    order.GrossAmount = grossAmount;
+                    await context.SaveChangesAsync();
+
                     // Update inventory
                     var inventory = await context.Inventories.FindAsync(orderItem.InventoryId);
                     NullCheckerHelper.NullCheck(inventory);

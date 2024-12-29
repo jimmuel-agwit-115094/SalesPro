@@ -237,8 +237,8 @@ namespace SalesPro.Forms.PurchaseOrders
                     _isSupplierSelected = true;
                 }
                 //Update PO to set the supplier id
-                bool success = await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId, _rowVersion);
-                if (!success)
+                int rowAffected = await _service.UpdatePurchaseOrder_SupplierId(_poId, supplierId, _rowVersion);
+                if (rowAffected == 0)
                 {
                     Close();
                 }

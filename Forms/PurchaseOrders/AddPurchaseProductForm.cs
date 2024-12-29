@@ -198,8 +198,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     var poItem = BuildPurchaseOrderItem();
-                    var success = await _service.SavePurchaseOrderItem(_poId, poItem, _rowVersion);
-                    if (!success)
+                    var rowsAffected = await _service.SavePurchaseOrderItem(_poId, poItem, _rowVersion);
+                    if (rowsAffected == 0)
                     {
                         _purchaseOrderDetailsForm.Close();
                     }
@@ -207,8 +207,8 @@ namespace SalesPro.Forms.PurchaseOrders
                 else
                 {
                     var updatedPoItem = BuildPurchaseOrderItem();
-                    var success = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, updatedPoItem, _rowVersion);
-                    if (!success)
+                    var rowsAffected = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, updatedPoItem, _rowVersion);
+                    if (rowsAffected == 0)
                     {
                         _purchaseOrderDetailsForm.Close();
                     }
