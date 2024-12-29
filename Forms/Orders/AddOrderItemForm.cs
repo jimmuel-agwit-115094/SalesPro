@@ -77,7 +77,7 @@ namespace SalesPro.Forms.Orders
                 TotalPrice = newQuantity * prodInventory.RetailPrice,
                 OrderItemStatus = itemStatus,
             };
-            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, itemStatus, orderItem);
+            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
           
             // Set controls
             _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
@@ -89,6 +89,7 @@ namespace SalesPro.Forms.Orders
 
             //Load ordered items
             await _orderForm.LoadOrderedItemsById();
+   
             Close();
         }
 

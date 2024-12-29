@@ -12,6 +12,7 @@ namespace SalesPro.Services
 {
     public class OrderService
     {
+
         public async Task<OrderModel> SaveOrder(OrderModel order)
         {
             using (var context = new DatabaseContext())
@@ -22,6 +23,15 @@ namespace SalesPro.Services
             }
         }
 
+        // Get row version
+        public async Task<int> GetRowVersion(int orderId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var order = await context.Orders.FindAsync(orderId);
+                return order.RowVersion;
+            }
+        }
         public async Task<OrderModelExtended> GetOrderById(int orderId)
         {
             using (var context = new DatabaseContext())
@@ -112,7 +122,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem)
+        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -135,10 +145,12 @@ namespace SalesPro.Services
                         await context.OrderItems.AddAsync(orderItem);
                         await context.SaveChangesAsync();
                     }
-                 
-                    // Fetch the order and compute totals
+
+                    // Fetch and update order
                     var order = await context.Orders.FindAsync(orderId);
-                    if (order != null)
+                    NullCheckerHelper.NullCheck(order);
+                    var checker = VersionCheckerHelper.ConcurrencyCheck(order.RowVersion, rowVersion);
+                    if (checker)
                     {
                         var orderedItems = await LoadOrderItemsByOrderId(orderId);
                         // Calculations
@@ -155,17 +167,15 @@ namespace SalesPro.Services
                         order.GrossAmount = grossAmount;
                         await context.SaveChangesAsync();
                     }
-
                     // Update inventory
                     var inventory = await context.Inventories.FindAsync(orderItem.InventoryId);
-                    if (inventory != null)
-                    {
-                        inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
+                    NullCheckerHelper.NullCheck(inventory);
+                    inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
                         ? orderItem.OrderQuantity
                         : -orderItem.OrderQuantity;
 
-                        await context.SaveChangesAsync();
-                    }
+                    await context.SaveChangesAsync();
+
                     updatedOrder = await context.Orders.FindAsync(orderId);
                 });
                 return updatedOrder;

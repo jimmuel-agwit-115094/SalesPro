@@ -5,14 +5,14 @@ namespace POS_Generic.Helpers
 {
     public class NullCheckerHelper
     {
-        public static bool NullCheck(object obj)
+        public static void NullCheck<T>(T entity) where T : class
         {
-            if (obj == null)
+            if (entity == null)
             {
-                MessageHandler.ShowError($"Error getting data for: {obj}");
-                return false;
+                MessageHandler.ShowWarning($"{entity.ToString()} not found on the database.Please close form and try again");
+                // Stop further execution
+                throw new OperationCanceledException($"{entity} validation failed.");
             }
-            return true;
         }
     }
 }

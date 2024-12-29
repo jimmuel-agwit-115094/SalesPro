@@ -31,16 +31,14 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
-
-                    if (NullCheckerHelper.NullCheck(toUpdate))
+                    NullCheckerHelper.NullCheck(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
-                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                        {
-                            toUpdate.BeginningBalance = begBalance;
-                            await context.TransactionLogs.AddAsync(log);
-                            await context.SaveChangesAsync();
-                        }
+                        toUpdate.BeginningBalance = begBalance;
+                        await context.TransactionLogs.AddAsync(log);
+                        await context.SaveChangesAsync();
                     }
+
                 });
             }
         }
@@ -52,22 +50,19 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
-
-                    if (NullCheckerHelper.NullCheck(toUpdate))
+                    NullCheckerHelper.NullCheck(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
-                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                        {
-                            toUpdate.EndDate = transaction.EndDate;
-                            toUpdate.TotalSales = transaction.TotalSales;
-                            toUpdate.TotalExpenses = transaction.TotalExpenses;
-                            toUpdate.ExpectedCash = transaction.ExpectedCash;
-                            toUpdate.EndingCash = transaction.EndingCash;
-                            toUpdate.ClosedBy = transaction.ClosedBy;
-                            toUpdate.IsClosed = transaction.IsClosed;
-                            toUpdate.BalanceStatus = transaction.BalanceStatus;
-                            await context.AddAsync(log);
-                            await context.SaveChangesAsync();
-                        }
+                        toUpdate.EndDate = transaction.EndDate;
+                        toUpdate.TotalSales = transaction.TotalSales;
+                        toUpdate.TotalExpenses = transaction.TotalExpenses;
+                        toUpdate.ExpectedCash = transaction.ExpectedCash;
+                        toUpdate.EndingCash = transaction.EndingCash;
+                        toUpdate.ClosedBy = transaction.ClosedBy;
+                        toUpdate.IsClosed = transaction.IsClosed;
+                        toUpdate.BalanceStatus = transaction.BalanceStatus;
+                        await context.AddAsync(log);
+                        await context.SaveChangesAsync();
                     }
                 });
             }
@@ -80,14 +75,12 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var toUpdate = await context.Transactions.FindAsync(transactionId);
-                    if (NullCheckerHelper.NullCheck(toUpdate))
+                    NullCheckerHelper.NullCheck(toUpdate);
+                    if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
                     {
-                        if (VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion))
-                        {
-                            toUpdate.IsClosed = transaction.IsClosed;
-                            await context.AddAsync(log);
-                            await context.SaveChangesAsync();
-                        }
+                        toUpdate.IsClosed = transaction.IsClosed;
+                        await context.AddAsync(log);
+                        await context.SaveChangesAsync();
                     }
                 });
             }

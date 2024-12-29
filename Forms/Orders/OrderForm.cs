@@ -62,8 +62,13 @@ namespace SalesPro.Forms.Orders
         private async Task SetCustomer(int customerId)
         {
             var customer = await _service.GetCustomerById(customerId);
-            if(customer != null)
+            if (customer != null)
                 customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
+        }
+
+        private async Task ReloadRowVersion()
+        {
+            _rowVersion = await _service.GetRowVersion(_orderId);
         }
 
         private async void OrderForm_Load(object sender, EventArgs e)
@@ -76,10 +81,12 @@ namespace SalesPro.Forms.Orders
                 var savedOrder = await _service.SaveOrder(orderModel);
                 await LoadOrderedItemsById();
 
-                // Controls
+                // Marks
                 _rowVersion = savedOrder.RowVersion;
                 _orderId = savedOrder.OrderId;
                 _curDate = await ClockHelper.GetServerDateTime();
+
+                // Controls
                 orderId_lbl.Text = _orderId.ToString("D10");
                 status_lbl.Text = savedOrder.OrderStatus.ToString();
                 await SetCustomer(savedOrder.CustomerId);
@@ -100,11 +107,18 @@ namespace SalesPro.Forms.Orders
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            var form = new AddOrderItemForm(this);
-            form._orderId = _orderId;
-            form._rowVersion = _rowVersion;
-            form._quantity = int.Parse(qty_tx.Text);
-            form.ShowDialog();
+            try
+            {
+                var form = new AddOrderItemForm(this);
+                form._orderId = _orderId;
+                form._rowVersion = _rowVersion;
+                form._quantity = int.Parse(qty_tx.Text);
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error add order button click : {ex}");
+            }
         }
 
         private void OrderForm_KeyUp(object sender, KeyEventArgs e)

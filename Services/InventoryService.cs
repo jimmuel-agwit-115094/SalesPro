@@ -115,24 +115,21 @@ namespace SalesPro.Services
             {
                 bool success = false;
                 var toUpdate = await context.Inventories.FindAsync(inventoryId);
-                if (NullCheckerHelper.NullCheck(toUpdate))
+                NullCheckerHelper.NullCheck(toUpdate);
+                await context.ExecuteInTransactionAsync(async () =>
                 {
-                    await context.ExecuteInTransactionAsync(async () =>
+                    success = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
+                    if (success)
                     {
-                        success = VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
-                        if (success)
-                        {
-                            int updateQty = action == InventoryAction.Positive_Adjustment
-                                ? toUpdate.QuantityOnHand + adjustingQty
-                                : toUpdate.QuantityOnHand - adjustingQty;
+                        int updateQty = action == InventoryAction.Positive_Adjustment
+                            ? toUpdate.QuantityOnHand + adjustingQty
+                            : toUpdate.QuantityOnHand - adjustingQty;
 
-                            toUpdate.QuantityOnHand = updateQty;
-                            await context.InventoryLogs.AddAsync(invLog);
-                            await context.SaveChangesAsync();
-                        }
-                    });
-
-                }
+                        toUpdate.QuantityOnHand = updateQty;
+                        await context.InventoryLogs.AddAsync(invLog);
+                        await context.SaveChangesAsync();
+                    }
+                });
                 return success;
             }
         }
