@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -17,9 +18,17 @@ namespace SalesPro.Helpers
 
                     transactionScope.Complete();
                 }
+                catch (NullReferenceException nullEx)
+                {
+                    MessageHandler.ShowError($"No Data to update Error:\n{nullEx.Message}");
+                }
+                catch (DBConcurrencyException concurrencyEx)
+                {
+                    MessageHandler.ShowError($"Dirty Data Error:\n{concurrencyEx.Message}");
+                }
                 catch (Exception ex)
                 {
-                    MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex}");
+                    MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex.Message}");
                 }
             }
         }
