@@ -192,5 +192,28 @@ namespace SalesPro.Services
                 return await context.Customers.FindAsync(customerId);
             }
         }
+
+        public async Task<OrderItemModelExtended> GetOrderItemById(int orderItemId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from oi in context.OrderItems
+                              join p in context.Products on oi.ProductId equals p.ProductId
+                              where oi.OrderItemId == orderItemId
+                              select new OrderItemModelExtended
+                              {
+                                  OrderId = orderItemId,
+                                  InventoryId = oi.InventoryId,
+                                  OrderItemId = oi.OrderItemId,
+                                  OrderItemStatus = oi.OrderItemStatus,
+                                  OrderQuantity = oi.OrderQuantity,
+                                  Price = oi.Price,
+                                  ProductId = oi.ProductId,
+                                  ProductName = p.ProductName,
+                                  TotalPrice = oi.TotalPrice,
+                                  UnitOfMeasure = p.UnitOfMeasure
+                              }).FirstOrDefaultAsync();
+            }
+        }
     }
 }

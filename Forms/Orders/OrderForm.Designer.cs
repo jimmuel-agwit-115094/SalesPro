@@ -1042,6 +1042,8 @@
             this.dgItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgItems.Size = new System.Drawing.Size(1055, 652);
             this.dgItems.TabIndex = 421;
+            this.dgItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItems_CellContentClick);
+            this.dgItems.SelectionChanged += new System.EventHandler(this.dgItems_SelectionChanged);
             // 
             // OrderForm
             // 

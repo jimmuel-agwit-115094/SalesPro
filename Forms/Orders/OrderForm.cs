@@ -16,6 +16,7 @@ namespace SalesPro.Forms.Orders
         private DateTime _curDate;
         private int _rowVersion;
         private int _orderId;
+        private int _orderItemId;
 
         private readonly OrderService _service;
         public OrderForm()
@@ -75,7 +76,7 @@ namespace SalesPro.Forms.Orders
             {
                 SetFormSize();
                 _curDate = await ClockHelper.GetServerDateTime();
-               
+
                 // Save order
                 var orderModel = BuildOrderModel();
                 var savedOrder = await _service.SaveOrder(orderModel);
@@ -169,8 +170,23 @@ namespace SalesPro.Forms.Orders
 
         private void edit_btn_Click(object sender, EventArgs e)
         {
-            var form = new EditQuantityForm();
-            form.ShowDialog();
+            if (dgItems.SelectedRows.Count != 0)
+            {
+                var form = new EditQuantityForm();
+                form._orderItemId = _orderItemId;
+                form.ShowDialog();
+            }
+        }
+
+        private void dgItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgItems_SelectionChanged(object sender, EventArgs e)
+        {
+            _orderItemId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgItems, "OrderItemId");
+            if (_orderItemId == 0) return;
         }
     }
 }

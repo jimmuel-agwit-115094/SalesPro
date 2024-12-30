@@ -30,11 +30,11 @@
         {
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.vatRate_tx = new System.Windows.Forms.NumericUpDown();
+            this.qty_tx = new System.Windows.Forms.NumericUpDown();
             this.enter_btn = new System.Windows.Forms.Button();
             this.product_tx = new System.Windows.Forms.Label();
             this.availableQty_tx = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.vatRate_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qty_tx)).BeginInit();
             this.SuspendLayout();
             // 
             // title_lbl
@@ -55,22 +55,21 @@
             this.panel5.Size = new System.Drawing.Size(18, 52);
             this.panel5.TabIndex = 528;
             // 
-            // vatRate_tx
+            // qty_tx
             // 
-            this.vatRate_tx.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vatRate_tx.Location = new System.Drawing.Point(17, 113);
-            this.vatRate_tx.Maximum = new decimal(new int[] {
-            10000000,
+            this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qty_tx.Location = new System.Drawing.Point(17, 113);
+            this.qty_tx.Maximum = new decimal(new int[] {
+            100000,
             0,
             0,
             0});
-            this.vatRate_tx.Name = "vatRate_tx";
-            this.vatRate_tx.Size = new System.Drawing.Size(290, 54);
-            this.vatRate_tx.TabIndex = 527;
-            this.vatRate_tx.Tag = "IsNumeric";
-            this.vatRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.vatRate_tx.ThousandsSeparator = true;
-            this.vatRate_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.qty_tx.Name = "qty_tx";
+            this.qty_tx.Size = new System.Drawing.Size(290, 54);
+            this.qty_tx.TabIndex = 527;
+            this.qty_tx.Tag = "IsNumeric";
+            this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.qty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
             // enter_btn
             // 
@@ -116,8 +115,9 @@
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.enter_btn);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.vatRate_tx);
+            this.Controls.Add(this.qty_tx);
             this.Controls.Add(this.title_lbl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditQuantityForm";
@@ -125,7 +125,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quantiy";
-            ((System.ComponentModel.ISupportInitialize)(this.vatRate_tx)).EndInit();
+            this.Load += new System.EventHandler(this.EditQuantityForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.qty_tx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +136,7 @@
 
         internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.NumericUpDown vatRate_tx;
+        public System.Windows.Forms.NumericUpDown qty_tx;
         private System.Windows.Forms.Button enter_btn;
         internal System.Windows.Forms.Label product_tx;
         internal System.Windows.Forms.Label availableQty_tx;
