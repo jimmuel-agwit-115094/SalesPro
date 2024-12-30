@@ -37,5 +37,10 @@ namespace SalesPro.Forms.Orders
                 MessageHandler.ShowError($"Error edit quantity load: {ex.Message}");
             }
         }
+
+        private void enter_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

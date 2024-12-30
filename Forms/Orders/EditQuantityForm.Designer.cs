@@ -84,6 +84,7 @@
             this.enter_btn.TabIndex = 530;
             this.enter_btn.Text = "Enter";
             this.enter_btn.UseVisualStyleBackColor = false;
+            this.enter_btn.Click += new System.EventHandler(this.enter_btn_Click);
             // 
             // product_tx
             // 
@@ -107,6 +108,7 @@
             // 
             // EditQuantityForm
             // 
+            this.AcceptButton = this.enter_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;

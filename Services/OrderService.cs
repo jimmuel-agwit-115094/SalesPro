@@ -122,6 +122,77 @@ namespace SalesPro.Services
             }
         }
 
+        private static OrderModel CalculateOrderTotals(decimal total)
+        {
+            var vatAmt = total / Constants.SystemConstants.VatRate;
+            var netAmt = total - vatAmt;
+            var grossAmt = vatAmt + netAmt;
+
+            return new OrderModel
+            {
+                Total = total,
+                VatAmount = vatAmt,
+                NetAmount = netAmt,
+                GrossAmount = grossAmt
+            };
+        }
+
+        private async Task UpdateOrder(DatabaseContext context, int orderId, int rowVersion)
+        {
+            // Fetch the order
+            var order = await context.Orders.FindAsync(orderId);
+            NullCheckerHelper.NullCheck(order);
+            VersionCheckerHelper.ConcurrencyCheck(rowVersion, order.RowVersion);
+
+            // Load order items
+            var orderedItems = await LoadOrderItemsByOrderId(orderId);
+
+            // Perform calculations
+            var calculations = CalculateOrderTotals(total: orderedItems.Sum(oi => oi.TotalPrice));
+
+            // Update order with calculated values
+            order.Total = calculations.Total;
+            order.VatAmount = calculations.VatAmount;
+            order.NetAmount = calculations.NetAmount;
+            order.AmountDue = calculations.AmountDue;
+            order.GrossAmount = calculations.GrossAmount;
+
+            // Save changes to the database
+            await context.SaveChangesAsync();
+        }
+
+        private async Task UpdateInventory(DatabaseContext context, int inventoryId, int orderQuantity, OrderItemStatus itemStatus)
+        {
+            // Fetch the inventory
+            var inventory = await context.Inventories.FindAsync(inventoryId);
+            NullCheckerHelper.NullCheck(inventory);
+
+            // Update inventory quantity
+            inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
+                ? orderQuantity
+                : -orderQuantity;
+
+            // Save changes to the database
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateQuantity(int orderItemId, int newQuantity, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var orderItem = await context.OrderItems.FindAsync(orderItemId);
+                    NullCheckerHelper.NullCheck(orderItem);
+
+                    // Update order
+                    await UpdateOrder(context, orderItem.OrderId, rowVersion);
+                    // Update inventory
+                    await UpdateInventory(context, orderItem.InventoryId, newQuantity, orderItem.OrderItemStatus);
+                });
+            }
+        }
+
         public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
@@ -147,33 +218,10 @@ namespace SalesPro.Services
                     }
 
                     // Fetch and update order
-                    var order = await context.Orders.FindAsync(orderId);
-                    NullCheckerHelper.NullCheck(order);
-                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, order.RowVersion);
-
-                    var orderedItems = await LoadOrderItemsByOrderId(orderId);
-                    // Calculations
-                    decimal total = orderedItems.Sum(oi => oi.TotalPrice);
-                    decimal vatAmount = total / Constants.SystemConstants.VatRate;
-                    decimal netAmount = total - vatAmount;
-                    decimal grossAmount = vatAmount + netAmount;
-
-                    // Update order
-                    order.Total = total;
-                    order.VatAmount = vatAmount;
-                    order.NetAmount = netAmount;
-                    order.AmountDue = total;
-                    order.GrossAmount = grossAmount;
-                    await context.SaveChangesAsync();
+                    await UpdateOrder(context, orderId, rowVersion);
 
                     // Update inventory
-                    var inventory = await context.Inventories.FindAsync(orderItem.InventoryId);
-                    NullCheckerHelper.NullCheck(inventory);
-                    inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
-                        ? orderItem.OrderQuantity
-                        : -orderItem.OrderQuantity;
-
-                    await context.SaveChangesAsync();
+                    await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, itemStatus);
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
