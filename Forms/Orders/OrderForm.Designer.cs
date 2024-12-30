@@ -983,7 +983,7 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.White;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(614, 337);
+            this.notFound_lbl.Location = new System.Drawing.Point(589, 332);
             this.notFound_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.notFound_lbl.Name = "notFound_lbl";
             this.notFound_lbl.Size = new System.Drawing.Size(171, 45);
