@@ -172,8 +172,9 @@ namespace SalesPro.Forms.Orders
         {
             if (dgItems.SelectedRows.Count != 0)
             {
-                var form = new EditQuantityForm();
+                var form = new EditQuantityForm(this);
                 form._orderItemId = _orderItemId;
+                form._rowVersion = _rowVersion;
                 form.ShowDialog();
             }
         }

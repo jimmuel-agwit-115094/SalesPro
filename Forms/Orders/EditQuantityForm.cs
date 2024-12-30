@@ -7,20 +7,23 @@ namespace SalesPro.Forms.Orders
 {
     public partial class EditQuantityForm : Form
     {
+        private readonly OrderForm _orderForm;
         public int _orderItemId;
         public int _rowVersion;
 
         private readonly OrderService _service;
-        public EditQuantityForm()
+        public EditQuantityForm(OrderForm orderForm)
         {
             InitializeComponent();
             _service = new OrderService();
+            _orderForm = orderForm;
         }
 
         private async void EditQuantityForm_Load(object sender, EventArgs e)
         {
             try
             {
+                qty_tx.Select();
                 var orderItem = await _service.GetOrderItemById(_orderItemId);
                 if (orderItem != null)
                 {
@@ -38,9 +41,21 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void enter_btn_Click(object sender, EventArgs e)
+        private async void enter_btn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
 
+                await _service.UpdateQuantity(_orderItemId, int.Parse(qty_tx.Text), _rowVersion);
+                await _orderForm.LoadOrderedItemsById();
+                await _orderForm.ReloadRowVersion();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error changing quantity : {ex.Message}");
+            }
         }
     }
 }

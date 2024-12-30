@@ -184,7 +184,10 @@ namespace SalesPro.Services
                 {
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
                     NullCheckerHelper.NullCheck(orderItem);
-
+                    // Update orderItem
+                    orderItem.OrderQuantity = newQuantity;
+                    orderItem.TotalPrice = newQuantity * orderItem.Price;
+                    await context.SaveChangesAsync();
                     // Update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
                     // Update inventory

@@ -41,7 +41,7 @@
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(12, 19);
+            this.title_lbl.Location = new System.Drawing.Point(12, 9);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(125, 25);
             this.title_lbl.TabIndex = 457;
@@ -90,7 +90,7 @@
             // 
             this.product_tx.AutoSize = true;
             this.product_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.product_tx.Location = new System.Drawing.Point(13, 44);
+            this.product_tx.Location = new System.Drawing.Point(13, 46);
             this.product_tx.Name = "product_tx";
             this.product_tx.Size = new System.Drawing.Size(100, 21);
             this.product_tx.TabIndex = 532;
@@ -100,7 +100,7 @@
             // 
             this.availableQty_tx.AutoSize = true;
             this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableQty_tx.Location = new System.Drawing.Point(14, 66);
+            this.availableQty_tx.Location = new System.Drawing.Point(14, 68);
             this.availableQty_tx.Name = "availableQty_tx";
             this.availableQty_tx.Size = new System.Drawing.Size(95, 20);
             this.availableQty_tx.TabIndex = 533;
