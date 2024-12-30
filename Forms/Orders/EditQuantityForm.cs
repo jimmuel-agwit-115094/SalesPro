@@ -10,6 +10,7 @@ namespace SalesPro.Forms.Orders
         private readonly OrderForm _orderForm;
         public int _orderItemId;
         public int _rowVersion;
+        private int _totalQuantity;
 
         private readonly OrderService _service;
         public EditQuantityForm(OrderForm orderForm)
@@ -31,6 +32,7 @@ namespace SalesPro.Forms.Orders
                     if (inv != null)
                     {
                         availableQty_tx.Text = $"Available Quantity : {inv.QuantityOnHand.ToString()}";
+                        _totalQuantity = orderItem.OrderQuantity + inv.QuantityOnHand;
                     }
                     product_tx.Text = orderItem.ProductName;
                 }
@@ -45,9 +47,14 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
+                var qty = int.Parse(qty_tx.Text);
                 if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
-
-                await _service.UpdateQuantity(_orderItemId, int.Parse(qty_tx.Text), _rowVersion);
+                if (qty > _totalQuantity)
+                {
+                    MessageHandler.ShowWarning("New quantity cannot be greater than the available stocks.");
+                    return;
+                }
+                await _service.UpdateQuantity(_orderItemId, qty, _rowVersion);
                 await _orderForm.LoadOrderedItemsById();
                 await _orderForm.ReloadRowVersion();
                 Close();
