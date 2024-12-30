@@ -99,10 +99,10 @@
             // availableQty_tx
             // 
             this.availableQty_tx.AutoSize = true;
-            this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.availableQty_tx.Location = new System.Drawing.Point(14, 68);
             this.availableQty_tx.Name = "availableQty_tx";
-            this.availableQty_tx.Size = new System.Drawing.Size(95, 20);
+            this.availableQty_tx.Size = new System.Drawing.Size(66, 14);
             this.availableQty_tx.TabIndex = 533;
             this.availableQty_tx.Text = "Edit Quantity";
             // 
@@ -112,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(321, 253);
+            this.ClientSize = new System.Drawing.Size(324, 253);
             this.Controls.Add(this.availableQty_tx);
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.enter_btn);
