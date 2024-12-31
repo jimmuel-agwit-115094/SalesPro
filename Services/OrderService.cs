@@ -203,7 +203,7 @@ namespace SalesPro.Services
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
                     // Update inventory
                     // Note : We added the optional parameter existingOrderQty
-                    await UpdateInventory(context, orderItem.InventoryId, orderQty, isEdit, orderItem.OrderItemStatus, existingOrderQty);
+                    // await UpdateInventory(context, orderItem.InventoryId, orderQty, isEdit, orderItem.OrderItemStatus, existingOrderQty);
                 });
             }
         }
@@ -236,7 +236,7 @@ namespace SalesPro.Services
                     await UpdateOrder(context, orderId, rowVersion);
 
                     // Update inventory
-                    await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, isEdit: false, itemStatus);
+                    //await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, isEdit: false, itemStatus);
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
