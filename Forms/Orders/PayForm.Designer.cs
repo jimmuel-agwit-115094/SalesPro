@@ -73,6 +73,7 @@
             this.pay_btn.TabIndex = 537;
             this.pay_btn.Text = "Pay";
             this.pay_btn.UseVisualStyleBackColor = false;
+            this.pay_btn.Click += new System.EventHandler(this.pay_btn_Click);
             // 
             // panel5
             // 
@@ -117,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(460, 345);
+            this.ClientSize = new System.Drawing.Size(445, 345);
             this.Controls.Add(this.availableQty_tx);
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.pay_btn);
@@ -132,6 +133,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PayForm";
+            this.Load += new System.EventHandler(this.PayForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cash_tx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

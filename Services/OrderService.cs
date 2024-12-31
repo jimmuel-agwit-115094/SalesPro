@@ -123,22 +123,24 @@ namespace SalesPro.Services
             }
         }
 
-        private static OrderModel CalculateOrderTotals(decimal total)
+        private static OrderModel CalculateOrderTotals(decimal total, decimal amtPaid = 0)
         {
             var vatAmt = total / Constants.SystemConstants.VatRate;
             var netAmt = total - vatAmt;
             var grossAmt = vatAmt + netAmt;
-
+            
             return new OrderModel
             {
                 Total = total,
                 VatAmount = vatAmt,
                 NetAmount = netAmt,
-                GrossAmount = grossAmt
+                GrossAmount = grossAmt,
+                AmountPaid = amtPaid,
+                Change = amtPaid - total,
             };
         }
 
-        private async Task UpdateOrder(DatabaseContext context, int orderId, int rowVersion)
+        private async Task UpdateOrder(DatabaseContext context, int orderId, decimal amtPaid, int rowVersion)
         {
             // Fetch the order
             var order = await context.Orders.FindAsync(orderId);
@@ -149,39 +151,40 @@ namespace SalesPro.Services
             var orderedItems = await LoadOrderItemsByOrderId(orderId);
 
             // Perform calculations
-            var calculations = CalculateOrderTotals(total: orderedItems.Sum(oi => oi.TotalPrice));
+            var total = orderedItems.Sum(oi => oi.TotalPrice);
+            var vatAmt = total / Constants.SystemConstants.VatRate;
+            var netAmt = total - vatAmt;
+            var grossAmt = vatAmt + netAmt;
 
             // Update order with calculated values
-            order.Total = calculations.Total;
-            order.VatAmount = calculations.VatAmount;
-            order.NetAmount = calculations.NetAmount;
-            order.AmountDue = calculations.AmountDue;
-            order.GrossAmount = calculations.GrossAmount;
+            order.Total = total;
+            order.VatAmount =vatAmt;
+            order.NetAmount = netAmt;
+            order.AmountDue = total;
+            order.GrossAmount = grossAmt;
+            order.AmountPaid = amtPaid;
+            order.Change = amtPaid - total;
 
             // Save changes to the database
             await context.SaveChangesAsync();
         }
 
-        private async Task UpdateInventory(DatabaseContext context, int inventoryId, int orderQuantity, bool isEdit, OrderItemStatus itemStatus, int existingOrderQty = 0)
+        private async Task UpdateInventory(DatabaseContext context, int orderId)
         {
-            // Fetch the inventory
-            var inventory = await context.Inventories.FindAsync(inventoryId);
-            NullCheckerHelper.NullCheck(inventory);
-            // TODO: Add Version checker
+            var orderedItems = await LoadOrderItemsByOrderId(orderId);
 
-            // Update inventory quantity
-            if (isEdit)
+            foreach (var orderItem in orderedItems)
             {
-                inventory.QuantityOnHand = (existingOrderQty + inventory.QuantityOnHand) - orderQuantity;
-            }
-            else
-            {
-                inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
-                    ? orderQuantity
-                    : -orderQuantity;
+                // Match the inventory ID in the inventory table
+                var inventory = await context.Inventories
+                    .FirstOrDefaultAsync(i => i.InventoryId == orderItem.InventoryId);
+                NullCheckerHelper.NullCheck(inventory);
+                // Update
+                inventory.QuantityOnHand += (orderItem.OrderItemStatus != OrderItemStatus.Added)
+                ? orderItem.OrderQuantity
+                : -orderItem.OrderQuantity;
             }
 
-            // Save changes to the database
             await context.SaveChangesAsync();
         }
 
@@ -200,7 +203,7 @@ namespace SalesPro.Services
                     orderItem.TotalPrice = orderQty * orderItem.Price;
                     await context.SaveChangesAsync();
                     // Update order
-                    await UpdateOrder(context, orderItem.OrderId, rowVersion);
+                    await UpdateOrder(context, orderItem.OrderId, 0, rowVersion);
                     // Update inventory
                     // Note : We added the optional parameter existingOrderQty
                     // await UpdateInventory(context, orderItem.InventoryId, orderQty, isEdit, orderItem.OrderItemStatus, existingOrderQty);
@@ -233,7 +236,7 @@ namespace SalesPro.Services
                     }
 
                     // Fetch and update order
-                    await UpdateOrder(context, orderId, rowVersion);
+                    await UpdateOrder(context, orderItem.OrderId, amtPaid: 0, rowVersion);
 
                     // Update inventory
                     //await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, isEdit: false, itemStatus);
@@ -276,6 +279,27 @@ namespace SalesPro.Services
                                   TotalPrice = oi.TotalPrice,
                                   UnitOfMeasure = p.UnitOfMeasure
                               }).FirstOrDefaultAsync();
+            }
+        }
+
+        // Pay order
+        public async Task PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var order = await context.Orders.FindAsync(orderId);
+                    NullCheckerHelper.NullCheck(order);
+
+                    // Update order
+                    await UpdateOrder(context, orderId, amountPaid, rowVersion);
+
+                    // Update inventory
+                    await UpdateInventory(context, order.OrderId);
+                });
+
+
             }
         }
     }

@@ -189,5 +189,13 @@ namespace SalesPro.Forms.Orders
             _orderItemId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgItems, "OrderItemId");
             if (_orderItemId == 0) return;
         }
+
+        private void pay_btn_Click(object sender, EventArgs e)
+        {
+            var form = new PayForm();
+            form._orderId = _orderId;
+            form._rowVersion = _rowVersion;
+            form.ShowDialog();
+        }
     }
 }
