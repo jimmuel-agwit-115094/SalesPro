@@ -29,7 +29,7 @@ public static class DgFormatHelper
             // Integer formatting
             else if (column.ValueType == typeof(int) || column.ValueType == typeof(long))
             {
-                column.DefaultCellStyle.Format = "N0";
+                //column.DefaultCellStyle.Format = "N0";
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
             // String formatting

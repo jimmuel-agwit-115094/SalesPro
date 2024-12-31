@@ -166,6 +166,7 @@ namespace SalesPro.Services
             // Fetch the inventory
             var inventory = await context.Inventories.FindAsync(inventoryId);
             NullCheckerHelper.NullCheck(inventory);
+            // TODO : Add Version checker
 
             // Update inventory quantity
             inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
