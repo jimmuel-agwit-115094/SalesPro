@@ -192,10 +192,14 @@ namespace SalesPro.Forms.Orders
 
         private void pay_btn_Click(object sender, EventArgs e)
         {
-            var form = new PayForm();
-            form._orderId = _orderId;
-            form._rowVersion = _rowVersion;
-            form.ShowDialog();
+            if (dgItems.SelectedRows.Count != 0)
+            {
+                var form = new Pay();
+                form._orderId = _orderId;
+                form._rowVersion = _rowVersion;
+                form.ShowDialog();
+            }
+
         }
     }
 }

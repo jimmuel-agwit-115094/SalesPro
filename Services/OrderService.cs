@@ -282,7 +282,6 @@ namespace SalesPro.Services
             }
         }
 
-        // Pay order
         public async Task PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion)
         {
             using (var context = new DatabaseContext())
@@ -298,8 +297,6 @@ namespace SalesPro.Services
                     // Update inventory
                     await UpdateInventory(context, order.OrderId);
                 });
-
-
             }
         }
     }
