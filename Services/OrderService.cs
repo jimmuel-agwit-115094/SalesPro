@@ -3,6 +3,7 @@ using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -161,38 +162,48 @@ namespace SalesPro.Services
             await context.SaveChangesAsync();
         }
 
-        private async Task UpdateInventory(DatabaseContext context, int inventoryId, int orderQuantity, OrderItemStatus itemStatus)
+        private async Task UpdateInventory(DatabaseContext context, int inventoryId, int orderQuantity, bool isEdit, OrderItemStatus itemStatus, int existingOrderQty = 0)
         {
             // Fetch the inventory
             var inventory = await context.Inventories.FindAsync(inventoryId);
             NullCheckerHelper.NullCheck(inventory);
-            // TODO : Add Version checker
+            // TODO: Add Version checker
 
             // Update inventory quantity
-            inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
-                ? orderQuantity
-                : -orderQuantity;
+            if (isEdit)
+            {
+                inventory.QuantityOnHand = (existingOrderQty + inventory.QuantityOnHand) - orderQuantity;
+            }
+            else
+            {
+                inventory.QuantityOnHand += (itemStatus != OrderItemStatus.Added)
+                    ? orderQuantity
+                    : -orderQuantity;
+            }
 
             // Save changes to the database
             await context.SaveChangesAsync();
         }
 
-        public async Task UpdateQuantity(int orderItemId, int newQuantity, int rowVersion)
+
+        public async Task UpdateQuantity(int orderItemId, int orderQty, bool isEdit, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
+                    var existingOrderQty = orderItem.OrderQuantity;
                     NullCheckerHelper.NullCheck(orderItem);
                     // Update orderItem
-                    orderItem.OrderQuantity = newQuantity;
-                    orderItem.TotalPrice = newQuantity * orderItem.Price;
+                    orderItem.OrderQuantity = orderQty;
+                    orderItem.TotalPrice = orderQty * orderItem.Price;
                     await context.SaveChangesAsync();
                     // Update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
                     // Update inventory
-                    await UpdateInventory(context, orderItem.InventoryId, newQuantity, orderItem.OrderItemStatus);
+                    // Note : We added the optional parameter existingOrderQty
+                    await UpdateInventory(context, orderItem.InventoryId, orderQty, isEdit, orderItem.OrderItemStatus, existingOrderQty);
                 });
             }
         }
@@ -225,7 +236,7 @@ namespace SalesPro.Services
                     await UpdateOrder(context, orderId, rowVersion);
 
                     // Update inventory
-                    await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, itemStatus);
+                    await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, isEdit: false, itemStatus);
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);

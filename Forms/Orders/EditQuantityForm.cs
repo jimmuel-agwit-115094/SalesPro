@@ -31,8 +31,8 @@ namespace SalesPro.Forms.Orders
                     var inv = await _service.GetInventoryById(orderItem.InventoryId);
                     if (inv != null)
                     {
-                        availableQty_tx.Text = $"Available Quantity : {inv.QuantityOnHand.ToString()}";
                         _totalQuantity = orderItem.OrderQuantity + inv.QuantityOnHand;
+                        availableQty_tx.Text = $"Available Quantity : {_totalQuantity}";
                     }
                     product_tx.Text = orderItem.ProductName;
                 }
@@ -54,7 +54,7 @@ namespace SalesPro.Forms.Orders
                     MessageHandler.ShowWarning("New quantity cannot be greater than the available stocks.");
                     return;
                 }
-                await _service.UpdateQuantity(_orderItemId, qty, _rowVersion);
+                await _service.UpdateQuantity(_orderItemId, qty, isEdit: true, _rowVersion);
                 await _orderForm.LoadOrderedItemsById();
                 await _orderForm.ReloadRowVersion();
                 Close();
