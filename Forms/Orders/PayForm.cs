@@ -1,7 +1,9 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
@@ -35,7 +37,8 @@ namespace SalesPro.Forms.Orders
                     MessageHandler.ShowWarning("Cash amount is less than the amount due");
                     return;
                 }
-                await _service.PayOrder(_orderId, decimal.Parse(cash_tx.Text), _curDate, _rowVersion);
+                var order = CalculateOrderPayment(_amountDue);
+                await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
                 MessageHandler.ShowInfo("Order paid successfully");
                 Close();
             }
@@ -69,6 +72,7 @@ namespace SalesPro.Forms.Orders
                 orderModel.DiscountRate = discountRate;
                 orderModel.DiscountAmount = discountAmount;
                 orderModel.Change = change;
+                orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
             }
             catch (Exception ex)
             {
@@ -81,6 +85,13 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
+
+                var filteredPaymentMethods = Enum.GetValues(typeof(PaymentMethod))
+                                  .Cast<PaymentMethod>()
+                                  .Where(x => x != PaymentMethod.NotSet)
+                                  .ToList();
+                paymentMethod_cb.DataSource = filteredPaymentMethods;
+
                 _curDate = await ClockHelper.GetServerDateTime();
                 var order = await _service.GetOrderById(_orderId);
                 if (order != null)
