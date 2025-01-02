@@ -34,7 +34,7 @@
             this.pay_btn = new System.Windows.Forms.Button();
             this.title_lbl = new System.Windows.Forms.Label();
             this.product_tx = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.paymentPhoto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.discAmt_tx = new System.Windows.Forms.NumericUpDown();
@@ -46,7 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cash_tx = new System.Windows.Forms.TextBox();
             this.discRate_tx = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).BeginInit();
             this.SuspendLayout();
@@ -106,16 +106,16 @@
             this.product_tx.TabIndex = 540;
             this.product_tx.Text = "Cash Tendered";
             // 
-            // pictureBox1
+            // paymentPhoto
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(140, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(52, 57);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 541;
-            this.pictureBox1.TabStop = false;
+            this.paymentPhoto.Image = ((System.Drawing.Image)(resources.GetObject("paymentPhoto.Image")));
+            this.paymentPhoto.Location = new System.Drawing.Point(140, 9);
+            this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2);
+            this.paymentPhoto.Name = "paymentPhoto";
+            this.paymentPhoto.Size = new System.Drawing.Size(52, 57);
+            this.paymentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.paymentPhoto.TabIndex = 541;
+            this.paymentPhoto.TabStop = false;
             // 
             // label1
             // 
@@ -221,7 +221,7 @@
             this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethod_cb.FormattingEnabled = true;
             this.paymentMethod_cb.Location = new System.Drawing.Point(22, 287);
-            this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2);
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(291, 33);
             this.paymentMethod_cb.TabIndex = 553;
@@ -277,11 +277,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.discAmt_tx);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.paymentPhoto);
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.pay_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PaymentForm";
@@ -289,8 +289,9 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaymentForm_FormClosed);
             this.Load += new System.EventHandler(this.PayForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();
             this.ResumeLayout(false);
@@ -305,7 +306,7 @@
         private System.Windows.Forms.Button pay_btn;
         internal System.Windows.Forms.Label title_lbl;
         internal System.Windows.Forms.Label product_tx;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox paymentPhoto;
         internal System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label label2;
         public System.Windows.Forms.NumericUpDown discAmt_tx;

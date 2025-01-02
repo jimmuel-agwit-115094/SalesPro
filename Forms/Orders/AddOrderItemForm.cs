@@ -88,7 +88,7 @@ namespace SalesPro.Forms.Orders
             _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
             _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
             //Load ordered items
-            await _orderForm.LoadOrderedItemsById();
+            await _orderForm.LoadOrderedItems(_orderId);
             await _orderForm.ReloadRowVersion();
             Close();
         }

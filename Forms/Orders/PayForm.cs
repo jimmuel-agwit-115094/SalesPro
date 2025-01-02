@@ -17,12 +17,14 @@ namespace SalesPro.Forms.Orders
         private DateTime _curDate;
 
         private readonly OrderService _service;
-        public PaymentForm()
+        private readonly OrderForm _orderForm;
+        public PaymentForm(OrderForm orderForm)
         {
             InitializeComponent();
             _service = new OrderService();
             TextBoxHelper.FormatDecimalTextbox(cash_tx);
             TextBoxHelper.FormatPercentageTextbox(discRate_tx);
+            _orderForm = orderForm;
         }
 
         private async void pay_btn_Click(object sender, EventArgs e)
@@ -43,13 +45,26 @@ namespace SalesPro.Forms.Orders
                 var order = CalculateOrderPayment(_amountDue);
                 await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
                 MessageHandler.ShowInfo("Order paid successfully");
-                Close();
+                SetControls(PaymentStatus.Paid);
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error pay button click: {ex.Message}");
             }
         }
+
+        private void SetControls(PaymentStatus status)
+        {
+            bool isPaid = (status == PaymentStatus.Paid);
+
+            cash_tx.ReadOnly = isPaid;
+            discRate_tx.ReadOnly = isPaid;
+            paymentMethod_cb.Enabled = !isPaid;
+            pay_btn.Enabled = !isPaid;
+
+            paymentPhoto.Image = isPaid ? Properties.Resources.paid : Properties.Resources.payment;
+        }
+
 
         private OrderModel CalculateOrderPayment(decimal total)
         {
@@ -76,6 +91,7 @@ namespace SalesPro.Forms.Orders
                 orderModel.DiscountAmount = discountAmount;
                 orderModel.Change = change;
                 orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                orderModel.DatePaid = _curDate;
             }
             catch (Exception ex)
             {
@@ -131,7 +147,7 @@ namespace SalesPro.Forms.Orders
 
         private void change_tx_ValueChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cash_tx_KeyDown(object sender, KeyEventArgs e)
@@ -147,6 +163,11 @@ namespace SalesPro.Forms.Orders
         private void discRate_tx_TextChanged(object sender, EventArgs e)
         {
             CalculateOrderPayment(_amountDue);
+        }
+
+        private async void PaymentForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            await _orderForm.CreateNewOrder();
         }
     }
 }

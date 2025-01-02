@@ -170,6 +170,8 @@ namespace SalesPro.Services
                 currentOrder.DiscountAmount = orderModel.DiscountAmount;
                 currentOrder.DiscountRate = orderModel.DiscountRate;
                 currentOrder.PaymentMethod = orderModel.PaymentMethod;
+                currentOrder.PaymentStatus = PaymentStatus.Paid;
+                currentOrder.DatePaid = orderModel.DatePaid;
             }
 
             // Save changes to the database

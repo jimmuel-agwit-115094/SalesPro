@@ -55,9 +55,9 @@ namespace SalesPro.Forms.Orders
             _rowVersion = await _service.GetRowVersion(_orderId);
         }
 
-        public async Task LoadOrderedItemsById()
+        public async Task LoadOrderedItems(int orderId)
         {
-            var items = await _service.LoadOrderItemsByOrderId(_orderId);
+            var items = await _service.LoadOrderItemsByOrderId(orderId);
             dgItems.DataSource = items;
             DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice", "UnitOfMeasure");
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
@@ -78,16 +78,13 @@ namespace SalesPro.Forms.Orders
                 _curDate = await ClockHelper.GetServerDateTime();
 
                 var latestOrder = await _service.GetLatestOrder();
-
                 if (latestOrder != null && latestOrder.Total == 0)
                 {
                     await InitializeOrderDisplay(latestOrder);
                 }
                 else
                 {
-                    var newOrder = BuildOrderModel();
-                    var savedOrder = await _service.SaveOrder(newOrder);
-                    await InitializeOrderDisplay(savedOrder);
+                    await CreateNewOrder();
                 }
 
             }
@@ -97,9 +94,16 @@ namespace SalesPro.Forms.Orders
             }
         }
 
+        public async Task CreateNewOrder()
+        {
+            var newOrder = BuildOrderModel();
+            var savedOrder = await _service.SaveOrder(newOrder);
+            await InitializeOrderDisplay(savedOrder);
+        }
+
         private async Task InitializeOrderDisplay(OrderModel order)
         {
-            await LoadOrderedItemsById();
+            await LoadOrderedItems(order.OrderId);
 
             // Update state variables
             _rowVersion = order.RowVersion;
@@ -108,7 +112,6 @@ namespace SalesPro.Forms.Orders
             // Update UI controls
             orderId_lbl.Text = _orderId.ToString("D10");
             status_lbl.Text = order.OrderStatus.ToString();
-
             await SetCustomer(order.CustomerId);
         }
 
@@ -189,6 +192,7 @@ namespace SalesPro.Forms.Orders
             if (dgItems.SelectedRows.Count != 0)
             {
                 var form = new EditQuantityForm(this);
+                form._orderId = _orderId;
                 form._orderItemId = _orderItemId;
                 form._rowVersion = _rowVersion;
                 form.ShowDialog();
@@ -210,7 +214,7 @@ namespace SalesPro.Forms.Orders
         {
             if (dgItems.SelectedRows.Count != 0)
             {
-                var form = new PaymentForm();
+                var form = new PaymentForm(this);
                 form._orderId = _orderId;
                 form._rowVersion = _rowVersion;
                 form.ShowDialog();

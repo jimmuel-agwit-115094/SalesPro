@@ -8,6 +8,7 @@ namespace SalesPro.Forms.Orders
     public partial class EditQuantityForm : Form
     {
         private readonly OrderForm _orderForm;
+        public int _orderId;
         public int _orderItemId;
         public int _rowVersion;
         private int _availableQty;
@@ -55,7 +56,7 @@ namespace SalesPro.Forms.Orders
                     return;
                 }
                 await _service.UpdateQuantity(_orderItemId, qty, isEdit: true, _rowVersion);
-                await _orderForm.LoadOrderedItemsById();
+                await _orderForm.LoadOrderedItems(_orderId);
                 await _orderForm.ReloadRowVersion();
                 Close();
             }
