@@ -96,7 +96,7 @@ namespace SalesPro.Forms.Orders
                 var order = await _service.GetOrderById(_orderId);
                 if (order != null)
                 {
-                    amtDue_tx.Text = $"₱{order.AmountDue.ToString()}";
+                    amtDue_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
                     _amountDue = order.AmountDue;
                     customer_tx.Text = order.CustomerName;
                 }
