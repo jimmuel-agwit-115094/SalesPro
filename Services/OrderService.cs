@@ -306,5 +306,16 @@ namespace SalesPro.Services
                 });
             }
         }
+
+        public async Task<OrderModel> GetLatestOrder()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var latestOrder = await context.Orders
+                                 .OrderByDescending(o => o.OrderId)
+                                 .FirstOrDefaultAsync();
+                return latestOrder;
+            }
+        }
     }
 }

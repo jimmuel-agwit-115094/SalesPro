@@ -85,7 +85,6 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-
                 var filteredPaymentMethods = Enum.GetValues(typeof(PaymentMethod))
                                   .Cast<PaymentMethod>()
                                   .Where(x => x != PaymentMethod.NotSet)

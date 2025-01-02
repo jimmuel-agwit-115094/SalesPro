@@ -77,23 +77,39 @@ namespace SalesPro.Forms.Orders
                 SetFormSize();
                 _curDate = await ClockHelper.GetServerDateTime();
 
-                // Save order
-                var orderModel = BuildOrderModel();
-                var savedOrder = await _service.SaveOrder(orderModel);
-                await LoadOrderedItemsById();
+                var latestOrder = await _service.GetLatestOrder();
 
-                // Marks
-                _rowVersion = savedOrder.RowVersion;
-                _orderId = savedOrder.OrderId;
-                // Controls
-                orderId_lbl.Text = _orderId.ToString("D10");
-                status_lbl.Text = savedOrder.OrderStatus.ToString();
-                await SetCustomer(savedOrder.CustomerId);
+                if (latestOrder != null && latestOrder.Total == 0)
+                {
+                    await InitializeOrderDisplay(latestOrder);
+                }
+                else
+                {
+                    var newOrder = BuildOrderModel();
+                    var savedOrder = await _service.SaveOrder(newOrder);
+                    await InitializeOrderDisplay(savedOrder);
+                }
+
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error order form load : {ex}");
             }
+        }
+
+        private async Task InitializeOrderDisplay(OrderModel order)
+        {
+            await LoadOrderedItemsById();
+
+            // Update state variables
+            _rowVersion = order.RowVersion;
+            _orderId = order.OrderId;
+
+            // Update UI controls
+            orderId_lbl.Text = _orderId.ToString("D10");
+            status_lbl.Text = order.OrderStatus.ToString();
+
+            await SetCustomer(order.CustomerId);
         }
 
         private void SetFormSize()
