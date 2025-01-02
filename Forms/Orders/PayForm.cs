@@ -130,24 +130,10 @@ namespace SalesPro.Forms.Orders
             CalculateOrderPayment(_amountDue);
         }
 
-        private void cash_tx_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //CalculateOrderPayment(_amountDue);
-        }
 
         private void discRate_tx_ValueChanged(object sender, EventArgs e)
         {
             CalculateOrderPayment(_amountDue);
-        }
-
-        private void discAmt_tx_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void change_tx_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void cash_tx_KeyDown(object sender, KeyEventArgs e)
@@ -167,7 +153,18 @@ namespace SalesPro.Forms.Orders
 
         private async void PaymentForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            await _orderForm.CreateNewOrder();
+            try
+            {
+                var order = await _service.GetOrderById(_orderId);
+                if (order != null && order.PaymentStatus == PaymentStatus.Paid)
+                {
+                    await _orderForm.CreateNewOrder();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on payment closing: {ex.Message}");
+            }
         }
     }
 }
