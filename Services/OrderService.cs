@@ -178,9 +178,10 @@ namespace SalesPro.Services
             await context.SaveChangesAsync();
         }
 
-        private async Task UpdateInventory(DatabaseContext context, int orderId)
+        private async Task<List<OrderItemModel>> UpdateInventory(DatabaseContext context, int orderId)
         {
             var orderedItems = await LoadOrderItemsByOrderId(orderId);
+            var inventoryExceedErrors = new List<OrderItemModel>();
 
             foreach (var orderItem in orderedItems)
             {
@@ -188,14 +189,30 @@ namespace SalesPro.Services
                 var inventory = await context.Inventories
                     .FirstOrDefaultAsync(i => i.InventoryId == orderItem.InventoryId);
                 NullCheckerHelper.NullCheck(inventory);
-                // Update
+
+                // Check if inventory is sufficient
+                if (orderItem.OrderItemStatus != OrderItemStatus.Added || orderItem.OrderQuantity > inventory.QuantityOnHand)
+                {
+                    //inventoryExceedErrors.Add($"Inventory for item {orderItem.InventoryId} is insufficient. Available: {inventory.QuantityOnHand}, Ordered: {orderItem.OrderQuantity}");
+                    inventoryExceedErrors.Add(orderItem);
+                    continue;  // Skip this order item and continue with the next
+                }
+
+                // Update the inventory
                 inventory.QuantityOnHand += (orderItem.OrderItemStatus != OrderItemStatus.Added)
-                ? orderItem.OrderQuantity
-                : -orderItem.OrderQuantity;
+                    ? orderItem.OrderQuantity
+                    : -orderItem.OrderQuantity;
+            }
+
+            if (inventoryExceedErrors.Any())
+            {
+                return inventoryExceedErrors;
             }
 
             await context.SaveChangesAsync();
+            return inventoryExceedErrors;
         }
+
 
 
         public async Task UpdateQuantity(int orderItemId, int orderQty, bool isEdit, int rowVersion)
@@ -291,10 +308,11 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
+        public async Task<int> PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
         {
             using (var context = new DatabaseContext())
             {
+                var invalidOrders = new List<OrderItemModel>();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var order = await context.Orders.FindAsync(orderId);
@@ -304,8 +322,14 @@ namespace SalesPro.Services
                     await UpdateOrder(context, orderId, rowVersion, orderModel);
 
                     // Update inventory
-                    await UpdateInventory(context, order.OrderId);
+                    invalidOrders = await UpdateInventory(context, order.OrderId);
+
+                    if (invalidOrders.Count > 0)
+                    {
+                        throw new Exception("Inventory is insufficient");
+                    }
                 });
+                return invalidOrders.Count;
             }
         }
 
