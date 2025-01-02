@@ -1,5 +1,6 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
 {
-    public partial class Pay : Form
+    public partial class PaymentForm : Form
     {
         public int _orderId;
         public int _rowVersion;
@@ -16,17 +17,19 @@ namespace SalesPro.Forms.Orders
         private DateTime _curDate;
 
         private readonly OrderService _service;
-        public Pay()
+        public PaymentForm()
         {
             InitializeComponent();
             _service = new OrderService();
+            TextBoxHelper.FormatDecimalTextbox(cash_tx);
+            TextBoxHelper.FormatPercentageTextbox(discRate_tx);
         }
 
         private async void pay_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                var cash = cash_tx.Value;
+                var cash = decimal.Parse(cash_tx.Text);
                 if (cash == 0)
                 {
                     MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
@@ -53,8 +56,8 @@ namespace SalesPro.Forms.Orders
             var orderModel = new OrderModel();
             try
             {
-                decimal cashTendered = cash_tx.Value;
-                int discountRate = (int)discRate_tx.Value;
+                decimal cashTendered = decimal.Parse(cash_tx.Text);
+                decimal discountRate = decimal.Parse(discRate_tx.Text);
                 // Calculate the discount amount
                 decimal discountAmount = (total * discountRate) / 100;
 
@@ -113,7 +116,7 @@ namespace SalesPro.Forms.Orders
 
         private void cash_tx_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // CalculateOrderPayment(_amountDue);
+            //CalculateOrderPayment(_amountDue);
         }
 
         private void discRate_tx_ValueChanged(object sender, EventArgs e)
@@ -128,7 +131,22 @@ namespace SalesPro.Forms.Orders
 
         private void change_tx_ValueChanged(object sender, EventArgs e)
         {
+           
+        }
 
+        private void cash_tx_KeyDown(object sender, KeyEventArgs e)
+        {
+            CalculateOrderPayment(_amountDue);
+        }
+
+        private void c_TextChanged(object sender, EventArgs e)
+        {
+            CalculateOrderPayment(_amountDue);
+        }
+
+        private void discRate_tx_TextChanged(object sender, EventArgs e)
+        {
+            CalculateOrderPayment(_amountDue);
         }
     }
 }

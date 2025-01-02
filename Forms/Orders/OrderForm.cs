@@ -210,7 +210,7 @@ namespace SalesPro.Forms.Orders
         {
             if (dgItems.SelectedRows.Count != 0)
             {
-                var form = new Pay();
+                var form = new PaymentForm();
                 form._orderId = _orderId;
                 form._rowVersion = _rowVersion;
                 form.ShowDialog();

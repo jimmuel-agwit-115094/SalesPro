@@ -1,6 +1,6 @@
 ﻿namespace SalesPro.Forms.Orders
 {
-    partial class Pay
+    partial class PaymentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pay));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             this.customer_tx = new System.Windows.Forms.Label();
             this.amtDue_tx = new System.Windows.Forms.Label();
             this.pay_btn = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.cash_tx = new System.Windows.Forms.NumericUpDown();
             this.title_lbl = new System.Windows.Forms.Label();
             this.product_tx = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.discRate_tx = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.discAmt_tx = new System.Windows.Forms.NumericUpDown();
             this.change_tx = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.paymentMethod_cb = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.cash_tx)).BeginInit();
+            this.cash_tx = new System.Windows.Forms.TextBox();
+            this.discRate_tx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discRate_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).BeginInit();
             this.SuspendLayout();
@@ -90,34 +85,6 @@
             this.pay_btn.Text = "Pay";
             this.pay_btn.UseVisualStyleBackColor = false;
             this.pay_btn.Click += new System.EventHandler(this.pay_btn_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(23, 198);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(20, 51);
-            this.panel5.TabIndex = 536;
-            // 
-            // cash_tx
-            // 
-            this.cash_tx.DecimalPlaces = 2;
-            this.cash_tx.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cash_tx.Location = new System.Drawing.Point(22, 196);
-            this.cash_tx.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.cash_tx.Name = "cash_tx";
-            this.cash_tx.Size = new System.Drawing.Size(290, 54);
-            this.cash_tx.TabIndex = 535;
-            this.cash_tx.Tag = "IsNumeric";
-            this.cash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cash_tx.ThousandsSeparator = true;
-            this.cash_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.cash_tx.ValueChanged += new System.EventHandler(this.cash_tx_ValueChanged);
-            this.cash_tx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cash_tx_KeyPress);
             // 
             // title_lbl
             // 
@@ -159,18 +126,6 @@
             this.label1.Size = new System.Drawing.Size(80, 15);
             this.label1.TabIndex = 544;
             this.label1.Text = "Discount Rate";
-            // 
-            // discRate_tx
-            // 
-            this.discRate_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discRate_tx.Location = new System.Drawing.Point(22, 352);
-            this.discRate_tx.Name = "discRate_tx";
-            this.discRate_tx.Size = new System.Drawing.Size(290, 36);
-            this.discRate_tx.TabIndex = 542;
-            this.discRate_tx.Tag = "IsNumeric";
-            this.discRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.discRate_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.discRate_tx.ValueChanged += new System.EventHandler(this.discRate_tx_ValueChanged);
             // 
             // label2
             // 
@@ -244,14 +199,6 @@
             this.label3.TabIndex = 549;
             this.label3.Text = "Change";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(24, 354);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(19, 32);
-            this.panel1.TabIndex = 550;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
@@ -289,28 +236,39 @@
             this.label4.TabIndex = 554;
             this.label4.Text = "Payment Method";
             // 
-            // label5
+            // cash_tx
             // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(313, 356);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(16, 28);
-            this.label5.TabIndex = 555;
-            this.label5.Text = "%";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cash_tx.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cash_tx.Location = new System.Drawing.Point(24, 196);
+            this.cash_tx.Name = "cash_tx";
+            this.cash_tx.Size = new System.Drawing.Size(288, 50);
+            this.cash_tx.TabIndex = 556;
+            this.cash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cash_tx.TextChanged += new System.EventHandler(this.c_TextChanged);
             // 
-            // Pay
+            // discRate_tx
+            // 
+            this.discRate_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F);
+            this.discRate_tx.Location = new System.Drawing.Point(22, 352);
+            this.discRate_tx.Name = "discRate_tx";
+            this.discRate_tx.Size = new System.Drawing.Size(291, 36);
+            this.discRate_tx.TabIndex = 557;
+            this.discRate_tx.Text = "0";
+            this.discRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.discRate_tx.TextChanged += new System.EventHandler(this.discRate_tx_TextChanged);
+            // 
+            // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(332, 588);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.discRate_tx);
+            this.Controls.Add(this.cash_tx);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.paymentMethod_cb);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.customer_tx);
             this.Controls.Add(this.amtDue_tx);
             this.Controls.Add(this.title_lbl);
@@ -319,25 +277,20 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.discAmt_tx);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.discRate_tx);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.pay_btn);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.cash_tx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Pay";
+            this.Name = "PaymentForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment";
             this.Load += new System.EventHandler(this.PayForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cash_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discRate_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();
             this.ResumeLayout(false);
@@ -350,22 +303,19 @@
         internal System.Windows.Forms.Label customer_tx;
         internal System.Windows.Forms.Label amtDue_tx;
         private System.Windows.Forms.Button pay_btn;
-        private System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.NumericUpDown cash_tx;
         internal System.Windows.Forms.Label title_lbl;
         internal System.Windows.Forms.Label product_tx;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.Label label1;
-        public System.Windows.Forms.NumericUpDown discRate_tx;
         internal System.Windows.Forms.Label label2;
         public System.Windows.Forms.NumericUpDown discAmt_tx;
         public System.Windows.Forms.NumericUpDown change_tx;
         internal System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox paymentMethod_cb;
         internal System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox cash_tx;
+        private System.Windows.Forms.TextBox discRate_tx;
     }
 }
