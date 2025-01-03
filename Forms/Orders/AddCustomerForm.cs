@@ -15,10 +15,12 @@ namespace SalesPro.Forms.Orders
 
         private readonly OrderForm _orderForm;
         private readonly OrderService _service;
+        private readonly CustomerService _customerService;
         public AddCustomerForm(OrderForm orderForm)
         {
             InitializeComponent();
             _service = new OrderService();
+            _customerService = new CustomerService();
             _orderForm = orderForm;
             KeyPreview = true;
         }
@@ -27,7 +29,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var customers = await _service.GetCustomers();
+                var customers = await _customerService.GetCustomers();
                 dgCustomer.DataSource = customers;
                 DgExtensions.ConfigureDataGrid(dgCustomer, true, 0, notFound_lbl, "CustomerId", "FirstName",
                     "MiddleName", "LastName", "Address", "ContactNumber");
@@ -75,6 +77,13 @@ namespace SalesPro.Forms.Orders
             {
                 await ProcessCustomer();
             }
+        }
+
+        private void new_btm_Click(object sender, EventArgs e)
+        {
+            var form = new ManageCustomerForm(this);
+            form._customerId = _customerId;
+            form.ShowDialog();
         }
     }
 }

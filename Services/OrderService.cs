@@ -428,14 +428,6 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<CustomerModel>> GetCustomers()
-        {
-            using (var context = new DatabaseContext())
-            {
-                return await context.Customers.Where(x => x.CustomerId != 1).ToListAsync();
-            }
-        }
-
         // Update order set customer
         public async Task<OrderModel> UpdateOrderCustomer(int orderId, int customerId, int rowVersion)
         {
