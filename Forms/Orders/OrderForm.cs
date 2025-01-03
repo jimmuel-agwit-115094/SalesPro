@@ -275,5 +275,12 @@ namespace SalesPro.Forms.Orders
                 MessageHandler.ShowError($"Error suspending order: {ex.Message}");
             }
         }
+
+        private void resume_btn_Click(object sender, EventArgs e)
+        {
+            var form = new OrderListForm();
+            form._orderStatus = OrderStatus.Suspended;
+            form.ShowDialog();
+        }
     }
 }

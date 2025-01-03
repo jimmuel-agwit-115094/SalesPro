@@ -803,6 +803,7 @@
             this.resume_btn.TabIndex = 399;
             this.resume_btn.Text = "RESUME (F6)";
             this.resume_btn.UseVisualStyleBackColor = false;
+            this.resume_btn.Click += new System.EventHandler(this.resume_btn_Click);
             // 
             // priceInquiry_btn
             // 
