@@ -60,6 +60,19 @@ namespace SalesPro.Forms.Orders
 
         }
 
+
+        private async Task AddOrderItem()
+        {
+            if (_orderAction == OrderAction.New)
+            {
+                await ProcessOrderItem(OrderItemStatus.Added);
+            }
+            else
+            {
+                await ProcessOrderItem(OrderItemStatus.Returned);
+            }
+        }
+
         private void dgProduct_SelectionChanged(object sender, EventArgs e)
         {
             _inventoryId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgProduct, "InventoryId");
@@ -80,7 +93,7 @@ namespace SalesPro.Forms.Orders
                 return;
             }
 
-            if (_quantity > prodInventory.QuantityOnHand)
+            if (itemStatus == OrderItemStatus.Added && _quantity > prodInventory.QuantityOnHand)
             {
                 MessageHandler.ShowWarning("Quantity is greater than the available stock.");
                 return;
@@ -122,6 +135,7 @@ namespace SalesPro.Forms.Orders
             //Load ordered items
             await _orderForm.LoadOrderedItems(_orderId);
             await _orderForm.ReloadRowVersion();
+            _orderForm.qty_tx.Value = 1;
             Close();
         }
 
@@ -131,7 +145,7 @@ namespace SalesPro.Forms.Orders
             {
                 if (e.RowIndex >= 0)
                 {
-                    await ProcessOrderItem(OrderItemStatus.Added);
+                    await AddOrderItem();
                 }
             }
             catch (Exception ex)
@@ -157,7 +171,7 @@ namespace SalesPro.Forms.Orders
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
-                    await ProcessOrderItem(OrderItemStatus.Added);
+                    await AddOrderItem();
                 }
             }
             catch (Exception ex)

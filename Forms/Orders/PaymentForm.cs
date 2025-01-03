@@ -28,23 +28,49 @@ namespace SalesPro.Forms.Orders
             KeyPreview = true;
         }
 
+        private async void PayForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var filteredPaymentMethods = Enum.GetValues(typeof(PaymentMethod))
+                                  .Cast<PaymentMethod>()
+                                  .Where(x => x != PaymentMethod.NotSet)
+                                  .ToList();
+                paymentMethod_cb.DataSource = filteredPaymentMethods;
+
+                _curDate = await ClockHelper.GetServerDateTime();
+                var order = await _service.GetOrderById(_orderId);
+                if (order != null)
+                {
+                    amtDue_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
+                    _amountDue = order.AmountDue;
+                    customer_tx.Text = order.CustomerName;
+                }
+                CalculateOrderPayment(_amountDue);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error pay load: {ex.Message}");
+            }
+        }
+
         private async void pay_btn_Click(object sender, EventArgs e)
         {
             try
             {
+                var cash = decimal.Parse(cash_tx.Text);
+                if (_amountDue > 0 && cash == 0)
+                {
+                    MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
+                    return;
+                }
+                if (cash < _amountDue)
+                {
+                    MessageHandler.ShowWarning("Cash amount is less than the amount due");
+                    return;
+                }
                 if (MessageHandler.ShowQuestionGeneric("Are you sure you want to pay this order?"))
                 {
-                    var cash = decimal.Parse(cash_tx.Text);
-                    if (cash == 0)
-                    {
-                        MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
-                        return;
-                    }
-                    if (cash < _amountDue)
-                    {
-                        MessageHandler.ShowWarning("Cash amount is less than the amount due");
-                        return;
-                    }
                     var order = CalculateOrderPayment(_amountDue);
                     var invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
                     if (invalidOrdersDetected.Count() == 0)
@@ -107,30 +133,6 @@ namespace SalesPro.Forms.Orders
             return orderModel;
         }
 
-        private async void PayForm_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var filteredPaymentMethods = Enum.GetValues(typeof(PaymentMethod))
-                                  .Cast<PaymentMethod>()
-                                  .Where(x => x != PaymentMethod.NotSet)
-                                  .ToList();
-                paymentMethod_cb.DataSource = filteredPaymentMethods;
-
-                _curDate = await ClockHelper.GetServerDateTime();
-                var order = await _service.GetOrderById(_orderId);
-                if (order != null)
-                {
-                    amtDue_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
-                    _amountDue = order.AmountDue;
-                    customer_tx.Text = order.CustomerName;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error pay load: {ex.Message}");
-            }
-        }
 
         private void cash_tx_ValueChanged(object sender, EventArgs e)
         {

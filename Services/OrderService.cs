@@ -74,7 +74,7 @@ namespace SalesPro.Services
             {
                 return await (from oi in context.OrderItems
                               join p in context.Products on oi.ProductId equals p.ProductId
-                              where oi.OrderId == orderId && oi.OrderItemStatus == OrderItemStatus.Added
+                              where oi.OrderId == orderId
                               select new OrderItemModelExtended
                               {
                                   OrderId = orderId,
@@ -97,7 +97,7 @@ namespace SalesPro.Services
             {
                 return await (from i in context.Inventories
                               join p in context.Products on i.ProductId equals p.ProductId
-                              where i.QuantityOnHand > 0
+                              //where i.QuantityOnHand > 0
                               select new InventoryModelExtended
                               {
                                   DateAdded = i.DateAdded,
@@ -111,7 +111,9 @@ namespace SalesPro.Services
                                   SupplierPrice = i.SupplierPrice,
                                   UserId = i.UserId,
                                   ProductName = p.ProductName
-                              }).ToListAsync();
+                              }).OrderBy(p => p.QuantityOnHand == 0)
+                              .ThenByDescending(p => p.QuantityOnHand)
+                              .ToListAsync();
 
             }
         }
@@ -202,16 +204,19 @@ namespace SalesPro.Services
                 NullCheckerHelper.NullCheck(inventory);
 
                 // Check if inventory is sufficient
-                if (orderItem.OrderItemStatus != OrderItemStatus.Added || orderItem.OrderQuantity > inventory.QuantityOnHand)
+                if (orderItem.OrderItemStatus == OrderItemStatus.Added && orderItem.OrderQuantity > inventory.QuantityOnHand)
                 {
                     inventoryExceedErrors.Add(orderItem);
                     continue;  // Skip this order item and continue with the next
                 }
 
+                // Convert the new quantity to absolute integer
+                int convertedQuantity = Math.Abs(orderItem.OrderQuantity);
+
                 // Update the inventory
                 inventory.QuantityOnHand += (orderItem.OrderItemStatus != OrderItemStatus.Added)
-                    ? orderItem.OrderQuantity
-                    : -orderItem.OrderQuantity;
+                    ? convertedQuantity
+                    : -convertedQuantity;
             }
 
             if (inventoryExceedErrors.Any())
@@ -234,9 +239,12 @@ namespace SalesPro.Services
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
                     var existingOrderQty = orderItem.OrderQuantity;
                     NullCheckerHelper.NullCheck(orderItem);
+                 
                     // Update orderItem
-                    orderItem.OrderQuantity = orderQty;
-                    orderItem.TotalPrice = orderQty * orderItem.Price;
+                    int newQuantity = orderItem.OrderItemStatus == OrderItemStatus.Added ? orderQty : -orderQty;
+
+                    orderItem.OrderQuantity = newQuantity;
+                    orderItem.TotalPrice = newQuantity * orderItem.Price;
                     await context.SaveChangesAsync();
                     // Update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
