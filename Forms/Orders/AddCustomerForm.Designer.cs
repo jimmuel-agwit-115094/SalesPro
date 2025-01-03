@@ -115,6 +115,9 @@
             this.dgCustomer.Size = new System.Drawing.Size(823, 490);
             this.dgCustomer.TabIndex = 469;
             this.dgCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomer_CellContentClick);
+            this.dgCustomer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomer_CellDoubleClick);
+            this.dgCustomer.SelectionChanged += new System.EventHandler(this.dgCustomer_SelectionChanged);
+            this.dgCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgCustomer_KeyDown);
             // 
             // search_tx
             // 
@@ -125,6 +128,7 @@
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
             this.search_tx.TabIndex = 471;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // title_lbl
             // 
@@ -134,9 +138,9 @@
             this.title_lbl.Location = new System.Drawing.Point(11, 12);
             this.title_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(95, 25);
+            this.title_lbl.Size = new System.Drawing.Size(137, 25);
             this.title_lbl.TabIndex = 473;
-            this.title_lbl.Text = "Customer";
+            this.title_lbl.Text = "Customer Lists";
             // 
             // AddCustomerForm
             // 

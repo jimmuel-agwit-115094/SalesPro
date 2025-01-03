@@ -308,7 +308,9 @@ namespace SalesPro.Forms.Orders
 
         private void addCustomer_btn_Click(object sender, EventArgs e)
         {
-            var form = new AddCustomerForm();
+            var form = new AddCustomerForm(this);
+            form._orderId = _orderId;
+            form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
     }

@@ -435,5 +435,29 @@ namespace SalesPro.Services
                 return await context.Customers.Where(x => x.CustomerId != 1).ToListAsync();
             }
         }
+
+        // Update order set customer
+        public async Task<OrderModel> UpdateOrderCustomer(int orderId, int customerId, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var updatedOrder = new OrderModel();
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var order = await context.Orders.FindAsync(orderId);
+                    NullCheckerHelper.NullCheck(order);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, order.RowVersion);
+                    order.CustomerId = customerId;
+
+                    await context.SaveChangesAsync();
+
+                    // Reload the order to get the updated RowVersion
+                    updatedOrder = await context.Orders.FindAsync(orderId);
+                    await context.Entry(updatedOrder).ReloadAsync();
+                });
+
+                return updatedOrder;
+            }
+        }
     }
 }
