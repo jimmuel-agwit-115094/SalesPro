@@ -305,5 +305,10 @@ namespace SalesPro.Forms.Orders
         {
             ShowOrderItemForm(OrderAction.Return);
         }
+
+        private void addCustomer_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
