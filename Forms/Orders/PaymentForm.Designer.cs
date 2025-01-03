@@ -241,6 +241,7 @@
             this.cash_tx.Name = "cash_tx";
             this.cash_tx.Size = new System.Drawing.Size(288, 50);
             this.cash_tx.TabIndex = 556;
+            this.cash_tx.Text = "0";
             this.cash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cash_tx.TextChanged += new System.EventHandler(this.c_TextChanged);
             // 

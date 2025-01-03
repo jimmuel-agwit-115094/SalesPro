@@ -123,6 +123,16 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<OrderItemModel> GetExistingOrderItem(int inventoryId, int orderId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.OrderItems
+                    .Where(oi => oi.InventoryId == inventoryId && oi.OrderId == orderId)
+                    .FirstOrDefaultAsync();
+            }
+        }
+
         private static OrderModel CalculateOrderTotals(decimal total, decimal amtPaid = 0)
         {
             var vatAmt = total / Constants.SystemConstants.VatRate;
@@ -237,7 +247,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<OrderModel> SaveItemAndUpdateOrder(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
+        public async Task<OrderModel> SaveOrderItem(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -263,9 +273,6 @@ namespace SalesPro.Services
 
                     // Fetch and update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
-
-                    // Update inventory
-                    //await UpdateInventory(context, orderItem.InventoryId, orderItem.OrderQuantity, isEdit: false, itemStatus);
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);

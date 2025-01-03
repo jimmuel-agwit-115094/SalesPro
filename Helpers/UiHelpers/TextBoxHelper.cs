@@ -8,8 +8,7 @@ namespace SalesPro.Helpers.UiHelpers
     {
         public static void FormatDecimalTextbox(TextBox textBox)
         {
-
-
+            textBox.Text = "0";
             // Allow only valid numeric input
             textBox.KeyPress += (sender, e) =>
             {

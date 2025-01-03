@@ -15,6 +15,7 @@ namespace SalesPro.Forms.Orders
         public int _rowVersion;
         public int _orderId;
         public int _quantity;
+        private int _orderItemId;
 
         private readonly OrderService _service;
         private readonly OrderForm _orderForm;
@@ -60,9 +61,24 @@ namespace SalesPro.Forms.Orders
             var prodInventory = await _service.GetInventoryById(_inventoryId);
             if (prodInventory == null)
             {
-                MessageHandler.ShowError("Product not found on inventory.");
+                MessageHandler.ShowWarning("Product not found on inventory.");
                 return;
             }
+
+            if (_quantity > prodInventory.QuantityOnHand)
+            {
+                MessageHandler.ShowWarning("Quantity is greater than the available stock.");
+                return;
+            }
+
+            // Check if product is out of stock when already added item
+            var existingOrderItem = await _service.GetExistingOrderItem(_inventoryId, _orderId);
+            if (existingOrderItem != null && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
+            {
+                MessageHandler.ShowWarning("The product is out of stock.");
+                return;
+            }
+
             // Assess if item is for addition or returned
             int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
 
@@ -78,7 +94,7 @@ namespace SalesPro.Forms.Orders
                 OrderItemStatus = itemStatus,
             };
 
-            var savedOrder = await _service.SaveItemAndUpdateOrder(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
+            var savedOrder = await _service.SaveOrderItem(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
 
             // Set controls
             _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
@@ -87,6 +103,7 @@ namespace SalesPro.Forms.Orders
             _orderForm.gross_tx.Text = savedOrder.Total.ToString();
             _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
             _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
+
             //Load ordered items
             await _orderForm.LoadOrderedItems(_orderId);
             await _orderForm.ReloadRowVersion();
