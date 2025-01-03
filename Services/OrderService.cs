@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.X509;
 using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Helpers;
@@ -367,20 +368,27 @@ namespace SalesPro.Services
             }
         }
 
-        // suspend order
-        public async Task SuspendOrder(int orderId, int rowVersion)
+        public async Task<OrderModel> ChangeOrderStatus(int orderId, OrderStatus status, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                var updatedOrder = new OrderModel();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var order = await context.Orders.FindAsync(orderId);
                     NullCheckerHelper.NullCheck(order);
-                    order.OrderStatus = OrderStatus.Suspended;
+
+                    order.OrderStatus = status;
+
                     await context.SaveChangesAsync();
+                    updatedOrder = await context.Orders.FindAsync(orderId);
                 });
+
+                return updatedOrder;
             }
         }
+
+
 
         public async Task<List<OrderModelExtended>> LoadOrdersByStatus(OrderStatus orderStatus)
         {
@@ -414,5 +422,6 @@ namespace SalesPro.Services
                               }).OrderByDescending(x => x.OrderId).ToListAsync();
             }
         }
+
     }
 }

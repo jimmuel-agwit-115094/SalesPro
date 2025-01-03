@@ -117,7 +117,7 @@ namespace SalesPro.Forms.Orders
             await InitializeOrderDisplay(savedOrder);
         }
 
-        private async Task InitializeOrderDisplay(OrderModel order)
+        public async Task InitializeOrderDisplay(OrderModel order)
         {
             await LoadOrderedItems(order.OrderId);
 
@@ -262,12 +262,15 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (MessageHandler.ShowQuestionGeneric("Suspend Order?"))
+                if (dgItems.SelectedRows.Count != 0)
                 {
-                    await _service.SuspendOrder(_orderId, _rowVersion);
-                    await CreateNewOrder();
-                    await LoadOrderedItems(_orderId);
-                    await ReloadRowVersion();
+                    if (MessageHandler.ShowQuestionGeneric("Suspend Order?"))
+                    {
+                        await _service.ChangeOrderStatus(_orderId, OrderStatus.Suspended, _rowVersion);
+                        await CreateNewOrder();
+                        await LoadOrderedItems(_orderId);
+                        await ReloadRowVersion();
+                    }
                 }
             }
             catch (Exception ex)
@@ -278,8 +281,15 @@ namespace SalesPro.Forms.Orders
 
         private void resume_btn_Click(object sender, EventArgs e)
         {
-            var form = new OrderListForm();
+            if (dgItems.SelectedRows.Count > 0)
+            {
+                MessageHandler.ShowWarning("Cannot resume order when a new order is still active.");
+                return;
+            }
+            var form = new OrderListForm(this);
+            form.title_lbl.Text = "Suspended Order Lists";
             form._orderStatus = OrderStatus.Suspended;
+            form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
     }
