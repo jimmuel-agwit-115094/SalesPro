@@ -69,7 +69,7 @@ namespace SalesPro.Forms.Orders
             {
                 foreach (DataGridViewRow row in dgItems.Rows)
                 {
-                    var itemId = (int)row.Cells["OrderItemId"].Value; 
+                    var itemId = (int)row.Cells["OrderItemId"].Value;
                     if (invalidOrders.Any(order => order.OrderItemId == itemId))
                     {
                         row.DefaultCellStyle.ForeColor = Color.Red; // Change text color to red
@@ -237,6 +237,26 @@ namespace SalesPro.Forms.Orders
                 form.ShowDialog();
             }
 
+        }
+
+        private async void delete_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgItems.SelectedRows.Count > 0)
+                {
+                    if (MessageHandler.ShowQuestionGeneric("Delete Order?"))
+                    {
+                        await _service.DeleteOrderItem(_orderItemId, _rowVersion);
+                        await LoadOrderedItems(_orderId);
+                        await ReloadRowVersion();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error delete button click : {ex.Message}");
+            }
         }
     }
 }

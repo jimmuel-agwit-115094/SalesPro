@@ -203,7 +203,6 @@ namespace SalesPro.Services
                 // Check if inventory is sufficient
                 if (orderItem.OrderItemStatus != OrderItemStatus.Added || orderItem.OrderQuantity > inventory.QuantityOnHand)
                 {
-                    //inventoryExceedErrors.Add($"Inventory for item {orderItem.InventoryId} is insufficient. Available: {inventory.QuantityOnHand}, Ordered: {orderItem.OrderQuantity}");
                     inventoryExceedErrors.Add(orderItem);
                     continue;  // Skip this order item and continue with the next
                 }
@@ -349,6 +348,22 @@ namespace SalesPro.Services
                                  .OrderByDescending(o => o.OrderId)
                                  .FirstOrDefaultAsync();
                 return latestOrder;
+            }
+        }
+
+        public async Task DeleteOrderItem(int orderItemId, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var orderItem = await context.OrderItems.FindAsync(orderItemId);
+                    NullCheckerHelper.NullCheck(orderItem);
+                    context.OrderItems.Remove(orderItem);
+                    await context.SaveChangesAsync();
+
+                    await UpdateOrder(context, orderItem.OrderId, rowVersion);
+                });
             }
         }
     }
