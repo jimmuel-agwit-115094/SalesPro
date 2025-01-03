@@ -833,6 +833,7 @@
             this.returnProduct_btn.TabIndex = 397;
             this.returnProduct_btn.Text = "RETURN PROD. (F7)";
             this.returnProduct_btn.UseVisualStyleBackColor = false;
+            this.returnProduct_btn.Click += new System.EventHandler(this.returnProduct_btn_Click);
             // 
             // add_btn
             // 

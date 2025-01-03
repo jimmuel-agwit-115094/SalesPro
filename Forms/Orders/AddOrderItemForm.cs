@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace SalesPro.Forms.Orders
         public int _rowVersion;
         public int _orderId;
         public int _quantity;
+        public OrderAction _orderAction;
 
         private readonly OrderService _service;
         private readonly OrderForm _orderForm;
@@ -33,6 +35,19 @@ namespace SalesPro.Forms.Orders
                 var prods = await _service.LoadProductsFromInventory();
                 dgProduct.DataSource = prods;
                 DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
+
+                if (_orderAction == OrderAction.New)
+                {
+                    title_lbl.Text = "Add Item";
+                    title_lbl.ForeColor = Color.Black;
+                    return_pb.Visible = false;
+                }
+                else
+                {
+                    title_lbl.Text = "Return Item";
+                    title_lbl.ForeColor = Color.Red;
+                    return_pb.Visible = true;
+                }
             }
             catch (Exception ex)
             {

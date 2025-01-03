@@ -141,18 +141,7 @@ namespace SalesPro.Forms.Orders
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var form = new AddOrderItemForm(this);
-                form._orderId = _orderId;
-                form._rowVersion = _rowVersion;
-                form._quantity = int.Parse(qty_tx.Text);
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error add order button click : {ex}");
-            }
+            ShowOrderItemForm(OrderAction.New);
         }
 
         private void OrderForm_KeyUp(object sender, KeyEventArgs e)
@@ -291,6 +280,30 @@ namespace SalesPro.Forms.Orders
             form._orderStatus = OrderStatus.Suspended;
             form._rowVersion = _rowVersion;
             form.ShowDialog();
+        }
+
+        private void ShowOrderItemForm(OrderAction orderAction)
+        {
+            try
+            {
+                var form = new AddOrderItemForm(this);
+
+                form._orderId = _orderId;
+                form._rowVersion = _rowVersion;
+                form._quantity = int.Parse(qty_tx.Text);
+                form._orderAction = orderAction;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error add order item form load:  {ex.Message}");
+            }
+        }
+
+
+        private void returnProduct_btn_Click(object sender, EventArgs e)
+        {
+            ShowOrderItemForm(OrderAction.Return);
         }
     }
 }

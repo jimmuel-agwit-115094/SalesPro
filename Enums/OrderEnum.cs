@@ -23,4 +23,10 @@
         Cancelled,
         Returned
     }
+
+    public enum OrderAction
+    {
+        New,
+        Return
+    }
 }
