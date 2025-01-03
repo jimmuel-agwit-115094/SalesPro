@@ -108,14 +108,15 @@ namespace SalesPro.Forms.Orders
                     return;
                 }
 
-                if (existingOrderItem.InventoryId == prodInventory.InventoryId && _quantity == existingOrderItem.OrderQuantity
+                // to absolut quantity
+                int absQuantity = Math.Abs(existingOrderItem.OrderQuantity);
+                if (existingOrderItem.InventoryId == prodInventory.InventoryId && _quantity == absQuantity
                     && existingOrderItem.ProductId == prodInventory.ProductId)
                 {
-                    MessageHandler.ShowWarning("The product is already added.");
+                    MessageHandler.ShowWarning("The product was returned, and adding it again has resulted in a net quantity of zero. Adjust the quantity to ensure the order is valid.");
                     return;
                 }
             }
-
 
             // Assess if item is for addition or returned
             int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
