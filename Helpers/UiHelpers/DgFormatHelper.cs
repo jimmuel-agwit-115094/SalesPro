@@ -156,6 +156,8 @@ public static class DgFormatHelper
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
+     
+
         // Suppress F3 key press
         dataGridView.KeyDown += (s, ev) =>
         {
@@ -175,6 +177,7 @@ public static class DgFormatHelper
                 ev = null; // No action will be taken
             }
         };
+
     }
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)

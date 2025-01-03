@@ -124,7 +124,7 @@
             this.panelLeft.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(2);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(87, 857);
             this.panelLeft.TabIndex = 2;
@@ -134,7 +134,7 @@
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(87, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1356, 70);
             this.panel2.TabIndex = 5;
@@ -144,7 +144,7 @@
             this.panelRight.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.Location = new System.Drawing.Point(1344, 70);
-            this.panelRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(2);
             this.panelRight.Name = "panelRight";
             this.panelRight.Size = new System.Drawing.Size(99, 787);
             this.panelRight.TabIndex = 6;
@@ -154,7 +154,7 @@
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(87, 777);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1257, 80);
             this.panel1.TabIndex = 7;
@@ -169,7 +169,7 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(87, 70);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1257, 87);
             this.panel6.TabIndex = 393;
@@ -194,7 +194,7 @@
             this.panel15.Controls.Add(this.label5);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel15.Location = new System.Drawing.Point(431, 0);
-            this.panel15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel15.Margin = new System.Windows.Forms.Padding(2);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(450, 87);
             this.panel15.TabIndex = 396;
@@ -244,7 +244,7 @@
             this.panel7.Controls.Add(this.label4);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(881, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(376, 87);
             this.panel7.TabIndex = 393;
@@ -325,7 +325,7 @@
             this.panel4.Controls.Add(this.charge_btn);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(968, 157);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(376, 620);
             this.panel4.TabIndex = 394;
@@ -625,7 +625,7 @@
             this.orderList_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.orderList_btn.ForeColor = System.Drawing.Color.White;
             this.orderList_btn.Location = new System.Drawing.Point(198, 237);
-            this.orderList_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orderList_btn.Margin = new System.Windows.Forms.Padding(2);
             this.orderList_btn.Name = "orderList_btn";
             this.orderList_btn.Size = new System.Drawing.Size(164, 40);
             this.orderList_btn.TabIndex = 400;
@@ -640,7 +640,7 @@
             this.edit_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edit_btn.ForeColor = System.Drawing.Color.White;
             this.edit_btn.Location = new System.Drawing.Point(16, 184);
-            this.edit_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.edit_btn.Margin = new System.Windows.Forms.Padding(2);
             this.edit_btn.Name = "edit_btn";
             this.edit_btn.Size = new System.Drawing.Size(164, 40);
             this.edit_btn.TabIndex = 401;
@@ -716,7 +716,7 @@
             this.delete_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_btn.ForeColor = System.Drawing.Color.White;
             this.delete_btn.Location = new System.Drawing.Point(18, 237);
-            this.delete_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.delete_btn.Margin = new System.Windows.Forms.Padding(2);
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(164, 40);
             this.delete_btn.TabIndex = 405;
@@ -754,7 +754,7 @@
             this.addCustomer_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustomer_btn.ForeColor = System.Drawing.Color.White;
             this.addCustomer_btn.Location = new System.Drawing.Point(198, 184);
-            this.addCustomer_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addCustomer_btn.Margin = new System.Windows.Forms.Padding(2);
             this.addCustomer_btn.Name = "addCustomer_btn";
             this.addCustomer_btn.Size = new System.Drawing.Size(165, 40);
             this.addCustomer_btn.TabIndex = 402;
@@ -769,7 +769,7 @@
             this.suspend_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.suspend_btn.ForeColor = System.Drawing.Color.White;
             this.suspend_btn.Location = new System.Drawing.Point(18, 347);
-            this.suspend_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.suspend_btn.Margin = new System.Windows.Forms.Padding(2);
             this.suspend_btn.Name = "suspend_btn";
             this.suspend_btn.Size = new System.Drawing.Size(164, 40);
             this.suspend_btn.TabIndex = 396;
@@ -795,7 +795,7 @@
             this.resume_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resume_btn.ForeColor = System.Drawing.Color.Black;
             this.resume_btn.Location = new System.Drawing.Point(18, 402);
-            this.resume_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.resume_btn.Margin = new System.Windows.Forms.Padding(2);
             this.resume_btn.Name = "resume_btn";
             this.resume_btn.Size = new System.Drawing.Size(164, 40);
             this.resume_btn.TabIndex = 399;
@@ -809,7 +809,7 @@
             this.priceInquiry_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.priceInquiry_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceInquiry_btn.Location = new System.Drawing.Point(18, 292);
-            this.priceInquiry_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.priceInquiry_btn.Margin = new System.Windows.Forms.Padding(2);
             this.priceInquiry_btn.Name = "priceInquiry_btn";
             this.priceInquiry_btn.Size = new System.Drawing.Size(164, 40);
             this.priceInquiry_btn.TabIndex = 395;
@@ -824,7 +824,7 @@
             this.returnProduct_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.returnProduct_btn.ForeColor = System.Drawing.Color.White;
             this.returnProduct_btn.Location = new System.Drawing.Point(198, 129);
-            this.returnProduct_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.returnProduct_btn.Margin = new System.Windows.Forms.Padding(2);
             this.returnProduct_btn.Name = "returnProduct_btn";
             this.returnProduct_btn.Size = new System.Drawing.Size(164, 40);
             this.returnProduct_btn.TabIndex = 397;
@@ -839,7 +839,7 @@
             this.add_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_btn.ForeColor = System.Drawing.Color.White;
             this.add_btn.Location = new System.Drawing.Point(16, 129);
-            this.add_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.add_btn.Margin = new System.Windows.Forms.Padding(2);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(166, 40);
             this.add_btn.TabIndex = 3;
@@ -917,7 +917,6 @@
             this.qty_tx.TabIndex = 525;
             this.qty_tx.Tag = "IsNumeric";
             this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.qty_tx.ThousandsSeparator = true;
             this.qty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.qty_tx.Value = new decimal(new int[] {
             1,
@@ -1025,7 +1024,7 @@
             this.dgItems.EnableHeadersVisualStyles = false;
             this.dgItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgItems.Location = new System.Drawing.Point(0, 0);
-            this.dgItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgItems.Margin = new System.Windows.Forms.Padding(4);
             this.dgItems.MultiSelect = false;
             this.dgItems.Name = "dgItems";
             this.dgItems.ReadOnly = true;
@@ -1062,7 +1061,7 @@
             this.Controls.Add(this.panelLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "OrderForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

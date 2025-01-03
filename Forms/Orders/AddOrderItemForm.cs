@@ -15,7 +15,6 @@ namespace SalesPro.Forms.Orders
         public int _rowVersion;
         public int _orderId;
         public int _quantity;
-        private int _orderItemId;
 
         private readonly OrderService _service;
         private readonly OrderForm _orderForm;
@@ -114,7 +113,10 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                await ProcessOrderItem(OrderItemStatus.Added);
+                if (e.RowIndex >= 0)
+                {
+                    await ProcessOrderItem(OrderItemStatus.Added);
+                }
             }
             catch (Exception ex)
             {
