@@ -308,7 +308,8 @@ namespace SalesPro.Forms.Orders
 
         private void addCustomer_btn_Click(object sender, EventArgs e)
         {
-
+            var form = new AddCustomerForm();
+            form.ShowDialog();
         }
     }
 }

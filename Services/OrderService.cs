@@ -239,7 +239,7 @@ namespace SalesPro.Services
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
                     var existingOrderQty = orderItem.OrderQuantity;
                     NullCheckerHelper.NullCheck(orderItem);
-                 
+
                     // Update orderItem
                     int newQuantity = orderItem.OrderItemStatus == OrderItemStatus.Added ? orderQty : -orderQty;
 
@@ -428,5 +428,12 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<List<CustomerModel>> GetCustomers()
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Customers.Where(x => x.CustomerId != 1).ToListAsync();
+            }
+        }
     }
 }

@@ -208,6 +208,12 @@
     <Compile Include="Forms\Orders\EditQuantityForm.Designer.cs">
       <DependentUpon>EditQuantityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Orders\ManageCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\ManageCustomerForm.Designer.cs">
+      <DependentUpon>ManageCustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Orders\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\EditQuantityForm.resx">
       <DependentUpon>EditQuantityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\ManageCustomerForm.resx">
+      <DependentUpon>ManageCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
