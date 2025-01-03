@@ -14,7 +14,6 @@ namespace SalesPro.Models
         public decimal Price { get; set; }
         public decimal TotalPrice { get; set; }
         public OrderItemStatus OrderItemStatus { get; set; }
-        public bool IsDeleted { get; set; } 
     }
 
     public class OrderItemModelExtended : OrderItemModel

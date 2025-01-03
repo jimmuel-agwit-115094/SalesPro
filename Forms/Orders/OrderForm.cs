@@ -313,5 +313,10 @@ namespace SalesPro.Forms.Orders
             form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
+
+        private void charge_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
