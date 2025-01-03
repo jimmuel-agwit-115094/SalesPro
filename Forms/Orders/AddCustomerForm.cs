@@ -25,14 +25,19 @@ namespace SalesPro.Forms.Orders
             KeyPreview = true;
         }
 
+        public async Task LoadCustomers()
+        {
+            var customers = await _customerService.GetCustomers();
+            dgCustomer.DataSource = customers;
+            DgExtensions.ConfigureDataGrid(dgCustomer, true, 0, notFound_lbl, "CustomerId", "FirstName",
+                "MiddleName", "LastName", "Address", "ContactNumber");
+        }
+
         private async void AddCustomerForm_Load(object sender, EventArgs e)
         {
             try
             {
-                var customers = await _customerService.GetCustomers();
-                dgCustomer.DataSource = customers;
-                DgExtensions.ConfigureDataGrid(dgCustomer, true, 0, notFound_lbl, "CustomerId", "FirstName",
-                    "MiddleName", "LastName", "Address", "ContactNumber");
+                await LoadCustomers();
             }
             catch (Exception ex)
             {
@@ -42,6 +47,13 @@ namespace SalesPro.Forms.Orders
 
         private void dgCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int custId = DgFormatHelper.GetSelectedId(dgCustomer, e, "CustomerId");
+            if (custId == 0) return;
+
+            var form = new ManageCustomerForm(this);
+            form._customerId = custId;
+            form._action = Constants.SystemConstants.Edit.ToString();
+            form.ShowDialog();
 
         }
 
@@ -83,6 +95,7 @@ namespace SalesPro.Forms.Orders
         {
             var form = new ManageCustomerForm(this);
             form._customerId = _customerId;
+            form._action = Constants.SystemConstants.New.ToString();
             form.ShowDialog();
         }
     }

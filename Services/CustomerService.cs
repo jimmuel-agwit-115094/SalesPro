@@ -18,5 +18,37 @@ namespace SalesPro.Services
                 return await context.Customers.Where(x => x.CustomerId != 1).ToListAsync();
             }
         }
+
+        public async Task SaveCustomer(CustomerModel model)
+        {
+            using (var context = new DatabaseContext())
+            {
+                context.Customers.Add(model);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task UpdateCustomer(int customerId, CustomerModel model)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var customerToUpdate = await context.Customers.FindAsync(customerId);
+                customerToUpdate.FirstName = model.FirstName;
+                customerToUpdate.MiddleName = model.MiddleName;
+                customerToUpdate.LastName = model.LastName;
+                customerToUpdate.Address = model.Address;
+                customerToUpdate.Email = model.Email;
+                customerToUpdate.ContactNumber = model.ContactNumber;
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<CustomerModel> GetCustomerById(int customerId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Customers.FindAsync(customerId);
+            }
+        }
     }
 }

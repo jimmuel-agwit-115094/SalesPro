@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.firstName_tx = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.title_lbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +59,7 @@
             this.save_btn.TabIndex = 568;
             this.save_btn.Text = "Save";
             this.save_btn.UseVisualStyleBackColor = false;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // groupBox1
             // 
@@ -196,24 +196,12 @@
             this.label13.TabIndex = 559;
             this.label13.Text = "Firstname";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(102, 27);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 17);
-            this.label4.TabIndex = 566;
-            this.label4.Text = "Customer Data";
-            // 
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title_lbl.ForeColor = System.Drawing.Color.Black;
-            this.title_lbl.Location = new System.Drawing.Point(11, 19);
+            this.title_lbl.Location = new System.Drawing.Point(11, 13);
             this.title_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(216, 25);
@@ -229,7 +217,6 @@
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -238,6 +225,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage";
+            this.Load += new System.EventHandler(this.ManageCustomerForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -261,7 +249,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox firstName_tx;
         private System.Windows.Forms.Label label13;
-        internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Label title_lbl;
     }
 }
