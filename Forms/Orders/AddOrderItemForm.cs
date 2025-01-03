@@ -110,10 +110,12 @@ namespace SalesPro.Forms.Orders
 
                 // to absolut quantity
                 int absQuantity = Math.Abs(existingOrderItem.OrderQuantity);
-                if (existingOrderItem.InventoryId == prodInventory.InventoryId && _quantity == absQuantity
-                    && existingOrderItem.ProductId == prodInventory.ProductId)
+                if (existingOrderItem.InventoryId == prodInventory.InventoryId
+                    && _quantity == absQuantity
+                    && existingOrderItem.ProductId == prodInventory.ProductId
+                    && itemStatus != existingOrderItem.OrderItemStatus)
                 {
-                    MessageHandler.ShowWarning("The product was returned, and adding it again has resulted in a net quantity of zero. Adjust the quantity to ensure the order is valid.");
+                    MessageHandler.ShowWarning("You cannot add and return the same quantity of a product, as it results in a zero quantity. Please adjust the quantity to keep the order valid.");
                     return;
                 }
             }
