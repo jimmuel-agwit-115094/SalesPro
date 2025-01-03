@@ -366,5 +366,20 @@ namespace SalesPro.Services
                 });
             }
         }
+
+        // suspend order
+        public async Task SuspendOrder(int orderId, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var order = await context.Orders.FindAsync(orderId);
+                    NullCheckerHelper.NullCheck(order);
+                    order.OrderStatus = OrderStatus.Suspended;
+                    await context.SaveChangesAsync();
+                });
+            }
+        }
     }
 }

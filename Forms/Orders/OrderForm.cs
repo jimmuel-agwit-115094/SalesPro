@@ -103,7 +103,6 @@ namespace SalesPro.Forms.Orders
                 {
                     await CreateNewOrder();
                 }
-
             }
             catch (Exception ex)
             {
@@ -256,6 +255,24 @@ namespace SalesPro.Forms.Orders
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error delete button click : {ex.Message}");
+            }
+        }
+
+        private async void suspend_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageHandler.ShowQuestionGeneric("Suspend Order?"))
+                {
+                    await _service.SuspendOrder(_orderId, _rowVersion);
+                    await CreateNewOrder();
+                    await LoadOrderedItems(_orderId);
+                    await ReloadRowVersion();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error suspending order: {ex.Message}");
             }
         }
     }
