@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,13 +56,29 @@ namespace SalesPro.Forms.Orders
             _rowVersion = await _service.GetRowVersion(_orderId);
         }
 
-        public async Task LoadOrderedItems(int orderId)
+        public async Task LoadOrderedItems(int orderId, List<OrderItemModelExtended> invalidOrders = null)
         {
             var items = await _service.LoadOrderItemsByOrderId(orderId);
             dgItems.DataSource = items;
+
             DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice", "UnitOfMeasure");
+
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
+
+            if (invalidOrders != null)
+            {
+                foreach (DataGridViewRow row in dgItems.Rows)
+                {
+                    var itemId = (int)row.Cells["OrderItemId"].Value; 
+                    if (invalidOrders.Any(order => order.OrderItemId == itemId))
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Red; // Change text color to red
+                        row.DefaultCellStyle.SelectionForeColor = Color.Red;
+                    }
+                }
+            }
         }
+
 
         private async Task SetCustomer(int customerId)
         {

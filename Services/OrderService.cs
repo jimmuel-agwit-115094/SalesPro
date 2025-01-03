@@ -308,7 +308,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<int> PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
+        public async Task<List<OrderItemModelExtended>> PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
         {
             using (var context = new DatabaseContext())
             {
@@ -330,7 +330,7 @@ namespace SalesPro.Services
                         throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
                     }
                 });
-                return invalidOrders.Count;
+                return invalidOrders;
             }
         }
 

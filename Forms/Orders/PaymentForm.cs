@@ -43,11 +43,12 @@ namespace SalesPro.Forms.Orders
                     return;
                 }
                 var order = CalculateOrderPayment(_amountDue);
-                int invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
-                if (invalidOrdersDetected == 0)
+                var invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
+                if (invalidOrdersDetected.Count() == 0)
                 {
                     SetControls(PaymentStatus.Paid);
                 }
+                await _orderForm.LoadOrderedItems(_orderId, invalidOrdersDetected);
 
             }
             catch (Exception ex)
