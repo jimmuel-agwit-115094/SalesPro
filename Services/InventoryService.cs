@@ -94,7 +94,6 @@ namespace SalesPro.Services
                                   ProductName = p.ProductName,
                                   SupplierName = s.SupplierName,
                                   UserFullName = u.Fullname,
-                                  RowVersion = i.RowVersion,
                               }).FirstOrDefaultAsync();
             }
         }
@@ -109,7 +108,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<int> UpdateInventory(int inventoryId, int adjustingQty, InventoryAction action, InventoryLogModel invLog, int rowVersion)
+        public async Task<int> UpdateInventory(int inventoryId, int adjustingQty, InventoryAction action, InventoryLogModel invLog)
         {
             using (var context = new DatabaseContext())
             {
@@ -118,8 +117,6 @@ namespace SalesPro.Services
                 NullCheckerHelper.NullCheck(toUpdate);
                 await context.ExecuteInTransactionAsync(async () =>
                 {
-                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, toUpdate.RowVersion);
-
                     int updateQty = action == InventoryAction.Positive_Adjustment
                         ? toUpdate.QuantityOnHand + adjustingQty
                         : toUpdate.QuantityOnHand - adjustingQty;

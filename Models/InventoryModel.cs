@@ -1,10 +1,9 @@
-﻿using SalesPro.Enums;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class InventoryModel : BaseEntity
+    public class InventoryModel
     {
         [Key]
         public int InventoryId { get; set; }

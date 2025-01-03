@@ -14,7 +14,6 @@ namespace SalesPro.Forms.Inventory
     public partial class InventoryForm : Form
     {
         private int _inventoryId;
-        private int _rowVersion;
         private DateTime _curDate;
         private readonly InventoryService _service;
         public InventoryForm()
@@ -112,7 +111,6 @@ namespace SalesPro.Forms.Inventory
                 qtyOnHand_tx.Text = inv.QuantityOnHand.ToString();
                 suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
                 retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
-                _rowVersion = inv.RowVersion;
             }
         }
 
@@ -236,7 +234,7 @@ namespace SalesPro.Forms.Inventory
                             : log.CurrentQuantity - log.AdjustmentQuantity;
 
                     }
-                    await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
+                    await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log);
                     dgInventory.SelectionChanged -= dgInventory_SelectionChanged;
                     await LoadInventoriesBaseOnTabSelected();
                     ResetControls();
