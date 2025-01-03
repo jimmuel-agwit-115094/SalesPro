@@ -178,10 +178,10 @@ namespace SalesPro.Services
             await context.SaveChangesAsync();
         }
 
-        private async Task<List<OrderItemModel>> UpdateInventory(DatabaseContext context, int orderId)
+        private async Task<List<OrderItemModelExtended>> UpdateInventory(DatabaseContext context, int orderId)
         {
             var orderedItems = await LoadOrderItemsByOrderId(orderId);
-            var inventoryExceedErrors = new List<OrderItemModel>();
+            var inventoryExceedErrors = new List<OrderItemModelExtended>();
 
             foreach (var orderItem in orderedItems)
             {
@@ -312,7 +312,7 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                var invalidOrders = new List<OrderItemModel>();
+                var invalidOrders = new List<OrderItemModelExtended>();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var order = await context.Orders.FindAsync(orderId);
@@ -326,7 +326,8 @@ namespace SalesPro.Services
 
                     if (invalidOrders.Count > 0)
                     {
-                        throw new Exception("Inventory is insufficient");
+                        var productDetails = string.Join("\n", invalidOrders.Select(x => $"- {x.ProductName}"));
+                        throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
                     }
                 });
                 return invalidOrders.Count;

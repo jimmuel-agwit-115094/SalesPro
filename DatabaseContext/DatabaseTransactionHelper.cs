@@ -26,6 +26,10 @@ namespace SalesPro.Helpers
                 {
                     MessageHandler.ShowError($"Dirty Data Error:\n{concurrencyEx.Message}");
                 }
+                catch (InvalidOperationException opEx)
+                {
+                    MessageHandler.ShowError($"Invalid Operation Error: \n{opEx.Message}");
+                }
                 catch (Exception ex)
                 {
                     MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex.Message}");

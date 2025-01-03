@@ -33,7 +33,7 @@ namespace SalesPro.Forms.Orders
                     if (inv != null)
                     {
                         _availableQty = inv.QuantityOnHand;
-                        availableQty_tx.Text = $"Available Quantity : {_availableQty}";
+                        availableQty_tx.Text = $"Stock : {_availableQty}";
                     }
                     product_tx.Text = orderItem.ProductName;
                 }
