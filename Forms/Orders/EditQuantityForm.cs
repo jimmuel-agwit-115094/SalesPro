@@ -19,6 +19,7 @@ namespace SalesPro.Forms.Orders
             InitializeComponent();
             _service = new OrderService();
             _orderForm = orderForm;
+            KeyPreview = true;
         }
 
         private async void EditQuantityForm_Load(object sender, EventArgs e)
@@ -63,6 +64,14 @@ namespace SalesPro.Forms.Orders
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error changing quantity : {ex.Message}");
+            }
+        }
+
+        private void EditQuantityForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
             }
         }
     }

@@ -290,6 +290,7 @@
             this.Text = "Payment";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaymentForm_FormClosed);
             this.Load += new System.EventHandler(this.PayForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaymentForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();

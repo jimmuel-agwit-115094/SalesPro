@@ -128,6 +128,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quantiy";
             this.Load += new System.EventHandler(this.EditQuantityForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditQuantityForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.qty_tx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

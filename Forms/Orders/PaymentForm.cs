@@ -25,31 +25,34 @@ namespace SalesPro.Forms.Orders
             TextBoxHelper.FormatDecimalTextbox(cash_tx);
             TextBoxHelper.FormatPercentageTextbox(discRate_tx);
             _orderForm = orderForm;
+            KeyPreview = true;
         }
 
         private async void pay_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                var cash = decimal.Parse(cash_tx.Text);
-                if (cash == 0)
+                if (MessageHandler.ShowQuestionGeneric("Are you sure you want to pay this order?"))
                 {
-                    MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
-                    return;
+                    var cash = decimal.Parse(cash_tx.Text);
+                    if (cash == 0)
+                    {
+                        MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
+                        return;
+                    }
+                    if (cash < _amountDue)
+                    {
+                        MessageHandler.ShowWarning("Cash amount is less than the amount due");
+                        return;
+                    }
+                    var order = CalculateOrderPayment(_amountDue);
+                    var invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
+                    if (invalidOrdersDetected.Count() == 0)
+                    {
+                        SetControls(PaymentStatus.Paid);
+                    }
+                    await _orderForm.LoadOrderedItems(_orderId, invalidOrdersDetected);
                 }
-                if (cash < _amountDue)
-                {
-                    MessageHandler.ShowWarning("Cash amount is less than the amount due");
-                    return;
-                }
-                var order = CalculateOrderPayment(_amountDue);
-                var invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
-                if (invalidOrdersDetected.Count() == 0)
-                {
-                    SetControls(PaymentStatus.Paid);
-                }
-                await _orderForm.LoadOrderedItems(_orderId, invalidOrdersDetected);
-
             }
             catch (Exception ex)
             {
@@ -147,11 +150,19 @@ namespace SalesPro.Forms.Orders
 
         private void c_TextChanged(object sender, EventArgs e)
         {
+            if (cash_tx.Text == string.Empty)
+            {
+                cash_tx.Text = "0";
+            }
             CalculateOrderPayment(_amountDue);
         }
 
         private void discRate_tx_TextChanged(object sender, EventArgs e)
         {
+            if (discRate_tx.Text == string.Empty)
+            {
+                discRate_tx.Text = "0";
+            }
             CalculateOrderPayment(_amountDue);
         }
 
@@ -168,6 +179,14 @@ namespace SalesPro.Forms.Orders
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error on payment closing: {ex.Message}");
+            }
+        }
+
+        private void PaymentForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
             }
         }
     }

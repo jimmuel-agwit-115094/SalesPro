@@ -23,6 +23,7 @@ namespace SalesPro.Forms.Orders
             InitializeComponent();
             _service = new OrderService();
             _orderForm = orderForm;
+            KeyPreview = true;
         }
 
         private async void AddOrderItemForm_Load(object sender, EventArgs e)
@@ -149,6 +150,14 @@ namespace SalesPro.Forms.Orders
                 MessageHandler.ShowError($"Error adding order item  via enter key press: {ex}");
             }
 
+        }
+
+        private void AddOrderItemForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
         }
     }
 }
