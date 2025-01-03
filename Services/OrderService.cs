@@ -248,9 +248,6 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
                     // Update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
-                    // Update inventory
-                    // Note : We added the optional parameter existingOrderQty
-                    // await UpdateInventory(context, orderItem.InventoryId, orderQty, isEdit, orderItem.OrderItemStatus, existingOrderQty);
                 });
             }
         }

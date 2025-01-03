@@ -53,7 +53,7 @@ namespace SalesPro.Forms.Orders
                 if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
                 if (qty > _availableQty)
                 {
-                    MessageHandler.ShowWarning("New quantity cannot be greater than the available stocks.");
+                    MessageHandler.ShowWarning("Quantity cannot be greater than the available stocks.");
                     return;
                 }
                 await _service.UpdateQuantity(_orderItemId, qty, isEdit: true, _rowVersion);
