@@ -55,12 +55,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void dgProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
         private async Task AddOrderItem()
         {
             if (_orderAction == OrderAction.New)
@@ -84,6 +78,11 @@ namespace SalesPro.Forms.Orders
 
         }
 
+        private void dgProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private async Task ProcessOrderItem(OrderItemStatus itemStatus)
         {
             var prodInventory = await _service.GetInventoryById(_inventoryId);
@@ -101,11 +100,22 @@ namespace SalesPro.Forms.Orders
 
             // Check if product is out of stock when already added item
             var existingOrderItem = await _service.GetExistingOrderItem(_inventoryId, _orderId);
-            if (existingOrderItem != null && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
+            if (existingOrderItem != null)
             {
-                MessageHandler.ShowWarning("The product is out of stock.");
-                return;
+                if (itemStatus == OrderItemStatus.Added && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
+                {
+                    MessageHandler.ShowWarning("The product is out of stock.");
+                    return;
+                }
+
+                if (existingOrderItem.InventoryId == prodInventory.InventoryId && _quantity == existingOrderItem.OrderQuantity
+                    && existingOrderItem.ProductId == prodInventory.ProductId)
+                {
+                    MessageHandler.ShowWarning("The product is already added.");
+                    return;
+                }
             }
+
 
             // Assess if item is for addition or returned
             int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
