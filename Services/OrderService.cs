@@ -37,34 +37,33 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await (from o in context.Orders
-                              join oi in context.OrderItems on o.OrderId equals oi.OrderId
-                              join c in context.Customers on o.CustomerId equals c.CustomerId
-                              join u in context.Users on o.UserId equals u.UserId
-                              where o.OrderId == orderId
-                              select new OrderModelExtended
-                              {
-                                  AmountDue = o.AmountDue,
-                                  AmountPaid = o.AmountPaid,
-                                  Change = o.Change,
-                                  CustomerId = o.CustomerId,
-                                  DatePaid = o.DatePaid,
-                                  DateTaken = o.DateTaken,
-                                  DiscountAmount = o.DiscountAmount,
-                                  DiscountRate = o.DiscountRate,
-                                  NetAmount = o.NetAmount,
-                                  OrderId = o.OrderId,
-                                  OrderStatus = o.OrderStatus,
-                                  PaymentMethod = o.PaymentMethod,
-                                  PaymentStatus = o.PaymentStatus,
-                                  Total = o.Total,
-                                  UserId = o.UserId,
-                                  Vat = o.Vat,
-                                  VatAmount = o.VatAmount,
-                                  CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
-                                  UserName = u.Fullname,
-
-                              }).FirstOrDefaultAsync();
+                var order = await (from o in context.Orders
+                                   join c in context.Customers on o.CustomerId equals c.CustomerId
+                                   join u in context.Users on o.UserId equals u.UserId
+                                   where o.OrderId == orderId
+                                   select new OrderModelExtended
+                                   {
+                                       AmountDue = o.AmountDue,
+                                       AmountPaid = o.AmountPaid,
+                                       Change = o.Change,
+                                       CustomerId = o.CustomerId,
+                                       DatePaid = o.DatePaid,
+                                       DateTaken = o.DateTaken,
+                                       DiscountAmount = o.DiscountAmount,
+                                       DiscountRate = o.DiscountRate,
+                                       NetAmount = o.NetAmount,
+                                       OrderId = o.OrderId,
+                                       OrderStatus = o.OrderStatus,
+                                       PaymentMethod = o.PaymentMethod,
+                                       PaymentStatus = o.PaymentStatus,
+                                       Total = o.Total,
+                                       UserId = o.UserId,
+                                       Vat = o.Vat,
+                                       VatAmount = o.VatAmount,
+                                       CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                       UserName = u.Fullname,
+                                   }).FirstOrDefaultAsync();
+                return order;
             }
         }
 

@@ -64,13 +64,23 @@ namespace SalesPro.Forms.Orders
 
         private async Task ProcessOrder()
         {
-            if (MessageHandler.ShowQuestionGeneric("Resune Order?"))
+            if (_action == Constants.FormConstants.ResumeOrder)
             {
-                var resumedOrder = await _service.ChangeOrderStatus(_orderId, OrderStatus.Active, _rowVersion);
-                await _orderForm.InitializeOrderDisplay(resumedOrder);
-                await _orderForm.ReloadRowVersion();
+                if (MessageHandler.ShowQuestionGeneric("Resune Order?"))
+                {
+                    var resumedOrder = await _service.ChangeOrderStatus(_orderId, OrderStatus.Active, _rowVersion);
+                    await _orderForm.InitializeOrderDisplay(resumedOrder);
+                    await _orderForm.ReloadRowVersion();
+                    Close();
+                }
+            }
+            else
+            {
+                var order = await _service.GetOrderById(_orderId);
+                await _orderForm.InitializeOrderDisplay(order);
                 Close();
             }
+
         }
 
         private async void dgOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
