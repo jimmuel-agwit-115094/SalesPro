@@ -13,6 +13,7 @@ namespace SalesPro.Forms.Orders
         public int _rowVersion;
         public int _customerId;
         private DateTime _curDate;
+        public string _action;
 
         private readonly OrderForm _orderForm;
         private readonly OrderService _service;
@@ -29,6 +30,8 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
+
+
                 _curDate = await ClockHelper.GetServerDateTime();
 
                 var order = await _service.GetOrderById(_orderId);
@@ -64,7 +67,6 @@ namespace SalesPro.Forms.Orders
             {
                 MessageHandler.ShowError($"Error charge form load: {ex.Message}");
             }
-
         }
 
         private async void charge_btn_Click(object sender, EventArgs e)
@@ -91,22 +93,24 @@ namespace SalesPro.Forms.Orders
                     return;
                 }
 
-
-                var credModel = new CustomerCreditModel()
+                if (MessageHandler.ShowQuestionGeneric("Are you sure you want to charge this order?"))
                 {
-                    OrderId = _orderId,
-                    CustomerId = order.CustomerId,
-                    CreditAmount = order.Total,
-                    CreditTerms = credTerms,
-                    CreditedDate = _curDate,
-                    Notes = notes_tx.Text,
-                    DueDate = _curDate.Date.AddDays(credTerms),
-                    InvoiceNumber = invoice_tx.Text,
-                    PaymentStatus = PaymentStatus.Unpaid,
-                };
-                await _service.ChargeOrder(_orderId, credModel, _rowVersion);
-                await _orderForm.CreateNewOrder();
-                Close();
+                    var credModel = new CustomerCreditModel()
+                    {
+                        OrderId = _orderId,
+                        CustomerId = order.CustomerId,
+                        CreditAmount = order.Total,
+                        CreditTerms = credTerms,
+                        CreditedDate = _curDate,
+                        Notes = notes_tx.Text,
+                        DueDate = _curDate.Date.AddDays(credTerms),
+                        InvoiceNumber = invoice_tx.Text,
+                        PaymentStatus = PaymentStatus.Unpaid,
+                    };
+                    await _service.ChargeOrder(_orderId, credModel, _rowVersion);
+                    await _orderForm.CreateNewOrder();
+                    Close();
+                }
             }
             catch (Exception ex)
             {
@@ -116,7 +120,10 @@ namespace SalesPro.Forms.Orders
 
         private void credTerms_tx_ValueChanged(object sender, EventArgs e)
         {
-            
+            if (_action == Constants.SystemConstants.New)
+            {
+                dueDate_tx.Text = DateFormatHelper.FormatDate(_curDate.Date.AddDays((int)credTerms_tx.Value));
+            }
         }
     }
 }

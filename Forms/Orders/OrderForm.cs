@@ -320,7 +320,13 @@ namespace SalesPro.Forms.Orders
             {
                 if (dgItems.SelectedRows.Count > 0)
                 {
+                    if (customer_tx.Text == "Generic Walkin Customer")
+                    {
+                        MessageHandler.ShowWarning("Cannot proceed charging order. Please select a valid customer.");
+                        return;
+                    }
                     var form = new ChargeOrderForm(this);
+                    form._action = Constants.SystemConstants.New.ToString();
                     form._orderId = _orderId;
                     form._rowVersion = _rowVersion;
                     form.ShowDialog();

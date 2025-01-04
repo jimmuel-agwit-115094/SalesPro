@@ -50,8 +50,8 @@
             // 
             // customer_tx
             // 
-            this.customer_tx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_tx.Location = new System.Drawing.Point(28, 134);
+            this.customer_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customer_tx.Location = new System.Drawing.Point(28, 132);
             this.customer_tx.Name = "customer_tx";
             this.customer_tx.Size = new System.Drawing.Size(290, 19);
             this.customer_tx.TabIndex = 542;
@@ -93,7 +93,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(26, 255);
+            this.label4.Location = new System.Drawing.Point(26, 287);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 15);
             this.label4.TabIndex = 556;
@@ -102,27 +102,27 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 181);
+            this.label1.Location = new System.Drawing.Point(27, 168);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 19);
+            this.label1.Size = new System.Drawing.Size(292, 19);
             this.label1.TabIndex = 557;
-            this.label1.Text = "Date Credited :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Text = "Date Credited";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 206);
+            this.label2.Location = new System.Drawing.Point(27, 220);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 19);
+            this.label2.Size = new System.Drawing.Size(290, 19);
             this.label2.TabIndex = 558;
-            this.label2.Text = "Due Date :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Text = "Due Date";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // invoice_tx
             // 
             this.invoice_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F);
-            this.invoice_tx.Location = new System.Drawing.Point(28, 335);
+            this.invoice_tx.Location = new System.Drawing.Point(28, 367);
             this.invoice_tx.Name = "invoice_tx";
             this.invoice_tx.Size = new System.Drawing.Size(291, 36);
             this.invoice_tx.TabIndex = 560;
@@ -132,7 +132,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 317);
+            this.label3.Location = new System.Drawing.Point(28, 349);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
             this.label3.TabIndex = 559;
@@ -140,7 +140,7 @@
             // 
             // notes_tx
             // 
-            this.notes_tx.Location = new System.Drawing.Point(27, 408);
+            this.notes_tx.Location = new System.Drawing.Point(27, 440);
             this.notes_tx.Name = "notes_tx";
             this.notes_tx.Size = new System.Drawing.Size(292, 78);
             this.notes_tx.TabIndex = 561;
@@ -150,7 +150,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 391);
+            this.label5.Location = new System.Drawing.Point(28, 423);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 15);
             this.label5.TabIndex = 562;
@@ -163,7 +163,7 @@
             this.charge_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.charge_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.charge_btn.ForeColor = System.Drawing.Color.White;
-            this.charge_btn.Location = new System.Drawing.Point(178, 510);
+            this.charge_btn.Location = new System.Drawing.Point(178, 542);
             this.charge_btn.Name = "charge_btn";
             this.charge_btn.Size = new System.Drawing.Size(140, 34);
             this.charge_btn.TabIndex = 563;
@@ -174,28 +174,28 @@
             // dueDate_tx
             // 
             this.dueDate_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dueDate_tx.Location = new System.Drawing.Point(126, 206);
+            this.dueDate_tx.Location = new System.Drawing.Point(28, 238);
             this.dueDate_tx.Name = "dueDate_tx";
-            this.dueDate_tx.Size = new System.Drawing.Size(197, 19);
+            this.dueDate_tx.Size = new System.Drawing.Size(289, 19);
             this.dueDate_tx.TabIndex = 565;
             this.dueDate_tx.Text = "Due Date";
-            this.dueDate_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dueDate_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dateCredited_tx
             // 
             this.dateCredited_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateCredited_tx.Location = new System.Drawing.Point(126, 181);
+            this.dateCredited_tx.Location = new System.Drawing.Point(27, 185);
             this.dateCredited_tx.Name = "dateCredited_tx";
-            this.dateCredited_tx.Size = new System.Drawing.Size(197, 19);
+            this.dateCredited_tx.Size = new System.Drawing.Size(292, 19);
             this.dateCredited_tx.TabIndex = 564;
             this.dateCredited_tx.Text = "Date Credited";
-            this.dateCredited_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateCredited_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // credTerms_tx
             // 
             this.credTerms_tx.BackColor = System.Drawing.Color.White;
             this.credTerms_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.credTerms_tx.Location = new System.Drawing.Point(27, 273);
+            this.credTerms_tx.Location = new System.Drawing.Point(27, 305);
             this.credTerms_tx.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -214,7 +214,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(342, 561);
+            this.ClientSize = new System.Drawing.Size(342, 599);
             this.Controls.Add(this.credTerms_tx);
             this.Controls.Add(this.dueDate_tx);
             this.Controls.Add(this.dateCredited_tx);
