@@ -78,6 +78,7 @@ namespace SalesPro.Forms.Orders
             {
                 var order = await _service.GetOrderById(_orderId);
                 await _orderForm.InitializeOrderDisplay(order);
+                await _orderForm.ReloadRowVersion();
                 Close();
             }
 

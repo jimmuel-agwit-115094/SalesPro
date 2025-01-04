@@ -8,7 +8,7 @@ namespace POS_Generic.Helpers
         {
             if (entity == null)
             {
-                throw new ArgumentNullException($"{entity} validation failed.");
+                throw new NullReferenceException($"{entity} validation failed.");
             }
         }
     }

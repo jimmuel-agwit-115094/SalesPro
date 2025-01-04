@@ -6,6 +6,7 @@ using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -152,12 +153,24 @@ namespace SalesPro.Services
             };
         }
 
-        private async Task UpdateOrder(DatabaseContext context, int orderId, int rowVersion, OrderModel orderModel = null)
+        private async Task<bool> UpdateOrder(DatabaseContext context, int orderId, int rowVersion, OrderModel orderModel = null)
         {
             // Fetch the order
             var currentOrder = await context.Orders.FindAsync(orderId);
-            NullCheckerHelper.NullCheck(currentOrder);
-            VersionCheckerHelper.ConcurrencyCheck(rowVersion, currentOrder.RowVersion);
+
+            try
+            {
+                NullCheckerHelper.NullCheck(currentOrder);
+                VersionCheckerHelper.ConcurrencyCheck(rowVersion, currentOrder.RowVersion);
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+            catch (DBConcurrencyException)
+            {
+                return false; // Return false if the concurrency check fails
+            }
 
             // Load order items
             var orderedItems = await LoadOrderItemsByOrderId(orderId);
@@ -188,6 +201,7 @@ namespace SalesPro.Services
 
             // Save changes to the database
             await context.SaveChangesAsync();
+            return true;
         }
 
         private async Task<List<OrderItemModelExtended>> UpdateInventory(DatabaseContext context, int orderId)
