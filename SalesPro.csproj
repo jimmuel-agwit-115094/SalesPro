@@ -282,6 +282,7 @@
     </Compile>
     <Compile Include="Helpers\NullCheckerHelper.cs" />
     <Compile Include="Helpers\UiHelpers\TextBoxHelper.cs" />
+    <Compile Include="Models\CustomerCreditModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\InventoryLogModel.cs" />
     <Compile Include="Models\InventoryModel.cs" />

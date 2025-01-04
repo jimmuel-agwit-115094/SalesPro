@@ -316,7 +316,20 @@ namespace SalesPro.Forms.Orders
 
         private void charge_btn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (dgItems.SelectedRows.Count > 0)
+                {
+                    var form = new ChargeOrderForm(this);
+                    form._orderId = _orderId;
+                    form._rowVersion = _rowVersion;
+                    form.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error charge click: {ex.Message}");
+            }
         }
     }
 }
