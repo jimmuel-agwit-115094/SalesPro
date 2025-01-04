@@ -158,18 +158,12 @@ namespace SalesPro.Services
             // Fetch the order
             var currentOrder = await context.Orders.FindAsync(orderId);
 
-            try
-            {
-                NullCheckerHelper.NullCheck(currentOrder);
-                VersionCheckerHelper.ConcurrencyCheck(rowVersion, currentOrder.RowVersion);
-            }
-            catch (NullReferenceException)
+            NullCheckerHelper.NullCheck(currentOrder);
+            bool isConcurrencyValid = VersionCheckerHelper.ConcurrencyCheck(rowVersion, currentOrder.RowVersion);
+
+            if (!isConcurrencyValid)
             {
                 return false;
-            }
-            catch (DBConcurrencyException)
-            {
-                return false; // Return false if the concurrency check fails
             }
 
             // Load order items
@@ -201,6 +195,7 @@ namespace SalesPro.Services
 
             // Save changes to the database
             await context.SaveChangesAsync();
+
             return true;
         }
 
@@ -333,10 +328,12 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<OrderItemModelExtended>> PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
+        // Dual return of list and bool to check if the updating of order is success
+        public async Task<(List<OrderItemModelExtended>, bool)> PayOrder(int orderId, decimal amountPaid, DateTime curDate, int rowVersion, OrderModel orderModel)
         {
             using (var context = new DatabaseContext())
             {
+                bool successUpdate = false;
                 var invalidOrders = new List<OrderItemModelExtended>();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
@@ -344,7 +341,7 @@ namespace SalesPro.Services
                     NullCheckerHelper.NullCheck(order);
 
                     // Update order
-                    await UpdateOrder(context, orderId, rowVersion, orderModel);
+                    successUpdate = await UpdateOrder(context, orderId, rowVersion, orderModel);
 
                     // Update inventory
                     invalidOrders = await UpdateInventory(context, order.OrderId);
@@ -355,7 +352,7 @@ namespace SalesPro.Services
                         throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
                     }
                 });
-                return invalidOrders;
+                return (invalidOrders, successUpdate);
             }
         }
 

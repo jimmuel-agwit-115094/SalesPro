@@ -74,8 +74,8 @@ namespace SalesPro.Forms.Orders
                 if (MessageHandler.ShowQuestionGeneric("Are you sure you want to pay this order?"))
                 {
                     var order = CalculateOrderPayment(_amountDue);
-                    var invalidOrdersDetected = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
-                    if (invalidOrdersDetected.Count() == 0)
+                    var (invalidOrdersDetected, successUpdate) = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
+                    if (invalidOrdersDetected.Count() == 0 && successUpdate)
                     {
                         SetControls(PaymentStatus.Paid);
                     }
