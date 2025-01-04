@@ -41,8 +41,8 @@
             this.notes_tx = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.charge_btn = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.dueDate_tx = new System.Windows.Forms.Label();
+            this.dateCredited_tx = new System.Windows.Forms.Label();
             this.credTerms_tx = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.credTerms_tx)).BeginInit();
@@ -102,7 +102,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 181);
+            this.label1.Location = new System.Drawing.Point(29, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 19);
             this.label1.TabIndex = 557;
@@ -112,7 +112,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(33, 206);
+            this.label2.Location = new System.Drawing.Point(29, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 558;
@@ -126,7 +126,6 @@
             this.invoice_tx.Name = "invoice_tx";
             this.invoice_tx.Size = new System.Drawing.Size(291, 36);
             this.invoice_tx.TabIndex = 560;
-            this.invoice_tx.Text = "0";
             this.invoice_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
@@ -170,26 +169,27 @@
             this.charge_btn.TabIndex = 563;
             this.charge_btn.Text = "Charge";
             this.charge_btn.UseVisualStyleBackColor = false;
+            this.charge_btn.Click += new System.EventHandler(this.charge_btn_Click);
             // 
-            // label6
+            // dueDate_tx
             // 
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(126, 206);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(197, 19);
-            this.label6.TabIndex = 565;
-            this.label6.Text = "Due Date";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dueDate_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dueDate_tx.Location = new System.Drawing.Point(126, 206);
+            this.dueDate_tx.Name = "dueDate_tx";
+            this.dueDate_tx.Size = new System.Drawing.Size(197, 19);
+            this.dueDate_tx.TabIndex = 565;
+            this.dueDate_tx.Text = "Due Date";
+            this.dueDate_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // dateCredited_tx
             // 
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(126, 181);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(197, 19);
-            this.label7.TabIndex = 564;
-            this.label7.Text = "Date Credited";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateCredited_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateCredited_tx.Location = new System.Drawing.Point(126, 181);
+            this.dateCredited_tx.Name = "dateCredited_tx";
+            this.dateCredited_tx.Size = new System.Drawing.Size(197, 19);
+            this.dateCredited_tx.TabIndex = 564;
+            this.dateCredited_tx.Text = "Date Credited";
+            this.dateCredited_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // credTerms_tx
             // 
@@ -202,22 +202,22 @@
             0,
             0});
             this.credTerms_tx.Name = "credTerms_tx";
-            this.credTerms_tx.ReadOnly = true;
             this.credTerms_tx.Size = new System.Drawing.Size(290, 36);
             this.credTerms_tx.TabIndex = 566;
             this.credTerms_tx.Tag = "IsNumeric";
             this.credTerms_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.credTerms_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.credTerms_tx.ValueChanged += new System.EventHandler(this.credTerms_tx_ValueChanged);
             // 
             // ChargeOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(345, 561);
+            this.ClientSize = new System.Drawing.Size(342, 561);
             this.Controls.Add(this.credTerms_tx);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dueDate_tx);
+            this.Controls.Add(this.dateCredited_tx);
             this.Controls.Add(this.charge_btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.notes_tx);
@@ -260,8 +260,8 @@
         private System.Windows.Forms.RichTextBox notes_tx;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button charge_btn;
-        internal System.Windows.Forms.Label label6;
-        internal System.Windows.Forms.Label label7;
+        internal System.Windows.Forms.Label dueDate_tx;
+        internal System.Windows.Forms.Label dateCredited_tx;
         public System.Windows.Forms.NumericUpDown credTerms_tx;
     }
 }
