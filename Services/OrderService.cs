@@ -393,40 +393,46 @@ namespace SalesPro.Services
             }
         }
 
-
-
-        public async Task<List<OrderModelExtended>> LoadOrdersByStatus(OrderStatus orderStatus)
+        public async Task<List<OrderModelExtended>> LoadOrdersByStatus(OrderStatus? orderStatus = null)
         {
             using (var context = new DatabaseContext())
             {
-                return await (from o in context.Orders
-                              join c in context.Customers on o.CustomerId equals c.CustomerId
-                              join u in context.Users on o.UserId equals u.UserId
-                              where o.OrderStatus == orderStatus
-                              select new OrderModelExtended
-                              {
-                                  AmountDue = o.AmountDue,
-                                  AmountPaid = o.AmountPaid,
-                                  Change = o.Change,
-                                  CustomerId = o.CustomerId,
-                                  DatePaid = o.DatePaid,
-                                  DateTaken = o.DateTaken,
-                                  DiscountAmount = o.DiscountAmount,
-                                  DiscountRate = o.DiscountRate,
-                                  NetAmount = o.NetAmount,
-                                  OrderId = o.OrderId,
-                                  OrderStatus = o.OrderStatus,
-                                  PaymentMethod = o.PaymentMethod,
-                                  PaymentStatus = o.PaymentStatus,
-                                  Total = o.Total,
-                                  UserId = o.UserId,
-                                  Vat = o.Vat,
-                                  VatAmount = o.VatAmount,
-                                  CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
-                                  UserName = u.Fullname,
-                              }).OrderByDescending(x => x.OrderId).ToListAsync();
+                var query = from o in context.Orders
+                            join c in context.Customers on o.CustomerId equals c.CustomerId
+                            join u in context.Users on o.UserId equals u.UserId
+                            select new OrderModelExtended
+                            {
+                                AmountDue = o.AmountDue,
+                                AmountPaid = o.AmountPaid,
+                                Change = o.Change,
+                                CustomerId = o.CustomerId,
+                                DatePaid = o.DatePaid,
+                                DateTaken = o.DateTaken,
+                                DiscountAmount = o.DiscountAmount,
+                                DiscountRate = o.DiscountRate,
+                                NetAmount = o.NetAmount,
+                                OrderId = o.OrderId,
+                                OrderStatus = o.OrderStatus,
+                                PaymentMethod = o.PaymentMethod,
+                                PaymentStatus = o.PaymentStatus,
+                                Total = o.Total,
+                                UserId = o.UserId,
+                                Vat = o.Vat,
+                                VatAmount = o.VatAmount,
+                                CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                UserName = u.Fullname,
+                            };
+
+                // Apply filter only if orderStatus is not null
+                if (orderStatus.HasValue)
+                {
+                    query = query.Where(o => o.OrderStatus == orderStatus.Value);
+                }
+
+                return await query.OrderByDescending(x => x.OrderId).ToListAsync();
             }
         }
+
 
         public async Task<OrderModel> UpdateOrderCustomer(int orderId, int customerId, int rowVersion)
         {

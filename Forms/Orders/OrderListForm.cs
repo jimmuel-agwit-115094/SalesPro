@@ -1,8 +1,10 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +15,7 @@ namespace SalesPro.Forms.Orders
         public OrderStatus _orderStatus;
         private int _orderId;
         public int _rowVersion;
+        public string _action;
 
         private readonly OrderForm _orderForm;
         private readonly OrderService _service;
@@ -28,10 +31,19 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var orders = await _service.LoadOrdersByStatus(_orderStatus);
-                dgOrders.DataSource = orders;
+                var orderList = new List<OrderModelExtended>();
+                if (_action == Constants.FormConstants.ResumeOrder)
+                {
+                    orderList = await _service.LoadOrdersByStatus(_orderStatus);
+                }
+                else
+                {
+                    orderList = await _service.LoadOrdersByStatus();
+                }
+                dgOrders.DataSource = orderList;
+
                 DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
-                     "CustomerName", "DateTaken", "Total", "AmountPaid", "AmountDue", "OrderStatus");
+                     "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
             }
             catch (Exception ex)
             {

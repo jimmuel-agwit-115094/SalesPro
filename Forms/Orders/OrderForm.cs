@@ -277,6 +277,7 @@ namespace SalesPro.Forms.Orders
             }
             var form = new OrderListForm(this);
             form.title_lbl.Text = "Suspended Order Lists";
+            form._action = Constants.FormConstants.ResumeOrder;
             form._orderStatus = OrderStatus.Suspended;
             form._rowVersion = _rowVersion;
             form.ShowDialog();
@@ -336,6 +337,15 @@ namespace SalesPro.Forms.Orders
             {
                 MessageHandler.ShowError($"Error charge click: {ex.Message}");
             }
+        }
+
+        private void orderList_btn_Click(object sender, EventArgs e)
+        {
+            var form = new OrderListForm(this);
+            form.title_lbl.Text = "Order Lists";
+            form._action = Constants.FormConstants.OrderLists;
+            form._rowVersion = _rowVersion;
+            form.ShowDialog();
         }
     }
 }

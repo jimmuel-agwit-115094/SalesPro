@@ -5,5 +5,8 @@
         public const string Transaction = "Transaction";
         public const string PurchaseOrder = "PurchaseOrder";
         public const string PurchaseOrderItem = "PurchaseOrderItem";
+
+        public const string ResumeOrder = "ResumeOrder";
+        public const string OrderLists = "OrderLists";
     }
 }
