@@ -45,9 +45,8 @@ namespace SalesPro.Forms.Orders
                     amtDue_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
                     _amountDue = order.AmountDue;
                     customer_tx.Text = order.CustomerName;
+                    SetControls(order.PaymentStatus);
                 }
-                cash_tx.ReadOnly = _amountDue <= 0;
-                discRate_tx.ReadOnly = _amountDue <= 0;
                 CalculateOrderPayment(_amountDue);
             }
             catch (Exception ex)

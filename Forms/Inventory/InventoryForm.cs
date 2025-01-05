@@ -143,7 +143,6 @@ namespace SalesPro.Forms.Inventory
                 if (_inventoryId == 0) return;
                 update_btn.Enabled = true;
                 await GetInventoryData(_inventoryId);
-           
             }
             catch (Exception ex)
             {

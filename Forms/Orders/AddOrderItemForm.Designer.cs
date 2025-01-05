@@ -50,10 +50,10 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(395, 362);
-            this.notFound_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.notFound_lbl.Location = new System.Drawing.Point(527, 446);
+            this.notFound_lbl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.notFound_lbl.Name = "notFound_lbl";
-            this.notFound_lbl.Size = new System.Drawing.Size(301, 45);
+            this.notFound_lbl.Size = new System.Drawing.Size(370, 54);
             this.notFound_lbl.TabIndex = 454;
             this.notFound_lbl.Text = "Product Not Found";
             // 
@@ -61,10 +61,10 @@
             // 
             this.search_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(13, 61);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(4);
+            this.search_tx.Location = new System.Drawing.Point(17, 75);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(1062, 43);
+            this.search_tx.Size = new System.Drawing.Size(1415, 52);
             this.search_tx.TabIndex = 451;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
@@ -100,8 +100,8 @@
             this.dgProduct.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgProduct.EnableHeadersVisualStyles = false;
             this.dgProduct.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgProduct.Location = new System.Drawing.Point(15, 111);
-            this.dgProduct.Margin = new System.Windows.Forms.Padding(4);
+            this.dgProduct.Location = new System.Drawing.Point(20, 137);
+            this.dgProduct.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dgProduct.MultiSelect = false;
             this.dgProduct.Name = "dgProduct";
             this.dgProduct.ReadOnly = true;
@@ -117,10 +117,11 @@
             this.dgProduct.RowHeadersWidth = 51;
             this.dgProduct.RowTemplate.Height = 45;
             this.dgProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgProduct.Size = new System.Drawing.Size(1101, 557);
+            this.dgProduct.Size = new System.Drawing.Size(1468, 686);
             this.dgProduct.TabIndex = 455;
             this.dgProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellContentClick);
             this.dgProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProduct_CellDoubleClick);
+            this.dgProduct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgProduct_CellFormatting);
             this.dgProduct.SelectionChanged += new System.EventHandler(this.dgProduct_SelectionChanged);
             this.dgProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgProduct_KeyDown);
             // 
@@ -128,9 +129,10 @@
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(12, 18);
+            this.title_lbl.Location = new System.Drawing.Point(16, 22);
+            this.title_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(113, 25);
+            this.title_lbl.Size = new System.Drawing.Size(143, 32);
             this.title_lbl.TabIndex = 456;
             this.title_lbl.Text = "Return item";
             // 
@@ -138,10 +140,10 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1074, 61);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(1432, 75);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 43);
+            this.pictureBox1.Size = new System.Drawing.Size(55, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 458;
             this.pictureBox1.TabStop = false;
@@ -149,25 +151,27 @@
             // return_pb
             // 
             this.return_pb.Image = ((System.Drawing.Image)(resources.GetObject("return_pb.Image")));
-            this.return_pb.Location = new System.Drawing.Point(1074, 12);
+            this.return_pb.Location = new System.Drawing.Point(1432, 15);
+            this.return_pb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.return_pb.Name = "return_pb";
-            this.return_pb.Size = new System.Drawing.Size(40, 40);
+            this.return_pb.Size = new System.Drawing.Size(53, 49);
             this.return_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.return_pb.TabIndex = 459;
             this.return_pb.TabStop = false;
             // 
             // AddOrderItemForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1129, 681);
+            this.ClientSize = new System.Drawing.Size(1505, 838);
             this.Controls.Add(this.return_pb);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.dgProduct);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOrderItemForm";
