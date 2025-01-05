@@ -42,9 +42,10 @@
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(10, 12);
+            this.title_lbl.Location = new System.Drawing.Point(13, 15);
+            this.title_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(95, 25);
+            this.title_lbl.Size = new System.Drawing.Size(121, 32);
             this.title_lbl.TabIndex = 462;
             this.title_lbl.Text = "Order List";
             // 
@@ -54,10 +55,10 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(416, 299);
-            this.notFound_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.notFound_lbl.Location = new System.Drawing.Point(555, 368);
+            this.notFound_lbl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.notFound_lbl.Name = "notFound_lbl";
-            this.notFound_lbl.Size = new System.Drawing.Size(272, 45);
+            this.notFound_lbl.Size = new System.Drawing.Size(336, 54);
             this.notFound_lbl.TabIndex = 460;
             this.notFound_lbl.Text = "No Orders Found";
             // 
@@ -93,8 +94,8 @@
             this.dgOrders.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgOrders.EnableHeadersVisualStyles = false;
             this.dgOrders.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgOrders.Location = new System.Drawing.Point(13, 52);
-            this.dgOrders.Margin = new System.Windows.Forms.Padding(4);
+            this.dgOrders.Location = new System.Drawing.Point(17, 64);
+            this.dgOrders.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dgOrders.MultiSelect = false;
             this.dgOrders.Name = "dgOrders";
             this.dgOrders.ReadOnly = true;
@@ -110,23 +111,25 @@
             this.dgOrders.RowHeadersWidth = 51;
             this.dgOrders.RowTemplate.Height = 45;
             this.dgOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrders.Size = new System.Drawing.Size(1101, 557);
+            this.dgOrders.Size = new System.Drawing.Size(1468, 686);
             this.dgOrders.TabIndex = 461;
             this.dgOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrders_CellContentClick);
             this.dgOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrders_CellDoubleClick);
+            this.dgOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgOrders_CellFormatting);
             this.dgOrders.SelectionChanged += new System.EventHandler(this.dgOrders_SelectionChanged);
             this.dgOrders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgOrders_KeyDown);
             // 
             // OrderListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1127, 622);
+            this.ClientSize = new System.Drawing.Size(1503, 766);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.dgOrders);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OrderListForm";

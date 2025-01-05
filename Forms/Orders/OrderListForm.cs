@@ -5,6 +5,7 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -112,6 +113,27 @@ namespace SalesPro.Forms.Orders
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error processing order on cell key down: {ex.Message}");
+            }
+        }
+
+        private void dgOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgOrders.Columns[e.ColumnIndex].Name == "PaymentStatus") // Replace with your column name
+            {
+                if (e.Value != null && e.Value.ToString() == "Paid") // Replace "SpecificString" with your condition
+                {
+                    e.CellStyle.Font = new Font(
+                        dgOrders.DefaultCellStyle.Font.FontFamily,
+                        dgOrders.DefaultCellStyle.Font.Size,
+                        FontStyle.Bold
+                     );
+                    e.CellStyle.ForeColor = Color.Green; // Change the fore color to green
+                    e.CellStyle.SelectionForeColor = Color.Green;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // Default color
+                }
             }
         }
     }

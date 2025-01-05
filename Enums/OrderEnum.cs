@@ -3,7 +3,6 @@
     public enum OrderStatus
     {
         Active,
-        Cancelled,
         Suspended
     }
 
