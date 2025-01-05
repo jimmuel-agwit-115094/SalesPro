@@ -36,21 +36,25 @@ namespace SalesPro.Forms.Orders
             {
                 var orders = await _service.LoadOrdersByStatus();
 
-                List<OrderModelExtended> orderList;
-
                 if (_action == FormConstants.ResumeOrder)
                 {
-                    orderList = orders.Where(x => x.OrderStatus == OrderStatus.Suspended).ToList();
+                    var suspendedOrders = orders.Where(x => x.OrderStatus == OrderStatus.Suspended).ToList();
+
+                    dgOrders.DataSource = suspendedOrders;
+                    DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
+                     "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
                 }
                 else
                 {
-                    orderList = orders.Where(x => x.OrderStatus != OrderStatus.Suspended).ToList();
+                    var allOrders = orders.Where(x => x.OrderStatus != OrderStatus.Suspended).ToList();
+                    dgOrders.DataSource = allOrders;
+                    DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
+                    "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
                 }
 
-                dgOrders.DataSource = orderList;
 
-                DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
-                     "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
+
+
             }
             catch (Exception ex)
             {
@@ -71,54 +75,47 @@ namespace SalesPro.Forms.Orders
 
         private async Task ProcessOrder()
         {
-            if (_action == Constants.FormConstants.ResumeOrder)
+            try
             {
-                if (MessageHandler.ShowQuestionGeneric("Resune Order?"))
+                if (_action == Constants.FormConstants.ResumeOrder)
                 {
-                    var resumedOrder = await _service.ChangeOrderStatus(_orderId, OrderStatus.Active, _rowVersion);
-                    await _orderForm.InitializeOrderDisplay(resumedOrder);
-                    await _orderForm.ReloadRowVersion();
-                    Close();
+                    if (MessageHandler.ShowQuestionGeneric("Resune Order?"))
+                    {
+                        var resumedOrder = await _service.ChangeOrderStatus(_orderId, OrderStatus.Active, _rowVersion);
+                        await _orderForm.InitializeOrderDisplay(resumedOrder);
+                        await _orderForm.ReloadRowVersion();
+                        Close();
+                    }
+                }
+                else
+                {
+                    //var order = await _service.GetOrderById(_orderId);
+                    //await _orderForm.InitializeOrderDisplay(order);
+                    //await _orderForm.ReloadRowVersion();
+                    //Close();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //var order = await _service.GetOrderById(_orderId);
-                //await _orderForm.InitializeOrderDisplay(order);
-                //await _orderForm.ReloadRowVersion();
-                //Close();
+                MessageHandler.ShowError($"Error processing order: {ex.Message}");
             }
 
         }
 
         private async void dgOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (e.RowIndex >= 0)
             {
-                if (e.RowIndex >= 0)
-                {
-                    await ProcessOrder();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error processing order on cell double click: {ex.Message}");
+                await ProcessOrder();
             }
         }
 
         private async void dgOrders_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    e.Handled = true;
-                    await ProcessOrder();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error processing order on cell key down: {ex.Message}");
+                await ProcessOrder();
+                e.Handled = true;
             }
         }
 
