@@ -200,6 +200,8 @@ public static class DgFormatHelper
                 column.Visible = false;
             }
 
+            DataGridViewColumn firstVisibleColumn = null;
+
             // Show only specified columns
             foreach (string field in fieldsToShow)
             {
@@ -213,6 +215,11 @@ public static class DgFormatHelper
                 {
                     columnToShow.Visible = true;
                     columnToShow.HeaderText = AddSpacesToCamelCase(field);
+
+                    if (firstVisibleColumn == null)
+                    {
+                        firstVisibleColumn = columnToShow;
+                    }
                 }
                 else
                 {
@@ -224,11 +231,11 @@ public static class DgFormatHelper
             // Clear previous selection
             dataGridView.ClearSelection();
 
-            // Ensure the first row is selected (if there are rows)
-            if (dataGridView.Rows.Count > 0)
+            // Ensure a visible cell is selected
+            if (dataGridView.Rows.Count > 0 && firstVisibleColumn != null)
             {
+                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[firstVisibleColumn.Index];
                 dataGridView.Rows[0].Selected = true;
-                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[0];  // Set the current cell to the first row, first column
             }
         }
         finally
@@ -237,6 +244,7 @@ public static class DgFormatHelper
             dataGridView.ResumeLayout();
         }
     }
+
 
 
     private static string AddSpacesToCamelCase(string input)

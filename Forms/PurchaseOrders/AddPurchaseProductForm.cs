@@ -39,7 +39,6 @@ namespace SalesPro.Forms.PurchaseOrders
                 if (products != null)
                 {
                     dgProducts.DataSource = products;
-                    dgProducts.ClearSelection();
                     DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
                 }
             }
