@@ -190,6 +190,7 @@ namespace SalesPro.Services
                 currentOrder.DiscountRate = orderModel.DiscountRate;
                 currentOrder.PaymentMethod = orderModel.PaymentMethod;
                 currentOrder.PaymentStatus = PaymentStatus.Paid;
+                currentOrder.OrderStatus = OrderStatus.Completed;
                 currentOrder.DatePaid = orderModel.DatePaid;
             }
 
@@ -403,7 +404,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<OrderModelExtended>> LoadOrdersByStatus(OrderStatus? orderStatus = null)
+        public async Task<List<OrderModelExtended>> LoadOrdersByStatus()
         {
             using (var context = new DatabaseContext())
             {
@@ -433,11 +434,11 @@ namespace SalesPro.Services
                                 UserName = u.Fullname,
                             };
 
-                // Apply filter only if orderStatus is not null
-                if (orderStatus.HasValue)
-                {
-                    query = query.Where(o => o.OrderStatus == orderStatus.Value);
-                }
+                //// Apply filter only if orderStatus is not null
+                //if (orderStatus.HasValue)
+                //{
+                //    query = query.Where(o => o.OrderStatus == orderStatus.Value);
+                //}
 
                 return await query.OrderByDescending(x => x.OrderId).ToListAsync();
             }
