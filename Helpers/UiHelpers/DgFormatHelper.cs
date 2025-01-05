@@ -183,68 +183,38 @@ public static class DgFormatHelper
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
     {
-        if (dataGridView == null)
-            throw new ArgumentNullException(nameof(dataGridView));
+        //if (dataGridView == null || dataGridView.Rows.Count == 0)
+        //    return; // Exit if no rows are present
 
         if (fieldsToShow == null || fieldsToShow.Length == 0)
             throw new ArgumentException("At least one field must be specified", nameof(fieldsToShow));
 
-        // Suspend layout to prevent flickering or unnecessary updates
-        dataGridView.SuspendLayout();
-
-        try
+        // Hide all columns initially
+        foreach (DataGridViewColumn column in dataGridView.Columns)
         {
-            // Hide all columns initially
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                column.Visible = false;
-            }
-
-            DataGridViewColumn firstVisibleColumn = null;
-
-            // Show only specified columns
-            foreach (string field in fieldsToShow)
-            {
-                DataGridViewColumn columnToShow = dataGridView.Columns
-                    .Cast<DataGridViewColumn>()
-                    .FirstOrDefault(col =>
-                        col.DataPropertyName.Equals(field, StringComparison.OrdinalIgnoreCase) ||
-                        col.Name.Equals(field, StringComparison.OrdinalIgnoreCase));
-
-                if (columnToShow != null)
-                {
-                    columnToShow.Visible = true;
-                    columnToShow.HeaderText = AddSpacesToCamelCase(field);
-
-                    if (firstVisibleColumn == null)
-                    {
-                        firstVisibleColumn = columnToShow;
-                    }
-                }
-                else
-                {
-                    // Optional: Handle the error (log, show message, etc.)
-                    MessageHandler.ShowError($"Column {field} not found in the DataGridView");
-                }
-            }
-
-            // Clear previous selection
-            dataGridView.ClearSelection();
-
-            // Ensure a visible cell is selected
-            if (dataGridView.Rows.Count > 0 && firstVisibleColumn != null)
-            {
-                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[firstVisibleColumn.Index];
-                dataGridView.Rows[0].Selected = true;
-            }
+            column.Visible = false;
         }
-        finally
+
+        // Show only specified columns
+        foreach (string field in fieldsToShow)
         {
-            // Resume layout after all changes are made
-            dataGridView.ResumeLayout();
+            DataGridViewColumn columnToShow = dataGridView.Columns
+                .Cast<DataGridViewColumn>()
+                .FirstOrDefault(col =>
+                    col.DataPropertyName.Equals(field, StringComparison.OrdinalIgnoreCase) ||
+                    col.Name.Equals(field, StringComparison.OrdinalIgnoreCase));
+
+            if (columnToShow != null)
+            {
+                columnToShow.Visible = true;
+                columnToShow.HeaderText = AddSpacesToCamelCase(field);
+            }
+            else
+            {
+                MessageHandler.ShowError($"Column {field} not found in the DataGridView");
+            }
         }
     }
-
 
 
     private static string AddSpacesToCamelCase(string input)
