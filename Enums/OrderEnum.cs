@@ -3,7 +3,8 @@
     public enum OrderStatus
     {
         Active,
-        Suspended
+        Suspended,
+        Completed
     }
 
     public enum PaymentMethod

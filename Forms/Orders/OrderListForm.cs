@@ -33,14 +33,8 @@ namespace SalesPro.Forms.Orders
             try
             {
                 var orderList = new List<OrderModelExtended>();
-                if (_action == Constants.FormConstants.ResumeOrder)
-                {
-                    orderList = await _service.LoadOrdersByStatus(_orderStatus);
-                }
-                else
-                {
-                    orderList = await _service.LoadOrdersByStatus();
-                }
+                orderList = await _service.LoadOrdersByStatus(_orderStatus);
+              
                 dgOrders.DataSource = orderList;
 
                 DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,

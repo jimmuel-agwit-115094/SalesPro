@@ -343,6 +343,7 @@ namespace SalesPro.Forms.Orders
         {
             var form = new OrderListForm(this);
             form.title_lbl.Text = "Order Lists";
+            form._orderStatus = OrderStatus.Active;
             form._action = Constants.FormConstants.OrderLists;
             form._rowVersion = _rowVersion;
             form.ShowDialog();

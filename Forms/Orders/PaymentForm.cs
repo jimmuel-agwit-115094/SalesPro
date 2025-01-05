@@ -125,6 +125,7 @@ namespace SalesPro.Forms.Orders
                 orderModel.DiscountAmount = discountAmount;
                 orderModel.Change = change;
                 orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                orderModel.OrderStatus = OrderStatus.Completed;
                 orderModel.DatePaid = _curDate;
             }
             catch (Exception ex)
@@ -177,6 +178,10 @@ namespace SalesPro.Forms.Orders
                 if (order != null && order.PaymentStatus == PaymentStatus.Paid)
                 {
                     await _orderForm.CreateNewOrder();
+                }
+                else
+                {
+                    await _orderForm.InitializeOrderDisplay(order);
                 }
             }
             catch (Exception ex)
