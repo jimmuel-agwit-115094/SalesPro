@@ -156,7 +156,8 @@ public static class DgFormatHelper
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-     
+        // set selection color
+        dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 224, 192);
 
         // Suppress F3 key press
         dataGridView.KeyDown += (s, ev) =>

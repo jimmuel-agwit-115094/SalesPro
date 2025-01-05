@@ -175,7 +175,7 @@ namespace SalesPro.Forms.Orders
             try
             {
                 var order = await _service.GetOrderById(_orderId);
-                if (order != null && order.PaymentStatus == PaymentStatus.Paid && order.OrderStatus == OrderStatus.Completed)
+                if (order != null && order.PaymentStatus == PaymentStatus.Paid)
                 {
                     await _orderForm.CreateNewOrder();
                 }

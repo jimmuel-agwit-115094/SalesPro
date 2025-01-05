@@ -83,10 +83,10 @@ namespace SalesPro.Forms.Orders
             }
             else
             {
-                var order = await _service.GetOrderById(_orderId);
-                await _orderForm.InitializeOrderDisplay(order);
-                await _orderForm.ReloadRowVersion();
-                Close();
+                //var order = await _service.GetOrderById(_orderId);
+                //await _orderForm.InitializeOrderDisplay(order);
+                //await _orderForm.ReloadRowVersion();
+                //Close();
             }
 
         }
