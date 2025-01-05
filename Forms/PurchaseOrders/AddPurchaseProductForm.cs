@@ -36,11 +36,8 @@ namespace SalesPro.Forms.PurchaseOrders
             using (var _context = new DatabaseContext())
             {
                 var products = await _service.LoadProducts();
-                if (products != null)
-                {
-                    dgProducts.DataSource = products;
-                    DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
-                }
+                dgProducts.DataSource = products;
+                DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
             }
         }
 
@@ -61,7 +58,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     DgFormatHelper.DisableDatagrid(dgProducts);
                     search_tx.ReadOnly = true;
-                   
+
                     var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
                     if (poItem != null)
                     {
@@ -103,6 +100,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 productName_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "ProductName");
                 unitOfMeasure_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "UnitOfMeasure");
                 _isProductSelected = productName_tx.Text != string.Empty;
+                supPrice_tx.Text = _service.GetLatestSupplierPrice(_productId).ToString();
             }
             catch (Exception ex)
             {
@@ -245,6 +243,21 @@ namespace SalesPro.Forms.PurchaseOrders
                 MessageHandler.ShowError($"Error deleting product with Id : {_poItemId}");
                 throw;
             }
+        }
+
+        private void qty_tx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ComputeTotal();
+        }
+
+        private void supplierPrice_tx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ComputeTotal();
+        }
+
+        private void markUpPrice_tx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ComputeTotal();
         }
     }
 }

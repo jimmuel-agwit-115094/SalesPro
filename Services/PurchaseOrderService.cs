@@ -344,5 +344,17 @@ namespace SalesPro.Services
                               }).OrderByDescending(x => x.PurchaseOrderLogsId).ToListAsync();
             }
         }
+
+        public decimal GetLatestSupplierPrice(int productId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return context.Inventories
+                    .Where(x => x.ProductId == productId)
+                    .OrderByDescending(x => x.DateAdded)
+                    .Select(x => x.SupplierPrice)
+                    .FirstOrDefault();
+            }
+        }
     }
 }
