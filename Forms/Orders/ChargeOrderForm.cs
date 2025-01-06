@@ -108,8 +108,17 @@ namespace SalesPro.Forms.Orders
                         InvoiceNumber = invoice_tx.Text,
                         PaymentStatus = PaymentStatus.Unpaid,
                     };
-                    await _service.ChargeOrder(_orderId, credModel, _rowVersion);
-                    await _orderForm.CreateNewOrder();
+                    var chargedOrder = await _service.ChargeOrder(_orderId, credModel, _rowVersion);
+                    // Date paid is null if the order is not paid yet.
+                    if (chargedOrder.DatePaid != null)
+                    {
+                        await _orderForm.CreateNewOrder();
+                    }
+                    else
+                    {
+                        var existingOrder = await _service.GetOrderById(_orderId);
+                        await _orderForm.InitializeOrderDisplay(existingOrder);
+                    }
                     Close();
                 }
             }
