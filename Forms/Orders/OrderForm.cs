@@ -376,5 +376,37 @@ namespace SalesPro.Forms.Orders
                 }
             }
         }
+
+        private async void cancel_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgItems.Rows.Count == 0)
+                {
+                    MessageHandler.ShowWarning("Cannot cancel order. Order is empty.");
+                    return;
+                }
+                if (MessageHandler.ShowQuestionGeneric("Cancel Order?"))
+                {
+                    await _service.ChangeOrderStatus(_orderId, OrderStatus.Cancelled, _rowVersion);
+
+                    var latestOrder = await _service.GetLatestOrder();
+                    if (latestOrder != null && latestOrder.Total == 0)
+                    {
+                        await InitializeOrderDisplay(latestOrder);
+                    }
+                    else
+                    {
+                        await CreateNewOrder();
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on cancel button click : {ex.Message}");
+            }
+        }
     }
 }

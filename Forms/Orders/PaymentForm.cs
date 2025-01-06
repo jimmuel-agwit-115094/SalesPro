@@ -182,6 +182,7 @@ namespace SalesPro.Forms.Orders
                 else
                 {
                     await _orderForm.InitializeOrderDisplay(order);
+                    await _orderForm.ReloadRowVersion();
                 }
             }
             catch (Exception ex)

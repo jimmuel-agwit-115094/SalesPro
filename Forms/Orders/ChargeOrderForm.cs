@@ -30,8 +30,6 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-
-
                 _curDate = await ClockHelper.GetServerDateTime();
 
                 var order = await _service.GetOrderById(_orderId);
@@ -61,6 +59,9 @@ namespace SalesPro.Forms.Orders
 
                     dateCredited_tx.Text = DateFormatHelper.FormatDate(_curDate);
                     dueDate_tx.Text = "To be set";
+                    credTerms_tx.Value = 0;
+                    invoice_tx.Clear();
+                    notes_tx.Clear();
                 }
             }
             catch (Exception ex)

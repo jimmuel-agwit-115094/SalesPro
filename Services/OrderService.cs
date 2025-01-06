@@ -401,7 +401,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<OrderModelExtended>> LoadOrdersByStatus()
+        public async Task<List<OrderModelExtended>> LoadOrders()
         {
             using (var context = new DatabaseContext())
             {
@@ -418,6 +418,7 @@ namespace SalesPro.Services
                                 DateTaken = o.DateTaken,
                                 DiscountAmount = o.DiscountAmount,
                                 DiscountRate = o.DiscountRate,
+                                IsCredited = o.IsCredited,
                                 NetAmount = o.NetAmount,
                                 OrderId = o.OrderId,
                                 OrderStatus = o.OrderStatus,
@@ -482,6 +483,7 @@ namespace SalesPro.Services
 
                     // Update order
                     order.IsCredited = true;
+                    order.OrderStatus = OrderStatus.Completed;
                     await context.SaveChangesAsync();
 
                     // Update inventory

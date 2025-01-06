@@ -35,7 +35,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var orders = await _service.LoadOrdersByStatus();
+                var orders = await _service.LoadOrders();
 
                 if (_action == FormConstants.ResumeOrder)
                 {
@@ -54,7 +54,7 @@ namespace SalesPro.Forms.Orders
                     var allOrders = orders.Where(x => x.OrderStatus != OrderStatus.Suspended).ToList();
                     dgOrders.DataSource = allOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
-                    "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
+                    "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
                 }
 
 
@@ -119,21 +119,35 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgOrders.Columns[e.ColumnIndex].Name == "PaymentStatus") // Replace with your column name
+            //if (dgOrders.Columns[e.ColumnIndex].Name == "PaymentStatus") // Replace with your column name
+            //{
+            //    if (e.Value != null && e.Value.ToString() == "Paid") // Replace "SpecificString" with your condition
+            //    {
+            //        e.CellStyle.Font = new Font(
+            //            dgOrders.DefaultCellStyle.Font.FontFamily,
+            //            dgOrders.DefaultCellStyle.Font.Size,
+            //            FontStyle.Bold
+            //         );
+            //        e.CellStyle.ForeColor = Color.Green; // Change the fore color to green
+            //        e.CellStyle.SelectionForeColor = Color.Green;
+            //    }
+            //    else
+            //    {
+            //        e.CellStyle.ForeColor = Color.Black; // Default color
+            //    }
+            //}
+
+            if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus") // Replace with your column name
             {
-                if (e.Value != null && e.Value.ToString() == "Paid") // Replace "SpecificString" with your condition
+                if (e.Value != null && e.Value.ToString() == "Completed") // Replace "SpecificString" with your condition
                 {
                     e.CellStyle.Font = new Font(
                         dgOrders.DefaultCellStyle.Font.FontFamily,
                         dgOrders.DefaultCellStyle.Font.Size,
                         FontStyle.Bold
                      );
-                    e.CellStyle.ForeColor = Color.Green; // Change the fore color to green
-                    e.CellStyle.SelectionForeColor = Color.Green;
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.Black; // Default color
+                    e.CellStyle.BackColor = Color.LawnGreen; // Change the fore color to green
+                    e.CellStyle.SelectionBackColor = Color.LawnGreen;
                 }
             }
         }

@@ -4,7 +4,8 @@
     {
         Active,
         Suspended,
-        Completed
+        Completed,
+        Cancelled,
     }
 
     public enum PaymentMethod

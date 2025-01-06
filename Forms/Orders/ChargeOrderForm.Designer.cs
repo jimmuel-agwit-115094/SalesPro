@@ -101,7 +101,7 @@
             this.label4.Location = new System.Drawing.Point(35, 353);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 20);
+            this.label4.Size = new System.Drawing.Size(144, 15);
             this.label4.TabIndex = 556;
             this.label4.Text = "Credit Terms (No. of days)";
             // 
@@ -131,9 +131,9 @@
             // 
             this.invoice_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F);
             this.invoice_tx.Location = new System.Drawing.Point(37, 452);
-            this.invoice_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.invoice_tx.Margin = new System.Windows.Forms.Padding(4);
             this.invoice_tx.Name = "invoice_tx";
-            this.invoice_tx.Size = new System.Drawing.Size(387, 43);
+            this.invoice_tx.Size = new System.Drawing.Size(387, 36);
             this.invoice_tx.TabIndex = 560;
             this.invoice_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -144,14 +144,14 @@
             this.label3.Location = new System.Drawing.Point(37, 430);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 20);
+            this.label3.Size = new System.Drawing.Size(67, 15);
             this.label3.TabIndex = 559;
             this.label3.Text = "Invoice No.";
             // 
             // notes_tx
             // 
             this.notes_tx.Location = new System.Drawing.Point(36, 542);
-            this.notes_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.notes_tx.Margin = new System.Windows.Forms.Padding(4);
             this.notes_tx.Name = "notes_tx";
             this.notes_tx.Size = new System.Drawing.Size(388, 95);
             this.notes_tx.TabIndex = 561;
@@ -164,7 +164,7 @@
             this.label5.Location = new System.Drawing.Point(37, 521);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 20);
+            this.label5.Size = new System.Drawing.Size(38, 15);
             this.label5.TabIndex = 562;
             this.label5.Text = "Notes";
             // 
@@ -176,7 +176,7 @@
             this.charge_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.charge_btn.ForeColor = System.Drawing.Color.White;
             this.charge_btn.Location = new System.Drawing.Point(237, 667);
-            this.charge_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.charge_btn.Margin = new System.Windows.Forms.Padding(4);
             this.charge_btn.Name = "charge_btn";
             this.charge_btn.Size = new System.Drawing.Size(187, 42);
             this.charge_btn.TabIndex = 563;
@@ -211,14 +211,14 @@
             this.credTerms_tx.BackColor = System.Drawing.Color.White;
             this.credTerms_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.credTerms_tx.Location = new System.Drawing.Point(36, 375);
-            this.credTerms_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.credTerms_tx.Margin = new System.Windows.Forms.Padding(4);
             this.credTerms_tx.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.credTerms_tx.Name = "credTerms_tx";
-            this.credTerms_tx.Size = new System.Drawing.Size(387, 43);
+            this.credTerms_tx.Size = new System.Drawing.Size(387, 36);
             this.credTerms_tx.TabIndex = 566;
             this.credTerms_tx.Tag = "IsNumeric";
             this.credTerms_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -256,7 +256,7 @@
             this.Controls.Add(this.amtDue_tx);
             this.Controls.Add(this.title_lbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChargeOrderForm";
