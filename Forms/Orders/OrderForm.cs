@@ -87,6 +87,19 @@ namespace SalesPro.Forms.Orders
                 customer_tx.Text = $"{customer.FirstName} {customer.MiddleName} {customer.LastName}";
         }
 
+        public async Task InitializeOrCreateOrder()
+        {
+            var latestOrder = await _service.GetLatestOrder();
+            if (latestOrder != null && latestOrder.Total == 0)
+            {
+                await InitializeOrderDisplay(latestOrder);
+            }
+            else
+            {
+                await CreateNewOrder();
+            }
+        }
+
         private async void OrderForm_Load(object sender, EventArgs e)
         {
             try
@@ -94,15 +107,7 @@ namespace SalesPro.Forms.Orders
                 SetFormSize();
                 _curDate = await ClockHelper.GetServerDateTime();
 
-                var latestOrder = await _service.GetLatestOrder();
-                if (latestOrder != null && latestOrder.Total == 0)
-                {
-                    await InitializeOrderDisplay(latestOrder);
-                }
-                else
-                {
-                    await CreateNewOrder();
-                }
+                await InitializeOrCreateOrder();
             }
             catch (Exception ex)
             {
@@ -270,11 +275,6 @@ namespace SalesPro.Forms.Orders
 
         private void orderList_btn_Click_1(object sender, EventArgs e)
         {
-            //if (dgItems.SelectedRows.Count > 0)
-            //{
-            //    MessageHandler.ShowWarning("Cannot");
-            //    return;
-            //}
             var form = new OrderListForm(this);
             form.title_lbl.Text = "Suspended Order Lists";
             form._action = Constants.FormConstants.ResumeOrder;
@@ -342,7 +342,7 @@ namespace SalesPro.Forms.Orders
         private void allOrders_btn_Click(object sender, EventArgs e)
         {
             var form = new OrderListForm(this);
-            form.title_lbl.Text = "Order Lists";
+            form.title_lbl.Text = "All Orders";
             form._orderStatus = OrderStatus.Active;
             form._action = Constants.FormConstants.OrderLists;
             form._rowVersion = _rowVersion;
@@ -390,18 +390,8 @@ namespace SalesPro.Forms.Orders
                 {
                     await _service.ChangeOrderStatus(_orderId, OrderStatus.Cancelled, _rowVersion);
 
-                    var latestOrder = await _service.GetLatestOrder();
-                    if (latestOrder != null && latestOrder.Total == 0)
-                    {
-                        await InitializeOrderDisplay(latestOrder);
-                    }
-                    else
-                    {
-                        await CreateNewOrder();
-                    }
-
+                    await InitializeOrCreateOrder();
                 }
-
             }
             catch (Exception ex)
             {

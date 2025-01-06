@@ -53,12 +53,17 @@ namespace SalesPro.Forms.PurchaseOrders
                     delete_btn.Visible = false;
                     dgProducts.Enabled = true;
                     search_tx.ReadOnly = false;
+
+                    dgProducts.ClearSelection();
+                    _isProductSelected = false;
+                    productName_tx.Text = "-";
+                    unitOfMeasure_tx.Text = "-";
+                    supplierPrice_tx.Text = "0";
                 }
                 else
                 {
                     DgFormatHelper.DisableDatagrid(dgProducts);
                     search_tx.ReadOnly = true;
-
                     var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
                     if (poItem != null)
                     {

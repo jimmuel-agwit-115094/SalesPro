@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderItemForm));
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.search_tx = new System.Windows.Forms.TextBox();
@@ -53,7 +53,7 @@
             this.notFound_lbl.Location = new System.Drawing.Point(527, 446);
             this.notFound_lbl.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.notFound_lbl.Name = "notFound_lbl";
-            this.notFound_lbl.Size = new System.Drawing.Size(370, 54);
+            this.notFound_lbl.Size = new System.Drawing.Size(301, 45);
             this.notFound_lbl.TabIndex = 454;
             this.notFound_lbl.Text = "Product Not Found";
             // 
@@ -62,11 +62,12 @@
             this.search_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_tx.Location = new System.Drawing.Point(17, 75);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(5);
             this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(1415, 52);
+            this.search_tx.Size = new System.Drawing.Size(1415, 43);
             this.search_tx.TabIndex = 451;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
+            this.search_tx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_tx_KeyDown);
             // 
             // dgProduct
             // 
@@ -74,45 +75,45 @@
             this.dgProduct.AllowUserToDeleteRows = false;
             this.dgProduct.AllowUserToResizeColumns = false;
             this.dgProduct.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProduct.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgProduct.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgProduct.ColumnHeadersHeight = 40;
             this.dgProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgProduct.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgProduct.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgProduct.EnableHeadersVisualStyles = false;
             this.dgProduct.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgProduct.Location = new System.Drawing.Point(20, 137);
-            this.dgProduct.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgProduct.Margin = new System.Windows.Forms.Padding(5);
             this.dgProduct.MultiSelect = false;
             this.dgProduct.Name = "dgProduct";
             this.dgProduct.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dgProduct.RowHeadersVisible = false;
             this.dgProduct.RowHeadersWidth = 51;
             this.dgProduct.RowTemplate.Height = 45;
@@ -129,10 +130,10 @@
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(16, 22);
+            this.title_lbl.Location = new System.Drawing.Point(15, 8);
             this.title_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(143, 32);
+            this.title_lbl.Size = new System.Drawing.Size(113, 25);
             this.title_lbl.TabIndex = 456;
             this.title_lbl.Text = "Return item";
             // 
@@ -141,7 +142,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(1432, 75);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -151,10 +152,10 @@
             // return_pb
             // 
             this.return_pb.Image = ((System.Drawing.Image)(resources.GetObject("return_pb.Image")));
-            this.return_pb.Location = new System.Drawing.Point(1432, 15);
-            this.return_pb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.return_pb.Location = new System.Drawing.Point(20, 36);
+            this.return_pb.Margin = new System.Windows.Forms.Padding(4);
             this.return_pb.Name = "return_pb";
-            this.return_pb.Size = new System.Drawing.Size(53, 49);
+            this.return_pb.Size = new System.Drawing.Size(35, 35);
             this.return_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.return_pb.TabIndex = 459;
             this.return_pb.TabStop = false;
@@ -171,7 +172,7 @@
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.dgProduct);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOrderItemForm";

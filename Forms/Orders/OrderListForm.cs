@@ -47,6 +47,7 @@ namespace SalesPro.Forms.Orders
 
                     // Overide datagrid format
                     dgOrders.Columns["OrderId"].DisplayIndex = 0;
+                    dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
                     dgOrders.Columns["OrderId"].DefaultCellStyle.Format = "000000000";
                 }
                 else

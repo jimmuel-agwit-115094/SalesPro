@@ -149,6 +149,7 @@ namespace SalesPro.Forms.Orders
             await _orderForm.LoadOrderedItems(_orderId);
             await _orderForm.ReloadRowVersion();
             _orderForm.qty_tx.Value = 1;
+            _orderForm.dgItems.Select();
             Close();
         }
 
@@ -230,6 +231,14 @@ namespace SalesPro.Forms.Orders
                     e.CellStyle.ForeColor = Color.Black; // Default color for non-numeric or null values
                     e.CellStyle.SelectionForeColor = Color.Black;
                 }
+            }
+        }
+
+        private void search_tx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                dgProduct.Focus(); // Set focus to the DataGridView
             }
         }
     }
