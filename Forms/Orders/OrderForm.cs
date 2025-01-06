@@ -164,7 +164,7 @@ namespace SalesPro.Forms.Orders
                     suspend_btn.PerformClick();
                     break;
                 case Keys.F6:
-                    resume_btn.PerformClick();
+                    orderList_btn.PerformClick();
                     break;
                 case Keys.F7:
                     returnProduct_btn.PerformClick();
@@ -176,7 +176,7 @@ namespace SalesPro.Forms.Orders
                     addCustomer_btn.PerformClick();
                     break;
                 case Keys.F9:
-                    orderList_btn.PerformClick();
+                    allOrders_btn.PerformClick();
                     break;
                 case Keys.F10:
                     pay_btn.PerformClick();
@@ -268,7 +268,7 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void resume_btn_Click(object sender, EventArgs e)
+        private void orderList_btn_Click_1(object sender, EventArgs e)
         {
             if (dgItems.SelectedRows.Count > 0)
             {
@@ -339,7 +339,7 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void orderList_btn_Click(object sender, EventArgs e)
+        private void allOrders_btn_Click(object sender, EventArgs e)
         {
             var form = new OrderListForm(this);
             form.title_lbl.Text = "Order Lists";
@@ -349,27 +349,29 @@ namespace SalesPro.Forms.Orders
             form.ShowDialog();
         }
 
-        private void dgItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void dgItems_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgItems.Columns[e.ColumnIndex].Name == "TotalPrice") // Replace with your column name
+            // Specify the column name to check
+            if (e.CellStyle.Font != null)
             {
-                // Ensure the value is not null and is numeric
-                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal quantityOnHand))
+                e.CellStyle.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            }
+            string targetColumnName = "TotalPrice";  // Replace "Amount" with your column name
+
+            if (dgItems.Columns[e.ColumnIndex].Name == targetColumnName && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal cellValue) && cellValue < 0)
                 {
-                    if (quantityOnHand <= 0) // Check if the value is negative
-                    {
-                        e.CellStyle.ForeColor = Color.Red; // Set text color to red
-                        e.CellStyle.SelectionForeColor = Color.Red; // Set selection text color to red
-                    }
-                    else
-                    {
-                        e.CellStyle.ForeColor = Color.Black; // Default color for zero or other values
-                        e.CellStyle.SelectionForeColor = Color.Black;
-                    }
+                    // Change ForeColor to red for negative values
+                    e.CellStyle.ForeColor = Color.Red;
+
+                    // Change SelectionForeColor to red for negative values
+                    e.CellStyle.SelectionForeColor = Color.Red;
                 }
                 else
                 {
-                    e.CellStyle.ForeColor = Color.Black; // Default color for non-numeric or null values
+                    // Reset to default colors for non-negative values
+                    e.CellStyle.ForeColor = Color.Black;
                     e.CellStyle.SelectionForeColor = Color.Black;
                 }
             }

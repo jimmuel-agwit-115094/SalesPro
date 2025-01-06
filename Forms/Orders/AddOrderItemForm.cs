@@ -204,6 +204,11 @@ namespace SalesPro.Forms.Orders
 
         private void dgProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (e.CellStyle.Font != null)
+            {
+                e.CellStyle.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            }
+
             if (dgProduct.Columns[e.ColumnIndex].Name == "QuantityOnHand") // Replace with your column name
             {
                 // Ensure the value is not null and is numeric

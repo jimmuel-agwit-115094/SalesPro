@@ -237,8 +237,6 @@ namespace SalesPro.Services
             return inventoryExceedErrors;
         }
 
-
-
         public async Task UpdateQuantity(int orderItemId, int orderQty, bool isEdit, int rowVersion)
         {
             using (var context = new DatabaseContext())
@@ -246,7 +244,6 @@ namespace SalesPro.Services
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
-                    var existingOrderQty = orderItem.OrderQuantity;
                     NullCheckerHelper.NullCheck(orderItem);
 
                     // Update orderItem
