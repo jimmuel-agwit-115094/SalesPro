@@ -73,11 +73,6 @@ namespace SalesPro.Forms.Orders
             if (_inventoryId == 0) return;
         }
 
-        private void search_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -175,7 +170,7 @@ namespace SalesPro.Forms.Orders
 
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
-            DgFormatHelper.SearchOnGrid(dgProduct, search_tx);
+          
         }
 
         private async void dgProduct_KeyDown(object sender, KeyEventArgs e)

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderItemForm));
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.search_tx = new System.Windows.Forms.TextBox();
@@ -39,6 +39,7 @@
             this.title_lbl = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.return_pb = new System.Windows.Forms.PictureBox();
+            this.search_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.return_pb)).BeginInit();
@@ -64,7 +65,7 @@
             this.search_tx.Location = new System.Drawing.Point(17, 75);
             this.search_tx.Margin = new System.Windows.Forms.Padding(5);
             this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(1415, 43);
+            this.search_tx.Size = new System.Drawing.Size(1220, 43);
             this.search_tx.TabIndex = 451;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             this.search_tx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_tx_KeyDown);
@@ -75,30 +76,30 @@
             this.dgProduct.AllowUserToDeleteRows = false;
             this.dgProduct.AllowUserToResizeColumns = false;
             this.dgProduct.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProduct.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgProduct.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgProduct.ColumnHeadersHeight = 40;
             this.dgProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgProduct.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgProduct.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgProduct.EnableHeadersVisualStyles = false;
             this.dgProduct.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgProduct.Location = new System.Drawing.Point(20, 137);
@@ -106,14 +107,14 @@
             this.dgProduct.MultiSelect = false;
             this.dgProduct.Name = "dgProduct";
             this.dgProduct.ReadOnly = true;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgProduct.RowHeadersVisible = false;
             this.dgProduct.RowHeadersWidth = 51;
             this.dgProduct.RowTemplate.Height = 45;
@@ -141,7 +142,7 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1432, 75);
+            this.pictureBox1.Location = new System.Drawing.Point(1237, 75);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 52);
@@ -160,12 +161,28 @@
             this.return_pb.TabIndex = 459;
             this.return_pb.TabStop = false;
             // 
+            // search_btn
+            // 
+            this.search_btn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.search_btn.FlatAppearance.BorderSize = 0;
+            this.search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.search_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_btn.ForeColor = System.Drawing.Color.White;
+            this.search_btn.Location = new System.Drawing.Point(1301, 74);
+            this.search_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.search_btn.Name = "search_btn";
+            this.search_btn.Size = new System.Drawing.Size(187, 53);
+            this.search_btn.TabIndex = 460;
+            this.search_btn.Text = "Enter";
+            this.search_btn.UseVisualStyleBackColor = false;
+            // 
             // AddOrderItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1505, 838);
+            this.Controls.Add(this.search_btn);
             this.Controls.Add(this.return_pb);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.title_lbl);
@@ -179,7 +196,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Order";
+            this.Text = "Product List";
             this.Load += new System.EventHandler(this.AddOrderItemForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddOrderItemForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgProduct)).EndInit();
@@ -197,5 +214,6 @@
         internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox return_pb;
+        private System.Windows.Forms.Button search_btn;
     }
 }
