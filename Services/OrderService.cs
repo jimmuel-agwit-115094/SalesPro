@@ -459,7 +459,8 @@ namespace SalesPro.Services
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
-                    await context.Entry(updatedOrder).ReloadAsync();
+                    //await context.Entry(updatedOrder).ReloadAsync();
+                    
                 });
 
                 return updatedOrder;

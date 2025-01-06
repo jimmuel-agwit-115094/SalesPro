@@ -60,6 +60,13 @@ namespace SalesPro.Forms.Orders
                 return;
             }
 
+            var customerExists = await _customerService.IsCustomerExist(firstName_tx.Text, lastName_tx.Text, middleName_tx.Text);
+            if (customerExists)
+            {
+                MessageHandler.ShowWarning("Customer already exists.");
+                firstName_tx.Select();
+                return;
+            }
 
             var customer = BuildCustomerModel();
             if (_action == Constants.SystemConstants.New.ToString())

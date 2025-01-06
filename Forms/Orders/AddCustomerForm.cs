@@ -73,8 +73,12 @@ namespace SalesPro.Forms.Orders
             if (dgCustomer.SelectedRows.Count > 0)
             {
                 var updatedOrder = await _service.UpdateOrderCustomer(_orderId, _customerId, _rowVersion);
-                await _orderForm.InitializeOrderDisplay(updatedOrder);
+                if (updatedOrder.RowVersion == _rowVersion)
+                {
+                    await _orderForm.InitializeOrderDisplay(updatedOrder);
+                }
                 Close();
+                await _orderForm.ReloadRowVersion();
             }
         }
 
