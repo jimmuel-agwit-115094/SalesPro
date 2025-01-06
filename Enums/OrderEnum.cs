@@ -20,7 +20,6 @@
     public enum OrderItemStatus
     {
         Added,
-        Cancelled,
         Returned
     }
 

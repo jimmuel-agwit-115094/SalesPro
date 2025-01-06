@@ -348,5 +348,31 @@ namespace SalesPro.Forms.Orders
             form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
+
+        private void dgItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgItems.Columns[e.ColumnIndex].Name == "TotalPrice") // Replace with your column name
+            {
+                // Ensure the value is not null and is numeric
+                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal quantityOnHand))
+                {
+                    if (quantityOnHand <= 0) // Check if the value is negative
+                    {
+                        e.CellStyle.ForeColor = Color.Red; // Set text color to red
+                        e.CellStyle.SelectionForeColor = Color.Red; // Set selection text color to red
+                    }
+                    else
+                    {
+                        e.CellStyle.ForeColor = Color.Black; // Default color for zero or other values
+                        e.CellStyle.SelectionForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // Default color for non-numeric or null values
+                    e.CellStyle.SelectionForeColor = Color.Black;
+                }
+            }
+        }
     }
 }
