@@ -270,11 +270,11 @@ namespace SalesPro.Forms.Orders
 
         private void orderList_btn_Click_1(object sender, EventArgs e)
         {
-            if (dgItems.SelectedRows.Count > 0)
-            {
-                MessageHandler.ShowWarning("Cannot resume order when a new order is still active.");
-                return;
-            }
+            //if (dgItems.SelectedRows.Count > 0)
+            //{
+            //    MessageHandler.ShowWarning("Cannot");
+            //    return;
+            //}
             var form = new OrderListForm(this);
             form.title_lbl.Text = "Suspended Order Lists";
             form._action = Constants.FormConstants.ResumeOrder;

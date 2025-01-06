@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -42,7 +43,11 @@ namespace SalesPro.Forms.Orders
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
-                     "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
+                     "OrderId","CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
+
+                    // Overide datagrid format
+                    dgOrders.Columns["OrderId"].DisplayIndex = 0;
+                    dgOrders.Columns["OrderId"].DefaultCellStyle.Format = "000000000";
                 }
                 else
                 {
@@ -86,13 +91,6 @@ namespace SalesPro.Forms.Orders
                         await _orderForm.ReloadRowVersion();
                         Close();
                     }
-                }
-                else
-                {
-                    //var order = await _service.GetOrderById(_orderId);
-                    //await _orderForm.InitializeOrderDisplay(order);
-                    //await _orderForm.ReloadRowVersion();
-                    //Close();
                 }
             }
             catch (Exception ex)
