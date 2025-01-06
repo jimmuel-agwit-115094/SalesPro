@@ -91,32 +91,47 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<InventoryModelExtended>> LoadProductsFromInventory()
+        public async Task<List<InventoryModelExtended>> LoadProductsFromInventory(string barcode = null, string productName = null)
         {
             using (var context = new DatabaseContext())
             {
-                return await (from i in context.Inventories
-                              join p in context.Products on i.ProductId equals p.ProductId
-                              //where i.QuantityOnHand > 0
-                              select new InventoryModelExtended
-                              {
-                                  DateAdded = i.DateAdded,
-                                  InventoryId = i.InventoryId,
-                                  ProductId = i.ProductId,
-                                  PurchaseOrderId = i.PurchaseOrderId,
-                                  QuantityFromPo = i.QuantityFromPo,
-                                  QuantityOnHand = i.QuantityOnHand,
-                                  RetailPrice = i.RetailPrice,
-                                  SupplierId = i.SupplierId,
-                                  SupplierPrice = i.SupplierPrice,
-                                  UserId = i.UserId,
-                                  ProductName = p.ProductName
-                              }).OrderBy(p => p.QuantityOnHand == 0)
-                              .ThenByDescending(p => p.QuantityOnHand)
-                              .ToListAsync();
+                // Start with the base query
+                var query = from i in context.Inventories
+                            join p in context.Products on i.ProductId equals p.ProductId
+                            select new InventoryModelExtended
+                            {
+                                DateAdded = i.DateAdded,
+                                InventoryId = i.InventoryId,
+                                ProductId = i.ProductId,
+                                PurchaseOrderId = i.PurchaseOrderId,
+                                QuantityFromPo = i.QuantityFromPo,
+                                QuantityOnHand = i.QuantityOnHand,
+                                RetailPrice = i.RetailPrice,
+                                SupplierId = i.SupplierId,
+                                SupplierPrice = i.SupplierPrice,
+                                UserId = i.UserId,
+                                ProductName = p.ProductName,
+                                BarCode = p.BarCode
+                            };
 
+                // Apply filtering if optional parameters are provided
+                if (!string.IsNullOrWhiteSpace(barcode))
+                {
+                    query = query.Where(i => i.BarCode == barcode); // Assuming barcode maps to ProductId
+                }
+
+                if (!string.IsNullOrWhiteSpace(productName))
+                {
+                    query = query.Where(i => i.ProductName.Contains(productName)); // Partial match on ProductName
+                }
+
+                // Apply sorting and execute the query
+                return await query.OrderBy(p => p.QuantityOnHand == 0)
+                                  .ThenByDescending(p => p.QuantityOnHand)
+                                  .ToListAsync();
             }
         }
+
 
         public async Task<InventoryModel> GetInventoryById(int inventoryId)
         {

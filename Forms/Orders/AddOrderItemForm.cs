@@ -4,6 +4,7 @@ using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,9 +33,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var prods = await _service.LoadProductsFromInventory();
-                dgProduct.DataSource = prods;
-                DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
+                await LoadProducts(SearchByAction.AllProducts);
 
                 if (_orderAction == OrderAction.New)
                 {
@@ -53,6 +52,26 @@ namespace SalesPro.Forms.Orders
             {
                 MessageHandler.ShowError($"Error add order item form load : {ex}");
             }
+        }
+
+        private async Task LoadProducts(SearchByAction action)
+        {
+            var products = new List<InventoryModelExtended>();
+            if (action == SearchByAction.Barcode)
+            {
+                products = await _service.LoadProductsFromInventory(barcode: search_tx.Text);
+            }
+            else if (action == SearchByAction.ProductName)
+            {
+                products = await _service.LoadProductsFromInventory(productName: search_tx.Text);
+            }
+            else
+            {
+                products = await _service.LoadProductsFromInventory();
+            }
+
+            dgProduct.DataSource = products;
+            DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
         }
 
         private async Task AddOrderItem()
@@ -168,9 +187,12 @@ namespace SalesPro.Forms.Orders
 
         }
 
-        private void search_tx_TextChanged(object sender, EventArgs e)
+        private async void search_tx_TextChanged(object sender, EventArgs e)
         {
-          
+            if (search_tx.Text == string.Empty)
+            {
+               await LoadProducts(SearchByAction.AllProducts);
+            }
         }
 
         private async void dgProduct_KeyDown(object sender, KeyEventArgs e)
@@ -234,6 +256,25 @@ namespace SalesPro.Forms.Orders
             if (e.KeyCode == Keys.Enter)
             {
                 dgProduct.Focus(); // Set focus to the DataGridView
+            }
+        }
+
+        private async void search_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (searchByCode_cb.Checked == true)
+                {
+                    await LoadProducts(SearchByAction.Barcode);
+                }
+                else
+                {
+                    await LoadProducts(SearchByAction.ProductName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on search button click: {ex}");
             }
         }
     }

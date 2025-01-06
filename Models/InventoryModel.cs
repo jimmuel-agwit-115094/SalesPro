@@ -23,6 +23,7 @@ namespace SalesPro.Models
         public string ProductName { get; set; }
         public string SupplierName { get; set; }
         public string UserFullName { get; set; }
+        public string BarCode { get; set; }
     }
 
 }

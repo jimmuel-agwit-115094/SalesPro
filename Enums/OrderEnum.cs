@@ -29,4 +29,11 @@
         New,
         Return
     }
+
+    public enum SearchByAction
+    {
+        Barcode,
+        ProductName,
+        AllProducts
+    }
 }
