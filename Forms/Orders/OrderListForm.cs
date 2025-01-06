@@ -38,7 +38,7 @@ namespace SalesPro.Forms.Orders
 
                 if (_action == FormConstants.ResumeOrder)
                 {
-                    var suspendedOrders = orders.Where(x => x.OrderStatus == OrderStatus.Suspended).ToList();
+                    var suspendedOrders = orders.Where(x => x.OrderStatus != OrderStatus.Completed).ToList();
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,

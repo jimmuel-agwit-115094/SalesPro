@@ -174,6 +174,7 @@ namespace SalesPro.Forms.Transactions
                 close_btn.Enabled = isClosed == false;
                 undo_btn.Enabled = isClosed == true;
                 begBal_tx.ReadOnly = isClosed == true;
+                endingCash_tx.ReadOnly = isClosed == true;
             }
         }
 
