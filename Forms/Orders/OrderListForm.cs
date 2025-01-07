@@ -57,10 +57,6 @@ namespace SalesPro.Forms.Orders
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -70,9 +66,10 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int invId = DgFormatHelper.GetSelectedId(dgOrders, e, "OrderId");
-            if (invId == 0) return;
+            int orderId = DgFormatHelper.GetSelectedId(dgOrders, e, "OrderId");
+            if (orderId == 0) return;
             var form = new OrderDetailsForm();
+            form._orderId = orderId;
             form.ShowDialog();
         }
 
