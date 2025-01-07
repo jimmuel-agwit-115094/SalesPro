@@ -30,7 +30,7 @@ namespace SalesPro.Forms.Orders
                 var orderedItems = await _service.LoadOrderItemsByOrderId(_orderId);
                 dgItems.DataSource = orderedItems;
                 DgExtensions.ConfigureDataGrid(dgItems, false, 2, notFound_lbl,
-                    "OrderItemId", "ProductName", "Quantity", "Price", "Total");
+                    "OrderItemId", "ProductName", "OrderQuantity", "Price", "Total");
 
                 var order = await _service.GetOrderById(_orderId);
                 if (order != null)
