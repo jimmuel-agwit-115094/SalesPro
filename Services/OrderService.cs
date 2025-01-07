@@ -384,30 +384,20 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<bool> DeleteOrderItem(int orderItemId, int rowVersion)
+        public async Task DeleteOrderItem(int orderItemId, int rowVersion)
         {
-            try
+            using (var context = new DatabaseContext())
             {
-                using (var context = new DatabaseContext())
+                await context.ExecuteInTransactionAsync(async () =>
                 {
-                    await context.ExecuteInTransactionAsync(async () =>
-                    {
-                        var orderItem = await context.OrderItems.FindAsync(orderItemId);
-                        NullCheckerHelper.NullCheck(orderItem);
+                    var orderItem = await context.OrderItems.FindAsync(orderItemId);
+                    NullCheckerHelper.NullCheck(orderItem);
 
-                        context.OrderItems.Remove(orderItem);
-                        await context.SaveChangesAsync();
+                    context.OrderItems.Remove(orderItem);
+                    await context.SaveChangesAsync();
 
-                        await UpdateOrder(context, orderItem.OrderId, rowVersion);
-                    });
-                }
-
-                return true; // Indicates success
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error deleting order item: {ex.Message}");
-                return false; // Indicates failure
+                    await UpdateOrder(context, orderItem.OrderId, rowVersion);
+                });
             }
         }
 

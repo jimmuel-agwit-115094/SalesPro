@@ -11,6 +11,5 @@ namespace POS_Generic.Helpers
                 throw new NullReferenceException($"The data of type '{typeof(T).Name}' does not exist in the database.");
             }
         }
-
     }
 }

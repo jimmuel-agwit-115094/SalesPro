@@ -253,12 +253,9 @@ namespace SalesPro.Forms.Orders
                 {
                     if (MessageHandler.ShowQuestionGeneric("Delete Order?"))
                     {
-                        bool successDelete = await _service.DeleteOrderItem(_orderItemId, _rowVersion);
-                        if (successDelete)
-                        {
-                            SetOrderControls(await _service.GetOrderById(_orderId));
-                        }
+                        await _service.DeleteOrderItem(_orderItemId, _rowVersion);
                         await LoadOrderedItems(_orderId);
+                        SetOrderControls(await _service.GetOrderById(_orderId));
                         await ReloadRowVersion();
                     }
                 }
