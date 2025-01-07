@@ -19,15 +19,15 @@ namespace SalesPro.Helpers
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    MessageHandler.ShowError($"No Data to update Error:\n{nullEx.Message}");
+                    MessageHandler.ShowError($"Null data error:\n{nullEx.Message}");
                 }
                 catch (DBConcurrencyException concurrencyEx)
                 {
-                    MessageHandler.ShowError($"Dirty Data Error:\n{concurrencyEx.Message}");
+                    MessageHandler.ShowError($"Dirty data error:\n{concurrencyEx.Message}");
                 }
                 catch (InvalidOperationException opEx)
                 {
-                    MessageHandler.ShowError($"Invalid Operation Error: \n{opEx.Message}");
+                    MessageHandler.ShowError($"Invalid operation error: \n{opEx.Message}");
                 }
                 catch (Exception ex)
                 {
