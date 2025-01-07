@@ -70,7 +70,10 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            int invId = DgFormatHelper.GetSelectedId(dgOrders, e, "OrderId");
+            if (invId == 0) return;
+            var form = new OrderDetailsForm();
+            form.ShowDialog();
         }
 
         private void dgOrders_SelectionChanged(object sender, EventArgs e)
