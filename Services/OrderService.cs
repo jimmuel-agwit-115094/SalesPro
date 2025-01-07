@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Helpers;
@@ -250,10 +251,11 @@ namespace SalesPro.Services
             return inventoryExceedErrors;
         }
 
-        public async Task UpdateQuantity(int orderItemId, int orderQty, bool isEdit, int rowVersion)
+        public async Task<OrderModel> UpdateQuantity(int orderItemId, int orderQty, bool isEdit, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                var updatedOrder = new OrderModel();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var orderItem = await context.OrderItems.FindAsync(orderItemId);
@@ -267,7 +269,11 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
                     // Update order
                     await UpdateOrder(context, orderItem.OrderId, rowVersion);
+
+                    updatedOrder = await context.Orders.FindAsync(orderItem.OrderId);
+                    await context.Entry(updatedOrder).ReloadAsync();
                 });
+                return updatedOrder;
             }
         }
 
@@ -378,19 +384,30 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task DeleteOrderItem(int orderItemId, int rowVersion)
+        public async Task<bool> DeleteOrderItem(int orderItemId, int rowVersion)
         {
-            using (var context = new DatabaseContext())
+            try
             {
-                await context.ExecuteInTransactionAsync(async () =>
+                using (var context = new DatabaseContext())
                 {
-                    var orderItem = await context.OrderItems.FindAsync(orderItemId);
-                    NullCheckerHelper.NullCheck(orderItem);
-                    context.OrderItems.Remove(orderItem);
-                    await context.SaveChangesAsync();
+                    await context.ExecuteInTransactionAsync(async () =>
+                    {
+                        var orderItem = await context.OrderItems.FindAsync(orderItemId);
+                        NullCheckerHelper.NullCheck(orderItem);
 
-                    await UpdateOrder(context, orderItem.OrderId, rowVersion);
-                });
+                        context.OrderItems.Remove(orderItem);
+                        await context.SaveChangesAsync();
+
+                        await UpdateOrder(context, orderItem.OrderId, rowVersion);
+                    });
+                }
+
+                return true; // Indicates success
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error deleting order item: {ex.Message}");
+                return false; // Indicates failure
             }
         }
 
@@ -473,7 +490,7 @@ namespace SalesPro.Services
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
                     //await context.Entry(updatedOrder).ReloadAsync();
-                    
+
                 });
 
                 return updatedOrder;

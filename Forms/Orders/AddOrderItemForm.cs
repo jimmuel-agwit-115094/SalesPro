@@ -151,13 +151,8 @@ namespace SalesPro.Forms.Orders
 
             var savedOrder = await _service.SaveOrderItem(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
 
-            // Set controls
-            _orderForm.vatRate_tx.Text = savedOrder.Vat.ToString();
-            _orderForm.vat_tx.Text = savedOrder.VatAmount.ToString();
-            _orderForm.net_tx.Text = savedOrder.NetAmount.ToString();
-            _orderForm.gross_tx.Text = savedOrder.Total.ToString();
-            _orderForm.discount_tx.Text = savedOrder.DiscountAmount.ToString();
-            _orderForm.amountPaid_tx.Text = savedOrder.AmountPaid.ToString();
+            // Set order controls
+            _orderForm.SetOrderControls(savedOrder);
 
             //Load ordered items
             await _orderForm.LoadOrderedItems(_orderId);

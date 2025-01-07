@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using Org.BouncyCastle.Asn1.X509;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -122,6 +123,19 @@ namespace SalesPro.Forms.Orders
             await InitializeOrderDisplay(savedOrder);
         }
 
+        public void SetOrderControls(OrderModel order)
+        {
+            if (order != null)
+            {
+                vatRate_tx.Text = order.Vat.ToString();
+                vat_tx.Text = order.VatAmount.ToString();
+                net_tx.Text = order.NetAmount.ToString();
+                gross_tx.Text = order.Total.ToString();
+                discount_tx.Text = order.DiscountAmount.ToString();
+                amountPaid_tx.Text = order.AmountPaid.ToString();
+            }
+        }
+
         public async Task InitializeOrderDisplay(OrderModel order)
         {
             await LoadOrderedItems(order.OrderId);
@@ -229,7 +243,6 @@ namespace SalesPro.Forms.Orders
                 form._rowVersion = _rowVersion;
                 form.ShowDialog();
             }
-
         }
 
         private async void delete_btn_Click(object sender, EventArgs e)
@@ -240,7 +253,11 @@ namespace SalesPro.Forms.Orders
                 {
                     if (MessageHandler.ShowQuestionGeneric("Delete Order?"))
                     {
-                        await _service.DeleteOrderItem(_orderItemId, _rowVersion);
+                        bool successDelete = await _service.DeleteOrderItem(_orderItemId, _rowVersion);
+                        if (successDelete)
+                        {
+                            SetOrderControls(await _service.GetOrderById(_orderId));
+                        }
                         await LoadOrderedItems(_orderId);
                         await ReloadRowVersion();
                     }
@@ -397,6 +414,11 @@ namespace SalesPro.Forms.Orders
             {
                 MessageHandler.ShowError($"Error on cancel button click : {ex.Message}");
             }
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

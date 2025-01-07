@@ -56,9 +56,16 @@ namespace SalesPro.Forms.Orders
                     MessageHandler.ShowWarning("Quantity cannot be greater than the available stocks.");
                     return;
                 }
-                await _service.UpdateQuantity(_orderItemId, qty, isEdit: true, _rowVersion);
+                var updatedorder = await _service.UpdateQuantity(_orderItemId, qty, isEdit: true, _rowVersion);
+
+                if (updatedorder.RowVersion == _rowVersion)
+                {
+                    // Set order control
+                    _orderForm.SetOrderControls(updatedorder);
+                }
                 await _orderForm.LoadOrderedItems(_orderId);
                 await _orderForm.ReloadRowVersion();
+
                 Close();
             }
             catch (Exception ex)
