@@ -102,7 +102,7 @@ namespace SalesPro.Forms.Orders
             var prodInventory = await _service.GetInventoryById(_inventoryId);
             if (prodInventory == null)
             {
-                MessageHandler.ShowWarning("Product not found on inventory.");
+                MessageHandler.ShowWarning("Product not found on inventory. Please select the product and try again.");
                 return;
             }
 
@@ -191,7 +191,7 @@ namespace SalesPro.Forms.Orders
         {
             if (search_tx.Text == string.Empty)
             {
-               await LoadProducts(SearchByAction.AllProducts);
+                await LoadProducts(SearchByAction.AllProducts);
             }
         }
 
@@ -255,6 +255,7 @@ namespace SalesPro.Forms.Orders
         {
             if (e.KeyCode == Keys.Enter)
             {
+                search_btn.PerformClick();
                 dgProduct.Focus(); // Set focus to the DataGridView
             }
         }

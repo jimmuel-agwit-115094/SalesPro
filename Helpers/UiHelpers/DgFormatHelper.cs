@@ -4,6 +4,7 @@ using System.Drawing;
 using SalesPro.Helpers;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public static class DgFormatHelper
 {
@@ -183,35 +184,26 @@ public static class DgFormatHelper
 
     public static void ShowOnlyField(DataGridView dataGridView, params string[] fieldsToShow)
     {
-        //if (dataGridView == null || dataGridView.Rows.Count == 0)
-        //    return; // Exit if no rows are present
+        if (dataGridView == null)
+            throw new ArgumentNullException(nameof(dataGridView), "DataGridView cannot be null.");
 
         if (fieldsToShow == null || fieldsToShow.Length == 0)
-            throw new ArgumentException("At least one field must be specified", nameof(fieldsToShow));
+            throw new ArgumentException("At least one field must be specified.", nameof(fieldsToShow));
 
-        // Hide all columns initially
+        // Create a HashSet for faster lookups
+        var fieldsToShowSet = new HashSet<string>(fieldsToShow, StringComparer.OrdinalIgnoreCase);
+
         foreach (DataGridViewColumn column in dataGridView.Columns)
         {
-            column.Visible = false;
-        }
-
-        // Show only specified columns
-        foreach (string field in fieldsToShow)
-        {
-            DataGridViewColumn columnToShow = dataGridView.Columns
-                .Cast<DataGridViewColumn>()
-                .FirstOrDefault(col =>
-                    col.DataPropertyName.Equals(field, StringComparison.OrdinalIgnoreCase) ||
-                    col.Name.Equals(field, StringComparison.OrdinalIgnoreCase));
-
-            if (columnToShow != null)
+            // Determine visibility based on the fieldsToShow set
+            if (fieldsToShowSet.Contains(column.DataPropertyName) || fieldsToShowSet.Contains(column.Name))
             {
-                columnToShow.Visible = true;
-                columnToShow.HeaderText = AddSpacesToCamelCase(field);
+                column.Visible = true;
+                column.HeaderText = AddSpacesToCamelCase(column.DataPropertyName ?? column.Name);
             }
             else
             {
-                MessageHandler.ShowError($"Column {field} not found in the DataGridView");
+                column.Visible = false; // Hide only if not part of fieldsToShow
             }
         }
     }
@@ -285,28 +277,57 @@ public static class DgFormatHelper
 
     public static int GetSelectedIdOnSelectionChange(DataGridView dgv, string columnName)
     {
+        // Validate DataGridView
+        if (dgv == null)
+            throw new ArgumentNullException(nameof(dgv), "DataGridView cannot be null.");
+
+        // Validate columnName
+        if (string.IsNullOrEmpty(columnName))
+            throw new ArgumentException("Column name cannot be null or empty.", nameof(columnName));
+
+        // Ensure column exists
+        if (!dgv.Columns.Contains(columnName))
+            throw new ArgumentException($"Column '{columnName}' does not exist in the DataGridView.", nameof(columnName));
+
         try
         {
-            if (dgv.CurrentRow != null && dgv.Columns.Contains(columnName))
+            // Ensure a row is selected
+            if (dgv.CurrentRow != null)
             {
-                object cellValue = dgv.CurrentRow.Cells[columnName].Value;
+                var cellValue = dgv.CurrentRow.Cells[columnName].Value;
 
+                // Check if value is valid
                 if (cellValue != null && int.TryParse(cellValue.ToString(), out int selectedId))
                 {
-                    if (selectedId != 0)
+                    if (selectedId > 0)
                     {
                         return selectedId;
                     }
+                    else
+                    {
+                        throw new InvalidOperationException($"Invalid ID value: {selectedId}. ID must be greater than 0.");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Cell value is null or not a valid integer.");
                 }
             }
-            return 0;
+            else
+            {
+                throw new InvalidOperationException("No row is currently selected.");
+            }
         }
         catch (Exception ex)
         {
-            MessageHandler.ShowError($"Error getting selected id: {ex.Message}");
-            throw;
+            // Log the error and rethrow it for higher-level handling
+            var errorMessage = $"Error fetching selected ID: {ex.Message}.";
+            // Replace with your actual logging mechanism
+            MessageHandler.ShowError(errorMessage);
+            throw new ApplicationException(errorMessage, ex);
         }
     }
+
 
 
     public static void SetDataGridStyles(DataGridView dataGrid)
