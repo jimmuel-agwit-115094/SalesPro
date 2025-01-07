@@ -30,6 +30,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
+                credTerms_tx.Focus();
                 _curDate = await ClockHelper.GetServerDateTime();
 
                 var order = await _service.GetOrderById(_orderId);
@@ -48,7 +49,7 @@ namespace SalesPro.Forms.Orders
 
                     dateCredited_tx.Text = DateFormatHelper.FormatDate(credit.CreditedDate);
                     dueDate_tx.Text = DateFormatHelper.FormatDate(credit.DueDate);
-                    credTerms_tx.Text = credit.CreditTerms.ToString();
+                    credTerms_tx.Value = credit.CreditTerms;
                     invoice_tx.Text = credit.InvoiceNumber;
                     notes_tx.Text = credit.Notes;
                 }
@@ -130,10 +131,7 @@ namespace SalesPro.Forms.Orders
 
         private void credTerms_tx_ValueChanged(object sender, EventArgs e)
         {
-            if (_action == Constants.SystemConstants.New)
-            {
-                dueDate_tx.Text = DateFormatHelper.FormatDate(_curDate.Date.AddDays((int)credTerms_tx.Value));
-            }
+           
         }
     }
 }
