@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.X509;
 using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Helpers;
@@ -14,7 +13,6 @@ namespace SalesPro.Services
 {
     public class OrderService
     {
-
         public async Task<OrderModel> SaveOrder(OrderModel order)
         {
             using (var context = new DatabaseContext())
