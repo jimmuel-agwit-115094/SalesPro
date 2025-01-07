@@ -56,6 +56,7 @@ namespace SalesPro.Forms.Orders
                     dgOrders.DataSource = allOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
+                    dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
                 }
             }
             catch (Exception ex)

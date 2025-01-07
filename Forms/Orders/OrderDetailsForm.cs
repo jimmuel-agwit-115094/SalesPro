@@ -40,11 +40,18 @@ namespace SalesPro.Forms.Orders
                     userId_tx.Text = order.UserName.ToString();
                     dateTaken_tx.Text = DateFormatHelper.FormatDateWithTime(order.DateTaken);
                     customer_tx.Text = order.CustomerName.ToString();
+                    
                     isCredited_tx.Text = order.IsCredited ? "Yes" : "No";
+                    isCredited_tx.ForeColor = order.IsCredited ? Color.Red : Color.Black;
+
                     orderStatus_tx.Text =order.OrderStatus.ToString();
 
                     // Payment Info
                     paymentStatus_tx.Text = order.PaymentStatus.ToString();
+                    
+                    paymentStatus_tx.BackColor = order.PaymentStatus == Enums.PaymentStatus.Paid ? Color.Green : Color.Red;
+                    paymentStatus_tx.ForeColor = Color.White;
+
                     paymentMethod_tx.Text = order.PaymentMethod.ToString();
                     datePaid_tx.Text = DateFormatHelper.FormatDateWithTime((DateTime)order.DatePaid);
                     amtPaid_tx.Text = order.AmountPaid.ToString("N2");

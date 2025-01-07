@@ -41,11 +41,17 @@ namespace SalesPro.Forms.Orders
                     title_lbl.ForeColor = Color.Black;
                     return_pb.Visible = false;
                 }
-                else
+                else if (_orderAction == OrderAction.Return)
                 {
                     title_lbl.Text = "Return Item";
                     title_lbl.ForeColor = Color.Red;
                     return_pb.Visible = true;
+                }
+                else
+                {
+                    title_lbl.Text = "Price Inquiry";
+                    title_lbl.ForeColor = Color.Black;
+                    return_pb.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -80,7 +86,7 @@ namespace SalesPro.Forms.Orders
             {
                 await ProcessOrderItem(OrderItemStatus.Added);
             }
-            else
+            else if (_orderAction == OrderAction.Return)
             {
                 await ProcessOrderItem(OrderItemStatus.Returned);
             }
@@ -166,7 +172,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (e.RowIndex >= 0)
+                if (e.RowIndex >= 0 && _orderAction != OrderAction.Inquiry)
                 {
                     await AddOrderItem();
                 }
@@ -194,7 +200,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter && _orderAction != OrderAction.Inquiry)
                 {
                     e.Handled = true;
                     await AddOrderItem();

@@ -417,5 +417,12 @@ namespace SalesPro.Forms.Orders
         {
 
         }
+
+        private void priceInquiry_btn_Click(object sender, EventArgs e)
+        {
+            var form = new AddOrderItemForm(this);
+            form._orderAction = OrderAction.Inquiry;
+            form.ShowDialog();
+        }
     }
 }

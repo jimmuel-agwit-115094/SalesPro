@@ -27,7 +27,8 @@
     public enum OrderAction
     {
         New,
-        Return
+        Return,
+        Inquiry
     }
 
     public enum SearchByAction
