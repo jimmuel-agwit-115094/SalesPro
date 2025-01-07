@@ -36,9 +36,9 @@ namespace SalesPro.Forms.Orders
                 if (order != null)
                 {
                     total_tx.Text = order.Total.ToString("N2");
-                    transactionId_tx.Text = order.TransactionId.ToString();
+                    orderId_tx.Text = order.OrderId.ToString();
                     userId_tx.Text = order.UserName.ToString();
-                    dateTaken_tx.Text = DateFormatHelper.FormatDate(order.DateTaken);
+                    dateTaken_tx.Text = DateFormatHelper.FormatDateWithTime(order.DateTaken);
                     customer_tx.Text = order.CustomerName.ToString();
                     isCredited_tx.Text = order.IsCredited ? "Yes" : "No";
                     orderStatus_tx.Text =order.OrderStatus.ToString();
@@ -46,7 +46,7 @@ namespace SalesPro.Forms.Orders
                     // Payment Info
                     paymentStatus_tx.Text = order.PaymentStatus.ToString();
                     paymentMethod_tx.Text = order.PaymentMethod.ToString();
-                    datePaid_tx.Text = DateFormatHelper.FormatDate((DateTime)order.DatePaid);
+                    datePaid_tx.Text = DateFormatHelper.FormatDateWithTime((DateTime)order.DatePaid);
                     amtPaid_tx.Text = order.AmountPaid.ToString("N2");
                     change_tx.Text = order.Change.ToString("N2");
 
