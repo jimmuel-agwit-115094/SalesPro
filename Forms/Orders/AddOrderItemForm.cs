@@ -253,6 +253,10 @@ namespace SalesPro.Forms.Orders
                 search_btn.PerformClick();
                 dgProduct.Focus(); // Set focus to the DataGridView
             }
+            if (e.KeyCode == Keys.Down)
+            {
+                dgProduct.Focus();
+            }
         }
 
         private async void search_btn_Click(object sender, EventArgs e)
