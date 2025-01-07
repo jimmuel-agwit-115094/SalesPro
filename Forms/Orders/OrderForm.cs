@@ -293,6 +293,7 @@ namespace SalesPro.Forms.Orders
             form.title_lbl.Text = "Suspended Order Lists";
             form._action = Constants.FormConstants.ResumeOrder;
             form._orderStatus = OrderStatus.Suspended;
+            form._orderId = _orderId;
             form._rowVersion = _rowVersion;
             form.ShowDialog();
         }
