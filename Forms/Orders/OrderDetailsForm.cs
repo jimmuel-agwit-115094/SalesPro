@@ -36,7 +36,7 @@ namespace SalesPro.Forms.Orders
                 if (order != null)
                 {
                     total_tx.Text = order.Total.ToString("N2");
-                    orderId_tx.Text = order.OrderId.ToString();
+                    orderId_tx.Text = order.OrderId.ToString("D7");
                     userId_tx.Text = order.UserName.ToString();
                     dateTaken_tx.Text = DateFormatHelper.FormatDateWithTime(order.DateTaken);
                     customer_tx.Text = order.CustomerName.ToString();
