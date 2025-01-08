@@ -33,22 +33,24 @@ namespace SalesPro.Forms.Orders
             return new OrderModel
             {
                 TransactionId = TransactionSession._transactionId,
-                AmountDue = 0,
-                AmountPaid = 0,
-                Change = 0,
+                UserId = UserSession.Session_UserId,
                 CustomerId = 1,
                 DateTaken = _curDate,
-                DatePaid = _curDate,
-                DiscountAmount = 0,
+                Total = 0,
                 DiscountRate = 0,
+                DiscountAmount = 0,
+                Vat = 12,
+                VatAmount = 0,
                 NetAmount = 0,
+                AmountDue = 0,
+                GrossAmount = 0,
+                AmountPaid = 0,
+                Change = 0,
+                PaymentStatus = PaymentStatus.Unpaid,
+                IsCredited = false,
                 OrderStatus = OrderStatus.Active,
                 PaymentMethod = PaymentMethod.NotSet,
-                PaymentStatus = PaymentStatus.Unpaid,
-                Total = 0,
-                UserId = 1,
-                Vat = 12,
-                VatAmount = 0
+                DatePaid = _curDate.Date,
             };
         }
 
@@ -424,6 +426,11 @@ namespace SalesPro.Forms.Orders
             var form = new AddOrderItemForm(this);
             form._orderAction = OrderAction.Inquiry;
             form.ShowDialog();
+        }
+
+        private void vatRate_tx_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

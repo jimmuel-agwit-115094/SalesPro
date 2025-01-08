@@ -553,6 +553,7 @@
             this.vatRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.vatRate_tx.ThousandsSeparator = true;
             this.vatRate_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.vatRate_tx.ValueChanged += new System.EventHandler(this.vatRate_tx_ValueChanged);
             // 
             // cancel_btn
             // 

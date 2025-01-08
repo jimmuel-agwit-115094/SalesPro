@@ -143,6 +143,7 @@ namespace SalesPro.Forms.Orders
             // Assess if item is for addition or returned
             int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
 
+            // calculate taxes
             // Save order item
             var orderItem = new OrderItemModel
             {
@@ -154,6 +155,7 @@ namespace SalesPro.Forms.Orders
                 TotalPrice = newQuantity * prodInventory.RetailPrice,
                 OrderItemStatus = itemStatus,
             };
+
 
             var savedOrder = await _service.SaveOrderItem(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
 
