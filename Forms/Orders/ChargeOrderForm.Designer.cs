@@ -53,7 +53,7 @@
             // customer_tx
             // 
             this.customer_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_tx.Location = new System.Drawing.Point(28, 132);
+            this.customer_tx.Location = new System.Drawing.Point(28, 120);
             this.customer_tx.Name = "customer_tx";
             this.customer_tx.Size = new System.Drawing.Size(290, 19);
             this.customer_tx.TabIndex = 542;
@@ -63,7 +63,7 @@
             // amtDue_tx
             // 
             this.amtDue_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amtDue_tx.Location = new System.Drawing.Point(28, 82);
+            this.amtDue_tx.Location = new System.Drawing.Point(28, 66);
             this.amtDue_tx.Name = "amtDue_tx";
             this.amtDue_tx.Size = new System.Drawing.Size(290, 57);
             this.amtDue_tx.TabIndex = 541;
@@ -73,7 +73,7 @@
             // title_lbl
             // 
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.Location = new System.Drawing.Point(28, 56);
+            this.title_lbl.Location = new System.Drawing.Point(28, 47);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(290, 34);
             this.title_lbl.TabIndex = 540;
@@ -83,8 +83,8 @@
             // paymentPhoto
             // 
             this.paymentPhoto.Image = ((System.Drawing.Image)(resources.GetObject("paymentPhoto.Image")));
-            this.paymentPhoto.Location = new System.Drawing.Point(149, 4);
-            this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paymentPhoto.Location = new System.Drawing.Point(149, 0);
+            this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.paymentPhoto.Name = "paymentPhoto";
             this.paymentPhoto.Size = new System.Drawing.Size(52, 57);
             this.paymentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -224,9 +224,9 @@
             this.groupBox1.Controls.Add(this.dueDate_tx);
             this.groupBox1.Controls.Add(this.dateCredited_tx);
             this.groupBox1.Location = new System.Drawing.Point(26, 158);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(291, 115);
             this.groupBox1.TabIndex = 567;
             this.groupBox1.TabStop = false;
@@ -237,7 +237,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(339, 594);
+            this.ClientSize = new System.Drawing.Size(343, 594);
+            this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.credTerms_tx);
             this.Controls.Add(this.charge_btn);
@@ -249,7 +250,6 @@
             this.Controls.Add(this.paymentPhoto);
             this.Controls.Add(this.customer_tx);
             this.Controls.Add(this.amtDue_tx);
-            this.Controls.Add(this.title_lbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
