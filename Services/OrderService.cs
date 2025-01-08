@@ -182,6 +182,7 @@ namespace SalesPro.Services
             currentOrder.NetAmount = netAmt;
             currentOrder.AmountDue = total;
             currentOrder.GrossAmount = grossAmt;
+            currentOrder.UserId = UserSession.Session_UserId;
 
             // Update when payment is made
             if (orderModel != null)
@@ -400,7 +401,7 @@ namespace SalesPro.Services
                     NullCheckerHelper.NullCheck(order);
 
                     order.OrderStatus = status;
-
+                    order.UserId = UserSession.Session_UserId;
                     await context.SaveChangesAsync();
                     updatedOrder = await context.Orders.FindAsync(orderId);
                 });
@@ -492,6 +493,7 @@ namespace SalesPro.Services
 
                     // Update order
                     order.IsCredited = true;
+                    order.UserId = UserSession.Session_UserId;
                     order.OrderStatus = OrderStatus.Completed;
                     await context.SaveChangesAsync();
 
