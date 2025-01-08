@@ -59,9 +59,9 @@ namespace SalesPro.Forms.Orders
 
                     //Totals
                     totalAmt_tx.Text = order.Total.ToString("N2");
-                    discRate_tx.Text = order.DiscountRate.ToString();
+                    discRate_tx.Text = order.DiscountRate.ToString() + " %";
                     discAmt_tx.Text = order.DiscountAmount.ToString("N2");
-                    vat_tx.Text = order.Vat.ToString();
+                    vat_tx.Text = order.Vat.ToString() + "%";
                     vatAmt_tx.Text = order.VatAmount.ToString("N2");
                     netAmt_tx.Text = order.NetAmount.ToString("N2");
                     amtDue_tx.Text = order.AmountDue.ToString("N2");

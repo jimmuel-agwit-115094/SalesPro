@@ -15,6 +15,7 @@
         DebitCard,
         Cheque,
         BankTransfer,
+        EPayment,
         NotSet
     }
 

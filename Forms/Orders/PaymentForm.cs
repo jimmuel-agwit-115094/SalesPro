@@ -14,6 +14,7 @@ namespace SalesPro.Forms.Orders
         public int _orderId;
         public int _rowVersion;
         private decimal _amountDue;
+        private decimal _totalAmtDue;
         private DateTime _curDate;
 
         private readonly OrderService _service;
@@ -42,12 +43,14 @@ namespace SalesPro.Forms.Orders
                 var order = await _service.GetOrderById(_orderId);
                 if (order != null)
                 {
-                    amtDue_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
+                    total_tx.Text = $"₱{order.AmountDue.ToString("N2")}";
                     _amountDue = order.AmountDue;
                     customer_tx.Text = order.CustomerName;
                     SetControls(order.PaymentStatus);
                 }
                 CalculateOrderPayment(_amountDue);
+                cash_tx.Select();
+                cash_tx.Focus();
             }
             catch (Exception ex)
             {
@@ -60,14 +63,14 @@ namespace SalesPro.Forms.Orders
             try
             {
                 var cash = decimal.Parse(cash_tx.Text);
-                if (_amountDue > 0 && cash == 0)
+                if (_totalAmtDue > 0 && cash == 0)
                 {
-                    MessageHandler.ShowWarning("Please enter cash amount. Amount cannot be 0");
+                    MessageHandler.ShowWarning("Please enter cash amount. Cash cannot be 0");
                     return;
                 }
-                if (cash < _amountDue)
+                if (cash < _totalAmtDue)
                 {
-                    MessageHandler.ShowWarning("Cash amount is less than the amount due");
+                    MessageHandler.ShowWarning("Cash amount is less than the total amount due");
                     return;
                 }
                 if (MessageHandler.ShowQuestionGeneric("Are you sure you want to pay this order?"))
@@ -111,19 +114,25 @@ namespace SalesPro.Forms.Orders
                 decimal discountAmount = (total * discountRate) / 100;
 
                 // Calculate the final total after discount
-                decimal finalTotal = total - discountAmount;
+                decimal totalmtDue = total - discountAmount;
 
                 // Calculate the change
-                decimal change = cashTendered - finalTotal;
+                decimal change = cashTendered - totalmtDue;
 
+                // Controls
                 discAmt_tx.Value = discountAmount;
+                totalAmtDue_tx.Value = totalmtDue;
                 change_tx.Value = change;
+
+                // Props
+                _totalAmtDue = totalmtDue;
 
                 // model
                 orderModel.AmountPaid = cashTendered;
                 orderModel.DiscountRate = discountRate;
                 orderModel.DiscountAmount = discountAmount;
                 orderModel.Change = change;
+                orderModel.AmountDue = totalmtDue;
                 orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
                 orderModel.OrderStatus = OrderStatus.Completed;
                 orderModel.DatePaid = _curDate;
@@ -157,6 +166,7 @@ namespace SalesPro.Forms.Orders
             if (cash_tx.Text == string.Empty)
             {
                 cash_tx.Text = "0";
+                cash_tx.SelectAll();
             }
             CalculateOrderPayment(_amountDue);
         }
@@ -201,13 +211,29 @@ namespace SalesPro.Forms.Orders
 
         private void change_tx_ValueChanged(object sender, EventArgs e)
         {
-            if (change_tx.Value <= 0)
+            if (change_tx.Value < 0)
             {
                 change_tx.ForeColor = System.Drawing.Color.Red;
             }
             else
             {
                 change_tx.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        private void cash_tx_Click(object sender, EventArgs e)
+        {
+            if (cash_tx.Text == "0.00" || cash_tx.Text == "0")
+            {
+                cash_tx.SelectAll();
+            }
+        }
+
+        private void discRate_tx_Click(object sender, EventArgs e)
+        {
+            if(discRate_tx.Text == "0.00" || discRate_tx.Text == "0")
+            {
+                discRate_tx.SelectAll();
             }
         }
     }

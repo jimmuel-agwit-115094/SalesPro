@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             this.customer_tx = new System.Windows.Forms.Label();
-            this.amtDue_tx = new System.Windows.Forms.Label();
+            this.total_tx = new System.Windows.Forms.Label();
             this.pay_btn = new System.Windows.Forms.Button();
             this.title_lbl = new System.Windows.Forms.Label();
             this.product_tx = new System.Windows.Forms.Label();
@@ -46,30 +46,40 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cash_tx = new System.Windows.Forms.TextBox();
             this.discRate_tx = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.totalAmtDue_tx = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalAmtDue_tx)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customer_tx
             // 
+            this.customer_tx.BackColor = System.Drawing.Color.White;
             this.customer_tx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_tx.Location = new System.Drawing.Point(22, 132);
+            this.customer_tx.Location = new System.Drawing.Point(1, 125);
             this.customer_tx.Name = "customer_tx";
             this.customer_tx.Size = new System.Drawing.Size(290, 19);
             this.customer_tx.TabIndex = 539;
             this.customer_tx.Text = "Generic";
             this.customer_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // amtDue_tx
+            // total_tx
             // 
-            this.amtDue_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amtDue_tx.Location = new System.Drawing.Point(22, 80);
-            this.amtDue_tx.Name = "amtDue_tx";
-            this.amtDue_tx.Size = new System.Drawing.Size(290, 57);
-            this.amtDue_tx.TabIndex = 538;
-            this.amtDue_tx.Text = "0.00";
-            this.amtDue_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.total_tx.BackColor = System.Drawing.Color.White;
+            this.total_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_tx.Location = new System.Drawing.Point(1, 73);
+            this.total_tx.Name = "total_tx";
+            this.total_tx.Size = new System.Drawing.Size(290, 57);
+            this.total_tx.TabIndex = 538;
+            this.total_tx.Text = "0.00";
+            this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pay_btn
             // 
@@ -78,7 +88,7 @@
             this.pay_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pay_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pay_btn.ForeColor = System.Drawing.Color.White;
-            this.pay_btn.Location = new System.Drawing.Point(172, 535);
+            this.pay_btn.Location = new System.Drawing.Point(177, 626);
             this.pay_btn.Name = "pay_btn";
             this.pay_btn.Size = new System.Drawing.Size(140, 34);
             this.pay_btn.TabIndex = 537;
@@ -88,8 +98,9 @@
             // 
             // title_lbl
             // 
+            this.title_lbl.BackColor = System.Drawing.Color.White;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.Location = new System.Drawing.Point(22, 60);
+            this.title_lbl.Location = new System.Drawing.Point(1, 53);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(290, 28);
             this.title_lbl.TabIndex = 534;
@@ -100,7 +111,7 @@
             // 
             this.product_tx.AutoSize = true;
             this.product_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.product_tx.Location = new System.Drawing.Point(20, 172);
+            this.product_tx.Location = new System.Drawing.Point(24, 185);
             this.product_tx.Name = "product_tx";
             this.product_tx.Size = new System.Drawing.Size(111, 21);
             this.product_tx.TabIndex = 540;
@@ -108,11 +119,12 @@
             // 
             // paymentPhoto
             // 
+            this.paymentPhoto.BackColor = System.Drawing.Color.White;
             this.paymentPhoto.Image = ((System.Drawing.Image)(resources.GetObject("paymentPhoto.Image")));
-            this.paymentPhoto.Location = new System.Drawing.Point(140, 9);
+            this.paymentPhoto.Location = new System.Drawing.Point(126, 18);
             this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.paymentPhoto.Name = "paymentPhoto";
-            this.paymentPhoto.Size = new System.Drawing.Size(52, 57);
+            this.paymentPhoto.Size = new System.Drawing.Size(40, 40);
             this.paymentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.paymentPhoto.TabIndex = 541;
             this.paymentPhoto.TabStop = false;
@@ -121,7 +133,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 334);
+            this.label1.Location = new System.Drawing.Point(200, 340);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 15);
             this.label1.TabIndex = 544;
@@ -131,7 +143,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 396);
+            this.label2.Location = new System.Drawing.Point(26, 399);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 15);
             this.label2.TabIndex = 547;
@@ -139,10 +151,10 @@
             // 
             // discAmt_tx
             // 
-            this.discAmt_tx.BackColor = System.Drawing.Color.White;
+            this.discAmt_tx.BackColor = System.Drawing.Color.WhiteSmoke;
             this.discAmt_tx.DecimalPlaces = 2;
             this.discAmt_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discAmt_tx.Location = new System.Drawing.Point(22, 414);
+            this.discAmt_tx.Location = new System.Drawing.Point(26, 417);
             this.discAmt_tx.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -164,10 +176,10 @@
             // 
             // change_tx
             // 
-            this.change_tx.BackColor = System.Drawing.Color.White;
+            this.change_tx.BackColor = System.Drawing.Color.WhiteSmoke;
             this.change_tx.DecimalPlaces = 2;
-            this.change_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.change_tx.Location = new System.Drawing.Point(22, 474);
+            this.change_tx.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.change_tx.Location = new System.Drawing.Point(26, 545);
             this.change_tx.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -180,7 +192,7 @@
             -2147483648});
             this.change_tx.Name = "change_tx";
             this.change_tx.ReadOnly = true;
-            this.change_tx.Size = new System.Drawing.Size(290, 36);
+            this.change_tx.Size = new System.Drawing.Size(290, 48);
             this.change_tx.TabIndex = 548;
             this.change_tx.Tag = "IsNumeric";
             this.change_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -192,7 +204,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(22, 456);
+            this.label3.Location = new System.Drawing.Point(26, 527);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 15);
             this.label3.TabIndex = 549;
@@ -201,17 +213,17 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(23, 416);
+            this.panel2.Location = new System.Drawing.Point(27, 419);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(20, 32);
             this.panel2.TabIndex = 551;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(23, 476);
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Location = new System.Drawing.Point(27, 546);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 32);
+            this.panel3.Size = new System.Drawing.Size(20, 46);
             this.panel3.TabIndex = 552;
             // 
             // paymentMethod_cb
@@ -219,7 +231,7 @@
             this.paymentMethod_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethod_cb.FormattingEnabled = true;
-            this.paymentMethod_cb.Location = new System.Drawing.Point(22, 287);
+            this.paymentMethod_cb.Location = new System.Drawing.Point(26, 300);
             this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2);
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(291, 33);
@@ -229,7 +241,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 270);
+            this.label4.Location = new System.Drawing.Point(25, 283);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 15);
             this.label4.TabIndex = 554;
@@ -238,48 +250,125 @@
             // cash_tx
             // 
             this.cash_tx.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cash_tx.Location = new System.Drawing.Point(24, 196);
+            this.cash_tx.Location = new System.Drawing.Point(28, 209);
             this.cash_tx.Name = "cash_tx";
             this.cash_tx.Size = new System.Drawing.Size(288, 50);
             this.cash_tx.TabIndex = 556;
             this.cash_tx.Text = "0";
             this.cash_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cash_tx.Click += new System.EventHandler(this.cash_tx_Click);
             this.cash_tx.TextChanged += new System.EventHandler(this.c_TextChanged);
             // 
             // discRate_tx
             // 
             this.discRate_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F);
-            this.discRate_tx.Location = new System.Drawing.Point(22, 352);
+            this.discRate_tx.Location = new System.Drawing.Point(201, 358);
             this.discRate_tx.Name = "discRate_tx";
-            this.discRate_tx.Size = new System.Drawing.Size(291, 36);
+            this.discRate_tx.Size = new System.Drawing.Size(115, 36);
             this.discRate_tx.TabIndex = 557;
             this.discRate_tx.Text = "0";
             this.discRate_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.discRate_tx.Click += new System.EventHandler(this.discRate_tx_Click);
             this.discRate_tx.TextChanged += new System.EventHandler(this.discRate_tx_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(318, 368);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 21);
+            this.label5.TabIndex = 558;
+            this.label5.Text = "%";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Location = new System.Drawing.Point(27, 482);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(20, 32);
+            this.panel1.TabIndex = 561;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(26, 462);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 15);
+            this.label6.TabIndex = 560;
+            this.label6.Text = "Total Amount Due";
+            // 
+            // totalAmtDue_tx
+            // 
+            this.totalAmtDue_tx.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.totalAmtDue_tx.DecimalPlaces = 2;
+            this.totalAmtDue_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalAmtDue_tx.Location = new System.Drawing.Point(26, 480);
+            this.totalAmtDue_tx.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.totalAmtDue_tx.Minimum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            -2147483648});
+            this.totalAmtDue_tx.Name = "totalAmtDue_tx";
+            this.totalAmtDue_tx.ReadOnly = true;
+            this.totalAmtDue_tx.Size = new System.Drawing.Size(290, 36);
+            this.totalAmtDue_tx.TabIndex = 559;
+            this.totalAmtDue_tx.Tag = "IsNumeric";
+            this.totalAmtDue_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.totalAmtDue_tx.ThousandsSeparator = true;
+            this.totalAmtDue_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.paymentPhoto);
+            this.groupBox1.Controls.Add(this.title_lbl);
+            this.groupBox1.Controls.Add(this.total_tx);
+            this.groupBox1.Controls.Add(this.customer_tx);
+            this.groupBox1.Location = new System.Drawing.Point(25, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(292, 165);
+            this.groupBox1.TabIndex = 562;
+            this.groupBox1.TabStop = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.Location = new System.Drawing.Point(27, 419);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 32);
+            this.panel4.TabIndex = 563;
             // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(332, 588);
-            this.Controls.Add(this.discRate_tx);
+            this.ClientSize = new System.Drawing.Size(343, 674);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.cash_tx);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.paymentMethod_cb);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.customer_tx);
-            this.Controls.Add(this.amtDue_tx);
-            this.Controls.Add(this.title_lbl);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.change_tx);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.discAmt_tx);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.paymentPhoto);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.product_tx);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.totalAmtDue_tx);
+            this.Controls.Add(this.discAmt_tx);
             this.Controls.Add(this.pay_btn);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.paymentMethod_cb);
+            this.Controls.Add(this.discRate_tx);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.change_tx);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
@@ -295,6 +384,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discAmt_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.change_tx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalAmtDue_tx)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,7 +394,7 @@
         #endregion
 
         internal System.Windows.Forms.Label customer_tx;
-        internal System.Windows.Forms.Label amtDue_tx;
+        internal System.Windows.Forms.Label total_tx;
         private System.Windows.Forms.Button pay_btn;
         internal System.Windows.Forms.Label title_lbl;
         internal System.Windows.Forms.Label product_tx;
@@ -319,5 +410,11 @@
         internal System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox cash_tx;
         private System.Windows.Forms.TextBox discRate_tx;
+        internal System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.Label label6;
+        public System.Windows.Forms.NumericUpDown totalAmtDue_tx;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel panel4;
     }
 }

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderDetailsForm));
             this.dgItems = new System.Windows.Forms.DataGridView();
             this.notFound_lbl = new System.Windows.Forms.Label();
@@ -103,44 +103,44 @@
             this.dgItems.AllowUserToAddRows = false;
             this.dgItems.AllowUserToDeleteRows = false;
             this.dgItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgItems.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgItems.ColumnHeadersHeight = 40;
             this.dgItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgItems.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgItems.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgItems.EnableHeadersVisualStyles = false;
             this.dgItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgItems.Location = new System.Drawing.Point(16, 60);
             this.dgItems.MultiSelect = false;
             this.dgItems.Name = "dgItems";
             this.dgItems.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgItems.RowHeadersVisible = false;
             this.dgItems.RowHeadersWidth = 51;
             this.dgItems.RowTemplate.Height = 32;
@@ -187,14 +187,14 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(663, 54);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(391, 568);
+            this.groupBox1.Size = new System.Drawing.Size(391, 574);
             this.groupBox1.TabIndex = 568;
             this.groupBox1.TabStop = false;
             // 
@@ -203,40 +203,32 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(12, 368);
+            this.label12.Location = new System.Drawing.Point(12, 457);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 17);
+            this.label12.Size = new System.Drawing.Size(41, 17);
             this.label12.TabIndex = 578;
-            this.label12.Text = "Totals ";
+            this.label12.Text = "Taxes";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.amtDue_tx);
             this.panel3.Controls.Add(this.netAmt_tx);
             this.panel3.Controls.Add(this.vatAmt_tx);
-            this.panel3.Controls.Add(this.totalAmt_tx);
-            this.panel3.Controls.Add(this.discRate_tx);
-            this.panel3.Controls.Add(this.discAmt_tx);
             this.panel3.Controls.Add(this.vat_tx);
-            this.panel3.Controls.Add(this.label20);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.label18);
-            this.panel3.Location = new System.Drawing.Point(12, 388);
+            this.panel3.Location = new System.Drawing.Point(12, 477);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(368, 171);
+            this.panel3.Size = new System.Drawing.Size(368, 82);
             this.panel3.TabIndex = 577;
             // 
             // amtDue_tx
             // 
             this.amtDue_tx.AutoSize = true;
             this.amtDue_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amtDue_tx.Location = new System.Drawing.Point(131, 145);
+            this.amtDue_tx.Location = new System.Drawing.Point(126, 158);
             this.amtDue_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.amtDue_tx.Name = "amtDue_tx";
             this.amtDue_tx.Size = new System.Drawing.Size(77, 15);
@@ -247,7 +239,7 @@
             // 
             this.netAmt_tx.AutoSize = true;
             this.netAmt_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.netAmt_tx.Location = new System.Drawing.Point(131, 124);
+            this.netAmt_tx.Location = new System.Drawing.Point(131, 56);
             this.netAmt_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.netAmt_tx.Name = "netAmt_tx";
             this.netAmt_tx.Size = new System.Drawing.Size(70, 15);
@@ -258,7 +250,7 @@
             // 
             this.vatAmt_tx.AutoSize = true;
             this.vatAmt_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vatAmt_tx.Location = new System.Drawing.Point(130, 102);
+            this.vatAmt_tx.Location = new System.Drawing.Point(130, 34);
             this.vatAmt_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.vatAmt_tx.Name = "vatAmt_tx";
             this.vatAmt_tx.Size = new System.Drawing.Size(70, 15);
@@ -269,7 +261,7 @@
             // 
             this.totalAmt_tx.AutoSize = true;
             this.totalAmt_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalAmt_tx.Location = new System.Drawing.Point(129, 13);
+            this.totalAmt_tx.Location = new System.Drawing.Point(125, 89);
             this.totalAmt_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.totalAmt_tx.Name = "totalAmt_tx";
             this.totalAmt_tx.Size = new System.Drawing.Size(56, 15);
@@ -280,7 +272,7 @@
             // 
             this.discRate_tx.AutoSize = true;
             this.discRate_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discRate_tx.Location = new System.Drawing.Point(130, 35);
+            this.discRate_tx.Location = new System.Drawing.Point(125, 112);
             this.discRate_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.discRate_tx.Name = "discRate_tx";
             this.discRate_tx.Size = new System.Drawing.Size(112, 15);
@@ -291,7 +283,7 @@
             // 
             this.discAmt_tx.AutoSize = true;
             this.discAmt_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discAmt_tx.Location = new System.Drawing.Point(130, 58);
+            this.discAmt_tx.Location = new System.Drawing.Point(125, 135);
             this.discAmt_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.discAmt_tx.Name = "discAmt_tx";
             this.discAmt_tx.Size = new System.Drawing.Size(105, 15);
@@ -302,7 +294,7 @@
             // 
             this.vat_tx.AutoSize = true;
             this.vat_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vat_tx.Location = new System.Drawing.Point(131, 80);
+            this.vat_tx.Location = new System.Drawing.Point(131, 12);
             this.vat_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.vat_tx.Name = "vat_tx";
             this.vat_tx.Size = new System.Drawing.Size(42, 15);
@@ -313,18 +305,18 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(51, 143);
+            this.label20.Location = new System.Drawing.Point(19, 156);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 17);
+            this.label20.Size = new System.Drawing.Size(100, 17);
             this.label20.TabIndex = 565;
-            this.label20.Text = "Amt. Due :";
+            this.label20.Text = "Total Amt. Due :";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(56, 122);
+            this.label19.Location = new System.Drawing.Point(56, 54);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(63, 17);
@@ -335,7 +327,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(59, 100);
+            this.label14.Location = new System.Drawing.Point(59, 32);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 17);
@@ -346,7 +338,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(75, 11);
+            this.label15.Location = new System.Drawing.Point(76, 87);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(43, 17);
@@ -357,7 +349,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(23, 33);
+            this.label16.Location = new System.Drawing.Point(24, 110);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(95, 17);
@@ -368,7 +360,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(26, 56);
+            this.label17.Location = new System.Drawing.Point(27, 133);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(92, 17);
@@ -379,7 +371,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(86, 78);
+            this.label18.Location = new System.Drawing.Point(86, 10);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(33, 17);
@@ -391,7 +383,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(12, 206);
+            this.label9.Location = new System.Drawing.Point(12, 203);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(90, 17);
@@ -401,26 +393,34 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.amtDue_tx);
             this.panel2.Controls.Add(this.change_tx);
             this.panel2.Controls.Add(this.amtPaid_tx);
             this.panel2.Controls.Add(this.datePaid_tx);
+            this.panel2.Controls.Add(this.discRate_tx);
+            this.panel2.Controls.Add(this.label20);
+            this.panel2.Controls.Add(this.discAmt_tx);
+            this.panel2.Controls.Add(this.totalAmt_tx);
             this.panel2.Controls.Add(this.paymentStatus_tx);
             this.panel2.Controls.Add(this.paymentMethod_tx);
             this.panel2.Controls.Add(this.label22);
             this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(12, 227);
+            this.panel2.Location = new System.Drawing.Point(12, 224);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(368, 135);
+            this.panel2.Size = new System.Drawing.Size(368, 230);
             this.panel2.TabIndex = 575;
             // 
             // change_tx
             // 
             this.change_tx.AutoSize = true;
             this.change_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.change_tx.Location = new System.Drawing.Point(124, 106);
+            this.change_tx.Location = new System.Drawing.Point(127, 204);
             this.change_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.change_tx.Name = "change_tx";
             this.change_tx.Size = new System.Drawing.Size(63, 15);
@@ -431,7 +431,7 @@
             // 
             this.amtPaid_tx.AutoSize = true;
             this.amtPaid_tx.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amtPaid_tx.Location = new System.Drawing.Point(125, 83);
+            this.amtPaid_tx.Location = new System.Drawing.Point(126, 181);
             this.amtPaid_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.amtPaid_tx.Name = "amtPaid_tx";
             this.amtPaid_tx.Size = new System.Drawing.Size(84, 15);
@@ -475,7 +475,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(60, 104);
+            this.label22.Location = new System.Drawing.Point(60, 202);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 17);
@@ -486,7 +486,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(49, 81);
+            this.label21.Location = new System.Drawing.Point(49, 179);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(70, 17);
@@ -531,7 +531,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(13, 16);
+            this.label8.Location = new System.Drawing.Point(13, 13);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(119, 17);
@@ -553,7 +553,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(12, 37);
+            this.panel1.Location = new System.Drawing.Point(12, 34);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(368, 162);
             this.panel1.TabIndex = 573;
@@ -768,7 +768,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1070, 651);
+            this.ClientSize = new System.Drawing.Size(1069, 638);
             this.Controls.Add(this.isCreditedPanel);
             this.Controls.Add(this.paidPanel);
             this.Controls.Add(this.groupBox1);
