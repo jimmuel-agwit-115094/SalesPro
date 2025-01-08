@@ -167,6 +167,12 @@
     <Compile Include="Enums\OrderEnum.cs" />
     <Compile Include="Enums\PurchaseOrderEnums.cs" />
     <Compile Include="Enums\UsersEnums.cs" />
+    <Compile Include="Forms\EmptyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmptyForm.Designer.cs">
+      <DependentUpon>EmptyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Inventory\InventoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     <Compile Include="Services\PurchaseOrderService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Validators\Validators.cs" />
+    <EmbeddedResource Include="Forms\EmptyForm.resx">
+      <DependentUpon>EmptyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inventory\InventoryForm.resx">
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </EmbeddedResource>

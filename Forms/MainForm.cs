@@ -106,6 +106,9 @@ namespace SalesPro.Forms
 
         private void orders_btn_Click(object sender, EventArgs e)
         {
+            var emptyForm = new EmptyForm();
+            LoadFormInPanel(emptyForm);
+
             var form = new OrderForm();
             form.ShowDialog();
         }

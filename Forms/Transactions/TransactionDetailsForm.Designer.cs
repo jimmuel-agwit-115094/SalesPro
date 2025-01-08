@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionDetailsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.detailTabControl = new System.Windows.Forms.TabControl();
@@ -159,14 +159,14 @@
             this.transactionData_tab.Controls.Add(this.save_btn);
             this.transactionData_tab.Location = new System.Drawing.Point(4, 29);
             this.transactionData_tab.Name = "transactionData_tab";
-            this.transactionData_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.transactionData_tab.Padding = new System.Windows.Forms.Padding(3);
             this.transactionData_tab.Size = new System.Drawing.Size(759, 457);
             this.transactionData_tab.TabIndex = 0;
             this.transactionData_tab.Text = "    Transaction Data    ";
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.SystemColors.Control;
+            this.panel8.BackColor = System.Drawing.Color.White;
             this.panel8.Location = new System.Drawing.Point(313, 187);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(18, 23);
@@ -198,7 +198,7 @@
             // 
             // endingCash_tx
             // 
-            this.endingCash_tx.BackColor = System.Drawing.SystemColors.Control;
+            this.endingCash_tx.BackColor = System.Drawing.Color.White;
             this.endingCash_tx.DecimalPlaces = 2;
             this.endingCash_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.endingCash_tx.Location = new System.Drawing.Point(312, 185);
@@ -208,7 +208,6 @@
             0,
             0});
             this.endingCash_tx.Name = "endingCash_tx";
-            this.endingCash_tx.ReadOnly = true;
             this.endingCash_tx.Size = new System.Drawing.Size(261, 27);
             this.endingCash_tx.TabIndex = 512;
             this.endingCash_tx.Tag = "IsNumeric";
@@ -542,7 +541,7 @@
             this.transactionLog_tab.Controls.Add(this.panel7);
             this.transactionLog_tab.Location = new System.Drawing.Point(4, 29);
             this.transactionLog_tab.Name = "transactionLog_tab";
-            this.transactionLog_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.transactionLog_tab.Padding = new System.Windows.Forms.Padding(3);
             this.transactionLog_tab.Size = new System.Drawing.Size(759, 457);
             this.transactionLog_tab.TabIndex = 1;
             this.transactionLog_tab.Text = "     Transaction Logs   ";
@@ -566,30 +565,30 @@
             this.dgTransLogs.AllowUserToAddRows = false;
             this.dgTransLogs.AllowUserToDeleteRows = false;
             this.dgTransLogs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTransLogs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgTransLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTransLogs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTransLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTransLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTransLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgTransLogs.ColumnHeadersHeight = 30;
             this.dgTransLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTransLogs.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgTransLogs.EnableHeadersVisualStyles = false;
             this.dgTransLogs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgTransLogs.Location = new System.Drawing.Point(6, 52);
@@ -619,7 +618,7 @@
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_tx.Location = new System.Drawing.Point(364, 20);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
             this.search_tx.TabIndex = 459;
