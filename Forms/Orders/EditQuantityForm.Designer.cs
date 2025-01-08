@@ -40,17 +40,17 @@
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(12, 9);
+            this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.Location = new System.Drawing.Point(17, 75);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(125, 25);
+            this.title_lbl.Size = new System.Drawing.Size(92, 17);
             this.title_lbl.TabIndex = 457;
-            this.title_lbl.Text = "Edit Quantity";
+            this.title_lbl.Text = "New Quantity";
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(18, 115);
+            this.panel5.Location = new System.Drawing.Point(18, 96);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(18, 51);
             this.panel5.TabIndex = 528;
@@ -58,7 +58,7 @@
             // qty_tx
             // 
             this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qty_tx.Location = new System.Drawing.Point(17, 113);
+            this.qty_tx.Location = new System.Drawing.Point(17, 94);
             this.qty_tx.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -78,7 +78,7 @@
             this.enter_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.enter_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enter_btn.ForeColor = System.Drawing.Color.White;
-            this.enter_btn.Location = new System.Drawing.Point(167, 219);
+            this.enter_btn.Location = new System.Drawing.Point(167, 193);
             this.enter_btn.Name = "enter_btn";
             this.enter_btn.Size = new System.Drawing.Size(140, 34);
             this.enter_btn.TabIndex = 530;
@@ -90,7 +90,7 @@
             // 
             this.product_tx.AutoSize = true;
             this.product_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.product_tx.Location = new System.Drawing.Point(13, 46);
+            this.product_tx.Location = new System.Drawing.Point(14, 12);
             this.product_tx.Name = "product_tx";
             this.product_tx.Size = new System.Drawing.Size(104, 21);
             this.product_tx.TabIndex = 532;
@@ -100,7 +100,7 @@
             // 
             this.availableQty_tx.AutoSize = true;
             this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableQty_tx.Location = new System.Drawing.Point(14, 68);
+            this.availableQty_tx.Location = new System.Drawing.Point(16, 34);
             this.availableQty_tx.Name = "availableQty_tx";
             this.availableQty_tx.Size = new System.Drawing.Size(82, 17);
             this.availableQty_tx.TabIndex = 533;
@@ -112,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(324, 272);
+            this.ClientSize = new System.Drawing.Size(322, 246);
             this.Controls.Add(this.availableQty_tx);
             this.Controls.Add(this.product_tx);
             this.Controls.Add(this.enter_btn);
