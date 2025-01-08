@@ -354,8 +354,7 @@ namespace SalesPro.Services
 
                     if (invalidOrders.Count > 0)
                     {
-                        var productDetails = string.Join("\n", invalidOrders.Select(x => $"- {x.ProductName}"));
-                        throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
+                        ThrowIfInsufficientStock(invalidOrders);
                     }
                 });
                 return (invalidOrders, successUpdate);
@@ -476,6 +475,16 @@ namespace SalesPro.Services
             }
         }
 
+        public static void ThrowIfInsufficientStock(IEnumerable<OrderItemModelExtended> invalidOrders)
+        {
+            if (invalidOrders == null || !invalidOrders.Any())
+                return;
+
+            var productDetails = string.Join("\n", invalidOrders.Select(x => $"- {x.ProductName}"));
+            throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
+        }
+
+
         public async Task<OrderModel> ChargeOrder(int orderId, CustomerCreditModel custCred, int rowVersion)
         {
             using (var context = new DatabaseContext())
@@ -498,7 +507,11 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Update inventory
-                    await UpdateInventory(context, order.OrderId);
+                    var invalidOrders = await UpdateInventory(context, order.OrderId);
+                    if (invalidOrders.Count > 0)
+                    {
+                        ThrowIfInsufficientStock(invalidOrders);
+                    }
 
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);

@@ -114,13 +114,13 @@ namespace SalesPro.Forms.Orders
                     if (chargedOrder.DatePaid != null)
                     {
                         await _orderForm.CreateNewOrder();
+                        Close();
                     }
                     else
                     {
                         var existingOrder = await _service.GetOrderById(_orderId);
                         await _orderForm.InitializeOrderDisplay(existingOrder);
                     }
-                    Close();
                 }
             }
             catch (Exception ex)
