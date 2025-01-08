@@ -42,7 +42,7 @@ namespace SalesPro.Forms.Orders
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
-                     "OrderId","CustomerName", "UserName", "DateTaken", "Total", "OrderStatus");
+                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "OrderStatus");
 
                     // Overide datagrid format
                     dgOrders.Columns["OrderId"].DisplayIndex = 0;
@@ -51,7 +51,7 @@ namespace SalesPro.Forms.Orders
                 }
                 else
                 {
-                    var allOrders = orders.Where(x => x.OrderStatus != OrderStatus.Suspended ).ToList();
+                    var allOrders = orders.Where(x => x.OrderStatus != OrderStatus.Suspended).ToList();
                     dgOrders.DataSource = allOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
@@ -120,35 +120,46 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            //if (dgOrders.Columns[e.ColumnIndex].Name == "PaymentStatus") // Replace with your column name
-            //{
-            //    if (e.Value != null && e.Value.ToString() == "Paid") // Replace "SpecificString" with your condition
-            //    {
-            //        e.CellStyle.Font = new Font(
-            //            dgOrders.DefaultCellStyle.Font.FontFamily,
-            //            dgOrders.DefaultCellStyle.Font.Size,
-            //            FontStyle.Bold
-            //         );
-            //        e.CellStyle.ForeColor = Color.Green; // Change the fore color to green
-            //        e.CellStyle.SelectionForeColor = Color.Green;
-            //    }
-            //    else
-            //    {
-            //        e.CellStyle.ForeColor = Color.Black; // Default color
-            //    }
-            //}
-
-            if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus") // Replace with your column name
+            if (_action == Constants.FormConstants.ResumeOrder)
             {
-                if (e.Value != null && e.Value.ToString() == "Completed") // Replace "SpecificString" with your condition
+                if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus")
                 {
-                    e.CellStyle.Font = new Font(
-                        dgOrders.DefaultCellStyle.Font.FontFamily,
-                        dgOrders.DefaultCellStyle.Font.Size,
-                        FontStyle.Bold
-                     );
-                    e.CellStyle.BackColor = Color.LawnGreen; // Change the fore color to green
-                    e.CellStyle.SelectionBackColor = Color.LawnGreen;
+                    if (e.Value != null && e.Value.ToString() == OrderStatus.Suspended.ToString())
+                    {
+                        e.CellStyle.Font = new Font(
+                            dgOrders.DefaultCellStyle.Font.FontFamily,
+                            dgOrders.DefaultCellStyle.Font.Size,
+                            FontStyle.Bold
+                         );
+                        e.CellStyle.BackColor = Color.PaleTurquoise;
+                        e.CellStyle.SelectionBackColor = Color.PaleTurquoise;
+                    }
+                    else if (e.Value != null && e.Value.ToString() == OrderStatus.Cancelled.ToString())
+                    {
+                        e.CellStyle.Font = new Font(
+                            dgOrders.DefaultCellStyle.Font.FontFamily,
+                            dgOrders.DefaultCellStyle.Font.Size,
+                            FontStyle.Bold
+                         );
+                        e.CellStyle.BackColor = Color.Orange;
+                        e.CellStyle.SelectionBackColor = Color.Orange;
+                    }
+                }
+            }
+            else
+            {
+                if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus")
+                {
+                    if (e.Value != null && e.Value.ToString() == OrderStatus.Completed.ToString())
+                    {
+                        e.CellStyle.Font = new Font(
+                            dgOrders.DefaultCellStyle.Font.FontFamily,
+                            dgOrders.DefaultCellStyle.Font.Size,
+                            FontStyle.Bold
+                         );
+                        e.CellStyle.BackColor = Color.LawnGreen;
+                        e.CellStyle.SelectionBackColor = Color.LawnGreen;
+                    }
                 }
             }
         }
