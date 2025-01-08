@@ -19,6 +19,7 @@ namespace SalesPro.Forms.Orders
         private int _rowVersion;
         private int _orderId;
         private int _orderItemId;
+        private decimal _totalPrice = 0;
 
         private readonly OrderService _service;
         public OrderForm()
@@ -66,6 +67,7 @@ namespace SalesPro.Forms.Orders
 
             DgExtensions.ConfigureDataGrid(dgItems, false, 1, notFound_lbl, "ProductName", "OrderQuantity", "Price", "TotalPrice", "UnitOfMeasure");
 
+            _totalPrice = items.Sum(x => x.TotalPrice);
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
 
             if (invalidOrders != null)
@@ -335,11 +337,17 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (dgItems.SelectedRows.Count > 0)
+                if (dgItems.Rows.Count > 0)
                 {
                     if (customer_tx.Text == "Generic Walkin Customer")
                     {
                         MessageHandler.ShowWarning("Cannot proceed charging order. Please select a valid customer.");
+                        return;
+                    }
+
+                    if (_totalPrice < 0)
+                    {
+                        MessageHandler.ShowWarning("Cannot charge an order that is negative total.");
                         return;
                     }
                     var form = new ChargeOrderForm(this);

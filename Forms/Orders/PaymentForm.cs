@@ -79,7 +79,11 @@ namespace SalesPro.Forms.Orders
                     var (invalidOrdersDetected, successUpdate) = await _service.PayOrder(_orderId, cash, _curDate, _rowVersion, order);
                     if (invalidOrdersDetected.Count() == 0 && successUpdate)
                     {
-                        SetControls(PaymentStatus.Paid);
+                        cash_tx.ReadOnly = true;
+                        discRate_tx.ReadOnly = true;
+                        paymentMethod_cb.Enabled = false;
+                        pay_btn.Enabled = false;
+                        paymentPhoto.Image = Properties.Resources.paid;
                     }
                     await _orderForm.LoadOrderedItems(_orderId, invalidOrdersDetected);
                 }
@@ -94,11 +98,12 @@ namespace SalesPro.Forms.Orders
         {
             bool isPaid = (status == PaymentStatus.Paid);
 
-            cash_tx.ReadOnly = isPaid;
-            discRate_tx.ReadOnly = isPaid;
-            paymentMethod_cb.Enabled = !isPaid;
-            pay_btn.Enabled = !isPaid;
+            bool isEditable = isPaid || _amountDue > 0;
 
+            cash_tx.ReadOnly = !isEditable;
+            discRate_tx.ReadOnly = !isEditable;
+            paymentMethod_cb.Enabled = isEditable;
+            pay_btn.Enabled = !isPaid;
             paymentPhoto.Image = isPaid ? Properties.Resources.paid : Properties.Resources.payment;
         }
 
@@ -231,7 +236,7 @@ namespace SalesPro.Forms.Orders
 
         private void discRate_tx_Click(object sender, EventArgs e)
         {
-            if(discRate_tx.Text == "0.00" || discRate_tx.Text == "0")
+            if (discRate_tx.Text == "0.00" || discRate_tx.Text == "0")
             {
                 discRate_tx.SelectAll();
             }
