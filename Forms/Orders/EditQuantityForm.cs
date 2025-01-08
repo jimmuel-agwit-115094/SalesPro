@@ -1,4 +1,5 @@
 ﻿using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace SalesPro.Forms.Orders
             InitializeComponent();
             _service = new OrderService();
             _orderForm = orderForm;
+            TextBoxHelper.FormatIntegerTextbox(qty_tx);
             KeyPreview = true;
         }
 
@@ -79,6 +81,20 @@ namespace SalesPro.Forms.Orders
             if (e.KeyCode == Keys.Escape)
             {
                 Close();
+            }
+        }
+
+        private void qty_tx_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void qty_tx_TextChanged(object sender, EventArgs e)
+        {
+            if (qty_tx.Text == string.Empty)
+            {
+                qty_tx.Text = "0";
+                qty_tx.SelectAll();
             }
         }
     }

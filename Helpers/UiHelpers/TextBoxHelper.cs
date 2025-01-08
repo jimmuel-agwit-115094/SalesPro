@@ -100,6 +100,40 @@ namespace SalesPro.Helpers.UiHelpers
             };
         }
 
+        // format integer textbox   
+        public static void FormatIntegerTextbox(TextBox textBox)
+        {
+            textBox.Text = "0";
+            textBox.KeyPress += (sender, e) =>
+            {
+                char input = e.KeyChar;
 
+                // Allow control keys (e.g., Backspace, Delete)
+                if (char.IsControl(input))
+                {
+                    return;
+                }
+
+                // Allow digits only
+                if (!char.IsDigit(input))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            };
+
+            // Format text when the textbox loses focus
+            textBox.Leave += (sender, e) =>
+            {
+                if (int.TryParse(textBox.Text, out int value))
+                {
+                    textBox.Text = value.ToString();
+                }
+                else
+                {
+                    textBox.Text = "0"; // Default value if input is invalid
+                }
+            };
+        }
     }
 }
