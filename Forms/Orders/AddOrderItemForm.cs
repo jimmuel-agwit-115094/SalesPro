@@ -124,7 +124,7 @@ namespace SalesPro.Forms.Orders
             {
                 if (itemStatus == OrderItemStatus.Added && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
                 {
-                    MessageHandler.ShowWarning("The product is out of stock.");
+                    MessageHandler.ShowWarning("Stock is limited. You've already added the available quantity to this order.");
                     return;
                 }
 

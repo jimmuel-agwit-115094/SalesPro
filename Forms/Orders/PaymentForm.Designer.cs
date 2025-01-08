@@ -186,6 +186,7 @@
             this.change_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.change_tx.ThousandsSeparator = true;
             this.change_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.change_tx.ValueChanged += new System.EventHandler(this.change_tx_ValueChanged);
             // 
             // label3
             // 

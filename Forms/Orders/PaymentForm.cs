@@ -198,5 +198,17 @@ namespace SalesPro.Forms.Orders
                 Close();
             }
         }
+
+        private void change_tx_ValueChanged(object sender, EventArgs e)
+        {
+            if (change_tx.Value <= 0)
+            {
+                change_tx.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                change_tx.ForeColor = System.Drawing.Color.Black;
+            }
+        }
     }
 }
