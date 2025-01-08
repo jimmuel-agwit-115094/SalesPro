@@ -154,23 +154,6 @@ namespace SalesPro.Services
             }
         }
 
-        private static OrderModel CalculateOrderTotals(decimal total, decimal amtPaid = 0)
-        {
-            var vatAmt = total / Constants.SystemConstants.VatRate;
-            var netAmt = total - vatAmt;
-            var grossAmt = vatAmt + netAmt;
-
-            return new OrderModel
-            {
-                Total = total,
-                VatAmount = vatAmt,
-                NetAmount = netAmt,
-                GrossAmount = grossAmt,
-                AmountPaid = amtPaid,
-                Change = amtPaid - total,
-            };
-        }
-
         private async Task<bool> UpdateOrder(DatabaseContext context, int orderId, int rowVersion, OrderModel orderModel = null)
         {
             // Fetch the order
@@ -188,10 +171,10 @@ namespace SalesPro.Services
             var orderedItems = await LoadOrderItemsByOrderId(orderId);
 
             // Perform calculations
-            var total = orderedItems.Sum(oi => oi.TotalPrice);
-            var vatAmt = total / Constants.SystemConstants.VatRate;
-            var netAmt = total - vatAmt;
-            var grossAmt = vatAmt + netAmt;
+            decimal total = orderedItems.Sum(oi => oi.TotalPrice);
+            decimal vatAmt = total * Constants.SystemConstants.VatRate;
+            decimal netAmt = total - vatAmt;
+            decimal grossAmt = vatAmt + netAmt;
 
             // Update order with calculated values
             currentOrder.Total = total;
@@ -200,6 +183,7 @@ namespace SalesPro.Services
             currentOrder.AmountDue = total;
             currentOrder.GrossAmount = grossAmt;
 
+            // Update when payment is made
             if (orderModel != null)
             {
                 currentOrder.AmountPaid = orderModel.AmountPaid;

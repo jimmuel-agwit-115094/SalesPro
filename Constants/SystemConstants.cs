@@ -8,6 +8,6 @@
 
         public const string RowVersion = "RowVersion";
 
-        public const decimal VatRate = 1.12M;
+        public const decimal VatRate = 0.12M;
     }
 }

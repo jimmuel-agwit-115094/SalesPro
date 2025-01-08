@@ -82,7 +82,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-
         private async Task SetCustomer(int customerId)
         {
             var customer = await _service.GetCustomerById(customerId);
