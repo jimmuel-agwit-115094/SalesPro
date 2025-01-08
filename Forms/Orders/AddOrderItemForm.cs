@@ -185,11 +185,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void search_btn_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private async void search_tx_TextChanged(object sender, EventArgs e)
         {
             if (search_tx.Text == string.Empty)
@@ -259,7 +254,10 @@ namespace SalesPro.Forms.Orders
             if (e.KeyCode == Keys.Enter)
             {
                 search_btn.PerformClick();
-                dgProduct.Focus(); // Set focus to the DataGridView
+                if (dgProduct.Rows.Count > 0)
+                {
+                    dgProduct.Focus();
+                }
             }
             if (e.KeyCode == Keys.Down)
             {

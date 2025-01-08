@@ -42,7 +42,7 @@ namespace SalesPro.Forms.Orders
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
-                     "OrderId","CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus");
+                     "OrderId","CustomerName", "UserName", "DateTaken", "Total", "OrderStatus");
 
                     // Overide datagrid format
                     dgOrders.Columns["OrderId"].DisplayIndex = 0;
