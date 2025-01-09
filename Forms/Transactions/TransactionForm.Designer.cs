@@ -50,11 +50,11 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.noRecordDate_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
-            this.dgTrans = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dgTrans = new System.Windows.Forms.DataGridView();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.Panel1.SuspendLayout();
@@ -64,10 +64,10 @@
             this.allTransactions_tab.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -269,58 +269,6 @@
             this.notFound_lbl.Text = "No Record";
             this.notFound_lbl.Visible = false;
             // 
-            // dgTrans
-            // 
-            this.dgTrans.AllowUserToAddRows = false;
-            this.dgTrans.AllowUserToDeleteRows = false;
-            this.dgTrans.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgTrans.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgTrans.ColumnHeadersHeight = 30;
-            this.dgTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgTrans.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgTrans.EnableHeadersVisualStyles = false;
-            this.dgTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgTrans.Location = new System.Drawing.Point(0, 0);
-            this.dgTrans.MultiSelect = false;
-            this.dgTrans.Name = "dgTrans";
-            this.dgTrans.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgTrans.RowHeadersVisible = false;
-            this.dgTrans.RowHeadersWidth = 51;
-            this.dgTrans.RowTemplate.Height = 32;
-            this.dgTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTrans.Size = new System.Drawing.Size(1204, 429);
-            this.dgTrans.TabIndex = 457;
-            this.dgTrans.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTrans_CellContentClick);
-            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -367,6 +315,57 @@
             this.panel5.Size = new System.Drawing.Size(1208, 509);
             this.panel5.TabIndex = 437;
             // 
+            // dgTrans
+            // 
+            this.dgTrans.AllowUserToAddRows = false;
+            this.dgTrans.AllowUserToDeleteRows = false;
+            this.dgTrans.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgTrans.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTrans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgTrans.ColumnHeadersHeight = 30;
+            this.dgTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgTrans.EnableHeadersVisualStyles = false;
+            this.dgTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgTrans.Location = new System.Drawing.Point(0, 0);
+            this.dgTrans.MultiSelect = false;
+            this.dgTrans.Name = "dgTrans";
+            this.dgTrans.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgTrans.RowHeadersVisible = false;
+            this.dgTrans.RowHeadersWidth = 51;
+            this.dgTrans.RowTemplate.Height = 32;
+            this.dgTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTrans.Size = new System.Drawing.Size(1204, 429);
+            this.dgTrans.TabIndex = 457;
+            this.dgTrans.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTrans_CellContentClick);
+            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,11 +391,11 @@
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTrans)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,10 +418,10 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label noRecordDate_lbl;
         private System.Windows.Forms.Label notFound_lbl;
-        internal System.Windows.Forms.DataGridView dgTrans;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
         private System.Windows.Forms.Panel panel5;
+        internal System.Windows.Forms.DataGridView dgTrans;
     }
 }
