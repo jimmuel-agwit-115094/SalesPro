@@ -235,6 +235,7 @@
             this.products_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.products_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.products_btn.UseVisualStyleBackColor = false;
+            this.products_btn.Click += new System.EventHandler(this.products_btn_Click);
             // 
             // credits_btn
             // 

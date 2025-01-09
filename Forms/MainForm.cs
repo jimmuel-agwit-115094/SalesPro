@@ -2,6 +2,7 @@
 using SalesPro.Constants;
 using SalesPro.Forms.Inventory;
 using SalesPro.Forms.Orders;
+using SalesPro.Forms.Products;
 using SalesPro.Forms.PurchaseOrders;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
@@ -111,6 +112,12 @@ namespace SalesPro.Forms
 
             var form = new OrderForm();
             form.ShowDialog();
+        }
+
+        private void products_btn_Click(object sender, EventArgs e)
+        {
+            var form = new ProductForm();
+            LoadFormInPanel(form);
         }
     }
 }
