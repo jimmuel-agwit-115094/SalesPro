@@ -8,6 +8,7 @@ using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,15 +30,26 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             transactionsTabControl.SelectedIndex = 0;
             var purchaseOrders = await _service.GetAllPurchaseOrders();
-            var existingPO = purchaseOrders.FirstOrDefault(po => po.ProcessStatus == ProcessStatus.Created);
+            var existingPO = purchaseOrders
+                 .Where(po => po.ProcessStatus == ProcessStatus.Created && po.PoTotal == 0)
+                 .OrderByDescending(po => po.PurchaseOrderId)
+                 .FirstOrDefault();
 
-            if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n{Resources.ConfirmNew}", FormConstants.PurchaseOrder))
+            //if (existingPO == null || MessageHandler.ShowQuestion($"An existing Purchase Order has already been created.\n{Resources.ConfirmNew}", FormConstants.PurchaseOrder))
+            if (existingPO == null)
             {
                 var savedPO = await SavePurchaseOrder();
                 var form = new PurchaseOrderDetailsForm(this);
                 form._poId = savedPO.PurchaseOrderId;
                 form._actionType = SystemConstants.New;
-                //form._rowVersion = await _service.GetPoRowVersion(savedPO.PurchaseOrderId);
+                form.ShowDialog();
+            }
+            else
+            {
+                var form = new PurchaseOrderDetailsForm(this);
+                form._poId = existingPO.PurchaseOrderId;
+                form._rowVersion = existingPO.RowVersion;
+                form._actionType = SystemConstants.New;
                 form.ShowDialog();
             }
         }
@@ -95,6 +107,8 @@ namespace SalesPro.Forms.PurchaseOrders
                     "PoTotal",
                     "PaymentStatus",
                     "ProcessStatus");
+
+                dgPo.Columns["PoTotal"].DisplayIndex = dgPo.Columns.Count - 1;
             }
             return purchaseOrders;
         }
