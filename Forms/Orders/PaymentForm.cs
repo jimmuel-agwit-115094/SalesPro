@@ -168,11 +168,7 @@ namespace SalesPro.Forms.Orders
 
         private void c_TextChanged(object sender, EventArgs e)
         {
-            if (cash_tx.Text == string.Empty)
-            {
-                cash_tx.Text = "0";
-                cash_tx.SelectAll();
-            }
+            TextBoxHelper.HandleEmptyDecimalTextbox(cash_tx);
             CalculateOrderPayment(_amountDue);
         }
 

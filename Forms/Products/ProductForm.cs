@@ -10,8 +10,6 @@ namespace SalesPro.Forms.Products
 {
     public partial class ProductForm : Form
     {
-        private int _productId;
-
         private readonly ProductService _service;
         public ProductForm()
         {

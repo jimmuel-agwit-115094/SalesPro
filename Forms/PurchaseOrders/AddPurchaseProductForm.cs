@@ -29,6 +29,10 @@ namespace SalesPro.Forms.PurchaseOrders
             InitializeComponent();
             _purchaseOrderDetailsForm = purchaseOrderDetailsForm;
             _service = new PurchaseOrderService();
+            TextBoxHelper.FormatIntegerTextbox(qty_tx);
+            TextBoxHelper.FormatDecimalTextbox(supplierPrice_tx);
+            TextBoxHelper.FormatDecimalTextbox(markUpPrice_tx);
+
         }
 
         private async Task LoadProducts()
@@ -116,10 +120,17 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void ComputeTotal()
         {
-            var retailPrice = decimal.Parse(supplierPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text);
-            retailPrice_tx.Text = retailPrice.ToString();
-            _totalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text);
-            total_tx.Text = _totalPrice.ToString("N2");
+            try
+            {
+                var retailPrice = decimal.Parse(supplierPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text);
+                retailPrice_tx.Text = retailPrice.ToString();
+                _totalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text);
+                total_tx.Text = _totalPrice.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error computing total: {ex.Message}");
+            }
         }
 
         private void dgProducts_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -250,19 +261,37 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private void qty_tx_KeyPress(object sender, KeyPressEventArgs e)
+        private void qty_tx_TextChanged(object sender, EventArgs e)
         {
+            TextBoxHelper.HandleEmptyDecimalTextbox(qty_tx);
             ComputeTotal();
         }
 
-        private void supplierPrice_tx_KeyPress(object sender, KeyPressEventArgs e)
+        private void supplierPrice_tx_TextChanged(object sender, EventArgs e)
         {
+            TextBoxHelper.HandleEmptyDecimalTextbox(supplierPrice_tx);
             ComputeTotal();
         }
 
-        private void markUpPrice_tx_KeyPress(object sender, KeyPressEventArgs e)
+        private void markUpPrice_tx_TextChanged(object sender, EventArgs e)
         {
+            TextBoxHelper.HandleEmptyDecimalTextbox(markUpPrice_tx);
             ComputeTotal();
+        }
+
+        private void qty_tx_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void supplierPrice_tx_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void markUpPrice_tx_Click(object sender, EventArgs e)
+        {
+        
         }
     }
 }

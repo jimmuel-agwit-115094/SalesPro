@@ -157,5 +157,14 @@ namespace SalesPro.Helpers.UiHelpers
                 }
             };
         }
+
+        public static void HandleEmptyDecimalTextbox(TextBox textBox)
+        {
+            if (textBox.Text == string.Empty)
+            {
+                textBox.Text = "0";
+                textBox.SelectAll();
+            }
+        }
     }
 }
