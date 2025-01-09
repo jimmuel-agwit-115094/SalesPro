@@ -41,6 +41,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
+            this.logs_link = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,7 +185,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(281, 411);
+            this.save_btn.Location = new System.Drawing.Point(281, 388);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(140, 34);
             this.save_btn.TabIndex = 551;
@@ -192,12 +193,24 @@
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
+            // logs_link
+            // 
+            this.logs_link.AutoSize = true;
+            this.logs_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logs_link.Location = new System.Drawing.Point(13, 388);
+            this.logs_link.Name = "logs_link";
+            this.logs_link.Size = new System.Drawing.Size(86, 16);
+            this.logs_link.TabIndex = 552;
+            this.logs_link.TabStop = true;
+            this.logs_link.Text = "Product Logs";
+            // 
             // ManageProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(437, 462);
+            this.ClientSize = new System.Drawing.Size(437, 441);
+            this.Controls.Add(this.logs_link);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.groupBox1);
@@ -232,5 +245,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox desc_tx;
         private System.Windows.Forms.Button save_btn;
+        private System.Windows.Forms.LinkLabel logs_link;
     }
 }

@@ -264,6 +264,12 @@
     <Compile Include="Forms\Products\ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Products\ProductLogsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Products\ProductLogsForm.Designer.cs">
+      <DependentUpon>ProductLogsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PurchaseOrders\AddPurchaseProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Products\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Products\ProductLogsForm.resx">
+      <DependentUpon>ProductLogsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PurchaseOrders\AddPurchaseProductForm.resx">
       <DependentUpon>AddPurchaseProductForm.cs</DependentUpon>
