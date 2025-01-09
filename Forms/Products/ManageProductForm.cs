@@ -3,6 +3,7 @@ using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,12 +16,14 @@ namespace SalesPro.Forms.Products
         private int _rowVersion;
 
         private readonly ProductService _service;
+        private readonly UnitOfMeasureService _unitOfMeasureService;
         private readonly ProductForm _productForm;
         public ManageProductForm(ProductForm productForm)
         {
             InitializeComponent();
             _service = new ProductService();
             _productForm = productForm;
+            _unitOfMeasureService = new UnitOfMeasureService();
         }
 
         private async Task DisplayProductDetails()
@@ -39,17 +42,29 @@ namespace SalesPro.Forms.Products
 
         private async void ManageProductForm_Load(object sender, EventArgs e)
         {
-            if (_actionType == Constants.SystemConstants.New)
+            try
             {
-                title_lbl.Text = "New Product";
-                save_btn.Text = "Save";
-            }
-            else
-            {
-                title_lbl.Text = "Edit Product";
-                save_btn.Text = "Update";
+                List<UnitOfMeasuresModel> uoms = await _unitOfMeasureService.GetAllUnitOfMeasures();
+                unit_cb.DataSource = uoms;
+                unit_cb.DisplayMember = "UnitName";
+                unit_cb.ValueMember = "UnitOfMeasureId";
 
-                await DisplayProductDetails();
+                if (_actionType == Constants.SystemConstants.New)
+                {
+                    title_lbl.Text = "New Product";
+                    save_btn.Text = "Save";
+                }
+                else
+                {
+                    title_lbl.Text = "Edit Product";
+                    save_btn.Text = "Update";
+
+                    await DisplayProductDetails();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error manage product form load: {ex.Message}");
             }
         }
 

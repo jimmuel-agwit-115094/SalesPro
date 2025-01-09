@@ -22,6 +22,7 @@ namespace POS_Generic.Helpers
         public DbSet<OrderItemModel> OrderItems { get; set; }
         public DbSet<CustomerCreditModel> CustomerCredits { get; set; }
         public DbSet<ProductLogModel> ProductLogs { get; set; }
+        public DbSet<UnitOfMeasuresModel> UnitOfMeasures { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;

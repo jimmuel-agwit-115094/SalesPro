@@ -58,7 +58,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(16, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(405, 291);
+            this.groupBox1.Size = new System.Drawing.Size(405, 325);
             this.groupBox1.TabIndex = 549;
             this.groupBox1.TabStop = false;
             // 
@@ -75,7 +75,7 @@
             // reorder_tx
             // 
             this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.reorder_tx.Location = new System.Drawing.Point(137, 244);
+            this.reorder_tx.Location = new System.Drawing.Point(137, 277);
             this.reorder_tx.Name = "reorder_tx";
             this.reorder_tx.Size = new System.Drawing.Size(249, 27);
             this.reorder_tx.TabIndex = 539;
@@ -84,7 +84,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 248);
+            this.label4.Location = new System.Drawing.Point(28, 281);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
@@ -97,7 +97,7 @@
             this.desc_tx.Location = new System.Drawing.Point(137, 168);
             this.desc_tx.Multiline = true;
             this.desc_tx.Name = "desc_tx";
-            this.desc_tx.Size = new System.Drawing.Size(249, 58);
+            this.desc_tx.Size = new System.Drawing.Size(249, 88);
             this.desc_tx.TabIndex = 537;
             // 
             // label3
@@ -124,6 +124,7 @@
             // 
             // barCode_tx
             // 
+            this.barCode_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.barCode_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.barCode_tx.Location = new System.Drawing.Point(138, 73);
             this.barCode_tx.Name = "barCode_tx";
@@ -179,7 +180,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(281, 363);
+            this.save_btn.Location = new System.Drawing.Point(281, 411);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(140, 34);
             this.save_btn.TabIndex = 551;
@@ -192,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(437, 414);
+            this.ClientSize = new System.Drawing.Size(437, 462);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.groupBox1);
