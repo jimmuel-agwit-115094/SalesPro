@@ -68,7 +68,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgLogs.ColumnHeadersHeight = 30;
+            this.dgLogs.ColumnHeadersHeight = 40;
             this.dgLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -88,7 +88,7 @@
             this.dgLogs.RowHeadersWidth = 51;
             this.dgLogs.RowTemplate.Height = 32;
             this.dgLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLogs.Size = new System.Drawing.Size(800, 450);
+            this.dgLogs.Size = new System.Drawing.Size(1031, 450);
             this.dgLogs.TabIndex = 552;
             // 
             // notFound_lbl
@@ -97,7 +97,7 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(314, 254);
+            this.notFound_lbl.Location = new System.Drawing.Point(411, 248);
             this.notFound_lbl.Name = "notFound_lbl";
             this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
             this.notFound_lbl.TabIndex = 553;
@@ -109,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(824, 516);
+            this.ClientSize = new System.Drawing.Size(1055, 516);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.dgLogs);
             this.Controls.Add(this.title_lbl);
@@ -121,6 +121,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logs";
+            this.Load += new System.EventHandler(this.ProductLogsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgLogs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

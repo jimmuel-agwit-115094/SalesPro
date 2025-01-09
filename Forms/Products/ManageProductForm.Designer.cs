@@ -203,6 +203,7 @@
             this.logs_link.TabIndex = 552;
             this.logs_link.TabStop = true;
             this.logs_link.Text = "Product Logs";
+            this.logs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logs_link_LinkClicked);
             // 
             // ManageProductForm
             // 

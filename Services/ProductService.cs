@@ -51,6 +51,7 @@ namespace SalesPro.Services
                     {
                         ProductId = product.ProductId,
                         ProductActionType = ProductActionType.Updated,
+                        ProductName = product.ProductName,
                         OldValue = product.ProductName,
                         NewValue = productModel.ProductName,
                         PerformedBy = UserSession.Session_UserId,
@@ -67,6 +68,15 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 return await context.Products.FindAsync(productId);
+            }
+        }
+
+        // Get logs of a product
+        public async Task<List<ProductLogModel>> GetProductLogs(int productId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.ProductLogs.Where(x => x.ProductId == productId).ToListAsync();
             }
         }
     }

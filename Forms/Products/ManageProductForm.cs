@@ -130,5 +130,12 @@ namespace SalesPro.Forms.Products
         {
             barCode_tx.Text = Regex.Replace(barCode_tx.Text, @"[^a-zA-Z0-9]", "");
         }
+
+        private void logs_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var form = new ProductLogsForm();
+            form._productId = _productId;
+            form.ShowDialog();
+        }
     }
 }
