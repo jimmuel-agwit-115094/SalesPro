@@ -131,7 +131,10 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                var transactionId = await context.Transactions.MaxAsync(x => x.TransactionId);
+                var transactionId = await context.Transactions.AnyAsync()
+                 ? await context.Transactions.MaxAsync(x => x.TransactionId)
+                 : 0; // Or a suitable default value
+
                 TransactionSession.SetTransactionId(transactionId);
             }
         }
