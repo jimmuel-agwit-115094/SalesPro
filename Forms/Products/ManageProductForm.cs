@@ -1,11 +1,14 @@
 ﻿using Org.BouncyCastle.Asn1.X509;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Forms.Products
 {
@@ -24,6 +27,8 @@ namespace SalesPro.Forms.Products
             _service = new ProductService();
             _productForm = productForm;
             _unitOfMeasureService = new UnitOfMeasureService();
+            TextBoxHelper.FormatIntegerTextbox(reorder_tx);
+            TextBoxHelper.FormatIntegerTextbox(barCode_tx);
         }
 
         private async Task DisplayProductDetails()
@@ -70,6 +75,20 @@ namespace SalesPro.Forms.Products
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
+            if (!Validators.EmptyStringValidator(productName_tx.Text, "Product Name")) return;
+            if (unit_cb.SelectedIndex == -1)
+            {
+                MessageHandler.ShowError("Please select a unit of measure");
+                return;
+            }
+            if (!Validators.EmptyStringValidator(reorder_tx.Text, "Reorder Level")) return;
+            if (!Validators.IntValidator(reorder_tx.Text, "Reorder Level")) return;
+            if (int.Parse(reorder_tx.Text) < 0)
+            {
+                MessageHandler.ShowError("Reorder level must be greater than 0");
+                return;
+            }
+
             try
             {
                 if (_actionType == Constants.SystemConstants.New)
@@ -101,6 +120,15 @@ namespace SalesPro.Forms.Products
             {
                 MessageHandler.ShowError($"Error managing product {_actionType}: {ex.Message}");
             }
+        }
+
+        private void reorder_tx_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void barCode_tx_TextChanged(object sender, EventArgs e)
+        {
+            barCode_tx.Text = Regex.Replace(barCode_tx.Text, @"[^a-zA-Z0-9]", "");
         }
     }
 }

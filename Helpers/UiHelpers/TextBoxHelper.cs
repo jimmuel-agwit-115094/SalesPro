@@ -135,5 +135,27 @@ namespace SalesPro.Helpers.UiHelpers
                 }
             };
         }
+
+        // string only
+        public static void FormatStringTextbox(TextBox textBox)
+        {
+            textBox.KeyPress += (sender, e) =>
+            {
+                char input = e.KeyChar;
+
+                // Allow control keys (e.g., Backspace, Delete)
+                if (char.IsControl(input))
+                {
+                    return;
+                }
+
+                // Allow letters only
+                if (!char.IsLetter(input))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            };
+        }
     }
 }

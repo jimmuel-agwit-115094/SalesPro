@@ -76,9 +76,11 @@
             // 
             this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.reorder_tx.Location = new System.Drawing.Point(137, 277);
+            this.reorder_tx.MaxLength = 8;
             this.reorder_tx.Name = "reorder_tx";
             this.reorder_tx.Size = new System.Drawing.Size(249, 27);
             this.reorder_tx.TabIndex = 539;
+            this.reorder_tx.TextChanged += new System.EventHandler(this.reorder_tx_TextChanged);
             // 
             // label4
             // 
@@ -127,9 +129,11 @@
             this.barCode_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.barCode_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.barCode_tx.Location = new System.Drawing.Point(138, 73);
+            this.barCode_tx.MaxLength = 15;
             this.barCode_tx.Name = "barCode_tx";
             this.barCode_tx.Size = new System.Drawing.Size(249, 27);
             this.barCode_tx.TabIndex = 533;
+            this.barCode_tx.TextChanged += new System.EventHandler(this.barCode_tx_TextChanged);
             // 
             // label1
             // 
