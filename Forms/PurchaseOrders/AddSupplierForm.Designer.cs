@@ -118,7 +118,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(721, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(721, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,7 +129,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(359, 11);
+            this.search_tx.Location = new System.Drawing.Point(359, 21);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
