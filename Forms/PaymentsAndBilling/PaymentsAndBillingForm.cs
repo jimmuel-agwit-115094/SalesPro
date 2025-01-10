@@ -61,7 +61,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void dgSupplierPayables_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                int poId = DgFormatHelper.GetSelectedId(dgSupplierPayables, e, "PurchaseOrderId");
+                if (poId == 0) return;
+                var form = new ManageSupplierPayableForm(this);
+                form._poId = poId;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error dg supplier click: {ex.Message}");
+            }
         }
     }
 }

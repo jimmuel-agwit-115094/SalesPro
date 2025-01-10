@@ -412,6 +412,9 @@
     <EmbeddedResource Include="Forms\Orders\PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.resx">
+      <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.resx">
       <DependentUpon>PaymentsAndBillingForm.cs</DependentUpon>
     </EmbeddedResource>
