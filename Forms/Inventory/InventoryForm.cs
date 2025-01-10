@@ -45,7 +45,7 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                DgExtensions.ConfigureDataGrid(dgInventory, true, 3, notFound_lbl,
+                DgExtensions.ConfigureDataGrid(dgInventory, true, 4, notFound_lbl,
                   "InventoryId", "SupplierName",
                   "ProductName", "DateAdded",
                   "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
