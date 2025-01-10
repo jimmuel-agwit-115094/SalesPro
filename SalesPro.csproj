@@ -358,6 +358,7 @@
     <Compile Include="Services\GenericService.cs" />
     <Compile Include="Services\InventoryService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PaymentsAndBillingService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\PurchaseOrderService.cs" />
     <Compile Include="Services\TransactionService.cs" />
