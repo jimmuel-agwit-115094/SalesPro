@@ -252,6 +252,12 @@
     <Compile Include="Forms\Orders\PaymentForm.Designer.cs">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.Designer.cs">
+      <DependentUpon>PaymentsAndBillingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Products\ManageProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.resx">
+      <DependentUpon>PaymentsAndBillingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Products\ManageProductForm.resx">
       <DependentUpon>ManageProductForm.cs</DependentUpon>

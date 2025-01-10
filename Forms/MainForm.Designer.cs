@@ -43,7 +43,7 @@
             this.orders_btn = new System.Windows.Forms.Button();
             this.po_btn = new System.Windows.Forms.Button();
             this.products_btn = new System.Windows.Forms.Button();
-            this.credits_btn = new System.Windows.Forms.Button();
+            this.paymentsAndBilling_btn = new System.Windows.Forms.Button();
             this.inventory_btn = new System.Windows.Forms.Button();
             this.reports_btn = new System.Windows.Forms.Button();
             this.left_nav = new System.Windows.Forms.Panel();
@@ -85,7 +85,7 @@
             this.content_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.content_panel.BackColor = System.Drawing.Color.White;
             this.content_panel.Location = new System.Drawing.Point(1, 2);
-            this.content_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.content_panel.Margin = new System.Windows.Forms.Padding(2);
             this.content_panel.Name = "content_panel";
             this.content_panel.Size = new System.Drawing.Size(1166, 692);
             this.content_panel.TabIndex = 0;
@@ -111,7 +111,7 @@
             this.Panel1.Controls.Add(this.user_tx);
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.Panel1.Location = new System.Drawing.Point(657, 0);
-            this.Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(511, 57);
             this.Panel1.TabIndex = 1;
@@ -120,7 +120,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(427, 31);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(19, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -151,7 +151,7 @@
             // 
             this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
             this.PictureBox1.Location = new System.Drawing.Point(83, 8);
-            this.PictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.PictureBox1.Name = "PictureBox1";
             this.PictureBox1.Size = new System.Drawing.Size(36, 33);
             this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -174,7 +174,7 @@
             this.menuPanel.Controls.Add(this.orders_btn);
             this.menuPanel.Controls.Add(this.po_btn);
             this.menuPanel.Controls.Add(this.products_btn);
-            this.menuPanel.Controls.Add(this.credits_btn);
+            this.menuPanel.Controls.Add(this.paymentsAndBilling_btn);
             this.menuPanel.Controls.Add(this.inventory_btn);
             this.menuPanel.Controls.Add(this.reports_btn);
             this.menuPanel.Enabled = false;
@@ -237,22 +237,23 @@
             this.products_btn.UseVisualStyleBackColor = false;
             this.products_btn.Click += new System.EventHandler(this.products_btn_Click);
             // 
-            // credits_btn
+            // paymentsAndBilling_btn
             // 
-            this.credits_btn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.credits_btn.FlatAppearance.BorderSize = 0;
-            this.credits_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.credits_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.credits_btn.Image = ((System.Drawing.Image)(resources.GetObject("credits_btn.Image")));
-            this.credits_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.credits_btn.Location = new System.Drawing.Point(4, 162);
-            this.credits_btn.Name = "credits_btn";
-            this.credits_btn.Size = new System.Drawing.Size(189, 32);
-            this.credits_btn.TabIndex = 11;
-            this.credits_btn.Text = "   Payments and Billings";
-            this.credits_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.credits_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.credits_btn.UseVisualStyleBackColor = false;
+            this.paymentsAndBilling_btn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.paymentsAndBilling_btn.FlatAppearance.BorderSize = 0;
+            this.paymentsAndBilling_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.paymentsAndBilling_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentsAndBilling_btn.Image = ((System.Drawing.Image)(resources.GetObject("paymentsAndBilling_btn.Image")));
+            this.paymentsAndBilling_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.paymentsAndBilling_btn.Location = new System.Drawing.Point(4, 162);
+            this.paymentsAndBilling_btn.Name = "paymentsAndBilling_btn";
+            this.paymentsAndBilling_btn.Size = new System.Drawing.Size(189, 32);
+            this.paymentsAndBilling_btn.TabIndex = 11;
+            this.paymentsAndBilling_btn.Text = "   Payments and Billings";
+            this.paymentsAndBilling_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.paymentsAndBilling_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.paymentsAndBilling_btn.UseVisualStyleBackColor = false;
+            this.paymentsAndBilling_btn.Click += new System.EventHandler(this.paymentsAndBilling_btn_Click);
             // 
             // inventory_btn
             // 
@@ -384,7 +385,7 @@
         internal System.Windows.Forms.Button orders_btn;
         internal System.Windows.Forms.Button po_btn;
         internal System.Windows.Forms.Button products_btn;
-        internal System.Windows.Forms.Button credits_btn;
+        internal System.Windows.Forms.Button paymentsAndBilling_btn;
         internal System.Windows.Forms.Button inventory_btn;
         internal System.Windows.Forms.Button reports_btn;
         internal System.Windows.Forms.Panel left_nav;
