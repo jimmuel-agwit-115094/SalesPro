@@ -247,6 +247,13 @@ namespace SalesPro.Services
 
                     toUpdate.ProcessStatus = status;
                     toUpdate.CreditTerms = creditTerms;
+
+                    var curDate = await ClockHelper.GetServerDateTime();
+                    if (status == ProcessStatus.Completed)
+                    {
+                        toUpdate.DueDate = curDate.Date.AddDays(creditTerms);
+                    }
+                    // save po items to inventory
                     if (inventories != null && inventories.Any())
                     {
                         await context.Inventories.AddRangeAsync(inventories);
@@ -257,7 +264,7 @@ namespace SalesPro.Services
                     {
                         await context.InventoryLogs.AddRangeAsync(inventoryLog);
                     }
-
+                    // save all
                     await context.SaveChangesAsync();
                 });
             }

@@ -39,6 +39,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.allTransactions_tab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -46,6 +48,7 @@
             this.transactionsTabControl.SuspendLayout();
             this.cuurent_tab.SuspendLayout();
             this.allTransactions_tab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -115,6 +118,7 @@
             // 
             this.transactionsTabControl.Controls.Add(this.cuurent_tab);
             this.transactionsTabControl.Controls.Add(this.allTransactions_tab);
+            this.transactionsTabControl.Controls.Add(this.tabPage1);
             this.transactionsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.transactionsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionsTabControl.Location = new System.Drawing.Point(0, 0);
@@ -132,7 +136,7 @@
             this.cuurent_tab.Padding = new System.Windows.Forms.Padding(3);
             this.cuurent_tab.Size = new System.Drawing.Size(1189, 502);
             this.cuurent_tab.TabIndex = 0;
-            this.cuurent_tab.Text = "    Current Transaction   ";
+            this.cuurent_tab.Text = "    Supplier Payables       ";
             // 
             // panel6
             // 
@@ -148,18 +152,37 @@
             this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
             this.allTransactions_tab.Name = "allTransactions_tab";
             this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.allTransactions_tab.Size = new System.Drawing.Size(1196, 5);
+            this.allTransactions_tab.Size = new System.Drawing.Size(1189, 502);
             this.allTransactions_tab.TabIndex = 1;
-            this.allTransactions_tab.Text = "     All Transactions    ";
+            this.allTransactions_tab.Text = "     Customer Credits   ";
             this.allTransactions_tab.UseVisualStyleBackColor = true;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(182, -1);
+            this.panel7.Location = new System.Drawing.Point(190, -1);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(140, 5);
             this.panel7.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1189, 502);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "        Expenses       ";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Green;
+            this.panel2.Location = new System.Drawing.Point(335, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(140, 5);
+            this.panel2.TabIndex = 7;
             // 
             // PaymentsAndBillingForm
             // 
@@ -185,6 +208,7 @@
             this.transactionsTabControl.ResumeLayout(false);
             this.cuurent_tab.ResumeLayout(false);
             this.allTransactions_tab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -202,5 +226,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TabPage allTransactions_tab;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

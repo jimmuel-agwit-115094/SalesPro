@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderDetailsForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.dgPoItems = new System.Windows.Forms.DataGridView();
@@ -43,6 +43,7 @@
             this.payment_panel = new System.Windows.Forms.Panel();
             this.paymentStatus_tx = new System.Windows.Forms.Label();
             this.closeStat_pb = new System.Windows.Forms.PictureBox();
+            this.poId_tx = new System.Windows.Forms.Label();
             this.total_tx = new System.Windows.Forms.Label();
             this.action_btn = new System.Windows.Forms.Button();
             this.undo_btn = new System.Windows.Forms.Button();
@@ -57,13 +58,11 @@
             this.addSupplier_btn = new System.Windows.Forms.Button();
             this.addProduct_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.poId_tx = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rowCount_tx = new System.Windows.Forms.Label();
             this.creditTerms_tx = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.creditTermsPanel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.showLogs_link = new System.Windows.Forms.LinkLabel();
             this.notFound_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
@@ -95,30 +94,30 @@
             this.dgPoItems.AllowUserToAddRows = false;
             this.dgPoItems.AllowUserToDeleteRows = false;
             this.dgPoItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPoItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPoItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgPoItems.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgPoItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgPoItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPoItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgPoItems.ColumnHeadersHeight = 37;
             this.dgPoItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPoItems.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgPoItems.EnableHeadersVisualStyles = false;
             this.dgPoItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgPoItems.Location = new System.Drawing.Point(16, 171);
@@ -226,6 +225,18 @@
             this.closeStat_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.closeStat_pb.TabIndex = 515;
             this.closeStat_pb.TabStop = false;
+            // 
+            // poId_tx
+            // 
+            this.poId_tx.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.poId_tx.ForeColor = System.Drawing.Color.Black;
+            this.poId_tx.Location = new System.Drawing.Point(576, 6);
+            this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.poId_tx.Name = "poId_tx";
+            this.poId_tx.Size = new System.Drawing.Size(263, 20);
+            this.poId_tx.TabIndex = 533;
+            this.poId_tx.Text = "000000000";
+            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // total_tx
             // 
@@ -402,18 +413,6 @@
             this.panel2.Size = new System.Drawing.Size(701, 40);
             this.panel2.TabIndex = 532;
             // 
-            // poId_tx
-            // 
-            this.poId_tx.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.poId_tx.ForeColor = System.Drawing.Color.Black;
-            this.poId_tx.Location = new System.Drawing.Point(576, 6);
-            this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.poId_tx.Name = "poId_tx";
-            this.poId_tx.Size = new System.Drawing.Size(263, 20);
-            this.poId_tx.TabIndex = 533;
-            this.poId_tx.Text = "000000000";
-            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -439,6 +438,11 @@
             // creditTerms_tx
             // 
             this.creditTerms_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.creditTerms_tx.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.creditTerms_tx.Location = new System.Drawing.Point(185, 2);
             this.creditTerms_tx.Maximum = new decimal(new int[] {
             365,
@@ -471,21 +475,12 @@
             // 
             // creditTermsPanel
             // 
-            this.creditTermsPanel.Controls.Add(this.panel3);
             this.creditTermsPanel.Controls.Add(this.creditTerms_tx);
             this.creditTermsPanel.Controls.Add(this.label6);
             this.creditTermsPanel.Location = new System.Drawing.Point(559, 641);
             this.creditTermsPanel.Name = "creditTermsPanel";
             this.creditTermsPanel.Size = new System.Drawing.Size(304, 31);
             this.creditTermsPanel.TabIndex = 545;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(187, 4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(18, 23);
-            this.panel3.TabIndex = 546;
             // 
             // showLogs_link
             // 
@@ -593,7 +588,6 @@
         public System.Windows.Forms.NumericUpDown creditTerms_tx;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel creditTermsPanel;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.LinkLabel showLogs_link;
         private System.Windows.Forms.Label notFound_lbl;
     }
