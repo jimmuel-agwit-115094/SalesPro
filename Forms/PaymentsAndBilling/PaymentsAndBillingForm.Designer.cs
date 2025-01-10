@@ -39,6 +39,8 @@
             this.basePanel = new System.Windows.Forms.Panel();
             this.transactionsTabControl = new System.Windows.Forms.TabControl();
             this.cuurent_tab = new System.Windows.Forms.TabPage();
+            this.po_title = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.paid_rd = new System.Windows.Forms.RadioButton();
             this.unpaid_rd = new System.Windows.Forms.RadioButton();
             this.notFound_lbl = new System.Windows.Forms.Label();
@@ -48,18 +50,16 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.po_title = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
             this.basePanel.SuspendLayout();
             this.transactionsTabControl.SuspendLayout();
             this.cuurent_tab.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSupplierPayables)).BeginInit();
             this.allTransactions_tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -153,6 +153,28 @@
             this.cuurent_tab.TabIndex = 0;
             this.cuurent_tab.Text = "    Supplier Payables       ";
             // 
+            // po_title
+            // 
+            this.po_title.AutoSize = true;
+            this.po_title.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.po_title.ForeColor = System.Drawing.Color.Black;
+            this.po_title.Location = new System.Drawing.Point(9, 70);
+            this.po_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.po_title.Name = "po_title";
+            this.po_title.Size = new System.Drawing.Size(151, 25);
+            this.po_title.TabIndex = 469;
+            this.po_title.Text = "Purchase Orders";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.paid_rd);
+            this.panel5.Controls.Add(this.unpaid_rd);
+            this.panel5.Location = new System.Drawing.Point(10, 21);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1138, 35);
+            this.panel5.TabIndex = 468;
+            // 
             // paid_rd
             // 
             this.paid_rd.AutoSize = true;
@@ -208,7 +230,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgSupplierPayables.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgSupplierPayables.ColumnHeadersHeight = 40;
+            this.dgSupplierPayables.ColumnHeadersHeight = 35;
             this.dgSupplierPayables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -246,7 +268,7 @@
             this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
             this.allTransactions_tab.Name = "allTransactions_tab";
             this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.allTransactions_tab.Size = new System.Drawing.Size(1189, 502);
+            this.allTransactions_tab.Size = new System.Drawing.Size(1158, 587);
             this.allTransactions_tab.TabIndex = 1;
             this.allTransactions_tab.Text = "     Customer Credits   ";
             this.allTransactions_tab.UseVisualStyleBackColor = true;
@@ -265,7 +287,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1189, 502);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 587);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "        Expenses       ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -277,28 +299,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(140, 5);
             this.panel2.TabIndex = 7;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.paid_rd);
-            this.panel5.Controls.Add(this.unpaid_rd);
-            this.panel5.Location = new System.Drawing.Point(10, 21);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1138, 35);
-            this.panel5.TabIndex = 468;
-            // 
-            // po_title
-            // 
-            this.po_title.AutoSize = true;
-            this.po_title.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.po_title.ForeColor = System.Drawing.Color.Black;
-            this.po_title.Location = new System.Drawing.Point(9, 70);
-            this.po_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.po_title.Name = "po_title";
-            this.po_title.Size = new System.Drawing.Size(151, 25);
-            this.po_title.TabIndex = 469;
-            this.po_title.Text = "Purchase Orders";
             // 
             // PaymentsAndBillingForm
             // 
@@ -325,11 +325,11 @@
             this.transactionsTabControl.ResumeLayout(false);
             this.cuurent_tab.ResumeLayout(false);
             this.cuurent_tab.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSupplierPayables)).EndInit();
             this.allTransactions_tab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }

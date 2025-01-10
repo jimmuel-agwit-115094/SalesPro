@@ -16,21 +16,22 @@ namespace SalesPro.Forms.PaymentsAndBilling
 {
     public partial class PaymentsAndBillingForm : Form
     {
-        private readonly PurchaseOrderService _poService;
+        private readonly PaymentsAndBillingService _service;
         public PaymentsAndBillingForm()
         {
             InitializeComponent();
-            _poService = new PurchaseOrderService();
+            _service = new PaymentsAndBillingService();
         }
 
         public async Task LoadAllPurchaseOrders(PaymentStatus status)
         {
-            var pos = await _poService.GetAllPurchaseOrders();
-            pos = pos.Where(p => p.PaymentStatus == status).ToList();
+            var pos = await _service.GetPurchaseOrdersByProcessStatus(status);
 
             dgSupplierPayables.DataSource = pos;
-            DgExtensions.ConfigureDataGrid(dgSupplierPayables, true, 0, notFound_lbl, "PurchaseOrderId",
-                "Supplier", "DateCreated", "DueDate", "CreditTerms", "PoTotal", "ProcessStatus");
+            DgExtensions.ConfigureDataGrid(dgSupplierPayables, true, 2, notFound_lbl, "PurchaseOrderId",
+                "SupplierName", "DateCreated", "DueDate", "CreditTerms", "PoTotal", "UserFullName");
+
+            dgSupplierPayables.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
         }
 
         private void PaymentsAndBillingForm_Load(object sender, EventArgs e)
