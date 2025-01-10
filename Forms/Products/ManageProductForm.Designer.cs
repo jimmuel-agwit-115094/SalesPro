@@ -76,7 +76,7 @@
             // reorder_tx
             // 
             this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.reorder_tx.Location = new System.Drawing.Point(137, 277);
+            this.reorder_tx.Location = new System.Drawing.Point(137, 275);
             this.reorder_tx.MaxLength = 8;
             this.reorder_tx.Name = "reorder_tx";
             this.reorder_tx.Size = new System.Drawing.Size(249, 27);
@@ -87,7 +87,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 281);
+            this.label4.Location = new System.Drawing.Point(28, 279);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
@@ -197,7 +197,7 @@
             // 
             this.logs_link.AutoSize = true;
             this.logs_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logs_link.Location = new System.Drawing.Point(13, 388);
+            this.logs_link.Location = new System.Drawing.Point(339, 19);
             this.logs_link.Name = "logs_link";
             this.logs_link.Size = new System.Drawing.Size(86, 16);
             this.logs_link.TabIndex = 552;

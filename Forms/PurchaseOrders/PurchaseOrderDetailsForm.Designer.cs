@@ -138,7 +138,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(830, 140);
+            this.pictureBox1.Location = new System.Drawing.Point(518, 138);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -149,7 +149,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(468, 139);
+            this.search_tx.Location = new System.Drawing.Point(156, 137);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
@@ -161,7 +161,7 @@
             this.poPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.poPanel.Controls.Add(this.process_panel);
             this.poPanel.Controls.Add(this.payment_panel);
-            this.poPanel.Controls.Add(this.total_tx);
+            this.poPanel.Controls.Add(this.poId_tx);
             this.poPanel.Location = new System.Drawing.Point(16, 37);
             this.poPanel.Name = "poPanel";
             this.poPanel.Size = new System.Drawing.Size(841, 31);
@@ -229,11 +229,12 @@
             // 
             // total_tx
             // 
-            this.total_tx.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_tx.Location = new System.Drawing.Point(605, 1);
+            this.total_tx.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_tx.ForeColor = System.Drawing.Color.Blue;
+            this.total_tx.Location = new System.Drawing.Point(549, 133);
             this.total_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.total_tx.Name = "total_tx";
-            this.total_tx.Size = new System.Drawing.Size(234, 28);
+            this.total_tx.Size = new System.Drawing.Size(318, 33);
             this.total_tx.TabIndex = 534;
             this.total_tx.Text = "0.00";
             this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -404,20 +405,20 @@
             // poId_tx
             // 
             this.poId_tx.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.poId_tx.ForeColor = System.Drawing.Color.Navy;
-            this.poId_tx.Location = new System.Drawing.Point(16, 661);
+            this.poId_tx.ForeColor = System.Drawing.Color.Black;
+            this.poId_tx.Location = new System.Drawing.Point(576, 6);
             this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.poId_tx.Name = "poId_tx";
             this.poId_tx.Size = new System.Drawing.Size(263, 20);
             this.poId_tx.TabIndex = 533;
             this.poId_tx.Text = "000000000";
-            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(770, 17);
+            this.label4.Location = new System.Drawing.Point(779, 119);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 17);
@@ -490,7 +491,7 @@
             // 
             this.showLogs_link.AutoSize = true;
             this.showLogs_link.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showLogs_link.Location = new System.Drawing.Point(17, 681);
+            this.showLogs_link.Location = new System.Drawing.Point(19, 662);
             this.showLogs_link.Name = "showLogs_link";
             this.showLogs_link.Size = new System.Drawing.Size(71, 17);
             this.showLogs_link.TabIndex = 546;
@@ -521,7 +522,6 @@
             this.Controls.Add(this.creditTermsPanel);
             this.Controls.Add(this.rowCount_tx);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.poId_tx);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.addProduct_btn);
             this.Controls.Add(this.addSupplier_btn);
@@ -532,6 +532,7 @@
             this.Controls.Add(this.search_tx);
             this.Controls.Add(this.dgPoItems);
             this.Controls.Add(this.title_lbl);
+            this.Controls.Add(this.total_tx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
