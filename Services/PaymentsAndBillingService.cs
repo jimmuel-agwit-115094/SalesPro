@@ -59,7 +59,9 @@ namespace SalesPro.Services
                                   PaymentStatus = po.PaymentStatus,
                                   Remarks = po.Remarks,
                                   UserFullName = u.Fullname,
-                                  SupplierName = s.SupplierName
+                                  SupplierName = s.SupplierName,
+                                  SupplierContactNumber = s.SupplierNumber,
+                                  SupplierAddress = s.SupplierAddress
                               }).FirstOrDefaultAsync();
             }
         }

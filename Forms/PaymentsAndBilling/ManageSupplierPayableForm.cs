@@ -1,4 +1,5 @@
-﻿using SalesPro.Services;
+﻿using SalesPro.Helpers;
+using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,36 @@ namespace SalesPro.Forms.PaymentsAndBilling
             _form = form;
         }
 
-        private void ManageSupplierPayableForm_Load(object sender, EventArgs e)
+        private async void ManageSupplierPayableForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var pos = await _service.GetPurchaseOrderById(_poId);
+                if (pos != null)
+                {
+                    pos.PurchaseOrderId = _poId;
+                    pos.RowVersion = _rowVersion;
+
+                    supplier_tx.Text = pos.SupplierName;
+                    contactNumber_tx.Text = pos.SupplierContactNumber;
+                    address_tx.Text = pos.SupplierAddress;
+                    dateCredited_tx.Text = DateFormatHelper.FormatDate(pos.DateCreated);
+                    dueDate_dt.Value = pos.DueDate;
+
+                    total_tx.Text = pos.PoTotal.ToString("N2");
+                    paymentStatus_tx.Text = pos.PaymentStatus.ToString();
+                    creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
+                    processedBy_tx.Text = pos.UserFullName;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on loading manage supplier payable form: {ex.Message}");
+            }
+        }
+
+        private void update_btn_Click(object sender, EventArgs e)
         {
 
         }

@@ -24,5 +24,7 @@ namespace SalesPro.Models
     {
         public string SupplierName { get; set; }
         public string UserFullName { get; set; }
+        public string SupplierContactNumber { get; set; }
+        public string SupplierAddress { get; set; }
     }
 }

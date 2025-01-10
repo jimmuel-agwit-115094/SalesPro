@@ -28,7 +28,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             var pos = await _service.GetPurchaseOrdersByProcessStatus(status);
 
             dgSupplierPayables.DataSource = pos;
-            DgExtensions.ConfigureDataGrid(dgSupplierPayables, true, 2, notFound_lbl, "PurchaseOrderId",
+            DgExtensions.ConfigureDataGrid(dgSupplierPayables, true, 4, notFound_lbl, "PurchaseOrderId",
                 "SupplierName", "DateCreated", "DueDate", "CreditTerms", "PoTotal", "UserFullName");
 
             dgSupplierPayables.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
