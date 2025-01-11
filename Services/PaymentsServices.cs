@@ -6,11 +6,12 @@ using SalesPro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 
 namespace SalesPro.Services
 {
-    public class PaymentsAndBillingService
+    public class PaymentsServices
     {
         public async Task<List<PurchaseOrderModelExtended>> GetPurchaseOrdersByProcessStatus(PaymentStatus status)
         {
@@ -66,39 +67,66 @@ namespace SalesPro.Services
             }
         }
 
-        // Pay the purchase order
-        public async Task<bool> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel)
+
+        private async Task SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        {
+            if (paymentType == PaymentType.SupplierPayable)
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    await context.Payments.AddAsync(paymentModel);
+                    await context.SaveChangesAsync();
+
+                    var purchaseOrder = await context.PurchaseOrders.FindAsync(paymentModel.ReferenceId);
+                    NullCheckerHelper.NullCheck(purchaseOrder);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, paymentModel.RowVersion);
+                    purchaseOrder.PaymentStatus = PaymentStatus.Paid;
+                    await context.SaveChangesAsync();
+                });
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private async Task UpdatePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel)
+        {
+            if (paymentType == PaymentType.SupplierPayable)
+            {
+                paymentModel.UserId = paymentModel.UserId;
+                paymentModel.PaymentMethod = paymentModel.PaymentMethod;
+                paymentModel.ReferenceNumber = paymentModel.ReferenceNumber;
+                paymentModel.OrNumber = paymentModel.OrNumber;
+                paymentModel.BankId = paymentModel.BankId;
+                paymentModel.PaymentDate = paymentModel.PaymentDate;
+                paymentModel.Notes = paymentModel.Notes;
+                await context.SaveChangesAsync();
+            }
+            else
+            {
+
+            }
+
+        }
+
+        public async Task<bool> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                // Find the specific purchase order
-                var po = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == poId
+                var existingPo = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == poId
                 && x.PaymentType == paymentType);
 
-                if (paymentType == PaymentType.SupplierPayable)
+                if (existingPo == null)
                 {
-                    if (po == null)
-                    {
-                        await context.Payments.AddAsync(paymentModel);
-                        await context.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        po.UserId = paymentModel.UserId;
-                        po.PaymentMethod = paymentModel.PaymentMethod;
-                        po.ReferenceNumber = paymentModel.ReferenceNumber;
-                        po.OrNumber = paymentModel.OrNumber;
-                        po.BankId = paymentModel.BankId;
-                        po.PaymentDate = paymentModel.PaymentDate;
-                        po.Notes = paymentModel.Notes;
-                        await context.SaveChangesAsync();
-                    }
+                    await SavePayment(context, paymentType, paymentModel, rowVersion);
                 }
                 else
                 {
-
+                    await UpdatePayment(context, paymentType, existingPo);
                 }
-              
+
                 return false;
             }
         }

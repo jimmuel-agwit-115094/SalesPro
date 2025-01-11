@@ -21,14 +21,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private DateTime _curDate;
         public PaymentType _paymentType;
 
-        private readonly PaymentsAndBillingService _paymentService;
+        private readonly PaymentsServices _paymentService;
         private readonly PurchaseOrderService _poService;
 
         public PaymentForm()
         {
             InitializeComponent();
             _poService = new PurchaseOrderService();
-            _paymentService = new PaymentsAndBillingService();
+            _paymentService = new PaymentsServices();
         }
 
         private async void PaymentCreditForm_Load(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 model.UserId = UserSession.Session_UserId;
                 model.ReferenceId = _referenceId;
             }
-            await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model);
+            await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
         }
     }
 }
