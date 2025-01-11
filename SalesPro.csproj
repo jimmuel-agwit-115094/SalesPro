@@ -165,6 +165,7 @@
     <Compile Include="Enums\BalanceStatusEnum.cs" />
     <Compile Include="Enums\InventoryEnum.cs" />
     <Compile Include="Enums\OrderEnum.cs" />
+    <Compile Include="Enums\PaymentTypeEnum.cs" />
     <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Enums\PurchaseOrderEnums.cs" />
     <Compile Include="Enums\UsersEnums.cs" />
@@ -257,6 +258,12 @@
     </Compile>
     <Compile Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.Designer.cs">
       <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\PaymentCreditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\PaymentCreditForm.Designer.cs">
+      <DependentUpon>PaymentCreditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.cs">
       <SubType>Form</SubType>
@@ -414,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.resx">
       <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentCreditForm.resx">
+      <DependentUpon>PaymentCreditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.resx">
       <DependentUpon>PaymentsAndBillingForm.cs</DependentUpon>

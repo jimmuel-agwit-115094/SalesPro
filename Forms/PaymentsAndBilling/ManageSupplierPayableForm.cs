@@ -1,4 +1,6 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Forms.Orders;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
@@ -74,6 +76,15 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private void update_btn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pay_btn_Click(object sender, EventArgs e)
+        {
+            var form = new PaymentCreditForm();
+            form._paymentType = PaymentType.SupplierPayable;
+            form._referenceId = _poId;
+            form._rowVersion = _rowVersion;
+            form.ShowDialog();
         }
     }
 }
