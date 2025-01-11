@@ -65,5 +65,42 @@ namespace SalesPro.Services
                               }).FirstOrDefaultAsync();
             }
         }
+
+        // Pay the purchase order
+        public async Task<bool> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel)
+        {
+            using (var context = new DatabaseContext())
+            {
+                // Find the specific purchase order
+                var po = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == poId
+                && x.PaymentType == paymentType);
+
+                if (paymentType == PaymentType.SupplierPayable)
+                {
+                    if (po == null)
+                    {
+                        await context.Payments.AddAsync(paymentModel);
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        po.UserId = paymentModel.UserId;
+                        po.PaymentMethod = paymentModel.PaymentMethod;
+                        po.ReferenceNumber = paymentModel.ReferenceNumber;
+                        po.OrNumber = paymentModel.OrNumber;
+                        po.BankId = paymentModel.BankId;
+                        po.PaymentDate = paymentModel.PaymentDate;
+                        po.Notes = paymentModel.Notes;
+                        await context.SaveChangesAsync();
+                    }
+                }
+                else
+                {
+
+                }
+              
+                return false;
+            }
+        }
     }
 }

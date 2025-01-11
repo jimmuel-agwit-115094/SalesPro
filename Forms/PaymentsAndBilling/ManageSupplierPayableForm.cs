@@ -80,7 +80,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void pay_btn_Click(object sender, EventArgs e)
         {
-            var form = new PaymentCreditForm();
+            var form = new PaymentForm();
             form._paymentType = PaymentType.SupplierPayable;
             form._referenceId = _poId;
             form._rowVersion = _rowVersion;

@@ -2,7 +2,7 @@
 {
    public enum PaymentType
     {
-        SupplierPayable = 1,
-        CustomerCredit = 2,
+        SupplierPayable,
+        CustomerCredit
     }
 }

@@ -259,11 +259,11 @@
     <Compile Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.Designer.cs">
       <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PaymentsAndBilling\PaymentCreditForm.cs">
+    <Compile Include="Forms\PaymentsAndBilling\PaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PaymentsAndBilling\PaymentCreditForm.Designer.cs">
-      <DependentUpon>PaymentCreditForm.cs</DependentUpon>
+    <Compile Include="Forms\PaymentsAndBilling\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.cs">
       <SubType>Form</SubType>
@@ -332,6 +332,7 @@
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\NullCheckerHelper.cs" />
+    <Compile Include="Helpers\PaymentMethodHelper.cs" />
     <Compile Include="Helpers\UiHelpers\TextBoxHelper.cs" />
     <Compile Include="Models\CustomerCreditModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
@@ -339,6 +340,7 @@
     <Compile Include="Models\InventoryModel.cs" />
     <Compile Include="Models\OrderItemModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\PaymentsModel.cs" />
     <Compile Include="Models\ProductLogModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseOrderItemModel.cs" />
@@ -422,8 +424,8 @@
     <EmbeddedResource Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.resx">
       <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentCreditForm.resx">
-      <DependentUpon>PaymentCreditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentsAndBillingForm.resx">
       <DependentUpon>PaymentsAndBillingForm.cs</DependentUpon>

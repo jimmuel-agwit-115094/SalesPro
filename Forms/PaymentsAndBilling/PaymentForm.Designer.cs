@@ -1,6 +1,6 @@
 ﻿namespace SalesPro.Forms.PaymentsAndBilling
 {
-    partial class PaymentCreditForm
+    partial class PaymentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentCreditForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.paymentPhoto = new System.Windows.Forms.PictureBox();
             this.title_lbl = new System.Windows.Forms.Label();
@@ -39,12 +39,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.orNunber_tx = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.invoiceNumber_tx = new System.Windows.Forms.TextBox();
-            this.trackingNumber_tx = new System.Windows.Forms.TextBox();
+            this.reference_tx = new System.Windows.Forms.TextBox();
             this.bank_cb = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.paymentTitle_tx = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.notes_tx = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             this.SuspendLayout();
@@ -105,13 +105,14 @@
             this.pay_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pay_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pay_btn.ForeColor = System.Drawing.Color.White;
-            this.pay_btn.Location = new System.Drawing.Point(231, 633);
+            this.pay_btn.Location = new System.Drawing.Point(231, 687);
             this.pay_btn.Margin = new System.Windows.Forms.Padding(4);
             this.pay_btn.Name = "pay_btn";
             this.pay_btn.Size = new System.Drawing.Size(187, 42);
             this.pay_btn.TabIndex = 564;
             this.pay_btn.Text = "Pay";
             this.pay_btn.UseVisualStyleBackColor = false;
+            this.pay_btn.Click += new System.EventHandler(this.pay_btn_Click);
             // 
             // paymentMethod_cb
             // 
@@ -139,7 +140,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(25, 316);
+            this.label11.Location = new System.Drawing.Point(27, 393);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(106, 23);
             this.label11.TabIndex = 591;
@@ -149,57 +150,35 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 533);
+            this.label5.Location = new System.Drawing.Point(25, 317);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 23);
+            this.label5.Size = new System.Drawing.Size(153, 23);
             this.label5.TabIndex = 587;
-            this.label5.Text = "Tracking Number";
+            this.label5.Text = "Reference Number";
             // 
             // orNunber_tx
             // 
             this.orNunber_tx.BackColor = System.Drawing.Color.White;
             this.orNunber_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.orNunber_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.orNunber_tx.Location = new System.Drawing.Point(29, 340);
+            this.orNunber_tx.Location = new System.Drawing.Point(29, 417);
             this.orNunber_tx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.orNunber_tx.Name = "orNunber_tx";
             this.orNunber_tx.Size = new System.Drawing.Size(389, 39);
             this.orNunber_tx.TabIndex = 590;
             this.orNunber_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label10
+            // reference_tx
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(25, 388);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(132, 23);
-            this.label10.TabIndex = 589;
-            this.label10.Text = "Invoice Number";
-            // 
-            // invoiceNumber_tx
-            // 
-            this.invoiceNumber_tx.BackColor = System.Drawing.Color.White;
-            this.invoiceNumber_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.invoiceNumber_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.invoiceNumber_tx.Location = new System.Drawing.Point(29, 411);
-            this.invoiceNumber_tx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.invoiceNumber_tx.Name = "invoiceNumber_tx";
-            this.invoiceNumber_tx.Size = new System.Drawing.Size(389, 39);
-            this.invoiceNumber_tx.TabIndex = 588;
-            this.invoiceNumber_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // trackingNumber_tx
-            // 
-            this.trackingNumber_tx.BackColor = System.Drawing.Color.White;
-            this.trackingNumber_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.trackingNumber_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.trackingNumber_tx.Location = new System.Drawing.Point(30, 556);
-            this.trackingNumber_tx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.trackingNumber_tx.Name = "trackingNumber_tx";
-            this.trackingNumber_tx.Size = new System.Drawing.Size(389, 39);
-            this.trackingNumber_tx.TabIndex = 586;
-            this.trackingNumber_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.reference_tx.BackColor = System.Drawing.Color.White;
+            this.reference_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.reference_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.reference_tx.Location = new System.Drawing.Point(29, 342);
+            this.reference_tx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reference_tx.Name = "reference_tx";
+            this.reference_tx.Size = new System.Drawing.Size(391, 39);
+            this.reference_tx.TabIndex = 586;
+            this.reference_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // bank_cb
             // 
@@ -211,7 +190,7 @@
             "CHECK",
             "BANK TRANSFER",
             "E-PAYMENT"});
-            this.bank_cb.Location = new System.Drawing.Point(29, 483);
+            this.bank_cb.Location = new System.Drawing.Point(29, 491);
             this.bank_cb.Margin = new System.Windows.Forms.Padding(4);
             this.bank_cb.Name = "bank_cb";
             this.bank_cb.Size = new System.Drawing.Size(389, 40);
@@ -221,7 +200,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 458);
+            this.label2.Location = new System.Drawing.Point(25, 465);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 23);
             this.label2.TabIndex = 585;
@@ -239,19 +218,42 @@
             this.paymentTitle_tx.Text = "Payment";
             this.paymentTitle_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PaymentCreditForm
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 538);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 23);
+            this.label1.TabIndex = 594;
+            this.label1.Text = "Notes";
+            // 
+            // notes_tx
+            // 
+            this.notes_tx.BackColor = System.Drawing.Color.White;
+            this.notes_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.notes_tx.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notes_tx.Location = new System.Drawing.Point(27, 563);
+            this.notes_tx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.notes_tx.Multiline = true;
+            this.notes_tx.Name = "notes_tx";
+            this.notes_tx.Size = new System.Drawing.Size(391, 88);
+            this.notes_tx.TabIndex = 593;
+            this.notes_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(448, 701);
+            this.ClientSize = new System.Drawing.Size(448, 753);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.notes_tx);
             this.Controls.Add(this.paymentTitle_tx);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.orNunber_tx);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.invoiceNumber_tx);
-            this.Controls.Add(this.trackingNumber_tx);
+            this.Controls.Add(this.reference_tx);
             this.Controls.Add(this.bank_cb);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -261,7 +263,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PaymentCreditForm";
+            this.Name = "PaymentForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -285,11 +287,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox orNunber_tx;
-        private System.Windows.Forms.Label label10;
-        public System.Windows.Forms.TextBox invoiceNumber_tx;
-        public System.Windows.Forms.TextBox trackingNumber_tx;
+        public System.Windows.Forms.TextBox reference_tx;
         public System.Windows.Forms.ComboBox bank_cb;
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.Label paymentTitle_tx;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox notes_tx;
     }
 }

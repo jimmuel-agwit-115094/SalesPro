@@ -33,10 +33,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var filteredPaymentMethods = Enum.GetValues(typeof(PaymentMethod))
-                                  .Cast<PaymentMethod>()
-                                  .Where(x => x != PaymentMethod.NotSet)
-                                  .ToList();
+                var filteredPaymentMethods = PaymentMethodHelper.GetFilteredPaymentMethods();
                 paymentMethod_cb.DataSource = filteredPaymentMethods;
 
                 _curDate = await ClockHelper.GetServerDateTime();
