@@ -1,4 +1,5 @@
 ﻿using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
@@ -19,35 +20,50 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private readonly PaymentsAndBillingForm _form;
         private readonly PaymentsAndBillingService _service;
+        private readonly PurchaseOrderService _poService;
         public ManageSupplierPayableForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
             _service = new PaymentsAndBillingService();
+            _poService = new PurchaseOrderService();
             _form = form;
+        }
+
+        public async Task LoadOrderItems()
+        {
+            var orderItems = await _poService.LoadPurchaseOrderItemsByPoId(_poId);
+            dgOrderedItems.DataSource = orderItems;
+            DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
+                   "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
+        }
+
+        private async Task SetControls()
+        {
+            var pos = await _service.GetPurchaseOrderById(_poId);
+            if (pos != null)
+            {
+                pos.PurchaseOrderId = _poId;
+                pos.RowVersion = _rowVersion;
+
+                supplier_tx.Text = pos.SupplierName;
+                contactNumber_tx.Text = pos.SupplierContactNumber;
+                address_tx.Text = pos.SupplierAddress;
+                dateCredited_tx.Text = DateFormatHelper.FormatDate(pos.DateCreated);
+                dueDate_dt.Value = pos.DueDate;
+
+                total_tx.Text = pos.PoTotal.ToString("N2");
+                paymentStatus_tx.Text = pos.PaymentStatus.ToString();
+                creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
+                processedBy_tx.Text = pos.UserFullName;
+            }
         }
 
         private async void ManageSupplierPayableForm_Load(object sender, EventArgs e)
         {
             try
             {
-                var pos = await _service.GetPurchaseOrderById(_poId);
-                if (pos != null)
-                {
-                    pos.PurchaseOrderId = _poId;
-                    pos.RowVersion = _rowVersion;
-
-                    supplier_tx.Text = pos.SupplierName;
-                    contactNumber_tx.Text = pos.SupplierContactNumber;
-                    address_tx.Text = pos.SupplierAddress;
-                    dateCredited_tx.Text = DateFormatHelper.FormatDate(pos.DateCreated);
-                    dueDate_dt.Value = pos.DueDate;
-
-                    total_tx.Text = pos.PoTotal.ToString("N2");
-                    paymentStatus_tx.Text = pos.PaymentStatus.ToString();
-                    creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
-                    processedBy_tx.Text = pos.UserFullName;
-
-                }
+                await SetControls();
+                await LoadOrderItems();
             }
             catch (Exception ex)
             {
