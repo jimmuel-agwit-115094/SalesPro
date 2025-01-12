@@ -12,14 +12,15 @@ namespace SalesPro.Forms.PaymentsAndBilling
     {
         public int _poId;
         public int _rowVersion;
+        private DateTime _dateCreated;
 
         private readonly PaymentsAndBillingForm _form;
-        private readonly PaymentsServices _service;
+        private readonly PaymentsService _service;
         private readonly PurchaseOrderService _poService;
         public ManageSupplierPayableForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
-            _service = new PaymentsServices();
+            _service = new PaymentsService();
             _poService = new PurchaseOrderService();
             _form = form;
         }
@@ -39,6 +40,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 pos.PurchaseOrderId = _poId;
                 pos.RowVersion = _rowVersion;
+                _dateCreated = pos.DateCreated;
 
                 supplier_tx.Text = pos.SupplierName;
                 contactNumber_tx.Text = pos.SupplierContactNumber;
@@ -66,9 +68,25 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
         }
 
-        private void update_btn_Click(object sender, EventArgs e)
+        private async void update_btn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (_dateCreated.Date >= dueDate_dt.Value.Date)
+                {
+                    MessageHandler.ShowWarning("Due date must be greater than the date created");
+                    return;
+                }
+                if (MessageHandler.ShowQuestionGeneric("Update due date?"))
+                {
+                    await _service.UpdateDueDate(_poId, dueDate_dt.Value.Date);
+                    await SetControls();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error updating due date: {ex.Message}");
+            }
         }
 
         private void pay_btn_Click(object sender, EventArgs e)
@@ -92,7 +110,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void paymentStatus_tx_TextChanged(object sender, EventArgs e)
         {
-         
+
         }
     }
 }

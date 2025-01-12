@@ -16,11 +16,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
 {
     public partial class PaymentsAndBillingForm : Form
     {
-        private readonly PaymentsServices _service;
+        private readonly PaymentsService _service;
         public PaymentsAndBillingForm()
         {
             InitializeComponent();
-            _service = new PaymentsServices();
+            _service = new PaymentsService();
         }
 
         public async Task LoadAllPurchaseOrders(PaymentStatus status)

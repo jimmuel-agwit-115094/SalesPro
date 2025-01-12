@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SalesPro.Services
 {
-    public class PaymentsServices
+    public class PaymentsService
     {
         public async Task<List<PurchaseOrderModelExtended>> GetPurchaseOrdersByProcessStatus(PaymentStatus status)
         {
@@ -132,6 +132,18 @@ namespace SalesPro.Services
                 }
 
                 return success;
+            }
+        }
+
+        public async Task UpdateDueDate(int poId, DateTime date)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var po = await context.PurchaseOrders.FindAsync(poId);
+                NullCheckerHelper.NullCheck(po);
+                po.DueDate = date;
+                po.CreditTerms = (date - po.DateCreated).Days;
+                await context.SaveChangesAsync();
             }
         }
     }

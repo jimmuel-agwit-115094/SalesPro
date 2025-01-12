@@ -18,7 +18,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public PaymentType _paymentType;
 
         private readonly BankService _bankService;
-        private readonly PaymentsServices _paymentService;
+        private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _poService;
         private readonly ManageSupplierPayableForm _form;
 
@@ -26,7 +26,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             InitializeComponent();
             _poService = new PurchaseOrderService();
-            _paymentService = new PaymentsServices();
+            _paymentService = new PaymentsService();
             _bankService = new BankService();
             _form = form;
         }
