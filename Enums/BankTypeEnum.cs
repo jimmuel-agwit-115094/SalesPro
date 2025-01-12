@@ -2,7 +2,7 @@
 {
     public enum BankType
     {
-        Tradional,
+        Traditional,
         DigitalWallet
     }
 }

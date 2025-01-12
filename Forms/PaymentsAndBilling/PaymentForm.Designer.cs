@@ -124,6 +124,7 @@
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(391, 40);
             this.paymentMethod_cb.TabIndex = 573;
+            this.paymentMethod_cb.SelectedIndexChanged += new System.EventHandler(this.paymentMethod_cb_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -166,7 +167,6 @@
             this.orNunber_tx.Name = "orNunber_tx";
             this.orNunber_tx.Size = new System.Drawing.Size(389, 39);
             this.orNunber_tx.TabIndex = 590;
-            this.orNunber_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // reference_tx
             // 
@@ -178,7 +178,6 @@
             this.reference_tx.Name = "reference_tx";
             this.reference_tx.Size = new System.Drawing.Size(391, 39);
             this.reference_tx.TabIndex = 586;
-            this.reference_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // bank_cb
             // 
@@ -239,7 +238,6 @@
             this.notes_tx.Name = "notes_tx";
             this.notes_tx.Size = new System.Drawing.Size(391, 88);
             this.notes_tx.TabIndex = 593;
-            this.notes_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // PaymentForm
             // 

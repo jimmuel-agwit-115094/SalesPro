@@ -21,6 +21,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private DateTime _curDate;
         public PaymentType _paymentType;
 
+        private readonly BankService _bankService;
         private readonly PaymentsServices _paymentService;
         private readonly PurchaseOrderService _poService;
 
@@ -29,27 +30,53 @@ namespace SalesPro.Forms.PaymentsAndBilling
             InitializeComponent();
             _poService = new PurchaseOrderService();
             _paymentService = new PaymentsServices();
+            _bankService = new BankService();
         }
+
+        private async Task SetBanks()
+        {
+            var banks = await _bankService.GetBanks();
+            var selectedMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
+
+            var filteredBanks = selectedMethod == PaymentMethod.EPayment
+                ? banks.Where(x => x.BankType == BankType.DigitalWallet).ToList()
+                : banks.Where(x => x.BankType == BankType.Traditional).ToList();
+
+            bank_cb.DataSource = filteredBanks;
+            bank_cb.DisplayMember = "BankName";
+            bank_cb.ValueMember = "BankId";
+            bank_cb.SelectedIndex = -1;
+        }
+
 
         private async void PaymentCreditForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ClockHelper.GetServerDateTime();
-            var filteredPaymentMethods = PaymentMethodHelper.GetFilteredPaymentMethods();
-            paymentMethod_cb.DataSource = filteredPaymentMethods;
-
-            if (_paymentType == PaymentType.SupplierPayable)
+            try
             {
-                paymentTitle_tx.Text = "Supplier Payable Payment";
+                _curDate = await ClockHelper.GetServerDateTime();
+                paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
 
-                var po = await _poService.GetPurchaseorderById(_referenceId);
-                if (po != null)
+                paymentTitle_tx.Text = _paymentType == PaymentType.SupplierPayable
+                      ? "Supplier Payable Payment"
+                      : "Customer Credit Payment";
+
+                await SetBanks();
+
+                if (_paymentType == PaymentType.SupplierPayable)
                 {
-                    total_tx.Text = po.PoTotal.ToString("N2");
+                    var po = await _poService.GetPurchaseorderById(_referenceId);
+                    if (po != null)
+                    {
+                        total_tx.Text = po.PoTotal.ToString("N2");
+                    }
+                }
+                else
+                {
                 }
             }
-            else
+            catch (Exception ex)
             {
-                paymentTitle_tx.Text = "Customer Credit Payment";
+                MessageHandler.ShowError($"Error loading payment form: {ex.Message}");
             }
         }
 
@@ -57,15 +84,20 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                if (paymentMethod_cb.SelectedIndex == 0)
+                if (paymentMethod_cb.SelectedIndex == -1)
                 {
-                    MessageHandler.ShowError("Please select payment method.");
+                    MessageHandler.ShowWarning("Please select payment method.");
                     return;
                 }
                 if (reference_tx.Text == "")
                 {
-                    MessageHandler.ShowError("Please enter reference number.");
+                    MessageHandler.ShowWarning("Please enter reference number.");
                     return;
+                }
+                if ((PaymentMethod)paymentMethod_cb.SelectedItem != PaymentMethod.Cash
+                    && bank_cb.SelectedIndex == -1)
+                {
+                    MessageHandler.ShowWarning("Please select bank.");
                 }
                 var model = new PaymentsModel();
                 {
@@ -84,6 +116,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 MessageHandler.ShowError($"Error pay button: {ex.Message}");
             }
+        }
+
+        private async void paymentMethod_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bank_cb.Enabled = ((PaymentMethod)paymentMethod_cb.SelectedItem != PaymentMethod.Cash);
+            await SetBanks();
         }
     }
 }
