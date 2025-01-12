@@ -20,7 +20,7 @@ namespace SalesPro.Services
                 return await (from po in context.PurchaseOrders
                               join u in context.Users on po.UserId equals u.UserId
                               join s in context.Suppliers on po.SupplierId equals s.SupplierId
-                              where po.PaymentStatus == status
+                              where po.PaymentStatus == status && po.ProcessStatus == ProcessStatus.Completed
                               select new PurchaseOrderModelExtended
                               {
                                   PurchaseOrderId = po.PurchaseOrderId,
@@ -68,8 +68,9 @@ namespace SalesPro.Services
         }
 
 
-        private async Task SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
+            int success = 0;
             if (paymentType == PaymentType.SupplierPayable)
             {
                 await context.ExecuteInTransactionAsync(async () =>
@@ -79,9 +80,9 @@ namespace SalesPro.Services
 
                     var purchaseOrder = await context.PurchaseOrders.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(purchaseOrder);
-                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, paymentModel.RowVersion);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, purchaseOrder.RowVersion);
                     purchaseOrder.PaymentStatus = PaymentStatus.Paid;
-                    await context.SaveChangesAsync();
+                    success = await context.SaveChangesAsync();
                 });
 
             }
@@ -89,10 +90,12 @@ namespace SalesPro.Services
             {
 
             }
+            return success;
         }
 
-        private async Task UpdatePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel)
+        private async Task<int> UpdatePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel)
         {
+            int success = 0;
             if (paymentType == PaymentType.SupplierPayable)
             {
                 paymentModel.UserId = paymentModel.UserId;
@@ -102,17 +105,18 @@ namespace SalesPro.Services
                 paymentModel.BankId = paymentModel.BankId;
                 paymentModel.PaymentDate = paymentModel.PaymentDate;
                 paymentModel.Notes = paymentModel.Notes;
-                await context.SaveChangesAsync();
+                success =await context.SaveChangesAsync();
             }
             else
             {
 
             }
-
+            return success;
         }
 
-        public async Task<bool> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        public async Task<int> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
+            int success = 0;
             using (var context = new DatabaseContext())
             {
                 var existingPo = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == poId
@@ -120,14 +124,14 @@ namespace SalesPro.Services
 
                 if (existingPo == null)
                 {
-                    await SavePayment(context, paymentType, paymentModel, rowVersion);
+                    success =await SavePayment(context, paymentType, paymentModel, rowVersion);
                 }
                 else
                 {
-                    await UpdatePayment(context, paymentType, existingPo);
+                    success =await UpdatePayment(context, paymentType, existingPo);
                 }
 
-                return false;
+                return success;
             }
         }
     }

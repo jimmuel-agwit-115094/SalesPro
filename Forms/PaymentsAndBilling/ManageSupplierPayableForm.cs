@@ -1,15 +1,8 @@
 ﻿using SalesPro.Enums;
-using SalesPro.Forms.Orders;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -39,7 +32,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                    "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
         }
 
-        private async Task SetControls()
+        public async Task SetControls()
         {
             var pos = await _service.GetPurchaseOrderById(_poId);
             if (pos != null)
@@ -80,11 +73,26 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void pay_btn_Click(object sender, EventArgs e)
         {
-            var form = new PaymentForm();
+            var form = new PaymentForm(this);
             form._paymentType = PaymentType.SupplierPayable;
             form._referenceId = _poId;
             form._rowVersion = _rowVersion;
             form.ShowDialog();
+        }
+
+        private void ManageSupplierPayableForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _form.unpaid_rd.PerformClick();
+        }
+
+        private void paymentStatus_tx_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void paymentStatus_tx_TextChanged(object sender, EventArgs e)
+        {
+         
         }
     }
 }

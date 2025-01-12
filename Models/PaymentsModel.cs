@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class PaymentsModel
+    public class PaymentsModel : BaseEntity
     {
         [Key]
         public int PaymentId { get; set; }
@@ -17,6 +17,5 @@ namespace SalesPro.Models
         public int BankId { get; set; }
         public DateTime PaymentDate { get; set; }
         public string Notes { get; set; }
-        public int RowVersion { get; set; }
     }
 }

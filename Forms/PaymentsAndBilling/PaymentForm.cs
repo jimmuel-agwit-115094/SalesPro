@@ -3,12 +3,8 @@ using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,13 +20,15 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly BankService _bankService;
         private readonly PaymentsServices _paymentService;
         private readonly PurchaseOrderService _poService;
+        private readonly ManageSupplierPayableForm _form;
 
-        public PaymentForm()
+        public PaymentForm(ManageSupplierPayableForm form)
         {
             InitializeComponent();
             _poService = new PurchaseOrderService();
             _paymentService = new PaymentsServices();
             _bankService = new BankService();
+            _form = form;
         }
 
         private async Task SetBanks()
@@ -67,6 +65,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     var po = await _poService.GetPurchaseorderById(_referenceId);
                     if (po != null)
                     {
+                        _rowVersion = po.RowVersion;
                         total_tx.Text = po.PoTotal.ToString("N2");
                     }
                 }
@@ -110,7 +109,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     model.UserId = UserSession.Session_UserId;
                     model.ReferenceId = _referenceId;
                 }
-                await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
+                var success = await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
+                if (success == 1)
+                {
+                    await _form.SetControls();
+                    Close();
+                }
             }
             catch (Exception ex)
             {
