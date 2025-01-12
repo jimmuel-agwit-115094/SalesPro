@@ -55,18 +55,35 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private async void pay_btn_Click(object sender, EventArgs e)
         {
-            var model = new PaymentsModel();
+            try
             {
-                model.BankId = 1;
-                model.Notes = notes_tx.Text;
-                model.OrNumber = orNunber_tx.Text;
-                model.PaymentDate = _curDate;
-                model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
-                model.ReferenceNumber = reference_tx.Text;
-                model.UserId = UserSession.Session_UserId;
-                model.ReferenceId = _referenceId;
+                if (paymentMethod_cb.SelectedIndex == 0)
+                {
+                    MessageHandler.ShowError("Please select payment method.");
+                    return;
+                }
+                if (reference_tx.Text == "")
+                {
+                    MessageHandler.ShowError("Please enter reference number.");
+                    return;
+                }
+                var model = new PaymentsModel();
+                {
+                    model.BankId = 1;
+                    model.Notes = notes_tx.Text;
+                    model.OrNumber = orNunber_tx.Text;
+                    model.PaymentDate = _curDate;
+                    model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                    model.ReferenceNumber = reference_tx.Text;
+                    model.UserId = UserSession.Session_UserId;
+                    model.ReferenceId = _referenceId;
+                }
+                await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
             }
-            await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error pay button: {ex.Message}");
+            }
         }
     }
 }

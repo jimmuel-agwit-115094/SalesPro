@@ -97,7 +97,7 @@ namespace SalesPro.Forms.PurchaseOrders
             if (purchaseOrders != null)
             {
                 dgPo.DataSource = purchaseOrders;
-                DgExtensions.ConfigureDataGrid(dgPo, true, 2, notFound_lbl,
+                DgExtensions.ConfigureDataGrid(dgPo, true, 4, notFound_lbl,
                     "PurchaseOrderId",
                     "DateCreated",
                     "SupplierName",

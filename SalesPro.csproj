@@ -163,6 +163,7 @@
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
+    <Compile Include="Enums\BankTypeEnum.cs" />
     <Compile Include="Enums\InventoryEnum.cs" />
     <Compile Include="Enums\OrderEnum.cs" />
     <Compile Include="Enums\PaymentTypeEnum.cs" />
@@ -334,6 +335,8 @@
     <Compile Include="Helpers\NullCheckerHelper.cs" />
     <Compile Include="Helpers\PaymentMethodHelper.cs" />
     <Compile Include="Helpers\UiHelpers\TextBoxHelper.cs" />
+    <Compile Include="Models\BankModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CustomerCreditModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\InventoryLogModel.cs" />
