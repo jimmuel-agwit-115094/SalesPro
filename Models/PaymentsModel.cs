@@ -14,7 +14,7 @@ namespace SalesPro.Models
         public PaymentMethod PaymentMethod { get; set; }
         public string ReferenceNumber { get; set; }
         public string OrNumber { get; set; }
-        public int BankId { get; set; }
+        public string BankName { get; set; }
         public DateTime PaymentDate { get; set; }
         public string Notes { get; set; }
     }

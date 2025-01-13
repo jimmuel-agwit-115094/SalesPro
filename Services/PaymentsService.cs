@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace SalesPro.Services
@@ -67,11 +68,19 @@ namespace SalesPro.Services
             }
         }
 
+        // get payment by reference id
+        public async Task<PaymentsModel> GetPaymentByReferenceId(int referenceId, PaymentType paymentType)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == referenceId && x.PaymentType == paymentType);
+            }
+        }
 
         private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
             int success = 0;
-            if (paymentType == PaymentType.SupplierPayable)
+            if (paymentType == PaymentType.SupplierPayable) // Supplier payables
             {
                 await context.ExecuteInTransactionAsync(async () =>
                 {
@@ -86,51 +95,19 @@ namespace SalesPro.Services
                 });
 
             }
-            else
+            else // Customer credits
             {
 
             }
             return success;
         }
 
-        private async Task<int> UpdatePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel)
-        {
-            int success = 0;
-            if (paymentType == PaymentType.SupplierPayable)
-            {
-                paymentModel.UserId = paymentModel.UserId;
-                paymentModel.PaymentMethod = paymentModel.PaymentMethod;
-                paymentModel.ReferenceNumber = paymentModel.ReferenceNumber;
-                paymentModel.OrNumber = paymentModel.OrNumber;
-                paymentModel.BankId = paymentModel.BankId;
-                paymentModel.PaymentDate = paymentModel.PaymentDate;
-                paymentModel.Notes = paymentModel.Notes;
-                success =await context.SaveChangesAsync();
-            }
-            else
-            {
-
-            }
-            return success;
-        }
-
-        public async Task<int> PayPurchaseOrder(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        public async Task<int> Pay(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion, int paymentRowVersion)
         {
             int success = 0;
             using (var context = new DatabaseContext())
             {
-                var existingPo = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == poId
-                && x.PaymentType == paymentType);
-
-                if (existingPo == null)
-                {
-                    success =await SavePayment(context, paymentType, paymentModel, rowVersion);
-                }
-                else
-                {
-                    success =await UpdatePayment(context, paymentType, existingPo);
-                }
-
+                success = await SavePayment(context, paymentType, paymentModel, rowVersion);
                 return success;
             }
         }

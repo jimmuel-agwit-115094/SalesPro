@@ -4,6 +4,7 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,8 +15,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
     {
         public int _referenceId;
         public int _rowVersion;
+        public int _paymentRowVersion;
         private DateTime _curDate;
         public PaymentType _paymentType;
+        public PaymentStatus _paymentStatus;
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
@@ -46,6 +49,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
             bank_cb.SelectedIndex = -1;
         }
 
+        private void SetControls()
+        {
+
+        }
 
         private async void PaymentCreditForm_Load(object sender, EventArgs e)
         {
@@ -66,10 +73,33 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     if (po != null)
                     {
                         _rowVersion = po.RowVersion;
+                        _paymentStatus = po.PaymentStatus;
                         total_tx.Text = po.PoTotal.ToString("N2");
                     }
+
+                    if (_paymentStatus == PaymentStatus.Unpaid)
+                    {
+                        pay_btn.BackColor = Color.Green;
+                        pay_btn.Text = "Pay";
+                    }
+                    else
+                    {
+                        pay_btn.BackColor = SystemColors.Highlight;
+                        pay_btn.Text = "View Payment";
+
+                        var payment = await _paymentService.GetPaymentByReferenceId(_referenceId, _paymentType);
+                        if (payment != null)
+                        {
+                            paymentMethod_cb.Text = payment.PaymentMethod.ToString();
+                            reference_tx.Text = payment.ReferenceNumber;
+                            orNunber_tx.Text = payment.OrNumber;
+                            bank_cb.Text = payment.BankName;
+                            notes_tx.Text = payment.Notes;
+                            _paymentRowVersion = payment.RowVersion;
+                        }
+                    }
                 }
-                else
+                else if (_paymentType == PaymentType.CustomerCredit)
                 {
                 }
             }
@@ -78,6 +108,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 MessageHandler.ShowError($"Error loading payment form: {ex.Message}");
             }
         }
+
 
         private async void pay_btn_Click(object sender, EventArgs e)
         {
@@ -97,10 +128,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     && bank_cb.SelectedIndex == -1)
                 {
                     MessageHandler.ShowWarning("Please select bank.");
+                    return;
                 }
+
                 var model = new PaymentsModel();
                 {
-                    model.BankId = 1;
+                    model.BankName = bank_cb.Text;
                     model.Notes = notes_tx.Text;
                     model.OrNumber = orNunber_tx.Text;
                     model.PaymentDate = _curDate;
@@ -109,12 +142,13 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     model.UserId = UserSession.Session_UserId;
                     model.ReferenceId = _referenceId;
                 }
-                var success = await _paymentService.PayPurchaseOrder(_referenceId, _paymentType, model, _rowVersion);
+                var success = await _paymentService.Pay(_referenceId, _paymentType, model, _rowVersion, _paymentRowVersion);
                 if (success == 1)
                 {
                     await _form.SetControls();
                     Close();
                 }
+
             }
             catch (Exception ex)
             {

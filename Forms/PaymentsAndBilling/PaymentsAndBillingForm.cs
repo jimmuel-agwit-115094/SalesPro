@@ -66,9 +66,19 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 int poId = DgFormatHelper.GetSelectedId(dgSupplierPayables, e, "PurchaseOrderId");
                 if (poId == 0) return;
 
-                var form = new ManageSupplierPayableForm(this);
-                form._poId = poId;
-                form.ShowDialog();
+                if (paid_rd.Checked == true)
+                {
+                    var form = new UpdatePaymentForm();
+                    form._poId = poId;
+                    form._paymentType = PaymentType.SupplierPayable;
+                    form.ShowDialog();
+                }
+                else
+                {
+                    var form = new ManageSupplierPayableForm(this);
+                    form._poId = poId;
+                    form.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
