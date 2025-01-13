@@ -32,8 +32,13 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var payment = await _paymentService.GetPaymentByReferenceId(_poId, _paymentType);
                 if (payment != null)
                 {
+                    referenceId_tx.Text = payment.ReferenceId.ToString("D7");
+                    paymentType_tx.Text = payment.PaymentType.ToString();
+                    processedBy_tx.Text = payment.UserName.ToString();
+                    paymentDate_tx.Text = DateFormatHelper.FormatDate(payment.PaymentDate);
+
                     paymentMethod_cb.Text = payment.PaymentMethod.ToString();
-                    reference_tx.Text =payment.ReferenceNumber;
+                    reference_tx.Text = payment.ReferenceNumber;
                     orNunber_tx.Text = payment.OrNumber;
                     bank_cb.Text = payment.BankName;
                     notes_tx.Text = payment.Notes;

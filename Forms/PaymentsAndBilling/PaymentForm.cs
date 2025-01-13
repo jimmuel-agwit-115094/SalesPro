@@ -139,7 +139,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     model.PaymentDate = _curDate;
                     model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
                     model.ReferenceNumber = reference_tx.Text;
-                    model.UserId = UserSession.Session_UserId;
+                    model.UserName = UserSession.FullName;
                     model.ReferenceId = _referenceId;
                 }
                 var success = await _paymentService.Pay(_referenceId, _paymentType, model, _rowVersion, _paymentRowVersion);
