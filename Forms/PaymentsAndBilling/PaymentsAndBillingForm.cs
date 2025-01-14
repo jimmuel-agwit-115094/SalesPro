@@ -49,13 +49,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private async void unpaid_rd_CheckedChanged(object sender, EventArgs e)
         {
             po_title.Text = "Unpaid Purchase Orders";
-
+            paid_lbl.Visible = false;
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid);
         }
 
         private async void paid_rd_CheckedChanged(object sender, EventArgs e)
         {
             po_title.Text = "Paid Purchase Orders";
+            paid_lbl.Visible = true;
             await LoadAllPurchaseOrders(PaymentStatus.Paid);
         }
 
@@ -68,7 +69,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
                 if (paid_rd.Checked == true)
                 {
-                    var form = new UpdatePaymentForm();
+                    var form = new UpdatePaymentForm(this);
                     form._poId = poId;
                     form._paymentType = PaymentType.SupplierPayable;
                     form.ShowDialog();

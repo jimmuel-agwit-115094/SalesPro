@@ -24,12 +24,16 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _purchaseOrderService;
-        public UpdatePaymentForm()
+        private readonly PaymentsAndBillingForm _form;
+        private readonly GenericService _genericService;
+        public UpdatePaymentForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
             _paymentService = new PaymentsService();
             _purchaseOrderService = new PurchaseOrderService();
             _bankService = new BankService();
+            _genericService = new GenericService();
+            _form = form;
         }
 
         private async Task SetBanks()
@@ -89,18 +93,37 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                var paymennt = new PaymentsModel()
+                var selectedPaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
+
+                // Call the validation service
+                if (!_genericService.ValidatePayment(
+                        PaymentStatus.Paid,
+                        paymentMethod_cb.SelectedIndex,
+                        reference_tx.Text,
+                        selectedPaymentMethod,
+                        bank_cb.SelectedIndex,
+                        true))
                 {
-                    PaymentDate = _curDate,
-                    PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedItem,
-                    ReferenceNumber = reference_tx.Text,
-                    OrNumber = orNunber_tx.Text,
-                    BankName = bank_cb.Text,
-                    Notes = notes_tx.Text,
-                    UserName = UserSession.FullName,
-                };
-                await _paymentService.UpdatePayment(_poId, _paymentType, paymennt, _rowVersion);
-                Close();
+                    return;
+                }
+
+                if (MessageHandler.ShowQuestionGeneric("Update payment?"))
+                {
+                    var paymennt = new PaymentsModel()
+                    {
+                        PaymentDate = _curDate,
+                        PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedItem,
+                        ReferenceNumber = reference_tx.Text,
+                        OrNumber = orNunber_tx.Text,
+                        BankName = bank_cb.Text,
+                        Notes = notes_tx.Text,
+                        UserName = UserSession.FullName,
+                    };
+                    var success = await _paymentService.UpdatePayment(_poId, _paymentType, paymennt, _rowVersion);
+                    _form.paid_rd.Checked = false;
+                    _form.paid_rd.Checked = true;
+                    Close();
+                }
             }
             catch (Exception ex)
             {

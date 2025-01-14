@@ -24,6 +24,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _poService;
         private readonly ManageSupplierPayableForm _form;
+        private readonly GenericService _genericService;
 
         public PaymentForm(ManageSupplierPayableForm form)
         {
@@ -31,6 +32,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             _poService = new PurchaseOrderService();
             _paymentService = new PaymentsService();
             _bankService = new BankService();
+            _genericService = new GenericService();
             _form = form;
         }
 
@@ -114,41 +116,41 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                if (paymentMethod_cb.SelectedIndex == -1)
+                var selectedPaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
+
+                // Call the validation service
+                if (!_genericService.ValidatePayment(
+                        PaymentStatus.Paid,
+                        paymentMethod_cb.SelectedIndex,
+                        reference_tx.Text,
+                        selectedPaymentMethod,
+                        bank_cb.SelectedIndex,
+                        true))
                 {
-                    MessageHandler.ShowWarning("Please select payment method.");
-                    return;
-                }
-                if (reference_tx.Text == "")
-                {
-                    MessageHandler.ShowWarning("Please enter reference number.");
-                    return;
-                }
-                if ((PaymentMethod)paymentMethod_cb.SelectedItem != PaymentMethod.Cash
-                    && bank_cb.SelectedIndex == -1)
-                {
-                    MessageHandler.ShowWarning("Please select bank.");
                     return;
                 }
 
-                var model = new PaymentsModel();
+                if (MessageHandler.ShowQuestionGeneric("Confirm Payment?"))
                 {
-                    model.BankName = bank_cb.Text;
-                    model.Notes = notes_tx.Text;
-                    model.OrNumber = orNunber_tx.Text;
-                    model.PaymentDate = _curDate;
-                    model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
-                    model.ReferenceNumber = reference_tx.Text;
-                    model.UserName = UserSession.FullName;
-                    model.ReferenceId = _referenceId;
+                    var model = new PaymentsModel();
+                    {
+                        model.BankName = bank_cb.Text;
+                        model.Notes = notes_tx.Text;
+                        model.OrNumber = orNunber_tx.Text;
+                        model.PaymentDate = _curDate;
+                        model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                        model.ReferenceNumber = reference_tx.Text;
+                        model.UserName = UserSession.FullName;
+                        model.ReferenceId = _referenceId;
+                    }
+                    var success = await _paymentService.Pay(_referenceId, _paymentType, model, _rowVersion, _paymentRowVersion);
+                    if (success == 1)
+                    {
+                        await _form.SetControls();
+                        _form.ClosePaymentsAndBillingForm();
+                        Close();
+                    }
                 }
-                var success = await _paymentService.Pay(_referenceId, _paymentType, model, _rowVersion, _paymentRowVersion);
-                if (success == 1)
-                {
-                    await _form.SetControls();
-                    Close();
-                }
-
             }
             catch (Exception ex)
             {

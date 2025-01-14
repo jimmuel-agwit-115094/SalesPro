@@ -112,8 +112,9 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdatePayment(int referenceId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        public async Task<int> UpdatePayment(int referenceId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
+            int success = 0;
             using (var context = new DatabaseContext())
             {
                 await context.ExecuteInTransactionAsync(async () =>
@@ -126,9 +127,10 @@ namespace SalesPro.Services
                     payment.OrNumber = paymentModel.OrNumber;
                     payment.BankName = paymentModel.BankName;
                     payment.Notes = paymentModel.Notes;
-                    await context.SaveChangesAsync();
+                    success = await context.SaveChangesAsync();
                 });
             }
+            return success;
         }
 
         public async Task UpdateDueDate(int poId, DateTime date)

@@ -65,7 +65,7 @@
             this.paymentPhoto.BackColor = System.Drawing.Color.White;
             this.paymentPhoto.Image = ((System.Drawing.Image)(resources.GetObject("paymentPhoto.Image")));
             this.paymentPhoto.Location = new System.Drawing.Point(126, 18);
-            this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.paymentPhoto.Name = "paymentPhoto";
             this.paymentPhoto.Size = new System.Drawing.Size(40, 40);
             this.paymentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -112,12 +112,12 @@
             // paymentMethod_cb
             // 
             this.paymentMethod_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.paymentMethod_cb.FormattingEnabled = true;
             this.paymentMethod_cb.Location = new System.Drawing.Point(22, 216);
-            this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2);
             this.paymentMethod_cb.Name = "paymentMethod_cb";
-            this.paymentMethod_cb.Size = new System.Drawing.Size(294, 33);
+            this.paymentMethod_cb.Size = new System.Drawing.Size(294, 29);
             this.paymentMethod_cb.TabIndex = 573;
             this.paymentMethod_cb.SelectedIndexChanged += new System.EventHandler(this.paymentMethod_cb_SelectedIndexChanged);
             // 
@@ -157,28 +157,28 @@
             // 
             this.orNunber_tx.BackColor = System.Drawing.Color.White;
             this.orNunber_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.orNunber_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.orNunber_tx.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.orNunber_tx.Location = new System.Drawing.Point(22, 339);
-            this.orNunber_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orNunber_tx.Margin = new System.Windows.Forms.Padding(2);
             this.orNunber_tx.Name = "orNunber_tx";
-            this.orNunber_tx.Size = new System.Drawing.Size(293, 33);
+            this.orNunber_tx.Size = new System.Drawing.Size(293, 29);
             this.orNunber_tx.TabIndex = 590;
             // 
             // reference_tx
             // 
             this.reference_tx.BackColor = System.Drawing.Color.White;
             this.reference_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.reference_tx.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.reference_tx.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.reference_tx.Location = new System.Drawing.Point(22, 278);
-            this.reference_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reference_tx.Margin = new System.Windows.Forms.Padding(2);
             this.reference_tx.Name = "reference_tx";
-            this.reference_tx.Size = new System.Drawing.Size(294, 33);
+            this.reference_tx.Size = new System.Drawing.Size(294, 29);
             this.reference_tx.TabIndex = 586;
             // 
             // bank_cb
             // 
             this.bank_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.bank_cb.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.bank_cb.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.bank_cb.FormattingEnabled = true;
             this.bank_cb.Items.AddRange(new object[] {
             "CASH",
@@ -187,7 +187,7 @@
             "E-PAYMENT"});
             this.bank_cb.Location = new System.Drawing.Point(22, 399);
             this.bank_cb.Name = "bank_cb";
-            this.bank_cb.Size = new System.Drawing.Size(293, 33);
+            this.bank_cb.Size = new System.Drawing.Size(293, 29);
             this.bank_cb.TabIndex = 584;
             // 
             // label2
@@ -229,7 +229,7 @@
             this.notes_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.notes_tx.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notes_tx.Location = new System.Drawing.Point(20, 457);
-            this.notes_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.notes_tx.Margin = new System.Windows.Forms.Padding(2);
             this.notes_tx.Multiline = true;
             this.notes_tx.Name = "notes_tx";
             this.notes_tx.Size = new System.Drawing.Size(294, 72);
@@ -255,7 +255,7 @@
             this.Controls.Add(this.paymentMethod_cb);
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PaymentForm";

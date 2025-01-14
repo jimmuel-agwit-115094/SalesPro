@@ -50,6 +50,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.paid_lbl = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -68,7 +69,7 @@
             this.Panel1.Controls.Add(this.title_lbl);
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel1.Location = new System.Drawing.Point(0, 0);
-            this.Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(1166, 43);
             this.Panel1.TabIndex = 437;
@@ -148,7 +149,7 @@
             this.cuurent_tab.Controls.Add(this.panel6);
             this.cuurent_tab.Location = new System.Drawing.Point(4, 29);
             this.cuurent_tab.Name = "cuurent_tab";
-            this.cuurent_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cuurent_tab.Padding = new System.Windows.Forms.Padding(3);
             this.cuurent_tab.Size = new System.Drawing.Size(1158, 587);
             this.cuurent_tab.TabIndex = 0;
             this.cuurent_tab.Text = "    Supplier Payables       ";
@@ -168,6 +169,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.paid_lbl);
             this.panel5.Controls.Add(this.paid_rd);
             this.panel5.Controls.Add(this.unpaid_rd);
             this.panel5.Location = new System.Drawing.Point(10, 21);
@@ -267,7 +269,7 @@
             this.allTransactions_tab.Controls.Add(this.panel7);
             this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
             this.allTransactions_tab.Name = "allTransactions_tab";
-            this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
             this.allTransactions_tab.Size = new System.Drawing.Size(1158, 587);
             this.allTransactions_tab.TabIndex = 1;
             this.allTransactions_tab.Text = "     Customer Credits   ";
@@ -286,7 +288,7 @@
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1158, 587);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "        Expenses       ";
@@ -299,6 +301,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(140, 5);
             this.panel2.TabIndex = 7;
+            // 
+            // paid_lbl
+            // 
+            this.paid_lbl.AutoSize = true;
+            this.paid_lbl.BackColor = System.Drawing.Color.Green;
+            this.paid_lbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paid_lbl.ForeColor = System.Drawing.Color.White;
+            this.paid_lbl.Location = new System.Drawing.Point(1078, 6);
+            this.paid_lbl.Name = "paid_lbl";
+            this.paid_lbl.Size = new System.Drawing.Size(57, 22);
+            this.paid_lbl.TabIndex = 609;
+            this.paid_lbl.Text = "PAID";
             // 
             // PaymentsAndBillingForm
             // 
@@ -355,5 +369,6 @@
         internal System.Windows.Forms.Label po_title;
         public System.Windows.Forms.RadioButton unpaid_rd;
         public System.Windows.Forms.RadioButton paid_rd;
+        internal System.Windows.Forms.Label paid_lbl;
     }
 }

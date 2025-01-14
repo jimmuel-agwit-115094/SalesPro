@@ -57,6 +57,16 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
         }
 
+        public void ClosePaymentsAndBillingForm()
+        {
+            Close();
+            update_btn.Enabled = false;
+            pay_btn.Enabled = false;
+            _form.paid_rd.PerformClick();
+            _form.unpaid_rd.PerformClick();
+
+        }
+
         private async void ManageSupplierPayableForm_Load(object sender, EventArgs e)
         {
             try
