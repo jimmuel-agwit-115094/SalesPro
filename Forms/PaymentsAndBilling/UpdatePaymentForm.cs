@@ -18,6 +18,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public int _poId;
         public PaymentType _paymentType;
 
+        private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _purchaseOrderService;
         public UpdatePaymentForm()
@@ -25,12 +26,31 @@ namespace SalesPro.Forms.PaymentsAndBilling
             InitializeComponent();
             _paymentService = new PaymentsService();
             _purchaseOrderService = new PurchaseOrderService();
+            _bankService = new BankService();
+        }
+
+        private async Task SetBanks()
+        {
+            var banks = await _bankService.GetBanks();
+            var selectedMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
+
+            var filteredBanks = selectedMethod == PaymentMethod.EPayment
+                ? banks.Where(x => x.BankType == BankType.DigitalWallet).ToList()
+                : banks.Where(x => x.BankType == BankType.Traditional).ToList();
+
+            bank_cb.DataSource = filteredBanks;
+            bank_cb.DisplayMember = "BankName";
+            bank_cb.ValueMember = "BankId";
+            bank_cb.SelectedIndex = -1;
         }
 
         private async void ViewPaymentForm_Load(object sender, EventArgs e)
         {
             try
             {
+                paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
+                await SetBanks();
+
                 var payment = await _paymentService.GetPaymentByReferenceId(_poId, _paymentType);
                 if (payment != null)
                 {
