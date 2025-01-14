@@ -19,10 +19,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public PaymentType _paymentType;
 
         private readonly PaymentsService _paymentService;
+        private readonly PurchaseOrderService _purchaseOrderService;
         public UpdatePaymentForm()
         {
             InitializeComponent();
             _paymentService = new PaymentsService();
+            _purchaseOrderService = new PurchaseOrderService();
         }
 
         private async void ViewPaymentForm_Load(object sender, EventArgs e)
@@ -42,6 +44,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     orNunber_tx.Text = payment.OrNumber;
                     bank_cb.Text = payment.BankName;
                     notes_tx.Text = payment.Notes;
+                }
+                
+                var po = await _paymentService.GetPurchaseOrderById(_poId);
+                if (po != null)
+                {
+                    total_tx.Text = po.PoTotal.ToString("N2");
+                    terms_tx.Text = $"{po.CreditTerms} days";
+                    supplier_tx.Text = po.SupplierName;
                 }
             }
             catch (Exception ex)
