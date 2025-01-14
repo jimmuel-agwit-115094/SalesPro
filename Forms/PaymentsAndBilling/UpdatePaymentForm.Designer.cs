@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.title_lbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,35 +41,23 @@
             this.paymentMethod_cb = new System.Windows.Forms.ComboBox();
             this.update_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.terms_tx = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.supplier_tx = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.total_tx = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.paymentDate_tx = new System.Windows.Forms.Label();
             this.processedBy_tx = new System.Windows.Forms.Label();
-            this.paymentType_tx = new System.Windows.Forms.Label();
             this.referenceId_tx = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.total_tx = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.supplier_tx = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.terms_tx = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.paymentType_tx = new System.Windows.Forms.Label();
             this.paid_lbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // title_lbl
-            // 
-            this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.ForeColor = System.Drawing.Color.Black;
-            this.title_lbl.Location = new System.Drawing.Point(7, 4);
-            this.title_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(74, 25);
-            this.title_lbl.TabIndex = 1;
-            this.title_lbl.Text = "Update";
             // 
             // label1
             // 
@@ -239,6 +226,66 @@
             this.panel1.Size = new System.Drawing.Size(331, 144);
             this.panel1.TabIndex = 607;
             // 
+            // terms_tx
+            // 
+            this.terms_tx.AutoSize = true;
+            this.terms_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.terms_tx.Location = new System.Drawing.Point(108, 114);
+            this.terms_tx.Name = "terms_tx";
+            this.terms_tx.Size = new System.Drawing.Size(37, 17);
+            this.terms_tx.TabIndex = 609;
+            this.terms_tx.Text = "Totla";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label13.Location = new System.Drawing.Point(13, 114);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(89, 17);
+            this.label13.TabIndex = 608;
+            this.label13.Text = "Credit Terms :";
+            // 
+            // supplier_tx
+            // 
+            this.supplier_tx.AutoSize = true;
+            this.supplier_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supplier_tx.Location = new System.Drawing.Point(108, 93);
+            this.supplier_tx.Name = "supplier_tx";
+            this.supplier_tx.Size = new System.Drawing.Size(37, 17);
+            this.supplier_tx.TabIndex = 607;
+            this.supplier_tx.Text = "Totla";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label12.Location = new System.Drawing.Point(12, 93);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 17);
+            this.label12.TabIndex = 606;
+            this.label12.Text = "Supp";
+            // 
+            // total_tx
+            // 
+            this.total_tx.AutoSize = true;
+            this.total_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_tx.Location = new System.Drawing.Point(108, 73);
+            this.total_tx.Name = "total_tx";
+            this.total_tx.Size = new System.Drawing.Size(37, 17);
+            this.total_tx.TabIndex = 605;
+            this.total_tx.Text = "Totla";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label10.Location = new System.Drawing.Point(12, 73);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 17);
+            this.label10.TabIndex = 604;
+            this.label10.Text = "Total :";
+            // 
             // paymentDate_tx
             // 
             this.paymentDate_tx.AutoSize = true;
@@ -258,16 +305,6 @@
             this.processedBy_tx.Size = new System.Drawing.Size(95, 17);
             this.processedBy_tx.TabIndex = 602;
             this.processedBy_tx.Text = "Processed By :";
-            // 
-            // paymentType_tx
-            // 
-            this.paymentType_tx.AutoSize = true;
-            this.paymentType_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.paymentType_tx.Location = new System.Drawing.Point(75, 4);
-            this.paymentType_tx.Name = "paymentType_tx";
-            this.paymentType_tx.Size = new System.Drawing.Size(142, 25);
-            this.paymentType_tx.TabIndex = 601;
-            this.paymentType_tx.Text = "Payment Type :";
             // 
             // referenceId_tx
             // 
@@ -309,65 +346,15 @@
             this.label3.TabIndex = 596;
             this.label3.Text = "Reference Id :";
             // 
-            // total_tx
+            // paymentType_tx
             // 
-            this.total_tx.AutoSize = true;
-            this.total_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_tx.Location = new System.Drawing.Point(108, 73);
-            this.total_tx.Name = "total_tx";
-            this.total_tx.Size = new System.Drawing.Size(37, 17);
-            this.total_tx.TabIndex = 605;
-            this.total_tx.Text = "Totla";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label10.Location = new System.Drawing.Point(12, 73);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 17);
-            this.label10.TabIndex = 604;
-            this.label10.Text = "Total :";
-            // 
-            // supplier_tx
-            // 
-            this.supplier_tx.AutoSize = true;
-            this.supplier_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supplier_tx.Location = new System.Drawing.Point(108, 93);
-            this.supplier_tx.Name = "supplier_tx";
-            this.supplier_tx.Size = new System.Drawing.Size(37, 17);
-            this.supplier_tx.TabIndex = 607;
-            this.supplier_tx.Text = "Totla";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label12.Location = new System.Drawing.Point(12, 93);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 17);
-            this.label12.TabIndex = 606;
-            this.label12.Text = "Supp";
-            // 
-            // terms_tx
-            // 
-            this.terms_tx.AutoSize = true;
-            this.terms_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.terms_tx.Location = new System.Drawing.Point(108, 114);
-            this.terms_tx.Name = "terms_tx";
-            this.terms_tx.Size = new System.Drawing.Size(37, 17);
-            this.terms_tx.TabIndex = 609;
-            this.terms_tx.Text = "Totla";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label13.Location = new System.Drawing.Point(13, 114);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(89, 17);
-            this.label13.TabIndex = 608;
-            this.label13.Text = "Credit Terms :";
+            this.paymentType_tx.AutoSize = true;
+            this.paymentType_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentType_tx.Location = new System.Drawing.Point(12, 8);
+            this.paymentType_tx.Name = "paymentType_tx";
+            this.paymentType_tx.Size = new System.Drawing.Size(120, 21);
+            this.paymentType_tx.TabIndex = 601;
+            this.paymentType_tx.Text = "Payment Type :";
             // 
             // paid_lbl
             // 
@@ -391,7 +378,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.update_btn);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.paymentType_tx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -412,8 +398,6 @@
         }
 
         #endregion
-
-        internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label5;

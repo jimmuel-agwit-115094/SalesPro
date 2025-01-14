@@ -1,5 +1,6 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
     {
         public int _poId;
         public PaymentType _paymentType;
+        public int _rowVersion;
+        private DateTime _curDate;
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
@@ -48,6 +51,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
+                _curDate = await ClockHelper.GetServerDateTime();
                 paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
                 await SetBanks();
 
@@ -55,7 +59,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 if (payment != null)
                 {
                     referenceId_tx.Text = payment.ReferenceId.ToString("D7");
-                    paymentType_tx.Text = payment.PaymentType.ToString();
+                    paymentType_tx.Text = $"Update {payment.PaymentType.ToString()} Payment";
                     processedBy_tx.Text = payment.UserName.ToString();
                     paymentDate_tx.Text = DateFormatHelper.FormatDate(payment.PaymentDate);
 
@@ -65,7 +69,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     bank_cb.Text = payment.BankName;
                     notes_tx.Text = payment.Notes;
                 }
-                
+
                 var po = await _paymentService.GetPurchaseOrderById(_poId);
                 if (po != null)
                 {
@@ -81,9 +85,27 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         }
 
-        private void update_btn_Click(object sender, EventArgs e)
+        private async void update_btn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var paymennt = new PaymentsModel()
+                {
+                    PaymentDate = _curDate,
+                    PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedItem,
+                    ReferenceNumber = reference_tx.Text,
+                    OrNumber = orNunber_tx.Text,
+                    BankName = bank_cb.Text,
+                    Notes = notes_tx.Text,
+                    UserName = UserSession.FullName,
+                };
+                await _paymentService.UpdatePayment(_poId, _paymentType, paymennt, _rowVersion);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error updating payment : {ex.Message}");
+            }
         }
     }
 }

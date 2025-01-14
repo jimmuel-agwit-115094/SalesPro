@@ -54,22 +54,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
                 processedBy_tx.Text = pos.UserFullName;
 
-                if (pos.PaymentStatus == PaymentStatus.Paid)
-                {
-                    dueDate_dt.Enabled = false;
-                    update_btn.Visible = false;
-
-                    pay_btn.Text = "Update Payment";
-                    pay_btn.BackColor  = SystemColors.Highlight;
-                }
-                else
-                {
-                    dueDate_dt.Enabled = true;
-                    update_btn.Visible = true;
-
-                    pay_btn.Text = "Pay";
-                    pay_btn.BackColor = Color.Green;
-                }
             }
         }
 

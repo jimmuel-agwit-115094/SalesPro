@@ -112,6 +112,25 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task UpdatePayment(int referenceId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var payment = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == referenceId && x.PaymentType == paymentType);
+                    NullCheckerHelper.NullCheck(payment);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, payment.RowVersion);
+                    payment.PaymentMethod = paymentModel.PaymentMethod;
+                    payment.ReferenceNumber = paymentModel.ReferenceNumber;
+                    payment.OrNumber = paymentModel.OrNumber;
+                    payment.BankName = paymentModel.BankName;
+                    payment.Notes = paymentModel.Notes;
+                    await context.SaveChangesAsync();
+                });
+            }
+        }
+
         public async Task UpdateDueDate(int poId, DateTime date)
         {
             using (var context = new DatabaseContext())
