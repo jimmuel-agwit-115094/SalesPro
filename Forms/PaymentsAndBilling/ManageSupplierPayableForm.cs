@@ -14,6 +14,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public int _poId;
         public int _rowVersion;
         private DateTime _dateCreated;
+        private DateTime _curDate;
 
         private readonly PaymentsAndBillingForm _form;
         private readonly PaymentsService _service;
@@ -50,9 +51,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 dueDate_dt.Value = pos.DueDate;
 
                 total_tx.Text = pos.PoTotal.ToString("N2");
-                paymentStatus_tx.Text = pos.PaymentStatus.ToString();
                 creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
                 processedBy_tx.Text = pos.UserFullName;
+
+                bool isPastDue = _curDate.Date > pos.DueDate.Date;
+                if (isPastDue)
+                {
+                    pastDue_tx.Visible = true;
+                }
 
             }
         }
@@ -71,6 +77,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
+                _curDate = await ClockHelper.GetServerDateTime();
                 await SetControls();
                 await LoadOrderItems();
             }

@@ -17,15 +17,21 @@ namespace SalesPro.Forms.PaymentsAndBilling
     public partial class PaymentsAndBillingForm : Form
     {
         private readonly PaymentsService _service;
+        private DateTime _curDate;
         public PaymentsAndBillingForm()
         {
             InitializeComponent();
             _service = new PaymentsService();
         }
 
-        public async Task LoadAllPurchaseOrders(PaymentStatus status)
+        public async Task LoadAllPurchaseOrders(PaymentStatus status, bool showPastDue)
         {
             var pos = await _service.GetPurchaseOrdersByProcessStatus(status);
+
+            if (showPastDue)
+            {
+                pos = pos.Where(x => x.DueDate < _curDate.Date).ToList();
+            }
 
             dgSupplierPayables.DataSource = pos;
             DgExtensions.ConfigureDataGrid(dgSupplierPayables, true, 4, notFound_lbl, "PurchaseOrderId",
@@ -34,10 +40,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
             dgSupplierPayables.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
         }
 
-        private void PaymentsAndBillingForm_Load(object sender, EventArgs e)
+        private async void PaymentsAndBillingForm_Load(object sender, EventArgs e)
         {
             try
             {
+                _curDate = await ClockHelper.GetServerDateTime();
                 unpaid_rd.Checked = true;
             }
             catch (Exception ex)
@@ -50,14 +57,21 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             po_title.Text = "Unpaid Purchase Orders";
             paid_lbl.Visible = false;
-            await LoadAllPurchaseOrders(PaymentStatus.Unpaid);
+            showPastDue_cb.Visible = true;
+            unpaid_panel.Visible = true;
+            paid_panel.Visible = false;
+            showPastDue_cb.Checked = false;
+            await LoadAllPurchaseOrders(PaymentStatus.Unpaid, false);
         }
 
         private async void paid_rd_CheckedChanged(object sender, EventArgs e)
         {
             po_title.Text = "Paid Purchase Orders";
             paid_lbl.Visible = true;
-            await LoadAllPurchaseOrders(PaymentStatus.Paid);
+            showPastDue_cb.Visible = false;
+            paid_panel.Visible = true;
+            unpaid_panel.Visible = false;
+            await LoadAllPurchaseOrders(PaymentStatus.Paid, false);
         }
 
         private void dgSupplierPayables_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -85,6 +99,31 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 MessageHandler.ShowError($"Error dg supplier click: {ex.Message}");
             }
+        }
+
+        private void dgSupplierPayables_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgSupplierPayables.Columns[e.ColumnIndex].Name == "DueDate") // Replace with your column name
+            {
+                if (e.Value != null && DateTime.TryParse(e.Value.ToString(), out DateTime dueDate))
+                {
+                    if (dueDate < _curDate.Date) // If the due date is in the past
+                    {
+                        e.CellStyle.ForeColor = Color.Red; // Change the fore color to red
+                        e.CellStyle.SelectionForeColor = Color.Red;
+                    }
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // Default color for invalid or null dates
+                }
+            }
+
+        }
+
+        private async void showPastDue_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            await LoadAllPurchaseOrders(PaymentStatus.Unpaid, showPastDue_cb.Checked);
         }
     }
 }
