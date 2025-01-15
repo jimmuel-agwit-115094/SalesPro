@@ -31,6 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -39,6 +42,8 @@
             this.basePanel = new System.Windows.Forms.Panel();
             this.transactionsTabControl = new System.Windows.Forms.TabControl();
             this.cuurent_tab = new System.Windows.Forms.TabPage();
+            this.paid_panel = new System.Windows.Forms.Panel();
+            this.unpaid_panel = new System.Windows.Forms.Panel();
             this.showPastDue_cb = new System.Windows.Forms.CheckBox();
             this.paid_lbl = new System.Windows.Forms.Label();
             this.po_title = new System.Windows.Forms.Label();
@@ -52,8 +57,16 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.unpaid_panel = new System.Windows.Forms.Panel();
-            this.paid_panel = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -64,6 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgSupplierPayables)).BeginInit();
             this.allTransactions_tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel1
@@ -161,6 +176,24 @@
             this.cuurent_tab.TabIndex = 0;
             this.cuurent_tab.Text = "  Supplier Payables   ";
             // 
+            // paid_panel
+            // 
+            this.paid_panel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.paid_panel.Location = new System.Drawing.Point(198, 57);
+            this.paid_panel.Name = "paid_panel";
+            this.paid_panel.Size = new System.Drawing.Size(130, 5);
+            this.paid_panel.TabIndex = 612;
+            this.paid_panel.Visible = false;
+            // 
+            // unpaid_panel
+            // 
+            this.unpaid_panel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.unpaid_panel.Location = new System.Drawing.Point(16, 57);
+            this.unpaid_panel.Name = "unpaid_panel";
+            this.unpaid_panel.Size = new System.Drawing.Size(150, 5);
+            this.unpaid_panel.TabIndex = 611;
+            this.unpaid_panel.Visible = false;
+            // 
             // showPastDue_cb
             // 
             this.showPastDue_cb.AutoSize = true;
@@ -210,25 +243,27 @@
             // paid_rd
             // 
             this.paid_rd.AutoSize = true;
-            this.paid_rd.Location = new System.Drawing.Point(113, 6);
+            this.paid_rd.BackColor = System.Drawing.Color.White;
+            this.paid_rd.Location = new System.Drawing.Point(193, 6);
             this.paid_rd.Name = "paid_rd";
-            this.paid_rd.Size = new System.Drawing.Size(57, 24);
+            this.paid_rd.Size = new System.Drawing.Size(122, 24);
             this.paid_rd.TabIndex = 467;
             this.paid_rd.TabStop = true;
-            this.paid_rd.Text = "Paid";
-            this.paid_rd.UseVisualStyleBackColor = true;
+            this.paid_rd.Text = "Paid P. Orders";
+            this.paid_rd.UseVisualStyleBackColor = false;
             this.paid_rd.CheckedChanged += new System.EventHandler(this.paid_rd_CheckedChanged);
             // 
             // unpaid_rd
             // 
             this.unpaid_rd.AutoSize = true;
+            this.unpaid_rd.BackColor = System.Drawing.Color.White;
             this.unpaid_rd.Location = new System.Drawing.Point(8, 6);
             this.unpaid_rd.Name = "unpaid_rd";
-            this.unpaid_rd.Size = new System.Drawing.Size(77, 24);
+            this.unpaid_rd.Size = new System.Drawing.Size(142, 24);
             this.unpaid_rd.TabIndex = 466;
             this.unpaid_rd.TabStop = true;
-            this.unpaid_rd.Text = "Unpaid";
-            this.unpaid_rd.UseVisualStyleBackColor = true;
+            this.unpaid_rd.Text = "Unpaid P. Orders";
+            this.unpaid_rd.UseVisualStyleBackColor = false;
             this.unpaid_rd.CheckedChanged += new System.EventHandler(this.unpaid_rd_CheckedChanged);
             // 
             // notFound_lbl
@@ -297,6 +332,15 @@
             // 
             // allTransactions_tab
             // 
+            this.allTransactions_tab.BackColor = System.Drawing.Color.White;
+            this.allTransactions_tab.Controls.Add(this.panel8);
+            this.allTransactions_tab.Controls.Add(this.panel9);
+            this.allTransactions_tab.Controls.Add(this.checkBox1);
+            this.allTransactions_tab.Controls.Add(this.label1);
+            this.allTransactions_tab.Controls.Add(this.label2);
+            this.allTransactions_tab.Controls.Add(this.panel11);
+            this.allTransactions_tab.Controls.Add(this.label3);
+            this.allTransactions_tab.Controls.Add(this.dataGridView1);
             this.allTransactions_tab.Controls.Add(this.panel7);
             this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
             this.allTransactions_tab.Name = "allTransactions_tab";
@@ -304,7 +348,6 @@
             this.allTransactions_tab.Size = new System.Drawing.Size(1158, 587);
             this.allTransactions_tab.TabIndex = 1;
             this.allTransactions_tab.Text = "   Customer Credits  ";
-            this.allTransactions_tab.UseVisualStyleBackColor = true;
             // 
             // panel7
             // 
@@ -333,23 +376,144 @@
             this.panel2.Size = new System.Drawing.Size(130, 5);
             this.panel2.TabIndex = 7;
             // 
-            // unpaid_panel
+            // panel8
             // 
-            this.unpaid_panel.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.unpaid_panel.Location = new System.Drawing.Point(16, 57);
-            this.unpaid_panel.Name = "unpaid_panel";
-            this.unpaid_panel.Size = new System.Drawing.Size(80, 5);
-            this.unpaid_panel.TabIndex = 611;
-            this.unpaid_panel.Visible = false;
+            this.panel8.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel8.Location = new System.Drawing.Point(114, 57);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(80, 5);
+            this.panel8.TabIndex = 620;
+            this.panel8.Visible = false;
             // 
-            // paid_panel
+            // panel9
             // 
-            this.paid_panel.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.paid_panel.Location = new System.Drawing.Point(112, 57);
-            this.paid_panel.Name = "paid_panel";
-            this.paid_panel.Size = new System.Drawing.Size(80, 5);
-            this.paid_panel.TabIndex = 612;
-            this.paid_panel.Visible = false;
+            this.panel9.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel9.Location = new System.Drawing.Point(19, 57);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(80, 5);
+            this.panel9.TabIndex = 619;
+            this.panel9.Visible = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(1024, 70);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(129, 24);
+            this.checkBox1.TabIndex = 618;
+            this.checkBox1.Text = "Show Past Due";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Green;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1091, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 22);
+            this.label1.TabIndex = 617;
+            this.label1.Text = "PAID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(9, 70);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 25);
+            this.label2.TabIndex = 616;
+            this.label2.Text = "Credits";
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel11.Controls.Add(this.radioButton1);
+            this.panel11.Controls.Add(this.radioButton2);
+            this.panel11.Location = new System.Drawing.Point(10, 21);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1138, 35);
+            this.panel11.TabIndex = 615;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(113, 6);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(57, 24);
+            this.radioButton1.TabIndex = 467;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Paid";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(8, 6);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(77, 24);
+            this.radioButton2.TabIndex = 466;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Unpaid";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.IndianRed;
+            this.label3.Location = new System.Drawing.Point(486, 293);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(174, 45);
+            this.label3.TabIndex = 614;
+            this.label3.Text = "No Record";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridView1.ColumnHeadersHeight = 35;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.Location = new System.Drawing.Point(10, 98);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 32;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1138, 483);
+            this.dataGridView1.TabIndex = 613;
             // 
             // PaymentsAndBillingForm
             // 
@@ -380,7 +544,11 @@
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSupplierPayables)).EndInit();
             this.allTransactions_tab.ResumeLayout(false);
+            this.allTransactions_tab.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -410,5 +578,15 @@
         private System.Windows.Forms.CheckBox showPastDue_cb;
         private System.Windows.Forms.Panel paid_panel;
         private System.Windows.Forms.Panel unpaid_panel;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.CheckBox checkBox1;
+        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel11;
+        public System.Windows.Forms.RadioButton radioButton1;
+        public System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.DataGridView dataGridView1;
     }
 }
