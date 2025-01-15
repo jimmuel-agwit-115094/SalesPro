@@ -160,6 +160,7 @@
             this.orNunber_tx.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.orNunber_tx.Location = new System.Drawing.Point(22, 339);
             this.orNunber_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.orNunber_tx.MaxLength = 20;
             this.orNunber_tx.Name = "orNunber_tx";
             this.orNunber_tx.Size = new System.Drawing.Size(293, 29);
             this.orNunber_tx.TabIndex = 590;
@@ -171,6 +172,7 @@
             this.reference_tx.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.reference_tx.Location = new System.Drawing.Point(22, 278);
             this.reference_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.reference_tx.MaxLength = 20;
             this.reference_tx.Name = "reference_tx";
             this.reference_tx.Size = new System.Drawing.Size(294, 29);
             this.reference_tx.TabIndex = 586;
@@ -189,6 +191,7 @@
             this.bank_cb.Name = "bank_cb";
             this.bank_cb.Size = new System.Drawing.Size(293, 29);
             this.bank_cb.TabIndex = 584;
+            this.bank_cb.SelectedIndexChanged += new System.EventHandler(this.bank_cb_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -230,6 +233,7 @@
             this.notes_tx.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notes_tx.Location = new System.Drawing.Point(20, 457);
             this.notes_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.notes_tx.MaxLength = 100;
             this.notes_tx.Multiline = true;
             this.notes_tx.Name = "notes_tx";
             this.notes_tx.Size = new System.Drawing.Size(294, 72);

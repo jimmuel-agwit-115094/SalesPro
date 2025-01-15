@@ -130,5 +130,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 MessageHandler.ShowError($"Error updating payment : {ex.Message}");
             }
         }
+
+        private void paymentMethod_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            reference_tx.Text = string.Empty;
+            orNunber_tx.Text = string.Empty;
+            bank_cb.SelectedIndex = -1;
+        }
     }
 }

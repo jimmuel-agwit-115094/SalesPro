@@ -163,5 +163,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
             bank_cb.Enabled = ((PaymentMethod)paymentMethod_cb.SelectedItem != PaymentMethod.Cash);
             await SetBanks();
         }
+
+        private void bank_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
