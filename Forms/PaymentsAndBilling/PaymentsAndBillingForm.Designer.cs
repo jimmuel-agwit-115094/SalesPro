@@ -41,6 +41,7 @@
             this.cuurent_tab = new System.Windows.Forms.TabPage();
             this.po_title = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.paid_lbl = new System.Windows.Forms.Label();
             this.paid_rd = new System.Windows.Forms.RadioButton();
             this.unpaid_rd = new System.Windows.Forms.RadioButton();
             this.notFound_lbl = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.paid_lbl = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -142,6 +142,7 @@
             // cuurent_tab
             // 
             this.cuurent_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cuurent_tab.Controls.Add(this.paid_lbl);
             this.cuurent_tab.Controls.Add(this.po_title);
             this.cuurent_tab.Controls.Add(this.panel5);
             this.cuurent_tab.Controls.Add(this.notFound_lbl);
@@ -169,13 +170,24 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.paid_lbl);
             this.panel5.Controls.Add(this.paid_rd);
             this.panel5.Controls.Add(this.unpaid_rd);
             this.panel5.Location = new System.Drawing.Point(10, 21);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1138, 35);
             this.panel5.TabIndex = 468;
+            // 
+            // paid_lbl
+            // 
+            this.paid_lbl.AutoSize = true;
+            this.paid_lbl.BackColor = System.Drawing.Color.Green;
+            this.paid_lbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paid_lbl.ForeColor = System.Drawing.Color.White;
+            this.paid_lbl.Location = new System.Drawing.Point(1091, 70);
+            this.paid_lbl.Name = "paid_lbl";
+            this.paid_lbl.Size = new System.Drawing.Size(57, 22);
+            this.paid_lbl.TabIndex = 609;
+            this.paid_lbl.Text = "PAID";
             // 
             // paid_rd
             // 
@@ -301,18 +313,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(140, 5);
             this.panel2.TabIndex = 7;
-            // 
-            // paid_lbl
-            // 
-            this.paid_lbl.AutoSize = true;
-            this.paid_lbl.BackColor = System.Drawing.Color.Green;
-            this.paid_lbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paid_lbl.ForeColor = System.Drawing.Color.White;
-            this.paid_lbl.Location = new System.Drawing.Point(1078, 6);
-            this.paid_lbl.Name = "paid_lbl";
-            this.paid_lbl.Size = new System.Drawing.Size(57, 22);
-            this.paid_lbl.TabIndex = 609;
-            this.paid_lbl.Text = "PAID";
             // 
             // PaymentsAndBillingForm
             // 

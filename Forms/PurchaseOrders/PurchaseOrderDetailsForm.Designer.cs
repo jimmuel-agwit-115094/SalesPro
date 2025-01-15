@@ -178,7 +178,7 @@
             // processStatus_tx
             // 
             this.processStatus_tx.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.processStatus_tx.ForeColor = System.Drawing.Color.Gray;
+            this.processStatus_tx.ForeColor = System.Drawing.Color.Black;
             this.processStatus_tx.Location = new System.Drawing.Point(19, 1);
             this.processStatus_tx.Name = "processStatus_tx";
             this.processStatus_tx.Size = new System.Drawing.Size(103, 17);
@@ -208,7 +208,7 @@
             // paymentStatus_tx
             // 
             this.paymentStatus_tx.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paymentStatus_tx.ForeColor = System.Drawing.Color.Gray;
+            this.paymentStatus_tx.ForeColor = System.Drawing.Color.Black;
             this.paymentStatus_tx.Location = new System.Drawing.Point(22, 1);
             this.paymentStatus_tx.Name = "paymentStatus_tx";
             this.paymentStatus_tx.Size = new System.Drawing.Size(124, 17);

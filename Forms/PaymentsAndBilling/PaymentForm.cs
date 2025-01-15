@@ -42,8 +42,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
             var selectedMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
 
             var filteredBanks = selectedMethod == PaymentMethod.EPayment
-                ? banks.Where(x => x.BankType == BankType.DigitalWallet).ToList()
-                : banks.Where(x => x.BankType == BankType.Traditional).ToList();
+                ? banks.Where(x => x.BankType == BankType.DigitalWallet).OrderBy(x => x.BankName).ToList()
+                : banks.Where(x => x.BankType == BankType.Traditional).OrderBy(x => x.BankName).ToList();
 
             bank_cb.DataSource = filteredBanks;
             bank_cb.DisplayMember = "BankName";

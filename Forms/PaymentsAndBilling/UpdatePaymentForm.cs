@@ -42,8 +42,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
             var selectedMethod = (PaymentMethod)paymentMethod_cb.SelectedItem;
 
             var filteredBanks = selectedMethod == PaymentMethod.EPayment
-                ? banks.Where(x => x.BankType == BankType.DigitalWallet).ToList()
-                : banks.Where(x => x.BankType == BankType.Traditional).ToList();
+              ? banks.Where(x => x.BankType == BankType.DigitalWallet).OrderBy(x => x.BankName).ToList()
+              : banks.Where(x => x.BankType == BankType.Traditional).OrderBy(x => x.BankName).ToList();
 
             bank_cb.DataSource = filteredBanks;
             bank_cb.DisplayMember = "BankName";
@@ -120,7 +120,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         UserName = UserSession.FullName,
                     };
                     var success = await _paymentService.UpdatePayment(_poId, _paymentType, paymennt, _rowVersion);
-                    _form.paid_rd.Checked = false;
+                    _form.unpaid_rd.Checked = true;
                     _form.paid_rd.Checked = true;
                     Close();
                 }
