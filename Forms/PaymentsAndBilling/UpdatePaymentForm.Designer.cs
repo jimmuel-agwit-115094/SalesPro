@@ -266,9 +266,9 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label12.Location = new System.Drawing.Point(12, 93);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 17);
+            this.label12.Size = new System.Drawing.Size(63, 17);
             this.label12.TabIndex = 606;
-            this.label12.Text = "Supp";
+            this.label12.Text = "Supplier :";
             // 
             // total_tx
             // 
