@@ -513,6 +513,8 @@
     <None Include="Resources\on.png" />
     <None Include="Resources\paid.png" />
     <None Include="Resources\payment.png" />
+    <None Include="Resources\fast-delivery.png" />
+    <None Include="Resources\customer.png" />
     <Content Include="shopping-basket-info_40509.ico" />
   </ItemGroup>
   <ItemGroup>

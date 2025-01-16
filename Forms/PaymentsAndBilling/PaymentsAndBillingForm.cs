@@ -104,6 +104,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 else if (unpaid_rd.Checked == true)
                 {
                     var form = new ManagePayableForm(this);
+                    form._actionForm = Constants.FormConstants.SupplierPayables;
                     form._poId = poId;
                     form.ShowDialog();
                 }
@@ -170,7 +171,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             var custCreds = await _customerCredService.GetCustomerCreditsByStatus(status);
             dgCustomerCredits.DataSource = custCreds;
-            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 1, notFound_cust, "CustomerCreditId",
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 2, notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
             dgCustomerCredits.Columns["CreditAmount"].DisplayIndex = dgCustomerCredits.Columns.Count - 1;
         }
@@ -218,7 +219,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
             else if (unpaidCustomer_rd.Checked == true)
             {
                 var form = new ManagePayableForm(this);
-                form._poId = custId;
+                form._customerCreditId = custId;
+                form._actionForm = Constants.FormConstants.CustomerCredits;
                 form.ShowDialog();
             }
         }

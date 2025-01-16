@@ -1,6 +1,7 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Properties;
 using SalesPro.Services;
 using System;
 using System.Drawing;
@@ -12,54 +13,101 @@ namespace SalesPro.Forms.PaymentsAndBilling
     public partial class ManagePayableForm : Form
     {
         public int _poId;
+        public int _customerCreditId;
         public int _rowVersion;
         private DateTime _dateCreated;
         private DateTime _curDate;
+        public string _actionForm;
 
         private readonly PaymentsAndBillingForm _form;
         private readonly PaymentsService _service;
         private readonly PurchaseOrderService _poService;
+        private readonly CustomerCreditService _customerCreditService;
+        private readonly OrderService _orderService;
         public ManagePayableForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
             _service = new PaymentsService();
             _poService = new PurchaseOrderService();
+            _customerCreditService = new CustomerCreditService();
+            _orderService = new OrderService();
             _form = form;
         }
 
         public async Task LoadOrderItems()
         {
-            var orderItems = await _poService.LoadPurchaseOrderItemsByPoId(_poId);
-            dgOrderedItems.DataSource = orderItems;
-            DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
-                   "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
+            if (_actionForm == Constants.FormConstants.SupplierPayables)
+            {
+                var orderItems = await _poService.LoadPurchaseOrderItemsByPoId(_poId);
+                dgOrderedItems.DataSource = orderItems;
+                DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
+                       "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
+            }
+            else
+            {
+                var orderId = await _customerCreditService.GetOrderIdByCustomerCreditId(_customerCreditId);
+                var creditedItems = await _orderService.LoadOrderItemsByOrderId(orderId);
+                dgOrderedItems.DataSource = creditedItems;
+                DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
+                  "ProductName", "OrderQuantity", "Price", "Total");
+            }
+          
         }
 
         public async Task SetControls()
         {
-            var pos = await _service.GetPurchaseOrderById(_poId);
-            if (pos != null)
+            if (_actionForm == Constants.FormConstants.SupplierPayables)
             {
-                pos.PurchaseOrderId = _poId;
-                pos.RowVersion = _rowVersion;
-                _dateCreated = pos.DateCreated;
-
-                supplier_tx.Text = pos.SupplierName;
-                contactNumber_tx.Text = pos.SupplierContactNumber;
-                address_tx.Text = pos.SupplierAddress;
-                dateCredited_tx.Text = DateFormatHelper.FormatDate(pos.DateCreated);
-                dueDate_dt.Value = pos.DueDate;
-
-                total_tx.Text = pos.PoTotal.ToString("N2");
-                creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
-                processedBy_tx.Text = pos.UserFullName;
-
-                bool isPastDue = _curDate.Date > pos.DueDate.Date;
-                if (isPastDue)
+                var pos = await _service.GetPurchaseOrderById(_poId);
+                if (pos != null)
                 {
-                    pastDue_tx.Visible = true;
-                }
+                    //pos.PurchaseOrderId = _poId;
+                    //pos.RowVersion = _rowVersion;
+                    _dateCreated = pos.DateCreated;
 
+                    supplier_tx.Text = pos.SupplierName;
+                    contactNumber_tx.Text = pos.SupplierContactNumber;
+                    address_tx.Text = pos.SupplierAddress;
+                    dateCredited_tx.Text = DateFormatHelper.FormatDate(pos.DateCreated);
+                    dueDate_dt.Value = pos.DueDate;
+
+                    total_tx.Text = pos.PoTotal.ToString("N2");
+                    creditTerms_tx.Text = $"{pos.CreditTerms.ToString()} days";
+                    processedBy_tx.Text = pos.UserFullName;
+
+                    bool isPastDue = _curDate.Date > pos.DueDate.Date;
+                    if (isPastDue)
+                    {
+                        pastDue_tx.Visible = true;
+                    }
+                    payable_pb.Image = Resources.delivery;
+                }
+            }
+            else if (_actionForm == Constants.FormConstants.CustomerCredits)
+            {
+                var creds = await _customerCreditService.GetCustomerCreditById(_customerCreditId);
+                if (creds != null)
+                {
+                    //creds.CustomerCreditId = _referenceId;
+                    //creds.RowVersion = _rowVersion;
+                    _dateCreated = creds.CreditedDate;
+
+                    supplier_tx.Text = creds.CustomerName;
+                    contactNumber_tx.Text = creds.ContactNumber;
+                    dateCredited_tx.Text = DateFormatHelper.FormatDate(creds.CreditedDate);
+                    dueDate_dt.Value = creds.DueDate;
+
+                    total_tx.Text = creds.CreditAmount.ToString("N2");
+                    creditTerms_tx.Text = $"{creds.CreditTerms.ToString()} days";
+                    processedBy_tx.Text = creds.UserName;
+
+                    bool isPastDue = _curDate.Date > creds.DueDate.Date;
+                    if (isPastDue)
+                    {
+                        pastDue_tx.Visible = true;
+                    }
+                    payable_pb.Image = Resources.customer;
+                }
             }
         }
 

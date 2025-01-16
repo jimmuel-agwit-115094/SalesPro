@@ -100,6 +100,7 @@ namespace SalesPro.Forms.Orders
                     var credModel = new CustomerCreditModel()
                     {
                         OrderId = _orderId,
+                        UserName = UserSession.FullName,
                         CustomerId = order.CustomerId,
                         CreditAmount = order.Total,
                         CreditTerms = credTerms,

@@ -16,6 +16,7 @@ namespace SalesPro.Models
         public DateTime DueDate { get; set; }
         public string InvoiceNumber { get; set; } 
         public PaymentStatus PaymentStatus { get; set; }
+        public string UserName { get; set; }
         public string Notes { get; set; }
         public int RowVersion { get; set; } 
     }
@@ -23,5 +24,6 @@ namespace SalesPro.Models
     public class CustomerCreditModelExtended : CustomerCreditModel
     {
         public string CustomerName { get; set; }
+        public string ContactNumber { get; set; }
     }
 }

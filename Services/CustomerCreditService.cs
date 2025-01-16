@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
@@ -32,6 +33,7 @@ namespace SalesPro.Services
                               select new CustomerCreditModelExtended
                               {
                                   CustomerCreditId = cr.CustomerCreditId,
+                                  UserName = cr.UserName,
                                   OrderId = cr.OrderId,
                                   CustomerId = cr.CustomerId,
                                   CreditAmount = cr.CreditAmount,
@@ -40,8 +42,43 @@ namespace SalesPro.Services
                                   DueDate = cr.DueDate,
                                   PaymentStatus = cr.PaymentStatus,
                                   Notes = cr.Notes,
-                                  CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}"
+                                  CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                  ContactNumber = c.ContactNumber
                               }).OrderByDescending(x => x.CreditedDate).ToListAsync();
+            }
+        }
+
+        public async Task<CustomerCreditModelExtended> GetCustomerCreditById(int customerCreditId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from cr in context.CustomerCredits
+                              join c in context.Customers on cr.CustomerId equals c.CustomerId
+                              where cr.CustomerCreditId == customerCreditId
+                              select new CustomerCreditModelExtended
+                              {
+                                  CustomerCreditId = cr.CustomerCreditId,
+                                  OrderId = cr.OrderId,
+                                  UserName = cr.UserName,
+                                  CustomerId = cr.CustomerId,
+                                  CreditAmount = cr.CreditAmount,
+                                  CreditTerms = cr.CreditTerms,
+                                  CreditedDate = cr.CreditedDate,
+                                  DueDate = cr.DueDate,
+                                  PaymentStatus = cr.PaymentStatus,
+                                  Notes = cr.Notes,
+                                  CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                  ContactNumber = c.ContactNumber
+                              }).FirstOrDefaultAsync();
+            }
+        }
+
+        public async Task<int> GetOrderIdByCustomerCreditId(int customerCreditId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var credit = await context.CustomerCredits.FirstOrDefaultAsync(x => x.CustomerCreditId == customerCreditId);
+                return credit.OrderId;
             }
         }
     }
