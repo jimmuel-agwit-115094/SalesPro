@@ -198,7 +198,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 form._credRowVersion = _credRowVersion;
                 form.ShowDialog();
             }
-
         }
 
         private void ManageSupplierPayableForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -70,7 +70,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private async void unpaid_rd_CheckedChanged(object sender, EventArgs e)
         {
             po_title.Text = "Unpaid Purchase Orders";
-            paid_lbl.Visible = false;
             showPastDue_cb.Visible = true;
             showPastDue_cb.Checked = false;
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid, false);
@@ -79,7 +78,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private async void paid_rd_CheckedChanged(object sender, EventArgs e)
         {
             po_title.Text = "Paid Purchase Orders";
-            paid_lbl.Visible = true;
             showPastDue_cb.Visible = false;
             await LoadAllPurchaseOrders(PaymentStatus.Paid, false);
         }
@@ -95,6 +93,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 {
                     var form = new UpdatePaymentForm(this);
                     form._referenceId = poId;
+                    form._actionForm = Constants.FormConstants.SupplierPayables;
                     form._paymentType = PaymentType.SupplierPayable;
                     form.ShowDialog();
                 }
@@ -211,6 +210,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             if (paidCustomer_rd.Checked == true)
             {
                 var form = new UpdatePaymentForm(this);
+                form._actionForm = Constants.FormConstants.CustomerCredits;
                 form._referenceId = custId;
                 form._paymentType = PaymentType.CustomerCredit;
                 form.ShowDialog();

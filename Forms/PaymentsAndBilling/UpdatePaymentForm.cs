@@ -3,12 +3,8 @@ using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,12 +16,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public PaymentType _paymentType;
         public int _rowVersion;
         private DateTime _curDate;
+        public string _actionForm;
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _purchaseOrderService;
         private readonly PaymentsAndBillingForm _form;
         private readonly GenericService _genericService;
+        private readonly CustomerCreditService _custCredService;
         public UpdatePaymentForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
@@ -33,6 +31,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             _purchaseOrderService = new PurchaseOrderService();
             _bankService = new BankService();
             _genericService = new GenericService();
+            _custCredService = new CustomerCreditService();
             _form = form;
         }
 
@@ -72,15 +71,32 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     orNunber_tx.Text = payment.OrNumber;
                     bank_cb.Text = payment.BankName;
                     notes_tx.Text = payment.Notes;
+                    _rowVersion = payment.RowVersion;
                 }
 
-                var po = await _paymentService.GetPurchaseOrderById(_referenceId);
-                if (po != null)
+                if (_actionForm == Constants.FormConstants.SupplierPayables)
                 {
-                    total_tx.Text = po.PoTotal.ToString("N2");
-                    terms_tx.Text = $"{po.CreditTerms} days";
-                    supplier_tx.Text = po.SupplierName;
+                    var po = await _paymentService.GetPurchaseOrderById(_referenceId);
+                    if (po != null)
+                    {
+                        total_tx.Text = po.PoTotal.ToString("N2");
+                        terms_tx.Text = $"{po.CreditTerms} days";
+                        supplier_tx.Text = po.SupplierName;
+                        supplierCustomer_tx.Text = "Supplier";
+                    }
                 }
+                else
+                {
+                    var creds = await _custCredService.GetCustomerCreditById(_referenceId);
+                    if (creds != null)
+                    {
+                        total_tx.Text = creds.CreditAmount.ToString("N2");
+                        terms_tx.Text = $"{creds.CreditTerms} days";
+                        supplier_tx.Text = creds.CustomerName;
+                        supplierCustomer_tx.Text = "Customer";
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -119,7 +135,9 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         Notes = notes_tx.Text,
                         UserName = UserSession.FullName,
                     };
+
                     var success = await _paymentService.UpdatePayment(_referenceId, _paymentType, paymennt, _rowVersion);
+
                     _form.unpaid_rd.Checked = true;
                     _form.paid_rd.Checked = true;
                     Close();

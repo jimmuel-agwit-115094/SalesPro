@@ -63,7 +63,8 @@ namespace SalesPro.Services
                                   UserFullName = u.Fullname,
                                   SupplierName = s.SupplierName,
                                   SupplierContactNumber = s.SupplierNumber,
-                                  SupplierAddress = s.SupplierAddress
+                                  SupplierAddress = s.SupplierAddress,
+                                  RowVersion = po.RowVersion
                               }).FirstOrDefaultAsync();
             }
         }

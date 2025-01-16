@@ -44,7 +44,7 @@
             this.terms_tx = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.supplier_tx = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.supplierCustomer_tx = new System.Windows.Forms.Label();
             this.total_tx = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.paymentDate_tx = new System.Windows.Forms.Label();
@@ -216,7 +216,7 @@
             this.panel1.Controls.Add(this.terms_tx);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.supplier_tx);
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.supplierCustomer_tx);
             this.panel1.Controls.Add(this.total_tx);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.paymentDate_tx);
@@ -260,15 +260,15 @@
             this.supplier_tx.TabIndex = 607;
             this.supplier_tx.Text = "Totla";
             // 
-            // label12
+            // supplierCustomer_tx
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label12.Location = new System.Drawing.Point(12, 93);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 17);
-            this.label12.TabIndex = 606;
-            this.label12.Text = "Supplier :";
+            this.supplierCustomer_tx.AutoSize = true;
+            this.supplierCustomer_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.supplierCustomer_tx.Location = new System.Drawing.Point(12, 93);
+            this.supplierCustomer_tx.Name = "supplierCustomer_tx";
+            this.supplierCustomer_tx.Size = new System.Drawing.Size(63, 17);
+            this.supplierCustomer_tx.TabIndex = 606;
+            this.supplierCustomer_tx.Text = "Supplier :";
             // 
             // total_tx
             // 
@@ -427,7 +427,7 @@
         internal System.Windows.Forms.Label terms_tx;
         internal System.Windows.Forms.Label label13;
         internal System.Windows.Forms.Label supplier_tx;
-        internal System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.Label supplierCustomer_tx;
         internal System.Windows.Forms.Label paid_lbl;
     }
 }
