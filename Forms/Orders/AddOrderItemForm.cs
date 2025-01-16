@@ -143,7 +143,6 @@ namespace SalesPro.Forms.Orders
             // Assess if item is for addition or returned
             int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
 
-            // calculate taxes
             // Save order item
             var orderItem = new OrderItemModel
             {
