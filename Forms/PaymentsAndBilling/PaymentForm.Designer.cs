@@ -289,8 +289,8 @@
         public System.Windows.Forms.TextBox reference_tx;
         public System.Windows.Forms.ComboBox bank_cb;
         private System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.Label paymentTitle_tx;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox notes_tx;
+        internal System.Windows.Forms.Label paymentTitle_tx;
     }
 }

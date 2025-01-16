@@ -9,9 +9,16 @@
         public const string ResumeOrder = "ResumeOrder";
         public const string OrderLists = "OrderLists";
 
-        // Selected Tabs
         public const string SupplierPayables = "SupplierPayables";
         public const string CustomerCredits = "CustomerCredits";
-        public const string Expenses = "Expenses";
+
+
+    }
+    public class CustomerCreditPaymentTabSelection
+    {
+        // Selected Tabs
+        public const string SupplierPayableTab = "supplierPayable_tab";
+        public const string CustomerCreditTab = "customerCreditTab";
+        public const string ExpensesTab = "expensesTab";
     }
 }

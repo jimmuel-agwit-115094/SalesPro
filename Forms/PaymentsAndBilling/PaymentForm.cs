@@ -16,15 +16,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public int _referenceId;
         public int _rowVersion;
         public int _paymentRowVersion;
+        public int _credRowVersion;
         private DateTime _curDate;
         public PaymentType _paymentType;
         public PaymentStatus _paymentStatus;
+        public string _actionForm;
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _poService;
         private readonly ManagePayableForm _form;
         private readonly GenericService _genericService;
+        private readonly CustomerCreditService _custCredService;
 
         public PaymentForm(ManagePayableForm form)
         {
@@ -33,6 +36,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             _paymentService = new PaymentsService();
             _bankService = new BankService();
             _genericService = new GenericService();
+            _custCredService = new CustomerCreditService();
             _form = form;
         }
 
@@ -63,13 +67,9 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 _curDate = await ClockHelper.GetServerDateTime();
                 paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
 
-                paymentTitle_tx.Text = _paymentType == PaymentType.SupplierPayable
-                      ? "Supplier Payable Payment"
-                      : "Customer Credit Payment";
-
                 await SetBanks();
 
-                if (_paymentType == PaymentType.SupplierPayable)
+                if (_actionForm == Constants.FormConstants.SupplierPayables)
                 {
                     var po = await _poService.GetPurchaseorderById(_referenceId);
                     if (po != null)
@@ -78,31 +78,22 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         _paymentStatus = po.PaymentStatus;
                         total_tx.Text = po.PoTotal.ToString("N2");
                     }
-
-                    if (_paymentStatus == PaymentStatus.Unpaid)
-                    {
-                        pay_btn.BackColor = Color.Green;
-                        pay_btn.Text = "Pay";
-                    }
-                    else
-                    {
-                        pay_btn.BackColor = SystemColors.Highlight;
-                        pay_btn.Text = "View Payment";
-
-                        var payment = await _paymentService.GetPaymentByReferenceId(_referenceId, _paymentType);
-                        if (payment != null)
-                        {
-                            paymentMethod_cb.Text = payment.PaymentMethod.ToString();
-                            reference_tx.Text = payment.ReferenceNumber;
-                            orNunber_tx.Text = payment.OrNumber;
-                            bank_cb.Text = payment.BankName;
-                            notes_tx.Text = payment.Notes;
-                            _paymentRowVersion = payment.RowVersion;
-                        }
-                    }
+                    paymentTitle_tx.Text = "Supplier Payment";
+                    pay_btn.Text = "Pay Supplier";
+                    pay_btn.BackColor = Color.Green;
                 }
-                else if (_paymentType == PaymentType.CustomerCredit)
+                else
                 {
+                    var cred = await _custCredService.GetCustomerCreditById(_referenceId);
+                    if (cred != null)
+                    {
+                        _credRowVersion = cred.RowVersion;
+                        _paymentStatus = cred.PaymentStatus;
+                        total_tx.Text = cred.CreditAmount.ToString("N2");
+                    }
+                    paymentTitle_tx.Text = "Customer Credit Receivable";
+                    pay_btn.Text = "Receive Payment";
+                    pay_btn.BackColor = SystemColors.Highlight;
                 }
             }
             catch (Exception ex)
@@ -139,11 +130,13 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         model.OrNumber = orNunber_tx.Text;
                         model.PaymentDate = _curDate;
                         model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                        model.PaymentType = _paymentType;
                         model.ReferenceNumber = reference_tx.Text;
                         model.UserName = UserSession.FullName;
                         model.ReferenceId = _referenceId;
                     }
-                    var success = await _paymentService.Pay(_referenceId, _paymentType, model, _rowVersion, _paymentRowVersion);
+                    int newRowVersion = _actionForm == Constants.FormConstants.SupplierPayables ? _rowVersion : _credRowVersion;
+                    var success = await _paymentService.Pay(_referenceId, model, newRowVersion, _paymentRowVersion);
                     if (success == 1)
                     {
                         await _form.SetControls();

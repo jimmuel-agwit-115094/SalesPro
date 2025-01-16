@@ -46,7 +46,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             var creds = await _service.GetCustomerCrtedits(status);
 
             dgCustomerCredits.DataSource = creds;
-            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 1, notFound_cust, "CustomerCreditId",
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true,2 , notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
 
             dgCustomerCredits.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
@@ -59,6 +59,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 _curDate = await ClockHelper.GetServerDateTime();
                 unpaid_rd.Checked = true;
+                unpaidCustomer_rd.Checked = true;
             }
             catch (Exception ex)
             {
@@ -71,8 +72,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             po_title.Text = "Unpaid Purchase Orders";
             paid_lbl.Visible = false;
             showPastDue_cb.Visible = true;
-            unpaid_panel.Visible = true;
-            paid_panel.Visible = false;
             showPastDue_cb.Checked = false;
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid, false);
         }
@@ -82,8 +81,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             po_title.Text = "Paid Purchase Orders";
             paid_lbl.Visible = true;
             showPastDue_cb.Visible = false;
-            paid_panel.Visible = true;
-            unpaid_panel.Visible = false;
             await LoadAllPurchaseOrders(PaymentStatus.Paid, false);
         }
 
@@ -171,7 +168,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             var custCreds = await _customerCredService.GetCustomerCreditsByStatus(status);
             dgCustomerCredits.DataSource = custCreds;
-            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 2, notFound_cust, "CustomerCreditId",
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 3, notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
             dgCustomerCredits.Columns["CreditAmount"].DisplayIndex = dgCustomerCredits.Columns.Count - 1;
         }
@@ -185,17 +182,19 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             string selectedTabName = paymentTabControl.SelectedTab.Name;
 
-            if (selectedTabName == Constants.FormConstants.SupplierPayables)
+            if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab)
             {
-                _selectedTab = Constants.FormConstants.SupplierPayables;
+                _selectedTab = Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab;
+                unpaid_rd.Checked = true;
             }
-            else if (selectedTabName == Constants.FormConstants.CustomerCredits)
+            else if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab)
             {
-                _selectedTab = Constants.FormConstants.CustomerCredits;
+                _selectedTab = Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab;
+                unpaidCustomer_rd.Checked = true;
             }
             else
             {
-                _selectedTab = Constants.FormConstants.Expenses;
+                _selectedTab = Constants.CustomerCreditPaymentTabSelection.ExpensesTab;
             }
         }
 

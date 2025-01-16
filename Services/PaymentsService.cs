@@ -93,21 +93,34 @@ namespace SalesPro.Services
                     purchaseOrder.PaymentStatus = PaymentStatus.Paid;
                     success = await context.SaveChangesAsync();
                 });
-
             }
             else // Customer credits
             {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    await context.Payments.AddAsync(paymentModel);
+                    await context.SaveChangesAsync();
 
+                    var order = await context.Orders.FindAsync(paymentModel.ReferenceId);
+                    NullCheckerHelper.NullCheck(order);
+                    order.PaymentStatus = PaymentStatus.Paid;
+
+                    var customerCredit = await context.CustomerCredits.FindAsync(paymentModel.ReferenceId);
+                    NullCheckerHelper.NullCheck(customerCredit);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, customerCredit.RowVersion);
+                    customerCredit.PaymentStatus = PaymentStatus.Paid;
+                    success = await context.SaveChangesAsync();
+                });
             }
             return success;
         }
 
-        public async Task<int> Pay(int poId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion, int paymentRowVersion)
+        public async Task<int> Pay(int poId, PaymentsModel paymentModel, int rowVersion, int paymentRowVersion)
         {
             int success = 0;
             using (var context = new DatabaseContext())
             {
-                success = await SavePayment(context, paymentType, paymentModel, rowVersion);
+                success = await SavePayment(context, paymentModel.PaymentType, paymentModel, rowVersion);
                 return success;
             }
         }
@@ -133,7 +146,7 @@ namespace SalesPro.Services
             return success;
         }
 
-        public async Task UpdateDueDate(int poId, DateTime date)
+        public async Task UpdateSupplierPayableDueDate(int poId, DateTime date)
         {
             using (var context = new DatabaseContext())
             {
@@ -141,6 +154,18 @@ namespace SalesPro.Services
                 NullCheckerHelper.NullCheck(po);
                 po.DueDate = date;
                 po.CreditTerms = (date - po.DateCreated).Days;
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task UpdateCustomerCreditDueDate(int customerCreditId, DateTime date)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var creds = await context.CustomerCredits.FindAsync(customerCreditId);
+                NullCheckerHelper.NullCheck(creds);
+                creds.DueDate = date;
+                creds.CreditTerms = (date - creds.CreditedDate).Days;
                 await context.SaveChangesAsync();
             }
         }

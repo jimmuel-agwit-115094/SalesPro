@@ -15,6 +15,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public int _poId;
         public int _customerCreditId;
         public int _rowVersion;
+        public int _credRowVersion;
         private DateTime _dateCreated;
         private DateTime _curDate;
         public string _actionForm;
@@ -51,7 +52,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
                   "ProductName", "OrderQuantity", "Price", "Total");
             }
-          
+
         }
 
         public async Task SetControls()
@@ -61,8 +62,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var pos = await _service.GetPurchaseOrderById(_poId);
                 if (pos != null)
                 {
-                    //pos.PurchaseOrderId = _poId;
-                    //pos.RowVersion = _rowVersion;
+                    _rowVersion = pos.RowVersion;
                     _dateCreated = pos.DateCreated;
 
                     supplier_tx.Text = pos.SupplierName;
@@ -81,6 +81,9 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         pastDue_tx.Visible = true;
                     }
                     payable_pb.Image = Resources.delivery;
+                    pay_btn.Text = "Pay Supplier";
+                    title_lbl.Text = "Manage Supplier Payable";
+                    pay_btn.BackColor = Color.Green;
                 }
             }
             else if (_actionForm == Constants.FormConstants.CustomerCredits)
@@ -88,14 +91,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var creds = await _customerCreditService.GetCustomerCreditById(_customerCreditId);
                 if (creds != null)
                 {
-                    //creds.CustomerCreditId = _referenceId;
-                    //creds.RowVersion = _rowVersion;
+                    _credRowVersion = creds.RowVersion;
                     _dateCreated = creds.CreditedDate;
 
                     supplier_tx.Text = creds.CustomerName;
                     contactNumber_tx.Text = creds.ContactNumber;
                     dateCredited_tx.Text = DateFormatHelper.FormatDate(creds.CreditedDate);
                     dueDate_dt.Value = creds.DueDate;
+                    address_tx.Text = creds.Address;
 
                     total_tx.Text = creds.CreditAmount.ToString("N2");
                     creditTerms_tx.Text = $"{creds.CreditTerms.ToString()} days";
@@ -107,6 +110,9 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         pastDue_tx.Visible = true;
                     }
                     payable_pb.Image = Resources.customer;
+                    title_lbl.Text = "Customer Credit";
+                    pay_btn.Text = "Receive Payment";
+                    pay_btn.BackColor = SystemColors.Highlight;
                 }
             }
         }
@@ -116,9 +122,17 @@ namespace SalesPro.Forms.PaymentsAndBilling
             Close();
             update_btn.Enabled = false;
             pay_btn.Enabled = false;
-            _form.paid_rd.PerformClick();
-            _form.unpaid_rd.PerformClick();
 
+            if (_actionForm == Constants.FormConstants.SupplierPayables)
+            {
+                _form.paid_rd.PerformClick();
+                _form.unpaid_rd.PerformClick();
+            }
+            else
+            {
+                _form.paidCustomer_rd.PerformClick();
+                _form.unpaidCustomer_rd.PerformClick();
+            }
         }
 
         private async void ManageSupplierPayableForm_Load(object sender, EventArgs e)
@@ -146,7 +160,15 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 }
                 if (MessageHandler.ShowQuestionGeneric("Update due date?"))
                 {
-                    await _service.UpdateDueDate(_poId, dueDate_dt.Value.Date);
+                    if (_actionForm == Constants.FormConstants.SupplierPayables)
+                    {
+
+                        await _service.UpdateSupplierPayableDueDate(_poId, dueDate_dt.Value.Date);
+                    }
+                    else
+                    {
+                        await _service.UpdateCustomerCreditDueDate(_customerCreditId, dueDate_dt.Value.Date);
+                    }
                     await SetControls();
                 }
             }
@@ -158,11 +180,25 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void pay_btn_Click(object sender, EventArgs e)
         {
-            var form = new PaymentForm(this);
-            form._paymentType = PaymentType.SupplierPayable;
-            form._referenceId = _poId;
-            form._rowVersion = _rowVersion;
-            form.ShowDialog();
+            if (_actionForm == Constants.FormConstants.SupplierPayables)
+            {
+                var form = new PaymentForm(this);
+                form._actionForm = Constants.FormConstants.SupplierPayables;
+                form._paymentType = PaymentType.SupplierPayable;
+                form._referenceId = _poId;
+                form._rowVersion = _rowVersion;
+                form.ShowDialog();
+            }
+            else
+            {
+                var form = new PaymentForm(this);
+                form._actionForm = Constants.FormConstants.CustomerCredits;
+                form._paymentType = PaymentType.CustomerCredit;
+                form._referenceId = _customerCreditId;
+                form._credRowVersion = _credRowVersion;
+                form.ShowDialog();
+            }
+
         }
 
         private void ManageSupplierPayableForm_FormClosed(object sender, FormClosedEventArgs e)

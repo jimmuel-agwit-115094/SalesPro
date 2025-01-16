@@ -58,6 +58,7 @@ namespace SalesPro.Services
                               select new CustomerCreditModelExtended
                               {
                                   CustomerCreditId = cr.CustomerCreditId,
+                                  Address = c.Address,
                                   OrderId = cr.OrderId,
                                   UserName = cr.UserName,
                                   CustomerId = cr.CustomerId,
@@ -68,7 +69,8 @@ namespace SalesPro.Services
                                   PaymentStatus = cr.PaymentStatus,
                                   Notes = cr.Notes,
                                   CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
-                                  ContactNumber = c.ContactNumber
+                                  ContactNumber = c.ContactNumber,
+                                  RowVersion = cr.RowVersion
                               }).FirstOrDefaultAsync();
             }
         }
