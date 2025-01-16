@@ -103,7 +103,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 }
                 else if (unpaid_rd.Checked == true)
                 {
-                    var form = new SupplierPayableForm(this);
+                    var form = new ManagePayableForm(this);
                     form._poId = poId;
                     form.ShowDialog();
                 }
@@ -217,7 +217,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
             else if (unpaidCustomer_rd.Checked == true)
             {
-                var form = new SupplierPayableForm(this);
+                var form = new ManagePayableForm(this);
                 form._poId = custId;
                 form.ShowDialog();
             }

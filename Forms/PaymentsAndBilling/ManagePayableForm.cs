@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SalesPro.Forms.PaymentsAndBilling
 {
-    public partial class SupplierPayableForm : Form
+    public partial class ManagePayableForm : Form
     {
         public int _poId;
         public int _rowVersion;
@@ -19,7 +19,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly PaymentsAndBillingForm _form;
         private readonly PaymentsService _service;
         private readonly PurchaseOrderService _poService;
-        public SupplierPayableForm(PaymentsAndBillingForm form)
+        public ManagePayableForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
             _service = new PaymentsService();

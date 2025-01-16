@@ -1,6 +1,6 @@
 ﻿namespace SalesPro.Forms.PaymentsAndBilling
 {
-    partial class SupplierPayableForm
+    partial class ManagePayableForm
     {
         /// <summary>
         /// Required designer variable.
