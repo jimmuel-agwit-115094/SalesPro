@@ -40,6 +40,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
             dgSupplierPayables.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
         }
 
+        public async Task GetCustomerCrtedits(PaymentStatus status)
+        {
+            var creds = await _service.GetCustomerCrtedits(status);
+
+            dgCustomerCredits.DataSource = creds;
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 1, notFound_cust, "CustomerCreditId",
+                "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
+
+            dgCustomerCredits.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
+        }
+
+
         private async void PaymentsAndBillingForm_Load(object sender, EventArgs e)
         {
             try
@@ -124,6 +136,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private async void showPastDue_cb_CheckedChanged(object sender, EventArgs e)
         {
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid, showPastDue_cb.Checked);
+        }
+
+        private void unpaidCustomer_rd_CheckedChanged(object sender, EventArgs e)
+        {
+       
         }
     }
 }

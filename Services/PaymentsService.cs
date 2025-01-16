@@ -144,5 +144,27 @@ namespace SalesPro.Services
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<List<CustomerCreditModelExtended>> GetCustomerCrtedits(PaymentStatus status)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await (from c in context.CustomerCredits
+                              join cus in context.CustomerCredits on c.CustomerId equals cus.CustomerId
+                              where c.PaymentStatus == status
+                              select new CustomerCreditModelExtended
+                              {
+                                  OrderId = c.OrderId,
+                                  CustomerId = c.CustomerId,
+                                  CreditAmount = c.CreditAmount,
+                                  CreditTerms = c.CreditTerms,
+                                  CreditedDate = c.CreditedDate,
+                                  DueDate = c.DueDate,
+                                  InvoiceNumber = c.InvoiceNumber,
+                                  PaymentStatus = c.PaymentStatus,
+                                  Notes = c.Notes
+                              }).OrderByDescending(x => x.CustomerCreditId).ToListAsync();
+            }
+        }
     }
 }

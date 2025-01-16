@@ -20,4 +20,8 @@ namespace SalesPro.Models
         public int RowVersion { get; set; } 
     }
 
+    public class CustomerCreditModelExtended : CustomerCreditModel
+    {
+        public string CustomerName { get; set; }
+    }
 }
