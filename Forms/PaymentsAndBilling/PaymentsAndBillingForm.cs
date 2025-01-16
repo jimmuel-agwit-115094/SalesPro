@@ -3,12 +3,9 @@ using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,11 +14,15 @@ namespace SalesPro.Forms.PaymentsAndBilling
     public partial class PaymentsAndBillingForm : Form
     {
         private readonly PaymentsService _service;
+        private readonly CustomerCreditService _customerCredService;
+
+        private string _selectedTab;
         private DateTime _curDate;
         public PaymentsAndBillingForm()
         {
             InitializeComponent();
             _service = new PaymentsService();
+            _customerCredService = new CustomerCreditService();
         }
 
         public async Task LoadAllPurchaseOrders(PaymentStatus status, bool showPastDue)
@@ -96,16 +97,17 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 if (paid_rd.Checked == true)
                 {
                     var form = new UpdatePaymentForm(this);
-                    form._poId = poId;
+                    form._referenceId = poId;
                     form._paymentType = PaymentType.SupplierPayable;
                     form.ShowDialog();
                 }
-                else
+                else if (unpaid_rd.Checked == true)
                 {
-                    var form = new ManageSupplierPayableForm(this);
+                    var form = new SupplierPayableForm(this);
                     form._poId = poId;
                     form.ShowDialog();
                 }
+
             }
             catch (Exception ex)
             {
@@ -138,9 +140,87 @@ namespace SalesPro.Forms.PaymentsAndBilling
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid, showPastDue_cb.Checked);
         }
 
-        private void unpaidCustomer_rd_CheckedChanged(object sender, EventArgs e)
+
+        // ------------------------------------------------- Customer Credits-------------------------------------------------
+        private async void unpaidCustomer_rd_CheckedChanged(object sender, EventArgs e)
         {
-       
+            try
+            {
+                await LoadCustomerCredits(PaymentStatus.Unpaid);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on unpaid customer credits: {ex.Message}");
+            }
+        }
+
+        private async void paidCustomer_rd_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadCustomerCredits(PaymentStatus.Paid);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on paid customer credits: {ex.Message}");
+            }
+        }
+
+        private async Task LoadCustomerCredits(PaymentStatus status)
+        {
+            var custCreds = await _customerCredService.GetCustomerCreditsByStatus(status);
+            dgCustomerCredits.DataSource = custCreds;
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 1, notFound_cust, "CustomerCreditId",
+                "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
+            dgCustomerCredits.Columns["CreditAmount"].DisplayIndex = dgCustomerCredits.Columns.Count - 1;
+        }
+
+        private void allTransactions_tab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedTabName = paymentTabControl.SelectedTab.Name;
+
+            if (selectedTabName == Constants.FormConstants.SupplierPayables)
+            {
+                _selectedTab = Constants.FormConstants.SupplierPayables;
+            }
+            else if (selectedTabName == Constants.FormConstants.CustomerCredits)
+            {
+                _selectedTab = Constants.FormConstants.CustomerCredits;
+            }
+            else
+            {
+                _selectedTab = Constants.FormConstants.Expenses;
+            }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgCustomerCredits_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int custId = DgFormatHelper.GetSelectedId(dgCustomerCredits, e, "CustomerCreditId");
+            if (custId == 0) return;
+
+            if (paidCustomer_rd.Checked == true)
+            {
+                var form = new UpdatePaymentForm(this);
+                form._referenceId = custId;
+                form._paymentType = PaymentType.CustomerCredit;
+                form.ShowDialog();
+            }
+            else if (unpaidCustomer_rd.Checked == true)
+            {
+                var form = new SupplierPayableForm(this);
+                form._poId = custId;
+                form.ShowDialog();
+            }
         }
     }
 }

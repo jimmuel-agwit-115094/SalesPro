@@ -8,5 +8,10 @@
 
         public const string ResumeOrder = "ResumeOrder";
         public const string OrderLists = "OrderLists";
+
+        // Selected Tabs
+        public const string SupplierPayables = "SupplierPayables";
+        public const string CustomerCredits = "CustomerCredits";
+        public const string Expenses = "Expenses";
     }
 }

@@ -16,7 +16,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 {
     public partial class UpdatePaymentForm : Form
     {
-        public int _poId;
+        public int _referenceId;
         public PaymentType _paymentType;
         public int _rowVersion;
         private DateTime _curDate;
@@ -59,7 +59,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
                 await SetBanks();
 
-                var payment = await _paymentService.GetPaymentByReferenceId(_poId, _paymentType);
+                var payment = await _paymentService.GetPaymentByReferenceId(_referenceId, _paymentType);
                 if (payment != null)
                 {
                     referenceId_tx.Text = payment.ReferenceId.ToString("D7");
@@ -74,7 +74,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     notes_tx.Text = payment.Notes;
                 }
 
-                var po = await _paymentService.GetPurchaseOrderById(_poId);
+                var po = await _paymentService.GetPurchaseOrderById(_referenceId);
                 if (po != null)
                 {
                     total_tx.Text = po.PoTotal.ToString("N2");
@@ -119,7 +119,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         Notes = notes_tx.Text,
                         UserName = UserSession.FullName,
                     };
-                    var success = await _paymentService.UpdatePayment(_poId, _paymentType, paymennt, _rowVersion);
+                    var success = await _paymentService.UpdatePayment(_referenceId, _paymentType, paymennt, _rowVersion);
                     _form.unpaid_rd.Checked = true;
                     _form.paid_rd.Checked = true;
                     Close();

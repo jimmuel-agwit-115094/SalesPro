@@ -254,11 +254,17 @@
     <Compile Include="Forms\Orders\PaymentForm.Designer.cs">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.cs">
+    <Compile Include="Forms\PaymentsAndBilling\CustomerCreditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.Designer.cs">
-      <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
+    <Compile Include="Forms\PaymentsAndBilling\CustomerCreditForm.Designer.cs">
+      <DependentUpon>CustomerCreditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\SupplierPayableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentsAndBilling\SupplierPayableForm.Designer.cs">
+      <DependentUpon>SupplierPayableForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PaymentsAndBilling\PaymentForm.cs">
       <SubType>Form</SubType>
@@ -431,8 +437,8 @@
     <EmbeddedResource Include="Forms\Orders\PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PaymentsAndBilling\ManageSupplierPayableForm.resx">
-      <DependentUpon>ManageSupplierPayableForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PaymentsAndBilling\SupplierPayableForm.resx">
+      <DependentUpon>SupplierPayableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsAndBilling\PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>

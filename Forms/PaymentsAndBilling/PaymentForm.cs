@@ -23,10 +23,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
         private readonly PurchaseOrderService _poService;
-        private readonly ManageSupplierPayableForm _form;
+        private readonly SupplierPayableForm _form;
         private readonly GenericService _genericService;
 
-        public PaymentForm(ManageSupplierPayableForm form)
+        public PaymentForm(SupplierPayableForm form)
         {
             InitializeComponent();
             _poService = new PurchaseOrderService();
