@@ -15,6 +15,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
     {
         private readonly PaymentsService _service;
         private readonly CustomerCreditService _customerCredService;
+        private readonly ExpenseService _expenseService;
 
         private string _selectedTab;
         private DateTime _curDate;
@@ -23,6 +24,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             InitializeComponent();
             _service = new PaymentsService();
             _customerCredService = new CustomerCreditService();
+            _expenseService = new ExpenseService();
         }
 
         public async Task LoadAllPurchaseOrders(PaymentStatus status, bool showPastDue)
@@ -46,7 +48,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             var creds = await _service.GetCustomerCrtedits(status);
 
             dgCustomerCredits.DataSource = creds;
-            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true,2 , notFound_cust, "CustomerCreditId",
+            DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 2, notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
 
             dgCustomerCredits.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
@@ -168,7 +170,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private async Task LoadCustomerCredits(PaymentStatus status, bool showPastDue)
         {
             var custCreds = await _customerCredService.GetCustomerCreditsByStatus(status);
-            if(showPastDue)
+            if (showPastDue)
             {
                 custCreds = custCreds.Where(x => x.DueDate < _curDate.Date).ToList();
             }
@@ -251,6 +253,51 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 {
                     e.CellStyle.ForeColor = Color.Black; // Default color for invalid or null dates
                 }
+            }
+        }
+        // ----------------------------------------------- Expenses ------------------------------------------------
+        private void new_btn_Click(object sender, EventArgs e)
+        {
+            var form = new ExpensesForm(this);
+            form.ShowDialog();
+        }
+
+
+        private void FormatGrid()
+        {
+            DgExtensions.ConfigureDataGrid(dgExpenses, true, 0, notFoundExpense, "ExpenseId",
+               "Amount", "ExpenseParticular", "Company", "ReceiptNumber", "DateCreated");
+            // amount index to last
+            dgExpenses.Columns["Amount"].DisplayIndex = dgExpenses.Columns.Count - 1;
+
+        }
+
+        private async void showAllExp_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var allExp = await _expenseService.LoadAllExpenses();
+                dgExpenses.DataSource = allExp;
+                FormatGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error showing all expenses: {ex.Message}");
+            }
+        }
+
+        private async void filter_dt_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var date = filter_dt.Value.Date; 
+                var allExp = await _expenseService.LoadAllExpensesByDate(date);
+                dgExpenses.DataSource = allExp;
+                FormatGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error showing date filtered expenses: {ex.Message}");
             }
         }
     }
