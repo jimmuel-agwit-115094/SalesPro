@@ -143,7 +143,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                await LoadCustomerCredits(PaymentStatus.Unpaid);
+                showPastCustomer_cb.Visible = true;
+                await LoadCustomerCredits(PaymentStatus.Unpaid, false);
             }
             catch (Exception ex)
             {
@@ -155,7 +156,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                await LoadCustomerCredits(PaymentStatus.Paid);
+                showPastCustomer_cb.Visible = false;
+                await LoadCustomerCredits(PaymentStatus.Paid, false);
             }
             catch (Exception ex)
             {
@@ -163,9 +165,13 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
         }
 
-        private async Task LoadCustomerCredits(PaymentStatus status)
+        private async Task LoadCustomerCredits(PaymentStatus status, bool showPastDue)
         {
             var custCreds = await _customerCredService.GetCustomerCreditsByStatus(status);
+            if(showPastDue)
+            {
+                custCreds = custCreds.Where(x => x.DueDate < _curDate.Date).ToList();
+            }
             dgCustomerCredits.DataSource = custCreds;
             DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 3, notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
@@ -221,6 +227,30 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 form._customerCreditId = custId;
                 form._actionForm = Constants.FormConstants.CustomerCredits;
                 form.ShowDialog();
+            }
+        }
+
+        private async void showPastCustomer_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            await LoadCustomerCredits(PaymentStatus.Unpaid, showPastCustomer_cb.Checked);
+        }
+
+        private void dgCustomerCredits_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgCustomerCredits.Columns[e.ColumnIndex].Name == "DueDate") // Replace with your column name
+            {
+                if (e.Value != null && DateTime.TryParse(e.Value.ToString(), out DateTime dueDate))
+                {
+                    if (dueDate < _curDate.Date) // If the due date is in the past
+                    {
+                        e.CellStyle.ForeColor = Color.Red; // Change the fore color to red
+                        e.CellStyle.SelectionForeColor = Color.Red;
+                    }
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // Default color for invalid or null dates
+                }
             }
         }
     }
