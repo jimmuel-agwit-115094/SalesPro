@@ -61,7 +61,7 @@ namespace SalesPro.Forms.Orders
             }
 
             var customerExists = await _customerService.IsCustomerExist(firstName_tx.Text, lastName_tx.Text, middleName_tx.Text);
-            if (customerExists)
+            if (customerExists != null && customerExists.CustomerId != _customerId)
             {
                 MessageHandler.ShowWarning("Customer already exists.");
                 firstName_tx.Select();

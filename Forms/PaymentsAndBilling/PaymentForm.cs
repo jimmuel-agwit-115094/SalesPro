@@ -66,7 +66,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 _curDate = await ClockHelper.GetServerDateTime();
                 paymentMethod_cb.DataSource = PaymentMethodHelper.GetFilteredPaymentMethods();
-
                 await SetBanks();
 
                 if (_actionForm == Constants.FormConstants.SupplierPayables)
@@ -137,7 +136,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     }
                     int newRowVersion = _actionForm == Constants.FormConstants.SupplierPayables ? _rowVersion : _credRowVersion;
                     var success = await _paymentService.Pay(_referenceId, model, newRowVersion, _paymentRowVersion);
-                    if (success == 1)
+                    if (success > 0)
                     {
                         await _form.SetControls();
                         _form.ClosePaymentsAndBillingForm();

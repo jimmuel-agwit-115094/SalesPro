@@ -160,16 +160,21 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 }
                 if (MessageHandler.ShowQuestionGeneric("Update due date?"))
                 {
+                    int success = 0;
                     if (_actionForm == Constants.FormConstants.SupplierPayables)
                     {
 
-                        await _service.UpdateSupplierPayableDueDate(_poId, dueDate_dt.Value.Date);
+                        success = await _service.UpdateSupplierPayableDueDate(_poId, dueDate_dt.Value.Date, _rowVersion);
                     }
                     else
                     {
-                        await _service.UpdateCustomerCreditDueDate(_customerCreditId, dueDate_dt.Value.Date);
+                        success = await _service.UpdateCustomerCreditDueDate(_customerCreditId, dueDate_dt.Value.Date, _credRowVersion);
                     }
-                    await SetControls();
+                    if (success > 0)
+                    {
+                        await SetControls();
+                    }
+                   
                 }
             }
             catch (Exception ex)

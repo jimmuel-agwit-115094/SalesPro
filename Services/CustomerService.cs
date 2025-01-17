@@ -51,12 +51,11 @@ namespace SalesPro.Services
             }
         }
 
-        // Check if customer is already exist
-        public async Task<bool> IsCustomerExist(string firstName, string lastName, string middleName)
+        public async Task<CustomerModel> IsCustomerExist(string firstName, string lastName, string middleName)
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Customers.AnyAsync(x => x.FirstName == firstName && x.LastName == lastName && x.MiddleName == middleName);
+                return await context.Customers.FirstOrDefaultAsync(x => x.FirstName == firstName && x.LastName == lastName && x.MiddleName == middleName);
             }
         }
     }

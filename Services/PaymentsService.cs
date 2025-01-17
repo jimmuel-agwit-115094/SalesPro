@@ -147,27 +147,39 @@ namespace SalesPro.Services
             return success;
         }
 
-        public async Task UpdateSupplierPayableDueDate(int poId, DateTime date)
+        public async Task<int> UpdateSupplierPayableDueDate(int poId, DateTime date, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                var po = await context.PurchaseOrders.FindAsync(poId);
-                NullCheckerHelper.NullCheck(po);
-                po.DueDate = date;
-                po.CreditTerms = (date - po.DateCreated).Days;
-                await context.SaveChangesAsync();
+                int success = 0;
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var po = await context.PurchaseOrders.FindAsync(poId);
+                    NullCheckerHelper.NullCheck(po);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, po.RowVersion);
+                    po.DueDate = date;
+                    po.CreditTerms = (date - po.DateCreated).Days;
+                    success = await context.SaveChangesAsync();
+                });
+                return success;
             }
         }
 
-        public async Task UpdateCustomerCreditDueDate(int customerCreditId, DateTime date)
+        public async Task<int> UpdateCustomerCreditDueDate(int customerCreditId, DateTime date, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                var creds = await context.CustomerCredits.FindAsync(customerCreditId);
-                NullCheckerHelper.NullCheck(creds);
-                creds.DueDate = date;
-                creds.CreditTerms = (date - creds.CreditedDate).Days;
-                await context.SaveChangesAsync();
+                int success = 0;
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var creds = await context.CustomerCredits.FindAsync(customerCreditId);
+                    NullCheckerHelper.NullCheck(creds);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, creds.RowVersion);
+                    creds.DueDate = date;
+                    creds.CreditTerms = (date - creds.CreditedDate).Days;
+                    success = await context.SaveChangesAsync();
+                });
+                return success;
             }
         }
 
