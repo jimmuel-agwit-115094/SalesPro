@@ -12,6 +12,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
     {
         public int _expenseId;
         public string _formAction;
+        private int _rowVersion;
         private DateTime _curDate;
 
         private readonly ExpenseService _service;
@@ -80,8 +81,9 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     }
                     else
                     {
-                        await _service.UpdateExpense(_expenseId, model);
+                        await _service.UpdateExpense(_expenseId, model, _rowVersion);
                     }
+
                     await _form.LoadExpensesByDate();
                     Close();
                 }
@@ -117,6 +119,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         amt_tx.Text = exp.Amount.ToString("N2");
                         company_tx.Text = exp.Company;
                         receipt_tx.Text = exp.ReceiptNumber;
+                        _rowVersion = exp.RowVersion;
                     }
                     save_btn.Text = "Update";
                     save_btn.BackColor = SystemColors.Highlight;

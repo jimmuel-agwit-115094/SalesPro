@@ -8,35 +8,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Services
 {
     public class ExpenseService
     {
 
-        public async Task SaveExpense(ExpenseModel expense)
+        public async Task<int> SaveExpense(ExpenseModel expense)
         {
             using (var context = new DatabaseContext())
             {
                 await context.Expenses.AddAsync(expense);
-                await context.SaveChangesAsync();
-            }
-        }
-
-        public async Task UpdateExpense(int expenseId, ExpenseModel model, int rowVersion)
-        {
-            using (var context = new DatabaseContext())
-            {
-                var expense = await context.Expenses.FindAsync(expenseId);
-                NullCheckerHelper.NullCheck(expense);
-                VersionCheckerHelper.ConcurrencyCheck(rowVersion, expense.RowVersion);
-                expense.DateAdded = model.DateAdded;
-                expense.ExpenseParticular = model.ExpenseParticular;
-                expense.Amount = model.Amount;
-                expense.Company = model.Company;
-                expense.ReceiptNumber = model.ReceiptNumber;
-                await context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
         }
 
@@ -52,7 +35,7 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Expenses.Where(x=>x.DateAdded.Date == date.Date).ToListAsync();
+                return await context.Expenses.Where(x => x.DateAdded.Date == date.Date).ToListAsync();
             }
         }
 
@@ -64,19 +47,25 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task UpdateExpense(int expenseId, ExpenseModel model)
+        public async Task<int> UpdateExpense(int expenseId, ExpenseModel model, int rowVersion)
         {
+            int success = 0;
             using (var context = new DatabaseContext())
             {
-                var expense = await context.Expenses.FindAsync(expenseId);
-                NullCheckerHelper.NullCheck(expense);
-                expense.DateAdded = model.DateAdded;
-                expense.ExpenseParticular = model.ExpenseParticular;
-                expense.Amount = model.Amount;
-                expense.Company = model.Company;
-                expense.ReceiptNumber = model.ReceiptNumber;
-                await context.SaveChangesAsync();
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var expense = await context.Expenses.FindAsync(expenseId);
+                    NullCheckerHelper.NullCheck(expense);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, expense.RowVersion);
+                    expense.DateAdded = model.DateAdded;
+                    expense.ExpenseParticular = model.ExpenseParticular;
+                    expense.Amount = model.Amount;
+                    expense.Company = model.Company;
+                    expense.ReceiptNumber = model.ReceiptNumber;
+                    success = await context.SaveChangesAsync();
+                });
             }
+            return success;
         }
     }
 }

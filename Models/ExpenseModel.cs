@@ -7,7 +7,6 @@ namespace SalesPro.Models
     {
         [Key]
         public int ExpenseId { get; set; }
-        public int TransactionId { get; set; }
         public DateTime DateAdded { get; set; }
         public string ExpenseParticular { get; set; }
         public decimal Amount { get; set; }
