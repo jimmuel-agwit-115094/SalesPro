@@ -51,7 +51,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(202, 387);
+            this.save_btn.Location = new System.Drawing.Point(202, 389);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(140, 34);
             this.save_btn.TabIndex = 571;
@@ -89,6 +89,18 @@
             // 
             this.particular_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.particular_cb.FormattingEnabled = true;
+            this.particular_cb.Items.AddRange(new object[] {
+            "Meals",
+            "Snacks",
+            "Supplies",
+            "Electricity",
+            "Water",
+            "Internet",
+            "Transportation",
+            "Maintenance",
+            "Labor",
+            "Taxes",
+            "Rent"});
             this.particular_cb.Location = new System.Drawing.Point(14, 102);
             this.particular_cb.Name = "particular_cb";
             this.particular_cb.Size = new System.Drawing.Size(303, 28);
@@ -106,6 +118,7 @@
             // 
             this.receipt_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.receipt_tx.Location = new System.Drawing.Point(14, 273);
+            this.receipt_tx.MaxLength = 20;
             this.receipt_tx.Name = "receipt_tx";
             this.receipt_tx.Size = new System.Drawing.Size(303, 27);
             this.receipt_tx.TabIndex = 568;
@@ -136,9 +149,12 @@
             // 
             this.amt_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.amt_tx.Location = new System.Drawing.Point(14, 159);
+            this.amt_tx.MaxLength = 13;
             this.amt_tx.Name = "amt_tx";
             this.amt_tx.Size = new System.Drawing.Size(303, 27);
             this.amt_tx.TabIndex = 564;
+            this.amt_tx.Text = "0";
+            this.amt_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -190,7 +206,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(357, 439);
+            this.ClientSize = new System.Drawing.Size(353, 439);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.title_lbl);

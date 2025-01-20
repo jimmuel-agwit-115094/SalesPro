@@ -1,8 +1,10 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -60,6 +62,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             try
             {
                 _curDate = await ClockHelper.GetServerDateTime();
+                filter_dt.MaxDate = _curDate.Date;
                 unpaid_rd.Checked = true;
                 unpaidCustomer_rd.Checked = true;
             }
@@ -185,24 +188,40 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         }
 
-        private void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedTabName = paymentTabControl.SelectedTab.Name;
+            try
+            {
+                string selectedTabName = paymentTabControl.SelectedTab.Name;
 
-            if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab)
-            {
-                _selectedTab = Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab;
-                unpaid_rd.Checked = true;
+                if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab)
+                {
+                    _selectedTab = Constants.CustomerCreditPaymentTabSelection.SupplierPayableTab;
+                    unpaid_rd.Checked = true;
+                }
+                else if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab)
+                {
+                    _selectedTab = Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab;
+                    unpaidCustomer_rd.Checked = true;
+                }
+                else
+                {
+                    _selectedTab = Constants.CustomerCreditPaymentTabSelection.ExpensesTab;
+                    await LoadExpensesByDate();
+                }
             }
-            else if (selectedTabName == Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab)
+            catch (Exception ex)
             {
-                _selectedTab = Constants.CustomerCreditPaymentTabSelection.CustomerCreditTab;
-                unpaidCustomer_rd.Checked = true;
+                MessageHandler.ShowError($"Error tab control: {ex.Message}");
             }
-            else
-            {
-                _selectedTab = Constants.CustomerCreditPaymentTabSelection.ExpensesTab;
-            }
+        }
+
+        public async Task LoadExpensesByDate()
+        {
+            var date = filter_dt.Value.Date;
+            var allExp = await _expenseService.LoadAllExpensesByDate(date);
+            dgExpenses.DataSource = allExp;
+            FormatGrid(allExp);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -259,16 +278,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private void new_btn_Click(object sender, EventArgs e)
         {
             var form = new ExpensesForm(this);
+            form._formAction = Constants.SystemConstants.New;
             form.ShowDialog();
         }
 
 
-        private void FormatGrid()
+        private void FormatGrid(List<ExpenseModel> expenses)
         {
             DgExtensions.ConfigureDataGrid(dgExpenses, true, 0, notFoundExpense, "ExpenseId",
-               "Amount", "ExpenseParticular", "Company", "ReceiptNumber", "DateCreated");
+               "Amount", "ExpenseParticular", "Company", "ReceiptNumber", "DateAdded");
             // amount index to last
             dgExpenses.Columns["Amount"].DisplayIndex = dgExpenses.Columns.Count - 1;
+            total_tx.Text = expenses.Sum(x => x.Amount).ToString("N2");
 
         }
 
@@ -276,9 +297,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                var allExp = await _expenseService.LoadAllExpenses();
-                dgExpenses.DataSource = allExp;
-                FormatGrid();
+                filter_dt.Value = _curDate.Date;
+                var newExpList = new List<ExpenseModel>();
+                if (showAllExp_cb.Checked == true)
+                {
+                    newExpList = await _expenseService.LoadAllExpenses();
+                }
+                else
+                {
+                    newExpList = await _expenseService.LoadAllExpensesByDate(_curDate.Date);
+                }
+                dgExpenses.DataSource = newExpList;
+                FormatGrid(newExpList);
             }
             catch (Exception ex)
             {
@@ -290,15 +320,24 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
-                var date = filter_dt.Value.Date; 
-                var allExp = await _expenseService.LoadAllExpensesByDate(date);
-                dgExpenses.DataSource = allExp;
-                FormatGrid();
+                showAllExp_cb.Checked = false;
+                await LoadExpensesByDate();
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error showing date filtered expenses: {ex.Message}");
             }
+        }
+
+        private void dgExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int expId = DgFormatHelper.GetSelectedId(dgExpenses, e, "ExpenseId");
+            if (expId == 0) return;
+
+            var form = new ExpensesForm(this);
+            form._formAction = Constants.SystemConstants.Edit;
+            form._expenseId = expId;
+            form.ShowDialog();
         }
     }
 }

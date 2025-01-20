@@ -55,5 +55,28 @@ namespace SalesPro.Services
                 return await context.Expenses.Where(x=>x.DateAdded.Date == date.Date).ToListAsync();
             }
         }
+
+        public async Task<ExpenseModel> GetExpenseById(int expenseId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Expenses.FindAsync(expenseId);
+            }
+        }
+
+        public async Task UpdateExpense(int expenseId, ExpenseModel model)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var expense = await context.Expenses.FindAsync(expenseId);
+                NullCheckerHelper.NullCheck(expense);
+                expense.DateAdded = model.DateAdded;
+                expense.ExpenseParticular = model.ExpenseParticular;
+                expense.Amount = model.Amount;
+                expense.Company = model.Company;
+                expense.ReceiptNumber = model.ReceiptNumber;
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
