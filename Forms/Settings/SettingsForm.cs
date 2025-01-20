@@ -29,5 +29,10 @@ namespace SalesPro.Settings
                 MessageHandler.ShowError($"Error setting load: {ex.Message}");
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

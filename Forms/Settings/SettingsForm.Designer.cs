@@ -31,12 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.transactionsTabControl = new System.Windows.Forms.TabControl();
+            this.cuurent_tab = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.allTransactions_tab = new System.Windows.Forms.TabPage();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.restore_btn = new System.Windows.Forms.Button();
+            this.backup_btn = new System.Windows.Forms.Button();
             this.Panel1.SuspendLayout();
+            this.transactionsTabControl.SuspendLayout();
+            this.cuurent_tab.SuspendLayout();
+            this.allTransactions_tab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -62,80 +75,147 @@
             this.title_lbl.TabIndex = 0;
             this.title_lbl.Text = "Settings";
             // 
-            // button1
+            // panel3
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(29, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 105);
-            this.button1.TabIndex = 439;
-            this.button1.Text = "Users";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button1.UseVisualStyleBackColor = false;
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 43);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1166, 41);
+            this.panel3.TabIndex = 439;
             // 
-            // button2
+            // transactionsTabControl
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(161, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 105);
-            this.button2.TabIndex = 440;
-            this.button2.Text = "Banks";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button2.UseVisualStyleBackColor = false;
+            this.transactionsTabControl.Controls.Add(this.cuurent_tab);
+            this.transactionsTabControl.Controls.Add(this.allTransactions_tab);
+            this.transactionsTabControl.Controls.Add(this.tabPage1);
+            this.transactionsTabControl.Controls.Add(this.tabPage2);
+            this.transactionsTabControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transactionsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionsTabControl.Location = new System.Drawing.Point(0, 84);
+            this.transactionsTabControl.Name = "transactionsTabControl";
+            this.transactionsTabControl.SelectedIndex = 0;
+            this.transactionsTabControl.Size = new System.Drawing.Size(1166, 607);
+            this.transactionsTabControl.TabIndex = 440;
             // 
-            // button3
+            // cuurent_tab
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(295, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 105);
-            this.button3.TabIndex = 441;
-            this.button3.Text = "Units";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button3.UseVisualStyleBackColor = false;
+            this.cuurent_tab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cuurent_tab.Controls.Add(this.panel6);
+            this.cuurent_tab.Location = new System.Drawing.Point(4, 29);
+            this.cuurent_tab.Name = "cuurent_tab";
+            this.cuurent_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.cuurent_tab.Size = new System.Drawing.Size(1158, 574);
+            this.cuurent_tab.TabIndex = 0;
+            this.cuurent_tab.Text = "         Users           ";
             // 
-            // button4
+            // panel6
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(544, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(108, 105);
-            this.button4.TabIndex = 442;
-            this.button4.Text = "Bakcup";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button4.UseVisualStyleBackColor = false;
+            this.panel6.BackColor = System.Drawing.Color.Green;
+            this.panel6.Location = new System.Drawing.Point(5, -1);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(120, 5);
+            this.panel6.TabIndex = 5;
             // 
-            // button5
+            // allTransactions_tab
             // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(686, 59);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(108, 105);
-            this.button5.TabIndex = 443;
-            this.button5.Text = "Restore";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button5.UseVisualStyleBackColor = false;
+            this.allTransactions_tab.Controls.Add(this.panel7);
+            this.allTransactions_tab.Location = new System.Drawing.Point(4, 29);
+            this.allTransactions_tab.Name = "allTransactions_tab";
+            this.allTransactions_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.allTransactions_tab.Size = new System.Drawing.Size(1158, 574);
+            this.allTransactions_tab.TabIndex = 1;
+            this.allTransactions_tab.Text = "          Banks         ";
+            this.allTransactions_tab.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Green;
+            this.panel7.Location = new System.Drawing.Point(134, -1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(120, 5);
+            this.panel7.TabIndex = 6;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(0, 691);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1166, 3);
+            this.panel10.TabIndex = 460;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 574);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "     Unit Of Measures      ";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.restore_btn);
+            this.tabPage2.Controls.Add(this.backup_btn);
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 574);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "    Database Settings   ";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Green;
+            this.panel2.Location = new System.Drawing.Point(262, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(160, 5);
+            this.panel2.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Green;
+            this.panel4.Location = new System.Drawing.Point(438, -1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(150, 5);
+            this.panel4.TabIndex = 7;
+            // 
+            // restore_btn
+            // 
+            this.restore_btn.BackColor = System.Drawing.Color.White;
+            this.restore_btn.FlatAppearance.BorderSize = 0;
+            this.restore_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restore_btn.Image = ((System.Drawing.Image)(resources.GetObject("restore_btn.Image")));
+            this.restore_btn.Location = new System.Drawing.Point(167, 19);
+            this.restore_btn.Name = "restore_btn";
+            this.restore_btn.Size = new System.Drawing.Size(108, 105);
+            this.restore_btn.TabIndex = 450;
+            this.restore_btn.Text = "Restore";
+            this.restore_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.restore_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.restore_btn.UseVisualStyleBackColor = false;
+            // 
+            // backup_btn
+            // 
+            this.backup_btn.BackColor = System.Drawing.Color.White;
+            this.backup_btn.FlatAppearance.BorderSize = 0;
+            this.backup_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backup_btn.Image = ((System.Drawing.Image)(resources.GetObject("backup_btn.Image")));
+            this.backup_btn.Location = new System.Drawing.Point(25, 19);
+            this.backup_btn.Name = "backup_btn";
+            this.backup_btn.Size = new System.Drawing.Size(108, 105);
+            this.backup_btn.TabIndex = 449;
+            this.backup_btn.Text = "Bakcup";
+            this.backup_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.backup_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.backup_btn.UseVisualStyleBackColor = false;
             // 
             // SettingsForm
             // 
@@ -143,11 +223,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1166, 694);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.transactionsTabControl);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -159,6 +237,11 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
+            this.transactionsTabControl.ResumeLayout(false);
+            this.cuurent_tab.ResumeLayout(false);
+            this.allTransactions_tab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,10 +250,18 @@
 
         internal System.Windows.Forms.Panel Panel1;
         internal System.Windows.Forms.Label title_lbl;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TabControl transactionsTabControl;
+        private System.Windows.Forms.TabPage cuurent_tab;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TabPage allTransactions_tab;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button restore_btn;
+        private System.Windows.Forms.Button backup_btn;
     }
 }
