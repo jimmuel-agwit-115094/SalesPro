@@ -396,6 +396,12 @@
     <Compile Include="Services\PurchaseOrderService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />
+    <Compile Include="Forms\Settings\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validators\Validators.cs" />
     <EmbeddedResource Include="Forms\EmptyForm.resx">
       <DependentUpon>EmptyForm.cs</DependentUpon>
@@ -494,6 +500,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Forms\Settings\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

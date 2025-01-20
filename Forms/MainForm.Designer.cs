@@ -277,6 +277,7 @@
             this.reports_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.reports_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.reports_btn.UseVisualStyleBackColor = false;
+            this.reports_btn.Click += new System.EventHandler(this.reports_btn_Click);
             // 
             // left_nav
             // 
@@ -327,6 +328,7 @@
             this.serttings_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.serttings_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.serttings_btn.UseVisualStyleBackColor = false;
+            this.serttings_btn.Click += new System.EventHandler(this.serttings_btn_Click);
             // 
             // MainForm
             // 

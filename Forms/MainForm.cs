@@ -9,6 +9,7 @@ using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
 using SalesPro.Properties;
 using SalesPro.Services;
+using SalesPro.Settings;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -124,6 +125,17 @@ namespace SalesPro.Forms
         private void paymentsAndBilling_btn_Click(object sender, EventArgs e)
         {
             var form = new PaymentsAndBillingForm();
+            LoadFormInPanel(form);
+        }
+
+        private void reports_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serttings_btn_Click(object sender, EventArgs e)
+        {
+            var form = new SettingsForm();
             LoadFormInPanel(form);
         }
     }
