@@ -1,4 +1,6 @@
 ﻿using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
+using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +15,25 @@ namespace SalesPro.Settings
 {
     public partial class SettingsForm : Form
     {
+        private readonly SettingService _service;
         public SettingsForm()
         {
             InitializeComponent();
+            _service = new SettingService();
         }
 
-        private void SettingsForm_Load(object sender, EventArgs e)
+        public async Task LoadUsers()
+        {
+            var users = await _service.LoadUsers();
+            dgUsers.DataSource = users;
+            DgExtensions.ConfigureDataGrid(dgUsers, true, 0, noRecordUser, "UserId", "Fullname", "AccountStatus", "DateAdded");
+        }
+
+        private async void SettingsForm_Load(object sender, EventArgs e)
         {
             try
             {
-
+                await LoadUsers();
             }
             catch (Exception ex)
             {
