@@ -38,7 +38,6 @@
             this.top_nav = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
-            this.store_lbl = new System.Windows.Forms.Label();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.orders_btn = new System.Windows.Forms.Button();
             this.po_btn = new System.Windows.Forms.Button();
@@ -141,7 +140,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(8, 79);
+            this.label3.Location = new System.Drawing.Point(8, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(196, 13);
             this.label3.TabIndex = 12;
@@ -150,24 +149,13 @@
             // PictureBox1
             // 
             this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-            this.PictureBox1.Location = new System.Drawing.Point(83, 8);
+            this.PictureBox1.Location = new System.Drawing.Point(57, 4);
             this.PictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(36, 33);
+            this.PictureBox1.Size = new System.Drawing.Size(80, 80);
             this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox1.TabIndex = 1;
             this.PictureBox1.TabStop = false;
-            // 
-            // store_lbl
-            // 
-            this.store_lbl.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.store_lbl.Location = new System.Drawing.Point(4, 46);
-            this.store_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.store_lbl.Name = "store_lbl";
-            this.store_lbl.Size = new System.Drawing.Size(197, 33);
-            this.store_lbl.TabIndex = 2;
-            this.store_lbl.Text = "Kabsat Harware Store";
-            this.store_lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // menuPanel
             // 
@@ -298,7 +286,6 @@
             this.left_nav.Controls.Add(this.menuPanel);
             this.left_nav.Controls.Add(this.label3);
             this.left_nav.Controls.Add(this.PictureBox1);
-            this.left_nav.Controls.Add(this.store_lbl);
             this.left_nav.Controls.Add(this.serttings_btn);
             this.left_nav.Dock = System.Windows.Forms.DockStyle.Left;
             this.left_nav.Location = new System.Drawing.Point(0, 0);
@@ -380,7 +367,6 @@
         internal System.Windows.Forms.Panel top_nav;
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.PictureBox PictureBox1;
-        internal System.Windows.Forms.Label store_lbl;
         public System.Windows.Forms.Panel menuPanel;
         internal System.Windows.Forms.Button orders_btn;
         internal System.Windows.Forms.Button po_btn;

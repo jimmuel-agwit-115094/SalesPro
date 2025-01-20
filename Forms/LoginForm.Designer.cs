@@ -43,9 +43,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(20, 21);
+            this.pictureBox2.Location = new System.Drawing.Point(27, 26);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
+            this.pictureBox2.Size = new System.Drawing.Size(57, 53);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 449;
             this.pictureBox2.TabStop = false;
@@ -56,8 +57,7 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(20, 152);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(27, 187);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 17);
             this.label2.TabIndex = 448;
@@ -69,8 +69,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(18, 88);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(24, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 447;
@@ -80,11 +79,12 @@
             // 
             this.company_tx.AutoSize = true;
             this.company_tx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.company_tx.Location = new System.Drawing.Point(71, 46);
+            this.company_tx.Location = new System.Drawing.Point(95, 57);
+            this.company_tx.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.company_tx.Name = "company_tx";
-            this.company_tx.Size = new System.Drawing.Size(126, 15);
+            this.company_tx.Size = new System.Drawing.Size(86, 15);
             this.company_tx.TabIndex = 446;
-            this.company_tx.Text = "Kabsat Hardware Store";
+            this.company_tx.Text = "Authentication";
             // 
             // login_btn
             // 
@@ -93,9 +93,10 @@
             this.login_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.ForeColor = System.Drawing.Color.White;
-            this.login_btn.Location = new System.Drawing.Point(128, 229);
+            this.login_btn.Location = new System.Drawing.Point(171, 282);
+            this.login_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(153, 34);
+            this.login_btn.Size = new System.Drawing.Size(204, 42);
             this.login_btn.TabIndex = 445;
             this.login_btn.Text = "Login";
             this.login_btn.UseVisualStyleBackColor = false;
@@ -105,36 +106,39 @@
             // 
             this.Label3.AutoSize = true;
             this.Label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(69, 21);
+            this.Label3.Location = new System.Drawing.Point(92, 26);
+            this.Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(140, 25);
+            this.Label3.Size = new System.Drawing.Size(89, 25);
             this.Label3.TabIndex = 444;
-            this.Label3.Text = "Authentication";
+            this.Label3.Text = "Sales Pro";
             // 
             // password_tx
             // 
             this.password_tx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_tx.Location = new System.Drawing.Point(20, 171);
+            this.password_tx.Location = new System.Drawing.Point(27, 210);
+            this.password_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.password_tx.Name = "password_tx";
             this.password_tx.PasswordChar = '●';
-            this.password_tx.Size = new System.Drawing.Size(261, 23);
+            this.password_tx.Size = new System.Drawing.Size(347, 23);
             this.password_tx.TabIndex = 443;
             // 
             // username_tx
             // 
             this.username_tx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_tx.Location = new System.Drawing.Point(20, 107);
+            this.username_tx.Location = new System.Drawing.Point(27, 132);
+            this.username_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.username_tx.Name = "username_tx";
-            this.username_tx.Size = new System.Drawing.Size(261, 23);
+            this.username_tx.Size = new System.Drawing.Size(347, 23);
             this.username_tx.TabIndex = 442;
             // 
             // LoginForm
             // 
             this.AcceptButton = this.login_btn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(300, 279);
+            this.ClientSize = new System.Drawing.Size(400, 343);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -145,6 +149,7 @@
             this.Controls.Add(this.username_tx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
