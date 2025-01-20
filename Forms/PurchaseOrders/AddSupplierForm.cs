@@ -3,6 +3,7 @@ using SalesPro.Services;
 using System;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.PurchaseOrders
@@ -43,10 +44,15 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                await _form.SetSupplierDataOnControls(_supplierId);
-                await _form.ReloadRowVersion();
-                Close();
+                await ProcessSupplier();
             }
+        }
+
+        private async Task ProcessSupplier()
+        {
+            await _form.SetSupplierDataOnControls(_supplierId);
+            await _form.ReloadRowVersion();
+            Close();
         }
 
         private async void dgSupplier_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -56,10 +62,7 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 return;
             }
-            await _form.SetSupplierDataOnControls(_supplierId);
-            await _form.LoadPurchaseOrderItemsByPoId();
-            await _form.ReloadRowVersion();
-            Close();
+            await ProcessSupplier();
         }
 
         private void dgSupplier_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
