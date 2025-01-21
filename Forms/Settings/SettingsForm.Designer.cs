@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.newUser_btn = new System.Windows.Forms.Button();
             this.transactionsTabControl = new System.Windows.Forms.TabControl();
             this.userTab = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.search_tx = new System.Windows.Forms.TextBox();
             this.noRecordUser = new System.Windows.Forms.Label();
             this.dgUsers = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -49,18 +53,16 @@
             this.backup_btn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.search_tx = new System.Windows.Forms.TextBox();
             this.Panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.transactionsTabControl.SuspendLayout();
             this.userTab.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).BeginInit();
             this.bankTab.SuspendLayout();
             this.unitOfMeasureTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel1
@@ -90,11 +92,27 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.newUser_btn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 43);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1166, 41);
+            this.panel3.Size = new System.Drawing.Size(1166, 57);
             this.panel3.TabIndex = 439;
+            // 
+            // newUser_btn
+            // 
+            this.newUser_btn.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.newUser_btn.FlatAppearance.BorderSize = 0;
+            this.newUser_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newUser_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newUser_btn.ForeColor = System.Drawing.Color.White;
+            this.newUser_btn.Location = new System.Drawing.Point(11, 12);
+            this.newUser_btn.Name = "newUser_btn";
+            this.newUser_btn.Size = new System.Drawing.Size(128, 33);
+            this.newUser_btn.TabIndex = 495;
+            this.newUser_btn.Text = "New User";
+            this.newUser_btn.UseVisualStyleBackColor = false;
+            this.newUser_btn.Click += new System.EventHandler(this.newUser_btn_Click);
             // 
             // transactionsTabControl
             // 
@@ -104,7 +122,7 @@
             this.transactionsTabControl.Controls.Add(this.databaseTab);
             this.transactionsTabControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.transactionsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.transactionsTabControl.Location = new System.Drawing.Point(0, 84);
+            this.transactionsTabControl.Location = new System.Drawing.Point(0, 100);
             this.transactionsTabControl.Name = "transactionsTabControl";
             this.transactionsTabControl.SelectedIndex = 0;
             this.transactionsTabControl.Size = new System.Drawing.Size(1166, 607);
@@ -124,13 +142,45 @@
             this.userTab.TabIndex = 0;
             this.userTab.Text = "         Users           ";
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.pictureBox1);
+            this.panel5.Controls.Add(this.search_tx);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1152, 40);
+            this.panel5.TabIndex = 460;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1123, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 435;
+            this.pictureBox1.TabStop = false;
+            // 
+            // search_tx
+            // 
+            this.search_tx.BackColor = System.Drawing.Color.White;
+            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_tx.Location = new System.Drawing.Point(761, 8);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.search_tx.Name = "search_tx";
+            this.search_tx.Size = new System.Drawing.Size(389, 27);
+            this.search_tx.TabIndex = 434;
+            // 
             // noRecordUser
             // 
             this.noRecordUser.AutoSize = true;
             this.noRecordUser.BackColor = System.Drawing.Color.WhiteSmoke;
             this.noRecordUser.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noRecordUser.ForeColor = System.Drawing.Color.IndianRed;
-            this.noRecordUser.Location = new System.Drawing.Point(475, 260);
+            this.noRecordUser.Location = new System.Drawing.Point(483, 268);
             this.noRecordUser.Name = "noRecordUser";
             this.noRecordUser.Size = new System.Drawing.Size(174, 45);
             this.noRecordUser.TabIndex = 459;
@@ -168,7 +218,7 @@
             this.dgUsers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgUsers.EnableHeadersVisualStyles = false;
             this.dgUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgUsers.Location = new System.Drawing.Point(3, 55);
+            this.dgUsers.Location = new System.Drawing.Point(3, 45);
             this.dgUsers.MultiSelect = false;
             this.dgUsers.Name = "dgUsers";
             this.dgUsers.ReadOnly = true;
@@ -176,7 +226,7 @@
             this.dgUsers.RowHeadersWidth = 51;
             this.dgUsers.RowTemplate.Height = 32;
             this.dgUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgUsers.Size = new System.Drawing.Size(1149, 513);
+            this.dgUsers.Size = new System.Drawing.Size(1149, 523);
             this.dgUsers.TabIndex = 458;
             // 
             // panel6
@@ -281,42 +331,10 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 691);
+            this.panel10.Location = new System.Drawing.Point(0, 707);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1166, 3);
+            this.panel10.Size = new System.Drawing.Size(1166, 0);
             this.panel10.TabIndex = 460;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.pictureBox1);
-            this.panel5.Controls.Add(this.search_tx);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1152, 46);
-            this.panel5.TabIndex = 460;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1123, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 435;
-            this.pictureBox1.TabStop = false;
-            // 
-            // search_tx
-            // 
-            this.search_tx.BackColor = System.Drawing.Color.White;
-            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(761, 10);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
-            this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(389, 27);
-            this.search_tx.TabIndex = 434;
             // 
             // SettingsForm
             // 
@@ -338,16 +356,17 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.transactionsTabControl.ResumeLayout(false);
             this.userTab.ResumeLayout(false);
             this.userTab.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).EndInit();
             this.bankTab.ResumeLayout(false);
             this.unitOfMeasureTab.ResumeLayout(false);
             this.databaseTab.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -374,5 +393,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
+        private System.Windows.Forms.Button newUser_btn;
     }
 }

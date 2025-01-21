@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Forms.Settings;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
@@ -15,6 +16,9 @@ namespace SalesPro.Settings
 {
     public partial class SettingsForm : Form
     {
+        private int _userId;
+        private int _rowVersion;
+
         private readonly SettingService _service;
         public SettingsForm()
         {
@@ -44,6 +48,13 @@ namespace SalesPro.Settings
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void newUser_btn_Click(object sender, EventArgs e)
+        {
+            var form = new UserForm(this);
+            form._actionForm = Constants.SystemConstants.New;
+            form.ShowDialog();
         }
     }
 }

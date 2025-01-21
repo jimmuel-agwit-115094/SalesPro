@@ -18,5 +18,15 @@ namespace SalesPro.Services
                 return await context.Users.ToListAsync();
             }
         }
+
+        public async Task SaveUser(UserModel user)
+        {
+            using (var context = new DatabaseContext())
+            {
+                context.Users.Add(user);
+                await context.SaveChangesAsync();
+            }
+        }
+
     }
 }
