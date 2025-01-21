@@ -332,6 +332,12 @@
     <Compile Include="Forms\PurchaseOrders\PurchaseOrderForm.Designer.cs">
       <DependentUpon>PurchaseOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\BankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\BankForm.Designer.cs">
+      <DependentUpon>BankForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -491,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PurchaseOrders\PurchaseOrderForm.resx">
       <DependentUpon>PurchaseOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\BankForm.resx">
+      <DependentUpon>BankForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>

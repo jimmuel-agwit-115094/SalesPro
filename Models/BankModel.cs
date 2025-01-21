@@ -9,5 +9,7 @@ namespace SalesPro.Models
         public int BankId { get; set; }
         public string BankName { get; set; }
         public BankType BankType { get; set; }
+        public string Address { get; set; }
+        public string Contact { get; set; }
     }
 }

@@ -16,7 +16,27 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-               return await context.Banks.Where(x => x.BankId != 1).ToListAsync();
+                return await context.Banks.Where(x => x.BankId != 1).ToListAsync();
+            }
+        }
+
+        // ----------------- CRUD -----------------
+
+        // Save
+        public async Task SaveBank(BankModel bank)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.Banks.AddAsync(bank);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<BankModel>> LoadBanks()
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Banks.OrderBy(x=>x.BankName).ToListAsync();
             }
         }
     }

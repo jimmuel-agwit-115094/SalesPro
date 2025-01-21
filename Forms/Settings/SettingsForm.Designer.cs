@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.newUser_btn = new System.Windows.Forms.Button();
-            this.transactionsTabControl = new System.Windows.Forms.TabControl();
+            this.new_btn = new System.Windows.Forms.Button();
+            this.settingsTabControl = new System.Windows.Forms.TabControl();
             this.userTab = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -45,7 +48,13 @@
             this.dgUsers = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.bankTab = new System.Windows.Forms.TabPage();
+            this.dgBanks = new System.Windows.Forms.DataGridView();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.bankSearch_tx = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.suppliersTab = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.unitOfMeasureTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.databaseTab = new System.Windows.Forms.TabPage();
@@ -55,20 +64,22 @@
             this.activationTab = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.suppliersTab = new System.Windows.Forms.TabPage();
-            this.panel9 = new System.Windows.Forms.Panel();
+            this.noRecordBank = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.transactionsTabControl.SuspendLayout();
+            this.settingsTabControl.SuspendLayout();
             this.userTab.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).BeginInit();
             this.bankTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBanks)).BeginInit();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.suppliersTab.SuspendLayout();
             this.unitOfMeasureTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
             this.activationTab.SuspendLayout();
-            this.suppliersTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -98,43 +109,44 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.newUser_btn);
+            this.panel3.Controls.Add(this.new_btn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 43);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1166, 57);
             this.panel3.TabIndex = 439;
             // 
-            // newUser_btn
+            // new_btn
             // 
-            this.newUser_btn.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.newUser_btn.FlatAppearance.BorderSize = 0;
-            this.newUser_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newUser_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newUser_btn.ForeColor = System.Drawing.Color.White;
-            this.newUser_btn.Location = new System.Drawing.Point(11, 12);
-            this.newUser_btn.Name = "newUser_btn";
-            this.newUser_btn.Size = new System.Drawing.Size(128, 33);
-            this.newUser_btn.TabIndex = 495;
-            this.newUser_btn.Text = "New User";
-            this.newUser_btn.UseVisualStyleBackColor = false;
-            this.newUser_btn.Click += new System.EventHandler(this.newUser_btn_Click);
+            this.new_btn.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.new_btn.FlatAppearance.BorderSize = 0;
+            this.new_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.new_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_btn.ForeColor = System.Drawing.Color.White;
+            this.new_btn.Location = new System.Drawing.Point(11, 12);
+            this.new_btn.Name = "new_btn";
+            this.new_btn.Size = new System.Drawing.Size(128, 33);
+            this.new_btn.TabIndex = 495;
+            this.new_btn.Text = "New User";
+            this.new_btn.UseVisualStyleBackColor = false;
+            this.new_btn.Click += new System.EventHandler(this.newUser_btn_Click);
             // 
-            // transactionsTabControl
+            // settingsTabControl
             // 
-            this.transactionsTabControl.Controls.Add(this.userTab);
-            this.transactionsTabControl.Controls.Add(this.bankTab);
-            this.transactionsTabControl.Controls.Add(this.suppliersTab);
-            this.transactionsTabControl.Controls.Add(this.unitOfMeasureTab);
-            this.transactionsTabControl.Controls.Add(this.databaseTab);
-            this.transactionsTabControl.Controls.Add(this.activationTab);
-            this.transactionsTabControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transactionsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.transactionsTabControl.Location = new System.Drawing.Point(0, 100);
-            this.transactionsTabControl.Name = "transactionsTabControl";
-            this.transactionsTabControl.SelectedIndex = 0;
-            this.transactionsTabControl.Size = new System.Drawing.Size(1166, 607);
-            this.transactionsTabControl.TabIndex = 440;
+            this.settingsTabControl.Controls.Add(this.userTab);
+            this.settingsTabControl.Controls.Add(this.bankTab);
+            this.settingsTabControl.Controls.Add(this.suppliersTab);
+            this.settingsTabControl.Controls.Add(this.unitOfMeasureTab);
+            this.settingsTabControl.Controls.Add(this.databaseTab);
+            this.settingsTabControl.Controls.Add(this.activationTab);
+            this.settingsTabControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.settingsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settingsTabControl.Location = new System.Drawing.Point(0, 100);
+            this.settingsTabControl.Name = "settingsTabControl";
+            this.settingsTabControl.SelectedIndex = 0;
+            this.settingsTabControl.Size = new System.Drawing.Size(1166, 607);
+            this.settingsTabControl.TabIndex = 440;
+            this.settingsTabControl.SelectedIndexChanged += new System.EventHandler(this.settingsTabControl_SelectedIndexChanged);
             // 
             // userTab
             // 
@@ -164,7 +176,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1123, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(1123, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -175,7 +187,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(761, 8);
+            this.search_tx.Location = new System.Drawing.Point(761, 6);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
@@ -200,30 +212,30 @@
             this.dgUsers.AllowUserToAddRows = false;
             this.dgUsers.AllowUserToDeleteRows = false;
             this.dgUsers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dgUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgUsers.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgUsers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgUsers.ColumnHeadersHeight = 30;
             this.dgUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgUsers.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgUsers.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgUsers.EnableHeadersVisualStyles = false;
             this.dgUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgUsers.Location = new System.Drawing.Point(3, 45);
@@ -248,6 +260,9 @@
             // 
             // bankTab
             // 
+            this.bankTab.Controls.Add(this.noRecordBank);
+            this.bankTab.Controls.Add(this.dgBanks);
+            this.bankTab.Controls.Add(this.panel11);
             this.bankTab.Controls.Add(this.panel7);
             this.bankTab.Location = new System.Drawing.Point(4, 29);
             this.bankTab.Name = "bankTab";
@@ -257,13 +272,106 @@
             this.bankTab.Text = "          Banks         ";
             this.bankTab.UseVisualStyleBackColor = true;
             // 
+            // dgBanks
+            // 
+            this.dgBanks.AllowUserToAddRows = false;
+            this.dgBanks.AllowUserToDeleteRows = false;
+            this.dgBanks.AllowUserToResizeRows = false;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgBanks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgBanks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgBanks.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgBanks.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgBanks.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBanks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgBanks.ColumnHeadersHeight = 30;
+            this.dgBanks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgBanks.DefaultCellStyle = dataGridViewCellStyle21;
+            this.dgBanks.EnableHeadersVisualStyles = false;
+            this.dgBanks.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgBanks.Location = new System.Drawing.Point(3, 45);
+            this.dgBanks.MultiSelect = false;
+            this.dgBanks.Name = "dgBanks";
+            this.dgBanks.ReadOnly = true;
+            this.dgBanks.RowHeadersVisible = false;
+            this.dgBanks.RowHeadersWidth = 51;
+            this.dgBanks.RowTemplate.Height = 32;
+            this.dgBanks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgBanks.Size = new System.Drawing.Size(1149, 523);
+            this.dgBanks.TabIndex = 462;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel11.Controls.Add(this.pictureBox2);
+            this.panel11.Controls.Add(this.bankSearch_tx);
+            this.panel11.Location = new System.Drawing.Point(3, 6);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1152, 37);
+            this.panel11.TabIndex = 461;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1123, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 435;
+            this.pictureBox2.TabStop = false;
+            // 
+            // bankSearch_tx
+            // 
+            this.bankSearch_tx.BackColor = System.Drawing.Color.White;
+            this.bankSearch_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bankSearch_tx.Location = new System.Drawing.Point(761, 5);
+            this.bankSearch_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.bankSearch_tx.Name = "bankSearch_tx";
+            this.bankSearch_tx.Size = new System.Drawing.Size(389, 27);
+            this.bankSearch_tx.TabIndex = 434;
+            this.bankSearch_tx.TextChanged += new System.EventHandler(this.bankSearch_tx_TextChanged);
+            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(132, 1);
+            this.panel7.Location = new System.Drawing.Point(127, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(120, 5);
+            this.panel7.Size = new System.Drawing.Size(130, 5);
             this.panel7.TabIndex = 6;
+            // 
+            // suppliersTab
+            // 
+            this.suppliersTab.Controls.Add(this.panel9);
+            this.suppliersTab.Location = new System.Drawing.Point(4, 29);
+            this.suppliersTab.Name = "suppliersTab";
+            this.suppliersTab.Padding = new System.Windows.Forms.Padding(3);
+            this.suppliersTab.Size = new System.Drawing.Size(1158, 574);
+            this.suppliersTab.TabIndex = 5;
+            this.suppliersTab.Text = "       Suppliers      ";
+            this.suppliersTab.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Green;
+            this.panel9.Location = new System.Drawing.Point(260, 1);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(120, 5);
+            this.panel9.TabIndex = 8;
             // 
             // unitOfMeasureTab
             // 
@@ -364,24 +472,18 @@
             this.panel10.Size = new System.Drawing.Size(1166, 0);
             this.panel10.TabIndex = 460;
             // 
-            // suppliersTab
+            // noRecordBank
             // 
-            this.suppliersTab.Controls.Add(this.panel9);
-            this.suppliersTab.Location = new System.Drawing.Point(4, 29);
-            this.suppliersTab.Name = "suppliersTab";
-            this.suppliersTab.Padding = new System.Windows.Forms.Padding(3);
-            this.suppliersTab.Size = new System.Drawing.Size(1158, 574);
-            this.suppliersTab.TabIndex = 5;
-            this.suppliersTab.Text = "       Suppliers      ";
-            this.suppliersTab.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.Green;
-            this.panel9.Location = new System.Drawing.Point(260, 1);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(120, 5);
-            this.panel9.TabIndex = 8;
+            this.noRecordBank.AutoSize = true;
+            this.noRecordBank.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.noRecordBank.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noRecordBank.ForeColor = System.Drawing.Color.IndianRed;
+            this.noRecordBank.Location = new System.Drawing.Point(459, 275);
+            this.noRecordBank.Name = "noRecordBank";
+            this.noRecordBank.Size = new System.Drawing.Size(174, 45);
+            this.noRecordBank.TabIndex = 463;
+            this.noRecordBank.Text = "No Record";
+            this.noRecordBank.Visible = false;
             // 
             // SettingsForm
             // 
@@ -390,7 +492,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1166, 694);
             this.Controls.Add(this.panel10);
-            this.Controls.Add(this.transactionsTabControl);
+            this.Controls.Add(this.settingsTabControl);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -404,7 +506,7 @@
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.transactionsTabControl.ResumeLayout(false);
+            this.settingsTabControl.ResumeLayout(false);
             this.userTab.ResumeLayout(false);
             this.userTab.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -412,10 +514,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).EndInit();
             this.bankTab.ResumeLayout(false);
+            this.bankTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBanks)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.suppliersTab.ResumeLayout(false);
             this.unitOfMeasureTab.ResumeLayout(false);
             this.databaseTab.ResumeLayout(false);
             this.activationTab.ResumeLayout(false);
-            this.suppliersTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -425,7 +532,7 @@
         internal System.Windows.Forms.Panel Panel1;
         internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TabControl transactionsTabControl;
+        private System.Windows.Forms.TabControl settingsTabControl;
         private System.Windows.Forms.TabPage userTab;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TabPage bankTab;
@@ -442,10 +549,15 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
-        private System.Windows.Forms.Button newUser_btn;
+        private System.Windows.Forms.Button new_btn;
         private System.Windows.Forms.TabPage activationTab;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TabPage suppliersTab;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        internal System.Windows.Forms.TextBox bankSearch_tx;
+        internal System.Windows.Forms.DataGridView dgBanks;
+        private System.Windows.Forms.Label noRecordBank;
     }
 }
