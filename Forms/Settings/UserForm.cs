@@ -31,6 +31,7 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
                 _curDate = await ClockHelper.GetServerDateTime();
                 if (_actionForm == Constants.SystemConstants.Edit)
                 {
@@ -41,7 +42,6 @@ namespace SalesPro.Forms.Settings
                     if (user != null)
                     {
                         fullname_tx.Text = user.Fullname;
-                        access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
                         access_cb.SelectedItem = user.UserAccess;
                         username_tx.Text = user.Username;
                         pin_tx.Text = user.Pin;
@@ -52,8 +52,6 @@ namespace SalesPro.Forms.Settings
                 {
                     title_lbl.Text = "New User";
                     save_btn.Text = "Save";
-
-                    access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
                     access_cb.SelectedIndex = 1;
                 }
 

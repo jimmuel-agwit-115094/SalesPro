@@ -62,7 +62,7 @@ namespace SalesPro.Settings
 
             if (settingsTabControl.SelectedIndex == 1)
             {
-                var form = new BankForm();
+                var form = new BankForm(this);
                 form._actionForm = Constants.SystemConstants.New;
                 form.ShowDialog();
             }
@@ -122,6 +122,23 @@ namespace SalesPro.Settings
         private void bankSearch_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgBanks, bankSearch_tx);
+        }
+
+        private void dgBanks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int bankId = DgFormatHelper.GetSelectedId(dgBanks, e, "BankId");
+                if (bankId == 0) return;
+                var form = new BankForm(this);
+                form._bankId = bankId;
+                form._actionForm = Constants.SystemConstants.Edit;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error clicking bank {ex.Message}");
+            }
         }
     }
 }
