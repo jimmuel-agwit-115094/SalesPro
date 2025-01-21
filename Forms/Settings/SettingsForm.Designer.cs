@@ -48,6 +48,7 @@
             this.dgUsers = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.bankTab = new System.Windows.Forms.TabPage();
+            this.noRecordBank = new System.Windows.Forms.Label();
             this.dgBanks = new System.Windows.Forms.DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -64,7 +65,6 @@
             this.activationTab = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.noRecordBank = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.settingsTabControl.SuspendLayout();
@@ -272,6 +272,19 @@
             this.bankTab.Text = "          Banks         ";
             this.bankTab.UseVisualStyleBackColor = true;
             // 
+            // noRecordBank
+            // 
+            this.noRecordBank.AutoSize = true;
+            this.noRecordBank.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.noRecordBank.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noRecordBank.ForeColor = System.Drawing.Color.IndianRed;
+            this.noRecordBank.Location = new System.Drawing.Point(459, 275);
+            this.noRecordBank.Name = "noRecordBank";
+            this.noRecordBank.Size = new System.Drawing.Size(174, 45);
+            this.noRecordBank.TabIndex = 463;
+            this.noRecordBank.Text = "No Record";
+            this.noRecordBank.Visible = false;
+            // 
             // dgBanks
             // 
             this.dgBanks.AllowUserToAddRows = false;
@@ -472,19 +485,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1166, 0);
             this.panel10.TabIndex = 460;
-            // 
-            // noRecordBank
-            // 
-            this.noRecordBank.AutoSize = true;
-            this.noRecordBank.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.noRecordBank.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noRecordBank.ForeColor = System.Drawing.Color.IndianRed;
-            this.noRecordBank.Location = new System.Drawing.Point(459, 275);
-            this.noRecordBank.Name = "noRecordBank";
-            this.noRecordBank.Size = new System.Drawing.Size(174, 45);
-            this.noRecordBank.TabIndex = 463;
-            this.noRecordBank.Text = "No Record";
-            this.noRecordBank.Visible = false;
             // 
             // SettingsForm
             // 
