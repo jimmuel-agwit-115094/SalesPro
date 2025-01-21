@@ -20,19 +20,20 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task SaveUser(UserModel user)
+        public async Task<int> SaveUser(UserModel user)
         {
             using (var context = new DatabaseContext())
             {
                 context.Users.Add(user);
-                await context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
         }
 
-        public async Task UpdateUser(int userId, UserModel user, int rowVersion)
+        public async Task<int> UpdateUser(int userId, UserModel user, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                int success = 0;
                 await context.ExecuteInTransactionAsync(async () =>
                 {
                     var userToUpdate = await context.Users.FindAsync(userId);
@@ -46,8 +47,9 @@ namespace SalesPro.Services
                     userToUpdate.UserAccess = user.UserAccess;
                     userToUpdate.UserId = userId;
                     await context.SaveChangesAsync();
+                    success = 1;
                 });
-
+                return success;
             }
         }
 
@@ -59,11 +61,11 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<UserModel> GetUsernameIfExist(string username)
+        public async Task<UserModel> GetUsernameIfExist(string username, int id)
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+                return await context.Users.FirstOrDefaultAsync(x => x.Username == username && x.UserId != id);
             }
         }
 

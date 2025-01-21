@@ -34,7 +34,7 @@ namespace SalesPro.Forms.Settings
                 _curDate = await ClockHelper.GetServerDateTime();
                 if (_actionForm == Constants.SystemConstants.Edit)
                 {
-                    Text = "Edit User";
+                    title_lbl.Text = "Edit User";
                     save_btn.Text = "Update";
 
                     var user = await _userService.GetUserById(_userId);
@@ -45,11 +45,12 @@ namespace SalesPro.Forms.Settings
                         access_cb.SelectedItem = user.UserAccess;
                         username_tx.Text = user.Username;
                         pin_tx.Text = user.Pin;
+                        _rowVersion = user.RowVersion;
                     }
                 }
                 else
                 {
-                    Text = "New User";
+                    title_lbl.Text = "New User";
                     save_btn.Text = "Save";
 
                     access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
@@ -71,7 +72,7 @@ namespace SalesPro.Forms.Settings
 
         private async Task<bool> CheckIfUsernameTaken()
         {
-            var user = await _userService.GetUsernameIfExist(username_tx.Text);
+            var user = await _userService.GetUsernameIfExist(username_tx.Text, _userId);
             return user != null;
         }
 
@@ -151,20 +152,22 @@ namespace SalesPro.Forms.Settings
                 }
 
                 var action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
-
+                int success = 0;
                 if (MessageHandler.ShowQuestionGeneric($"Confirm {action} user?"))
                 {
                     if (_actionForm == Constants.SystemConstants.New)
                     {
                         var user = BuildUserModel(true);
-                        await _userService.SaveUser(user);
-                        await _form.LoadUsers();
-                        Close();
+                        success = await _userService.SaveUser(user);
                     }
                     else
                     {
                         var user = BuildUserModel(false);
-                        await _userService.UpdateUser(_userId, user, _rowVersion);
+                        success = await _userService.UpdateUser(_userId, user, _rowVersion);
+                    }
+
+                    if (success > 0)
+                    {
                         await _form.LoadUsers();
                         Close();
                     }
@@ -174,6 +177,18 @@ namespace SalesPro.Forms.Settings
             {
                 MessageHandler.ShowError($"Error saving user: {ex.Message}");
             }
+        }
+
+        private async void UserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //try
+            //{
+            //    await _form.LoadUsers();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageHandler.ShowError(ex.Message);
+            //}
         }
     }
 }
