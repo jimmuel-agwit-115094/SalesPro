@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -52,9 +52,11 @@
             this.restore_btn = new System.Windows.Forms.Button();
             this.backup_btn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.activationTab = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.suppliersTab = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.transactionsTabControl.SuspendLayout();
@@ -66,6 +68,7 @@
             this.unitOfMeasureTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
             this.activationTab.SuspendLayout();
+            this.suppliersTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -121,6 +124,7 @@
             // 
             this.transactionsTabControl.Controls.Add(this.userTab);
             this.transactionsTabControl.Controls.Add(this.bankTab);
+            this.transactionsTabControl.Controls.Add(this.suppliersTab);
             this.transactionsTabControl.Controls.Add(this.unitOfMeasureTab);
             this.transactionsTabControl.Controls.Add(this.databaseTab);
             this.transactionsTabControl.Controls.Add(this.activationTab);
@@ -151,10 +155,9 @@
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.search_tx);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Location = new System.Drawing.Point(3, 6);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1152, 40);
+            this.panel5.Size = new System.Drawing.Size(1152, 37);
             this.panel5.TabIndex = 460;
             // 
             // pictureBox1
@@ -197,30 +200,30 @@
             this.dgUsers.AllowUserToAddRows = false;
             this.dgUsers.AllowUserToDeleteRows = false;
             this.dgUsers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dgUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgUsers.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgUsers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgUsers.ColumnHeadersHeight = 30;
             this.dgUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgUsers.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgUsers.DefaultCellStyle = dataGridViewCellStyle21;
             this.dgUsers.EnableHeadersVisualStyles = false;
             this.dgUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgUsers.Location = new System.Drawing.Point(3, 45);
@@ -238,7 +241,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Green;
-            this.panel6.Location = new System.Drawing.Point(5, 0);
+            this.panel6.Location = new System.Drawing.Point(5, 1);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(120, 5);
             this.panel6.TabIndex = 5;
@@ -257,7 +260,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(132, -1);
+            this.panel7.Location = new System.Drawing.Point(132, 1);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(120, 5);
             this.panel7.TabIndex = 6;
@@ -277,7 +280,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Green;
-            this.panel2.Location = new System.Drawing.Point(262, -1);
+            this.panel2.Location = new System.Drawing.Point(389, 1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(160, 5);
             this.panel2.TabIndex = 7;
@@ -328,19 +331,10 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Green;
-            this.panel4.Location = new System.Drawing.Point(438, -1);
+            this.panel4.Location = new System.Drawing.Point(565, 1);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(150, 5);
             this.panel4.TabIndex = 7;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 707);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1166, 0);
-            this.panel10.TabIndex = 460;
             // 
             // activationTab
             // 
@@ -356,10 +350,38 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Green;
-            this.panel8.Location = new System.Drawing.Point(584, 0);
+            this.panel8.Location = new System.Drawing.Point(722, 1);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(150, 5);
+            this.panel8.Size = new System.Drawing.Size(130, 5);
             this.panel8.TabIndex = 8;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(0, 707);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1166, 0);
+            this.panel10.TabIndex = 460;
+            // 
+            // suppliersTab
+            // 
+            this.suppliersTab.Controls.Add(this.panel9);
+            this.suppliersTab.Location = new System.Drawing.Point(4, 29);
+            this.suppliersTab.Name = "suppliersTab";
+            this.suppliersTab.Padding = new System.Windows.Forms.Padding(3);
+            this.suppliersTab.Size = new System.Drawing.Size(1158, 574);
+            this.suppliersTab.TabIndex = 5;
+            this.suppliersTab.Text = "       Suppliers      ";
+            this.suppliersTab.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Green;
+            this.panel9.Location = new System.Drawing.Point(260, 1);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(120, 5);
+            this.panel9.TabIndex = 8;
             // 
             // SettingsForm
             // 
@@ -393,6 +415,7 @@
             this.unitOfMeasureTab.ResumeLayout(false);
             this.databaseTab.ResumeLayout(false);
             this.activationTab.ResumeLayout(false);
+            this.suppliersTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -422,5 +445,7 @@
         private System.Windows.Forms.Button newUser_btn;
         private System.Windows.Forms.TabPage activationTab;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TabPage suppliersTab;
+        private System.Windows.Forms.Panel panel9;
     }
 }
