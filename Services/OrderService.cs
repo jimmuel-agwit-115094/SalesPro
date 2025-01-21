@@ -541,9 +541,12 @@ namespace SalesPro.Services
             var existingOrderItem = await GetExistingOrderItem(inventoryId, orderId);
             if (existingOrderItem != null)
             {
-                if (itemStatus == OrderItemStatus.Added && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
+                int totalToBeOrdered = existingOrderItem.OrderQuantity + quantity;
+                if (itemStatus == OrderItemStatus.Added && totalToBeOrdered >= prodInventory.QuantityOnHand)
                 {
-                    MessageHandler.ShowWarning("Stock is limited. You've already added the available quantity to this order.");
+                    MessageHandler.ShowWarning($"Stock is limited. You've already added the available quantity to this order.\n" +
+                        $"Total Ordered : {totalToBeOrdered} \n" +
+                        $"Available: {prodInventory.QuantityOnHand}");
                     return null;
                 }
 
