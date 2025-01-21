@@ -62,54 +62,54 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 255);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 257);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
+            this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 599;
             this.label1.Text = "Notes";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(21, 137);
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(23, 139);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 17);
+            this.label11.Size = new System.Drawing.Size(84, 17);
             this.label11.TabIndex = 598;
             this.label11.Text = "Or Number :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 76);
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(20, 78);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 17);
+            this.label5.Size = new System.Drawing.Size(121, 17);
             this.label5.TabIndex = 597;
             this.label5.Text = "Reference Number";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 196);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(22, 199);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 17);
+            this.label2.Size = new System.Drawing.Size(38, 17);
             this.label2.TabIndex = 596;
             this.label2.Text = "Bank";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label4.Location = new System.Drawing.Point(20, 14);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(20, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 17);
+            this.label4.Size = new System.Drawing.Size(114, 17);
             this.label4.TabIndex = 595;
             this.label4.Text = "Payment Method";
             // 
@@ -136,7 +136,7 @@
             this.notes_tx.BackColor = System.Drawing.Color.White;
             this.notes_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.notes_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notes_tx.Location = new System.Drawing.Point(17, 274);
+            this.notes_tx.Location = new System.Drawing.Point(17, 276);
             this.notes_tx.Margin = new System.Windows.Forms.Padding(2);
             this.notes_tx.MaxLength = 100;
             this.notes_tx.Multiline = true;
@@ -149,7 +149,7 @@
             this.orNunber_tx.BackColor = System.Drawing.Color.White;
             this.orNunber_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.orNunber_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orNunber_tx.Location = new System.Drawing.Point(19, 156);
+            this.orNunber_tx.Location = new System.Drawing.Point(19, 158);
             this.orNunber_tx.Margin = new System.Windows.Forms.Padding(2);
             this.orNunber_tx.MaxLength = 20;
             this.orNunber_tx.Name = "orNunber_tx";
@@ -161,7 +161,7 @@
             this.reference_tx.BackColor = System.Drawing.Color.White;
             this.reference_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.reference_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reference_tx.Location = new System.Drawing.Point(19, 95);
+            this.reference_tx.Location = new System.Drawing.Point(19, 97);
             this.reference_tx.Margin = new System.Windows.Forms.Padding(2);
             this.reference_tx.MaxLength = 20;
             this.reference_tx.Name = "reference_tx";
@@ -178,7 +178,7 @@
             "CHECK",
             "BANK TRANSFER",
             "E-PAYMENT"});
-            this.bank_cb.Location = new System.Drawing.Point(19, 216);
+            this.bank_cb.Location = new System.Drawing.Point(19, 218);
             this.bank_cb.Name = "bank_cb";
             this.bank_cb.Size = new System.Drawing.Size(294, 29);
             this.bank_cb.TabIndex = 601;
@@ -188,7 +188,7 @@
             this.paymentMethod_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethod_cb.FormattingEnabled = true;
-            this.paymentMethod_cb.Location = new System.Drawing.Point(19, 33);
+            this.paymentMethod_cb.Location = new System.Drawing.Point(19, 35);
             this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2);
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(294, 29);

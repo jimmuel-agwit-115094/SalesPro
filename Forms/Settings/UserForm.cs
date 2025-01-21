@@ -12,6 +12,7 @@ namespace SalesPro.Forms.Settings
 {
     public partial class UserForm : Form
     {
+        private DateTime _curDate;
         public int _userId;
         public int _rowVersion;
         public string _actionForm;
@@ -26,12 +27,35 @@ namespace SalesPro.Forms.Settings
             TextBoxHelper.FormatIntegerTextbox(pin_tx);
         }
 
-        private void UserForm_Load(object sender, EventArgs e)
+        private async void UserForm_Load(object sender, EventArgs e)
         {
             try
             {
-                access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
-                access_cb.SelectedIndex = 1;
+                _curDate = await ClockHelper.GetServerDateTime();
+                if (_actionForm == Constants.SystemConstants.Edit)
+                {
+                    Text = "Edit User";
+                    save_btn.Text = "Update";
+
+                    var user = await _userService.GetUserById(_userId);
+                    if (user != null)
+                    {
+                        fullname_tx.Text = user.Fullname;
+                        access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
+                        access_cb.SelectedItem = user.UserAccess;
+                        username_tx.Text = user.Username;
+                        pin_tx.Text = user.Pin;
+                    }
+                }
+                else
+                {
+                    Text = "New User";
+                    save_btn.Text = "Save";
+
+                    access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
+                    access_cb.SelectedIndex = 1;
+                }
+
             }
             catch (Exception ex)
             {
@@ -41,7 +65,7 @@ namespace SalesPro.Forms.Settings
 
         private async Task<bool> CheckIfUserExist()
         {
-            var user = await _userService.GetUserIfExist(fullname_tx.Text);
+            var user = await _userService.GetUserIfExist(fullname_tx.Text, _userId);
             return user != null;
         }
 
@@ -49,6 +73,23 @@ namespace SalesPro.Forms.Settings
         {
             var user = await _userService.GetUsernameIfExist(username_tx.Text);
             return user != null;
+        }
+
+        private UserModel BuildUserModel(bool isNew)
+        {
+            var password = EncryptionHelper.EncryptPassword(password_tx.Text);
+            var user = new UserModel
+            {
+                Username = username_tx.Text,
+                Password = password,
+                Fullname = fullname_tx.Text,
+                UserAccess = Enum.TryParse(access_cb.Text, out UserAccess userAccess) ? userAccess : throw new InvalidOperationException("Invalid UserAccess value"),
+                Pin = pin_tx.Text,
+                AccountStatus = 0,
+                DateAdded = isNew ? _curDate : default, // Set DateAdded only if it's a new user
+                DateUpdated = _curDate
+            };
+            return user;
         }
 
         private async void save_btn_Click(object sender, EventArgs e)
@@ -109,21 +150,24 @@ namespace SalesPro.Forms.Settings
                     return;
                 }
 
-                if (MessageHandler.ShowQuestionGeneric("Save new user?"))
+                var action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
+
+                if (MessageHandler.ShowQuestionGeneric($"Confirm {action} user?"))
                 {
-                    var password = EncryptionHelper.EncryptPassword(password_tx.Text);
-                    var user = new UserModel
+                    if (_actionForm == Constants.SystemConstants.New)
                     {
-                        Username = username_tx.Text,
-                        Password = password,
-                        Fullname = fullname_tx.Text,
-                        UserAccess = Enum.TryParse(access_cb.Text, out UserAccess userAccess) ? userAccess : throw new InvalidOperationException("Invalid UserAccess value"),
-                        Pin = pin_tx.Text,
-                        AccountStatus = 0
-                    };
-                    await _userService.SaveUser(user);
-                    await _form.LoadUsers();
-                    Close();
+                        var user = BuildUserModel(true);
+                        await _userService.SaveUser(user);
+                        await _form.LoadUsers();
+                        Close();
+                    }
+                    else
+                    {
+                        var user = BuildUserModel(false);
+                        await _userService.UpdateUser(_userId, user, _rowVersion);
+                        await _form.LoadUsers();
+                        Close();
+                    }
                 }
             }
             catch (Exception ex)

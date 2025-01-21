@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using POS_Generic.Helpers;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,33 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<UserModel> GetUserIfExist(string fullname)
+        public async Task UpdateUser(int userId, UserModel user, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Users.FirstOrDefaultAsync(x => x.Fullname == fullname);
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var userToUpdate = await context.Users.FindAsync(userId);
+                    NullCheckerHelper.NullCheck(userToUpdate);
+                    VersionCheckerHelper.ConcurrencyCheck(userToUpdate.RowVersion, rowVersion);
+
+                    userToUpdate.Fullname = user.Fullname;
+                    userToUpdate.Username = user.Username;
+                    userToUpdate.Password = user.Password;
+                    userToUpdate.Pin = user.Pin;
+                    userToUpdate.UserAccess = user.UserAccess;
+                    userToUpdate.UserId = userId;
+                    await context.SaveChangesAsync();
+                });
+
+            }
+        }
+
+        public async Task<UserModel> GetUserIfExist(string fullname, int id)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Users.FirstOrDefaultAsync(x => x.Fullname == fullname && x.UserId != id);
             }
         }
 
@@ -41,6 +64,14 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 return await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            }
+        }
+
+        public async Task<UserModel> GetUserById(int userId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Users.FindAsync(userId);
             }
         }
     }

@@ -17,6 +17,7 @@ namespace SalesPro.Models
         public UserAccess UserAccess { get; set; }
         public AccountStatus AccountStatus { get; set; }
         public DateTime DateAdded { get; set; }
+        public DateTime DateUpdated { get; set; }
 
         // Method to validate the password using SHA-256
         public bool ValidatePassword(string inputPassword)

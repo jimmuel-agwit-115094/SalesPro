@@ -56,5 +56,27 @@ namespace SalesPro.Settings
             form._actionForm = Constants.SystemConstants.New;
             form.ShowDialog();
         }
+
+        private void dgUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int userId = DgFormatHelper.GetSelectedId(dgUsers, e, "UserId");
+                if (userId == 0) return;
+                var form = new UserForm(this);
+                form._userId = userId;
+                form._actionForm = Constants.SystemConstants.Edit;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error user click: {ex.Message}");
+            }
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgUsers, search_tx);
+        }
     }
 }
