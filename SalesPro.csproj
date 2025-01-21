@@ -401,7 +401,7 @@
     <Compile Include="Services\PaymentsService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\PurchaseOrderService.cs" />
-    <Compile Include="Services\SettingService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />
     <Compile Include="Forms\Settings\SettingsForm.cs">

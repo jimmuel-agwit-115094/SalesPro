@@ -19,16 +19,16 @@ namespace SalesPro.Settings
         private int _userId;
         private int _rowVersion;
 
-        private readonly SettingService _service;
+        private readonly UserService _userService;
         public SettingsForm()
         {
             InitializeComponent();
-            _service = new SettingService();
+            _userService = new UserService();
         }
 
         public async Task LoadUsers()
         {
-            var users = await _service.LoadUsers();
+            var users = await _userService.LoadUsers();
             dgUsers.DataSource = users;
             DgExtensions.ConfigureDataGrid(dgUsers, true, 0, noRecordUser, "UserId", "Fullname", "AccountStatus", "DateAdded");
         }

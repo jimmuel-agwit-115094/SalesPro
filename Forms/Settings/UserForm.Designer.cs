@@ -73,7 +73,7 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(16, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 328);
+            this.groupBox1.Size = new System.Drawing.Size(330, 332);
             this.groupBox1.TabIndex = 570;
             this.groupBox1.TabStop = false;
             // 
@@ -82,7 +82,7 @@
             this.access_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.access_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.access_cb.FormattingEnabled = true;
-            this.access_cb.Location = new System.Drawing.Point(14, 279);
+            this.access_cb.Location = new System.Drawing.Point(14, 289);
             this.access_cb.Name = "access_cb";
             this.access_cb.Size = new System.Drawing.Size(303, 28);
             this.access_cb.TabIndex = 573;
@@ -90,7 +90,8 @@
             // pin_tx
             // 
             this.pin_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.pin_tx.Location = new System.Drawing.Point(14, 220);
+            this.pin_tx.Location = new System.Drawing.Point(14, 224);
+            this.pin_tx.MaxLength = 4;
             this.pin_tx.Name = "pin_tx";
             this.pin_tx.Size = new System.Drawing.Size(303, 27);
             this.pin_tx.TabIndex = 572;
@@ -99,7 +100,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 201);
+            this.label2.Location = new System.Drawing.Point(16, 204);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 17);
@@ -110,7 +111,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(15, 259);
+            this.label6.Location = new System.Drawing.Point(15, 269);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 17);
@@ -120,7 +121,8 @@
             // password_tx
             // 
             this.password_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.password_tx.Location = new System.Drawing.Point(14, 158);
+            this.password_tx.Location = new System.Drawing.Point(14, 162);
+            this.password_tx.MaxLength = 25;
             this.password_tx.Name = "password_tx";
             this.password_tx.Size = new System.Drawing.Size(303, 27);
             this.password_tx.TabIndex = 564;
@@ -129,7 +131,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 139);
+            this.label3.Location = new System.Drawing.Point(16, 143);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 17);
@@ -139,7 +141,8 @@
             // username_tx
             // 
             this.username_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.username_tx.Location = new System.Drawing.Point(14, 98);
+            this.username_tx.Location = new System.Drawing.Point(14, 100);
+            this.username_tx.MaxLength = 25;
             this.username_tx.Name = "username_tx";
             this.username_tx.Size = new System.Drawing.Size(303, 27);
             this.username_tx.TabIndex = 562;
@@ -148,7 +151,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 79);
+            this.label1.Location = new System.Drawing.Point(16, 81);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 17);
@@ -159,6 +162,7 @@
             // 
             this.fullname_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.fullname_tx.Location = new System.Drawing.Point(14, 39);
+            this.fullname_tx.MaxLength = 25;
             this.fullname_tx.Name = "fullname_tx";
             this.fullname_tx.Size = new System.Drawing.Size(303, 27);
             this.fullname_tx.TabIndex = 560;

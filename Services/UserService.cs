@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SalesPro.Services
 {
-    public class SettingService
+    public class UserService
     {
         public async Task<List<UserModel>> LoadUsers()
         {
@@ -28,5 +28,20 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<UserModel> GetUserIfExist(string fullname)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Users.FirstOrDefaultAsync(x => x.Fullname == fullname);
+            }
+        }
+
+        public async Task<UserModel> GetUsernameIfExist(string username)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            }
+        }
     }
 }
