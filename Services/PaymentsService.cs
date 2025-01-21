@@ -141,7 +141,8 @@ namespace SalesPro.Services
                     payment.OrNumber = paymentModel.OrNumber;
                     payment.BankName = paymentModel.BankName;
                     payment.Notes = paymentModel.Notes;
-                    success = await context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
+                    success = 1;
                 });
             }
             return success;

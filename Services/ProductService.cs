@@ -15,21 +15,22 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Products.OrderBy(x=>x.ProductName).ToListAsync();
+                return await context.Products.OrderBy(x => x.ProductName).ToListAsync();
             }
         }
 
-        public async Task SaveProduct(ProductModel product)
+        public async Task<int> SaveProduct(ProductModel product)
         {
             using (var context = new DatabaseContext())
             {
                 context.Products.Add(product);
-                await context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
         }
 
-        public async Task UpdateProduct(int productId, ProductModel productModel, int rowVersion)
+        public async Task<int> UpdateProduct(int productId, ProductModel productModel, int rowVersion)
         {
+            int success = 0;
             using (var context = new DatabaseContext())
             {
                 await context.ExecuteInTransactionAsync(async () =>
@@ -37,7 +38,7 @@ namespace SalesPro.Services
                     var product = await context.Products.FindAsync(productId);
                     NullCheckerHelper.NullCheck(product);
                     VersionCheckerHelper.ConcurrencyCheck(product.RowVersion, rowVersion);
-                    
+
                     // Update product
                     product.ProductName = productModel.ProductName;
                     product.BarCode = productModel.BarCode;
@@ -55,12 +56,14 @@ namespace SalesPro.Services
                         OldValue = product.ProductName,
                         NewValue = productModel.ProductName,
                         PerformedBy = UserSession.Session_UserId,
-                        DatePerformed = await ClockHelper.GetServerDateTime(),    
+                        DatePerformed = await ClockHelper.GetServerDateTime(),
                     };
                     await context.ProductLogs.AddAsync(log);
                     await context.SaveChangesAsync();
+                    success = 1;
                 });
             }
+            return success;
         }
 
         public async Task<ProductModel> GetProductById(int productId)

@@ -67,6 +67,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 string type = _formAction == Constants.SystemConstants.New ? "save" : "update";
                 if (MessageHandler.ShowQuestionGeneric($"Confirm {type} expense?"))
                 {
+                    int success = 0;
                     var model = new ExpenseModel
                     {
                         DateAdded = dateAdded_dt.Value,
@@ -77,15 +78,19 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     };
                     if (_formAction == Constants.SystemConstants.New)
                     {
-                        await _service.SaveExpense(model);
+                        success = await _service.SaveExpense(model);
                     }
                     else
                     {
-                        await _service.UpdateExpense(_expenseId, model, _rowVersion);
+                        success = await _service.UpdateExpense(_expenseId, model, _rowVersion);
                     }
 
+                    if (success > 0)
+                    {
+                        Close();
+                    }
                     await _form.LoadExpensesByDate();
-                    Close();
+
                 }
             }
             catch (Exception ex)

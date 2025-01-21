@@ -62,7 +62,8 @@ namespace SalesPro.Services
                     expense.Amount = model.Amount;
                     expense.Company = model.Company;
                     expense.ReceiptNumber = model.ReceiptNumber;
-                    success = await context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
+                    success = 1;
                 });
             }
             return success;

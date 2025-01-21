@@ -140,7 +140,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
                     _form.unpaid_rd.Checked = true;
                     _form.paid_rd.Checked = true;
-                    Close();
+                    if (success > 0)
+                    {
+                        Close();
+                    }
                 }
             }
             catch (Exception ex)

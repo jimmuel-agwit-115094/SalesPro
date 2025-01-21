@@ -168,27 +168,15 @@ namespace SalesPro.Forms.Settings
 
                     if (success > 0)
                     {
-                        await _form.LoadUsers();
                         Close();
                     }
+                    await _form.LoadUsers();
                 }
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error saving user: {ex.Message}");
             }
-        }
-
-        private async void UserForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //try
-            //{
-            //    await _form.LoadUsers();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageHandler.ShowError(ex.Message);
-            //}
         }
     }
 }

@@ -91,9 +91,10 @@ namespace SalesPro.Forms.Products
 
             try
             {
+                int success = 0;
                 if (_actionType == Constants.SystemConstants.New)
                 {
-                    await _service.SaveProduct(new ProductModel
+                    success = await _service.SaveProduct(new ProductModel
                     {
                         ProductName = productName_tx.Text,
                         BarCode = barCode_tx.Text,
@@ -104,7 +105,7 @@ namespace SalesPro.Forms.Products
                 }
                 else
                 {
-                    await _service.UpdateProduct(_productId, new ProductModel
+                    success = await _service.UpdateProduct(_productId, new ProductModel
                     {
                         ProductName = productName_tx.Text,
                         BarCode = barCode_tx.Text,
@@ -113,7 +114,12 @@ namespace SalesPro.Forms.Products
                         ReorderLevel = int.Parse(reorder_tx.Text),
                     }, _rowVersion);
                 }
-                Close();
+
+                if (success > 0)
+                {
+                    Close();
+                }
+
                 await _productForm.LoadProducts();
             }
             catch (Exception ex)

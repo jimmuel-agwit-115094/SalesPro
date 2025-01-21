@@ -138,10 +138,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     var success = await _paymentService.Pay(_referenceId, model, newRowVersion, _paymentRowVersion);
                     if (success > 0)
                     {
-                        await _form.SetControls();
-                        _form.ClosePaymentsAndBillingForm();
                         Close();
                     }
+                    await _form.SetControls();
+                    _form.ClosePaymentsAndBillingForm();
                 }
             }
             catch (Exception ex)
