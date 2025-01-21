@@ -521,5 +521,82 @@ namespace SalesPro.Services
                 return updatedOrder;
             }
         }
+
+        public async Task<OrderModel> ProcessOrderItem(OrderItemStatus itemStatus, int inventoryId, int orderId, int quantity, int rowVersion)
+        {
+            var prodInventory = await GetInventoryById(inventoryId);
+            if (prodInventory == null)
+            {
+                MessageHandler.ShowWarning("Product not found on inventory. Please select the product and try again.");
+                return null;
+            }
+
+            if (itemStatus == OrderItemStatus.Added && quantity > prodInventory.QuantityOnHand)
+            {
+                MessageHandler.ShowWarning("Quantity is greater than the available stock.");
+                return null;
+            }
+
+            // Check if product is out of stock when already added item
+            var existingOrderItem = await GetExistingOrderItem(inventoryId, orderId);
+            if (existingOrderItem != null)
+            {
+                if (itemStatus == OrderItemStatus.Added && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
+                {
+                    MessageHandler.ShowWarning("Stock is limited. You've already added the available quantity to this order.");
+                    return null;
+                }
+
+                // to absolut quantity
+                int absQuantity = Math.Abs(existingOrderItem.OrderQuantity);
+                if (existingOrderItem.InventoryId == prodInventory.InventoryId
+                    && quantity == absQuantity
+                    && existingOrderItem.ProductId == prodInventory.ProductId
+                    && itemStatus != existingOrderItem.OrderItemStatus)
+                {
+                    MessageHandler.ShowWarning("You cannot add and return the same quantity of a product, as it results in a zero quantity. Please adjust the quantity to keep the order valid.");
+                    return null;
+                }
+            }
+
+            // Assess if item is for addition or returned
+            int newQuantity = itemStatus == OrderItemStatus.Added ? quantity : -quantity;
+
+            // Save order item
+            var orderItem = new OrderItemModel
+            {
+                OrderId = orderId,
+                InventoryId = inventoryId,
+                ProductId = prodInventory.ProductId,
+                OrderQuantity = newQuantity,
+                Price = prodInventory.RetailPrice,
+                TotalPrice = newQuantity * prodInventory.RetailPrice,
+                OrderItemStatus = itemStatus,
+            };
+
+
+            return await SaveOrderItem(orderId, inventoryId, itemStatus, orderItem, rowVersion);
+
+        }
+
+        public async Task<int> GetInventoryIdByBarCode(string barcode)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var inventory = await (from i in context.Inventories
+                                       join p in context.Products on i.ProductId equals p.ProductId
+                                       where p.BarCode == barcode
+                                       select new InventoryModel
+                                       {
+                                           InventoryId = i.InventoryId
+                                       }).FirstOrDefaultAsync();
+
+                if (inventory != null)
+                {
+                    return inventory.InventoryId;
+                }
+                return 0;
+            }
+        }
     }
 }

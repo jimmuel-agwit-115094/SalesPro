@@ -439,5 +439,27 @@ namespace SalesPro.Forms.Orders
         {
 
         }
+
+        private async void barcode_tx_TextChanged(object sender, EventArgs e)
+        {
+            var invetoryId = await _service.GetInventoryIdByBarCode(barcode_tx.Text);
+
+            if (barcode_tx.TextLength == 13)
+            {
+                var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, Convert.ToInt32(qty_tx.Value), _rowVersion);
+                // Set order controls
+                SetOrderControls(savedOrder);
+
+                //Load ordered items
+                await LoadOrderedItems(_orderId);
+                await ReloadRowVersion();
+                qty_tx.Value = 1;
+                dgItems.Select();
+
+                barcode_tx.Text = string.Empty;
+                barcode_tx.Focus();
+                barcode_tx.Select();
+            }
+        }
     }
 }

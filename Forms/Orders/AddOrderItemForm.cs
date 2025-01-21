@@ -105,59 +105,7 @@ namespace SalesPro.Forms.Orders
 
         private async Task ProcessOrderItem(OrderItemStatus itemStatus)
         {
-            var prodInventory = await _service.GetInventoryById(_inventoryId);
-            if (prodInventory == null)
-            {
-                MessageHandler.ShowWarning("Product not found on inventory. Please select the product and try again.");
-                return;
-            }
-
-            if (itemStatus == OrderItemStatus.Added && _quantity > prodInventory.QuantityOnHand)
-            {
-                MessageHandler.ShowWarning("Quantity is greater than the available stock.");
-                return;
-            }
-
-            // Check if product is out of stock when already added item
-            var existingOrderItem = await _service.GetExistingOrderItem(_inventoryId, _orderId);
-            if (existingOrderItem != null)
-            {
-                if (itemStatus == OrderItemStatus.Added && existingOrderItem.OrderQuantity >= prodInventory.QuantityOnHand)
-                {
-                    MessageHandler.ShowWarning("Stock is limited. You've already added the available quantity to this order.");
-                    return;
-                }
-
-                // to absolut quantity
-                int absQuantity = Math.Abs(existingOrderItem.OrderQuantity);
-                if (existingOrderItem.InventoryId == prodInventory.InventoryId
-                    && _quantity == absQuantity
-                    && existingOrderItem.ProductId == prodInventory.ProductId
-                    && itemStatus != existingOrderItem.OrderItemStatus)
-                {
-                    MessageHandler.ShowWarning("You cannot add and return the same quantity of a product, as it results in a zero quantity. Please adjust the quantity to keep the order valid.");
-                    return;
-                }
-            }
-
-            // Assess if item is for addition or returned
-            int newQuantity = itemStatus == OrderItemStatus.Added ? _quantity : -_quantity;
-
-            // Save order item
-            var orderItem = new OrderItemModel
-            {
-                OrderId = _orderId,
-                InventoryId = _inventoryId,
-                ProductId = prodInventory.ProductId,
-                OrderQuantity = newQuantity,
-                Price = prodInventory.RetailPrice,
-                TotalPrice = newQuantity * prodInventory.RetailPrice,
-                OrderItemStatus = itemStatus,
-            };
-
-
-            var savedOrder = await _service.SaveOrderItem(_orderId, _inventoryId, itemStatus, orderItem, _rowVersion);
-
+            var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, _quantity, _rowVersion);
             // Set order controls
             _orderForm.SetOrderControls(savedOrder);
 
