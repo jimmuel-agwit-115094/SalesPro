@@ -31,7 +31,7 @@ namespace SalesPro.Forms.Orders
             _service = new OrderService();
             KeyPress += OrderForm_KeyPress;
             KeyPreview = true;
-            TextBoxHelper.FormatIntegerTextbox(qty_tx);
+            TextBoxHelper.FormatQuantityIntegerTextbox(qty_tx);
         }
 
         private OrderModel BuildOrderModel()
@@ -501,7 +501,7 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void qty_tx_ValueChanged(object sender, EventArgs e)
+        private void qty_tx_TextChanged(object sender, EventArgs e)
         {
 
         }

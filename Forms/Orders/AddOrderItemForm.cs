@@ -127,6 +127,10 @@ namespace SalesPro.Forms.Orders
                     Close();
                 }
             }
+            catch (InvalidOperationException inEx)
+            {
+                MessageHandler.ShowWarning($"Validation error: \n {inEx.Message}");
+            }
             catch (NullReferenceException nullEx)
             {
                 MessageHandler.ShowWarning($"Not Found: \n {nullEx.Message}");
