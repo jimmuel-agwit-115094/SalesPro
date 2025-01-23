@@ -20,13 +20,18 @@ namespace SalesPro.Forms.Orders
         private int _orderId;
         private int _orderItemId;
         private decimal _totalPrice = 0;
+        DateTime _lastKeystroke = DateTime.Now;
+        List<char> _barcode = new List<char>(10);
+
 
         private readonly OrderService _service;
         public OrderForm()
         {
             InitializeComponent();
             _service = new OrderService();
+            KeyPress += OrderForm_KeyPress;
             KeyPreview = true;
+            TextBoxHelper.FormatIntegerTextbox(qty_tx);
         }
 
         private OrderModel BuildOrderModel()
@@ -440,26 +445,65 @@ namespace SalesPro.Forms.Orders
 
         }
 
-        private async void barcode_tx_TextChanged(object sender, EventArgs e)
+        private void barcode_tx_TextChanged(object sender, EventArgs e)
         {
-            var invetoryId = await _service.GetInventoryIdByBarCode(barcode_tx.Text);
 
-            if (barcode_tx.TextLength == 13)
+        }
+
+        private async Task ProcessOrderItem(string barcode)
+        {
+            var invetoryId = await _service.GetInventoryIdByBarCode(barcode);
+            var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, Convert.ToInt32(qty_tx.Text), _rowVersion);
+            // Set order controls
+            SetOrderControls(savedOrder.OrderModel);
+
+            //Load ordered items
+            await LoadOrderedItems(_orderId);
+            await ReloadRowVersion();
+            qty_tx.Text = "1";
+            dgItems.Select();
+        }
+
+        private async void OrderForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //// Check if focused control is quantity textbox
+            //if (this.ActiveControl == barcode_tx)
+            //{
+            //    // If it's a barcode scanner input (check timing)
+            //    TimeSpan elapsed = (DateTime. - _lastKeystroke);
+            //    if (elapsed.TotalMilliseconds <= 100)
+            //    {
+            //        dgItems.Select();
+            //    }
+            //    else
+            //    {
+            //        // Allow manual input
+            //        return;
+            //    }
+            //}
+
+            // Process barcode scanner input
+            TimeSpan elapsedBarcode = (DateTime.Now - _lastKeystroke);
+            if (elapsedBarcode.TotalMilliseconds > 100)
+                _barcode.Clear();
+
+            _barcode.Add(e.KeyChar);
+            _lastKeystroke = DateTime.Now;
+
+            // Process barcode when Enter key is pressed
+            if (e.KeyChar == (char)13 && _barcode.Count > 0)
             {
-                var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, Convert.ToInt32(qty_tx.Value), _rowVersion);
-                // Set order controls
-                SetOrderControls(savedOrder);
-
-                //Load ordered items
-                await LoadOrderedItems(_orderId);
-                await ReloadRowVersion();
-                qty_tx.Value = 1;
-                dgItems.Select();
-
-                barcode_tx.Text = string.Empty;
-                barcode_tx.Focus();
-                barcode_tx.Select();
+                string barcode = new String(_barcode.ToArray());
+                var formatted = BarCodeHelper.FormatBarcode(barcode);
+                await ProcessOrderItem(formatted);
+                _barcode.Clear();
+                barcode_tx.Clear();
             }
+        }
+
+        private void qty_tx_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

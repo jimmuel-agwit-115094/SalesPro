@@ -266,10 +266,11 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<OrderModel> SaveOrderItem(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
+        public async Task<OrderResult> SaveOrderItem(int orderId, int inventoryId, OrderItemStatus itemStatus, OrderItemModel orderItem, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
+                int success = 0;
                 var updatedOrder = new OrderModel();
                 await context.ExecuteInTransactionAsync(async () =>
                 {
@@ -296,10 +297,16 @@ namespace SalesPro.Services
                     // Reload the order to get the updated RowVersion
                     updatedOrder = await context.Orders.FindAsync(orderId);
                     await context.Entry(updatedOrder).ReloadAsync();
-
+                    success = 1;
                 });
 
-                return updatedOrder;
+                var result = new OrderResult
+                {
+                    OrderModel = updatedOrder,
+                    SuccessResult = success
+                };
+
+                return result;
             }
         }
 
@@ -522,19 +529,17 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<OrderModel> ProcessOrderItem(OrderItemStatus itemStatus, int inventoryId, int orderId, int quantity, int rowVersion)
+        public async Task<OrderResult> ProcessOrderItem(OrderItemStatus itemStatus, int inventoryId, int orderId, int quantity, int rowVersion)
         {
             var prodInventory = await GetInventoryById(inventoryId);
             if (prodInventory == null)
             {
-                MessageHandler.ShowWarning("Product not found on inventory. Please select the product and try again.");
-                return null;
+                throw new InvalidOperationException("Product not found on inventory. Please select the product and try again.");
             }
 
             if (itemStatus == OrderItemStatus.Added && quantity > prodInventory.QuantityOnHand)
             {
-                MessageHandler.ShowWarning("Quantity is greater than the available stock.");
-                return null;
+                throw new InvalidOperationException("Quantity is greater than the available stock.");
             }
 
             // Check if product is out of stock when already added item
@@ -544,10 +549,9 @@ namespace SalesPro.Services
                 int totalToBeOrdered = existingOrderItem.OrderQuantity + quantity;
                 if (itemStatus == OrderItemStatus.Added && totalToBeOrdered > prodInventory.QuantityOnHand)
                 {
-                    MessageHandler.ShowWarning($"Stock is limited. You've already added the available quantity to this order.\n" +
-                        $"Total Ordered : {totalToBeOrdered} \n" +
-                        $"Available: {prodInventory.QuantityOnHand}");
-                    return null;
+                    throw new InvalidOperationException($"Stock is limited. You've already added the available quantity to this order.\n" +
+                $"Total Ordered: {totalToBeOrdered} \n" +
+                $"Available: {prodInventory.QuantityOnHand}");
                 }
 
                 // to absolut quantity
@@ -557,8 +561,7 @@ namespace SalesPro.Services
                     && existingOrderItem.ProductId == prodInventory.ProductId
                     && itemStatus != existingOrderItem.OrderItemStatus)
                 {
-                    MessageHandler.ShowWarning("You cannot add and return the same quantity of a product, as it results in a zero quantity. Please adjust the quantity to keep the order valid.");
-                    return null;
+                    throw new InvalidOperationException("You cannot add and return the same quantity of a product, as it results in a zero quantity. Please adjust the quantity to keep the order valid.");
                 }
             }
 
@@ -577,9 +580,9 @@ namespace SalesPro.Services
                 OrderItemStatus = itemStatus,
             };
 
+            var order = await SaveOrderItem(orderId, inventoryId, itemStatus, orderItem, rowVersion);
 
-            return await SaveOrderItem(orderId, inventoryId, itemStatus, orderItem, rowVersion);
-
+            return order;
         }
 
         public async Task<int> GetInventoryIdByBarCode(string barcode)

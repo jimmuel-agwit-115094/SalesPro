@@ -356,6 +356,7 @@
     <Compile Include="Forms\Transactions\TransactionForm.Designer.cs">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BarCodeHelper.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="Helpers\NullCheckerHelper.cs" />
     <Compile Include="Helpers\PaymentMethodHelper.cs" />

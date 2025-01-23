@@ -105,31 +105,41 @@ namespace SalesPro.Forms.Orders
 
         private async Task ProcessOrderItem(OrderItemStatus itemStatus)
         {
-            var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, _quantity, _rowVersion);
-            // Set order controls
-            _orderForm.SetOrderControls(savedOrder);
+            try
+            {
+                if (Convert.ToInt32(_quantity) <= 0)
+                {
+                    MessageHandler.ShowWarning("Quantity cannot be 0");
+                    return;
+                }
 
-            //Load ordered items
-            await _orderForm.LoadOrderedItems(_orderId);
-            await _orderForm.ReloadRowVersion();
-            _orderForm.qty_tx.Value = 1;
-            _orderForm.dgItems.Select();
-            Close();
+                var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, _quantity, _rowVersion);
+                // Set order controls
+                _orderForm.SetOrderControls(savedOrder.OrderModel);
+
+                //Load ordered items
+                await _orderForm.LoadOrderedItems(_orderId);
+                await _orderForm.ReloadRowVersion();
+                _orderForm.qty_tx.Text = "1";
+                _orderForm.dgItems.Select();
+                if (savedOrder.SuccessResult > 0)
+                {
+                    Close();
+                }
+            }
+            catch (NullReferenceException nullEx)
+            {
+                MessageHandler.ShowWarning($"Not Found: \n {nullEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowWarning($"Validation error: \n {ex.Message}");
+            }
         }
 
         private async void dgProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex >= 0 && _orderAction != OrderAction.Inquiry)
-                {
-                    await AddOrderItem();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error adding order item : {ex}");
-            }
+            await AddOrderItem();
         }
 
         private async void search_tx_TextChanged(object sender, EventArgs e)
@@ -142,19 +152,11 @@ namespace SalesPro.Forms.Orders
 
         private async void dgProduct_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter && _orderAction != OrderAction.Inquiry)
             {
-                if (e.KeyCode == Keys.Enter && _orderAction != OrderAction.Inquiry)
-                {
-                    e.Handled = true;
-                    await AddOrderItem();
-                }
+                e.Handled = true;
+                await AddOrderItem();
             }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error adding order item  via enter key press: {ex}");
-            }
-
         }
 
         private void AddOrderItemForm_KeyDown(object sender, KeyEventArgs e)

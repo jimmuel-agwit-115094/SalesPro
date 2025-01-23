@@ -1,5 +1,6 @@
 ﻿using SalesPro.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
@@ -33,5 +34,11 @@ namespace SalesPro.Models
     {
         public string CustomerName { get; set; }
         public string UserName { get; set; }
+    }
+
+    public class OrderResult
+    {
+        public OrderModel OrderModel { get; set; }
+        public int SuccessResult { get; set; }
     }
 }
