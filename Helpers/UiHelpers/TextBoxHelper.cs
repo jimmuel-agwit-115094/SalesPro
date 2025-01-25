@@ -136,9 +136,9 @@ namespace SalesPro.Helpers.UiHelpers
             };
         }
 
-        public static void FormatQuantityIntegerTextbox(TextBox textBox)
+        public static void FormatBarcode(TextBox textBox)
         {
-            textBox.Text = "1";
+            textBox.Text = "";
             textBox.KeyPress += (sender, e) =>
             {
                 char input = e.KeyChar;
@@ -149,8 +149,8 @@ namespace SalesPro.Helpers.UiHelpers
                     return;
                 }
 
-                // Allow digits only
-                if (!char.IsDigit(input))
+                // Allow digits (0-9) and the '@' symbol
+                if (!char.IsDigit(input) && input != '@')
                 {
                     e.Handled = true;
                     return;
@@ -160,9 +160,11 @@ namespace SalesPro.Helpers.UiHelpers
             // Format text when the textbox loses focus
             textBox.Leave += (sender, e) =>
             {
-                if (int.TryParse(textBox.Text, out int value))
+                // Check if the text contains only allowed characters
+                if (!string.IsNullOrEmpty(textBox.Text) &&
+                    System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, @"^[0-9@]+$"))
                 {
-                    textBox.Text = value.ToString();
+                    textBox.Text = textBox.Text; // Retain valid input
                 }
                 else
                 {
@@ -170,6 +172,7 @@ namespace SalesPro.Helpers.UiHelpers
                 }
             };
         }
+
 
         // string only
         public static void FormatStringTextbox(TextBox textBox)

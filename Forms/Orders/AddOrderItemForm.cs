@@ -120,7 +120,6 @@ namespace SalesPro.Forms.Orders
                 //Load ordered items
                 await _orderForm.LoadOrderedItems(_orderId);
                 await _orderForm.ReloadRowVersion();
-                _orderForm.qty_tx.Text = "1";
                 _orderForm.dgItems.Select();
                 if (savedOrder.SuccessResult > 0)
                 {

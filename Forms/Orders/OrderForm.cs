@@ -1,4 +1,5 @@
 ﻿using Org.BouncyCastle.Asn1.X509;
+using Renci.SshNet.Common;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -20,18 +21,16 @@ namespace SalesPro.Forms.Orders
         private int _orderId;
         private int _orderItemId;
         private decimal _totalPrice = 0;
-        DateTime _lastKeystroke = DateTime.Now;
-        List<char> _barcode = new List<char>(10);
-
+        private int _quantity = 1;
+        private string _barcode;
 
         private readonly OrderService _service;
         public OrderForm()
         {
             InitializeComponent();
             _service = new OrderService();
-            KeyPress += OrderForm_KeyPress;
             KeyPreview = true;
-            TextBoxHelper.FormatQuantityIntegerTextbox(qty_tx);
+            TextBoxHelper.FormatBarcode(barcode_tx);
         }
 
         private OrderModel BuildOrderModel()
@@ -314,7 +313,7 @@ namespace SalesPro.Forms.Orders
 
                 form._orderId = _orderId;
                 form._rowVersion = _rowVersion;
-                form._quantity = int.Parse(qty_tx.Text);
+                form._quantity = _quantity;
                 form._orderAction = orderAction;
                 form.ShowDialog();
             }
@@ -440,70 +439,134 @@ namespace SalesPro.Forms.Orders
             form.ShowDialog();
         }
 
-        private void vatRate_tx_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void barcode_tx_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                // Initialize defaults
+                string text = barcode_tx.Text?.Trim() ?? string.Empty;
+                int qty = 1; // Default quantity
+                string bcode = null; // Default barcode (null if none)
 
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    if (text.Contains("@"))
+                    {
+                        // Split the input on '@'
+                        string[] parts = text.Split('@');
+
+                        // Handle the quantity part (before '@')
+                        if (!string.IsNullOrWhiteSpace(parts[0]) && int.TryParse(parts[0], out int parsedQty))
+                        {
+                            qty = parsedQty; // Use parsed quantity if valid
+                        }
+
+                        // Handle the serial part (after '@')
+                        if (parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]))
+                        {
+                            bcode = parts[1].Trim(); // Trim and set serial
+                        }
+                    }
+                    else
+                    {
+                        // No '@' present, treat the entire input as serial
+                        bcode = text;
+                    }
+                }
+
+                // Assign results to class-level variables
+                _quantity = qty;
+                _barcode = bcode ?? string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                // Log or display a detailed error message
+                MessageHandler.ShowError($"An error occurred: {ex.Message}\nInput: {barcode_tx.Text}");
+            }
         }
 
-        private async Task ProcessOrderItem(string barcode)
+        private async Task ProcessOrderItem(string barcode, int qty)
         {
             var invetoryId = await _service.GetInventoryIdByBarCode(barcode);
-            var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, Convert.ToInt32(qty_tx.Text), _rowVersion);
+            var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, qty, _rowVersion);
             // Set order controls
             SetOrderControls(savedOrder.OrderModel);
 
             //Load ordered items
             await LoadOrderedItems(_orderId);
             await ReloadRowVersion();
-            qty_tx.Text = "1";
             dgItems.Select();
         }
 
-        private async void OrderForm_KeyPress(object sender, KeyPressEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //// Check if focused control is quantity textbox
-            //if (this.ActiveControl == barcode_tx)
-            //{
-            //    // If it's a barcode scanner input (check timing)
-            //    TimeSpan elapsed = (DateTime. - _lastKeystroke);
-            //    if (elapsed.TotalMilliseconds <= 100)
-            //    {
-            //        dgItems.Select();
-            //    }
-            //    else
-            //    {
-            //        // Allow manual input
-            //        return;
-            //    }
-            //}
-
-            // Process barcode scanner input
-            TimeSpan elapsedBarcode = (DateTime.Now - _lastKeystroke);
-            if (elapsedBarcode.TotalMilliseconds > 100)
-                _barcode.Clear();
-
-            _barcode.Add(e.KeyChar);
-            _lastKeystroke = DateTime.Now;
-
-            // Process barcode when Enter key is pressed
-            if (e.KeyChar == (char)13 && _barcode.Count > 0)
+            if (!barcode_tx.Focused)
             {
-                string barcode = new String(_barcode.ToArray());
-                var formatted = BarCodeHelper.FormatBarcode(barcode);
-                await ProcessOrderItem(formatted);
-                _barcode.Clear();
-                barcode_tx.Clear();
+                barcode_tx.Focus(); // Focus the textbox
+
+                // Check if the key is a digit or a letter, then send the correct character
+                if (keyData >= Keys.D0 && keyData <= Keys.D9) // For digits 0-9
+                {
+                    SendKeys.Send((keyData - Keys.D0).ToString()); // Send the numeric character
+                }
+                else if (keyData >= Keys.NumPad0 && keyData <= Keys.NumPad9) // For NumPad digits
+                {
+                    SendKeys.Send((keyData - Keys.NumPad0).ToString());
+                }
+                else if (keyData >= Keys.A && keyData <= Keys.Z) // For letters A-Z
+                {
+                    SendKeys.Send(keyData.ToString()); // Send the letter
+                }
+
+                return true; // Mark the key press as handled
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void barcode_tx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the key pressed is '@'
+            if (e.KeyChar == '@')
+            {
+                // Get the current text in the TextBox
+                string currentText = barcode_tx.Text;
+
+                // Check if there is a number before '@'
+                if (string.IsNullOrEmpty(currentText) || !currentText.Any(char.IsDigit))
+                {
+                    // If no number before '@', cancel the key press
+                    e.Handled = true;
+                }
             }
         }
 
-        private void qty_tx_TextChanged(object sender, EventArgs e)
+        private async void barcode_tx_KeyDown(object sender, KeyEventArgs e)
         {
+            bool isProcessing = false;
+            if (e.KeyCode == Keys.Enter && !isProcessing)
+            {
+                try
+                {
+                    // Set the flag to true to prevent multiple triggers
+                    isProcessing = true;
 
+                    // Process the order item asynchronously
+                    await ProcessOrderItem(_barcode, _quantity);
+                    barcode_tx.Clear();
+                    barcode_tx.Select();
+                }
+                catch (Exception ex)
+                {
+                    MessageHandler.ShowError(ex.Message);
+                }
+                finally
+                {
+                    // Reset the flag to allow further processing
+                    isProcessing = false;
+                }
+            }
         }
     }
 }
