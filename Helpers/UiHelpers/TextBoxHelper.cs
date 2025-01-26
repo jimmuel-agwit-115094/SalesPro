@@ -168,7 +168,7 @@ namespace SalesPro.Helpers.UiHelpers
                 }
                 else
                 {
-                    textBox.Text = "1"; // Default value if input is invalid
+                    textBox.Text = ""; // Default value if input is invalid
                 }
             };
         }

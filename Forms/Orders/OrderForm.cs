@@ -23,6 +23,7 @@ namespace SalesPro.Forms.Orders
         private decimal _totalPrice = 0;
         private int _quantity = 1;
         private string _barcode;
+        private bool _isReturn = false;
 
         private readonly OrderService _service;
         public OrderForm()
@@ -30,6 +31,7 @@ namespace SalesPro.Forms.Orders
             InitializeComponent();
             _service = new OrderService();
             KeyPreview = true;
+            KeyDown += OrderForm_KeyDown; 
             TextBoxHelper.FormatBarcode(barcode_tx);
         }
 
@@ -486,10 +488,11 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private async Task ProcessOrderItem(string barcode, int qty)
+        private async Task ProcessOrderItem(string barcode, int qty, bool isReturn)
         {
+            var orderStatus = isReturn ? OrderItemStatus.Returned : OrderItemStatus.Added;
             var invetoryId = await _service.GetInventoryIdByBarCode(barcode);
-            var savedOrder = await _service.ProcessOrderItem(OrderItemStatus.Added, invetoryId, _orderId, qty, _rowVersion);
+            var savedOrder = await _service.ProcessOrderItem(orderStatus, invetoryId, _orderId, qty, _rowVersion);
             // Set order controls
             SetOrderControls(savedOrder.OrderModel);
 
@@ -501,6 +504,13 @@ namespace SalesPro.Forms.Orders
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (keyData == Keys.F12) // Check if F12 key is pressed
+            {
+                _isReturn = !_isReturn; // Toggle the state
+                actionStatus_lbl.Text = _isReturn ? "RETURN" : "SALES"; // Update the status label
+                return true; // Mark the key press as handled
+            }
+
             if (!barcode_tx.Focused)
             {
                 barcode_tx.Focus(); // Focus the textbox
@@ -553,7 +563,7 @@ namespace SalesPro.Forms.Orders
                     isProcessing = true;
 
                     // Process the order item asynchronously
-                    await ProcessOrderItem(_barcode, _quantity);
+                    await ProcessOrderItem(_barcode, _quantity, _isReturn);
                     barcode_tx.Clear();
                     barcode_tx.Select();
                 }
@@ -567,6 +577,11 @@ namespace SalesPro.Forms.Orders
                     isProcessing = false;
                 }
             }
+        }
+
+        private void OrderForm_KeyDown(object sender, KeyEventArgs e)
+        {
+           
         }
     }
 }

@@ -592,6 +592,8 @@ namespace SalesPro.Services
                 var inventory = await (from i in context.Inventories
                                        join p in context.Products on i.ProductId equals p.ProductId
                                        where p.BarCode == barcode
+                                       && p.BarCode != null
+                                       && p.BarCode != string.Empty
                                        select new InventoryModel
                                        {
                                            InventoryId = i.InventoryId
