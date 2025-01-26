@@ -169,7 +169,8 @@ namespace SalesPro.Forms.Orders
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            ShowOrderItemForm(OrderAction.New);
+            var orderAction = _isReturn ? OrderAction.Return : OrderAction.New;
+            ShowOrderItemForm(orderAction);
         }
 
         private void OrderForm_KeyUp(object sender, KeyEventArgs e)
@@ -193,9 +194,6 @@ namespace SalesPro.Forms.Orders
                     break;
                 case Keys.F6:
                     orderList_btn.PerformClick();
-                    break;
-                case Keys.F7:
-                    returnProduct_btn.PerformClick();
                     break;
                 case Keys.Delete:
                     cancel_btn.PerformClick();
@@ -325,11 +323,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-
-        private void returnProduct_btn_Click(object sender, EventArgs e)
-        {
-            ShowOrderItemForm(OrderAction.Return);
-        }
 
         private void addCustomer_btn_Click(object sender, EventArgs e)
         {

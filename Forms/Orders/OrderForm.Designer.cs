@@ -86,7 +86,6 @@
             this.orderId_lbl = new System.Windows.Forms.Label();
             this.orderList_btn = new System.Windows.Forms.Button();
             this.priceInquiry_btn = new System.Windows.Forms.Button();
-            this.returnProduct_btn = new System.Windows.Forms.Button();
             this.add_btn = new System.Windows.Forms.Button();
             this.pay_btn = new System.Windows.Forms.Button();
             this.charge_btn = new System.Windows.Forms.Button();
@@ -310,7 +309,6 @@
             this.panel4.Controls.Add(this.orderId_lbl);
             this.panel4.Controls.Add(this.orderList_btn);
             this.panel4.Controls.Add(this.priceInquiry_btn);
-            this.panel4.Controls.Add(this.returnProduct_btn);
             this.panel4.Controls.Add(this.add_btn);
             this.panel4.Controls.Add(this.pay_btn);
             this.panel4.Controls.Add(this.charge_btn);
@@ -565,7 +563,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
-            this.cancel_btn.Location = new System.Drawing.Point(264, 495);
+            this.cancel_btn.Location = new System.Drawing.Point(264, 426);
             this.cancel_btn.Margin = new System.Windows.Forms.Padding(4);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(219, 49);
@@ -654,7 +652,7 @@
             this.allOrders_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.allOrders_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.allOrders_btn.ForeColor = System.Drawing.Color.White;
-            this.allOrders_btn.Location = new System.Drawing.Point(264, 292);
+            this.allOrders_btn.Location = new System.Drawing.Point(264, 226);
             this.allOrders_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.allOrders_btn.Name = "allOrders_btn";
             this.allOrders_btn.Size = new System.Drawing.Size(219, 49);
@@ -778,7 +776,7 @@
             this.addCustomer_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomer_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustomer_btn.ForeColor = System.Drawing.Color.White;
-            this.addCustomer_btn.Location = new System.Drawing.Point(264, 226);
+            this.addCustomer_btn.Location = new System.Drawing.Point(264, 160);
             this.addCustomer_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addCustomer_btn.Name = "addCustomer_btn";
             this.addCustomer_btn.Size = new System.Drawing.Size(220, 49);
@@ -844,22 +842,6 @@
             this.priceInquiry_btn.UseVisualStyleBackColor = false;
             this.priceInquiry_btn.Click += new System.EventHandler(this.priceInquiry_btn_Click);
             // 
-            // returnProduct_btn
-            // 
-            this.returnProduct_btn.BackColor = System.Drawing.Color.Firebrick;
-            this.returnProduct_btn.FlatAppearance.BorderSize = 0;
-            this.returnProduct_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.returnProduct_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.returnProduct_btn.ForeColor = System.Drawing.Color.White;
-            this.returnProduct_btn.Location = new System.Drawing.Point(264, 159);
-            this.returnProduct_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.returnProduct_btn.Name = "returnProduct_btn";
-            this.returnProduct_btn.Size = new System.Drawing.Size(219, 49);
-            this.returnProduct_btn.TabIndex = 397;
-            this.returnProduct_btn.Text = "RETURN PROD. (F7)";
-            this.returnProduct_btn.UseVisualStyleBackColor = false;
-            this.returnProduct_btn.Click += new System.EventHandler(this.returnProduct_btn_Click);
-            // 
             // add_btn
             // 
             this.add_btn.BackColor = System.Drawing.Color.DodgerBlue;
@@ -883,7 +865,7 @@
             this.pay_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pay_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pay_btn.ForeColor = System.Drawing.Color.White;
-            this.pay_btn.Location = new System.Drawing.Point(264, 359);
+            this.pay_btn.Location = new System.Drawing.Point(264, 292);
             this.pay_btn.Margin = new System.Windows.Forms.Padding(4);
             this.pay_btn.Name = "pay_btn";
             this.pay_btn.Size = new System.Drawing.Size(219, 49);
@@ -899,7 +881,7 @@
             this.charge_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.charge_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.charge_btn.ForeColor = System.Drawing.Color.White;
-            this.charge_btn.Location = new System.Drawing.Point(264, 427);
+            this.charge_btn.Location = new System.Drawing.Point(264, 359);
             this.charge_btn.Margin = new System.Windows.Forms.Padding(4);
             this.charge_btn.Name = "charge_btn";
             this.charge_btn.Size = new System.Drawing.Size(219, 49);
@@ -1128,7 +1110,6 @@
         internal System.Windows.Forms.Label orderId_lbl;
         private System.Windows.Forms.Button orderList_btn;
         private System.Windows.Forms.Button priceInquiry_btn;
-        private System.Windows.Forms.Button returnProduct_btn;
         private System.Windows.Forms.Button add_btn;
         internal System.Windows.Forms.Button pay_btn;
         internal System.Windows.Forms.Button charge_btn;
