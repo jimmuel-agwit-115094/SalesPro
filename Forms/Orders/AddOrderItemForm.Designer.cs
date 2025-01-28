@@ -208,6 +208,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product List";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddOrderItemForm_FormClosed);
             this.Load += new System.EventHandler(this.AddOrderItemForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddOrderItemForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgProduct)).EndInit();

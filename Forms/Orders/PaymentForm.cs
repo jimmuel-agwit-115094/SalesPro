@@ -234,5 +234,10 @@ namespace SalesPro.Forms.Orders
                 discRate_tx.SelectAll();
             }
         }
+
+        private void PaymentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _orderForm.barcode_tx.Select();
+        }
     }
 }

@@ -112,6 +112,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quantiy";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditQuantityForm_FormClosing);
             this.Load += new System.EventHandler(this.EditQuantityForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditQuantityForm_KeyDown);
             this.ResumeLayout(false);

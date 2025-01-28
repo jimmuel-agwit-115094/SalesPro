@@ -258,6 +258,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Charge Order";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChargeOrderForm_FormClosing);
             this.Load += new System.EventHandler(this.ChargeOrderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.credTerms_tx)).EndInit();

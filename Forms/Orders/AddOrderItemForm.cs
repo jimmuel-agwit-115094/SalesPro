@@ -237,5 +237,10 @@ namespace SalesPro.Forms.Orders
                 MessageHandler.ShowError($"Error on search button click: {ex}");
             }
         }
+
+        private void AddOrderItemForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _orderForm.barcode_tx.Select();
+        }
     }
 }

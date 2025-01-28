@@ -134,5 +134,10 @@ namespace SalesPro.Forms.Orders
         {
             dueDate_tx.Text = DateFormatHelper.FormatDate(_curDate.Date.AddDays((int)credTerms_tx.Value));
         }
+
+        private void ChargeOrderForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _orderForm.barcode_tx.Select();
+        }
     }
 }

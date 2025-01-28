@@ -97,5 +97,10 @@ namespace SalesPro.Forms.Orders
                 qty_tx.SelectAll();
             }
         }
+
+        private void EditQuantityForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _orderForm.barcode_tx.Select();
+        }
     }
 }

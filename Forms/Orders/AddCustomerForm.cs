@@ -102,5 +102,10 @@ namespace SalesPro.Forms.Orders
             form._action = Constants.SystemConstants.New.ToString();
             form.ShowDialog();
         }
+
+        private void AddCustomerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _orderForm.barcode_tx.Select();
+        }
     }
 }
