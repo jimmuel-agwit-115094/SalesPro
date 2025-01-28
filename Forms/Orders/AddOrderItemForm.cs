@@ -122,7 +122,11 @@ namespace SalesPro.Forms.Orders
                 await _orderForm.ReloadRowVersion();
                 _orderForm.dgItems.Select();
                 _orderForm.barcode_tx.Clear();
-
+                if (_orderForm._isReturn == true)
+                {
+                    _orderForm._isReturn = false;
+                    _orderForm.SetOrderLable(_orderForm._isReturn);
+                }
                 if (savedOrder.SuccessResult > 0)
                 {
                     Close();

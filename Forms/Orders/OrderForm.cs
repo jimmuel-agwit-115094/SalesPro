@@ -23,7 +23,7 @@ namespace SalesPro.Forms.Orders
         private decimal _totalPrice = 0;
         private int _quantity = 1;
         private string _barcode;
-        private bool _isReturn = false;
+        public bool _isReturn = false;
 
         private readonly OrderService _service;
         public OrderForm()
@@ -473,6 +473,7 @@ namespace SalesPro.Forms.Orders
                 // Assign results to class-level variables
                 _quantity = qty;
                 _barcode = bcode ?? string.Empty;
+                barcodeAndQty_tx.Text = $"Q: {_quantity} C: {_barcode}"; // Update the display
 
             }
             catch (Exception ex)
@@ -501,13 +502,18 @@ namespace SalesPro.Forms.Orders
             dgItems.Select();
         }
 
+        public void SetOrderLable(bool isReturn)
+        {
+            order_lbl.Text = isReturn ? "RETURN" : "SALES"; // Update the status label
+            order_lbl.ForeColor = isReturn ? Color.Yellow : Color.White; // Change the color of the order ID label
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.F12) // Check if F12 key is pressed
             {
                 _isReturn = !_isReturn; // Toggle the state
-                order_lbl.Text = _isReturn ? "RETURN" : "SALES"; // Update the status label
-                order_lbl.ForeColor = _isReturn ? Color.Yellow : Color.White; // Change the color of the order ID label
+                SetOrderLable(_isReturn); // Update the label
                 return true; // Mark the key press as handled
             }
 
@@ -569,7 +575,9 @@ namespace SalesPro.Forms.Orders
                 }
                 catch (Exception ex)
                 {
-                    MessageHandler.ShowError(ex.Message);
+                    MessageHandler.ShowWarning(ex.Message);
+                    barcode_tx.Clear();
+                    barcode_tx.Select();
                 }
                 finally
                 {

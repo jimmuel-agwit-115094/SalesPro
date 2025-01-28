@@ -148,7 +148,7 @@
             this.new_btm.BackColor = System.Drawing.Color.Green;
             this.new_btm.FlatAppearance.BorderSize = 0;
             this.new_btm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.new_btm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_btm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_btm.ForeColor = System.Drawing.Color.White;
             this.new_btm.Location = new System.Drawing.Point(16, 51);
             this.new_btm.Name = "new_btm";
@@ -180,6 +180,7 @@
             this.Text = "Customer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddCustomerForm_FormClosing);
             this.Load += new System.EventHandler(this.AddCustomerForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddCustomerForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomer)).EndInit();
             this.ResumeLayout(false);

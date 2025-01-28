@@ -107,5 +107,13 @@ namespace SalesPro.Forms.Orders
         {
             _orderForm.barcode_tx.Select();
         }
+
+        private void AddCustomerForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
     }
 }

@@ -372,13 +372,13 @@
             this.addSupplier_btn.BackColor = System.Drawing.Color.Green;
             this.addSupplier_btn.FlatAppearance.BorderSize = 0;
             this.addSupplier_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addSupplier_btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addSupplier_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addSupplier_btn.ForeColor = System.Drawing.Color.White;
             this.addSupplier_btn.Location = new System.Drawing.Point(16, 83);
             this.addSupplier_btn.Name = "addSupplier_btn";
             this.addSupplier_btn.Size = new System.Drawing.Size(128, 27);
             this.addSupplier_btn.TabIndex = 530;
-            this.addSupplier_btn.Text = "Add Supplier";
+            this.addSupplier_btn.Text = "Select Supplier";
             this.addSupplier_btn.UseVisualStyleBackColor = false;
             this.addSupplier_btn.Click += new System.EventHandler(this.addSupplier_btn_Click);
             // 
@@ -387,7 +387,7 @@
             this.addProduct_btn.BackColor = System.Drawing.SystemColors.HotTrack;
             this.addProduct_btn.FlatAppearance.BorderSize = 0;
             this.addProduct_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addProduct_btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addProduct_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addProduct_btn.ForeColor = System.Drawing.Color.White;
             this.addProduct_btn.Location = new System.Drawing.Point(16, 137);
             this.addProduct_btn.Name = "addProduct_btn";
