@@ -121,6 +121,8 @@ namespace SalesPro.Forms.Orders
                 await _orderForm.LoadOrderedItems(_orderId);
                 await _orderForm.ReloadRowVersion();
                 _orderForm.dgItems.Select();
+                _orderForm.barcode_tx.Clear();
+
                 if (savedOrder.SuccessResult > 0)
                 {
                     Close();

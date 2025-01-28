@@ -111,11 +111,21 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<TransactionModel>> GetTransactionByDate(DateTime datte)
+        public async Task<List<TransactionModel>> GetTransactionByDate(DateTime date)
         {
             using (var _dbContext = new DatabaseContext())
             {
-                return await _dbContext.Transactions.Where(x => x.StartDate.Date == datte.Date).ToListAsync();
+                return await _dbContext.Transactions.Where(x => x.StartDate.Date == date.Date).ToListAsync();
+            }
+        }
+
+        public async Task<List<TransactionModel>> GetUnclosedPastTransactions(DateTime date)
+        {
+            using (var _dbContext = new DatabaseContext())
+            {
+                return await _dbContext.Transactions
+                    .Where(x => x.StartDate.Date <= date.Date && x.IsClosed == false)
+                    .ToListAsync();
             }
         }
 

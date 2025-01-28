@@ -36,16 +36,15 @@ namespace SalesPro.Forms.Transactions
 
         private async void new_btn_Click(object sender, EventArgs e)
         {
-            var pastDate = _curDate.AddDays(-1);
             var currentTransactions = await _service.GetTransactionByDate(_curDate.Date);
-            var pastTransactions = await _service.GetTransactionByDate(pastDate.Date);
+            var pastTransactions = await _service.GetUnclosedPastTransactions(_curDate.Date);
 
             if (currentTransactions.Any())
             {
                 MessageHandler.ShowWarning("Transaction already exists for the current date");
                 return;
             }
-            if (pastTransactions.Any(x => x.IsClosed == false))
+            if (pastTransactions.Any())
             {
                 MessageHandler.ShowWarning("Past transaction not yet closed. Please close transaction first");
                 return;

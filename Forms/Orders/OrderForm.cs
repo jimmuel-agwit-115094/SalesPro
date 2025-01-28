@@ -31,7 +31,7 @@ namespace SalesPro.Forms.Orders
             InitializeComponent();
             _service = new OrderService();
             KeyPreview = true;
-            KeyDown += OrderForm_KeyDown; 
+            KeyDown += OrderForm_KeyDown;
             TextBoxHelper.FormatBarcode(barcode_tx);
         }
 
@@ -114,6 +114,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
+                barcode_tx.Select();
                 SetFormSize();
                 _curDate = await ClockHelper.GetServerDateTime();
 
@@ -195,20 +196,20 @@ namespace SalesPro.Forms.Orders
                 case Keys.F6:
                     orderList_btn.PerformClick();
                     break;
-                case Keys.Delete:
-                    cancel_btn.PerformClick();
-                    break;
-                case Keys.F8:
+                case Keys.F7:
                     addCustomer_btn.PerformClick();
                     break;
-                case Keys.F9:
+                case Keys.F8:
                     allOrders_btn.PerformClick();
                     break;
-                case Keys.F10:
+                case Keys.F9:
                     pay_btn.PerformClick();
                     break;
-                case Keys.F11:
+                case Keys.F10:
                     charge_btn.PerformClick();
+                    break;
+                case Keys.F11:
+                    cancel_btn.PerformClick();
                     break;
             }
         }
@@ -485,6 +486,11 @@ namespace SalesPro.Forms.Orders
         {
             var orderStatus = isReturn ? OrderItemStatus.Returned : OrderItemStatus.Added;
             var invetoryId = await _service.GetInventoryIdByBarCode(barcode);
+            if (invetoryId == 0)
+            {
+                MessageHandler.ShowWarning("Product not found.");
+                return;
+            }
             var savedOrder = await _service.ProcessOrderItem(orderStatus, invetoryId, _orderId, qty, _rowVersion);
             // Set order controls
             SetOrderControls(savedOrder.OrderModel);
@@ -500,7 +506,8 @@ namespace SalesPro.Forms.Orders
             if (keyData == Keys.F12) // Check if F12 key is pressed
             {
                 _isReturn = !_isReturn; // Toggle the state
-                actionStatus_lbl.Text = _isReturn ? "RETURN" : "SALES"; // Update the status label
+                order_lbl.Text = _isReturn ? "RETURN" : "SALES"; // Update the status label
+                order_lbl.ForeColor = _isReturn ? Color.Yellow : Color.White; // Change the color of the order ID label
                 return true; // Mark the key press as handled
             }
 
@@ -574,7 +581,7 @@ namespace SalesPro.Forms.Orders
 
         private void OrderForm_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
         }
     }
 }
