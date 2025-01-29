@@ -589,7 +589,7 @@ namespace SalesPro.Forms.Orders
 
         private void OrderForm_KeyDown(object sender, KeyEventArgs e)
         {
-
+         
         }
     }
 }

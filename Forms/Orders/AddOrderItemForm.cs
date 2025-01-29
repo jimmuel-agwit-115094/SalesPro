@@ -107,7 +107,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (Convert.ToInt32(_quantity) <= 0)
+                if (_quantity <= 0)
                 {
                     MessageHandler.ShowWarning("Quantity cannot be 0");
                     return;
