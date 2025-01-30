@@ -12,11 +12,13 @@ namespace SalesPro.Settings
     {
         private readonly BankService _bankService;
         private readonly UserService _userService;
+        private readonly SupplierService _supplierService;
         public SettingsForm()
         {
             InitializeComponent();
             _userService = new UserService();
             _bankService = new BankService();
+            _supplierService = new SupplierService();
         }
 
         public async Task LoadUsers()
@@ -30,7 +32,14 @@ namespace SalesPro.Settings
         {
             var banks = await _bankService.LoadBanks();
             dgBanks.DataSource = banks;
-            DgExtensions.ConfigureDataGrid(dgBanks, true, 0, noRecordBank, "BankId", "BankName", "BankType","Address", "Contact");
+            DgExtensions.ConfigureDataGrid(dgBanks, true, 0, noRecordBank, "BankId", "BankName", "BankType", "Address", "Contact");
+        }
+
+        public async Task LoadSuppliers()
+        {
+            var sups = await _supplierService.LoadSuppliers();
+            dgSuppliers.DataSource = sups;
+            DgExtensions.ConfigureDataGrid(dgSuppliers, true, 0, noRecordSup, "SupplierId", "SupplierName", "SupplierAddress", "SupplierContactPerson", "SupplierTin");
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
@@ -63,6 +72,13 @@ namespace SalesPro.Settings
             if (settingsTabControl.SelectedIndex == 1)
             {
                 var form = new BankForm(this);
+                form._actionForm = Constants.SystemConstants.New;
+                form.ShowDialog();
+            }
+
+            if (settingsTabControl.SelectedIndex == 2)
+            {
+                var form = new SupplierForm(this);
                 form._actionForm = Constants.SystemConstants.New;
                 form.ShowDialog();
             }
@@ -106,6 +122,7 @@ namespace SalesPro.Settings
                     break;
                 case 2: // Suppliers
                     new_btn.Text = "New Supplier";
+                    await LoadSuppliers();
                     break;
                 case 3: // Unit of measures
                     new_btn.Text = "New Unit";
@@ -139,6 +156,28 @@ namespace SalesPro.Settings
             {
                 MessageHandler.ShowError($"Error clicking bank {ex.Message}");
             }
+        }
+
+        private void dgSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int supId = DgFormatHelper.GetSelectedId(dgSuppliers, e, "SupplierId");
+                if (supId == 0) return;
+                var form = new SupplierForm(this);
+                form._supplierId = supId;
+                form._actionForm = Constants.SystemConstants.Edit;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error clicking supplier {ex.Message}");
+            }
+        }
+
+        private void supplierSearch_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgSuppliers, supplierSearch_tx);
         }
     }
 }

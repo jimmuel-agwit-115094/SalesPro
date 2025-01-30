@@ -338,6 +338,12 @@
     <Compile Include="Forms\Settings\BankForm.Designer.cs">
       <DependentUpon>BankForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -408,6 +414,7 @@
     <Compile Include="Services\PaymentsService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\PurchaseOrderService.cs" />
+    <Compile Include="Services\SupplierService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />
@@ -501,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\BankForm.resx">
       <DependentUpon>BankForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
