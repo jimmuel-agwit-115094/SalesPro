@@ -33,6 +33,10 @@ namespace SalesPro.Forms.Settings
         {
             if (_actionForm == Constants.SystemConstants.Edit)
             {
+                title_lbl.Text = "Edit Supplier";
+                save_btn.Text = "Update";
+                save_btn.BackColor = SystemColors.Highlight;
+
                 var sup = await _supplierService.GetSupplierById(_supplierId);
                 if (sup != null)
                 {
@@ -43,6 +47,12 @@ namespace SalesPro.Forms.Settings
                     tin_tx.Text = sup.SupplierTin;
                     _rowVersion = sup.RowVersion;
                 }
+            }
+            else
+            {
+                title_lbl.Text = "New Supplier";
+                save_btn.Text = "Save";
+                save_btn.BackColor = Color.Green;
             }
         }
 
@@ -97,7 +107,12 @@ namespace SalesPro.Forms.Settings
                     MessageHandler.ShowWarning("Supplier number is required");
                     return;
                 }
-
+                var supplier = await _supplierService.SupplierExists(supplier_tx.Text);
+                if (supplier != null && supplier.SupplierId != _supplierId)
+                {
+                    MessageHandler.ShowWarning("Supplier already exists");
+                    return;
+                }
 
                 string action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
                 if (MessageHandler.ShowQuestionGeneric($"Are you sure you want to {action} this supplier?"))
@@ -126,7 +141,7 @@ namespace SalesPro.Forms.Settings
 
         private void tin_tx_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tin_tx_KeyPress(object sender, KeyPressEventArgs e)

@@ -59,5 +59,13 @@ namespace SalesPro.Services
                 return success;
             }
         }
+
+        public async Task<SupplierModel> SupplierExists(string supplierName)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Suppliers.FirstOrDefaultAsync(x => x.SupplierName == supplierName);
+            }
+        }
     }
 }
