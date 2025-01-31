@@ -71,6 +71,9 @@
             this.activationTab = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.settingsTabControl.SuspendLayout();
@@ -88,6 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.databaseTab.SuspendLayout();
             this.activationTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -487,6 +492,7 @@
             // 
             // databaseTab
             // 
+            this.databaseTab.Controls.Add(this.panel2);
             this.databaseTab.Controls.Add(this.restore_btn);
             this.databaseTab.Controls.Add(this.backup_btn);
             this.databaseTab.Controls.Add(this.panel4);
@@ -512,6 +518,7 @@
             this.restore_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.restore_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.restore_btn.UseVisualStyleBackColor = false;
+            this.restore_btn.Click += new System.EventHandler(this.restore_btn_Click);
             // 
             // backup_btn
             // 
@@ -527,6 +534,7 @@
             this.backup_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.backup_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.backup_btn.UseVisualStyleBackColor = false;
+            this.backup_btn.Click += new System.EventHandler(this.backup_btn_Click);
             // 
             // panel4
             // 
@@ -563,6 +571,40 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1166, 0);
             this.panel10.TabIndex = 460;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(11, 10);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 543;
+            this.pictureBox4.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightCyan;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.ForeColor = System.Drawing.Color.Red;
+            this.panel2.Location = new System.Drawing.Point(25, 174);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(433, 48);
+            this.panel2.TabIndex = 541;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Teal;
+            this.label14.Location = new System.Drawing.Point(48, 15);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(375, 17);
+            this.label14.TabIndex = 541;
+            this.label14.Text = "Backup database found on Drive C:SalesPro.BackupDatabase";
             // 
             // SettingsForm
             // 
@@ -606,6 +648,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.databaseTab.ResumeLayout(false);
             this.activationTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -645,5 +690,8 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.PictureBox pictureBox3;
         internal System.Windows.Forms.TextBox supplierSearch_tx;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label14;
     }
 }

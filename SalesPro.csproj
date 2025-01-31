@@ -105,6 +105,9 @@
     <Reference Include="MySql.EntityFrameworkCore, Version=3.1.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.EntityFrameworkCore.3.1.22\lib\netstandard2.0\MySql.EntityFrameworkCore.dll</HintPath>
     </Reference>
+    <Reference Include="MySqlBackup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlBackup.1.0.1\lib\MySqlBackup.dll</HintPath>
+    </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -161,6 +164,7 @@
     <Compile Include="Constants\FormConstants.cs" />
     <Compile Include="Constants\PrimaryKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
+    <Compile Include="Services\BackupAndRestoreService.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
     <Compile Include="Enums\BankTypeEnum.cs" />

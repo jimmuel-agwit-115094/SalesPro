@@ -1,6 +1,8 @@
-﻿using SalesPro.Forms.Settings;
+﻿using SalesPro.Enums;
+using SalesPro.Forms.Settings;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
@@ -13,12 +15,14 @@ namespace SalesPro.Settings
         private readonly BankService _bankService;
         private readonly UserService _userService;
         private readonly SupplierService _supplierService;
+        private readonly BackupAndRestoreService _dbService;
         public SettingsForm()
         {
             InitializeComponent();
             _userService = new UserService();
             _bankService = new BankService();
             _supplierService = new SupplierService();
+            _dbService = new BackupAndRestoreService();
         }
 
         public async Task LoadUsers()
@@ -178,6 +182,26 @@ namespace SalesPro.Settings
         private void supplierSearch_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgSuppliers, supplierSearch_tx);
+        }
+
+        private void backup_btn_Click(object sender, EventArgs e)
+        {
+            if (MessageHandler.ShowQuestionGeneric("Confirm backup database?"))
+            {
+                _dbService.BackupDatabase();
+            }
+        }
+
+        private void restore_btn_Click(object sender, EventArgs e)
+        {
+            if (UserSession.UserAccess == UserAccess.Developer)
+            {
+                _dbService.RestoreDatabase();
+            }
+            else
+            {
+                MessageHandler.ShowWarning("You are not allowed to restore the database. Contact developer for this module");
+            }
         }
     }
 }
