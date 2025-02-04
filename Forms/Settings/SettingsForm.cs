@@ -16,6 +16,9 @@ namespace SalesPro.Settings
         private readonly UserService _userService;
         private readonly SupplierService _supplierService;
         private readonly BackupAndRestoreService _dbService;
+        private readonly ActivationService _activationService;
+        private readonly string _publicKey = "<RSAKeyValue><Modulus>tzizmrdZssI9N/Xa/vpVF3/S2gpEsxa0aEC8RGjCpi9uDk7yLHrQ4uK0/xmsTNH62O+fm/B0BSZ2NwrNVvYGIWHtR1HDL5FqyeYSMhCJR4gk2GodcFPP2N6fuJKM1UmH4/oUCRSmYKqCJrdFEweTwmWtmtfe4F0dmbu/s/CCk6mUFWUXLxlNeHeuIj2TCHWXPafHje2HXSM5xUMO3oREdM+Gix9G9L1zRXhE75vBgT8SMqr4hb8AyiwFk4CaeplcrafvIl5YG8nuah6rJV4OqhDHCKeWi9ZmUMX9keQrwF26vNOoFNWIJqWtlxRXjYPqwKmLd/NkRZz8JuTZpk4X+Q==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+
         public SettingsForm()
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace SalesPro.Settings
             _bankService = new BankService();
             _supplierService = new SupplierService();
             _dbService = new BackupAndRestoreService();
+            _activationService = new ActivationService();
         }
 
         public async Task LoadUsers()
@@ -202,6 +206,53 @@ namespace SalesPro.Settings
             {
                 MessageHandler.ShowWarning("You are not allowed to restore the database. Contact developer for this module");
             }
+        }
+
+        private async void activate_btn_Click(object sender, EventArgs e)
+        {
+            string license = key_tx.Text;
+            string singedKey = signedKey_tx.Text;
+
+            if (license == string.Empty)
+            {
+                MessageHandler.ShowWarning("Please enter license key");
+                return;
+            }
+
+            if (singedKey == string.Empty)
+            {
+                MessageHandler.ShowWarning("Please enter signed key");
+                return;
+            }
+
+            // Validate if the license and signedKey are valid Base64 strings
+            if (!ActivationService.IsBase64String(singedKey))
+            {
+                MessageHandler.ShowWarning("Signed key is not a valid Base64 string");
+                return;
+            }
+
+            bool isValid = ActivationService.VerifyLicenseKey(license, singedKey, _publicKey);
+            if (isValid)
+            {
+                var data = new ActivationModel
+                {
+                    LicenseKey = license,
+                    SignedKey = singedKey,
+                    DateActivated = DateTime.Now
+                };
+                await _activationService.SaveActivationData(data);
+                MessageHandler.ShowInfo("Activation successful");
+            }
+            else
+            {
+                MessageHandler.ShowError("Activation failed. Invalid license key or signed key");
+            }
+        }
+
+        private void signedKey_tx_TextChanged(object sender, EventArgs e)
+        {
+            signedKey_tx.Text = signedKey_tx.Text.Replace(" ", "");
         }
     }
 }

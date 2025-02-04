@@ -164,6 +164,8 @@
     <Compile Include="Constants\FormConstants.cs" />
     <Compile Include="Constants\PrimaryKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
+    <Compile Include="Models\ActivationModel.cs" />
+    <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\BackupAndRestoreService.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
     <Compile Include="Enums\BalanceStatusEnum.cs" />
