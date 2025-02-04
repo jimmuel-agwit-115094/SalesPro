@@ -61,13 +61,21 @@ namespace SalesPro.Settings
 
                 if (!_isActivated)
                 {
+                    // clear tab pages
+                    settingsTabControl.TabPages.Clear();
+                    //remove the activation tab
+                    settingsTabControl.TabPages.Add(activationTab);
+                    activationGreenPanel.Visible = false;
+
                     inactivePanel.Visible = true;
                     activatedPanel.Visible = false;
                     activate_btn.Enabled = true;
                     activationGroupBox.Visible = true;
+                    new_btn.Visible = false;
                 }
                 else
                 {
+                    new_btn.Visible = true;
                     inactivePanel.Visible = false;
                     activatedPanel.Visible = true;
                     licenseKey.Text = ActivationSession.LicenseKey;

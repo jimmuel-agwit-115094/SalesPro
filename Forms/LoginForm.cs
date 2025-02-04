@@ -88,15 +88,15 @@ namespace SalesPro
             var data = await _activationService.GetActivationData();
             if (data != null)
             {
-                var liceseKey = data.LicenseKey;
+                var licenseKey = data.LicenseKey;
                 var signedKey = data.SignedKey;
                 var publicKey = Constants.PublicKeyConstants.PublicKey;
 
-                var isValid = ActivationService.VerifyLicenseKey(liceseKey, signedKey, publicKey);
+                var isValid = ActivationService.VerifyLicenseKey(licenseKey, signedKey, publicKey);
                 if (isValid)
                 {
                     ActivationSession.SetIsActivated(true);
-                    ActivationSession.SetLicenseKey(liceseKey);
+                    ActivationSession.SetLicenseKey(licenseKey);
                 }
                 else
                 {

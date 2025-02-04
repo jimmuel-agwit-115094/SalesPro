@@ -69,6 +69,7 @@ namespace SalesPro.Forms
             var isActivated = ActivationSession.IsActivated;
             if (!isActivated)
             {
+                transactions_btn.Enabled = false;
                 menuPanel.Enabled = false;
                 return;
             }
