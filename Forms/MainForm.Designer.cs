@@ -48,6 +48,10 @@
             this.left_nav = new System.Windows.Forms.Panel();
             this.transactions_btn = new System.Windows.Forms.Button();
             this.serttings_btn = new System.Windows.Forms.Button();
+            this.inactivePanel = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.main_panel.SuspendLayout();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,6 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             this.left_nav.SuspendLayout();
+            this.inactivePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // user_tx
@@ -129,6 +135,7 @@
             // top_nav
             // 
             this.top_nav.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.top_nav.Controls.Add(this.inactivePanel);
             this.top_nav.Controls.Add(this.Panel1);
             this.top_nav.Dock = System.Windows.Forms.DockStyle.Top;
             this.top_nav.Location = new System.Drawing.Point(207, 0);
@@ -330,6 +337,53 @@
             this.serttings_btn.UseVisualStyleBackColor = false;
             this.serttings_btn.Click += new System.EventHandler(this.serttings_btn_Click);
             // 
+            // inactivePanel
+            // 
+            this.inactivePanel.BackColor = System.Drawing.Color.MistyRose;
+            this.inactivePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inactivePanel.Controls.Add(this.label1);
+            this.inactivePanel.Controls.Add(this.pictureBox6);
+            this.inactivePanel.Controls.Add(this.label6);
+            this.inactivePanel.ForeColor = System.Drawing.Color.Red;
+            this.inactivePanel.Location = new System.Drawing.Point(5, 4);
+            this.inactivePanel.Name = "inactivePanel";
+            this.inactivePanel.Size = new System.Drawing.Size(254, 48);
+            this.inactivePanel.TabIndex = 543;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(10, 9);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 543;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(51, 6);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(165, 17);
+            this.label6.TabIndex = 539;
+            this.label6.Text = "Product Needs Activation";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(51, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 17);
+            this.label1.TabIndex = 544;
+            this.label1.Text = "Please Contact Developer";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +408,9 @@
             this.menuPanel.ResumeLayout(false);
             this.left_nav.ResumeLayout(false);
             this.left_nav.PerformLayout();
+            this.inactivePanel.ResumeLayout(false);
+            this.inactivePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -379,5 +436,9 @@
         internal System.Windows.Forms.Panel left_nav;
         internal System.Windows.Forms.Button transactions_btn;
         internal System.Windows.Forms.Button serttings_btn;
+        private System.Windows.Forms.Panel inactivePanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label label6;
     }
 }

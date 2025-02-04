@@ -1,8 +1,10 @@
 ﻿using SalesPro.Enums;
+using SalesPro.Forms;
 using SalesPro.Forms.Settings;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
+using SalesPro.Models.Sessions;
 using SalesPro.Services;
 using System;
 using System.Threading.Tasks;
@@ -17,8 +19,8 @@ namespace SalesPro.Settings
         private readonly SupplierService _supplierService;
         private readonly BackupAndRestoreService _dbService;
         private readonly ActivationService _activationService;
-        private readonly string _publicKey = "<RSAKeyValue><Modulus>tzizmrdZssI9N/Xa/vpVF3/S2gpEsxa0aEC8RGjCpi9uDk7yLHrQ4uK0/xmsTNH62O+fm/B0BSZ2NwrNVvYGIWHtR1HDL5FqyeYSMhCJR4gk2GodcFPP2N6fuJKM1UmH4/oUCRSmYKqCJrdFEweTwmWtmtfe4F0dmbu/s/CCk6mUFWUXLxlNeHeuIj2TCHWXPafHje2HXSM5xUMO3oREdM+Gix9G9L1zRXhE75vBgT8SMqr4hb8AyiwFk4CaeplcrafvIl5YG8nuah6rJV4OqhDHCKeWi9ZmUMX9keQrwF26vNOoFNWIJqWtlxRXjYPqwKmLd/NkRZz8JuTZpk4X+Q==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-
+        private readonly string _publicKey = Constants.PublicKeyConstants.PublicKey;
+        private readonly bool _isActivated = ActivationSession.IsActivated;
         public SettingsForm()
         {
             InitializeComponent();
@@ -56,6 +58,21 @@ namespace SalesPro.Settings
             {
                 settingsTabControl.SelectedIndex = 1;
                 settingsTabControl.SelectedIndex = 0;
+
+                if (!_isActivated)
+                {
+                    inactivePanel.Visible = true;
+                    activatedPanel.Visible = false;
+                    activate_btn.Enabled = true;
+                    activationGroupBox.Visible = true;
+                }
+                else
+                {
+                    inactivePanel.Visible = false;
+                    activatedPanel.Visible = true;
+                    licenseKey.Text = ActivationSession.LicenseKey;
+                    activationGroupBox.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -228,7 +245,7 @@ namespace SalesPro.Settings
             // Validate if the license and signedKey are valid Base64 strings
             if (!ActivationService.IsBase64String(singedKey))
             {
-                MessageHandler.ShowWarning("Signed key is not a valid Base64 string");
+                MessageHandler.ShowWarning("Invalid Signed Key");
                 return;
             }
 
@@ -242,7 +259,12 @@ namespace SalesPro.Settings
                     DateActivated = DateTime.Now
                 };
                 await _activationService.SaveActivationData(data);
-                MessageHandler.ShowInfo("Activation successful");
+                ActivationSession.SetIsActivated(true);
+                ActivationSession.SetLicenseKey(license);
+                inactivePanel.Visible = false;
+                activatedPanel.Visible = true;
+                activationGroupBox.Visible = false;
+                MessageHandler.ShowInfo("Activation successful. Please logout for the activation to take effect.");
             }
             else
             {
@@ -252,7 +274,16 @@ namespace SalesPro.Settings
 
         private void signedKey_tx_TextChanged(object sender, EventArgs e)
         {
+            // Remove any spaces from the text while typing
             signedKey_tx.Text = signedKey_tx.Text.Replace(" ", "");
+
+            // Move the cursor to the end of the text
+            signedKey_tx.SelectionStart = signedKey_tx.Text.Length;
+        }
+
+        private void signedKey_tx_KeyDown(object sender, KeyEventArgs e)
+        {
+           
         }
     }
 }

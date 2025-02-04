@@ -7,6 +7,7 @@ using SalesPro.Forms.Products;
 using SalesPro.Forms.PurchaseOrders;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
+using SalesPro.Models.Sessions;
 using SalesPro.Properties;
 using SalesPro.Services;
 using SalesPro.Settings;
@@ -65,6 +66,12 @@ namespace SalesPro.Forms
 
         public async Task EnableDisableMenuPanel()
         {
+            var isActivated = ActivationSession.IsActivated;
+            if (!isActivated)
+            {
+                menuPanel.Enabled = false;
+                return;
+            }
             var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
             menuPanel.Enabled = result;
         }
@@ -78,6 +85,14 @@ namespace SalesPro.Forms
                 AdjustFormSizeToScreen();
                 await EnableDisableMenuPanel();
                 await _transactionService.GetMaxTransactionId();
+                if (!ActivationSession.IsActivated)
+                {
+                    inactivePanel.Visible = true;
+                }
+                else
+                {
+                    inactivePanel.Visible = false;
+                }
             }
             catch (Exception ex)
             {

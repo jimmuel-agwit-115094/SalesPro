@@ -1,7 +1,9 @@
-﻿using POS_Generic.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using POS_Generic.Helpers;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
+using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
@@ -64,6 +66,14 @@ namespace SalesPro.Services
             {
                 await context.Activation.AddAsync(data);
                 return await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<ActivationModel> GetActivationData()
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Activation.FirstOrDefaultAsync();
             }
         }
     }
