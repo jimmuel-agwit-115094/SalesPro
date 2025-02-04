@@ -237,6 +237,7 @@ namespace SalesPro.Settings
         {
             string license = key_tx.Text;
             string singedKey = signedKey_tx.Text;
+            DateTime dateActivated = DateTime.Now;
 
             if (license == string.Empty)
             {
@@ -257,26 +258,32 @@ namespace SalesPro.Settings
                 return;
             }
 
-            bool isValid = ActivationService.VerifyLicenseKey(license, singedKey, _publicKey);
-            if (isValid)
+            var data = await _activationService.GetActivationData();
+            if (data != null)
             {
-                var data = new ActivationModel
+                bool isValid = ActivationService.VerifyLicenseKey(license, singedKey, _publicKey);
+                if (isValid)
                 {
-                    LicenseKey = license,
-                    SignedKey = singedKey,
-                    DateActivated = DateTime.Now
-                };
-                await _activationService.SaveActivationData(data);
-                ActivationSession.SetIsActivated(true);
-                ActivationSession.SetLicenseKey(license);
-                inactivePanel.Visible = false;
-                activatedPanel.Visible = true;
-                activationGroupBox.Visible = false;
-                MessageHandler.ShowInfo("Activation successful. Please logout for the activation to take effect.");
-            }
-            else
-            {
-                MessageHandler.ShowError("Activation failed. Invalid license key or signed key");
+                    var model = new ActivationModel
+                    {
+                        LicenseKey = license,
+                        SignedKey = singedKey,
+                        DateActivated = dateActivated,
+                    };
+                    await _activationService.UpdateActivationData(data.ActivationId, model);
+
+                    // Setter
+                    ActivationSession.SetIsActivated(true);
+                    ActivationSession.SetLicenseKey(license);
+                    inactivePanel.Visible = false;
+                    activatedPanel.Visible = true;
+                    activationGroupBox.Visible = false;
+                    MessageHandler.ShowInfo("Activation successful. Please logout for the activation to take effect.");
+                }
+                else
+                {
+                    MessageHandler.ShowError("Activation failed. Invalid license key or signed key");
+                }
             }
         }
 
@@ -291,7 +298,7 @@ namespace SalesPro.Settings
 
         private void signedKey_tx_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
         }
     }
 }

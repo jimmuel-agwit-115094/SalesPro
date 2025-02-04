@@ -14,5 +14,6 @@ namespace SalesPro.Models
         public string LicenseKey { get; set; }
         public string SignedKey { get; set; }
         public DateTime DateActivated { get; set; }
+        public DateTime DateInstalled { get; set; }
     }
 }

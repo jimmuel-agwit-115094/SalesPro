@@ -76,5 +76,21 @@ namespace SalesPro.Services
                 return await context.Activation.FirstOrDefaultAsync();
             }
         }
+
+        public async Task UpdateActivationData(int id, ActivationModel data)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var toUpdate = await context.Activation.FindAsync(id);
+                if (toUpdate != null)
+                {
+                    toUpdate.LicenseKey = data.LicenseKey;
+                    toUpdate.SignedKey = data.SignedKey;
+                    toUpdate.DateActivated = data.DateActivated;
+                    toUpdate.DateInstalled = data.DateInstalled;
+                    await context.SaveChangesAsync();
+                }
+            }
+        }
     }
 }

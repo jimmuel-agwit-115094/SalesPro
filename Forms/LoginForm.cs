@@ -14,6 +14,7 @@ namespace SalesPro
     public partial class LoginForm : Form
     {
         private readonly ActivationService _activationService;
+        private DateTime _curDate;
         private readonly DatabaseContext _dbContext;
         public LoginForm()
         {
@@ -60,7 +61,15 @@ namespace SalesPro
                         UserSession.SetUserAccess(user.UserAccess);
 
                         // Activation
-                        await ProcessActivation();
+                        var data = await _activationService.GetActivationData();
+                        if (data == null)
+                        {
+                            await SaveActivation();
+                        }
+                        else
+                        {
+                            ProcessActivation(data);
+                        }
 
                         Hide();
                         MainForm mainForm = new MainForm();
@@ -83,40 +92,66 @@ namespace SalesPro
             }
         }
 
-        private async Task ProcessActivation()
+        private async Task SaveActivation()
         {
-            var data = await _activationService.GetActivationData();
-            if (data != null)
+            var model = new ActivationModel
             {
-                var licenseKey = data.LicenseKey;
-                var signedKey = data.SignedKey;
-                var publicKey = Constants.PublicKeyConstants.PublicKey;
+                LicenseKey = "NOTSET",
+                SignedKey = "NOTSET",
+                DateActivated = new DateTime(),
+                DateInstalled = DateTime.Now,
+            };
 
+            await _activationService.SaveActivationData(model);
+        }
+
+        private void ProcessActivation(ActivationModel data)
+        {
+            var licenseKey = data.LicenseKey;
+            var signedKey = data.SignedKey;
+            var publicKey = Constants.PublicKeyConstants.PublicKey;
+            var remainingTrialDays = (data.DateInstalled.Date.AddMonths(1) - _curDate.Date).Days;
+
+            ActivationSession.SetTrialDays(remainingTrialDays);
+            DateTime expirationDate = data.DateInstalled.Date.AddMonths(1);
+            if (expirationDate.Date > _curDate.Date)
+            {
+                ActivationSession.SetIsTrial(true);
+                return;
+            }
+
+            if (data.LicenseKey == "NOTSET")
+            {
+                ActivationSession.SetIsActivated(false);
+                return;
+            }
+            else
+            {
                 var isValid = ActivationService.VerifyLicenseKey(licenseKey, signedKey, publicKey);
                 if (isValid)
                 {
                     ActivationSession.SetIsActivated(true);
+                    ActivationSession.SetIsTrial(false);
                     ActivationSession.SetLicenseKey(licenseKey);
                 }
                 else
                 {
                     ActivationSession.SetIsActivated(false);
+                    ActivationSession.SetIsTrial(true);
                 }
             }
-            else
-            {
-                ActivationSession.SetIsActivated(false);
-            }
+
         }
+
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private async void LoginForm_Load(object sender, EventArgs e)
         {
-
+            _curDate = await ClockHelper.GetServerDateTime();
         }
     }
 }

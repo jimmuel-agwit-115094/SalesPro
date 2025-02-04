@@ -67,12 +67,17 @@ namespace SalesPro.Forms
         public async Task EnableDisableMenuPanel()
         {
             var isActivated = ActivationSession.IsActivated;
-            if (!isActivated)
+            var isTrial = ActivationSession.IsTrial;
+            if (!isActivated && !isTrial)
             {
                 transactions_btn.Enabled = false;
                 menuPanel.Enabled = false;
                 return;
             }
+
+            trialPanel.Visible = isTrial;
+            inactivePanel.Visible = !isActivated;
+            remaining_tx.Text = $"Days remaining: {ActivationSession.TrialDays.ToString()}";
             var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
             menuPanel.Enabled = result;
         }
@@ -86,14 +91,7 @@ namespace SalesPro.Forms
                 AdjustFormSizeToScreen();
                 await EnableDisableMenuPanel();
                 await _transactionService.GetMaxTransactionId();
-                if (!ActivationSession.IsActivated)
-                {
-                    inactivePanel.Visible = true;
-                }
-                else
-                {
-                    inactivePanel.Visible = false;
-                }
+
             }
             catch (Exception ex)
             {
