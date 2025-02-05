@@ -1,22 +1,17 @@
-﻿using System;
+﻿using SalesPro.Enums;
+using System;
 
 namespace SalesPro.Models.Sessions
 {
     public class ActivationSession
     {
-        public static bool IsActivated { get; private set; }
         public static string LicenseKey { get; private set; }
-        public static bool IsTrial { get; private set; }
+        public static ActivationStatus ActivationStatus { get; private set; }
         public static int TrialDays { get; private set; }
 
-        public static void SetIsActivated(bool isActivated)
+        public static void SetActivationStatus(ActivationStatus status)
         {
-            IsActivated = isActivated;
-        }
-
-        public static void SetIsTrial(bool isTrial)
-        {
-            IsTrial = isTrial;
+            ActivationStatus = status;
         }
 
         public static void SetLicenseKey(string licenseKey)

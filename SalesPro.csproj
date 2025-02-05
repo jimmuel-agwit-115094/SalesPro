@@ -165,6 +165,7 @@
     <Compile Include="Constants\PrimaryKeyConstants.cs" />
     <Compile Include="Constants\PublicKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
+    <Compile Include="Enums\ActivationStatusEnum.cs" />
     <Compile Include="Models\ActivationModel.cs" />
     <Compile Include="Models\Sessions\ActivationSession.cs" />
     <Compile Include="Services\ActivationService.cs" />

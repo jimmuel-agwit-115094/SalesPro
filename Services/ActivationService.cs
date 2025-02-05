@@ -87,7 +87,6 @@ namespace SalesPro.Services
                     toUpdate.LicenseKey = data.LicenseKey;
                     toUpdate.SignedKey = data.SignedKey;
                     toUpdate.DateActivated = data.DateActivated;
-                    toUpdate.DateInstalled = data.DateInstalled;
                     await context.SaveChangesAsync();
                 }
             }

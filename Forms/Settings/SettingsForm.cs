@@ -19,8 +19,8 @@ namespace SalesPro.Settings
         private readonly SupplierService _supplierService;
         private readonly BackupAndRestoreService _dbService;
         private readonly ActivationService _activationService;
+        private readonly ActivationStatus _activationStatus = ActivationSession.ActivationStatus;
         private readonly string _publicKey = Constants.PublicKeyConstants.PublicKey;
-        private readonly bool _isActivated = ActivationSession.IsActivated;
         public SettingsForm()
         {
             InitializeComponent();
@@ -59,27 +59,38 @@ namespace SalesPro.Settings
                 settingsTabControl.SelectedIndex = 1;
                 settingsTabControl.SelectedIndex = 0;
 
-                if (!_isActivated)
+                if (_activationStatus == ActivationStatus.InActive)
                 {
                     // clear tab pages
                     settingsTabControl.TabPages.Clear();
-                    //remove the activation tab
                     settingsTabControl.TabPages.Add(activationTab);
-                    activationGreenPanel.Visible = false;
 
+                    new_btn.Visible = false;
+                    activationGreenPanel.Visible = false;
                     inactivePanel.Visible = true;
                     activatedPanel.Visible = false;
                     activate_btn.Enabled = true;
                     activationGroupBox.Visible = true;
-                    new_btn.Visible = false;
+                 
                 }
-                else
+                else if (_activationStatus == ActivationStatus.Trial)
                 {
                     new_btn.Visible = true;
+                    activationGreenPanel.Visible = true;
+                    inactivePanel.Visible = true;
+                    activatedPanel.Visible = false;
+                    activate_btn.Enabled = true;
+                    activationGroupBox.Visible = true;
+                }
+                else if (_activationStatus == ActivationStatus.Activated)
+                {
+                    new_btn.Visible = true;
+                    activationGreenPanel.Visible = true;
                     inactivePanel.Visible = false;
                     activatedPanel.Visible = true;
-                    licenseKey.Text = ActivationSession.LicenseKey;
+                    activate_btn.Enabled = false;
                     activationGroupBox.Visible = false;
+                    licenseKey.Text = ActivationSession.LicenseKey;
                 }
             }
             catch (Exception ex)
@@ -273,7 +284,7 @@ namespace SalesPro.Settings
                     await _activationService.UpdateActivationData(data.ActivationId, model);
 
                     // Setter
-                    ActivationSession.SetIsActivated(true);
+                    ActivationSession.SetActivationStatus(ActivationStatus.Activated);
                     ActivationSession.SetLicenseKey(license);
                     inactivePanel.Visible = false;
                     activatedPanel.Visible = true;

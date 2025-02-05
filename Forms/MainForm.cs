@@ -1,5 +1,6 @@
 ﻿using POS_Generic.Helpers;
 using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Forms.Inventory;
 using SalesPro.Forms.Orders;
 using SalesPro.Forms.PaymentsAndBilling;
@@ -66,20 +67,34 @@ namespace SalesPro.Forms
 
         public async Task EnableDisableMenuPanel()
         {
-            var isActivated = ActivationSession.IsActivated;
-            var isTrial = ActivationSession.IsTrial;
-            if (!isActivated && !isTrial)
-            {
-                transactions_btn.Enabled = false;
-                menuPanel.Enabled = false;
-                return;
-            }
+            var activationStatus = ActivationSession.ActivationStatus;
 
-            trialPanel.Visible = isTrial;
-            inactivePanel.Visible = !isActivated;
-            remaining_tx.Text = $"Days remaining: {ActivationSession.TrialDays.ToString()}";
-            var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
-            menuPanel.Enabled = result;
+            if (activationStatus == ActivationStatus.Trial)
+            {
+                menuPanel.Enabled = true;
+                transactions_btn.Enabled = true;
+                trialPanel.Visible = true;
+                inactivePanel.Visible = false;
+                remaining_tx.Text = $"Days remaining: {ActivationSession.TrialDays.ToString()}";
+                MessageBox.Show("Trial");
+            }
+            if (activationStatus == ActivationStatus.InActive)
+            {
+                menuPanel.Enabled = false;
+                transactions_btn.Enabled = false;
+                trialPanel.Visible = false;
+                inactivePanel.Visible = true;
+                MessageBox.Show("Inactive");
+            }
+            if (activationStatus == ActivationStatus.Activated)
+            {
+                var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
+                menuPanel.Enabled = result;
+                transactions_btn.Enabled = true;
+                trialPanel.Visible = false;
+                inactivePanel.Visible = false;
+                MessageBox.Show("Activated");
+            }
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -91,7 +106,6 @@ namespace SalesPro.Forms
                 AdjustFormSizeToScreen();
                 await EnableDisableMenuPanel();
                 await _transactionService.GetMaxTransactionId();
-
             }
             catch (Exception ex)
             {

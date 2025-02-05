@@ -1,4 +1,5 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Enums;
 using SalesPro.Forms;
 using SalesPro.Helpers;
 using SalesPro.Models;
@@ -114,30 +115,29 @@ namespace SalesPro
 
             ActivationSession.SetTrialDays(remainingTrialDays);
             DateTime expirationDate = data.DateInstalled.Date.AddMonths(1);
-            if (expirationDate.Date > _curDate.Date)
-            {
-                ActivationSession.SetIsTrial(true);
-                return;
-            }
 
-            if (data.LicenseKey == "NOTSET")
+            if (licenseKey == "NOTSET" || licenseKey == string.Empty || licenseKey == null)
             {
-                ActivationSession.SetIsActivated(false);
-                return;
+                if (expirationDate.Date > _curDate.Date)
+                {
+                    ActivationSession.SetActivationStatus(ActivationStatus.Trial);
+                }
+                else
+                {
+                    ActivationSession.SetActivationStatus(ActivationStatus.InActive);
+                }
             }
             else
             {
                 var isValid = ActivationService.VerifyLicenseKey(licenseKey, signedKey, publicKey);
                 if (isValid)
                 {
-                    ActivationSession.SetIsActivated(true);
-                    ActivationSession.SetIsTrial(false);
+                    ActivationSession.SetActivationStatus(ActivationStatus.Activated);
                     ActivationSession.SetLicenseKey(licenseKey);
                 }
                 else
                 {
-                    ActivationSession.SetIsActivated(false);
-                    ActivationSession.SetIsTrial(true);
+                    ActivationSession.SetActivationStatus(ActivationStatus.InActive);
                 }
             }
 

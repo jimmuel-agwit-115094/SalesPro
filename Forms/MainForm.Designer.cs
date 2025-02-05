@@ -36,6 +36,14 @@
             this.Panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.top_nav = new System.Windows.Forms.Panel();
+            this.trialPanel = new System.Windows.Forms.Panel();
+            this.remaining_tx = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.inactivePanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuPanel = new System.Windows.Forms.Panel();
@@ -48,25 +56,17 @@
             this.left_nav = new System.Windows.Forms.Panel();
             this.transactions_btn = new System.Windows.Forms.Button();
             this.serttings_btn = new System.Windows.Forms.Button();
-            this.inactivePanel = new System.Windows.Forms.Panel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trialPanel = new System.Windows.Forms.Panel();
-            this.remaining_tx = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.main_panel.SuspendLayout();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.top_nav.SuspendLayout();
+            this.trialPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.inactivePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             this.left_nav.SuspendLayout();
-            this.inactivePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            this.trialPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // user_tx
@@ -149,6 +149,98 @@
             this.top_nav.Name = "top_nav";
             this.top_nav.Size = new System.Drawing.Size(1168, 57);
             this.top_nav.TabIndex = 9;
+            // 
+            // trialPanel
+            // 
+            this.trialPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.trialPanel.Controls.Add(this.remaining_tx);
+            this.trialPanel.Controls.Add(this.pictureBox3);
+            this.trialPanel.Controls.Add(this.label4);
+            this.trialPanel.ForeColor = System.Drawing.Color.Red;
+            this.trialPanel.Location = new System.Drawing.Point(5, 4);
+            this.trialPanel.Name = "trialPanel";
+            this.trialPanel.Size = new System.Drawing.Size(254, 48);
+            this.trialPanel.TabIndex = 544;
+            // 
+            // remaining_tx
+            // 
+            this.remaining_tx.AutoSize = true;
+            this.remaining_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remaining_tx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.remaining_tx.Location = new System.Drawing.Point(40, 23);
+            this.remaining_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.remaining_tx.Name = "remaining_tx";
+            this.remaining_tx.Size = new System.Drawing.Size(36, 17);
+            this.remaining_tx.TabIndex = 544;
+            this.remaining_tx.Text = "Days";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(10, 9);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 543;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label4.Location = new System.Drawing.Point(40, 6);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 17);
+            this.label4.TabIndex = 539;
+            this.label4.Text = "Product on Trial Period";
+            // 
+            // inactivePanel
+            // 
+            this.inactivePanel.BackColor = System.Drawing.Color.MistyRose;
+            this.inactivePanel.Controls.Add(this.label1);
+            this.inactivePanel.Controls.Add(this.pictureBox6);
+            this.inactivePanel.Controls.Add(this.label6);
+            this.inactivePanel.ForeColor = System.Drawing.Color.Red;
+            this.inactivePanel.Location = new System.Drawing.Point(5, 4);
+            this.inactivePanel.Name = "inactivePanel";
+            this.inactivePanel.Size = new System.Drawing.Size(254, 48);
+            this.inactivePanel.TabIndex = 543;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(51, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 17);
+            this.label1.TabIndex = 544;
+            this.label1.Text = "Trial Period Ended";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(10, 9);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 543;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(51, 6);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(165, 17);
+            this.label6.TabIndex = 539;
+            this.label6.Text = "Product Needs Activation";
             // 
             // label3
             // 
@@ -344,98 +436,6 @@
             this.serttings_btn.UseVisualStyleBackColor = false;
             this.serttings_btn.Click += new System.EventHandler(this.serttings_btn_Click);
             // 
-            // inactivePanel
-            // 
-            this.inactivePanel.BackColor = System.Drawing.Color.MistyRose;
-            this.inactivePanel.Controls.Add(this.label1);
-            this.inactivePanel.Controls.Add(this.pictureBox6);
-            this.inactivePanel.Controls.Add(this.label6);
-            this.inactivePanel.ForeColor = System.Drawing.Color.Red;
-            this.inactivePanel.Location = new System.Drawing.Point(5, 4);
-            this.inactivePanel.Name = "inactivePanel";
-            this.inactivePanel.Size = new System.Drawing.Size(254, 48);
-            this.inactivePanel.TabIndex = 543;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(10, 9);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 543;
-            this.pictureBox6.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(51, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 17);
-            this.label6.TabIndex = 539;
-            this.label6.Text = "Product Needs Activation";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(51, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 17);
-            this.label1.TabIndex = 544;
-            this.label1.Text = "Please Contact Developer";
-            // 
-            // trialPanel
-            // 
-            this.trialPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.trialPanel.Controls.Add(this.remaining_tx);
-            this.trialPanel.Controls.Add(this.pictureBox3);
-            this.trialPanel.Controls.Add(this.label4);
-            this.trialPanel.ForeColor = System.Drawing.Color.Red;
-            this.trialPanel.Location = new System.Drawing.Point(5, 4);
-            this.trialPanel.Name = "trialPanel";
-            this.trialPanel.Size = new System.Drawing.Size(254, 48);
-            this.trialPanel.TabIndex = 544;
-            // 
-            // remaining_tx
-            // 
-            this.remaining_tx.AutoSize = true;
-            this.remaining_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.remaining_tx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.remaining_tx.Location = new System.Drawing.Point(40, 23);
-            this.remaining_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.remaining_tx.Name = "remaining_tx";
-            this.remaining_tx.Size = new System.Drawing.Size(36, 17);
-            this.remaining_tx.TabIndex = 544;
-            this.remaining_tx.Text = "Days";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(10, 9);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 543;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(40, 6);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 17);
-            this.label4.TabIndex = 539;
-            this.label4.Text = "Product on Trial Period";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,16 +456,16 @@
             this.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.top_nav.ResumeLayout(false);
+            this.trialPanel.ResumeLayout(false);
+            this.trialPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.inactivePanel.ResumeLayout(false);
+            this.inactivePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.menuPanel.ResumeLayout(false);
             this.left_nav.ResumeLayout(false);
             this.left_nav.PerformLayout();
-            this.inactivePanel.ResumeLayout(false);
-            this.inactivePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.trialPanel.ResumeLayout(false);
-            this.trialPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
