@@ -194,6 +194,12 @@
     <Compile Include="Constants\PublicKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActivationStatusEnum.cs" />
+    <Compile Include="Forms\Reports\ReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportsForm.Designer.cs">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ActivationModel.cs" />
     <Compile Include="Models\Sessions\ActivationSession.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PurchaseOrders\PurchaseOrderForm.resx">
       <DependentUpon>PurchaseOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ReportsForm.resx">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\BankForm.resx">
       <DependentUpon>BankForm.cs</DependentUpon>
