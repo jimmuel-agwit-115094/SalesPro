@@ -71,12 +71,12 @@ namespace SalesPro.Forms
 
             if (activationStatus == ActivationStatus.Trial)
             {
+                string trialDays = ActivationSession.TrialDays.ToString();
                 menuPanel.Enabled = true;
                 transactions_btn.Enabled = true;
                 trialPanel.Visible = true;
                 inactivePanel.Visible = false;
-                remaining_tx.Text = $"Days remaining: {ActivationSession.TrialDays.ToString()}";
-                MessageBox.Show("Trial");
+                remaining_tx.Text = $"Days remaining: {trialDays}";
             }
             if (activationStatus == ActivationStatus.InActive)
             {
@@ -84,17 +84,17 @@ namespace SalesPro.Forms
                 transactions_btn.Enabled = false;
                 trialPanel.Visible = false;
                 inactivePanel.Visible = true;
-                MessageBox.Show("Inactive");
             }
             if (activationStatus == ActivationStatus.Activated)
             {
-                var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
-                menuPanel.Enabled = result;
+                menuPanel.Enabled = false;
                 transactions_btn.Enabled = true;
                 trialPanel.Visible = false;
                 inactivePanel.Visible = false;
-                MessageBox.Show("Activated");
             }
+            var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
+            menuPanel.Enabled = result;
+            noTransactionPanel.Visible = !result;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
