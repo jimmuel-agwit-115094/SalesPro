@@ -6,6 +6,7 @@ using SalesPro.Forms.Orders;
 using SalesPro.Forms.PaymentsAndBilling;
 using SalesPro.Forms.Products;
 using SalesPro.Forms.PurchaseOrders;
+using SalesPro.Forms.Reports;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
 using SalesPro.Models.Sessions;
@@ -158,7 +159,8 @@ namespace SalesPro.Forms
 
         private void reports_btn_Click(object sender, EventArgs e)
         {
-
+            var form = new ReportsForm();
+            LoadFormInPanel(form);
         }
 
         private void serttings_btn_Click(object sender, EventArgs e)
