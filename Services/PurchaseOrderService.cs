@@ -12,7 +12,7 @@ namespace SalesPro.Services
 {
     public class PurchaseOrderService
     {
-        public async Task<List<SupplierModel>> LoadSuppliers()
+        public async Task<List<Orders>> LoadSuppliers()
         {
             using (var context = new DatabaseContext())
             {
@@ -87,7 +87,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<SupplierModel> GetSupplierById(int supplierId)
+        public async Task<Orders> GetSupplierById(int supplierId)
         {
             using (var context = new DatabaseContext())
             {

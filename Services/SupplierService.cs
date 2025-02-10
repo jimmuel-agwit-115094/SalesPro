@@ -12,7 +12,7 @@ namespace SalesPro.Services
 {
     public class SupplierService
     {
-        public async Task<int> SaveSupplier(SupplierModel model)
+        public async Task<int> SaveSupplier(Orders model)
         {
             using (var context = new DatabaseContext())
             {
@@ -21,7 +21,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<SupplierModel>> LoadSuppliers()
+        public async Task<List<Orders>> LoadSuppliers()
         {
             using (var context = new DatabaseContext())
             {
@@ -29,7 +29,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<SupplierModel> GetSupplierById(int supplierId)
+        public async Task<Orders> GetSupplierById(int supplierId)
         {
             using (var context = new DatabaseContext())
             {
@@ -37,7 +37,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<int> UpdateSupplier(int supplierId, SupplierModel model, int rowVersion)
+        public async Task<int> UpdateSupplier(int supplierId, Orders model, int rowVersion)
         {
             using (var context = new DatabaseContext())
             {
@@ -60,7 +60,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<SupplierModel> SupplierExists(string supplierName)
+        public async Task<Orders> SupplierExists(string supplierName)
         {
             using (var context = new DatabaseContext())
             {
