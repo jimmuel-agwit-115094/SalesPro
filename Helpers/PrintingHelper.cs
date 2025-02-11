@@ -46,7 +46,7 @@ namespace SalesPro.Helpers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while printing the report: {ex.Message}");
+                MessageBox.Show($"An error occurred while printing the report: {ex}");
             }
         }
 

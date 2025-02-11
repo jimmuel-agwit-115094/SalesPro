@@ -23,6 +23,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private bool _isSupplierSelected = false;
         public ProcessStatus _poTabProcess;
         private int _supplierId;
+        DateTime dateCreated;
 
         private readonly PurchaseOrderService _service;
         private readonly PurchaseOrderForm _purchaseOrderForm;
@@ -52,7 +53,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 _curDate = await ClockHelper.GetServerDateTime();
                 var po = await _service.GetPurchaseorderById(_poId);
                 if (po == null) return;
-
+                dateCreated = po.DateCreated;
                 // Notifications
                 switch (po.ProcessStatus)
                 {
@@ -407,7 +408,24 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
+                // create new dictionary
+                var poDetailsParam = new Dictionary<string, string>
+                {
+                   { "ProcessStatus", processStatus_tx.Text },
+                   { "PaymentStatus", paymentStatus_tx.Text },
+                   { "Supplier" , supplier_tx.Text},
+                   { "Address", address_tx.Text },
+                   { "ContactPerson", contactPerson_tx.Text },
+                   { "Number" , number_tx.Text},
+                   { "TotalPayable", total_tx.Text },
+                   { "CreditTerms" , creditTerms_tx.Text},
+                     { "ProcessedBy", UserSession.FullName },
+                     { "Date", dateCreated.ToString() }
+                };
+
+
                 var form = new PrintingForm();
+                form._poDetailsParam = poDetailsParam;
                 var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
                 form._purchseOrderItemList = poItems;
                 form.ShowDialog();
