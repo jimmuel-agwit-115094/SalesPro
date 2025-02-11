@@ -124,10 +124,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Product Name</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -154,10 +158,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Quantity</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -184,10 +192,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Supplier Price</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -214,10 +226,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Mark Up Price</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -244,10 +260,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Retail Price</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
@@ -274,10 +294,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Total Price</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
@@ -378,7 +402,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>SupplierPrice</rd:DefaultName>
@@ -410,7 +436,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>MarkUpPrice</rd:DefaultName>
@@ -442,7 +470,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>RetailPrice</rd:DefaultName>
@@ -474,7 +504,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>TotalPrice</rd:DefaultName>
@@ -519,7 +551,7 @@
             <Top>1.4675in</Top>
             <Left>0.155in</Left>
             <Height>0.42708in</Height>
-            <Width>7.17711in</Width>
+            <Width>7.1771in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -704,7 +736,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
             <Top>0.49528in</Top>
-            <Left>3.31187in</Left>
+            <Left>3.31175in</Left>
             <Height>0.25in</Height>
             <Width>1.10542in</Width>
             <ZIndex>6</ZIndex>
@@ -735,8 +767,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>0.74528in</Top>
-            <Left>3.31187in</Left>
+            <Top>0.68972in</Top>
+            <Left>3.31175in</Left>
             <Height>0.25in</Height>
             <Width>1.04639in</Width>
             <ZIndex>7</ZIndex>
@@ -863,8 +895,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ContactPerson</rd:DefaultName>
-            <Top>0.74528in</Top>
-            <Left>4.42771in</Left>
+            <Top>0.68972in</Top>
+            <Left>4.44495in</Left>
             <Height>0.25in</Height>
             <Width>1.90799in</Width>
             <ZIndex>11</ZIndex>
@@ -1060,8 +1092,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>0.74528in</Top>
-            <Left>0.15674in</Left>
+            <Top>0.68972in</Top>
+            <Left>0.155in</Left>
             <Height>0.25in</Height>
             <Width>0.91803in</Width>
             <ZIndex>17</ZIndex>
@@ -1092,8 +1124,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProcessedBy</rd:DefaultName>
-            <Top>0.74528in</Top>
-            <Left>1.07477in</Left>
+            <Top>0.68972in</Top>
+            <Left>1.09201in</Left>
             <Height>0.25in</Height>
             <Width>1.97743in</Width>
             <ZIndex>18</ZIndex>
@@ -1124,8 +1156,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>0.99528in</Top>
-            <Left>0.14285in</Left>
+            <Top>0.89111in</Top>
+            <Left>0.155in</Left>
             <Height>0.25in</Height>
             <Width>0.91803in</Width>
             <ZIndex>19</ZIndex>
@@ -1152,15 +1184,49 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Date</rd:DefaultName>
-            <Top>0.99528in</Top>
-            <Left>1.06088in</Left>
+            <Top>0.89111in</Top>
+            <Left>0.58345in</Left>
             <Height>0.25in</Height>
             <Width>1.99132in</Width>
             <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>days</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>0.49528in</Top>
+            <Left>1.06772in</Left>
+            <Height>0.25in</Height>
+            <Width>0.91803in</Width>
+            <ZIndex>21</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
