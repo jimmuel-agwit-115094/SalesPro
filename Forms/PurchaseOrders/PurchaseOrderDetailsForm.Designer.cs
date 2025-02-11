@@ -37,6 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.poPanel = new System.Windows.Forms.Panel();
+            this.print_btn = new System.Windows.Forms.Button();
             this.process_panel = new System.Windows.Forms.Panel();
             this.processStatus_tx = new System.Windows.Forms.Label();
             this.balStat_pb = new System.Windows.Forms.PictureBox();
@@ -65,7 +66,6 @@
             this.creditTermsPanel = new System.Windows.Forms.Panel();
             this.showLogs_link = new System.Windows.Forms.LinkLabel();
             this.notFound_lbl = new System.Windows.Forms.Label();
-            this.print_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.poPanel.SuspendLayout();
@@ -159,13 +159,30 @@
             // poPanel
             // 
             this.poPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.poPanel.Controls.Add(this.print_btn);
             this.poPanel.Controls.Add(this.process_panel);
             this.poPanel.Controls.Add(this.payment_panel);
-            this.poPanel.Controls.Add(this.poId_tx);
             this.poPanel.Location = new System.Drawing.Point(16, 37);
             this.poPanel.Name = "poPanel";
             this.poPanel.Size = new System.Drawing.Size(841, 31);
             this.poPanel.TabIndex = 519;
+            // 
+            // print_btn
+            // 
+            this.print_btn.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.print_btn.FlatAppearance.BorderSize = 0;
+            this.print_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print_btn.ForeColor = System.Drawing.Color.White;
+            this.print_btn.Image = ((System.Drawing.Image)(resources.GetObject("print_btn.Image")));
+            this.print_btn.Location = new System.Drawing.Point(717, 0);
+            this.print_btn.Name = "print_btn";
+            this.print_btn.Size = new System.Drawing.Size(121, 31);
+            this.print_btn.TabIndex = 548;
+            this.print_btn.Text = "  Print";
+            this.print_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.print_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.print_btn.UseVisualStyleBackColor = false;
+            this.print_btn.Click += new System.EventHandler(this.print_btn_Click);
             // 
             // process_panel
             // 
@@ -231,13 +248,13 @@
             // 
             this.poId_tx.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poId_tx.ForeColor = System.Drawing.Color.Black;
-            this.poId_tx.Location = new System.Drawing.Point(576, 6);
+            this.poId_tx.Location = new System.Drawing.Point(19, 683);
             this.poId_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.poId_tx.Name = "poId_tx";
             this.poId_tx.Size = new System.Drawing.Size(263, 20);
             this.poId_tx.TabIndex = 533;
             this.poId_tx.Text = "000000000";
-            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.poId_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // total_tx
             // 
@@ -507,31 +524,14 @@
             this.notFound_lbl.TabIndex = 547;
             this.notFound_lbl.Text = "No Purchase Order Item Added";
             // 
-            // print_btn
-            // 
-            this.print_btn.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.print_btn.FlatAppearance.BorderSize = 0;
-            this.print_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.print_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.print_btn.ForeColor = System.Drawing.Color.White;
-            this.print_btn.Image = ((System.Drawing.Image)(resources.GetObject("print_btn.Image")));
-            this.print_btn.Location = new System.Drawing.Point(738, 6);
-            this.print_btn.Name = "print_btn";
-            this.print_btn.Size = new System.Drawing.Size(121, 27);
-            this.print_btn.TabIndex = 548;
-            this.print_btn.Text = "  Print";
-            this.print_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.print_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.print_btn.UseVisualStyleBackColor = false;
-            // 
             // PurchaseOrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(870, 722);
-            this.Controls.Add(this.print_btn);
             this.Controls.Add(this.notFound_lbl);
+            this.Controls.Add(this.poId_tx);
             this.Controls.Add(this.showLogs_link);
             this.Controls.Add(this.creditTermsPanel);
             this.Controls.Add(this.rowCount_tx);

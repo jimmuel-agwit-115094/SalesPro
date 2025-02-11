@@ -11,23 +11,46 @@ namespace SalesPro.Helpers
 {
     public class PrintingHelper
     {
-        public static void PrintReport(ReportViewer reportViewer, string reportName, object dataSource, string dataSetName)
+        public static void PrintReport(ReportViewer reportViewer, string reportName, object dataSource, string dataSetName, Dictionary<string, string> parameters = null)
         {
             try
             {
-                reportViewer.LocalReport.DataSources.Clear(); // Clear old data
+                // Clear existing data sources
+                reportViewer.LocalReport.DataSources.Clear();
 
-                reportViewer.LocalReport.DataSources.Add(new ReportDataSource(dataSetName, dataSource)); // Add new data source
+                // Create and add new data source
+                ReportDataSource src = new ReportDataSource(dataSetName, dataSource);
+                reportViewer.LocalReport.DataSources.Add(src);
 
-                reportViewer.LocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports", $"{reportName}.rdlc"); // Set report path
+                // Set report path
+                string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)));
+                string reportPath = Path.Combine(solutionDir,"Printing", "rdlc", $"{reportName}.rdlc");
+                reportViewer.LocalReport.ReportPath = reportPath;
 
-                reportViewer.RefreshReport(); // Refresh to display
+                // Clear existing parameters
+                reportViewer.LocalReport.SetParameters(new ReportParameter[] { });
+
+                // Add parameters if provided
+                if (parameters != null && parameters.Count > 0)
+                {
+                    List<ReportParameter> reportParameters = new List<ReportParameter>();
+                    foreach (var param in parameters)
+                    {
+                        reportParameters.Add(new ReportParameter(param.Key, param.Value));
+                    }
+                    reportViewer.LocalReport.SetParameters(reportParameters);
+                }
+
+                // Refresh the report
+                reportViewer.RefreshReport();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error printing: {ex.Message}");
+                MessageBox.Show($"An error occurred while printing the report: {ex.Message}");
             }
         }
+
+
 
     }
 }

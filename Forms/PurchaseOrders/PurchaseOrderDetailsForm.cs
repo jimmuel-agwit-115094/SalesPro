@@ -185,7 +185,7 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             var poItems = await _service.GetPurchaseOrderItemsByPoid(purchaseOrderId);
             var inventoryLogsModel = new List<InventoryLogModel>();
-            foreach(var  item in poItems)
+            foreach (var item in poItems)
             {
                 inventoryLogsModel.Add(new InventoryLogModel
                 {
@@ -401,6 +401,22 @@ namespace SalesPro.Forms.PurchaseOrders
             var form = new PoLogsForm();
             form._poId = _poId;
             form.ShowDialog();
+        }
+
+        private async void print_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var form = new PrintingForm();
+                var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
+                form._purchseOrderItemList = poItems;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error printing purchase order: {ex.Message}");
+            }
+
         }
     }
 }
