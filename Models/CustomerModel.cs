@@ -13,4 +13,10 @@ namespace SalesPro.Models
         public string Email { get; set; }
         public string ContactNumber { get; set; }
     }
+
+    public class ReportCustomerExtended : CustomerModel
+    {
+        public string FullName { get; set; }
+        public decimal TotalAmountPaid { get; set; }
+    }
 }

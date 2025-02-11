@@ -12,4 +12,9 @@ namespace SalesPro.Models
         public string Description { get; set; }
         public int ReorderLevel { get; set; }
     }
+
+    public class ReportProductExtended : ProductModel
+    {
+        public int TotalProductOrdered { get; set; }
+    }
 }

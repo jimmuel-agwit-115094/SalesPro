@@ -412,7 +412,6 @@
     <Compile Include="Helpers\PaymentMethodHelper.cs" />
     <Compile Include="Helpers\UiHelpers\TextBoxHelper.cs" />
     <Compile Include="Models\BankModel.cs" />
-    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CustomerCreditModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ExpenseModel.cs" />

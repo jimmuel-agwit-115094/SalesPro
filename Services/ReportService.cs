@@ -87,28 +87,69 @@ namespace SalesPro.Services
             }
         }
 
-        // get fast selling products
-        public async Task<List<ProductModel>> GetFastSellingProduct()
+        public async Task<List<ReportProductExtended>> GetSellingProducts(bool getTopSelling = true)
         {
             using (var context = new DatabaseContext())
             {
-                var products = await (from o in context.Orders
-                                      join oi in context.OrderItems on o.OrderId equals oi.OrderId
-                                      join p in context.Products on oi.ProductId equals p.ProductId
-                                      where o.OrderStatus == OrderStatus.Completed
-                                      && o.PaymentStatus == PaymentStatus.Paid
-                                      orderby oi.OrderQuantity descending
-                                      
-                                      select new ProductModel
-                                      {
-                                          ProductId = p.ProductId,
-                                          ProductName = p.ProductName,
-                                          BarCode = p.BarCode,
-                                          UnitOfMeasure = p.UnitOfMeasure,
-                                          Description = p.Description,
-                                          ReorderLevel = p.ReorderLevel
-                                      }).Take(6).ToListAsync();
-                return products;
+                var query = from oi in context.OrderItems
+                            join o in context.Orders on oi.OrderId equals o.OrderId
+                            join p in context.Products on oi.ProductId equals p.ProductId
+                            where o.OrderStatus == OrderStatus.Completed
+                            && o.PaymentStatus == PaymentStatus.Paid
+                            group oi by new
+                            {
+                                p.ProductId,
+                                p.ProductName,
+                                p.BarCode,
+                                p.UnitOfMeasure,
+                                p.Description,
+                                p.ReorderLevel
+                            }
+                            into g
+                            select new ReportProductExtended
+                            {
+                                ProductId = g.Key.ProductId,
+                                ProductName = g.Key.ProductName,
+                                BarCode = g.Key.BarCode,
+                                UnitOfMeasure = g.Key.UnitOfMeasure,
+                                Description = g.Key.Description,
+                                ReorderLevel = g.Key.ReorderLevel,
+                                TotalProductOrdered = g.Sum(x => x.OrderQuantity) // Sum total quantity sold
+                            };
+
+                // Apply sorting based on the parameter
+                query = getTopSelling ? query.OrderByDescending(p => p.TotalProductOrdered)
+                                      : query.OrderBy(p => p.TotalProductOrdered);
+
+                return await query.Take(15).ToListAsync();
+            }
+        }
+
+        // get high paying customers
+        public async Task<List<ReportCustomerExtended>> GetHighPayingCustomers()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var query = from o in context.Orders
+                            join c in context.Customers on o.CustomerId equals c.CustomerId
+                            where o.OrderStatus == OrderStatus.Completed
+                            && o.PaymentStatus == PaymentStatus.Paid
+                            && o.CustomerId != 1
+                            group o by new
+                            {
+                                c.CustomerId,
+                                c.FirstName,
+                                c.LastName,
+                                c.MiddleName,
+                                c.Email,
+                            }
+                            into g
+                            select new ReportCustomerExtended
+                            {
+                                FullName = g.Key.FirstName + " " + g.Key.MiddleName + " " + g.Key.LastName,
+                                TotalAmountPaid = g.Sum(x => x.Total)
+                            };
+                return await query.OrderByDescending(c => c.TotalAmountPaid).Take(10).ToListAsync();
             }
         }
     }
