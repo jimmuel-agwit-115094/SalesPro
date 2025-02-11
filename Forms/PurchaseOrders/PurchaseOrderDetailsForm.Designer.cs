@@ -65,6 +65,7 @@
             this.creditTermsPanel = new System.Windows.Forms.Panel();
             this.showLogs_link = new System.Windows.Forms.LinkLabel();
             this.notFound_lbl = new System.Windows.Forms.Label();
+            this.print_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPoItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.poPanel.SuspendLayout();
@@ -506,12 +507,30 @@
             this.notFound_lbl.TabIndex = 547;
             this.notFound_lbl.Text = "No Purchase Order Item Added";
             // 
+            // print_btn
+            // 
+            this.print_btn.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.print_btn.FlatAppearance.BorderSize = 0;
+            this.print_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.print_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print_btn.ForeColor = System.Drawing.Color.White;
+            this.print_btn.Image = ((System.Drawing.Image)(resources.GetObject("print_btn.Image")));
+            this.print_btn.Location = new System.Drawing.Point(738, 6);
+            this.print_btn.Name = "print_btn";
+            this.print_btn.Size = new System.Drawing.Size(121, 27);
+            this.print_btn.TabIndex = 548;
+            this.print_btn.Text = "  Print";
+            this.print_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.print_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.print_btn.UseVisualStyleBackColor = false;
+            // 
             // PurchaseOrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(870, 722);
+            this.Controls.Add(this.print_btn);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.showLogs_link);
             this.Controls.Add(this.creditTermsPanel);
@@ -590,5 +609,6 @@
         private System.Windows.Forms.Panel creditTermsPanel;
         private System.Windows.Forms.LinkLabel showLogs_link;
         private System.Windows.Forms.Label notFound_lbl;
+        private System.Windows.Forms.Button print_btn;
     }
 }

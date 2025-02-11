@@ -28,27 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.customDatePanel = new System.Windows.Forms.Panel();
-            this.startDate_dt = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.endDate_dt = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.findBtn = new System.Windows.Forms.Button();
-            this.reportDate_lbl = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.viewByCb = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.overAllSales_tx = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -64,6 +55,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.totalSales_tx = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.customDatePanel = new System.Windows.Forms.Panel();
+            this.startDate_dt = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.endDate_dt = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.findBtn = new System.Windows.Forms.Button();
+            this.reportDate_lbl = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.viewByCb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.noRecordCustomer = new System.Windows.Forms.Label();
@@ -80,12 +80,12 @@
             this.analytics_cb = new System.Windows.Forms.ComboBox();
             this.Panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.customDatePanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.customDatePanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).BeginInit();
@@ -129,109 +129,6 @@
             this.groupBox1.TabIndex = 440;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // customDatePanel
-            // 
-            this.customDatePanel.Controls.Add(this.startDate_dt);
-            this.customDatePanel.Controls.Add(this.label2);
-            this.customDatePanel.Controls.Add(this.endDate_dt);
-            this.customDatePanel.Controls.Add(this.label3);
-            this.customDatePanel.Controls.Add(this.findBtn);
-            this.customDatePanel.Location = new System.Drawing.Point(172, 59);
-            this.customDatePanel.Name = "customDatePanel";
-            this.customDatePanel.Size = new System.Drawing.Size(439, 53);
-            this.customDatePanel.TabIndex = 538;
-            // 
-            // startDate_dt
-            // 
-            this.startDate_dt.CustomFormat = "MMMM dd,  yyyy";
-            this.startDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDate_dt.Location = new System.Drawing.Point(7, 23);
-            this.startDate_dt.Name = "startDate_dt";
-            this.startDate_dt.Size = new System.Drawing.Size(161, 23);
-            this.startDate_dt.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Start Date :";
-            // 
-            // endDate_dt
-            // 
-            this.endDate_dt.CustomFormat = "MMMM dd,  yyyy";
-            this.endDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDate_dt.Location = new System.Drawing.Point(179, 23);
-            this.endDate_dt.Name = "endDate_dt";
-            this.endDate_dt.Size = new System.Drawing.Size(161, 23);
-            this.endDate_dt.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(182, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "End Date :";
-            // 
-            // findBtn
-            // 
-            this.findBtn.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.findBtn.FlatAppearance.BorderSize = 0;
-            this.findBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findBtn.ForeColor = System.Drawing.Color.White;
-            this.findBtn.Location = new System.Drawing.Point(347, 20);
-            this.findBtn.Name = "findBtn";
-            this.findBtn.Size = new System.Drawing.Size(86, 27);
-            this.findBtn.TabIndex = 533;
-            this.findBtn.Text = "Find ";
-            this.findBtn.UseVisualStyleBackColor = false;
-            this.findBtn.Click += new System.EventHandler(this.findBtn_Click);
-            // 
-            // reportDate_lbl
-            // 
-            this.reportDate_lbl.AutoSize = true;
-            this.reportDate_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportDate_lbl.Location = new System.Drawing.Point(169, 85);
-            this.reportDate_lbl.Name = "reportDate_lbl";
-            this.reportDate_lbl.Size = new System.Drawing.Size(90, 17);
-            this.reportDate_lbl.TabIndex = 541;
-            this.reportDate_lbl.Text = "Report Date : ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 15);
-            this.label4.TabIndex = 540;
-            this.label4.Text = "View By Date";
-            // 
-            // viewByCb
-            // 
-            this.viewByCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.viewByCb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewByCb.FormattingEnabled = true;
-            this.viewByCb.Items.AddRange(new object[] {
-            "Past 30 Days",
-            "Past 60 Days",
-            "Past 90 Days",
-            "Custom Date Range"});
-            this.viewByCb.Location = new System.Drawing.Point(15, 81);
-            this.viewByCb.Name = "viewByCb";
-            this.viewByCb.Size = new System.Drawing.Size(145, 25);
-            this.viewByCb.TabIndex = 539;
-            this.viewByCb.SelectedIndexChanged += new System.EventHandler(this.viewByCb_SelectedIndexChanged);
             // 
             // panel6
             // 
@@ -394,6 +291,109 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Total Sales";
             // 
+            // customDatePanel
+            // 
+            this.customDatePanel.Controls.Add(this.startDate_dt);
+            this.customDatePanel.Controls.Add(this.label2);
+            this.customDatePanel.Controls.Add(this.endDate_dt);
+            this.customDatePanel.Controls.Add(this.label3);
+            this.customDatePanel.Controls.Add(this.findBtn);
+            this.customDatePanel.Location = new System.Drawing.Point(172, 59);
+            this.customDatePanel.Name = "customDatePanel";
+            this.customDatePanel.Size = new System.Drawing.Size(439, 53);
+            this.customDatePanel.TabIndex = 538;
+            // 
+            // startDate_dt
+            // 
+            this.startDate_dt.CustomFormat = "MMMM dd,  yyyy";
+            this.startDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.startDate_dt.Location = new System.Drawing.Point(7, 23);
+            this.startDate_dt.Name = "startDate_dt";
+            this.startDate_dt.Size = new System.Drawing.Size(161, 23);
+            this.startDate_dt.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Start Date :";
+            // 
+            // endDate_dt
+            // 
+            this.endDate_dt.CustomFormat = "MMMM dd,  yyyy";
+            this.endDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endDate_dt.Location = new System.Drawing.Point(179, 23);
+            this.endDate_dt.Name = "endDate_dt";
+            this.endDate_dt.Size = new System.Drawing.Size(161, 23);
+            this.endDate_dt.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(182, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "End Date :";
+            // 
+            // findBtn
+            // 
+            this.findBtn.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.findBtn.FlatAppearance.BorderSize = 0;
+            this.findBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findBtn.ForeColor = System.Drawing.Color.White;
+            this.findBtn.Location = new System.Drawing.Point(347, 20);
+            this.findBtn.Name = "findBtn";
+            this.findBtn.Size = new System.Drawing.Size(86, 27);
+            this.findBtn.TabIndex = 533;
+            this.findBtn.Text = "Find ";
+            this.findBtn.UseVisualStyleBackColor = false;
+            this.findBtn.Click += new System.EventHandler(this.findBtn_Click);
+            // 
+            // reportDate_lbl
+            // 
+            this.reportDate_lbl.AutoSize = true;
+            this.reportDate_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportDate_lbl.Location = new System.Drawing.Point(169, 85);
+            this.reportDate_lbl.Name = "reportDate_lbl";
+            this.reportDate_lbl.Size = new System.Drawing.Size(90, 17);
+            this.reportDate_lbl.TabIndex = 541;
+            this.reportDate_lbl.Text = "Report Date : ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 15);
+            this.label4.TabIndex = 540;
+            this.label4.Text = "View By Date";
+            // 
+            // viewByCb
+            // 
+            this.viewByCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.viewByCb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewByCb.FormattingEnabled = true;
+            this.viewByCb.Items.AddRange(new object[] {
+            "Past 30 Days",
+            "Past 60 Days",
+            "Past 90 Days",
+            "Custom Date Range"});
+            this.viewByCb.Location = new System.Drawing.Point(15, 81);
+            this.viewByCb.Name = "viewByCb";
+            this.viewByCb.Size = new System.Drawing.Size(145, 25);
+            this.viewByCb.TabIndex = 539;
+            this.viewByCb.SelectedIndexChanged += new System.EventHandler(this.viewByCb_SelectedIndexChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -437,30 +437,30 @@
             this.dgCustomers.AllowUserToAddRows = false;
             this.dgCustomers.AllowUserToDeleteRows = false;
             this.dgCustomers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgCustomers.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgCustomers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgCustomers.ColumnHeadersHeight = 30;
             this.dgCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgCustomers.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgCustomers.EnableHeadersVisualStyles = false;
             this.dgCustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgCustomers.Location = new System.Drawing.Point(11, 348);
@@ -501,30 +501,30 @@
             this.dgProducts.AllowUserToAddRows = false;
             this.dgProducts.AllowUserToDeleteRows = false;
             this.dgProducts.AllowUserToResizeRows = false;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgProducts.ColumnHeadersHeight = 30;
             this.dgProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgProducts.EnableHeadersVisualStyles = false;
             this.dgProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgProducts.Location = new System.Drawing.Point(11, 60);
@@ -575,16 +575,16 @@
             // analyticsChart
             // 
             this.analyticsChart.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea4.Name = "ChartArea1";
-            this.analyticsChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.analyticsChart.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.analyticsChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.analyticsChart.Legends.Add(legend1);
             this.analyticsChart.Location = new System.Drawing.Point(14, 19);
             this.analyticsChart.Name = "analyticsChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.analyticsChart.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.analyticsChart.Series.Add(series1);
             this.analyticsChart.Size = new System.Drawing.Size(583, 290);
             this.analyticsChart.TabIndex = 443;
             this.analyticsChart.Text = "chart1";
@@ -652,8 +652,6 @@
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.customDatePanel.ResumeLayout(false);
-            this.customDatePanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -664,6 +662,8 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.customDatePanel.ResumeLayout(false);
+            this.customDatePanel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).EndInit();
