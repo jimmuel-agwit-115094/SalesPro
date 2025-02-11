@@ -406,6 +406,17 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async void print_btn_Click(object sender, EventArgs e)
         {
+            if (dgPoItems.Rows.Count == 0)
+            {
+                MessageHandler.ShowWarning("No items to print.");
+                return;
+            }
+
+            if (!_isSupplierSelected)
+            {
+                MessageHandler.ShowWarning("Please select a supplier.");
+                return;
+            }
             try
             {
                 // create new dictionary
