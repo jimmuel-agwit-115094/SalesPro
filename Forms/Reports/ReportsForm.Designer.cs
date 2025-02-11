@@ -28,18 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.customDatePanel = new System.Windows.Forms.Panel();
+            this.startDate_dt = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.endDate_dt = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.findBtn = new System.Windows.Forms.Button();
+            this.reportDate_lbl = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.viewByCb = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.overAllSales_tx = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,41 +64,32 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.totalSales_tx = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.findBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.endDate_dt = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.startDate_dt = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.noRecordCustomer = new System.Windows.Forms.Label();
+            this.dgCustomers = new System.Windows.Forms.DataGridView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgProducts = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.movement_cb = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.analyticsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.dgCustomers = new System.Windows.Forms.DataGridView();
             this.label17 = new System.Windows.Forms.Label();
-            this.customDatePanel = new System.Windows.Forms.Panel();
-            this.viewByCb = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.reportDate_lbl = new System.Windows.Forms.Label();
-            this.notFound_lbl = new System.Windows.Forms.Label();
-            this.noRecordCustomer = new System.Windows.Forms.Label();
             this.Panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.customDatePanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.analyticsChart)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
-            this.customDatePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -117,28 +117,127 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.customDatePanel);
-            this.groupBox1.Controls.Add(this.reportDate_lbl);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.viewByCb);
             this.groupBox1.Controls.Add(this.panel6);
             this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.panel4);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 78);
+            this.groupBox1.Location = new System.Drawing.Point(11, 143);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(608, 250);
+            this.groupBox1.Size = new System.Drawing.Size(608, 175);
             this.groupBox1.TabIndex = 440;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // customDatePanel
+            // 
+            this.customDatePanel.Controls.Add(this.startDate_dt);
+            this.customDatePanel.Controls.Add(this.label2);
+            this.customDatePanel.Controls.Add(this.endDate_dt);
+            this.customDatePanel.Controls.Add(this.label3);
+            this.customDatePanel.Controls.Add(this.findBtn);
+            this.customDatePanel.Location = new System.Drawing.Point(172, 59);
+            this.customDatePanel.Name = "customDatePanel";
+            this.customDatePanel.Size = new System.Drawing.Size(439, 53);
+            this.customDatePanel.TabIndex = 538;
+            // 
+            // startDate_dt
+            // 
+            this.startDate_dt.CustomFormat = "MMMM dd,  yyyy";
+            this.startDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.startDate_dt.Location = new System.Drawing.Point(7, 23);
+            this.startDate_dt.Name = "startDate_dt";
+            this.startDate_dt.Size = new System.Drawing.Size(161, 23);
+            this.startDate_dt.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Start Date :";
+            // 
+            // endDate_dt
+            // 
+            this.endDate_dt.CustomFormat = "MMMM dd,  yyyy";
+            this.endDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endDate_dt.Location = new System.Drawing.Point(179, 23);
+            this.endDate_dt.Name = "endDate_dt";
+            this.endDate_dt.Size = new System.Drawing.Size(161, 23);
+            this.endDate_dt.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(182, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "End Date :";
+            // 
+            // findBtn
+            // 
+            this.findBtn.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.findBtn.FlatAppearance.BorderSize = 0;
+            this.findBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findBtn.ForeColor = System.Drawing.Color.White;
+            this.findBtn.Location = new System.Drawing.Point(347, 20);
+            this.findBtn.Name = "findBtn";
+            this.findBtn.Size = new System.Drawing.Size(86, 27);
+            this.findBtn.TabIndex = 533;
+            this.findBtn.Text = "Find ";
+            this.findBtn.UseVisualStyleBackColor = false;
+            this.findBtn.Click += new System.EventHandler(this.findBtn_Click);
+            // 
+            // reportDate_lbl
+            // 
+            this.reportDate_lbl.AutoSize = true;
+            this.reportDate_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportDate_lbl.Location = new System.Drawing.Point(169, 85);
+            this.reportDate_lbl.Name = "reportDate_lbl";
+            this.reportDate_lbl.Size = new System.Drawing.Size(90, 17);
+            this.reportDate_lbl.TabIndex = 541;
+            this.reportDate_lbl.Text = "Report Date : ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 15);
+            this.label4.TabIndex = 540;
+            this.label4.Text = "View By Date";
+            // 
+            // viewByCb
+            // 
+            this.viewByCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.viewByCb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewByCb.FormattingEnabled = true;
+            this.viewByCb.Items.AddRange(new object[] {
+            "Past 30 Days",
+            "Past 60 Days",
+            "Past 90 Days",
+            "Custom Date Range"});
+            this.viewByCb.Location = new System.Drawing.Point(15, 81);
+            this.viewByCb.Name = "viewByCb";
+            this.viewByCb.Size = new System.Drawing.Size(145, 25);
+            this.viewByCb.TabIndex = 539;
+            this.viewByCb.SelectedIndexChanged += new System.EventHandler(this.viewByCb_SelectedIndexChanged);
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Teal;
             this.panel6.Controls.Add(this.overAllSales_tx);
             this.panel6.Controls.Add(this.label9);
-            this.panel6.Location = new System.Drawing.Point(409, 84);
+            this.panel6.Location = new System.Drawing.Point(410, 16);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(180, 148);
             this.panel6.TabIndex = 537;
@@ -170,7 +269,7 @@
             this.panel5.BackColor = System.Drawing.Color.Peru;
             this.panel5.Controls.Add(this.paymentToSupplier_tx);
             this.panel5.Controls.Add(this.label15);
-            this.panel5.Location = new System.Drawing.Point(212, 163);
+            this.panel5.Location = new System.Drawing.Point(213, 95);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(186, 69);
             this.panel5.TabIndex = 537;
@@ -202,7 +301,7 @@
             this.panel4.BackColor = System.Drawing.Color.Sienna;
             this.panel4.Controls.Add(this.totalExpenses_tx);
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Location = new System.Drawing.Point(212, 84);
+            this.panel4.Location = new System.Drawing.Point(213, 16);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(186, 69);
             this.panel4.TabIndex = 536;
@@ -234,7 +333,7 @@
             this.panel3.BackColor = System.Drawing.Color.DarkGreen;
             this.panel3.Controls.Add(this.customerCreditTotal_tx);
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Location = new System.Drawing.Point(16, 163);
+            this.panel3.Location = new System.Drawing.Point(17, 95);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(186, 69);
             this.panel3.TabIndex = 535;
@@ -266,7 +365,7 @@
             this.panel2.BackColor = System.Drawing.Color.Green;
             this.panel2.Controls.Add(this.totalSales_tx);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(16, 84);
+            this.panel2.Location = new System.Drawing.Point(17, 16);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(186, 69);
             this.panel2.TabIndex = 534;
@@ -293,66 +392,11 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Total Sales";
             // 
-            // findBtn
-            // 
-            this.findBtn.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.findBtn.FlatAppearance.BorderSize = 0;
-            this.findBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findBtn.ForeColor = System.Drawing.Color.White;
-            this.findBtn.Location = new System.Drawing.Point(347, 20);
-            this.findBtn.Name = "findBtn";
-            this.findBtn.Size = new System.Drawing.Size(86, 27);
-            this.findBtn.TabIndex = 533;
-            this.findBtn.Text = "Find ";
-            this.findBtn.UseVisualStyleBackColor = false;
-            this.findBtn.Click += new System.EventHandler(this.findBtn_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(182, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "End Date :";
-            // 
-            // endDate_dt
-            // 
-            this.endDate_dt.CustomFormat = "MMMM dd,  yyyy";
-            this.endDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDate_dt.Location = new System.Drawing.Point(179, 23);
-            this.endDate_dt.Name = "endDate_dt";
-            this.endDate_dt.Size = new System.Drawing.Size(161, 23);
-            this.endDate_dt.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Start Date :";
-            // 
-            // startDate_dt
-            // 
-            this.startDate_dt.CustomFormat = "MMMM dd,  yyyy";
-            this.startDate_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDate_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDate_dt.Location = new System.Drawing.Point(7, 23);
-            this.startDate_dt.Name = "startDate_dt";
-            this.startDate_dt.Size = new System.Drawing.Size(161, 23);
-            this.startDate_dt.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 58);
+            this.label1.Location = new System.Drawing.Point(10, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 21);
             this.label1.TabIndex = 0;
@@ -373,35 +417,111 @@
             this.groupBox2.TabIndex = 441;
             this.groupBox2.TabStop = false;
             // 
+            // noRecordCustomer
+            // 
+            this.noRecordCustomer.AutoSize = true;
+            this.noRecordCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.noRecordCustomer.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
+            this.noRecordCustomer.ForeColor = System.Drawing.Color.IndianRed;
+            this.noRecordCustomer.Location = new System.Drawing.Point(174, 453);
+            this.noRecordCustomer.Name = "noRecordCustomer";
+            this.noRecordCustomer.Size = new System.Drawing.Size(174, 45);
+            this.noRecordCustomer.TabIndex = 468;
+            this.noRecordCustomer.Text = "No Record";
+            // 
+            // dgCustomers
+            // 
+            this.dgCustomers.AllowUserToAddRows = false;
+            this.dgCustomers.AllowUserToDeleteRows = false;
+            this.dgCustomers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgCustomers.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgCustomers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgCustomers.ColumnHeadersHeight = 30;
+            this.dgCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgCustomers.DefaultCellStyle = dataGridViewCellStyle21;
+            this.dgCustomers.EnableHeadersVisualStyles = false;
+            this.dgCustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgCustomers.Location = new System.Drawing.Point(11, 348);
+            this.dgCustomers.MultiSelect = false;
+            this.dgCustomers.Name = "dgCustomers";
+            this.dgCustomers.ReadOnly = true;
+            this.dgCustomers.RowHeadersVisible = false;
+            this.dgCustomers.RowHeadersWidth = 51;
+            this.dgCustomers.RowTemplate.Height = 32;
+            this.dgCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgCustomers.Size = new System.Drawing.Size(493, 250);
+            this.dgCustomers.TabIndex = 459;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(10, 324);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(210, 21);
+            this.label16.TabIndex = 444;
+            this.label16.Text = "Top High Paying Customers";
+            // 
+            // notFound_lbl
+            // 
+            this.notFound_lbl.AutoSize = true;
+            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
+            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
+            this.notFound_lbl.Location = new System.Drawing.Point(174, 163);
+            this.notFound_lbl.Name = "notFound_lbl";
+            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
+            this.notFound_lbl.TabIndex = 467;
+            this.notFound_lbl.Text = "No Record";
+            // 
             // dgProducts
             // 
             this.dgProducts.AllowUserToAddRows = false;
             this.dgProducts.AllowUserToDeleteRows = false;
             this.dgProducts.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dgProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgProducts.ColumnHeadersHeight = 30;
             this.dgProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgProducts.EnableHeadersVisualStyles = false;
             this.dgProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgProducts.Location = new System.Drawing.Point(11, 60);
@@ -452,16 +572,16 @@
             // analyticsChart
             // 
             this.analyticsChart.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea2.Name = "ChartArea1";
-            this.analyticsChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.analyticsChart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.analyticsChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.analyticsChart.Legends.Add(legend4);
             this.analyticsChart.Location = new System.Drawing.Point(14, 19);
             this.analyticsChart.Name = "analyticsChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.analyticsChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.analyticsChart.Series.Add(series4);
             this.analyticsChart.Size = new System.Drawing.Size(583, 290);
             this.analyticsChart.TabIndex = 443;
             this.analyticsChart.Text = "chart1";
@@ -475,58 +595,6 @@
             this.groupBox3.TabIndex = 443;
             this.groupBox3.TabStop = false;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(10, 324);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(210, 21);
-            this.label16.TabIndex = 444;
-            this.label16.Text = "Top High Paying Customers";
-            // 
-            // dgCustomers
-            // 
-            this.dgCustomers.AllowUserToAddRows = false;
-            this.dgCustomers.AllowUserToDeleteRows = false;
-            this.dgCustomers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgCustomers.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgCustomers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgCustomers.ColumnHeadersHeight = 30;
-            this.dgCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgCustomers.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dgCustomers.EnableHeadersVisualStyles = false;
-            this.dgCustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgCustomers.Location = new System.Drawing.Point(11, 348);
-            this.dgCustomers.MultiSelect = false;
-            this.dgCustomers.Name = "dgCustomers";
-            this.dgCustomers.ReadOnly = true;
-            this.dgCustomers.RowHeadersVisible = false;
-            this.dgCustomers.RowHeadersWidth = 51;
-            this.dgCustomers.RowTemplate.Height = 32;
-            this.dgCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCustomers.Size = new System.Drawing.Size(493, 250);
-            this.dgCustomers.TabIndex = 459;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -537,86 +605,18 @@
             this.label17.TabIndex = 446;
             this.label17.Text = "Analytics";
             // 
-            // customDatePanel
-            // 
-            this.customDatePanel.Controls.Add(this.startDate_dt);
-            this.customDatePanel.Controls.Add(this.label2);
-            this.customDatePanel.Controls.Add(this.endDate_dt);
-            this.customDatePanel.Controls.Add(this.label3);
-            this.customDatePanel.Controls.Add(this.findBtn);
-            this.customDatePanel.Location = new System.Drawing.Point(158, 15);
-            this.customDatePanel.Name = "customDatePanel";
-            this.customDatePanel.Size = new System.Drawing.Size(439, 53);
-            this.customDatePanel.TabIndex = 538;
-            // 
-            // viewByCb
-            // 
-            this.viewByCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.viewByCb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewByCb.FormattingEnabled = true;
-            this.viewByCb.Items.AddRange(new object[] {
-            "Past 30 Days",
-            "Past 60 Days",
-            "Past 90 Days",
-            "Custom Date Range"});
-            this.viewByCb.Location = new System.Drawing.Point(11, 37);
-            this.viewByCb.Name = "viewByCb";
-            this.viewByCb.Size = new System.Drawing.Size(145, 25);
-            this.viewByCb.TabIndex = 539;
-            this.viewByCb.SelectedIndexChanged += new System.EventHandler(this.viewByCb_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 15);
-            this.label4.TabIndex = 540;
-            this.label4.Text = "View By";
-            // 
-            // reportDate_lbl
-            // 
-            this.reportDate_lbl.AutoSize = true;
-            this.reportDate_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportDate_lbl.Location = new System.Drawing.Point(165, 41);
-            this.reportDate_lbl.Name = "reportDate_lbl";
-            this.reportDate_lbl.Size = new System.Drawing.Size(90, 17);
-            this.reportDate_lbl.TabIndex = 541;
-            this.reportDate_lbl.Text = "Report Date : ";
-            // 
-            // notFound_lbl
-            // 
-            this.notFound_lbl.AutoSize = true;
-            this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
-            this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(174, 163);
-            this.notFound_lbl.Name = "notFound_lbl";
-            this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
-            this.notFound_lbl.TabIndex = 467;
-            this.notFound_lbl.Text = "No Record";
-            // 
-            // noRecordCustomer
-            // 
-            this.noRecordCustomer.AutoSize = true;
-            this.noRecordCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.noRecordCustomer.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
-            this.noRecordCustomer.ForeColor = System.Drawing.Color.IndianRed;
-            this.noRecordCustomer.Location = new System.Drawing.Point(174, 453);
-            this.noRecordCustomer.Name = "noRecordCustomer";
-            this.noRecordCustomer.Size = new System.Drawing.Size(174, 45);
-            this.noRecordCustomer.TabIndex = 468;
-            this.noRecordCustomer.Text = "No Record";
-            // 
             // ReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1166, 694);
+            this.Controls.Add(this.customDatePanel);
             this.Controls.Add(this.label17);
+            this.Controls.Add(this.reportDate_lbl);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.viewByCb);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
@@ -634,7 +634,8 @@
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.customDatePanel.ResumeLayout(false);
+            this.customDatePanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -647,12 +648,10 @@
             this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.analyticsChart)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).EndInit();
-            this.customDatePanel.ResumeLayout(false);
-            this.customDatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

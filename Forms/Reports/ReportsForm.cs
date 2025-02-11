@@ -53,7 +53,7 @@ namespace SalesPro.Forms.Reports
                     MessageHandler.ShowWarning("Start date cannot be greater than end date");
                     return;
                 }
-                await GetReportSummary();
+                await LoadAllReports();
             }
             catch (Exception ex)
             {
@@ -63,14 +63,14 @@ namespace SalesPro.Forms.Reports
 
         private async Task LoadProductReport(bool getTopSelling)
         {
-            var products = await _reportService.GetSellingProducts(getTopSelling);
+            var products = await _reportService.GetSellingProducts(_startDate.Date, _endDate.Date, getTopSelling);
             dgProducts.DataSource = products;
             DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName", "TotalProductOrdered");
         }
 
         private async Task LoadHighPayingCustomers()
         {
-            var customers = await _reportService.GetHighPayingCustomers();
+            var customers = await _reportService.GetHighPayingCustomers(_startDate.Date, _endDate.Date);
             dgCustomers.DataSource = customers;
             DgExtensions.ConfigureDataGrid(dgCustomers, false, 0, noRecordCustomer, "FullName", "TotalAmountPaid");
         }
@@ -116,8 +116,16 @@ namespace SalesPro.Forms.Reports
             }
 
             customDatePanel.Visible = false;
+            await LoadAllReports();
+            reportDate_lbl.Text = $"Report Date : {_startDate.ToString("MMMM dd, yyyy")} - {_endDate.ToString("MMMM dd, yyyy")}";
+        }
+
+        private async Task LoadAllReports()
+        {
             await GetReportSummary();
-            reportDate_lbl.Text = $"Date : {_startDate.ToString("MMMM dd, yyyy")} - {_endDate.ToString("MMMM dd, yyyy")}";
+            movement_cb.SelectedIndex = 0;
+            await LoadProductReport(true);
+            await LoadHighPayingCustomers();
         }
 
         private async void movement_cb_SelectedIndexChanged(object sender, EventArgs e)

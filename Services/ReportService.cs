@@ -87,14 +87,15 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<ReportProductExtended>> GetSellingProducts(bool getTopSelling = true)
+        public async Task<List<ReportProductExtended>> GetSellingProducts( DateTime start, DateTime end, bool getTopSelling = true)
         {
             using (var context = new DatabaseContext())
             {
                 var query = from oi in context.OrderItems
                             join o in context.Orders on oi.OrderId equals o.OrderId
                             join p in context.Products on oi.ProductId equals p.ProductId
-                            where o.OrderStatus == OrderStatus.Completed
+                            where o.OrderStatus == OrderStatus.Completed 
+                            && o.DatePaid.Value.Date >= start.Date && o.DatePaid.Value.Date <= end.Date
                             && o.PaymentStatus == PaymentStatus.Paid
                             group oi by new
                             {
@@ -126,13 +127,14 @@ namespace SalesPro.Services
         }
 
         // get high paying customers
-        public async Task<List<ReportCustomerExtended>> GetHighPayingCustomers()
+        public async Task<List<ReportCustomerExtended>> GetHighPayingCustomers(DateTime start, DateTime end)
         {
             using (var context = new DatabaseContext())
             {
                 var query = from o in context.Orders
                             join c in context.Customers on o.CustomerId equals c.CustomerId
                             where o.OrderStatus == OrderStatus.Completed
+                            && o.DatePaid.Value.Date >= start.Date && o.DatePaid.Value.Date <= end.Date
                             && o.PaymentStatus == PaymentStatus.Paid
                             && o.CustomerId != 1
                             group o by new
