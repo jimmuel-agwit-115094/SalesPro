@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Models.ModelHelpers;
 using System.Configuration;
@@ -29,9 +30,13 @@ namespace POS_Generic.Helpers
         public DbSet<ActivationModel> Activation { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-            optionsBuilder.UseMySQL(connectionString);
+            string encryptedConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            string decryptedPassword = DatabaseSecurityService.GetDecryptedPassword();
+            string finalConnectionString = encryptedConnectionString.Replace(DatabaseSecurityService.ExtractPassword(encryptedConnectionString), decryptedPassword);
+
+            optionsBuilder.UseMySQL(finalConnectionString);
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
