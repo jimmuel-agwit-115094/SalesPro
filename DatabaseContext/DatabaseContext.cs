@@ -2,7 +2,10 @@
 using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Models.ModelHelpers;
+using System;
 using System.Configuration;
+
+[assembly: System.Reflection.AssemblyMetadata("DisableILDasm", "true")]
 
 namespace POS_Generic.Helpers
 {
@@ -35,6 +38,8 @@ namespace POS_Generic.Helpers
             string finalConnectionString = encryptedConnectionString.Replace(DatabaseSecurityService.ExtractPassword(encryptedConnectionString), decryptedPassword);
 
             optionsBuilder.UseMySQL(finalConnectionString);
+
+            Array.Clear(decryptedPassword.ToCharArray(), 0, decryptedPassword.Length);
         }
 
 
