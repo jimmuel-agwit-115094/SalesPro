@@ -1,5 +1,6 @@
 ﻿using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SalesPro.Forms.Reports
 {
@@ -85,7 +87,7 @@ namespace SalesPro.Forms.Reports
                 endDate_dt.Value = DateTime.Now;
                 movement_cb.SelectedIndex = 0;
                 viewByCb.SelectedIndex = 0;
-
+                analytics_cb.SelectedIndex = 1;
                 await LoadHighPayingCustomers();
             }
             catch (Exception ex)
@@ -144,6 +146,89 @@ namespace SalesPro.Forms.Reports
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error movement_cb_SelectedIndexChanged: {ex.Message}");
+            }
+        }
+
+        private async Task DisplayYearlyChart()
+        {
+            try
+            {
+                var data = await _reportService.GetYearlySalesForChart();
+
+                if (data == null || !data.Any()) return;
+
+                // Clear previous data
+                analyticsChart.Series.Clear();
+
+                // Create a new series
+                Series series = new Series("Yearly Sales")
+                {
+                    ChartType = SeriesChartType.Column
+                };
+
+                // Add data to series
+                foreach (var item in data)
+                {
+                    series.Points.AddXY(item.Year, item.Total);
+                }
+
+                // Add series to chart
+                analyticsChart.Series.Add(series);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error DisplayYearlyChart: {ex.Message}");
+            }
+
+        }
+
+        private async Task DisplayMonthlyChart()
+        {
+            try
+            {
+                var data = await _reportService.GetMonthlySalesForChart();
+
+                if (data == null || !data.Any()) return;
+
+                // Clear previous data
+                analyticsChart.Series.Clear();
+
+                // Create a new series
+                Series series = new Series("Monthly Sales")
+                {
+                    ChartType = SeriesChartType.Column
+                };
+
+                // Add data to series
+                foreach (var item in data)
+                {
+                    series.Points.AddXY(item.Month, item.Total);
+                }
+
+                // Add series to chart
+                analyticsChart.Series.Add(series);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error DisplayMonthlyChart: {ex.Message}");
+            }
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void analytics_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(analytics_cb.SelectedIndex == 0)
+            {
+                await DisplayYearlyChart();
+            }
+            else
+            {
+                await DisplayMonthlyChart();
             }
         }
     }

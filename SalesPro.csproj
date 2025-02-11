@@ -207,6 +207,7 @@
     </Compile>
     <Compile Include="Helpers\DatabaseSecurityService.cs" />
     <Compile Include="Models\ActivationModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Sessions\ActivationSession.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\BackupAndRestoreService.cs" />

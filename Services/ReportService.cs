@@ -4,6 +4,7 @@ using SalesPro.Enums;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,14 +88,14 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<ReportProductExtended>> GetSellingProducts( DateTime start, DateTime end, bool getTopSelling = true)
+        public async Task<List<ReportProductExtended>> GetSellingProducts(DateTime start, DateTime end, bool getTopSelling = true)
         {
             using (var context = new DatabaseContext())
             {
                 var query = from oi in context.OrderItems
                             join o in context.Orders on oi.OrderId equals o.OrderId
                             join p in context.Products on oi.ProductId equals p.ProductId
-                            where o.OrderStatus == OrderStatus.Completed 
+                            where o.OrderStatus == OrderStatus.Completed
                             && o.DatePaid.Value.Date >= start.Date && o.DatePaid.Value.Date <= end.Date
                             && o.PaymentStatus == PaymentStatus.Paid
                             group oi by new
@@ -154,5 +155,65 @@ namespace SalesPro.Services
                 return await query.OrderByDescending(c => c.TotalAmountPaid).Take(10).ToListAsync();
             }
         }
+
+        public async Task<List<ReportYearModel>> GetYearlySalesForChart()
+        {
+            using (var context = new DatabaseContext())
+            {
+                int currentYear = DateTime.UtcNow.Year;
+                int pastYearLimit = currentYear - 6; // Include the current year and the last 6 years
+
+                var query = from o in context.Orders
+                            where o.OrderStatus == OrderStatus.Completed
+                                  && o.PaymentStatus == PaymentStatus.Paid
+                                  && o.DatePaid.HasValue
+                                  && o.DatePaid.Value.Year >= pastYearLimit
+                            group o by o.DatePaid.Value.Year into g
+                            select new ReportYearModel
+                            {
+                                Year = g.Key,
+                                Total = g.Sum(x => x.Total)
+                            };
+
+                return await query.OrderBy(x => x.Year).ToListAsync();
+            }
+        }
+
+
+        public async Task<List<ReportMonthModel>> GetMonthlySalesForChart()
+        {
+            using (var context = new DatabaseContext())
+            {
+                int currentYear = DateTime.UtcNow.Year;
+
+                var query = from o in context.Orders
+                            where o.OrderStatus == OrderStatus.Completed
+                                  && o.PaymentStatus == PaymentStatus.Paid
+                                  && o.DatePaid.HasValue
+                                  && o.DatePaid.Value.Year == currentYear
+                            group o by o.DatePaid.Value.Month into g
+                            select new
+                            {
+                                MonthNumber = g.Key, // Store month as a number (1-12)
+                                Total = g.Sum(x => x.Total)
+                            };
+
+                // Fetch data from the database first
+                var result = await query.ToListAsync();
+
+                // Convert month numbers to abbreviated names & sort correctly
+                var mappedResult = result
+                    .OrderBy(x => x.MonthNumber) // ✅ Ensure months are in correct order
+                    .Select(x => new ReportMonthModel
+                    {
+                        Month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(x.MonthNumber), // Convert to "Jan", "Feb", ...
+                        Total = x.Total
+                    })
+                    .ToList();
+
+                return mappedResult;
+            }
+        }
+
     }
 }
