@@ -41,6 +41,10 @@ namespace SalesPro.Forms.Reports
             customerCreditTotal_tx.Text = totalCustomerCreditPayment.ToString("N2");
             paymentToSupplier_tx.Text = totalPaymentToSuppliers.ToString("N2");
             overAllSales_tx.Text = overAllSales.ToString("N2");
+            if (overAllSales < 0)
+            {
+                overAllSales_tx.ForeColor = Color.Yellow;
+            }
         }
 
         private async void findBtn_Click(object sender, EventArgs e)
@@ -222,7 +226,7 @@ namespace SalesPro.Forms.Reports
 
         private async void analytics_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(analytics_cb.SelectedIndex == 0)
+            if (analytics_cb.SelectedIndex == 0)
             {
                 await DisplayYearlyChart();
             }
@@ -230,6 +234,11 @@ namespace SalesPro.Forms.Reports
             {
                 await DisplayMonthlyChart();
             }
+        }
+
+        private void overAllSales_tx_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
