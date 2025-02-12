@@ -42,7 +42,6 @@ namespace POS_Generic.Helpers
             Array.Clear(decryptedPassword.ToCharArray(), 0, decryptedPassword.Length);
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure the keyless entity type in the modelBuilder

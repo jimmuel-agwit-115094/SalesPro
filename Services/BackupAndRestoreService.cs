@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.Options;
+using MySql.Data.MySqlClient;
 using SalesPro.Helpers;
 using System;
 using System.Configuration;
@@ -12,7 +13,9 @@ namespace SalesPro.Services
         private string connectionString;
         public BackupAndRestoreService()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            string encryptedConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
+            string decryptedPassword = DatabaseSecurityService.GetDecryptedPassword();
+            connectionString = encryptedConnectionString.Replace(DatabaseSecurityService.ExtractPassword(encryptedConnectionString), decryptedPassword);
         }
 
         public void BackupDatabase()
