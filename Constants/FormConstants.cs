@@ -12,6 +12,9 @@
         public const string SupplierPayables = "SupplierPayables";
         public const string CustomerCredits = "CustomerCredits";
 
+        public const string Expenses = "Expenses";
+        public const string Inventory = "Inventory";
+
 
     }
     public class CustomerCreditPaymentTabSelection

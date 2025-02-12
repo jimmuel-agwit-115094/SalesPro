@@ -265,6 +265,7 @@ namespace SalesPro.Forms.Inventory
             {
                 { "InventoryType", inventoryTabControl.SelectedTab?.Text ?? "Unknown" }
             };
+            form._formAction = Constants.FormConstants.Inventory;
             form.ShowDialog();
         }
     }

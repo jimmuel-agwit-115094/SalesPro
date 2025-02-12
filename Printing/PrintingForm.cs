@@ -1,20 +1,14 @@
 ﻿using SalesPro.Helpers;
 using SalesPro.Models;
-using SalesPro.Printing;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms
 {
     public partial class PrintingForm : Form
     {
+        public string _formAction;
         public List<PurchaseOrderItemModelExntended> _purchseOrderItemList;
         public Dictionary<string, string> _poDetailsParam;
 
@@ -41,14 +35,22 @@ namespace SalesPro.Forms
         {
             try
             {
-                PrintPoDetailsReport();
-                PrintInventory();
+                if (_formAction == Constants.FormConstants.Inventory)
+                {
+                    PrintInventory();
+                    return;
+                }
+                else if (_formAction == Constants.FormConstants.PurchaseOrderItem)
+                {
+                    PrintPoDetailsReport();
+                    return;
+                }
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error occurred while printing on form load: {ex.Message}");
             }
-         
+
         }
     }
 }

@@ -439,6 +439,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 form._poDetailsParam = poDetailsParam;
                 var poItems = await _service.LoadPurchaseOrderItemsByPoId(_poId);
                 form._purchseOrderItemList = poItems;
+                form._formAction = FormConstants.PurchaseOrderItem;
                 form.ShowDialog();
             }
             catch (Exception ex)
