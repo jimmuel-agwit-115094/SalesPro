@@ -1,9 +1,12 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +28,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         private readonly PurchaseOrderService _poService;
         private readonly CustomerCreditService _customerCreditService;
         private readonly OrderService _orderService;
+        private List<OrderItemModelExtended> _orderItemLists;
         public ManagePayableForm(PaymentsAndBillingForm form)
         {
             InitializeComponent();
@@ -37,7 +41,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         public async Task LoadOrderItems()
         {
-            if (_actionForm == Constants.FormConstants.SupplierPayables)
+            if (_actionForm == FormConstants.SupplierPayables)
             {
                 var orderItems = await _poService.LoadPurchaseOrderItemsByPoId(_poId);
                 dgOrderedItems.DataSource = orderItems;
@@ -49,6 +53,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var orderId = await _customerCreditService.GetOrderIdByCustomerCreditId(_customerCreditId);
                 var creditedItems = await _orderService.LoadOrderItemsByOrderId(orderId);
                 dgOrderedItems.DataSource = creditedItems;
+                _orderItemLists = creditedItems;
                 DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
                   "ProductName", "OrderQuantity", "Price", "Total");
             }
@@ -84,6 +89,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     pay_btn.Text = "Pay Supplier";
                     title_lbl.Text = "Manage Supplier Payable";
                     pay_btn.BackColor = Color.Green;
+                    print_btn.Visible = false;
                 }
             }
             else if (_actionForm == Constants.FormConstants.CustomerCredits)
@@ -113,6 +119,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     title_lbl.Text = "Customer Credit";
                     pay_btn.Text = "Receive Payment";
                     pay_btn.BackColor = SystemColors.Highlight;
+                    print_btn.Visible = true;
                 }
             }
         }
@@ -174,7 +181,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     {
                         await SetControls();
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -217,6 +224,29 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void paymentStatus_tx_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void print_btn_Click(object sender, EventArgs e)
+        {
+            if (_actionForm == FormConstants.CustomerCredits)
+            {
+                var form = new PrintingForm();
+                form._customerCreditList = _orderItemLists;
+                form._customerCreditParam = new Dictionary<string, string>
+                  {
+                  { "CustomerName", supplier_tx.Text},
+                  { "Contact", contactNumber_tx.Text},
+                  { "DateCreated", dateCredited_tx.Text},
+                   { "DueDate", dueDate_dt.Value.ToString("MM/dd/yyyy")},
+                    { "Address", address_tx.Text},
+                    { "Total", total_tx.Text},
+                 { "CreditTerms", creditTerms_tx.Text},
+                    { "ProcessedBy", processedBy_tx.Text}
+                };
+                form._formAction = FormConstants.CustomerCreditPayment;
+                form.ShowDialog();
+            }
 
         }
     }

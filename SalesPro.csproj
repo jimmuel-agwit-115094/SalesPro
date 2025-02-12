@@ -217,6 +217,11 @@
     <Compile Include="Constants\PublicKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActivationStatusEnum.cs" />
+    <Compile Include="Printing\CustomerCreditDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerCreditDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Printing\InventoryDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -613,6 +618,7 @@
     <EmbeddedResource Include="Forms\Transactions\TransactionForm.resx">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Printing\rdlc\CustomerCreditRdlc.rdlc" />
     <EmbeddedResource Include="Printing\rdlc\InventoryRdlc.rdlc" />
     <EmbeddedResource Include="Printing\rdlc\PoDetailsRdlc.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -629,6 +635,17 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Printing\CustomerCreditDataSet.xsc">
+      <DependentUpon>CustomerCreditDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Printing\CustomerCreditDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerCreditDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Printing\CustomerCreditDataSet.xss">
+      <DependentUpon>CustomerCreditDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Printing\InventoryDataSet.xsc">
       <DependentUpon>InventoryDataSet.xsd</DependentUpon>
     </None>

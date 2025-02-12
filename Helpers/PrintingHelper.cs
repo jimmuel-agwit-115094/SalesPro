@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.Interfaces;
 
 namespace SalesPro.Helpers
 {
@@ -40,7 +41,7 @@ namespace SalesPro.Helpers
                     }
                     reportViewer.LocalReport.SetParameters(reportParameters);
                 }
-
+                reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
                 // Refresh the report
                 reportViewer.RefreshReport();
             }

@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using Microsoft.Reporting.WinForms;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace SalesPro.Forms
 
         public List<InventoryModelExtended> _inventoryList;
         public Dictionary<string, string> _inventoryParam;
+
+        public List<OrderItemModelExtended> _customerCreditList;
+        public Dictionary<string, string> _customerCreditParam;
+
         public PrintingForm()
         {
             InitializeComponent();
@@ -31,6 +36,12 @@ namespace SalesPro.Forms
             PrintingHelper.PrintReport(reportRv, reportName, _inventoryList, "InventoryDataSet", _inventoryParam);
         }
 
+        private void PrintCustomerCredit()
+        {
+            const string reportName = "CustomerCreditRdlc";
+            PrintingHelper.PrintReport(reportRv, reportName, _customerCreditList, "CustomerCreditDataSet", _customerCreditParam);
+        }
+
         private void Printing_Load(object sender, EventArgs e)
         {
             try
@@ -45,6 +56,12 @@ namespace SalesPro.Forms
                     PrintPoDetailsReport();
                     return;
                 }
+                else if (_formAction == Constants.FormConstants.CustomerCreditPayment)
+                {
+                    PrintCustomerCredit();
+                    return;
+                }
+          
             }
             catch (Exception ex)
             {
