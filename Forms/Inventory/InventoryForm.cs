@@ -5,7 +5,9 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +18,8 @@ namespace SalesPro.Forms.Inventory
         private int _inventoryId;
         private DateTime _curDate;
         private readonly InventoryService _service;
+        private List<InventoryModelExtended> _inventoryList;
+        private Dictionary<string, string> _inventoryParam;
         public InventoryForm()
         {
             InitializeComponent();
@@ -61,6 +65,7 @@ namespace SalesPro.Forms.Inventory
         {
             var allInventory = await _service.GetAllInventories();
             dgInventory.DataSource = allInventory;
+            _inventoryList = allInventory;
             FormatGrid();
         }
 
@@ -68,6 +73,7 @@ namespace SalesPro.Forms.Inventory
         {
             var inv = await _service.GetFilteredInventories(isOutofStock);
             dgInventory.DataSource = inv;
+            _inventoryList = inv;
             FormatGrid();
         }
 
@@ -249,6 +255,17 @@ namespace SalesPro.Forms.Inventory
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgInventory, search_tx);
+        }
+
+        private void print_btn_Click(object sender, EventArgs e)
+        {
+            var form = new PrintingForm();
+            form._inventoryList = _inventoryList;
+            form._inventoryParam = new Dictionary<string, string>
+            {
+                { "InventoryType", inventoryTabControl.SelectedTab?.Text ?? "Unknown" }
+            };
+            form.ShowDialog();
         }
     }
 }

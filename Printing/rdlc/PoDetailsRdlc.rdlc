@@ -1244,7 +1244,7 @@
       <Width>7.47336in</Width>
       <Page>
         <PageHeader>
-          <Height>0.52083in</Height>
+          <Height>0.53in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1282,6 +1282,17 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+            <Line Name="Line1">
+              <Top>0.43277in</Top>
+              <Height>0in</Height>
+              <Width>7.47336in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Dotted</Style>
+                </Border>
+              </Style>
+            </Line>
           </ReportItems>
           <Style>
             <Border>

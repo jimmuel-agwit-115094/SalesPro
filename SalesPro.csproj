@@ -217,6 +217,11 @@
     <Compile Include="Constants\PublicKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActivationStatusEnum.cs" />
+    <Compile Include="Printing\InventoryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Printing\PrintingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -608,6 +613,7 @@
     <EmbeddedResource Include="Forms\Transactions\TransactionForm.resx">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Printing\rdlc\InventoryRdlc.rdlc" />
     <EmbeddedResource Include="Printing\rdlc\PoDetailsRdlc.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -623,6 +629,17 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Printing\InventoryDataSet.xsc">
+      <DependentUpon>InventoryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Printing\InventoryDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Printing\InventoryDataSet.xss">
+      <DependentUpon>InventoryDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Printing\PoDataSet.xsc">
       <DependentUpon>PoDataSet.xsd</DependentUpon>
     </None>

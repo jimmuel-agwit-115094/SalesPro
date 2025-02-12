@@ -17,6 +17,9 @@ namespace SalesPro.Forms
     {
         public List<PurchaseOrderItemModelExntended> _purchseOrderItemList;
         public Dictionary<string, string> _poDetailsParam;
+
+        public List<InventoryModelExtended> _inventoryList;
+        public Dictionary<string, string> _inventoryParam;
         public PrintingForm()
         {
             InitializeComponent();
@@ -24,20 +27,28 @@ namespace SalesPro.Forms
 
         private void PrintPoDetailsReport()
         {
-            try
-            {
-                const string reportName = "PoDetailsRdlc";
-                PrintingHelper.PrintReport(reportRv, reportName, _purchseOrderItemList, "PoDataSet", _poDetailsParam);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            const string reportName = "PoDetailsRdlc";
+            PrintingHelper.PrintReport(reportRv, reportName, _purchseOrderItemList, "PoDataSet", _poDetailsParam);
+        }
+
+        private void PrintInventory()
+        {
+            const string reportName = "InventoryRdlc";
+            PrintingHelper.PrintReport(reportRv, reportName, _inventoryList, "InventoryDataSet", _inventoryParam);
         }
 
         private void Printing_Load(object sender, EventArgs e)
         {
-            PrintPoDetailsReport();
+            try
+            {
+                PrintPoDetailsReport();
+                PrintInventory();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error occurred while printing on form load: {ex.Message}");
+            }
+         
         }
     }
 }
