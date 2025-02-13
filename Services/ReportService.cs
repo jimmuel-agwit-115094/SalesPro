@@ -32,6 +32,20 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<decimal> GetTotalCashSalesByDate(DateTime start, DateTime end)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var totalCashSales = await context.Orders
+                    .Where(x => x.DateTaken.Date >= start.Date && x.DateTaken.Date <= end.Date
+                    && x.OrderStatus == OrderStatus.Completed
+                    && x.PaymentStatus == PaymentStatus.Paid
+                    && x.PaymentMethod == PaymentMethod.Cash)
+                    .SumAsync(x => x.Total);
+                return totalCashSales;
+            }
+        }
+
         // get total expenses by date
         public async Task<decimal> GetTotalExpensesByDate(DateTime start, DateTime end)
         {

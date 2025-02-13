@@ -17,12 +17,19 @@ namespace SalesPro.Services
             {
                 await context.ExecuteInTransactionAsync(async () =>
                 {
+                    // Save the transaction first
                     await context.Transactions.AddAsync(transaction);
+                    await context.SaveChangesAsync();
+
+                    // Use the saved transaction's ID in the log
+                    log.TransactionId = transaction.TransactionId; // Assuming 'Id' is the primary key
+
                     await context.TransactionLogs.AddAsync(log);
                     await context.SaveChangesAsync();
                 });
             }
         }
+
 
         public async Task UpdateTransaction(int transactionId, decimal begBalance, TransactionLogModel log, int rowVersion)
         {

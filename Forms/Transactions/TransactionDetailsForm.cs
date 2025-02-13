@@ -22,15 +22,15 @@ namespace SalesPro.Forms.Transactions
         private string _userFullname;
         public int _rowVersion;
 
+        private readonly ReportService _reportService;
         private readonly TransactionService _transactionService;
-        private readonly DatabaseContext _context;
         public TransactionDetailsForm(TransactionForm transactionForm)
         {
-            _context = new DatabaseContext();
             _transactionService = new TransactionService();
             InitializeComponent();
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
             _transactionForm = transactionForm;
+            _reportService = new ReportService();
         }
 
         private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
@@ -76,10 +76,10 @@ namespace SalesPro.Forms.Transactions
                     MessageHandler.ShowWarning("Transaction already exists for the current date");
                     return;
                 }
-                if (MessageHandler.ShowQuestion(Resources.ConfirmSave, FormConstants.Transaction))
+                if (MessageHandler.ShowQuestionGeneric("Save Transaction?"))
                 {
                     var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
-                    var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, 1); // We set to 1 because we don't have the transactionId yet
+                    var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, _transactionId); // We set to 1 because we don't have the transactionId yet
                     await _transactionService.SaveTransaction(transaction, saveLogModel);
                     await _transactionForm.EnableDisableMenuPanel();
                     Close();
@@ -87,7 +87,7 @@ namespace SalesPro.Forms.Transactions
             }
             else
             {
-                if (MessageHandler.ShowQuestion(Resources.ConfirmUpdate, FormConstants.Transaction))
+                if (MessageHandler.ShowQuestionGeneric("Update transaction?"))
                 {
                     var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
                     var begBal = decimal.Parse(begBal_tx.Text);
@@ -128,7 +128,6 @@ namespace SalesPro.Forms.Transactions
             FormatGrid();
         }
 
-        // Todo : Refactor this method to add the value of the sales base on other tables in the database
         private async Task GetTransactionData()
         {
             var transactionData = await _transactionService.GetTransactionById(_transactionId);
@@ -150,10 +149,17 @@ namespace SalesPro.Forms.Transactions
                 date_tx.Text = DateFormatHelper.FormatDate(transactionData.StartDate);
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
                 // System Generated Data
-                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : "11"; // Need to be updated
-                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : "22"; // Need to be updated
-                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : "33"; // Need to be updated
-                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "44"; // Need to be updated
+
+                decimal totalSales = await _reportService.GetTotalSalesByDate(_curDate.Date, _curDate.Date);
+                decimal totalExpenses = await _reportService.GetTotalExpensesByDate(_curDate.Date, _curDate.Date);
+                decimal totalCash = await _reportService.GetTotalCashSalesByDate(_curDate.Date, _curDate.Date);
+
+                decimal expectedCash = (totalCash + transactionData.BeginningBalance) - totalExpenses;
+
+                totalSales_tx.Text = transactionData.IsClosed == true ? transactionData.TotalSales.ToString() : totalSales.ToString();
+                totalExp_tx.Text = transactionData.IsClosed == true ? transactionData.TotalExpenses.ToString() : totalExpenses.ToString();
+                expCash_tx.Text = transactionData.IsClosed == true ? transactionData.ExpectedCash.ToString() : expectedCash.ToString();
+                endingCash_tx.Text = transactionData.IsClosed == true ? transactionData.EndingCash.ToString() : "0.00";
 
                 // Notifications
                 if (balStatus_tx.Text == BalanceStatusEnum.Balanced.ToString())
