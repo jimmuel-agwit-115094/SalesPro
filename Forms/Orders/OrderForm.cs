@@ -508,39 +508,6 @@ namespace SalesPro.Forms.Orders
             order_lbl.ForeColor = isReturn ? Color.Yellow : Color.White; // Change the color of the order ID label
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.F12) // Check if F12 key is pressed
-            {
-                _isReturn = !_isReturn; // Toggle the state
-                SetOrderLable(_isReturn); // Update the label
-                return true; // Mark the key press as handled
-            }
-
-            if (!barcode_tx.Focused)
-            {
-                barcode_tx.Focus(); // Focus the textbox
-
-                // Check if the key is a digit or a letter, then send the correct character
-                if (keyData >= Keys.D0 && keyData <= Keys.D9) // For digits 0-9
-                {
-                    SendKeys.Send((keyData - Keys.D0).ToString()); // Send the numeric character
-                }
-                else if (keyData >= Keys.NumPad0 && keyData <= Keys.NumPad9) // For NumPad digits
-                {
-                    SendKeys.Send((keyData - Keys.NumPad0).ToString());
-                }
-                else if (keyData >= Keys.A && keyData <= Keys.Z) // For letters A-Z
-                {
-                    SendKeys.Send(keyData.ToString()); // Send the letter
-                }
-
-                return true; // Mark the key press as handled
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
         private void barcode_tx_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check if the key pressed is '@'
@@ -586,10 +553,29 @@ namespace SalesPro.Forms.Orders
                 }
             }
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                barcode_tx.Select();
+                return true; // Prevents further processing, including button click
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
         private void OrderForm_KeyDown(object sender, KeyEventArgs e)
         {
-         
+           
+        }
+
+        private void barcode_tx_Enter(object sender, EventArgs e)
+        {
+            barcode_tx.BackColor = Color.LightGreen;
+        }
+
+        private void barcode_tx_Leave(object sender, EventArgs e)
+        {
+            barcode_tx.BackColor = Color.WhiteSmoke;
         }
     }
 }
