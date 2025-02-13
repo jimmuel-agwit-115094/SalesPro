@@ -473,7 +473,7 @@ namespace SalesPro.Forms.Orders
                 // Assign results to class-level variables
                 _quantity = qty;
                 _barcode = bcode ?? string.Empty;
-                barcodeAndQty_tx.Text = $"Q: {_quantity} C: {_barcode}"; // Update the display
+                barcodeAndQty_tx.Text = $"Qty: {_quantity} Serial: {_barcode}"; // Update the display
 
             }
             catch (Exception ex)
@@ -553,24 +553,18 @@ namespace SalesPro.Forms.Orders
                 }
             }
         }
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Enter)
-            {
-                barcode_tx.Select();
-                return true; // Prevents further processing, including button click
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
+        
         private void OrderForm_KeyDown(object sender, KeyEventArgs e)
         {
-           
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                barcode_tx.Select();
+            }
         }
 
         private void barcode_tx_Enter(object sender, EventArgs e)
         {
-            barcode_tx.BackColor = Color.LightGreen;
+            barcode_tx.BackColor = Color.PaleGreen;
         }
 
         private void barcode_tx_Leave(object sender, EventArgs e)
