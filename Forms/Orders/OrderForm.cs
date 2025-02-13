@@ -298,7 +298,7 @@ namespace SalesPro.Forms.Orders
         private void orderList_btn_Click_1(object sender, EventArgs e)
         {
             var form = new OrderListForm(this);
-            form.title_lbl.Text = "Suspended Order Lists";
+            form.title_lbl.Text = "Resume Order Lists";
             form._action = Constants.FormConstants.ResumeOrder;
             form._orderStatus = OrderStatus.Suspended;
             form._orderId = _orderId;
@@ -366,7 +366,7 @@ namespace SalesPro.Forms.Orders
         private void allOrders_btn_Click(object sender, EventArgs e)
         {
             var form = new OrderListForm(this);
-            form.title_lbl.Text = "All Orders";
+            form.title_lbl.Text = "View Orders";
             form._orderStatus = OrderStatus.Active;
             form._action = Constants.FormConstants.OrderLists;
             form._rowVersion = _rowVersion;
@@ -564,7 +564,7 @@ namespace SalesPro.Forms.Orders
 
         private void barcode_tx_Enter(object sender, EventArgs e)
         {
-            barcode_tx.BackColor = Color.PaleGreen;
+            barcode_tx.BackColor = Color.FromArgb(255, 255, 192);
         }
 
         private void barcode_tx_Leave(object sender, EventArgs e)

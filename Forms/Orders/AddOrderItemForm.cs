@@ -65,15 +65,15 @@ namespace SalesPro.Forms.Orders
             var products = new List<InventoryModelExtended>();
             if (action == SearchByAction.Barcode)
             {
-                products = await _service.LoadProductsFromInventory(barcode: search_tx.Text);
+                products = await _service.SearchProductsFromInventory(barcode: search_tx.Text);
             }
             else if (action == SearchByAction.ProductName)
             {
-                products = await _service.LoadProductsFromInventory(productName: search_tx.Text);
+                products = await _service.SearchProductsFromInventory(productName: search_tx.Text);
             }
             else
             {
-                products = await _service.LoadProductsFromInventory();
+                products = await _service.SearchProductsFromInventory();
             }
 
             dgProduct.DataSource = products;
@@ -173,6 +173,10 @@ namespace SalesPro.Forms.Orders
             if (e.KeyCode == Keys.Escape)
             {
                 Close();
+            }
+            if (e.KeyCode != Keys.Up && e.KeyCode!= Keys.Down && e.KeyCode != Keys.Enter)
+            {
+                search_tx.Select();
             }
         }
 

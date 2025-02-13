@@ -45,6 +45,7 @@
             this.dateCredited_tx = new System.Windows.Forms.Label();
             this.credTerms_tx = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.credTerms_tx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -53,7 +54,7 @@
             // customer_tx
             // 
             this.customer_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_tx.Location = new System.Drawing.Point(28, 120);
+            this.customer_tx.Location = new System.Drawing.Point(28, 164);
             this.customer_tx.Name = "customer_tx";
             this.customer_tx.Size = new System.Drawing.Size(290, 19);
             this.customer_tx.TabIndex = 542;
@@ -63,7 +64,7 @@
             // amtDue_tx
             // 
             this.amtDue_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amtDue_tx.Location = new System.Drawing.Point(28, 66);
+            this.amtDue_tx.Location = new System.Drawing.Point(28, 110);
             this.amtDue_tx.Name = "amtDue_tx";
             this.amtDue_tx.Size = new System.Drawing.Size(290, 57);
             this.amtDue_tx.TabIndex = 541;
@@ -73,7 +74,7 @@
             // title_lbl
             // 
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.Location = new System.Drawing.Point(28, 47);
+            this.title_lbl.Location = new System.Drawing.Point(28, 91);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(290, 34);
             this.title_lbl.TabIndex = 540;
@@ -83,7 +84,7 @@
             // paymentPhoto
             // 
             this.paymentPhoto.Image = ((System.Drawing.Image)(resources.GetObject("paymentPhoto.Image")));
-            this.paymentPhoto.Location = new System.Drawing.Point(149, 0);
+            this.paymentPhoto.Location = new System.Drawing.Point(149, 44);
             this.paymentPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.paymentPhoto.Name = "paymentPhoto";
             this.paymentPhoto.Size = new System.Drawing.Size(52, 57);
@@ -95,7 +96,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(26, 286);
+            this.label4.Location = new System.Drawing.Point(26, 300);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(165, 17);
             this.label4.TabIndex = 556;
@@ -114,7 +115,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 67);
+            this.label2.Location = new System.Drawing.Point(2, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(284, 19);
             this.label2.TabIndex = 558;
@@ -125,7 +126,7 @@
             // 
             this.invoice_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.invoice_tx.Font = new System.Drawing.Font("Segoe UI", 16.2F);
-            this.invoice_tx.Location = new System.Drawing.Point(28, 367);
+            this.invoice_tx.Location = new System.Drawing.Point(28, 381);
             this.invoice_tx.Name = "invoice_tx";
             this.invoice_tx.Size = new System.Drawing.Size(291, 36);
             this.invoice_tx.TabIndex = 560;
@@ -135,7 +136,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 348);
+            this.label3.Location = new System.Drawing.Point(28, 362);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 17);
             this.label3.TabIndex = 559;
@@ -166,9 +167,9 @@
             this.charge_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.charge_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.charge_btn.ForeColor = System.Drawing.Color.White;
-            this.charge_btn.Location = new System.Drawing.Point(178, 542);
+            this.charge_btn.Location = new System.Drawing.Point(26, 542);
             this.charge_btn.Name = "charge_btn";
-            this.charge_btn.Size = new System.Drawing.Size(140, 34);
+            this.charge_btn.Size = new System.Drawing.Size(292, 40);
             this.charge_btn.TabIndex = 563;
             this.charge_btn.Text = "Charge";
             this.charge_btn.UseVisualStyleBackColor = false;
@@ -177,7 +178,7 @@
             // dueDate_tx
             // 
             this.dueDate_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dueDate_tx.Location = new System.Drawing.Point(3, 84);
+            this.dueDate_tx.Location = new System.Drawing.Point(3, 72);
             this.dueDate_tx.Name = "dueDate_tx";
             this.dueDate_tx.Size = new System.Drawing.Size(282, 19);
             this.dueDate_tx.TabIndex = 565;
@@ -203,7 +204,7 @@
             0,
             0,
             0});
-            this.credTerms_tx.Location = new System.Drawing.Point(27, 305);
+            this.credTerms_tx.Location = new System.Drawing.Point(27, 319);
             this.credTerms_tx.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -223,13 +224,23 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dueDate_tx);
             this.groupBox1.Controls.Add(this.dateCredited_tx);
-            this.groupBox1.Location = new System.Drawing.Point(26, 158);
+            this.groupBox1.Location = new System.Drawing.Point(26, 184);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(291, 115);
+            this.groupBox1.Size = new System.Drawing.Size(291, 102);
             this.groupBox1.TabIndex = 567;
             this.groupBox1.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(112, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 25);
+            this.label7.TabIndex = 568;
+            this.label7.Text = "Charge Order";
             // 
             // ChargeOrderForm
             // 
@@ -238,6 +249,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(343, 594);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.title_lbl);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.credTerms_tx);
@@ -286,5 +298,6 @@
         internal System.Windows.Forms.Label dateCredited_tx;
         public System.Windows.Forms.NumericUpDown credTerms_tx;
         private System.Windows.Forms.GroupBox groupBox1;
+        internal System.Windows.Forms.Label label7;
     }
 }

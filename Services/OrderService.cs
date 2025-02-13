@@ -94,7 +94,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<InventoryModelExtended>> LoadProductsFromInventory(string barcode = null, string productName = null)
+        public async Task<List<InventoryModelExtended>> SearchProductsFromInventory(string barcode = null, string productName = null)
         {
             using (var context = new DatabaseContext())
             {

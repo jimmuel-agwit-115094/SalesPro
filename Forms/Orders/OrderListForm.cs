@@ -48,6 +48,8 @@ namespace SalesPro.Forms.Orders
                     dgOrders.Columns["OrderId"].DisplayIndex = 0;
                     dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
                     dgOrders.Columns["OrderId"].DefaultCellStyle.Format = "000000000";
+                    select_lbl.Visible = true;
+                    resume_pb.Visible = true;
                 }
                 else
                 {
@@ -56,6 +58,8 @@ namespace SalesPro.Forms.Orders
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
                     dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
+                    select_lbl.Visible = false;
+                    resume_pb.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -120,47 +124,47 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (_action == Constants.FormConstants.ResumeOrder)
+            if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus" && e.Value != null)
             {
-                if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus")
+                string status = e.Value.ToString();
+                Color backColor;
+
+                // Assign background color based on order status
+                if (status == OrderStatus.Suspended.ToString())
                 {
-                    if (e.Value != null && e.Value.ToString() == OrderStatus.Suspended.ToString())
-                    {
-                        e.CellStyle.Font = new Font(
-                            dgOrders.DefaultCellStyle.Font.FontFamily,
-                            dgOrders.DefaultCellStyle.Font.Size,
-                            FontStyle.Bold
-                         );
-                        e.CellStyle.BackColor = Color.PaleTurquoise;
-                        e.CellStyle.SelectionBackColor = Color.PaleTurquoise;
-                    }
-                    else if (e.Value != null && e.Value.ToString() == OrderStatus.Cancelled.ToString())
-                    {
-                        e.CellStyle.Font = new Font(
-                            dgOrders.DefaultCellStyle.Font.FontFamily,
-                            dgOrders.DefaultCellStyle.Font.Size,
-                            FontStyle.Bold
-                         );
-                        e.CellStyle.BackColor = Color.Orange;
-                        e.CellStyle.SelectionBackColor = Color.Orange;
-                    }
+                    backColor = Color.PaleTurquoise;
                 }
+                else if (status == OrderStatus.Cancelled.ToString())
+                {
+                    backColor = Color.Orange;
+                }
+                else if (status == OrderStatus.Completed.ToString())
+                {
+                    backColor = Color.LawnGreen;
+                }
+                else
+                {
+                    return; // Exit if the status does not match any condition
+                }
+
+                // Apply styles
+                e.CellStyle.Font = new Font(
+                    dgOrders.DefaultCellStyle.Font.FontFamily,
+                    dgOrders.DefaultCellStyle.Font.Size,
+                    FontStyle.Bold
+                );
+                e.CellStyle.BackColor = backColor;
+                e.CellStyle.SelectionBackColor = backColor;
             }
-            else
+
+
+        }
+
+        private void OrderListForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
             {
-                if (dgOrders.Columns[e.ColumnIndex].Name == "OrderStatus")
-                {
-                    if (e.Value != null && e.Value.ToString() == OrderStatus.Completed.ToString())
-                    {
-                        e.CellStyle.Font = new Font(
-                            dgOrders.DefaultCellStyle.Font.FontFamily,
-                            dgOrders.DefaultCellStyle.Font.Size,
-                            FontStyle.Bold
-                         );
-                        e.CellStyle.BackColor = Color.LawnGreen;
-                        e.CellStyle.SelectionBackColor = Color.LawnGreen;
-                    }
-                }
+                Close();
             }
         }
     }
