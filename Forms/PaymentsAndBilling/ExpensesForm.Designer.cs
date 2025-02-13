@@ -113,6 +113,7 @@
             this.dateAdded_dt.Name = "dateAdded_dt";
             this.dateAdded_dt.Size = new System.Drawing.Size(303, 25);
             this.dateAdded_dt.TabIndex = 571;
+            this.dateAdded_dt.ValueChanged += new System.EventHandler(this.dateAdded_dt_ValueChanged);
             // 
             // receipt_tx
             // 

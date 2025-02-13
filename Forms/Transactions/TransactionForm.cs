@@ -23,10 +23,18 @@ namespace SalesPro.Forms.Transactions
 
         private async void TransactionForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ClockHelper.GetServerDateTime();
-            // Triggers the SelectedIndexChanged event
-            transactionsTabControl.SelectedIndex = 0;
-            transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
+            try
+            {
+                _curDate = await ClockHelper.GetServerDateTime();
+                date_cb.MaxDate = _curDate.Date;
+                // Triggers the SelectedIndexChanged event
+                transactionsTabControl.SelectedIndex = 0;
+                transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error loading transaction: {ex.Message}");
+            }
         }
 
         private void TransactionDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -87,6 +95,7 @@ namespace SalesPro.Forms.Transactions
                     dgTrans.DataSource = allTrans;
                     break;
             }
+            transactionDate_lbl.Visible = false;
             noRecordDate_lbl.Visible = false;
             FormatGrid();
         }
@@ -98,15 +107,23 @@ namespace SalesPro.Forms.Transactions
 
         private async void find_btn_Click(object sender, EventArgs e)
         {
+            transactionsTabControl.SelectedIndex = 1;
             var date = date_cb.Value.Date;
 
             var filteredTrans = await _service.GetTransactionByDate(date);
             dgTrans.DataSource = filteredTrans.OrderBy(x => x.TransactionId).ToList();
             if (filteredTrans.Count() == 0)
+            {
                 noRecordDate_lbl.Visible = true;
+            }
             noRecordDate_lbl.Text = $"No records found for {date_cb.Value.Date:MMM. dd, yyyy}";
             if (date == _curDate.Date)
+            {
                 noRecordDate_lbl.Visible = false;
+            }
+
+            transactionDate_lbl.Text = $"Transaction Date: {date:MMMM dd, yyyy}";
+            transactionDate_lbl.Visible = true;
             FormatGrid();
 
         }
@@ -125,6 +142,16 @@ namespace SalesPro.Forms.Transactions
             form._actionType = Constants.SystemConstants.Edit;
             form._transactionId = (int)selectedId;
             form.ShowDialog();
+        }
+
+        private void date_cb_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refresh_btn_Click(object sender, EventArgs e)
+        {
+            ProcessTransactionLoad();
         }
     }
 }

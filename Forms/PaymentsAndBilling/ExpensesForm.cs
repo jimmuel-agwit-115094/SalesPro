@@ -135,5 +135,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 MessageHandler.ShowError($"Error expense loading: {ex.Message}");
             }
         }
+
+        private void dateAdded_dt_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel4 = new System.Windows.Forms.Panel();
             this.find_btn = new System.Windows.Forms.Button();
             this.date_cb = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +52,8 @@
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgTrans = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.refresh_btn = new System.Windows.Forms.Button();
+            this.transactionDate_lbl = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -89,9 +91,9 @@
             this.find_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.find_btn.ForeColor = System.Drawing.Color.White;
             this.find_btn.Image = ((System.Drawing.Image)(resources.GetObject("find_btn.Image")));
-            this.find_btn.Location = new System.Drawing.Point(286, 19);
+            this.find_btn.Location = new System.Drawing.Point(312, 20);
             this.find_btn.Name = "find_btn";
-            this.find_btn.Size = new System.Drawing.Size(142, 28);
+            this.find_btn.Size = new System.Drawing.Size(110, 25);
             this.find_btn.TabIndex = 485;
             this.find_btn.Text = "  Find";
             this.find_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -103,11 +105,12 @@
             // 
             this.date_cb.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.date_cb.CustomFormat = "MMMM dd, yyyy";
-            this.date_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_cb.Location = new System.Drawing.Point(45, 20);
+            this.date_cb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_cb.Location = new System.Drawing.Point(64, 20);
             this.date_cb.Name = "date_cb";
-            this.date_cb.Size = new System.Drawing.Size(235, 27);
+            this.date_cb.Size = new System.Drawing.Size(235, 25);
             this.date_cb.TabIndex = 488;
+            this.date_cb.ValueChanged += new System.EventHandler(this.date_cb_ValueChanged);
             // 
             // panel3
             // 
@@ -274,30 +277,30 @@
             this.dgTrans.AllowUserToAddRows = false;
             this.dgTrans.AllowUserToDeleteRows = false;
             this.dgTrans.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgTrans.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgTrans.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgTrans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgTrans.ColumnHeadersHeight = 30;
             this.dgTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTrans.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgTrans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTrans.EnableHeadersVisualStyles = false;
             this.dgTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -305,14 +308,14 @@
             this.dgTrans.MultiSelect = false;
             this.dgTrans.Name = "dgTrans";
             this.dgTrans.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgTrans.RowHeadersVisible = false;
             this.dgTrans.RowHeadersWidth = 51;
             this.dgTrans.RowTemplate.Height = 32;
@@ -324,6 +327,8 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel9.Controls.Add(this.refresh_btn);
+            this.panel9.Controls.Add(this.transactionDate_lbl);
             this.panel9.Controls.Add(this.pictureBox1);
             this.panel9.Controls.Add(this.search_tx);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
@@ -331,6 +336,33 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1204, 40);
             this.panel9.TabIndex = 458;
+            // 
+            // refresh_btn
+            // 
+            this.refresh_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh_btn.Image = ((System.Drawing.Image)(resources.GetObject("refresh_btn.Image")));
+            this.refresh_btn.Location = new System.Drawing.Point(631, 5);
+            this.refresh_btn.Name = "refresh_btn";
+            this.refresh_btn.Size = new System.Drawing.Size(120, 30);
+            this.refresh_btn.TabIndex = 435;
+            this.refresh_btn.Text = " Refresh";
+            this.refresh_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.refresh_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.refresh_btn.UseVisualStyleBackColor = true;
+            this.refresh_btn.Click += new System.EventHandler(this.refresh_btn_Click);
+            // 
+            // transactionDate_lbl
+            // 
+            this.transactionDate_lbl.AutoSize = true;
+            this.transactionDate_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionDate_lbl.ForeColor = System.Drawing.Color.Black;
+            this.transactionDate_lbl.Location = new System.Drawing.Point(9, 12);
+            this.transactionDate_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.transactionDate_lbl.Name = "transactionDate_lbl";
+            this.transactionDate_lbl.Size = new System.Drawing.Size(80, 17);
+            this.transactionDate_lbl.TabIndex = 434;
+            this.transactionDate_lbl.Text = "Transactions";
+            this.transactionDate_lbl.Visible = false;
             // 
             // pictureBox1
             // 
@@ -424,5 +456,7 @@
         internal System.Windows.Forms.TextBox search_tx;
         private System.Windows.Forms.Panel panel5;
         internal System.Windows.Forms.DataGridView dgTrans;
+        internal System.Windows.Forms.Label transactionDate_lbl;
+        private System.Windows.Forms.Button refresh_btn;
     }
 }
