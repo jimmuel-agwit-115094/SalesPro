@@ -73,9 +73,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.supplier_tx = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.print_btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
-            this.print_btn = new System.Windows.Forms.Button();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInventory)).BeginInit();
             this.activeTab.SuspendLayout();
@@ -98,7 +98,7 @@
             this.Panel1.Controls.Add(this.title_lbl);
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel1.Location = new System.Drawing.Point(0, 0);
-            this.Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(1160, 43);
             this.Panel1.TabIndex = 437;
@@ -186,7 +186,7 @@
             this.activeTab.Controls.Add(this.panel6);
             this.activeTab.Location = new System.Drawing.Point(4, 29);
             this.activeTab.Name = "activeTab";
-            this.activeTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.activeTab.Padding = new System.Windows.Forms.Padding(3);
             this.activeTab.Size = new System.Drawing.Size(816, 4);
             this.activeTab.TabIndex = 0;
             this.activeTab.Text = "   Active Inventory   ";
@@ -218,7 +218,7 @@
             this.outTab.Controls.Add(this.panel7);
             this.outTab.Location = new System.Drawing.Point(4, 29);
             this.outTab.Name = "outTab";
-            this.outTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.outTab.Padding = new System.Windows.Forms.Padding(3);
             this.outTab.Size = new System.Drawing.Size(816, 4);
             this.outTab.TabIndex = 1;
             this.outTab.Text = "     Out of Stock       ";
@@ -237,7 +237,7 @@
             this.allTab.Controls.Add(this.panel2);
             this.allTab.Location = new System.Drawing.Point(4, 29);
             this.allTab.Name = "allTab";
-            this.allTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.allTab.Padding = new System.Windows.Forms.Padding(3);
             this.allTab.Size = new System.Drawing.Size(816, 4);
             this.allTab.TabIndex = 2;
             this.allTab.Text = "     All Inventory    ";
@@ -517,7 +517,7 @@
             this.reason_tx.BackColor = System.Drawing.Color.White;
             this.reason_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reason_tx.Location = new System.Drawing.Point(17, 147);
-            this.reason_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reason_tx.Margin = new System.Windows.Forms.Padding(2);
             this.reason_tx.Multiline = true;
             this.reason_tx.Name = "reason_tx";
             this.reason_tx.Size = new System.Drawing.Size(262, 46);
@@ -528,7 +528,7 @@
             this.adjustingQty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.adjustingQty_tx.Location = new System.Drawing.Point(17, 39);
             this.adjustingQty_tx.Maximum = new decimal(new int[] {
-            100000,
+            9000,
             0,
             0,
             0});
@@ -605,28 +605,6 @@
             this.panel3.Size = new System.Drawing.Size(831, 659);
             this.panel3.TabIndex = 489;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(377, 50);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 468;
-            this.pictureBox1.TabStop = false;
-            // 
-            // search_tx
-            // 
-            this.search_tx.BackColor = System.Drawing.Color.White;
-            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(16, 49);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(389, 27);
-            this.search_tx.TabIndex = 467;
-            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
-            // 
             // print_btn
             // 
             this.print_btn.BackColor = System.Drawing.Color.DarkSlateBlue;
@@ -643,6 +621,28 @@
             this.print_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.print_btn.UseVisualStyleBackColor = false;
             this.print_btn.Click += new System.EventHandler(this.print_btn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(377, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 468;
+            this.pictureBox1.TabStop = false;
+            // 
+            // search_tx
+            // 
+            this.search_tx.BackColor = System.Drawing.Color.White;
+            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_tx.Location = new System.Drawing.Point(16, 49);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.search_tx.Name = "search_tx";
+            this.search_tx.Size = new System.Drawing.Size(389, 27);
+            this.search_tx.TabIndex = 467;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
             // InventoryForm
             // 
