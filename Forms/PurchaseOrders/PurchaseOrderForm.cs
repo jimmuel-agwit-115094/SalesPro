@@ -1,4 +1,5 @@
-﻿using SalesPro.Constants;
+﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
+using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -8,7 +9,6 @@ using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -117,6 +117,43 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             _purchaseOrderList = await LoadPurchaseOrdersByProcessStatus();
             _tabProcess = (ProcessStatus)transactionsTabControl.SelectedIndex;
+            SetStatusBar();
+        }
+
+        private void SetStatusBar()
+        {
+            if (transactionsTabControl.SelectedIndex == 0)
+            {
+                createdPb.Image = Resources.greenCheck;
+                sentPb.Image = Resources.grayCheck;
+                completedPb.Image = Resources.grayCheck;
+                cancelledPb.Image = Resources.grayCheck;
+                statusProgress.Value = 0;
+            }
+            else if (transactionsTabControl.SelectedIndex == 1)
+            {
+                createdPb.Image = Resources.greenCheck;
+                sentPb.Image = Resources.greenCheck;
+                completedPb.Image = Resources.grayCheck;
+                cancelledPb.Image = Resources.grayCheck;
+                statusProgress.Value = 35;
+            }
+            else if (transactionsTabControl.SelectedIndex == 2)
+            {
+                createdPb.Image = Resources.greenCheck;
+                sentPb.Image = Resources.greenCheck;
+                completedPb.Image = Resources.greenCheck;
+                cancelledPb.Image = Resources.grayCheck;
+                statusProgress.Value =65;
+            }
+            else if (transactionsTabControl.SelectedIndex == 3)
+            {
+                createdPb.Image = Resources.grayCheck;
+                sentPb.Image = Resources.grayCheck;
+                completedPb.Image = Resources.grayCheck;
+                cancelledPb.Image = Resources.delete;
+                statusProgress.Value = 0;
+            }
         }
 
         private void find_btn_Click(object sender, EventArgs e)

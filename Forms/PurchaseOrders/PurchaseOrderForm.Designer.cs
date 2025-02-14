@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -50,8 +50,13 @@
             this.cancelledTab = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.cancelledPb = new System.Windows.Forms.PictureBox();
+            this.completedPb = new System.Windows.Forms.PictureBox();
+            this.sentPb = new System.Windows.Forms.PictureBox();
+            this.createdPb = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
+            this.statusProgress = new System.Windows.Forms.ProgressBar();
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgPo = new System.Windows.Forms.DataGridView();
             this.Panel1.SuspendLayout();
@@ -63,6 +68,10 @@
             this.tabPage1.SuspendLayout();
             this.cancelledTab.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cancelledPb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.completedPb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sentPb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createdPb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPo)).BeginInit();
             this.SuspendLayout();
@@ -150,10 +159,10 @@
             // 
             this.date_cb.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.date_cb.CustomFormat = "MMMM dd, yyyy";
-            this.date_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_cb.Location = new System.Drawing.Point(45, 16);
+            this.date_cb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_cb.Location = new System.Drawing.Point(44, 16);
             this.date_cb.Name = "date_cb";
-            this.date_cb.Size = new System.Drawing.Size(235, 27);
+            this.date_cb.Size = new System.Drawing.Size(236, 25);
             this.date_cb.TabIndex = 488;
             // 
             // transactionsTabControl
@@ -251,13 +260,58 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel9.Controls.Add(this.cancelledPb);
+            this.panel9.Controls.Add(this.completedPb);
+            this.panel9.Controls.Add(this.sentPb);
+            this.panel9.Controls.Add(this.createdPb);
             this.panel9.Controls.Add(this.pictureBox1);
             this.panel9.Controls.Add(this.search_tx);
+            this.panel9.Controls.Add(this.statusProgress);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 138);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1208, 40);
             this.panel9.TabIndex = 459;
+            // 
+            // cancelledPb
+            // 
+            this.cancelledPb.Image = ((System.Drawing.Image)(resources.GetObject("cancelledPb.Image")));
+            this.cancelledPb.Location = new System.Drawing.Point(501, 8);
+            this.cancelledPb.Name = "cancelledPb";
+            this.cancelledPb.Size = new System.Drawing.Size(20, 20);
+            this.cancelledPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cancelledPb.TabIndex = 461;
+            this.cancelledPb.TabStop = false;
+            // 
+            // completedPb
+            // 
+            this.completedPb.Image = ((System.Drawing.Image)(resources.GetObject("completedPb.Image")));
+            this.completedPb.Location = new System.Drawing.Point(357, 8);
+            this.completedPb.Name = "completedPb";
+            this.completedPb.Size = new System.Drawing.Size(20, 20);
+            this.completedPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.completedPb.TabIndex = 460;
+            this.completedPb.TabStop = false;
+            // 
+            // sentPb
+            // 
+            this.sentPb.Image = ((System.Drawing.Image)(resources.GetObject("sentPb.Image")));
+            this.sentPb.Location = new System.Drawing.Point(218, 8);
+            this.sentPb.Name = "sentPb";
+            this.sentPb.Size = new System.Drawing.Size(20, 20);
+            this.sentPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sentPb.TabIndex = 459;
+            this.sentPb.TabStop = false;
+            // 
+            // createdPb
+            // 
+            this.createdPb.Image = ((System.Drawing.Image)(resources.GetObject("createdPb.Image")));
+            this.createdPb.Location = new System.Drawing.Point(73, 8);
+            this.createdPb.Name = "createdPb";
+            this.createdPb.Size = new System.Drawing.Size(20, 20);
+            this.createdPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.createdPb.TabIndex = 458;
+            this.createdPb.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -281,6 +335,14 @@
             this.search_tx.TabIndex = 386;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
+            // statusProgress
+            // 
+            this.statusProgress.Location = new System.Drawing.Point(78, 16);
+            this.statusProgress.MarqueeAnimationSpeed = 10;
+            this.statusProgress.Name = "statusProgress";
+            this.statusProgress.Size = new System.Drawing.Size(438, 3);
+            this.statusProgress.TabIndex = 437;
+            // 
             // notFound_lbl
             // 
             this.notFound_lbl.AutoSize = true;
@@ -299,30 +361,30 @@
             this.dgPo.AllowUserToAddRows = false;
             this.dgPo.AllowUserToDeleteRows = false;
             this.dgPo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgPo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
             this.dgPo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgPo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgPo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgPo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dgPo.ColumnHeadersHeight = 30;
             this.dgPo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPo.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPo.DefaultCellStyle = dataGridViewCellStyle31;
             this.dgPo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPo.EnableHeadersVisualStyles = false;
             this.dgPo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -330,14 +392,14 @@
             this.dgPo.MultiSelect = false;
             this.dgPo.Name = "dgPo";
             this.dgPo.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPo.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPo.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
             this.dgPo.RowHeadersVisible = false;
             this.dgPo.RowHeadersWidth = 51;
             this.dgPo.RowTemplate.Height = 32;
@@ -374,6 +436,10 @@
             this.cancelledTab.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cancelledPb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.completedPb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sentPb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createdPb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPo)).EndInit();
             this.ResumeLayout(false);
@@ -404,5 +470,10 @@
         private System.Windows.Forms.TabPage cancelledTab;
         private System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.TabControl transactionsTabControl;
+        private System.Windows.Forms.PictureBox completedPb;
+        private System.Windows.Forms.PictureBox sentPb;
+        private System.Windows.Forms.PictureBox createdPb;
+        private System.Windows.Forms.ProgressBar statusProgress;
+        private System.Windows.Forms.PictureBox cancelledPb;
     }
 }

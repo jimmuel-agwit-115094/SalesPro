@@ -166,6 +166,16 @@ namespace SalesPro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delivery {
             get {
                 object obj = ResourceManager.GetObject("delivery", resourceCulture);
@@ -179,6 +189,26 @@ namespace SalesPro.Properties {
         internal static System.Drawing.Bitmap good {
             get {
                 object obj = ResourceManager.GetObject("good", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grayCheck {
+            get {
+                object obj = ResourceManager.GetObject("grayCheck", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenCheck {
+            get {
+                object obj = ResourceManager.GetObject("greenCheck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
