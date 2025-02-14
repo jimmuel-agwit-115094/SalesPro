@@ -63,11 +63,16 @@ namespace SalesPro.Forms.PurchaseOrders
                     productName_tx.Text = "-";
                     unitOfMeasure_tx.Text = "-";
                     supplierPrice_tx.Text = "0";
+                    poPb.Image = Resources.add;
+                    prodTitel_tx.Text = "Add Product";
                 }
                 else
                 {
                     DgFormatHelper.DisableDatagrid(dgProducts);
                     search_tx.ReadOnly = true;
+                    dgProducts.ClearSelection();
+                    poPb.Image = Resources.edit;
+                    prodTitel_tx.Text = "Edit Product";
                     var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
                     if (poItem != null)
                     {

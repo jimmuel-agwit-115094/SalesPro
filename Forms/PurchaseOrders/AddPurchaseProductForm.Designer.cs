@@ -54,17 +54,21 @@
             this.delete_btn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.supPrice_tx = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.poPb = new System.Windows.Forms.PictureBox();
+            this.prodTitel_tx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retailPrice_tx)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poPb)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(378, 79);
+            this.pictureBox1.Location = new System.Drawing.Point(378, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -75,7 +79,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(16, 78);
+            this.search_tx.Location = new System.Drawing.Point(16, 43);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
@@ -88,7 +92,7 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(123, 273);
+            this.notFound_lbl.Location = new System.Drawing.Point(123, 238);
             this.notFound_lbl.Name = "notFound_lbl";
             this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
             this.notFound_lbl.TabIndex = 471;
@@ -126,7 +130,7 @@
             this.dgProducts.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgProducts.EnableHeadersVisualStyles = false;
             this.dgProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgProducts.Location = new System.Drawing.Point(16, 113);
+            this.dgProducts.Location = new System.Drawing.Point(16, 78);
             this.dgProducts.MultiSelect = false;
             this.dgProducts.Name = "dgProducts";
             this.dgProducts.ReadOnly = true;
@@ -145,7 +149,7 @@
             this.retailPrice_tx.BackColor = System.Drawing.Color.WhiteSmoke;
             this.retailPrice_tx.DecimalPlaces = 2;
             this.retailPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.retailPrice_tx.Location = new System.Drawing.Point(15, 208);
+            this.retailPrice_tx.Location = new System.Drawing.Point(16, 208);
             this.retailPrice_tx.Maximum = new decimal(new int[] {
             410065408,
             2,
@@ -163,44 +167,44 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 186);
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(20, 189);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 20);
+            this.label3.Size = new System.Drawing.Size(81, 17);
             this.label3.TabIndex = 533;
             this.label3.Text = "Retail Price :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 128);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 20);
+            this.label2.Size = new System.Drawing.Size(100, 17);
             this.label2.TabIndex = 532;
             this.label2.Text = "Mark Up Price :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 70);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(19, 73);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 20);
+            this.label1.Size = new System.Drawing.Size(97, 17);
             this.label1.TabIndex = 531;
             this.label1.Text = "Supplier Price :";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 14);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(19, 18);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 20);
+            this.label8.Size = new System.Drawing.Size(68, 17);
             this.label8.TabIndex = 530;
             this.label8.Text = "Quantity :";
             // 
@@ -211,7 +215,7 @@
             this.add_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_btn.ForeColor = System.Drawing.Color.White;
-            this.add_btn.Location = new System.Drawing.Point(574, 465);
+            this.add_btn.Location = new System.Drawing.Point(574, 430);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(140, 34);
             this.add_btn.TabIndex = 529;
@@ -222,26 +226,26 @@
             // productName_tx
             // 
             this.productName_tx.AutoSize = true;
-            this.productName_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productName_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productName_tx.ForeColor = System.Drawing.Color.Black;
-            this.productName_tx.Location = new System.Drawing.Point(11, 0);
+            this.productName_tx.Location = new System.Drawing.Point(416, 42);
             this.productName_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.productName_tx.Name = "productName_tx";
-            this.productName_tx.Size = new System.Drawing.Size(126, 28);
+            this.productName_tx.Size = new System.Drawing.Size(119, 25);
             this.productName_tx.TabIndex = 546;
             this.productName_tx.Text = "Add Product";
             // 
             // unitOfMeasure_tx
             // 
             this.unitOfMeasure_tx.AutoSize = true;
-            this.unitOfMeasure_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unitOfMeasure_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitOfMeasure_tx.ForeColor = System.Drawing.Color.Black;
-            this.unitOfMeasure_tx.Location = new System.Drawing.Point(12, 26);
+            this.unitOfMeasure_tx.Location = new System.Drawing.Point(533, 70);
             this.unitOfMeasure_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.unitOfMeasure_tx.Name = "unitOfMeasure_tx";
-            this.unitOfMeasure_tx.Size = new System.Drawing.Size(96, 21);
+            this.unitOfMeasure_tx.Size = new System.Drawing.Size(39, 17);
             this.unitOfMeasure_tx.TabIndex = 547;
-            this.unitOfMeasure_tx.Text = "Add Product";
+            this.unitOfMeasure_tx.Text = "UOM";
             // 
             // groupBox1
             // 
@@ -254,7 +258,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.retailPrice_tx);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(421, 107);
+            this.groupBox1.Location = new System.Drawing.Point(417, 108);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(293, 252);
             this.groupBox1.TabIndex = 548;
@@ -263,7 +267,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Location = new System.Drawing.Point(16, 209);
+            this.panel1.Location = new System.Drawing.Point(17, 209);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(16, 25);
             this.panel1.TabIndex = 554;
@@ -272,7 +276,7 @@
             // 
             this.markUpPrice_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.markUpPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.markUpPrice_tx.Location = new System.Drawing.Point(15, 151);
+            this.markUpPrice_tx.Location = new System.Drawing.Point(16, 151);
             this.markUpPrice_tx.MaxLength = 10;
             this.markUpPrice_tx.Name = "markUpPrice_tx";
             this.markUpPrice_tx.Size = new System.Drawing.Size(260, 27);
@@ -286,7 +290,7 @@
             // 
             this.supplierPrice_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.supplierPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.supplierPrice_tx.Location = new System.Drawing.Point(15, 93);
+            this.supplierPrice_tx.Location = new System.Drawing.Point(16, 93);
             this.supplierPrice_tx.MaxLength = 10;
             this.supplierPrice_tx.Name = "supplierPrice_tx";
             this.supplierPrice_tx.Size = new System.Drawing.Size(260, 27);
@@ -300,7 +304,7 @@
             // 
             this.qty_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.qty_tx.Location = new System.Drawing.Point(16, 37);
+            this.qty_tx.Location = new System.Drawing.Point(17, 37);
             this.qty_tx.MaxLength = 7;
             this.qty_tx.Name = "qty_tx";
             this.qty_tx.Size = new System.Drawing.Size(260, 27);
@@ -312,12 +316,12 @@
             // 
             // total_tx
             // 
-            this.total_tx.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_tx.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.total_tx.ForeColor = System.Drawing.Color.Blue;
-            this.total_tx.Location = new System.Drawing.Point(375, 48);
+            this.total_tx.Location = new System.Drawing.Point(430, 383);
             this.total_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.total_tx.Name = "total_tx";
-            this.total_tx.Size = new System.Drawing.Size(347, 28);
+            this.total_tx.Size = new System.Drawing.Size(280, 28);
             this.total_tx.TabIndex = 549;
             this.total_tx.Text = "0.00";
             this.total_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -327,7 +331,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(681, 31);
+            this.label4.Location = new System.Drawing.Point(669, 370);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 17);
@@ -341,7 +345,7 @@
             this.delete_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delete_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.delete_btn.Location = new System.Drawing.Point(421, 465);
+            this.delete_btn.Location = new System.Drawing.Point(421, 430);
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(140, 34);
             this.delete_btn.TabIndex = 551;
@@ -352,9 +356,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(14, 50);
+            this.label5.Location = new System.Drawing.Point(418, 86);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 19);
@@ -364,14 +368,46 @@
             // supPrice_tx
             // 
             this.supPrice_tx.AutoSize = true;
-            this.supPrice_tx.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supPrice_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supPrice_tx.ForeColor = System.Drawing.Color.Black;
-            this.supPrice_tx.Location = new System.Drawing.Point(127, 50);
+            this.supPrice_tx.Location = new System.Drawing.Point(531, 87);
             this.supPrice_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.supPrice_tx.Name = "supPrice_tx";
-            this.supPrice_tx.Size = new System.Drawing.Size(154, 19);
+            this.supPrice_tx.Size = new System.Drawing.Size(137, 17);
             this.supPrice_tx.TabIndex = 553;
             this.supPrice_tx.Text = "Supplier Latest Price :";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(418, 69);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(115, 19);
+            this.label6.TabIndex = 554;
+            this.label6.Text = "Unit of Measure :";
+            // 
+            // poPb
+            // 
+            this.poPb.Location = new System.Drawing.Point(16, 8);
+            this.poPb.Name = "poPb";
+            this.poPb.Size = new System.Drawing.Size(30, 30);
+            this.poPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.poPb.TabIndex = 555;
+            this.poPb.TabStop = false;
+            // 
+            // prodTitel_tx
+            // 
+            this.prodTitel_tx.AutoSize = true;
+            this.prodTitel_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prodTitel_tx.Location = new System.Drawing.Point(48, 13);
+            this.prodTitel_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.prodTitel_tx.Name = "prodTitel_tx";
+            this.prodTitel_tx.Size = new System.Drawing.Size(76, 20);
+            this.prodTitel_tx.TabIndex = 556;
+            this.prodTitel_tx.Text = "Quantity :";
             // 
             // AddPurchaseProductForm
             // 
@@ -379,7 +415,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(730, 509);
+            this.ClientSize = new System.Drawing.Size(725, 480);
+            this.Controls.Add(this.prodTitel_tx);
+            this.Controls.Add(this.poPb);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.supPrice_tx);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.delete_btn);
@@ -400,13 +439,14 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Product";
+            this.Text = "Manage";
             this.Load += new System.EventHandler(this.AddPurchaseProductForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retailPrice_tx)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poPb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,5 +476,8 @@
         private System.Windows.Forms.TextBox markUpPrice_tx;
         private System.Windows.Forms.TextBox supplierPrice_tx;
         private System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox poPb;
+        private System.Windows.Forms.Label prodTitel_tx;
     }
 }

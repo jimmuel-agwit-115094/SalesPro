@@ -100,7 +100,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     case ProcessStatus.Created:
                         action_btn.Text = "Send To Supplier";
-                        undo_btn.Text = "Cancel PO";
+                        undo_btn.Text = "Cancel P.Order";
                         action_btn.Visible = true;
                         undo_btn.Visible = true;
                         creditTermsPanel.Visible = false;

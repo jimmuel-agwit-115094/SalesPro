@@ -686,6 +686,8 @@
     <None Include="Resources\grayCheck.png" />
     <None Include="Resources\greenCheck.png" />
     <None Include="Resources\remove %282%29.png" />
+    <None Include="Resources\pen.png" />
+    <None Include="Resources\plus %281%29.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
