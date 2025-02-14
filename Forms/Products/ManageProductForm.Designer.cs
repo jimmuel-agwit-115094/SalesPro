@@ -197,7 +197,7 @@
             // 
             this.logs_link.AutoSize = true;
             this.logs_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logs_link.Location = new System.Drawing.Point(243, 19);
+            this.logs_link.Location = new System.Drawing.Point(243, 18);
             this.logs_link.Name = "logs_link";
             this.logs_link.Size = new System.Drawing.Size(86, 16);
             this.logs_link.TabIndex = 552;

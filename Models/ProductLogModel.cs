@@ -12,7 +12,7 @@ namespace SalesPro.Models
         public ProductActionType ProductActionType { get; set; }
         public string OldValue { get; set; } 
         public string NewValue { get; set; } 
-        public int PerformedBy { get; set; } 
+        public string PerformedBy { get; set; } 
         public DateTime DatePerformed { get; set; }
     }
 }

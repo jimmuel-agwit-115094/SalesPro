@@ -94,6 +94,8 @@ namespace SalesPro.Services
                                   ProductName = p.ProductName,
                                   SupplierName = s.SupplierName,
                                   UserFullName = u.Fullname,
+                                  UnitOfMeasure = p.UnitOfMeasure
+
                               }).FirstOrDefaultAsync();
             }
         }

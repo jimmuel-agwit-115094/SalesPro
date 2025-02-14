@@ -49,10 +49,11 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                DgExtensions.ConfigureDataGrid(dgInventory, true, 4, notFound_lbl,
-                  "InventoryId", "SupplierName",
-                  "ProductName", "DateAdded",
-                  "QuantityFromPo", "QuantityOnHand", "SupplierPrice", "RetailPrice");
+                DgExtensions.ConfigureDataGrid(dgInventory, true, 5, notFound_lbl,
+                  "InventoryId",
+                  "ProductName",
+                 "QuantityOnHand", 
+                 "RetailPrice");
                 DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
             }
             catch (Exception ex)
@@ -114,7 +115,7 @@ namespace SalesPro.Forms.Inventory
                 processedBy_tx.Text = inv.UserFullName;
                 dateAdded_tx.Text = inv.DateAdded.ToString("MMM dd, yyyy");
                 qtyFromPo_tx.Text = inv.QuantityFromPo.ToString();
-                qtyOnHand_tx.Text = inv.QuantityOnHand.ToString();
+                qtyOnHand_tx.Text = $"{inv.QuantityOnHand.ToString()} {inv.UnitOfMeasure}";
                 suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
                 retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
             }

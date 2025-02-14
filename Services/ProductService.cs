@@ -55,7 +55,7 @@ namespace SalesPro.Services
                         ProductName = product.ProductName,
                         OldValue = product.ProductName,
                         NewValue = productModel.ProductName,
-                        PerformedBy = UserSession.Session_UserId,
+                        PerformedBy = UserSession.FullName,
                         DatePerformed = await ClockHelper.GetServerDateTime(),
                     };
                     await context.ProductLogs.AddAsync(log);
@@ -79,7 +79,7 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.ProductLogs.Where(x => x.ProductId == productId).ToListAsync();
+                return await context.ProductLogs.Where(x => x.ProductId == productId).OrderByDescending(x=>x.ProductLogId).ToListAsync();
             }
         }
     }
