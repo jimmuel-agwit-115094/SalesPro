@@ -7,7 +7,6 @@ using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -36,7 +35,7 @@ namespace SalesPro.Forms.Inventory
                                     .Where(x => x != InventoryAction.AddedToInventory)
                                     .ToList();
                 action_cb.DataSource = filtteredInvAction;
-                await LoadFilteredInventories(false);
+                await LoadFilteredInventories(InventoryFilterType.Active);
             }
             catch (Exception ex)
             {
@@ -49,7 +48,7 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                DgExtensions.ConfigureDataGrid(dgInventory, true, 5, notFound_lbl,
+                DgExtensions.ConfigureDataGrid(dgInventory, true, 6, notFound_lbl,
                   "InventoryId",
                   "ProductName",
                  "QuantityOnHand", 
@@ -62,17 +61,9 @@ namespace SalesPro.Forms.Inventory
             }
         }
 
-        private async Task LoadAllInventories()
+        private async Task LoadFilteredInventories(InventoryFilterType filterType)
         {
-            var allInventory = await _service.GetAllInventories();
-            dgInventory.DataSource = allInventory;
-            _inventoryList = allInventory;
-            FormatGrid();
-        }
-
-        private async Task LoadFilteredInventories(bool isOutofStock)
-        {
-            var inv = await _service.GetFilteredInventories(isOutofStock);
+            var inv = await _service.GetFilteredInventories(filterType);
             dgInventory.DataSource = inv;
             _inventoryList = inv;
             FormatGrid();
@@ -84,16 +75,20 @@ namespace SalesPro.Forms.Inventory
             switch (selectedTab)
             {
                 case 0:
-                    await LoadFilteredInventories(false);
+                    await LoadFilteredInventories(InventoryFilterType.Active);
                     break;
                 case 1:
-                    await LoadFilteredInventories(true);
+                    await LoadFilteredInventories(InventoryFilterType.OutOfStock);
                     break;
                 case 2:
-                    await LoadAllInventories();
+                    await LoadFilteredInventories(InventoryFilterType.LowStocks);
+                    break;
+                case 3:
+                    await LoadFilteredInventories(InventoryFilterType.All);
                     break;
             }
         }
+
 
         private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {

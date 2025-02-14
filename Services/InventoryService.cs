@@ -11,61 +11,81 @@ namespace SalesPro.Services
 {
     public class InventoryService
     {
-        public async Task<List<InventoryModelExtended>> GetAllInventories()
-        {
-            using (var context = new DatabaseContext())
-            {
-                return await (from i in context.Inventories
-                              join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
-                              join p in context.Products on i.ProductId equals p.ProductId
-                              join u in context.Users on i.UserId equals u.UserId
-                              join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                              select new InventoryModelExtended
-                              {
-                                  InventoryId = i.InventoryId,
-                                  PurchaseOrderId = i.PurchaseOrderId,
-                                  ProductId = i.ProductId,
-                                  SupplierId = i.SupplierId,
-                                  UserId = i.UserId,
-                                  DateAdded = i.DateAdded,
-                                  QuantityFromPo = i.QuantityFromPo,
-                                  QuantityOnHand = i.QuantityOnHand,
-                                  SupplierPrice = i.SupplierPrice,
-                                  RetailPrice = i.RetailPrice,
-                                  ProductName = p.ProductName,
-                                  SupplierName = s.SupplierName,
-                                  UserFullName = u.Fullname
-                              }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
-            }
-        }
+        //public async Task<List<InventoryModelExtended>> GetAllInventories()
+        //{
+        //    using (var context = new DatabaseContext())
+        //    {
+        //        return await (from i in context.Inventories
+        //                      join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
+        //                      join p in context.Products on i.ProductId equals p.ProductId
+        //                      join u in context.Users on i.UserId equals u.UserId
+        //                      join s in context.Suppliers on i.SupplierId equals s.SupplierId
+        //                      select new InventoryModelExtended
+        //                      {
+        //                          InventoryId = i.InventoryId,
+        //                          PurchaseOrderId = i.PurchaseOrderId,
+        //                          ProductId = i.ProductId,
+        //                          SupplierId = i.SupplierId,
+        //                          UserId = i.UserId,
+        //                          DateAdded = i.DateAdded,
+        //                          QuantityFromPo = i.QuantityFromPo,
+        //                          QuantityOnHand = i.QuantityOnHand,
+        //                          SupplierPrice = i.SupplierPrice,
+        //                          RetailPrice = i.RetailPrice,
+        //                          ProductName = p.ProductName,
+        //                          SupplierName = s.SupplierName,
+        //                          UserFullName = u.Fullname
+        //                      }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
+        //    }
+        //}
 
-        public async Task<List<InventoryModelExtended>> GetFilteredInventories(bool isOutOfStock)
+        public async Task<List<InventoryModelExtended>> GetFilteredInventories(InventoryFilterType filterType)
         {
             using (var context = new DatabaseContext())
             {
-                var result = await (from i in context.Inventories
-                                    join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
-                                    join p in context.Products on i.ProductId equals p.ProductId
-                                    join u in context.Users on i.UserId equals u.UserId
-                                    join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                                    where isOutOfStock ? i.QuantityOnHand <= 0 : i.QuantityOnHand > 0
-                                    select new InventoryModelExtended
-                                    {
-                                        InventoryId = i.InventoryId,
-                                        PurchaseOrderId = i.PurchaseOrderId,
-                                        ProductId = i.ProductId,
-                                        SupplierId = i.SupplierId,
-                                        UserId = i.UserId,
-                                        DateAdded = i.DateAdded,
-                                        QuantityFromPo = i.QuantityFromPo,
-                                        QuantityOnHand = i.QuantityOnHand,
-                                        SupplierPrice = i.SupplierPrice,
-                                        RetailPrice = i.RetailPrice,
-                                        ProductName = p.ProductName,
-                                        SupplierName = s.SupplierName,
-                                        UserFullName = u.Fullname
-                                    }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
-                return result;
+                var query = from i in context.Inventories
+                            join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
+                            join p in context.Products on i.ProductId equals p.ProductId
+                            join u in context.Users on i.UserId equals u.UserId
+                            join s in context.Suppliers on i.SupplierId equals s.SupplierId
+                            select new InventoryModelExtended
+                            {
+                                InventoryId = i.InventoryId,
+                                PurchaseOrderId = i.PurchaseOrderId,
+                                ProductId = i.ProductId,
+                                SupplierId = i.SupplierId,
+                                UserId = i.UserId,
+                                DateAdded = i.DateAdded,
+                                QuantityFromPo = i.QuantityFromPo,
+                                QuantityOnHand = i.QuantityOnHand,
+                                SupplierPrice = i.SupplierPrice,
+                                RetailPrice = i.RetailPrice,
+                                ProductName = p.ProductName,
+                                SupplierName = s.SupplierName,
+                                UserFullName = u.Fullname,
+                                ReorderLevel = p.ReorderLevel
+                            };
+
+                // Apply filter dynamically
+                switch (filterType)
+                {
+                    case InventoryFilterType.OutOfStock:
+                        query = query.Where(x => x.QuantityOnHand == 0);
+                        break;
+                    case InventoryFilterType.LowStocks:
+                        query = query.Where(x => x.QuantityOnHand < x.ReorderLevel);
+                        break;
+                    case InventoryFilterType.Active:
+                        // Define the disposal criteria. Example:
+                        query = query.Where(x => x.QuantityOnHand > 0 );
+                        break;
+                    case InventoryFilterType.All:
+                    default:
+                        // No filtering for "All"
+                        break;
+                }
+
+                return await query.OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
             }
         }
 
