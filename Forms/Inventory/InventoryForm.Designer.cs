@@ -28,26 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.Panel1 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgInventory = new System.Windows.Forms.DataGridView();
-            this.activeTab = new System.Windows.Forms.TabPage();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.inventoryTabControl = new System.Windows.Forms.TabControl();
-            this.outTab = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.allTab = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.qtyOnHand_tx = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.retailPrice_tx = new System.Windows.Forms.Label();
@@ -67,22 +61,21 @@
             this.label12 = new System.Windows.Forms.Label();
             this.reason_tx = new System.Windows.Forms.TextBox();
             this.adjustingQty_tx = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.update_btn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.supplier_tx = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.print_btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
-            this.lowTab = new System.Windows.Forms.TabPage();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.outTab = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.activeTab = new System.Windows.Forms.TabPage();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInventory)).BeginInit();
-            this.activeTab.SuspendLayout();
             this.inventoryTabControl.SuspendLayout();
-            this.outTab.SuspendLayout();
-            this.allTab.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel13.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,7 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.adjustingQty_tx)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.lowTab.SuspendLayout();
+            this.outTab.SuspendLayout();
+            this.activeTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -133,44 +127,44 @@
             this.dgInventory.AllowUserToAddRows = false;
             this.dgInventory.AllowUserToDeleteRows = false;
             this.dgInventory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dgInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgInventory.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgInventory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgInventory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgInventory.ColumnHeadersHeight = 40;
             this.dgInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgInventory.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgInventory.DefaultCellStyle = dataGridViewCellStyle19;
             this.dgInventory.EnableHeadersVisualStyles = false;
             this.dgInventory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgInventory.Location = new System.Drawing.Point(3, 104);
             this.dgInventory.MultiSelect = false;
             this.dgInventory.Name = "dgInventory";
             this.dgInventory.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgInventory.RowHeadersVisible = false;
             this.dgInventory.RowHeadersWidth = 51;
             this.dgInventory.RowTemplate.Height = 32;
@@ -181,32 +175,10 @@
             this.dgInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellContentClick);
             this.dgInventory.SelectionChanged += new System.EventHandler(this.dgInventory_SelectionChanged);
             // 
-            // activeTab
-            // 
-            this.activeTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.activeTab.Controls.Add(this.panel6);
-            this.activeTab.Location = new System.Drawing.Point(4, 29);
-            this.activeTab.Name = "activeTab";
-            this.activeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activeTab.Size = new System.Drawing.Size(816, 4);
-            this.activeTab.TabIndex = 0;
-            this.activeTab.Text = "   Active Inventory   ";
-            this.activeTab.UseVisualStyleBackColor = true;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.Green;
-            this.panel6.Location = new System.Drawing.Point(-3, -1);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(150, 5);
-            this.panel6.TabIndex = 5;
-            // 
             // inventoryTabControl
             // 
             this.inventoryTabControl.Controls.Add(this.activeTab);
             this.inventoryTabControl.Controls.Add(this.outTab);
-            this.inventoryTabControl.Controls.Add(this.lowTab);
-            this.inventoryTabControl.Controls.Add(this.allTab);
             this.inventoryTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inventoryTabControl.Location = new System.Drawing.Point(4, 10);
             this.inventoryTabControl.Name = "inventoryTabControl";
@@ -214,45 +186,6 @@
             this.inventoryTabControl.Size = new System.Drawing.Size(824, 37);
             this.inventoryTabControl.TabIndex = 439;
             this.inventoryTabControl.SelectedIndexChanged += new System.EventHandler(this.inventoryTabControl_SelectedIndexChanged);
-            // 
-            // outTab
-            // 
-            this.outTab.Controls.Add(this.panel7);
-            this.outTab.Location = new System.Drawing.Point(4, 29);
-            this.outTab.Name = "outTab";
-            this.outTab.Padding = new System.Windows.Forms.Padding(3);
-            this.outTab.Size = new System.Drawing.Size(816, 4);
-            this.outTab.TabIndex = 1;
-            this.outTab.Text = "     Out of Stock       ";
-            this.outTab.UseVisualStyleBackColor = true;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Green;
-            this.panel7.Location = new System.Drawing.Point(152, -1);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(140, 5);
-            this.panel7.TabIndex = 6;
-            // 
-            // allTab
-            // 
-            this.allTab.Controls.Add(this.panel2);
-            this.allTab.Location = new System.Drawing.Point(4, 29);
-            this.allTab.Name = "allTab";
-            this.allTab.Padding = new System.Windows.Forms.Padding(3);
-            this.allTab.Size = new System.Drawing.Size(816, 4);
-            this.allTab.TabIndex = 2;
-            this.allTab.Text = "     All Inventory    ";
-            this.allTab.UseVisualStyleBackColor = true;
-            this.allTab.Click += new System.EventHandler(this.allTab_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Green;
-            this.panel2.Location = new System.Drawing.Point(433, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(140, 5);
-            this.panel2.TabIndex = 7;
             // 
             // panel5
             // 
@@ -284,6 +217,17 @@
             this.panel13.Size = new System.Drawing.Size(327, 659);
             this.panel13.TabIndex = 560;
             // 
+            // qtyOnHand_tx
+            // 
+            this.qtyOnHand_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtyOnHand_tx.Location = new System.Drawing.Point(73, 46);
+            this.qtyOnHand_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.qtyOnHand_tx.Name = "qtyOnHand_tx";
+            this.qtyOnHand_tx.Size = new System.Drawing.Size(244, 24);
+            this.qtyOnHand_tx.TabIndex = 553;
+            this.qtyOnHand_tx.Text = "0";
+            this.qtyOnHand_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -295,17 +239,6 @@
             this.label4.Size = new System.Drawing.Size(83, 17);
             this.label4.TabIndex = 562;
             this.label4.Text = "Adjustment ";
-            // 
-            // qtyOnHand_tx
-            // 
-            this.qtyOnHand_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtyOnHand_tx.Location = new System.Drawing.Point(73, 46);
-            this.qtyOnHand_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.qtyOnHand_tx.Name = "qtyOnHand_tx";
-            this.qtyOnHand_tx.Size = new System.Drawing.Size(244, 24);
-            this.qtyOnHand_tx.TabIndex = 553;
-            this.qtyOnHand_tx.Text = "0";
-            this.qtyOnHand_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
@@ -532,18 +465,6 @@
             this.adjustingQty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.adjustingQty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(17, 131);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
-            this.label2.TabIndex = 557;
-            this.label2.Text = "Date Added :";
-            // 
             // update_btn
             // 
             this.update_btn.BackColor = System.Drawing.Color.Green;
@@ -559,6 +480,18 @@
             this.update_btn.Text = "Update";
             this.update_btn.UseVisualStyleBackColor = false;
             this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(17, 131);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.TabIndex = 557;
+            this.label2.Text = "Date Added :";
             // 
             // label1
             // 
@@ -637,24 +570,44 @@
             this.search_tx.TabIndex = 467;
             this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
             // 
-            // lowTab
+            // panel7
             // 
-            this.lowTab.Controls.Add(this.panel4);
-            this.lowTab.Location = new System.Drawing.Point(4, 29);
-            this.lowTab.Name = "lowTab";
-            this.lowTab.Padding = new System.Windows.Forms.Padding(3);
-            this.lowTab.Size = new System.Drawing.Size(816, 4);
-            this.lowTab.TabIndex = 3;
-            this.lowTab.Text = "      Low  Stocks       ";
-            this.lowTab.UseVisualStyleBackColor = true;
+            this.panel7.BackColor = System.Drawing.Color.Green;
+            this.panel7.Location = new System.Drawing.Point(149, -1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(140, 5);
+            this.panel7.TabIndex = 6;
             // 
-            // panel4
+            // outTab
             // 
-            this.panel4.BackColor = System.Drawing.Color.Green;
-            this.panel4.Location = new System.Drawing.Point(290, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(145, 5);
-            this.panel4.TabIndex = 8;
+            this.outTab.Controls.Add(this.panel7);
+            this.outTab.Location = new System.Drawing.Point(4, 29);
+            this.outTab.Name = "outTab";
+            this.outTab.Padding = new System.Windows.Forms.Padding(3);
+            this.outTab.Size = new System.Drawing.Size(816, 4);
+            this.outTab.TabIndex = 1;
+            this.outTab.Text = "      Low Stocks        ";
+            this.outTab.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Green;
+            this.panel6.Location = new System.Drawing.Point(-3, -1);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(150, 5);
+            this.panel6.TabIndex = 5;
+            // 
+            // activeTab
+            // 
+            this.activeTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.activeTab.Controls.Add(this.panel6);
+            this.activeTab.Location = new System.Drawing.Point(4, 29);
+            this.activeTab.Name = "activeTab";
+            this.activeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.activeTab.Size = new System.Drawing.Size(816, 4);
+            this.activeTab.TabIndex = 0;
+            this.activeTab.Text = "   Active Inventory   ";
+            this.activeTab.UseVisualStyleBackColor = true;
             // 
             // InventoryForm
             // 
@@ -676,10 +629,7 @@
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInventory)).EndInit();
-            this.activeTab.ResumeLayout(false);
             this.inventoryTabControl.ResumeLayout(false);
-            this.outTab.ResumeLayout(false);
-            this.allTab.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
@@ -691,7 +641,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.lowTab.ResumeLayout(false);
+            this.outTab.ResumeLayout(false);
+            this.activeTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -702,13 +653,7 @@
         internal System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Label notFound_lbl;
         internal System.Windows.Forms.DataGridView dgInventory;
-        private System.Windows.Forms.TabPage activeTab;
-        private System.Windows.Forms.Panel panel6;
         public System.Windows.Forms.TabControl inventoryTabControl;
-        private System.Windows.Forms.TabPage outTab;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TabPage allTab;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -740,7 +685,9 @@
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button print_btn;
-        private System.Windows.Forms.TabPage lowTab;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TabPage outTab;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TabPage activeTab;
+        private System.Windows.Forms.Panel panel6;
     }
 }

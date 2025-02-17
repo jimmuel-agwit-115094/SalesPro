@@ -17,4 +17,9 @@ namespace SalesPro.Models
     {
         public int TotalProductOrdered { get; set; }
     }
+
+    public class InventoryProductExtended : ProductModel
+    {
+        public int Stock { get; set; }
+    }
 }

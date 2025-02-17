@@ -15,6 +15,7 @@ namespace SalesPro.Forms.Inventory
     public partial class InventoryForm : Form
     {
         private int _inventoryId;
+        private int _selectedTab;
         private DateTime _curDate;
         private readonly InventoryService _service;
         private List<InventoryModelExtended> _inventoryList;
@@ -35,7 +36,7 @@ namespace SalesPro.Forms.Inventory
                                     .Where(x => x != InventoryAction.AddedToInventory)
                                     .ToList();
                 action_cb.DataSource = filtteredInvAction;
-                await LoadFilteredInventories(InventoryFilterType.Active);
+                await LoadFilteredInventories();
             }
             catch (Exception ex)
             {
@@ -44,47 +45,38 @@ namespace SalesPro.Forms.Inventory
 
         }
 
-        private void FormatGrid()
+        private async Task LoadFilteredInventories()
         {
-            try
-            {
-                DgExtensions.ConfigureDataGrid(dgInventory, true, 6, notFound_lbl,
-                  "InventoryId",
-                  "ProductName",
-                 "QuantityOnHand", 
-                 "RetailPrice");
-                DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error formatting grid: {ex.Message}");
-            }
-        }
-
-        private async Task LoadFilteredInventories(InventoryFilterType filterType)
-        {
-            var inv = await _service.GetFilteredInventories(filterType);
+            var inv = await _service.GetFilteredInventories();
             dgInventory.DataSource = inv;
             _inventoryList = inv;
-            FormatGrid();
+            DgExtensions.ConfigureDataGrid(dgInventory, true, 6, notFound_lbl,
+                     "InventoryId",
+                     "ProductName",
+                     "QuantityOnHand",
+                     "RetailPrice");
+            DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
+        }
+
+        private async Task LoadLowStockProducts()
+        {
+            var lowStocks = await _service.GetLowStockProducts();
+            dgInventory.DataSource = lowStocks;
+            DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
+                  "ProductName",
+                  "Stock");
         }
 
         private async Task LoadInventoriesBaseOnTabSelected()
         {
-            var selectedTab = inventoryTabControl.SelectedIndex;
-            switch (selectedTab)
+            _selectedTab = inventoryTabControl.SelectedIndex;
+            switch (_selectedTab)
             {
                 case 0:
-                    await LoadFilteredInventories(InventoryFilterType.Active);
+                    await LoadFilteredInventories();
                     break;
                 case 1:
-                    await LoadFilteredInventories(InventoryFilterType.OutOfStock);
-                    break;
-                case 2:
-                    await LoadFilteredInventories(InventoryFilterType.LowStocks);
-                    break;
-                case 3:
-                    await LoadFilteredInventories(InventoryFilterType.All);
+                    await LoadLowStockProducts();
                     break;
             }
         }
@@ -120,12 +112,16 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                int invId = DgFormatHelper.GetSelectedId(dgInventory, e, "InventoryId");
-                if (invId == 0) return;
-                var form = new InventoryLogsForm();
-                form._inventoryId = invId;
-                form.total_tx.Text = qtyOnHand_tx.Text;
-                form.ShowDialog();
+                if (_selectedTab == 0)
+                {
+                    int invId = DgFormatHelper.GetSelectedId(dgInventory, e, "InventoryId");
+                    if (invId == 0) return;
+                    var form = new InventoryLogsForm();
+                    form._inventoryId = invId;
+                    form.total_tx.Text = qtyOnHand_tx.Text;
+                    form.ShowDialog();
+                }
+
             }
             catch (Exception ex)
             {
@@ -141,10 +137,14 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                _inventoryId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgInventory, "InventoryId");
-                if (_inventoryId == 0) return;
-                update_btn.Enabled = true;
-                await GetInventoryData(_inventoryId);
+                //if (_selectedTab == 0)
+                //{
+                //    _inventoryId = DgFormatHelper.GetSelectedIdOnSelectionChange(dgInventory, "InventoryId");
+                //    if (_inventoryId == 0) return;
+                //    update_btn.Enabled = true;
+                //    await GetInventoryData(_inventoryId);
+                //}
+                MessageBox.Show("Please select a row to update inventory.");
             }
             catch (Exception ex)
             {

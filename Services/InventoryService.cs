@@ -11,35 +11,7 @@ namespace SalesPro.Services
 {
     public class InventoryService
     {
-        //public async Task<List<InventoryModelExtended>> GetAllInventories()
-        //{
-        //    using (var context = new DatabaseContext())
-        //    {
-        //        return await (from i in context.Inventories
-        //                      join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
-        //                      join p in context.Products on i.ProductId equals p.ProductId
-        //                      join u in context.Users on i.UserId equals u.UserId
-        //                      join s in context.Suppliers on i.SupplierId equals s.SupplierId
-        //                      select new InventoryModelExtended
-        //                      {
-        //                          InventoryId = i.InventoryId,
-        //                          PurchaseOrderId = i.PurchaseOrderId,
-        //                          ProductId = i.ProductId,
-        //                          SupplierId = i.SupplierId,
-        //                          UserId = i.UserId,
-        //                          DateAdded = i.DateAdded,
-        //                          QuantityFromPo = i.QuantityFromPo,
-        //                          QuantityOnHand = i.QuantityOnHand,
-        //                          SupplierPrice = i.SupplierPrice,
-        //                          RetailPrice = i.RetailPrice,
-        //                          ProductName = p.ProductName,
-        //                          SupplierName = s.SupplierName,
-        //                          UserFullName = u.Fullname
-        //                      }).OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
-        //    }
-        //}
-
-        public async Task<List<InventoryModelExtended>> GetFilteredInventories(InventoryFilterType filterType)
+        public async Task<List<InventoryModelExtended>> GetFilteredInventories()
         {
             using (var context = new DatabaseContext())
             {
@@ -66,28 +38,32 @@ namespace SalesPro.Services
                                 ReorderLevel = p.ReorderLevel
                             };
 
-                // Apply filter dynamically
-                switch (filterType)
-                {
-                    case InventoryFilterType.OutOfStock:
-                        query = query.Where(x => x.QuantityOnHand == 0);
-                        break;
-                    case InventoryFilterType.LowStocks:
-                        query = query.Where(x => x.QuantityOnHand < x.ReorderLevel);
-                        break;
-                    case InventoryFilterType.Active:
-                        // Define the disposal criteria. Example:
-                        query = query.Where(x => x.QuantityOnHand > 0 );
-                        break;
-                    case InventoryFilterType.All:
-                    default:
-                        // No filtering for "All"
-                        break;
-                }
-
                 return await query.OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
             }
         }
+
+        public async Task<List<InventoryProductExtended>> GetLowStockProducts()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var query = context.Inventories
+                    .Join(context.Products,
+                          i => i.ProductId,
+                          p => p.ProductId,
+                          (i, p) => new { p.ProductName, p.ReorderLevel, i.QuantityOnHand })
+                    .GroupBy(x => new { x.ProductName, x.ReorderLevel })
+                    .Where(g => g.Sum(x => x.QuantityOnHand) < g.Key.ReorderLevel || g.Sum(x => x.QuantityOnHand) < 0)
+                    .Select(g => new InventoryProductExtended
+                    {
+                        ProductName = g.Key.ProductName,
+                        Stock = g.Sum(x => x.QuantityOnHand)
+                    })
+                    .OrderByDescending(x => x.ProductName);
+
+                return await query.ToListAsync();
+            }
+        }
+
 
         public async Task<InventoryModelExtended> GetExtendedInventoryById(int inventoryId)
         {
@@ -147,7 +123,7 @@ namespace SalesPro.Services
                     await context.InventoryLogs.AddAsync(invLog);
                     result = await context.SaveChangesAsync();
                 });
-                return result > 0 ? result : 0; 
+                return result > 0 ? result : 0;
             }
         }
 
