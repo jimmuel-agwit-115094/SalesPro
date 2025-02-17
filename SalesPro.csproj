@@ -217,6 +217,12 @@
     <Compile Include="Constants\PublicKeyConstants.cs" />
     <Compile Include="Constants\SystemConstants.cs" />
     <Compile Include="Enums\ActivationStatusEnum.cs" />
+    <Compile Include="Forms\Inventory\ManageInventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Inventory\ManageInventoryForm.Designer.cs">
+      <DependentUpon>ManageInventoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Printing\CustomerCreditDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -524,6 +530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inventory\InventoryLogsForm.resx">
       <DependentUpon>InventoryLogsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Inventory\ManageInventoryForm.resx">
+      <DependentUpon>ManageInventoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
