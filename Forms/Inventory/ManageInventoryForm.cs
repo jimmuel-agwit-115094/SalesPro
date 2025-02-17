@@ -59,6 +59,7 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
+                update_btn.Enabled = true;
                 _curDate = await ClockHelper.GetServerDateTime();
                 await GetInventoryData(_inventoryId);
                 await LoadInventoryLogs();
@@ -131,6 +132,8 @@ namespace SalesPro.Forms.Inventory
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log);
                     await _inventoryForm.LoadInventoriesBaseOnTabSelected();
                     _inventoryForm.ResetControls();
+                    update_btn.Enabled = false;
+                    Close();
                 }
             }
             catch (Exception ex)
@@ -143,9 +146,88 @@ namespace SalesPro.Forms.Inventory
         {
             var logs = await _service.GetInventoryLogsById(_inventoryId);
             dgLogs.DataSource = logs;
+
             DgExtensions.ConfigureDataGrid(dgLogs, false, 3, notFound_lbl,
-                "UserFullName", "DateAdded", "DateAdjusted", "InventoryAction",
+                "UserFullName", "DateAdjusted",
                 "CurrentQuantity", "AdjustmentQuantity", "FinalQuantity", "Remarks");
+
+            dgLogs.Columns["DateAdjusted"].DisplayIndex = 0;
+            // Changfe to segoe ui
+            dgLogs.Columns["DateAdjusted"].DefaultCellStyle.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+            // Apply row formatting based on InventoryAction
+            foreach (DataGridViewRow row in dgLogs.Rows)
+            {
+                var log = row.DataBoundItem as InventoryLogModel; // Cast row data to the InventoryLog model
+                if (log != null)
+                {
+                    // Find the column index for AdjustmentQuantity
+                    int adjustmentQuantityColumnIndex = dgLogs.Columns["AdjustmentQuantity"].Index;
+                    int dateColumnIndex = dgLogs.Columns["DateAdjusted"].Index;
+
+                    // Format AdjustmentQuantity
+                    if (adjustmentQuantityColumnIndex >= 0)
+                    {
+                        var cell = row.Cells[adjustmentQuantityColumnIndex];
+                        var dateCell = row.Cells[dateColumnIndex];
+                        int cellToInt = Convert.ToInt32(cell.Value);
+
+                        if (log.InventoryAction == InventoryAction.Positive_Adjustment ||
+                            log.InventoryAction == InventoryAction.AddedToInventory)
+                        {
+                            // Show negative sign and set forecolor to green
+                            cell.Value = $"+{Math.Abs(Convert.ToDecimal(cell.Value))}";
+                            cell.Style.ForeColor = Color.Green;
+                            cell.Style.SelectionForeColor = Color.Green;
+
+                            dateCell.Style.SelectionForeColor = Color.Green;
+                            dateCell.Style.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            // Show positive sign and set forecolor to green
+                            cell.Value = $"-{Math.Abs(Convert.ToDecimal(cell.Value))}";
+                            cell.Style.ForeColor = Color.Red;
+                            cell.Style.SelectionForeColor = Color.Red;
+
+                            dateCell.Style.SelectionForeColor = Color.Red;
+                            dateCell.Style.ForeColor = Color.Red;
+                        }
+
+                        if (cellToInt == 0)
+                        {
+                            cell.Style.ForeColor = Color.Black;
+                            cell.Style.SelectionForeColor = Color.Black;
+                        }
+                    }
+                }
+            }
+
         }
+
+
+        private void dgLogs_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgLogs.Columns[e.ColumnIndex].Name == "InventoryAction") // Replace with your column name
+            {
+                if (e.Value != null && e.Value.ToString() == "Positive_Adjustment")
+                {
+                    // Set the entire row's color to green
+                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green;
+                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Green;
+                }
+                else if (e.Value != null && e.Value.ToString() == "Negative_Adjustment")
+                {
+                    // Set the entire row's color to red
+                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Red;
+                }
+                else
+                {
+                    // Default color for the entire row
+                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
     }
 }
