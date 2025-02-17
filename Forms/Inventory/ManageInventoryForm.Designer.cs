@@ -156,7 +156,6 @@
             this.dgLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLogs.Size = new System.Drawing.Size(982, 288);
             this.dgLogs.TabIndex = 577;
-            this.dgLogs.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgLogs_CellFormatting);
             // 
             // label11
             // 

@@ -203,31 +203,5 @@ namespace SalesPro.Forms.Inventory
             }
 
         }
-
-
-        private void dgLogs_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgLogs.Columns[e.ColumnIndex].Name == "InventoryAction") // Replace with your column name
-            {
-                if (e.Value != null && e.Value.ToString() == "Positive_Adjustment")
-                {
-                    // Set the entire row's color to green
-                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green;
-                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Green;
-                }
-                else if (e.Value != null && e.Value.ToString() == "Negative_Adjustment")
-                {
-                    // Set the entire row's color to red
-                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
-                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Red;
-                }
-                else
-                {
-                    // Default color for the entire row
-                    dgLogs.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                }
-            }
-        }
-
     }
 }
