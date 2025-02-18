@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using SalesPro.Settings;
@@ -86,6 +87,12 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                if (!AccessControlHelper.IsAdminAndDevUserAccess(UserSession.UserAccess))
+                {
+                    MessageHandler.ShowRestrictionMessage("You do not have access to this module");
+                    return;
+                }
+
                 int success = 0;
                 if (supplier_tx.Text == string.Empty)
                 {

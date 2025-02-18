@@ -68,7 +68,7 @@ namespace SalesPro.Forms.Settings
                     title_lbl.Text = "New Bank";
                     save_btn.Text = "Save";
                     save_btn.BackColor = Color.Green;
-                 
+
                 }
 
 
@@ -83,6 +83,12 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                if (!AccessControlHelper.IsAdminAndDevUserAccess(UserSession.UserAccess))
+                {
+                    MessageHandler.ShowRestrictionMessage("You do not have access to this module");
+                    return;
+                }
+
                 int success = 0;
                 var model = BuildBankModel();
                 string action = _actionForm == Constants.SystemConstants.New ? "save" : "update";

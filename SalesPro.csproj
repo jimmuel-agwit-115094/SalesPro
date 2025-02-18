@@ -223,6 +223,7 @@
     <Compile Include="Forms\Inventory\ManageInventoryForm.Designer.cs">
       <DependentUpon>ManageInventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AccessControlHelper.cs" />
     <Compile Include="Printing\CustomerCreditDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

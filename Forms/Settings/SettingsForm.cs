@@ -1,5 +1,4 @@
 ﻿using SalesPro.Enums;
-using SalesPro.Forms;
 using SalesPro.Forms.Settings;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -153,7 +152,7 @@ namespace SalesPro.Settings
 
         private async void settingsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            new_btn.Visible = settingsTabControl.SelectedIndex != 4 && settingsTabControl.SelectedIndex != 5;
+            new_btn.Visible = settingsTabControl.SelectedIndex != 3 && settingsTabControl.SelectedIndex != 4 && settingsTabControl.SelectedIndex != 5;
             switch (settingsTabControl.SelectedIndex)
             {
                 case 0: // Users
@@ -169,7 +168,6 @@ namespace SalesPro.Settings
                     await LoadSuppliers();
                     break;
                 case 3: // Unit of measures
-                    new_btn.Text = "New Unit";
                     break;
                 case 4:// Database settings
 
@@ -240,7 +238,7 @@ namespace SalesPro.Settings
             }
             else
             {
-                MessageHandler.ShowWarning("You are not allowed to restore the database. Contact developer for this module");
+                MessageHandler.ShowError("You are not allowed to restore the database. Contact developer for this module");
             }
         }
 

@@ -10,6 +10,7 @@
     {
         Developer,
         Admin,
-        Cashier
+        Cashier,
+        StandardUser
     }
 }

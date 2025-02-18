@@ -95,6 +95,12 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                if (!AccessControlHelper.IsAdminAndDevUserAccess(UserSession.UserAccess))
+                {
+                    MessageHandler.ShowRestrictionMessage("You do not have access to this module");
+                    return;
+                }
+
                 if (fullname_tx.Text == string.Empty)
                 {
                     MessageHandler.ShowWarning("Please enter fullname.");
