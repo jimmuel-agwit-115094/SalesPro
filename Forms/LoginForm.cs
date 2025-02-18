@@ -74,7 +74,12 @@ namespace SalesPro
 
                         Hide();
                         MainForm mainForm = new MainForm();
-                        mainForm.user_tx.Text = user.Fullname;
+                        string userFullName = user.Fullname;
+                        if (user.UserAccess == UserAccess.Admin || user.UserAccess == UserAccess.Developer)
+                        {
+                            userFullName = $"★ {user.Fullname}";
+                        }
+                        mainForm.user_tx.Text = userFullName;
                         mainForm.Show();
                     }
                     else

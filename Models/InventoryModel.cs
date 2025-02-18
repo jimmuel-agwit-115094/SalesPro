@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SalesPro.Models
 {
-    public class InventoryModel
+    public class InventoryModel : BaseEntity
     {
         [Key]
         public int InventoryId { get; set; }
@@ -22,6 +22,7 @@ namespace SalesPro.Models
     {
         public string ProductName { get; set; }
         public string SupplierName { get; set; }
+        public string SupplierAddress { get; set; }
         public string UserFullName { get; set; }
         public string BarCode { get; set; }
         public string UnitOfMeasure { get; set; }

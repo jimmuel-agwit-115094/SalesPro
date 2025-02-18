@@ -5,12 +5,9 @@ using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +17,7 @@ namespace SalesPro.Forms.Inventory
     {
         public int _inventoryId;
         private DateTime _curDate;
+        private int _rowVersion;
 
         private readonly InventoryService _service;
         private readonly InventoryForm _inventoryForm;
@@ -43,6 +41,14 @@ namespace SalesPro.Forms.Inventory
                 qtyOnHand_tx.Text = $"{inv.QuantityOnHand.ToString()} {inv.UnitOfMeasure}";
                 suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
                 retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
+                supAddress_tx.Text = inv.SupplierAddress;
+                _rowVersion = inv.RowVersion;
+
+                if (inv.QuantityOnHand <= 0)
+                {
+                    qtyOnHand_tx.ForeColor = Color.Red;
+                    soldPb.Visible = true;
+                }
             }
         }
 
@@ -129,7 +135,7 @@ namespace SalesPro.Forms.Inventory
                             : log.CurrentQuantity - log.AdjustmentQuantity;
 
                     }
-                    await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log);
+                    await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
                     await _inventoryForm.LoadInventoriesBaseOnTabSelected();
                     _inventoryForm.ResetControls();
                     update_btn.Enabled = false;
@@ -203,5 +209,10 @@ namespace SalesPro.Forms.Inventory
             }
 
         }
+
+        private void action_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
     }
 }

@@ -42,7 +42,7 @@ namespace SalesPro.Forms.Inventory
             var inv = await _service.GetFilteredInventories();
             dgInventory.DataSource = inv;
             _inventoryList = inv;
-            DgExtensions.ConfigureDataGrid(dgInventory, true, 6, notFound_lbl,
+            DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
                      "InventoryId",
                      "ProductName",
                      "QuantityOnHand",
@@ -57,6 +57,8 @@ namespace SalesPro.Forms.Inventory
             DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
                   "ProductName",
                   "Stock");
+
+            dgInventory.Columns["ProductName"].DisplayIndex = 0;
         }
 
         public async Task LoadInventoriesBaseOnTabSelected()
@@ -66,9 +68,11 @@ namespace SalesPro.Forms.Inventory
             {
                 case 0:
                     await LoadFilteredInventories();
+                    print_btn.Visible = true;
                     break;
                 case 1:
                     await LoadLowStockProducts();
+                    print_btn.Visible = false;
                     break;
             }
         }
@@ -76,6 +80,7 @@ namespace SalesPro.Forms.Inventory
         private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             await LoadInventoriesBaseOnTabSelected();
+            search_tx.Clear();
         }
 
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -115,6 +120,12 @@ namespace SalesPro.Forms.Inventory
 
         private void print_btn_Click(object sender, EventArgs e)
         {
+            if (dgInventory.Rows.Count == 0)
+            {
+                MessageHandler.ShowWarning("No data to print.");
+                return;
+            }
+
             var form = new PrintingForm();
             form._inventoryList = _inventoryList;
             form._inventoryParam = new Dictionary<string, string>
