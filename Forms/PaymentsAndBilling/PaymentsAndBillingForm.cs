@@ -150,6 +150,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 showPastCustomer_cb.Visible = true;
                 await LoadCustomerCredits(PaymentStatus.Unpaid, false);
+                credit_lbl.Text = "Unpaid Customer Credits";
             }
             catch (Exception ex)
             {
@@ -163,6 +164,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 showPastCustomer_cb.Visible = false;
                 await LoadCustomerCredits(PaymentStatus.Paid, false);
+                credit_lbl.Text = "Paid Customer Credits";
             }
             catch (Exception ex)
             {
