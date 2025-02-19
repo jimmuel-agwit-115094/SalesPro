@@ -9,6 +9,7 @@ using SalesPro.Forms.PurchaseOrders;
 using SalesPro.Forms.Reports;
 using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
+using SalesPro.Models;
 using SalesPro.Models.Sessions;
 using SalesPro.Properties;
 using SalesPro.Services;
@@ -126,6 +127,11 @@ namespace SalesPro.Forms
 
         private void po_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.PurchaseOrdersModule))
+            {
+                MessageHandler.ShowError("No access");
+                return;
+            }
             var form = new PurchaseOrderForm();
             LoadFormInPanel(form);
         }

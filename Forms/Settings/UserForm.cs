@@ -130,6 +130,8 @@ namespace SalesPro.Forms.Settings
 
             // change index
             dgRoles.Columns["Role"].DisplayIndex = 0;
+            // aling roles to left
+            dgRoles.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             DgFormatHelper.BasicGridFormat(dgRoles);
         }
 
@@ -297,6 +299,11 @@ namespace SalesPro.Forms.Settings
             {
                 MessageHandler.ShowError($"Error upsert users: {ex.Message}");
             }
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgRoles, search_tx);
         }
     }
 }
