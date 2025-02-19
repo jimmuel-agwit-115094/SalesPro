@@ -59,45 +59,45 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(16, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(313, 377);
+            this.groupBox1.Size = new System.Drawing.Size(421, 253);
             this.groupBox1.TabIndex = 549;
             this.groupBox1.TabStop = false;
             // 
             // unit_cb
             // 
             this.unit_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.unit_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.unit_cb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unit_cb.FormattingEnabled = true;
-            this.unit_cb.Location = new System.Drawing.Point(17, 158);
+            this.unit_cb.Location = new System.Drawing.Point(128, 86);
             this.unit_cb.Name = "unit_cb";
-            this.unit_cb.Size = new System.Drawing.Size(277, 28);
+            this.unit_cb.Size = new System.Drawing.Size(277, 25);
             this.unit_cb.TabIndex = 540;
             // 
             // reorder_tx
             // 
-            this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.reorder_tx.Location = new System.Drawing.Point(18, 332);
+            this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reorder_tx.Location = new System.Drawing.Point(128, 214);
             this.reorder_tx.MaxLength = 8;
             this.reorder_tx.Name = "reorder_tx";
-            this.reorder_tx.Size = new System.Drawing.Size(277, 27);
+            this.reorder_tx.Size = new System.Drawing.Size(277, 25);
             this.reorder_tx.TabIndex = 539;
             this.reorder_tx.TextChanged += new System.EventHandler(this.reorder_tx_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 312);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 218);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 17);
+            this.label4.Size = new System.Drawing.Size(96, 17);
             this.label4.TabIndex = 538;
             this.label4.Text = "Reorder Level :";
             // 
             // desc_tx
             // 
-            this.desc_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.desc_tx.Location = new System.Drawing.Point(18, 218);
+            this.desc_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.desc_tx.Location = new System.Drawing.Point(128, 120);
             this.desc_tx.Multiline = true;
             this.desc_tx.Name = "desc_tx";
             this.desc_tx.Size = new System.Drawing.Size(277, 88);
@@ -106,63 +106,63 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 198);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 122);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 17);
+            this.label3.Size = new System.Drawing.Size(81, 17);
             this.label3.TabIndex = 536;
             this.label3.Text = "Description :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 139);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 90);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 17);
+            this.label2.Size = new System.Drawing.Size(111, 17);
             this.label2.TabIndex = 534;
             this.label2.Text = "Unit Of Measure :";
             // 
             // barCode_tx
             // 
             this.barCode_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.barCode_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.barCode_tx.Location = new System.Drawing.Point(17, 94);
+            this.barCode_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barCode_tx.Location = new System.Drawing.Point(128, 53);
             this.barCode_tx.MaxLength = 15;
             this.barCode_tx.Name = "barCode_tx";
-            this.barCode_tx.Size = new System.Drawing.Size(277, 27);
+            this.barCode_tx.Size = new System.Drawing.Size(277, 25);
             this.barCode_tx.TabIndex = 533;
             this.barCode_tx.TextChanged += new System.EventHandler(this.barCode_tx_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 75);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 57);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 17);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 532;
             this.label1.Text = "Bar Code :";
             // 
             // productName_tx
             // 
-            this.productName_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.productName_tx.Location = new System.Drawing.Point(18, 38);
+            this.productName_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productName_tx.Location = new System.Drawing.Point(128, 20);
             this.productName_tx.Name = "productName_tx";
-            this.productName_tx.Size = new System.Drawing.Size(277, 27);
+            this.productName_tx.Size = new System.Drawing.Size(277, 25);
             this.productName_tx.TabIndex = 531;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(18, 18);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(13, 24);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 17);
+            this.label8.Size = new System.Drawing.Size(99, 17);
             this.label8.TabIndex = 530;
             this.label8.Text = "Product Name :";
             // 
@@ -185,7 +185,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(189, 447);
+            this.save_btn.Location = new System.Drawing.Point(297, 329);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(140, 34);
             this.save_btn.TabIndex = 551;
@@ -196,10 +196,10 @@
             // logs_link
             // 
             this.logs_link.AutoSize = true;
-            this.logs_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logs_link.Location = new System.Drawing.Point(243, 18);
+            this.logs_link.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logs_link.Location = new System.Drawing.Point(351, 16);
             this.logs_link.Name = "logs_link";
-            this.logs_link.Size = new System.Drawing.Size(86, 16);
+            this.logs_link.Size = new System.Drawing.Size(85, 17);
             this.logs_link.TabIndex = 552;
             this.logs_link.TabStop = true;
             this.logs_link.Text = "Product Logs";
@@ -210,7 +210,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(343, 495);
+            this.ClientSize = new System.Drawing.Size(452, 378);
             this.Controls.Add(this.logs_link);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.title_lbl);
