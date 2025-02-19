@@ -211,12 +211,6 @@ namespace SalesPro.Forms.Settings
                     return;
                 }
 
-                if (!UserSession.HasAccess("manage-user"))
-                {
-                    MessageBox.Show("Access Denied!");
-                    return;
-                }
-
                 if (fullname_tx.Text == string.Empty)
                 {
                     MessageHandler.ShowWarning("Please enter fullname.");
