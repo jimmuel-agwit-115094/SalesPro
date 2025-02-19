@@ -26,7 +26,6 @@ namespace SalesPro.Forms.Settings
             InitializeComponent();
             _userService = new UserService();
             _form = settingsForm;
-            TextBoxHelper.FormatIntegerTextbox(pin_tx);
         }
 
         private async void UserForm_Load(object sender, EventArgs e)
@@ -45,7 +44,6 @@ namespace SalesPro.Forms.Settings
                     {
                         fullname_tx.Text = user.Fullname;
                         username_tx.Text = user.Username;
-                        pin_tx.Text = user.Pin;
                         _rowVersion = user.RowVersion;
                     }
                     await LoadRoles();
@@ -193,7 +191,6 @@ namespace SalesPro.Forms.Settings
                 Username = username_tx.Text,
                 Password = password,
                 Fullname = fullname_tx.Text,
-                Pin = pin_tx.Text,
                 AccountStatus = 0,
                 DateAdded = isNew ? _curDate : default, // Set DateAdded only if it's a new user
                 DateUpdated = _curDate
@@ -226,18 +223,6 @@ namespace SalesPro.Forms.Settings
                 if (password_tx.Text == string.Empty)
                 {
                     MessageHandler.ShowWarning("Please enter password.");
-                    return;
-                }
-
-                if (pin_tx.Text.Length < 4)
-                {
-                    MessageHandler.ShowWarning("Pin must be 4 digits.");
-                    return;
-                }
-
-                if (pin_tx.Text == string.Empty)
-                {
-                    MessageHandler.ShowWarning("Please enter pin.");
                     return;
                 }
 
