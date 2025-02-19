@@ -1,10 +1,11 @@
-﻿using SalesPro.Enums;
-using SalesPro.Helpers;
+﻿using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using SalesPro.Settings;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +33,7 @@ namespace SalesPro.Forms.Settings
             try
             {
                 _curDate = await ClockHelper.GetServerDateTime();
+
                 if (_actionForm == Constants.SystemConstants.Edit)
                 {
                     title_lbl.Text = "Edit User";
@@ -45,17 +47,126 @@ namespace SalesPro.Forms.Settings
                         pin_tx.Text = user.Pin;
                         _rowVersion = user.RowVersion;
                     }
+                    await LoadRoles();
+
+                    // Show the tab when editing
+                    if (!userTabControl.TabPages.Contains(rolesTab))
+                    {
+                        userTabControl.TabPages.Add(rolesTab);
+                    }
                 }
                 else
                 {
                     title_lbl.Text = "New User";
                     save_btn.Text = "Save";
-                }
 
+                    // Hide the tab when adding a new user
+                    if (userTabControl.TabPages.Contains(rolesTab))
+                    {
+                        userTabControl.TabPages.Remove(rolesTab);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error loading user form: {ex.Message}");
+            }
+        }
+
+        private async Task LoadRoles()
+        {
+            var allRoles = await _userService.LoadRoles(); // Get all roles
+            var userRoles = await _userService.GetUserRoles(_userId); // Get user-assigned roles
+
+            dgRoles.DataSource = null;
+            dgRoles.Columns.Clear();
+            dgRoles.Rows.Clear();
+
+            // ✅ Ensure DataGridView is Editable
+            dgRoles.AllowUserToAddRows = false;
+            dgRoles.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgRoles.ReadOnly = false; // Ensure DataGridView is not fully read-only
+
+            // ✅ Add Checkbox Column (Editable)
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "Select",
+                Name = "chkColumn",
+                TrueValue = true,
+                FalseValue = false
+            };
+            dgRoles.Columns.Add(checkBoxColumn);
+
+            // ✅ Add RoleId (Hidden) and Role Name (Read-Only)
+            DataGridViewTextBoxColumn roleIdColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "RoleId",
+                HeaderText = "Role ID",
+                Visible = false, // Hide Role ID
+                ReadOnly = true
+            };
+            dgRoles.Columns.Add(roleIdColumn);
+
+            DataGridViewTextBoxColumn roleNameColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "Role",
+                HeaderText = "Role Name",
+                ReadOnly = true // Make Role Name read-only
+            };
+            dgRoles.Columns.Add(roleNameColumn);
+
+            // ✅ Add Roles and Check Assigned Ones
+            foreach (var role in allRoles)
+            {
+                bool isChecked = userRoles.Contains(role.RoleId); // Check if user has this role
+                dgRoles.Rows.Add(isChecked, role.RoleId, role.Role);
+            }
+
+            // ✅ Explicitly Allow Editing Only for Checkboxes
+            foreach (DataGridViewColumn column in dgRoles.Columns)
+            {
+                column.ReadOnly = column.Name != "chkColumn"; // Only allow checkbox to be edited
+            }
+
+            // change index
+            dgRoles.Columns["Role"].DisplayIndex = 0;
+            DgFormatHelper.BasicGridFormat(dgRoles);
+        }
+
+        private async Task UpsertUserRoles()
+        {
+            if (dgRoles.Rows.Count == 0) return;
+
+            var selectedRoleIds = new List<int>();
+
+            // ✅ Get Selected Roles from DataGridView
+            foreach (DataGridViewRow row in dgRoles.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(row.Cells["chkColumn"].Value);
+                int roleId = Convert.ToInt32(row.Cells["RoleId"].Value);
+
+                if (isChecked)
+                {
+                    selectedRoleIds.Add(roleId);
+                }
+            }
+
+            // ✅ Get Current Roles from Database
+            var currentUserRoles = await _userService.GetUserRoles(_userId);
+
+            // ✅ Determine Roles to Add and Remove
+            var rolesToAdd = selectedRoleIds.Except(currentUserRoles).ToList();     // New roles
+            var rolesToRemove = currentUserRoles.Except(selectedRoleIds).ToList();  // Removed roles
+
+            // ✅ Update Database
+            if (rolesToAdd.Any() || rolesToRemove.Any())
+            {
+                await _userService.UpdateUserRoles(_userId, rolesToAdd, rolesToRemove);
+                MessageBox.Show("User roles updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No changes made.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -164,6 +275,27 @@ namespace SalesPro.Forms.Settings
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error saving user: {ex.Message}");
+            }
+        }
+
+        private async void updateRole_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool hasSelectedRole = dgRoles.Rows.Cast<DataGridViewRow>()
+                     .Any(row => Convert.ToBoolean(row.Cells["chkColumn"].Value) == true);
+
+                if (!hasSelectedRole)
+                {
+                    MessageHandler.ShowWarning("Please select at least one role.");
+                    return; // Stop execution
+                }
+                await UpsertUserRoles();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error upsert users: {ex.Message}");
             }
         }
     }

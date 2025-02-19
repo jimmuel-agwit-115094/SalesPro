@@ -75,5 +75,52 @@ namespace SalesPro.Services
                 return await context.Users.FindAsync(userId);
             }
         }
+        // ================== User Access ==================
+
+        public async Task<List<RoleModel>> LoadRoles()
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.Roles.ToListAsync();
+            }
+        }
+
+        public async Task<List<int>> GetUserRoles(int userId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.UserAccess
+                    .Where(x => x.UserId == userId)
+                    .Select(ua => ua.RoleId)
+                    .ToListAsync();
+            }
+        }
+
+        public async Task UpdateUserRoles(int userId, List<int> rolesToAdd, List<int> rolesToRemove)
+        {
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    // Remove Unchecked Roles
+                    if (rolesToRemove.Any())
+                    {
+                        var removeRoles = context.UserAccess
+                            .Where(ua => ua.UserId == userId && rolesToRemove.Contains(ua.RoleId));
+                        context.UserAccess.RemoveRange(removeRoles);
+                    }
+
+                    // Add New Checked Roles
+                    foreach (var roleId in rolesToAdd)
+                    {
+                        context.UserAccess.Add(new UserAccessModel { UserId = userId, RoleId = roleId });
+                    }
+
+                    await context.SaveChangesAsync();
+                });
+
+            }
+        }
+
     }
 }
