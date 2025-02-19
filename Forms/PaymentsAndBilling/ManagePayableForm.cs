@@ -1,4 +1,5 @@
-﻿using SalesPro.Constants;
+﻿using Renci.SshNet.Messages;
+using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -160,6 +161,18 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
+                var requiredRole = _actionForm == FormConstants.SupplierPayables
+                          ? RoleConstants.UpdateSupplierCreditDueDate
+                          : RoleConstants.UpdateCustomerCreditDueDate;
+                string message = _actionForm == FormConstants.SupplierPayables
+                          ? "supplier payable"
+                          : "customer credit";
+                if (!UserSession.HasAccess(requiredRole))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have permission to update {message} date.");
+                    return;
+                }
+
                 if (_dateCreated.Date >= dueDate_dt.Value.Date)
                 {
                     MessageHandler.ShowWarning("Due date must be greater than the date created");
@@ -168,7 +181,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 if (MessageHandler.ShowQuestionGeneric("Update due date?"))
                 {
                     int success = 0;
-                    if (_actionForm == Constants.FormConstants.SupplierPayables)
+                    if (_actionForm == FormConstants.SupplierPayables)
                     {
 
                         success = await _service.UpdateSupplierPayableDueDate(_poId, dueDate_dt.Value.Date, _rowVersion);
@@ -194,6 +207,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             if (_actionForm == Constants.FormConstants.SupplierPayables)
             {
+                if (!UserSession.HasAccess(RoleConstants.PaySupplier))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have permission to pay supplier");
+                    return;
+                }
                 var form = new PaymentForm(this);
                 form._actionForm = Constants.FormConstants.SupplierPayables;
                 form._paymentType = PaymentType.SupplierPayable;
@@ -203,6 +221,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
             else
             {
+                if (!UserSession.HasAccess(RoleConstants.ReceiveCustomerCredit))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have receive customer credit");
+                    return;
+                }
                 var form = new PaymentForm(this);
                 form._actionForm = Constants.FormConstants.CustomerCredits;
                 form._paymentType = PaymentType.CustomerCredit;

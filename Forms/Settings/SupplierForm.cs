@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
@@ -115,7 +116,13 @@ namespace SalesPro.Forms.Settings
                     return;
                 }
 
-                string action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
+                string action = _actionForm == SystemConstants.New ? "save" : "update";
+                if (!UserSession.HasAccess(RoleConstants.UpsertSupplier))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have permission to {action} supplier.");
+                    return;
+                }
+
                 if (MessageHandler.ShowQuestionGeneric($"Are you sure you want to {action} this supplier?"))
                 {
 

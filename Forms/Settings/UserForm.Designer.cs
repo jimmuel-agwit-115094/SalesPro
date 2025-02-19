@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.save_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pin_tx = new System.Windows.Forms.TextBox();
@@ -47,20 +47,20 @@
             this.userTab = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.rolesTab = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.search_tx = new System.Windows.Forms.TextBox();
             this.updateRole_btn = new System.Windows.Forms.Button();
             this.noRecordlbl = new System.Windows.Forms.Label();
             this.dgRoles = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.search_tx = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.userTabControl.SuspendLayout();
             this.userTab.SuspendLayout();
             this.rolesTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // save_btn
@@ -194,6 +194,7 @@
             this.userTabControl.SelectedIndex = 0;
             this.userTabControl.Size = new System.Drawing.Size(529, 627);
             this.userTabControl.TabIndex = 578;
+            this.userTabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.userTabControl_Selecting);
             // 
             // userTab
             // 
@@ -233,6 +234,28 @@
             this.rolesTab.Text = "           Roles         ";
             this.rolesTab.UseVisualStyleBackColor = true;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(487, 15);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 574;
+            this.pictureBox2.TabStop = false;
+            // 
+            // search_tx
+            // 
+            this.search_tx.BackColor = System.Drawing.Color.White;
+            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_tx.Location = new System.Drawing.Point(203, 14);
+            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.search_tx.Name = "search_tx";
+            this.search_tx.Size = new System.Drawing.Size(312, 27);
+            this.search_tx.TabIndex = 573;
+            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
+            // 
             // updateRole_btn
             // 
             this.updateRole_btn.BackColor = System.Drawing.Color.Green;
@@ -254,7 +277,7 @@
             this.noRecordlbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.noRecordlbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noRecordlbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.noRecordlbl.Location = new System.Drawing.Point(134, 279);
+            this.noRecordlbl.Location = new System.Drawing.Point(185, 275);
             this.noRecordlbl.Name = "noRecordlbl";
             this.noRecordlbl.Size = new System.Drawing.Size(174, 45);
             this.noRecordlbl.TabIndex = 463;
@@ -266,30 +289,30 @@
             this.dgRoles.AllowUserToAddRows = false;
             this.dgRoles.AllowUserToDeleteRows = false;
             this.dgRoles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgRoles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgRoles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgRoles.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgRoles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgRoles.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgRoles.ColumnHeadersHeight = 30;
             this.dgRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgRoles.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgRoles.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgRoles.EnableHeadersVisualStyles = false;
             this.dgRoles.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgRoles.Location = new System.Drawing.Point(6, 46);
@@ -323,28 +346,6 @@
             this.title_lbl.TabIndex = 579;
             this.title_lbl.Text = "Settings";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(487, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(26, 25);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 574;
-            this.pictureBox2.TabStop = false;
-            // 
-            // search_tx
-            // 
-            this.search_tx.BackColor = System.Drawing.Color.White;
-            this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(203, 14);
-            this.search_tx.Margin = new System.Windows.Forms.Padding(2);
-            this.search_tx.Name = "search_tx";
-            this.search_tx.Size = new System.Drawing.Size(312, 27);
-            this.search_tx.TabIndex = 573;
-            this.search_tx.TextChanged += new System.EventHandler(this.search_tx_TextChanged);
-            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,8 +370,8 @@
             this.userTab.ResumeLayout(false);
             this.rolesTab.ResumeLayout(false);
             this.rolesTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRoles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

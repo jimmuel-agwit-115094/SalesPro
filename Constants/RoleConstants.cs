@@ -27,5 +27,7 @@
         public const string BackupDatabase = "backup-database";
         public const string RestoreDatabase = "restore-database";
         public const string UpdateUserRole = "update-user-role";
+
+        public const string ManageRoles = "manage-roles";
     }
 }

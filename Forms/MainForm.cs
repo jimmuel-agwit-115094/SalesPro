@@ -129,7 +129,7 @@ namespace SalesPro.Forms
         {
             if (!UserSession.HasAccess(RoleConstants.PurchaseOrdersModule))
             {
-                MessageHandler.ShowError("No access");
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Purchase Order Module");
                 return;
             }
             var form = new PurchaseOrderForm();
@@ -138,6 +138,11 @@ namespace SalesPro.Forms
 
         private void inventory_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.InventoryModule))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Inventory Module");
+                return;
+            }
             var form = new InventoryForm();
             LoadFormInPanel(form);
         }
@@ -153,24 +158,44 @@ namespace SalesPro.Forms
 
         private void products_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.ProductsModule))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Products Module");
+                return;
+            }
             var form = new ProductForm();
             LoadFormInPanel(form);
         }
 
         private void paymentsAndBilling_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.PaymentsAndBillingsModule))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Payments and Billings Module");
+                return;
+            }
             var form = new PaymentsAndBillingForm();
             LoadFormInPanel(form);
         }
 
         private void reports_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.ReportsModule))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Reports Module");
+                return;
+            }
             var form = new ReportsForm();
             LoadFormInPanel(form);
         }
 
         private void serttings_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.SettingsModule))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permision to access Settings Module");
+                return;
+            }
             var form = new SettingsForm();
             LoadFormInPanel(form);
         }

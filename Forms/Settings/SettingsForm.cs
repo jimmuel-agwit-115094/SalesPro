@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Forms.Settings;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -232,7 +233,10 @@ namespace SalesPro.Settings
 
         private void restore_btn_Click(object sender, EventArgs e)
         {
-           
+            if (!UserSession.HasAccess(RoleConstants.RestoreDatabase))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permission to restore database");
+            }
         }
 
         private async void activate_btn_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -81,6 +82,12 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
+                if (!UserSession.HasAccess(RoleConstants.AdjustInventoryQuantity))
+                {
+                    MessageHandler.ShowRestrictionMessage("You do not have permision adjust inventory quantity");
+                    return;
+                }
+
                 var inventory = new InventoryModel();
                 var inv = await _service.GetInventoryById(_inventoryId);
                 if (inv != null)

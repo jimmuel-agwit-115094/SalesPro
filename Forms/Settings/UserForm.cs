@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Constants;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
@@ -204,6 +205,12 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                if (!UserSession.HasAccess(RoleConstants.UpsertUser))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have permission to manage user.");
+                    return;
+                }
+
                 if (!UserSession.HasAccess("manage-user"))
                 {
                     MessageBox.Show("Access Denied!");
@@ -304,6 +311,15 @@ namespace SalesPro.Forms.Settings
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgRoles, search_tx);
+        }
+
+        private void userTabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == rolesTab && !UserSession.HasAccess(RoleConstants.ManageRoles))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permission to manage roles.");
+                e.Cancel = true; // Prevents the tab change
+            }
         }
     }
 }

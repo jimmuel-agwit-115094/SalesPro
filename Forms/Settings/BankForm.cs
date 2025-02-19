@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
@@ -83,9 +84,16 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
+                string action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
+                if (!UserSession.HasAccess(RoleConstants.UpsertBank))
+                {
+                    MessageHandler.ShowRestrictionMessage($"You do not have permission to {action} bank.");
+                    return;
+                }
+
                 int success = 0;
                 var model = BuildBankModel();
-                string action = _actionForm == Constants.SystemConstants.New ? "save" : "update";
+               
 
                 if (bankName_tx.Text == string.Empty)
                 {
