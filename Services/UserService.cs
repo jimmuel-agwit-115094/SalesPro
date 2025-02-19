@@ -44,7 +44,6 @@ namespace SalesPro.Services
                     userToUpdate.Username = user.Username;
                     userToUpdate.Password = user.Password;
                     userToUpdate.Pin = user.Pin;
-                    userToUpdate.UserAccess = user.UserAccess;
                     userToUpdate.UserId = userId;
                     await context.SaveChangesAsync();
                     success = 1;

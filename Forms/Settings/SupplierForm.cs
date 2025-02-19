@@ -87,12 +87,6 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
-                if (!AccessControlHelper.IsAdminAndDevUserAccess(UserSession.UserAccess))
-                {
-                    MessageHandler.ShowRestrictionMessage("You do not have access to this module");
-                    return;
-                }
-
                 int success = 0;
                 if (supplier_tx.Text == string.Empty)
                 {

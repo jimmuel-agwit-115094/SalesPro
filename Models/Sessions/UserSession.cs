@@ -1,4 +1,5 @@
 ﻿using SalesPro.Enums;
+using System.Collections.Generic;
 
 namespace SalesPro.Models
 {
@@ -6,7 +7,8 @@ namespace SalesPro.Models
     {
         public static string FullName { get; private set; }
         public static int Session_UserId { get; private set; }
-        public static UserAccess UserAccess { get; private set; }
+
+        public static List<string> Roles { get; set; } = new List<string>();
 
         public static void SetUserFullName(string fullName)
         {
@@ -18,9 +20,9 @@ namespace SalesPro.Models
             Session_UserId = userid;
         }
 
-        public static void SetUserAccess(UserAccess access)
+        public static bool HasAccess(string role)
         {
-            UserAccess = access;
+            return Roles.Contains(role);
         }
     }
 }

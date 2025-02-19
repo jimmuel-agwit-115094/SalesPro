@@ -224,6 +224,8 @@
       <DependentUpon>ManageInventoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AccessControlHelper.cs" />
+    <Compile Include="Models\UserModel\RoleModel.cs" />
+    <Compile Include="Models\UserModel\UserAccessModel.cs" />
     <Compile Include="Printing\CustomerCreditDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -490,7 +492,7 @@
     <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Models\TransactionSession.cs" />
     <Compile Include="Models\UnitOfMeasuresModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserModel\UserModel.cs" />
     <Compile Include="Models\Sessions\UserSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

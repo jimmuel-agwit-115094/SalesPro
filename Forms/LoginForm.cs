@@ -1,4 +1,5 @@
-﻿using POS_Generic.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using POS_Generic.Helpers;
 using SalesPro.Enums;
 using SalesPro.Forms;
 using SalesPro.Helpers;
@@ -9,6 +10,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SalesPro
 {
@@ -52,14 +54,17 @@ namespace SalesPro
             {
                 using (var _dbContext = new DatabaseContext())
                 {
-                    var user = _dbContext.Users.SingleOrDefault(u => u.Username == userInput.Username);
+                    var user = _dbContext.Users
+                        .Include(u => u.UserAccesses)
+                        .ThenInclude(ua => ua.Role)
+                        .FirstOrDefault(u => u.Username == userInput.Username);
 
                     if (user != null && user.ValidatePassword(userInput.Password))
                     {
                         // Set user's full name in the UserSession class
                         UserSession.SetUserFullName(user.Fullname);
                         UserSession.SetUserId(user.UserId);
-                        UserSession.SetUserAccess(user.UserAccess);
+                        UserSession.Roles = user.UserAccesses.Select(ua => ua.Role.Role).ToList();
 
                         // Activation
                         var data = await _activationService.GetActivationData();
@@ -75,10 +80,6 @@ namespace SalesPro
                         Hide();
                         MainForm mainForm = new MainForm();
                         string userFullName = user.Fullname;
-                        if (user.UserAccess == UserAccess.Admin || user.UserAccess == UserAccess.Developer)
-                        {
-                            userFullName = $"★ {user.Fullname}";
-                        }
                         mainForm.user_tx.Text = userFullName;
                         mainForm.Show();
                     }

@@ -232,14 +232,7 @@ namespace SalesPro.Settings
 
         private void restore_btn_Click(object sender, EventArgs e)
         {
-            if (UserSession.UserAccess == UserAccess.Developer)
-            {
-                _dbService.RestoreDatabase();
-            }
-            else
-            {
-                MessageHandler.ShowError("You are not allowed to restore the database. Contact developer for this module");
-            }
+           
         }
 
         private async void activate_btn_Click(object sender, EventArgs e)

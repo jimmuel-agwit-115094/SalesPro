@@ -31,7 +31,6 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
-                access_cb.DataSource = Enum.GetValues(typeof(UserAccess));
                 _curDate = await ClockHelper.GetServerDateTime();
                 if (_actionForm == Constants.SystemConstants.Edit)
                 {
@@ -42,7 +41,6 @@ namespace SalesPro.Forms.Settings
                     if (user != null)
                     {
                         fullname_tx.Text = user.Fullname;
-                        access_cb.SelectedItem = user.UserAccess;
                         username_tx.Text = user.Username;
                         pin_tx.Text = user.Pin;
                         _rowVersion = user.RowVersion;
@@ -52,7 +50,6 @@ namespace SalesPro.Forms.Settings
                 {
                     title_lbl.Text = "New User";
                     save_btn.Text = "Save";
-                    access_cb.SelectedIndex = 1;
                 }
 
             }
@@ -82,7 +79,6 @@ namespace SalesPro.Forms.Settings
                 Username = username_tx.Text,
                 Password = password,
                 Fullname = fullname_tx.Text,
-                UserAccess = Enum.TryParse(access_cb.Text, out UserAccess userAccess) ? userAccess : throw new InvalidOperationException("Invalid UserAccess value"),
                 Pin = pin_tx.Text,
                 AccountStatus = 0,
                 DateAdded = isNew ? _curDate : default, // Set DateAdded only if it's a new user
@@ -95,9 +91,9 @@ namespace SalesPro.Forms.Settings
         {
             try
             {
-                if (!AccessControlHelper.IsAdminAndDevUserAccess(UserSession.UserAccess))
+                if (!UserSession.HasAccess("manage-user"))
                 {
-                    MessageHandler.ShowRestrictionMessage("You do not have access to this module");
+                    MessageBox.Show("Access Denied!");
                     return;
                 }
 
@@ -128,18 +124,6 @@ namespace SalesPro.Forms.Settings
                 if (pin_tx.Text == string.Empty)
                 {
                     MessageHandler.ShowWarning("Please enter pin.");
-                    return;
-                }
-
-                if (access_cb.SelectedIndex == -1)
-                {
-                    MessageHandler.ShowWarning("Please select access.");
-                    return;
-                }
-
-                if (access_cb.SelectedIndex == 0 && UserSession.UserAccess != UserAccess.Developer)
-                {
-                    MessageHandler.ShowWarning("You are not the developer. :)");
                     return;
                 }
 

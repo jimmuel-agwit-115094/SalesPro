@@ -5,12 +5,4 @@
         Active,
         Inactive
     }
-
-    public enum UserAccess
-    {
-        Developer,
-        Admin,
-        Cashier,
-        StandardUser
-    }
 }

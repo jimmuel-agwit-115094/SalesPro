@@ -31,10 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             this.save_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.access_cb = new System.Windows.Forms.ComboBox();
             this.pin_tx = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.password_tx = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.username_tx = new System.Windows.Forms.TextBox();
@@ -64,10 +62,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.access_cb);
             this.groupBox1.Controls.Add(this.pin_tx);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.password_tx);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.username_tx);
@@ -76,19 +72,9 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(16, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 332);
+            this.groupBox1.Size = new System.Drawing.Size(330, 268);
             this.groupBox1.TabIndex = 570;
             this.groupBox1.TabStop = false;
-            // 
-            // access_cb
-            // 
-            this.access_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.access_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.access_cb.FormattingEnabled = true;
-            this.access_cb.Location = new System.Drawing.Point(14, 289);
-            this.access_cb.Name = "access_cb";
-            this.access_cb.Size = new System.Drawing.Size(303, 28);
-            this.access_cb.TabIndex = 573;
             // 
             // pin_tx
             // 
@@ -109,17 +95,6 @@
             this.label2.Size = new System.Drawing.Size(30, 17);
             this.label2.TabIndex = 571;
             this.label2.Text = "PIN";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(15, 269);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 17);
-            this.label6.TabIndex = 567;
-            this.label6.Text = "User Access";
             // 
             // password_tx
             // 
@@ -234,7 +209,6 @@
 
         private System.Windows.Forms.Button save_btn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox password_tx;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox username_tx;
@@ -242,7 +216,6 @@
         private System.Windows.Forms.TextBox fullname_tx;
         private System.Windows.Forms.Label label13;
         internal System.Windows.Forms.Label title_lbl;
-        private System.Windows.Forms.ComboBox access_cb;
         private System.Windows.Forms.TextBox pin_tx;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
