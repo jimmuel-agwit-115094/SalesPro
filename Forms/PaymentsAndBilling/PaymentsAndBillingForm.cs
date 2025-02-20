@@ -78,6 +78,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             showPastDue_cb.Visible = true;
             showPastDue_cb.Checked = false;
             await LoadAllPurchaseOrders(PaymentStatus.Unpaid, false);
+            payable_pb.Image = Properties.Resources.deliveryNotPaid;
         }
 
         private async void paid_rd_CheckedChanged(object sender, EventArgs e)
@@ -85,6 +86,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             po_title.Text = "Paid Purchase Orders";
             showPastDue_cb.Visible = false;
             await LoadAllPurchaseOrders(PaymentStatus.Paid, false);
+            payable_pb.Image = Properties.Resources.deliveryPaid;
         }
 
         private void dgSupplierPayables_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -151,6 +153,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 showPastCustomer_cb.Visible = true;
                 await LoadCustomerCredits(PaymentStatus.Unpaid, false);
                 credit_lbl.Text = "Unpaid Customer Credits";
+                creditPb.Image = Properties.Resources.atmUnpaid;
             }
             catch (Exception ex)
             {
@@ -165,6 +168,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 showPastCustomer_cb.Visible = false;
                 await LoadCustomerCredits(PaymentStatus.Paid, false);
                 credit_lbl.Text = "Paid Customer Credits";
+                creditPb.Image = Properties.Resources.atmPaid;
             }
             catch (Exception ex)
             {

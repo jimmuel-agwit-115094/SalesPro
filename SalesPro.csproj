@@ -691,6 +691,13 @@
     <None Include="Resources\remove %282%29.png" />
     <None Include="Resources\pen.png" />
     <None Include="Resources\plus %281%29.png" />
+    <None Include="Resources\delivery-truck %282%29.png" />
+    <None Include="Resources\delivery-truck %283%29.png" />
+    <None Include="Resources\delivery-truck %284%29.png" />
+    <None Include="Resources\delivery-truck %285%29.png" />
+    <None Include="Resources\delivery-truck %286%29.png" />
+    <None Include="Resources\delivery-truck %288%29.png" />
+    <None Include="Resources\delivery-truck %287%29.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

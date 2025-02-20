@@ -236,7 +236,9 @@ namespace SalesPro.Settings
             if (!UserSession.HasAccess(RoleConstants.RestoreDatabase))
             {
                 MessageHandler.ShowRestrictionMessage("You do not have permission to restore database");
+                return;
             }
+            _dbService.RestoreDatabase();
         }
 
         private async void activate_btn_Click(object sender, EventArgs e)
