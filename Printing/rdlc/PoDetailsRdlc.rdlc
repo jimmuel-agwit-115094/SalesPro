@@ -426,7 +426,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -462,7 +461,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -498,7 +496,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -976,7 +973,7 @@
             </Paragraphs>
             <rd:DefaultName>TotalPayable</rd:DefaultName>
             <Top>1.17583in</Top>
-            <Left>5.78002in</Left>
+            <Left>5.78001in</Left>
             <Height>0.25in</Height>
             <Width>1.55208in</Width>
             <ZIndex>13</ZIndex>
@@ -1010,7 +1007,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
             <Top>1.03in</Top>
-            <Left>6.69669in</Left>
+            <Left>6.69668in</Left>
             <Height>0.25in</Height>
             <Width>0.63542in</Width>
             <ZIndex>14</ZIndex>
@@ -1159,7 +1156,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Date :</Value>
+                    <Value>Date Created :</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -1204,7 +1201,7 @@
             </Paragraphs>
             <rd:DefaultName>Date</rd:DefaultName>
             <Top>0.89111in</Top>
-            <Left>0.58345in</Left>
+            <Left>1.14247in</Left>
             <Height>0.25in</Height>
             <Width>1.99132in</Width>
             <ZIndex>20</ZIndex>
@@ -1250,11 +1247,75 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Due Date :</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>1.14111in</Top>
+            <Left>0.14991in</Left>
+            <Height>0.25in</Height>
+            <Width>0.91803in</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DueDate">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!DueDate.Value</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DueDate</rd:DefaultName>
+            <Top>1.14111in</Top>
+            <Left>1.08692in</Left>
+            <Height>0.25in</Height>
+            <Width>2.04178in</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2.01042in</Height>
         <Style />
       </Body>
-      <Width>7.47336in</Width>
+      <Width>7.47337in</Width>
       <Page>
         <PageHeader>
           <Height>0.53in</Height>
@@ -1359,7 +1420,11 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Date">
-      <DataType>DateTime</DataType>
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DueDate">
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1417,6 +1482,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>Date</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>DueDate</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

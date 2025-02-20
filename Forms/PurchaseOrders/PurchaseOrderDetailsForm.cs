@@ -52,6 +52,8 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 _curDate = await ClockHelper.GetServerDateTime();
                 var po = await _service.GetPurchaseorderById(_poId);
+                dateCreated_tx.Text = po.DateCreated.ToString("MMM. dd, yyyy");
+                dueDate_tx.Text = po.DueDate.ToString("MMM. dd, yyyy");
                 if (po == null) return;
                 dateCreated = po.DateCreated;
                 // Notifications
@@ -214,7 +216,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     "PurchaseOrderItemId", "ProductName", "Quantity", "SupplierPrice", "MarkUpPrice", "RetailPrice", "TotalPrice");
                 _totalPrice = poItems.Sum(x => x.TotalPrice);
                 total_tx.Text = _totalPrice.ToString("N2");
-                rowCount_tx.Text = $"Product Count : {poItems.Count.ToString()}";
+                rowCount_tx.Text = poItems.Count.ToString();
             }
         }
 
@@ -431,7 +433,8 @@ namespace SalesPro.Forms.PurchaseOrders
                    { "TotalPayable", total_tx.Text },
                    { "CreditTerms" , creditTerms_tx.Text},
                      { "ProcessedBy", UserSession.FullName },
-                     { "Date", dateCreated.ToString() }
+                     { "Date", dateCreated_tx.Text },
+                    {"DueDate", dueDate_tx.Text }
                 };
 
 
