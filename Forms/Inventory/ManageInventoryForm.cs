@@ -214,6 +214,14 @@ namespace SalesPro.Forms.Inventory
 
         private void action_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (action_cb.SelectedIndex == 0)
+            {
+                actionPb.Image = Resources.up;
+            }
+            else
+            {
+                actionPb.Image = Resources.down;
+            }
         }
 
     }

@@ -698,6 +698,8 @@
     <None Include="Resources\delivery-truck %286%29.png" />
     <None Include="Resources\delivery-truck %288%29.png" />
     <None Include="Resources\delivery-truck %287%29.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\down.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

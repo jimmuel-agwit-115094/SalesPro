@@ -52,13 +52,14 @@
             this.dateAdded_tx = new System.Windows.Forms.Label();
             this.processedBy_tx = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.actionPb = new System.Windows.Forms.PictureBox();
             this.update_btn = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.action_cb = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.reason_tx = new System.Windows.Forms.TextBox();
             this.adjustingQty_tx = new System.Windows.Forms.NumericUpDown();
+            this.reason_tx = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.supplier_tx = new System.Windows.Forms.Label();
@@ -70,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgLogs)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actionPb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustingQty_tx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soldPb)).BeginInit();
             this.SuspendLayout();
@@ -182,7 +184,7 @@
             this.dgLogs.RowHeadersWidth = 51;
             this.dgLogs.RowTemplate.Height = 32;
             this.dgLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLogs.Size = new System.Drawing.Size(982, 288);
+            this.dgLogs.Size = new System.Drawing.Size(986, 288);
             this.dgLogs.TabIndex = 577;
             // 
             // label11
@@ -339,6 +341,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.actionPb);
             this.groupBox3.Controls.Add(this.update_btn);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.action_cb);
@@ -351,6 +354,16 @@
             this.groupBox3.Size = new System.Drawing.Size(668, 148);
             this.groupBox3.TabIndex = 564;
             this.groupBox3.TabStop = false;
+            // 
+            // actionPb
+            // 
+            this.actionPb.Image = ((System.Drawing.Image)(resources.GetObject("actionPb.Image")));
+            this.actionPb.Location = new System.Drawing.Point(307, 61);
+            this.actionPb.Name = "actionPb";
+            this.actionPb.Size = new System.Drawing.Size(22, 22);
+            this.actionPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.actionPb.TabIndex = 561;
+            this.actionPb.TabStop = false;
             // 
             // update_btn
             // 
@@ -400,28 +413,6 @@
             this.label13.TabIndex = 558;
             this.label13.Text = "Adjusting Quantity :";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(321, 19);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(98, 17);
-            this.label12.TabIndex = 557;
-            this.label12.Text = "Action Reason :";
-            // 
-            // reason_tx
-            // 
-            this.reason_tx.BackColor = System.Drawing.Color.White;
-            this.reason_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reason_tx.Location = new System.Drawing.Point(422, 14);
-            this.reason_tx.Margin = new System.Windows.Forms.Padding(2);
-            this.reason_tx.Multiline = true;
-            this.reason_tx.Name = "reason_tx";
-            this.reason_tx.Size = new System.Drawing.Size(235, 72);
-            this.reason_tx.TabIndex = 556;
-            // 
             // adjustingQty_tx
             // 
             this.adjustingQty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
@@ -437,6 +428,28 @@
             this.adjustingQty_tx.Tag = "IsNumeric";
             this.adjustingQty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.adjustingQty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // reason_tx
+            // 
+            this.reason_tx.BackColor = System.Drawing.Color.White;
+            this.reason_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reason_tx.Location = new System.Drawing.Point(422, 14);
+            this.reason_tx.Margin = new System.Windows.Forms.Padding(2);
+            this.reason_tx.Multiline = true;
+            this.reason_tx.Name = "reason_tx";
+            this.reason_tx.Size = new System.Drawing.Size(235, 72);
+            this.reason_tx.TabIndex = 556;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(321, 19);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(98, 17);
+            this.label12.TabIndex = 557;
+            this.label12.Text = "Action Reason :";
             // 
             // label2
             // 
@@ -478,7 +491,7 @@
             // 
             this.qtyOnHand_tx.AutoSize = true;
             this.qtyOnHand_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtyOnHand_tx.Location = new System.Drawing.Point(69, 34);
+            this.qtyOnHand_tx.Location = new System.Drawing.Point(64, 35);
             this.qtyOnHand_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.qtyOnHand_tx.Name = "qtyOnHand_tx";
             this.qtyOnHand_tx.Size = new System.Drawing.Size(17, 20);
@@ -490,7 +503,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(8, 34);
+            this.label5.Location = new System.Drawing.Point(8, 35);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 20);
@@ -502,7 +515,7 @@
             this.productName_tx.AutoSize = true;
             this.productName_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productName_tx.ForeColor = System.Drawing.Color.Black;
-            this.productName_tx.Location = new System.Drawing.Point(6, 6);
+            this.productName_tx.Location = new System.Drawing.Point(6, 4);
             this.productName_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.productName_tx.Name = "productName_tx";
             this.productName_tx.Size = new System.Drawing.Size(143, 28);
@@ -548,6 +561,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actionPb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustingQty_tx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soldPb)).EndInit();
             this.ResumeLayout(false);
@@ -590,5 +604,6 @@
         private System.Windows.Forms.PictureBox soldPb;
         internal System.Windows.Forms.Label label15;
         internal System.Windows.Forms.Label supAddress_tx;
+        private System.Windows.Forms.PictureBox actionPb;
     }
 }

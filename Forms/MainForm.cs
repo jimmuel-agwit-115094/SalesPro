@@ -67,36 +67,48 @@ namespace SalesPro.Forms
             LoadFormInPanel(form);
         }
 
+        private void EnableDisableButton(bool status)
+        {
+            orders_btn.Enabled = status;
+            po_btn.Enabled = status && UserSession.HasAccess(RoleConstants.PurchaseOrdersModule);
+            products_btn.Enabled = status && UserSession.HasAccess(RoleConstants.ProductsModule);
+            inventory_btn.Enabled = status && UserSession.HasAccess(RoleConstants.InventoryModule);
+            paymentsAndBilling_btn.Enabled = status && UserSession.HasAccess(RoleConstants.PaymentsAndBillingsModule);
+            reports_btn.Enabled = status && UserSession.HasAccess(RoleConstants.ReportsModule);
+        }
+
+
         public async Task EnableDisableMenuPanel()
         {
-            var activationStatus = ActivationSession.ActivationStatus;
-
-            if (activationStatus == ActivationStatus.Trial)
+            if (ActivationSession.ActivationStatus == ActivationStatus.Trial)
             {
                 string trialDays = ActivationSession.TrialDays.ToString();
-                menuPanel.Enabled = true;
+                EnableDisableButton(true);
+
                 transactions_btn.Enabled = true;
                 trialPanel.Visible = true;
                 inactivePanel.Visible = false;
                 remaining_tx.Text = $"Days remaining: {trialDays}";
             }
-            if (activationStatus == ActivationStatus.InActive)
+            if (ActivationSession.ActivationStatus == ActivationStatus.InActive)
             {
-                menuPanel.Enabled = false;
+                EnableDisableButton(false);
+
                 transactions_btn.Enabled = false;
                 trialPanel.Visible = false;
                 inactivePanel.Visible = true;
             }
-            if (activationStatus == ActivationStatus.Activated)
+            if (ActivationSession.ActivationStatus == ActivationStatus.Activated)
             {
-                menuPanel.Enabled = false;
+                EnableDisableButton(false);
+
                 transactions_btn.Enabled = true;
                 trialPanel.Visible = false;
                 inactivePanel.Visible = false;
             }
-            var result = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
-            menuPanel.Enabled = result;
-            noTransactionPanel.Visible = !result;
+            bool hasTransactions = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
+            EnableDisableButton(hasTransactions);
+            noTransactionPanel.Visible = !hasTransactions;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
