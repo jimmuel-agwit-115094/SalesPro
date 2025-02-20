@@ -229,9 +229,10 @@
             // 
             this.paid_rd.AutoSize = true;
             this.paid_rd.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.paid_rd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paid_rd.Location = new System.Drawing.Point(103, 5);
             this.paid_rd.Name = "paid_rd";
-            this.paid_rd.Size = new System.Drawing.Size(57, 24);
+            this.paid_rd.Size = new System.Drawing.Size(55, 24);
             this.paid_rd.TabIndex = 467;
             this.paid_rd.TabStop = true;
             this.paid_rd.Text = "Paid";
@@ -241,9 +242,10 @@
             // showPastDue_cb
             // 
             this.showPastDue_cb.AutoSize = true;
+            this.showPastDue_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showPastDue_cb.Location = new System.Drawing.Point(968, 5);
             this.showPastDue_cb.Name = "showPastDue_cb";
-            this.showPastDue_cb.Size = new System.Drawing.Size(165, 24);
+            this.showPastDue_cb.Size = new System.Drawing.Size(159, 24);
             this.showPastDue_cb.TabIndex = 610;
             this.showPastDue_cb.Text = "Show Only Past Due";
             this.showPastDue_cb.UseVisualStyleBackColor = true;
@@ -254,9 +256,10 @@
             // 
             this.unpaid_rd.AutoSize = true;
             this.unpaid_rd.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.unpaid_rd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unpaid_rd.Location = new System.Drawing.Point(7, 5);
             this.unpaid_rd.Name = "unpaid_rd";
-            this.unpaid_rd.Size = new System.Drawing.Size(81, 24);
+            this.unpaid_rd.Size = new System.Drawing.Size(79, 24);
             this.unpaid_rd.TabIndex = 466;
             this.unpaid_rd.TabStop = true;
             this.unpaid_rd.Text = "Unpaid ";
@@ -381,9 +384,10 @@
             // showPastCustomer_cb
             // 
             this.showPastCustomer_cb.AutoSize = true;
+            this.showPastCustomer_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showPastCustomer_cb.Location = new System.Drawing.Point(968, 5);
             this.showPastCustomer_cb.Name = "showPastCustomer_cb";
-            this.showPastCustomer_cb.Size = new System.Drawing.Size(165, 24);
+            this.showPastCustomer_cb.Size = new System.Drawing.Size(159, 24);
             this.showPastCustomer_cb.TabIndex = 618;
             this.showPastCustomer_cb.Text = "Show Only Past Due";
             this.showPastCustomer_cb.UseVisualStyleBackColor = true;
@@ -393,10 +397,11 @@
             // paidCustomer_rd
             // 
             this.paidCustomer_rd.AutoSize = true;
+            this.paidCustomer_rd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paidCustomer_rd.ForeColor = System.Drawing.Color.Black;
             this.paidCustomer_rd.Location = new System.Drawing.Point(103, 5);
             this.paidCustomer_rd.Name = "paidCustomer_rd";
-            this.paidCustomer_rd.Size = new System.Drawing.Size(57, 24);
+            this.paidCustomer_rd.Size = new System.Drawing.Size(55, 24);
             this.paidCustomer_rd.TabIndex = 467;
             this.paidCustomer_rd.TabStop = true;
             this.paidCustomer_rd.Text = "Paid";
@@ -406,10 +411,11 @@
             // unpaidCustomer_rd
             // 
             this.unpaidCustomer_rd.AutoSize = true;
+            this.unpaidCustomer_rd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unpaidCustomer_rd.ForeColor = System.Drawing.Color.Black;
             this.unpaidCustomer_rd.Location = new System.Drawing.Point(7, 5);
             this.unpaidCustomer_rd.Name = "unpaidCustomer_rd";
-            this.unpaidCustomer_rd.Size = new System.Drawing.Size(77, 24);
+            this.unpaidCustomer_rd.Size = new System.Drawing.Size(75, 24);
             this.unpaidCustomer_rd.TabIndex = 466;
             this.unpaidCustomer_rd.TabStop = true;
             this.unpaidCustomer_rd.Text = "Unpaid";
