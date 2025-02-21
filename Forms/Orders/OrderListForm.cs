@@ -2,11 +2,9 @@
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
-using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,12 +31,10 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                var orders = await _service.LoadOrders();
-
                 if (_action == FormConstants.ResumeOrder)
                 {
                     // We exclided the current order from the list
-                    var suspendedOrders = orders.Where(x => x.OrderStatus != OrderStatus.Completed && x.OrderId != _orderId).ToList();
+                    var suspendedOrders = await _service.LoadSuspendedOrders(_orderId);
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
@@ -53,7 +49,7 @@ namespace SalesPro.Forms.Orders
                 }
                 else
                 {
-                    var allOrders = orders.Where(x => x.OrderStatus != OrderStatus.Suspended).ToList();
+                    var allOrders = await _service.LoadNotSuspendedOrders();
                     dgOrders.DataSource = allOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
                     "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");

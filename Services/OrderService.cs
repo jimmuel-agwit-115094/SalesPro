@@ -456,6 +456,79 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<List<OrderModelExtended>> LoadSuspendedOrders(int orderId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var query = from o in context.Orders
+                            join c in context.Customers on o.CustomerId equals c.CustomerId
+                            join u in context.Users on o.UserId equals u.UserId
+                            where o.OrderStatus != OrderStatus.Completed && o.OrderId != orderId
+                            orderby o.OrderId descending
+                            select new OrderModelExtended
+                            {
+                                AmountDue = o.AmountDue,
+                                AmountPaid = o.AmountPaid,
+                                Change = o.Change,
+                                CustomerId = o.CustomerId,
+                                DatePaid = o.DatePaid,
+                                DateTaken = o.DateTaken,
+                                DiscountAmount = o.DiscountAmount,
+                                DiscountRate = o.DiscountRate,
+                                IsCredited = o.IsCredited,
+                                NetAmount = o.NetAmount,
+                                OrderId = o.OrderId,
+                                OrderStatus = o.OrderStatus,
+                                PaymentMethod = o.PaymentMethod,
+                                PaymentStatus = o.PaymentStatus,
+                                Total = o.Total,
+                                UserId = o.UserId,
+                                Vat = o.Vat,
+                                VatAmount = o.VatAmount,
+                                CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                UserName = u.Fullname,
+                            };
+
+                return await query.ToListAsync();
+            }
+        }
+
+        public async Task<List<OrderModelExtended>> LoadNotSuspendedOrders()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var query = from o in context.Orders
+                            join c in context.Customers on o.CustomerId equals c.CustomerId
+                            join u in context.Users on o.UserId equals u.UserId
+                            where o.OrderStatus != OrderStatus.Suspended
+                            orderby o.OrderId descending
+                            select new OrderModelExtended
+                            {
+                                AmountDue = o.AmountDue,
+                                AmountPaid = o.AmountPaid,
+                                Change = o.Change,
+                                CustomerId = o.CustomerId,
+                                DatePaid = o.DatePaid,
+                                DateTaken = o.DateTaken,
+                                DiscountAmount = o.DiscountAmount,
+                                DiscountRate = o.DiscountRate,
+                                IsCredited = o.IsCredited,
+                                NetAmount = o.NetAmount,
+                                OrderId = o.OrderId,
+                                OrderStatus = o.OrderStatus,
+                                PaymentMethod = o.PaymentMethod,
+                                PaymentStatus = o.PaymentStatus,
+                                Total = o.Total,
+                                UserId = o.UserId,
+                                Vat = o.Vat,
+                                VatAmount = o.VatAmount,
+                                CustomerName = $"{c.FirstName} {c.MiddleName} {c.LastName}",
+                                UserName = u.Fullname,
+                            };
+
+                return await query.ToListAsync();
+            }
+        }
 
         public async Task<OrderModel> UpdateOrderCustomer(int orderId, int customerId, int rowVersion)
         {
