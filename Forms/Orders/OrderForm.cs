@@ -1,6 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.X509;
-using Renci.SshNet.Common;
-using SalesPro.Enums;
+﻿using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -341,7 +339,7 @@ namespace SalesPro.Forms.Orders
                 {
                     if (customer_tx.Text == "Generic Walkin Customer")
                     {
-                        MessageHandler.ShowWarning("Cannot proceed charging order. Please select a valid customer.");
+                        MessageHandler.ShowWarning("Cannot CHARGE order to a walkin customer. Please select a valid customer.");
                         return;
                     }
 
@@ -560,6 +558,18 @@ namespace SalesPro.Forms.Orders
             {
                 barcode_tx.Select();
             }
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F12)
+            {
+                _isReturn = !_isReturn;
+                SetOrderLable(_isReturn);
+                return true; // Prevent further processing of the key
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void barcode_tx_Enter(object sender, EventArgs e)

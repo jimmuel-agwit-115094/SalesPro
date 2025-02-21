@@ -157,6 +157,26 @@ namespace SalesPro.Forms.Orders
                 e.CellStyle.SelectionBackColor = backColor;
             }
 
+            // change fore color if negative
+            if (dgOrders.Columns[e.ColumnIndex].Name == "Total" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal total))
+                {
+                    if (total < 0)
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.SelectionForeColor = Color.Red;
+                    }
+                }
+            }
+
+            // Change payment status color
+            if (dgOrders.Columns[e.ColumnIndex].Name == "PaymentStatus" && e.Value?.ToString() == PaymentStatus.Paid.ToString())
+            {
+                e.CellStyle.ForeColor = e.CellStyle.SelectionForeColor = Color.Blue;
+                e.CellStyle.Font = new Font(dgOrders.DefaultCellStyle.Font, FontStyle.Bold);
+            }
+
 
         }
 

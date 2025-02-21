@@ -150,9 +150,12 @@ namespace SalesPro.Forms.Transactions
                 begBal_tx.Text = transactionData.BeginningBalance.ToString();
                 // System Generated Data
 
-                decimal totalSales = await _reportService.GetTotalSalesByDate(_curDate.Date, _curDate.Date);
-                decimal totalExpenses = await _reportService.GetTotalExpensesByDate(_curDate.Date, _curDate.Date);
-                decimal totalCash = await _reportService.GetTotalCashSalesByDate(_curDate.Date, _curDate.Date);
+                DateTime startDate = transactionData.StartDate.Date;
+                DateTime endDate = transactionData.EndDate.Date;
+
+                decimal totalSales = await _reportService.GetTotalSalesByDate(startDate, endDate);
+                decimal totalExpenses = await _reportService.GetTotalExpensesByDate(startDate, endDate);
+                decimal totalCash = await _reportService.GetTotalCashSalesByDate(startDate, endDate);
 
                 decimal expectedCash = (totalCash + transactionData.BeginningBalance) - totalExpenses;
 

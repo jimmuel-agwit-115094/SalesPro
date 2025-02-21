@@ -75,6 +75,7 @@ namespace SalesPro.Forms
             inventory_btn.Enabled = status && UserSession.HasAccess(RoleConstants.InventoryModule);
             paymentsAndBilling_btn.Enabled = status && UserSession.HasAccess(RoleConstants.PaymentsAndBillingsModule);
             reports_btn.Enabled = status && UserSession.HasAccess(RoleConstants.ReportsModule);
+            serttings_btn.Enabled = status && UserSession.HasAccess(RoleConstants.SettingsModule);
         }
 
 
