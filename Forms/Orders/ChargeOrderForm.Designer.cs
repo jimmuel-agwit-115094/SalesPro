@@ -206,7 +206,7 @@
             0});
             this.credTerms_tx.Location = new System.Drawing.Point(27, 319);
             this.credTerms_tx.Maximum = new decimal(new int[] {
-            1000,
+            900,
             0,
             0,
             0});

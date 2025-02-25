@@ -78,7 +78,7 @@ namespace SalesPro.Services
             }
         }
 
-        private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
+        private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, OrderModel orderModel, int rowVersion)
         {
             int success = 0;
             if (paymentType == PaymentType.SupplierPayable) // Supplier payables
@@ -102,10 +102,16 @@ namespace SalesPro.Services
                     await context.Payments.AddAsync(paymentModel);
                     await context.SaveChangesAsync();
 
+                    // Update orders
                     var order = await context.Orders.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(order);
+                    order.AmountPaid = orderModel.AmountPaid;
                     order.PaymentStatus = PaymentStatus.Paid;
+                    order.DatePaid = orderModel.DatePaid;
+                    order.PaymentMethod = orderModel.PaymentMethod;
+                    await context.SaveChangesAsync();
 
+                    // Update customer credits
                     var customerCredit = await context.CustomerCredits.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(customerCredit);
                     VersionCheckerHelper.ConcurrencyCheck(rowVersion, customerCredit.RowVersion);
@@ -116,12 +122,12 @@ namespace SalesPro.Services
             return success;
         }
 
-        public async Task<int> Pay(int poId, PaymentsModel paymentModel, int rowVersion, int paymentRowVersion)
+        public async Task<int> Pay(int poId, PaymentsModel paymentModel, OrderModel order, int rowVersion, int paymentRowVersion)
         {
             int success = 0;
             using (var context = new DatabaseContext())
             {
-                success = await SavePayment(context, paymentModel.PaymentType, paymentModel, rowVersion);
+                success = await SavePayment(context, paymentModel.PaymentType, paymentModel, order, rowVersion);
                 return success;
             }
         }

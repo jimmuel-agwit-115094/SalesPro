@@ -21,6 +21,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public PaymentType _paymentType;
         public PaymentStatus _paymentStatus;
         public string _actionForm;
+        private decimal _total;
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
@@ -55,11 +56,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             bank_cb.SelectedIndex = -1;
         }
 
-        private void SetControls()
-        {
-
-        }
-
         private async void PaymentCreditForm_Load(object sender, EventArgs e)
         {
             try
@@ -76,6 +72,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         _rowVersion = po.RowVersion;
                         _paymentStatus = po.PaymentStatus;
                         total_tx.Text = po.PoTotal.ToString("N2");
+                        _total = po.PoTotal;
                     }
                     paymentTitle_tx.Text = "Supplier Payment";
                     pay_btn.Text = "Pay Supplier";
@@ -89,6 +86,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         _credRowVersion = cred.RowVersion;
                         _paymentStatus = cred.PaymentStatus;
                         total_tx.Text = cred.CreditAmount.ToString("N2");
+                        _total = cred.CreditAmount;
                     }
                     paymentTitle_tx.Text = "Customer Credit Receivable";
                     pay_btn.Text = "Receive Payment";
@@ -134,8 +132,16 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         model.UserName = UserSession.FullName;
                         model.ReferenceId = _referenceId;
                     }
+
+                    var order = new OrderModel();
+                    {
+                        order.Total = _total;
+                        order.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                        order.DatePaid = _curDate;
+                    }
+
                     int newRowVersion = _actionForm == Constants.FormConstants.SupplierPayables ? _rowVersion : _credRowVersion;
-                    var success = await _paymentService.Pay(_referenceId, model, newRowVersion, _paymentRowVersion);
+                    var success = await _paymentService.Pay(_referenceId, model, order, newRowVersion, _paymentRowVersion);
                     if (success > 0)
                     {
                         Close();
