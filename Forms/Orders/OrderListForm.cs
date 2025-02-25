@@ -2,9 +2,13 @@
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,7 +38,7 @@ namespace SalesPro.Forms.Orders
                 if (_action == FormConstants.ResumeOrder)
                 {
                     // We exclided the current order from the list
-                    var suspendedOrders = await _service.LoadSuspendedOrders(_orderId);
+                    var suspendedOrders = await _service.LoadForResumeOrders(_orderId);
 
                     dgOrders.DataSource = suspendedOrders;
                     DgExtensions.ConfigureDataGrid(dgOrders, false, 3, notFound_lbl,
@@ -46,22 +50,55 @@ namespace SalesPro.Forms.Orders
                     dgOrders.Columns["OrderId"].DefaultCellStyle.Format = "000000000";
                     select_lbl.Visible = true;
                     resume_pb.Visible = true;
+                    filterPanel.Visible = false;
                 }
                 else
                 {
-                    var allOrders = await _service.LoadNotSuspendedOrders();
-                    dgOrders.DataSource = allOrders;
-                    DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
-                    "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
-                    dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
-                    select_lbl.Visible = false;
-                    resume_pb.Visible = false;
+                    filterPanel.Visible = true;
+                    await LoadViewOrders();
                 }
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error loading order list form: {ex.Message}");
             }
+        }
+
+        private async Task LoadViewOrders()
+        {
+            var allOrders = await _service.LoadForViewAllOrders();
+
+            var filteredOrders = allOrders;
+
+            if (creditePb.Checked) // Assuming `chkCredited` is your CheckBox
+            {
+                filteredOrders = filteredOrders.Where(o => o.IsCredited).ToList();
+            }
+
+            if (completedCb.Checked) // Assuming `chkCompleted` is your CheckBox
+            {
+                filteredOrders = filteredOrders.Where(o => o.OrderStatus == OrderStatus.Completed).ToList();
+            }
+
+            if (paidPb.Checked) // Assuming `chkPaid` is your CheckBox
+            {
+                filteredOrders = filteredOrders.Where(o => o.PaymentStatus == PaymentStatus.Paid).ToList();
+            }
+
+            if (FindByDateCb.Checked)
+            {
+                filteredOrders = filteredOrders.Where(o => o.DateTaken.Date == date_cb.Value.Date).ToList();
+            }
+
+            // Bind filtered data to DataGridView
+            dgOrders.DataSource = filteredOrders;
+
+            DgExtensions.ConfigureDataGrid(dgOrders, true, 2, notFound_lbl,
+            "OrderId", "CustomerName", "UserName", "DateTaken", "Total", "AmountPaid", "OrderStatus", "PaymentStatus", "IsCredited");
+            dgOrders.Columns["Total"].DisplayIndex = dgOrders.Columns.Count - 1;
+            select_lbl.Visible = false;
+            resume_pb.Visible = false;
+            total_tx.Text = filteredOrders.Sum(o => o.Total).ToString("N2");
         }
 
         private void dgOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -83,7 +120,7 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (_action == Constants.FormConstants.ResumeOrder)
+                if (_action == FormConstants.ResumeOrder)
                 {
                     if (MessageHandler.ShowQuestionGeneric("Resune Order?"))
                     {
@@ -182,6 +219,32 @@ namespace SalesPro.Forms.Orders
             {
                 Close();
             }
+        }
+
+        private async void completedCb_CheckedChanged(object sender, EventArgs e)
+        {
+            await LoadViewOrders();
+        }
+
+        private async void paidPb_CheckedChanged(object sender, EventArgs e)
+        {
+            await LoadViewOrders();
+        }
+
+        private async void creditePb_CheckedChanged(object sender, EventArgs e)
+        {
+            await LoadViewOrders();
+        }
+
+        private async void FindByDateCb_CheckedChanged(object sender, EventArgs e)
+        {
+            date_cb.Visible = FindByDateCb.Checked;
+            await LoadViewOrders();
+        }
+
+        private async void date_cb_ValueChanged(object sender, EventArgs e)
+        {
+            await LoadViewOrders();
         }
     }
 }

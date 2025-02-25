@@ -456,7 +456,7 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<OrderModelExtended>> LoadSuspendedOrders(int orderId)
+        public async Task<List<OrderModelExtended>> LoadForResumeOrders(int orderId)
         {
             using (var context = new DatabaseContext())
             {
@@ -493,7 +493,8 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<OrderModelExtended>> LoadNotSuspendedOrders()
+
+        public async Task<List<OrderModelExtended>> LoadForViewAllOrders()
         {
             using (var context = new DatabaseContext())
             {
