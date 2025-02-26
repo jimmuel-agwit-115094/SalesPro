@@ -1,8 +1,8 @@
-﻿using POS_Generic.Helpers;
-using SalesPro.Helpers;
+﻿using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,9 +27,7 @@ namespace SalesPro.Forms.Transactions
             {
                 _curDate = await ClockHelper.GetServerDateTime();
                 date_cb.MaxDate = _curDate.Date;
-                // Triggers the SelectedIndexChanged event
-                transactionsTabControl.SelectedIndex = 0;
-                transactionsTabControl_SelectedIndexChanged(transactionsTabControl, EventArgs.Empty);
+                await ProcessTransactionLoad();
             }
             catch (Exception ex)
             {
@@ -37,9 +35,9 @@ namespace SalesPro.Forms.Transactions
             }
         }
 
-        private void TransactionDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
+        private async void TransactionDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ProcessTransactionLoad();
+            await ProcessTransactionLoad();
         }
 
         private async void new_btn_Click(object sender, EventArgs e)
@@ -80,34 +78,26 @@ namespace SalesPro.Forms.Transactions
              "BeginningBalance",
              "EndingCash",
              "IsClosed");
+
         }
 
-        private async void ProcessTransactionLoad()
+        private async Task ProcessTransactionLoad()
         {
             var allTrans = await _service.GetAllTransactions();
-            switch (transactionsTabControl.SelectedIndex)
-            {
-                case 0:
-                    var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Date).ToList();
-                    dgTrans.DataSource = curTrans;
-                    break;
-                case 1:
-                    dgTrans.DataSource = allTrans;
-                    break;
-            }
+            //var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Date).ToList();
+            dgTrans.DataSource = allTrans;
             transactionDate_lbl.Visible = false;
             noRecordDate_lbl.Visible = false;
             FormatGrid();
         }
 
-        private void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ProcessTransactionLoad();
+            await ProcessTransactionLoad();
         }
 
         private async void find_btn_Click(object sender, EventArgs e)
         {
-            transactionsTabControl.SelectedIndex = 1;
             var date = date_cb.Value.Date;
 
             var filteredTrans = await _service.GetTransactionByDate(date);
@@ -149,9 +139,21 @@ namespace SalesPro.Forms.Transactions
 
         }
 
-        private void refresh_btn_Click(object sender, EventArgs e)
+        private async void refresh_btn_Click(object sender, EventArgs e)
         {
-            ProcessTransactionLoad();
+            await ProcessTransactionLoad();
+        }
+
+        private void dgTrans_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgTrans.Columns[e.ColumnIndex].Name == "BalanceStatus") // Replace with your column name
+            {
+                if (e.Value.ToString() == "Balanced")
+                {
+                    e.CellStyle.BackColor = Color.LimeGreen; // Change the fore color to red
+                    e.CellStyle.SelectionBackColor = Color.LimeGreen;
+                }
+            }
         }
     }
 }

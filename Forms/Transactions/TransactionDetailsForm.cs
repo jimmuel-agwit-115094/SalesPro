@@ -99,15 +99,23 @@ namespace SalesPro.Forms.Transactions
 
         private async void close_btn_Click(object sender, EventArgs e)
         {
-            if (MessageHandler.ShowQuestion(Resources.ConfirmClose, FormConstants.Transaction))
+            try
             {
-                var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
-                var transaction = BuilTransactionModel(balanceStatus: balanceStatus, isClosed: true);
-                var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
-                await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
-                await _transactionForm.EnableDisableMenuPanel();
-                Close();
+                if (MessageHandler.ShowQuestion(Resources.ConfirmClose, FormConstants.Transaction))
+                {
+                    var balanceStatus = decimal.Parse(endingCash_tx.Text) == decimal.Parse(expCash_tx.Text) ? BalanceStatusEnum.Balanced : BalanceStatusEnum.NotBalance;
+                    var transaction = BuilTransactionModel(balanceStatus: balanceStatus, isClosed: true);
+                    var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
+                    await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
+                    await _transactionForm.EnableDisableMenuPanel();
+                    Close();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error closing transaction: {ex.Message}");
+            }
+
         }
 
         private async void undo_btn_Click(object sender, EventArgs e)
@@ -212,12 +220,14 @@ namespace SalesPro.Forms.Transactions
                 openedBy_tx.Text = _userFullname;
 
                 // Controls
+                endingCash_tx.ReadOnly = true;
                 close_btn.Enabled = false;
                 undo_btn.Enabled = false;
                 begBal_tx.ReadOnly = false;
             }
             else
             {
+                endingCash_tx.ReadOnly = false;
                 Text = "Edit Transaction";
                 save_btn.Text = "Update";
                 save_btn.BackColor = SystemColors.HotTrack;

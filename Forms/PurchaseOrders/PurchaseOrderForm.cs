@@ -1,5 +1,4 @@
-﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -199,11 +198,6 @@ namespace SalesPro.Forms.PurchaseOrders
         private void search_tx_TextChanged(object sender, EventArgs e)
         {
             DgFormatHelper.SearchOnGrid(dgPo, search_tx);
-        }
-
-        private void cancelledTab_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
