@@ -298,7 +298,7 @@
             this.undo_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.undo_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.undo_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.undo_btn.Location = new System.Drawing.Point(512, 695);
+            this.undo_btn.Location = new System.Drawing.Point(518, 695);
             this.undo_btn.Name = "undo_btn";
             this.undo_btn.Size = new System.Drawing.Size(169, 34);
             this.undo_btn.TabIndex = 521;
@@ -505,7 +505,7 @@
             // 
             this.creditTermsPanel.Controls.Add(this.creditTerms_tx);
             this.creditTermsPanel.Controls.Add(this.label6);
-            this.creditTermsPanel.Location = new System.Drawing.Point(4, 686);
+            this.creditTermsPanel.Location = new System.Drawing.Point(200, 697);
             this.creditTermsPanel.Name = "creditTermsPanel";
             this.creditTermsPanel.Size = new System.Drawing.Size(304, 31);
             this.creditTermsPanel.TabIndex = 545;
@@ -514,7 +514,7 @@
             // 
             this.showLogs_link.AutoSize = true;
             this.showLogs_link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showLogs_link.Location = new System.Drawing.Point(11, 720);
+            this.showLogs_link.Location = new System.Drawing.Point(10, 704);
             this.showLogs_link.Name = "showLogs_link";
             this.showLogs_link.Size = new System.Drawing.Size(97, 15);
             this.showLogs_link.TabIndex = 546;

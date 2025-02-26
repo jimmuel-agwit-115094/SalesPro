@@ -43,6 +43,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 "SupplierName", "DateCreated", "DueDate", "CreditTerms", "PoTotal", "UserFullName");
 
             dgSupplierPayables.Columns["PoTotal"].DisplayIndex = dgSupplierPayables.Columns.Count - 1;
+            search_tx.Clear();
         }
 
         public async Task GetCustomerCrtedits(PaymentStatus status)
@@ -187,6 +188,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
             DgExtensions.ConfigureDataGrid(dgCustomerCredits, true, 3, notFound_cust, "CustomerCreditId",
                 "CustomerName", "CreditAmount", "CreditTerms", "CreditedDate", "DueDate");
             dgCustomerCredits.Columns["CreditAmount"].DisplayIndex = dgCustomerCredits.Columns.Count - 1;
+            textBox1.Clear();
         }
 
         private void allTransactions_tab_Click(object sender, EventArgs e)
@@ -344,6 +346,16 @@ namespace SalesPro.Forms.PaymentsAndBilling
             form._formAction = Constants.SystemConstants.Edit;
             form._expenseId = expId;
             form.ShowDialog();
+        }
+
+        private void search_tx_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgSupplierPayables, search_tx);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            DgFormatHelper.SearchOnGrid(dgCustomerCredits, textBox1);
         }
     }
 }
