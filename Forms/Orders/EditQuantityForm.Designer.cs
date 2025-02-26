@@ -38,10 +38,10 @@
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.Location = new System.Drawing.Point(17, 75);
+            this.title_lbl.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.Location = new System.Drawing.Point(17, 88);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(92, 17);
+            this.title_lbl.Size = new System.Drawing.Size(99, 20);
             this.title_lbl.TabIndex = 457;
             this.title_lbl.Text = "New Quantity";
             // 
@@ -52,9 +52,9 @@
             this.enter_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.enter_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enter_btn.ForeColor = System.Drawing.Color.White;
-            this.enter_btn.Location = new System.Drawing.Point(167, 193);
+            this.enter_btn.Location = new System.Drawing.Point(143, 193);
             this.enter_btn.Name = "enter_btn";
-            this.enter_btn.Size = new System.Drawing.Size(140, 34);
+            this.enter_btn.Size = new System.Drawing.Size(164, 41);
             this.enter_btn.TabIndex = 530;
             this.enter_btn.Text = "Enter";
             this.enter_btn.UseVisualStyleBackColor = false;
@@ -73,17 +73,17 @@
             // availableQty_tx
             // 
             this.availableQty_tx.AutoSize = true;
-            this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableQty_tx.Location = new System.Drawing.Point(16, 39);
+            this.availableQty_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableQty_tx.Location = new System.Drawing.Point(16, 40);
             this.availableQty_tx.Name = "availableQty_tx";
-            this.availableQty_tx.Size = new System.Drawing.Size(82, 17);
+            this.availableQty_tx.Size = new System.Drawing.Size(98, 20);
             this.availableQty_tx.TabIndex = 533;
             this.availableQty_tx.Text = "Edit Quantity";
             // 
             // qty_tx
             // 
             this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qty_tx.Location = new System.Drawing.Point(19, 95);
+            this.qty_tx.Location = new System.Drawing.Point(19, 111);
             this.qty_tx.MaxLength = 7;
             this.qty_tx.Name = "qty_tx";
             this.qty_tx.Size = new System.Drawing.Size(288, 50);
@@ -98,7 +98,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(322, 246);
+            this.ClientSize = new System.Drawing.Size(324, 249);
             this.Controls.Add(this.qty_tx);
             this.Controls.Add(this.availableQty_tx);
             this.Controls.Add(this.product_tx);
@@ -111,7 +111,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quantiy";
+            this.Text = "Update Quantity";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditQuantityForm_FormClosing);
             this.Load += new System.EventHandler(this.EditQuantityForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditQuantityForm_KeyDown);
