@@ -1,4 +1,5 @@
 ﻿using Org.BouncyCastle.Asn1.X509;
+using SalesPro.Constants;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -75,6 +76,11 @@ namespace SalesPro.Forms.Products
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
+            if (!UserSession.HasAccess(RoleConstants.UpsertProduct))
+            {
+                MessageHandler.ShowRestrictionMessage("You do not have permission to perform this action");
+                return;
+            }
             if (!Validators.EmptyStringValidator(productName_tx.Text, "Product Name")) return;
             if (unit_cb.SelectedIndex == -1)
             {
@@ -91,36 +97,40 @@ namespace SalesPro.Forms.Products
 
             try
             {
-                int success = 0;
-                if (_actionType == Constants.SystemConstants.New)
+                if (MessageHandler.ShowQuestionGeneric("Confirm add/update product?"))
                 {
-                    success = await _service.SaveProduct(new ProductModel
+                    int success = 0;
+                    if (_actionType == Constants.SystemConstants.New)
                     {
-                        ProductName = productName_tx.Text,
-                        BarCode = barCode_tx.Text,
-                        UnitOfMeasure = unit_cb.Text,
-                        Description = desc_tx.Text,
-                        ReorderLevel = int.Parse(reorder_tx.Text),
-                    });
-                }
-                else
-                {
-                    success = await _service.UpdateProduct(_productId, new ProductModel
+                        success = await _service.SaveProduct(new ProductModel
+                        {
+                            ProductName = productName_tx.Text,
+                            BarCode = barCode_tx.Text,
+                            UnitOfMeasure = unit_cb.Text,
+                            Description = desc_tx.Text,
+                            ReorderLevel = int.Parse(reorder_tx.Text),
+                        });
+                    }
+                    else
                     {
-                        ProductName = productName_tx.Text,
-                        BarCode = barCode_tx.Text,
-                        UnitOfMeasure = unit_cb.Text,
-                        Description = desc_tx.Text,
-                        ReorderLevel = int.Parse(reorder_tx.Text),
-                    }, _rowVersion);
+                        success = await _service.UpdateProduct(_productId, new ProductModel
+                        {
+                            ProductName = productName_tx.Text,
+                            BarCode = barCode_tx.Text,
+                            UnitOfMeasure = unit_cb.Text,
+                            Description = desc_tx.Text,
+                            ReorderLevel = int.Parse(reorder_tx.Text),
+                        }, _rowVersion);
+                    }
+
+                    if (success > 0)
+                    {
+                        Close();
+                    }
+
+                    await _productForm.LoadProducts();
                 }
 
-                if (success > 0)
-                {
-                    Close();
-                }
-
-                await _productForm.LoadProducts();
             }
             catch (Exception ex)
             {
