@@ -178,7 +178,7 @@ namespace SalesPro.Forms.Orders
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(cash_tx);
             CalculateOrderPayment(_amountDue);
-          
+
         }
 
         private void discRate_tx_TextChanged(object sender, EventArgs e)
@@ -244,6 +244,11 @@ namespace SalesPro.Forms.Orders
         private void totalAmtDue_tx_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void paymentMethod_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }
