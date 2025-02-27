@@ -41,7 +41,7 @@ namespace SalesPro.Forms.Orders
                 if (order != null)
                 {
                     total_tx.ForeColor = order.AmountDue < 0 ? System.Drawing.Color.Red : System.Drawing.Color.Black;
-                    total_tx.Text = $"₱ {order.AmountDue.ToString("N2")}";
+                    total_tx.Text = $"{order.AmountDue.ToString("N2")}";
                     _amountDue = order.AmountDue;
                     customer_tx.Text = order.CustomerName;
                     SetControls(order.PaymentStatus);
@@ -123,9 +123,9 @@ namespace SalesPro.Forms.Orders
                 decimal change = cashTendered - totalmtDue;
 
                 // Controls
-                discAmt_tx.Value = discountAmount;
-                totalAmtDue_tx.Value = totalmtDue;
-                change_tx.Value = change;
+                discountAmount_lbl.Text = discountAmount.ToString("N2");
+                totalAmountDue_tx.Text = totalmtDue.ToString("N2");
+                change_tx.Text = change.ToString("N2");
 
                 // Props
                 _totalAmtDue = totalmtDue;
@@ -139,6 +139,16 @@ namespace SalesPro.Forms.Orders
                 orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
                 orderModel.OrderStatus = OrderStatus.Completed;
                 orderModel.DatePaid = _curDate;
+
+                // forecolor
+                if (change < 0)
+                {
+                    change_tx.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    change_tx.ForeColor = System.Drawing.Color.Black;
+                }
             }
             catch (Exception ex)
             {
@@ -168,6 +178,7 @@ namespace SalesPro.Forms.Orders
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(cash_tx);
             CalculateOrderPayment(_amountDue);
+          
         }
 
         private void discRate_tx_TextChanged(object sender, EventArgs e)
@@ -208,17 +219,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void change_tx_ValueChanged(object sender, EventArgs e)
-        {
-            if (change_tx.Value < 0)
-            {
-                change_tx.ForeColor = System.Drawing.Color.Red;
-            }
-            else
-            {
-                change_tx.ForeColor = System.Drawing.Color.Black;
-            }
-        }
 
         private void cash_tx_Click(object sender, EventArgs e)
         {
@@ -239,6 +239,11 @@ namespace SalesPro.Forms.Orders
         private void PaymentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _orderForm.barcode_tx.Select();
+        }
+
+        private void totalAmtDue_tx_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
