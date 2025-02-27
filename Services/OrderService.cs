@@ -561,7 +561,8 @@ namespace SalesPro.Services
                 return;
 
             var productDetails = string.Join("\n", invalidOrders.Select(x => $"- {x.ProductName}"));
-            throw new InvalidOperationException($"The following inventory items have insufficient stock:\n{productDetails}");
+            throw new InvalidOperationException($"Sorry, some items in your order are out of stock or have limited availability:\n{productDetails}");
+
         }
 
 
