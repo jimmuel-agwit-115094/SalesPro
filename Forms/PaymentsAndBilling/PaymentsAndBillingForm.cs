@@ -305,6 +305,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             try
             {
+                dateGb.Visible = !showAllExp_cb.Checked;
                 filter_dt.Value = _curDate.Date;
                 var newExpList = new List<ExpenseModel>();
                 if (showAllExp_cb.Checked == true)
