@@ -108,6 +108,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     "ProcessStatus");
 
                 dgPo.Columns["PoTotal"].DisplayIndex = dgPo.Columns.Count - 1;
+                noRecordDate_lbl.Visible = false;
             }
             return purchaseOrders;
         }
@@ -143,7 +144,7 @@ namespace SalesPro.Forms.PurchaseOrders
                 sentPb.Image = Resources.greenCheck;
                 completedPb.Image = Resources.greenCheck;
                 cancelledPb.Image = Resources.grayCheck;
-                statusProgress.Value =65;
+                statusProgress.Value = 65;
             }
             else if (transactionsTabControl.SelectedIndex == 3)
             {
@@ -164,7 +165,18 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     var filteredPos = _purchaseOrderList.Where(x => x.DateCreated.Date == date).ToList();
                     dgPo.DataSource = filteredPos;
-                    notFound_lbl.Visible = filteredPos.Count == 0;
+                   
+                    if (filteredPos.Count == 0)
+                    {
+                        notFound_lbl.Visible = true;
+                        noRecordDate_lbl.Visible = true;
+                        noRecordDate_lbl.Text = $"No records found for {date:MMM. dd, yyyy}";
+                    }
+                    else
+                    {
+                        notFound_lbl.Visible = false;
+                        noRecordDate_lbl.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
