@@ -15,6 +15,7 @@ using SalesPro.Properties;
 using SalesPro.Services;
 using SalesPro.Settings;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,7 +65,38 @@ namespace SalesPro.Forms
         {
             // Load the TransactionForm inside the content panel
             var form = new TransactionForm(this);
+            ChangeButtonColor(transactions_btn);
             LoadFormInPanel(form);
+        }
+
+        // create a method to change back color of the button when clicked
+        private void ChangeButtonColor(Button selectedButton)
+        {
+            // Define colors
+            Color defaultColor = Color.WhiteSmoke; // Default (unselected) color
+            Color selectedColor = Color.Gainsboro; // Selected color
+
+            // List of all buttons
+            List<Button> buttons = new List<Button>
+         {
+        transactions_btn,
+        orders_btn,
+        po_btn,
+        products_btn,
+        inventory_btn,
+        paymentsAndBilling_btn,
+        reports_btn,
+        serttings_btn
+         };
+
+            // Reset all buttons to default color
+            foreach (Button btn in buttons)
+            {
+                btn.BackColor = defaultColor;
+            }
+
+            // Set selected button color
+            selectedButton.BackColor = selectedColor;
         }
 
         private void EnableDisableButton(bool status)
@@ -145,6 +177,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Purchase Order Module");
                 return;
             }
+            ChangeButtonColor(po_btn);
             var form = new PurchaseOrderForm();
             LoadFormInPanel(form);
         }
@@ -156,6 +189,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Inventory Module");
                 return;
             }
+            ChangeButtonColor(inventory_btn);
             var form = new InventoryForm();
             LoadFormInPanel(form);
         }
@@ -164,7 +198,7 @@ namespace SalesPro.Forms
         {
             var emptyForm = new EmptyForm();
             LoadFormInPanel(emptyForm);
-
+            ChangeButtonColor(orders_btn);
             var form = new OrderForm();
             form.ShowDialog();
         }
@@ -176,6 +210,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Products Module");
                 return;
             }
+            ChangeButtonColor(products_btn);
             var form = new ProductForm();
             LoadFormInPanel(form);
         }
@@ -187,6 +222,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Payments and Billings Module");
                 return;
             }
+            ChangeButtonColor(paymentsAndBilling_btn);
             var form = new PaymentsAndBillingForm();
             LoadFormInPanel(form);
         }
@@ -198,6 +234,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Reports Module");
                 return;
             }
+            ChangeButtonColor(reports_btn);
             var form = new ReportsForm();
             LoadFormInPanel(form);
         }
@@ -209,6 +246,7 @@ namespace SalesPro.Forms
                 MessageHandler.ShowRestrictionMessage("You do not have permision to access Settings Module");
                 return;
             }
+            ChangeButtonColor(serttings_btn);
             var form = new SettingsForm();
             LoadFormInPanel(form);
         }

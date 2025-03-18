@@ -18,7 +18,7 @@ public static class DgFormatHelper
             // DateTime formatting
             if (column.ValueType == typeof(DateTime))
             {
-                column.DefaultCellStyle.Format = "MMM. dd, yy h:mm tt";
+                column.DefaultCellStyle.Format = "MMM. dd, yyyy h:mm tt";
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
             // Decimal formatting

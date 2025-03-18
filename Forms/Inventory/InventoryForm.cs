@@ -45,6 +45,7 @@ namespace SalesPro.Forms.Inventory
             DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
                      "InventoryId",
                      "ProductName",
+                     "DateAdded",
                      "QuantityOnHand",
                      "RetailPrice");
             DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
