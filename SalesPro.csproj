@@ -703,6 +703,7 @@
     <None Include="Resources\arrow-137-64.png" />
     <None Include="Resources\arrow-199-64.png" />
     <None Include="Resources\money-bag.png" />
+    <None Include="Resources\up %281%29.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

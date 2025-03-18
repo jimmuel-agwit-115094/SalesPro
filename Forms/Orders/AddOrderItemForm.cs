@@ -250,5 +250,10 @@ namespace SalesPro.Forms.Orders
         {
             _orderForm.barcode_tx.Select();
         }
+
+        private void searchByCode_cb_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
