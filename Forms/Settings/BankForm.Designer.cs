@@ -80,7 +80,7 @@
             // 
             this.contact_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contact_tx.Location = new System.Drawing.Point(105, 114);
-            this.contact_tx.MaxLength = 25;
+            this.contact_tx.MaxLength = 15;
             this.contact_tx.Name = "contact_tx";
             this.contact_tx.Size = new System.Drawing.Size(303, 25);
             this.contact_tx.TabIndex = 577;
@@ -100,7 +100,7 @@
             // 
             this.address_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.address_tx.Location = new System.Drawing.Point(105, 83);
-            this.address_tx.MaxLength = 25;
+            this.address_tx.MaxLength = 100;
             this.address_tx.Name = "address_tx";
             this.address_tx.Size = new System.Drawing.Size(303, 25);
             this.address_tx.TabIndex = 575;
@@ -141,7 +141,7 @@
             // 
             this.bankName_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bankName_tx.Location = new System.Drawing.Point(105, 19);
-            this.bankName_tx.MaxLength = 25;
+            this.bankName_tx.MaxLength = 100;
             this.bankName_tx.Name = "bankName_tx";
             this.bankName_tx.Size = new System.Drawing.Size(303, 25);
             this.bankName_tx.TabIndex = 560;

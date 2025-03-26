@@ -39,14 +39,6 @@ namespace SalesPro.Services
                     NullCheckerHelper.NullCheck(product);
                     VersionCheckerHelper.ConcurrencyCheck(product.RowVersion, rowVersion);
 
-                    // Update product
-                    product.ProductName = productModel.ProductName;
-                    product.BarCode = productModel.BarCode;
-                    product.UnitOfMeasure = productModel.UnitOfMeasure;
-                    product.Description = productModel.Description;
-                    product.ReorderLevel = productModel.ReorderLevel;
-                    await context.SaveChangesAsync();
-
                     // Save Logs
                     var log = new ProductLogModel
                     {
@@ -60,6 +52,15 @@ namespace SalesPro.Services
                     };
                     await context.ProductLogs.AddAsync(log);
                     await context.SaveChangesAsync();
+
+                    // Update product
+                    product.ProductName = productModel.ProductName;
+                    product.BarCode = productModel.BarCode;
+                    product.UnitOfMeasure = productModel.UnitOfMeasure;
+                    product.Description = productModel.Description;
+                    product.ReorderLevel = productModel.ReorderLevel;
+                    await context.SaveChangesAsync();
+
                     success = 1;
                 });
             }
