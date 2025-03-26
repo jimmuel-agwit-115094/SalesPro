@@ -38,12 +38,12 @@
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title_lbl.Location = new System.Drawing.Point(17, 88);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(99, 20);
+            this.title_lbl.Size = new System.Drawing.Size(111, 20);
             this.title_lbl.TabIndex = 457;
-            this.title_lbl.Text = "New Quantity";
+            this.title_lbl.Text = "New Quantity :";
             // 
             // enter_btn
             // 

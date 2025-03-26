@@ -2,13 +2,7 @@
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesPro.Forms.Orders
@@ -30,7 +24,7 @@ namespace SalesPro.Forms.Orders
                 var orderedItems = await _service.LoadOrderItemsByOrderId(_orderId);
                 dgItems.DataSource = orderedItems;
                 DgExtensions.ConfigureDataGrid(dgItems, false, 2, notFound_lbl,
-                    "OrderItemId", "ProductName", "OrderQuantity", "Price", "Total");
+                    "OrderItemId", "ProductName", "OrderQuantity", "Price", "TotalPrice");
 
                 var order = await _service.GetOrderById(_orderId);
                 if (order != null)
