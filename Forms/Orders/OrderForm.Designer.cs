@@ -93,13 +93,15 @@
             this.pay_btn = new System.Windows.Forms.Button();
             this.charge_btn = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.barcodeAndQty_tx = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.barcode_tx = new System.Windows.Forms.TextBox();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgItems = new System.Windows.Forms.DataGridView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -333,21 +335,23 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.LightCyan;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.label2);
             this.panel3.ForeColor = System.Drawing.Color.Red;
-            this.panel3.Location = new System.Drawing.Point(16, 79);
+            this.panel3.Location = new System.Drawing.Point(16, 78);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(343, 48);
+            this.panel3.Size = new System.Drawing.Size(343, 62);
             this.panel3.TabIndex = 540;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(11, 8);
+            this.pictureBox2.Location = new System.Drawing.Point(11, 7);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -359,7 +363,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Teal;
-            this.label15.Location = new System.Drawing.Point(135, 23);
+            this.label15.Location = new System.Drawing.Point(135, 19);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(128, 17);
@@ -371,7 +375,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Teal;
-            this.label14.Location = new System.Drawing.Point(135, 4);
+            this.label14.Location = new System.Drawing.Point(135, 2);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(101, 17);
@@ -383,7 +387,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.Color.Teal;
-            this.label13.Location = new System.Drawing.Point(56, 23);
+            this.label13.Location = new System.Drawing.Point(56, 19);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 17);
@@ -395,7 +399,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(57, 4);
+            this.label2.Location = new System.Drawing.Point(57, 2);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 17);
@@ -632,7 +636,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
-            this.cancel_btn.Location = new System.Drawing.Point(198, 362);
+            this.cancel_btn.Location = new System.Drawing.Point(198, 370);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(164, 40);
             this.cancel_btn.TabIndex = 9;
@@ -691,7 +695,7 @@
             this.allOrders_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.allOrders_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.allOrders_btn.ForeColor = System.Drawing.Color.White;
-            this.allOrders_btn.Location = new System.Drawing.Point(198, 200);
+            this.allOrders_btn.Location = new System.Drawing.Point(198, 208);
             this.allOrders_btn.Margin = new System.Windows.Forms.Padding(2);
             this.allOrders_btn.Name = "allOrders_btn";
             this.allOrders_btn.Size = new System.Drawing.Size(164, 40);
@@ -707,7 +711,7 @@
             this.edit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.edit_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edit_btn.ForeColor = System.Drawing.Color.White;
-            this.edit_btn.Location = new System.Drawing.Point(16, 200);
+            this.edit_btn.Location = new System.Drawing.Point(16, 208);
             this.edit_btn.Margin = new System.Windows.Forms.Padding(2);
             this.edit_btn.Name = "edit_btn";
             this.edit_btn.Size = new System.Drawing.Size(164, 40);
@@ -783,7 +787,7 @@
             this.delete_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delete_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_btn.ForeColor = System.Drawing.Color.White;
-            this.delete_btn.Location = new System.Drawing.Point(18, 253);
+            this.delete_btn.Location = new System.Drawing.Point(18, 261);
             this.delete_btn.Margin = new System.Windows.Forms.Padding(2);
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(164, 40);
@@ -822,7 +826,7 @@
             this.addCustomer_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomer_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustomer_btn.ForeColor = System.Drawing.Color.White;
-            this.addCustomer_btn.Location = new System.Drawing.Point(198, 146);
+            this.addCustomer_btn.Location = new System.Drawing.Point(198, 154);
             this.addCustomer_btn.Margin = new System.Windows.Forms.Padding(2);
             this.addCustomer_btn.Name = "addCustomer_btn";
             this.addCustomer_btn.Size = new System.Drawing.Size(165, 40);
@@ -838,7 +842,7 @@
             this.suspend_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.suspend_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.suspend_btn.ForeColor = System.Drawing.Color.Red;
-            this.suspend_btn.Location = new System.Drawing.Point(18, 363);
+            this.suspend_btn.Location = new System.Drawing.Point(18, 371);
             this.suspend_btn.Margin = new System.Windows.Forms.Padding(2);
             this.suspend_btn.Name = "suspend_btn";
             this.suspend_btn.Size = new System.Drawing.Size(164, 40);
@@ -865,7 +869,7 @@
             this.orderList_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.orderList_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.orderList_btn.ForeColor = System.Drawing.Color.Black;
-            this.orderList_btn.Location = new System.Drawing.Point(18, 418);
+            this.orderList_btn.Location = new System.Drawing.Point(18, 426);
             this.orderList_btn.Margin = new System.Windows.Forms.Padding(2);
             this.orderList_btn.Name = "orderList_btn";
             this.orderList_btn.Size = new System.Drawing.Size(164, 40);
@@ -880,7 +884,7 @@
             this.priceInquiry_btn.FlatAppearance.BorderSize = 0;
             this.priceInquiry_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.priceInquiry_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceInquiry_btn.Location = new System.Drawing.Point(18, 308);
+            this.priceInquiry_btn.Location = new System.Drawing.Point(18, 316);
             this.priceInquiry_btn.Margin = new System.Windows.Forms.Padding(2);
             this.priceInquiry_btn.Name = "priceInquiry_btn";
             this.priceInquiry_btn.Size = new System.Drawing.Size(164, 40);
@@ -896,7 +900,7 @@
             this.add_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_btn.ForeColor = System.Drawing.Color.White;
-            this.add_btn.Location = new System.Drawing.Point(16, 145);
+            this.add_btn.Location = new System.Drawing.Point(16, 153);
             this.add_btn.Margin = new System.Windows.Forms.Padding(2);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(166, 40);
@@ -912,7 +916,7 @@
             this.pay_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pay_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pay_btn.ForeColor = System.Drawing.Color.White;
-            this.pay_btn.Location = new System.Drawing.Point(198, 253);
+            this.pay_btn.Location = new System.Drawing.Point(198, 261);
             this.pay_btn.Name = "pay_btn";
             this.pay_btn.Size = new System.Drawing.Size(164, 40);
             this.pay_btn.TabIndex = 7;
@@ -927,7 +931,7 @@
             this.charge_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.charge_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.charge_btn.ForeColor = System.Drawing.Color.White;
-            this.charge_btn.Location = new System.Drawing.Point(198, 308);
+            this.charge_btn.Location = new System.Drawing.Point(198, 316);
             this.charge_btn.Name = "charge_btn";
             this.charge_btn.Size = new System.Drawing.Size(164, 40);
             this.charge_btn.TabIndex = 8;
@@ -938,7 +942,7 @@
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.BurlyWood;
-            this.panel13.Controls.Add(this.barcodeAndQty_tx);
+            this.panel13.Controls.Add(this.label18);
             this.panel13.Controls.Add(this.label19);
             this.panel13.Controls.Add(this.barcode_tx);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -946,16 +950,6 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(881, 81);
             this.panel13.TabIndex = 395;
-            // 
-            // barcodeAndQty_tx
-            // 
-            this.barcodeAndQty_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barcodeAndQty_tx.Location = new System.Drawing.Point(8, 45);
-            this.barcodeAndQty_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.barcodeAndQty_tx.Name = "barcodeAndQty_tx";
-            this.barcodeAndQty_tx.Size = new System.Drawing.Size(178, 17);
-            this.barcodeAndQty_tx.TabIndex = 540;
-            this.barcodeAndQty_tx.Text = "Qty: Serial:";
             // 
             // label19
             // 
@@ -972,7 +966,7 @@
             this.barcode_tx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.barcode_tx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.barcode_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barcode_tx.Location = new System.Drawing.Point(195, 12);
+            this.barcode_tx.Location = new System.Drawing.Point(232, 10);
             this.barcode_tx.Name = "barcode_tx";
             this.barcode_tx.Size = new System.Drawing.Size(441, 50);
             this.barcode_tx.TabIndex = 0;
@@ -1075,6 +1069,40 @@
             this.dgItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItems_CellContentClick);
             this.dgItems.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgItems_CellFormatting_1);
             this.dgItems.SelectionChanged += new System.EventHandler(this.dgItems_SelectionChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Teal;
+            this.label16.Location = new System.Drawing.Point(135, 36);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(97, 17);
+            this.label16.TabIndex = 545;
+            this.label16.Text = "Enter Quantity";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.Teal;
+            this.label17.Location = new System.Drawing.Point(56, 36);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 17);
+            this.label17.TabIndex = 544;
+            this.label17.Text = "@ Key :";
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(7, 43);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(220, 17);
+            this.label18.TabIndex = 541;
+            this.label18.Text = "Type @ before entering quantity";
             // 
             // OrderForm
             // 
@@ -1192,11 +1220,13 @@
         public System.Windows.Forms.TextBox barcode_tx;
         internal System.Windows.Forms.Label actionStatus_lbl;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label barcodeAndQty_tx;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }

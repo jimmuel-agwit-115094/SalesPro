@@ -471,8 +471,6 @@ namespace SalesPro.Forms.Orders
                 // Assign results to class-level variables
                 _quantity = qty;
                 _barcode = bcode ?? string.Empty;
-                barcodeAndQty_tx.Text = $"Qty: {_quantity} Serial: {_barcode}"; // Update the display
-
             }
             catch (Exception ex)
             {
