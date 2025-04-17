@@ -226,10 +226,6 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     var updatedPoItem = BuildPurchaseOrderItem();
                     var rowsAffected = await _service.UpdatePurchaseOrderItems(_poId, _poItemId, updatedPoItem, _rowVersion);
-                    if (rowsAffected == 0)
-                    {
-                        _purchaseOrderDetailsForm.Close();
-                    }
                 }
                 Close();
                 await _purchaseOrderDetailsForm.LoadPurchaseOrderItemsByPoId();

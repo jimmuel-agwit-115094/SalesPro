@@ -516,10 +516,10 @@
             this.showLogs_link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showLogs_link.Location = new System.Drawing.Point(10, 704);
             this.showLogs_link.Name = "showLogs_link";
-            this.showLogs_link.Size = new System.Drawing.Size(97, 15);
+            this.showLogs_link.Size = new System.Drawing.Size(93, 15);
             this.showLogs_link.TabIndex = 546;
             this.showLogs_link.TabStop = true;
-            this.showLogs_link.Text = "Show Order Logs";
+            this.showLogs_link.Text = "View Order Logs";
             this.showLogs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.showLogs_link_LinkClicked);
             // 
             // notFound_lbl

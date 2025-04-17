@@ -148,7 +148,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Order Logs";
+            this.Text = "Logs";
             this.Load += new System.EventHandler(this.PoLogsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogs)).EndInit();
