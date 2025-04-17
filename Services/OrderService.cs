@@ -183,7 +183,8 @@ namespace SalesPro.Services
             currentOrder.GrossAmount = grossAmt;
             currentOrder.UserId = UserSession.Session_UserId;
 
-            // Update when payment is made
+            // Update when payment is made, not null means theres a value for the ordermodel which 
+            // needs to be paid
             if (orderModel != null)
             {
                 currentOrder.AmountPaid = orderModel.AmountPaid;
@@ -195,10 +196,7 @@ namespace SalesPro.Services
                 currentOrder.OrderStatus = OrderStatus.Completed;
                 currentOrder.DatePaid = orderModel.DatePaid;
             }
-
-            // Save changes to the database
             await context.SaveChangesAsync();
-
             return true;
         }
 

@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditQuantityForm));
             this.title_lbl = new System.Windows.Forms.Label();
             this.enter_btn = new System.Windows.Forms.Button();
             this.product_tx = new System.Windows.Forms.Label();
             this.availableQty_tx = new System.Windows.Forms.Label();
             this.qty_tx = new System.Windows.Forms.TextBox();
+            this.return_pb = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.return_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // title_lbl
@@ -92,6 +95,16 @@
             this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.qty_tx.TextChanged += new System.EventHandler(this.qty_tx_TextChanged);
             // 
+            // return_pb
+            // 
+            this.return_pb.Image = ((System.Drawing.Image)(resources.GetObject("return_pb.Image")));
+            this.return_pb.Location = new System.Drawing.Point(287, 19);
+            this.return_pb.Name = "return_pb";
+            this.return_pb.Size = new System.Drawing.Size(20, 20);
+            this.return_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.return_pb.TabIndex = 558;
+            this.return_pb.TabStop = false;
+            // 
             // EditQuantityForm
             // 
             this.AcceptButton = this.enter_btn;
@@ -99,6 +112,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(324, 249);
+            this.Controls.Add(this.return_pb);
             this.Controls.Add(this.qty_tx);
             this.Controls.Add(this.availableQty_tx);
             this.Controls.Add(this.product_tx);
@@ -115,6 +129,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditQuantityForm_FormClosing);
             this.Load += new System.EventHandler(this.EditQuantityForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditQuantityForm_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.return_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +142,6 @@
         internal System.Windows.Forms.Label product_tx;
         internal System.Windows.Forms.Label availableQty_tx;
         private System.Windows.Forms.TextBox qty_tx;
+        private System.Windows.Forms.PictureBox return_pb;
     }
 }

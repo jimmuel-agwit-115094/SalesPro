@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Services;
 using System;
@@ -13,6 +14,7 @@ namespace SalesPro.Forms.Orders
         public int _orderItemId;
         public int _rowVersion;
         private int _availableQty;
+        private OrderItemStatus _orderItemStatus;
 
         private readonly OrderService _service;
         public EditQuantityForm(OrderForm orderForm)
@@ -39,6 +41,12 @@ namespace SalesPro.Forms.Orders
                         availableQty_tx.Text = $"Stock : {_availableQty}";
                     }
                     product_tx.Text = orderItem.ProductName;
+                    _orderItemStatus = orderItem.OrderItemStatus;
+
+                    string s = orderItem.OrderItemStatus == OrderItemStatus.Added ? "" : "Returned";
+                    Text = $"Update {s} Order Item";
+
+                    return_pb.Visible = orderItem.OrderItemStatus == OrderItemStatus.Returned;
                 }
             }
             catch (Exception ex)
@@ -53,7 +61,7 @@ namespace SalesPro.Forms.Orders
             {
                 var qty = int.Parse(qty_tx.Text);
                 if (!Validators.IntValidator(qty_tx.Text, "Quantity")) return;
-                if (qty > _availableQty)
+                if (_orderItemStatus == OrderItemStatus.Added && qty > _availableQty)
                 {
                     MessageHandler.ShowWarning("Quantity cannot be greater than the available stocks.");
                     return;

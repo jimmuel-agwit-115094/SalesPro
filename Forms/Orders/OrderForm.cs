@@ -74,6 +74,8 @@ namespace SalesPro.Forms.Orders
             _totalPrice = items.Sum(x => x.TotalPrice);
             total_tx.Text = items.Sum(x => x.TotalPrice).ToString("N2");
 
+            // To check if there are order items that have negative value
+            // and highlight them in red and cant proceed payment. A good preventive measure
             if (invalidOrders != null)
             {
                 foreach (DataGridViewRow row in dgItems.Rows)
