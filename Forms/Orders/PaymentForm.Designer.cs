@@ -41,6 +41,7 @@
             this.cash_tx = new System.Windows.Forms.TextBox();
             this.discRate_tx = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.change_tx = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,12 +58,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // customer_tx
@@ -170,7 +170,7 @@
             // 
             // cash_tx
             // 
-            this.cash_tx.Font = new System.Drawing.Font("Segoe UI", 32.25F, System.Drawing.FontStyle.Bold);
+            this.cash_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cash_tx.Location = new System.Drawing.Point(23, 50);
             this.cash_tx.MaxLength = 8;
             this.cash_tx.Name = "cash_tx";
@@ -211,6 +211,16 @@
             this.groupBox1.Size = new System.Drawing.Size(388, 290);
             this.groupBox1.TabIndex = 562;
             this.groupBox1.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.change_tx);
+            this.panel3.Location = new System.Drawing.Point(8, 203);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(368, 72);
+            this.panel3.TabIndex = 570;
             // 
             // label6
             // 
@@ -270,7 +280,7 @@
             // 
             // totalAmountDue_tx
             // 
-            this.totalAmountDue_tx.Font = new System.Drawing.Font("Segoe UI", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalAmountDue_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalAmountDue_tx.Location = new System.Drawing.Point(78, 114);
             this.totalAmountDue_tx.Name = "totalAmountDue_tx";
             this.totalAmountDue_tx.Size = new System.Drawing.Size(296, 60);
@@ -387,16 +397,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Visible = false;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.change_tx);
-            this.panel3.Location = new System.Drawing.Point(8, 203);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(368, 72);
-            this.panel3.TabIndex = 570;
-            // 
             // PaymentForm
             // 
             this.AcceptButton = this.pay_btn;
@@ -426,12 +426,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

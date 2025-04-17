@@ -13,6 +13,11 @@ namespace SalesPro.Helpers
         {
             return date.ToString(format);
         }
+
+        public static string FormaShortDate(DateTime date, string format = "MMM. dd, yyyy")
+        {
+            return date.ToString(format);
+        }
     }
 
 }

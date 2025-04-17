@@ -47,8 +47,8 @@ namespace SalesPro.Forms.Orders
                     amtDue_tx.Text = credit.CreditAmount.ToString("N2");
                     customer_tx.Text = order.CustomerName;
 
-                    dateCredited_tx.Text = DateFormatHelper.FormatDate(credit.CreditedDate);
-                    dueDate_tx.Text = DateFormatHelper.FormatDate(credit.DueDate);
+                    dateCredited_tx.Text = DateFormatHelper.FormaShortDate(credit.CreditedDate);
+                    dueDate_tx.Text = DateFormatHelper.FormaShortDate(credit.DueDate);
                     credTerms_tx.Value = credit.CreditTerms;
                     invoice_tx.Text = credit.InvoiceNumber;
                     notes_tx.Text = credit.Notes;
