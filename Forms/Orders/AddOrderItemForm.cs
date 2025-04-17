@@ -161,7 +161,7 @@ namespace SalesPro.Forms.Orders
 
         private async void dgProduct_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && _orderAction != OrderAction.Inquiry)
+            if (e.KeyCode == Keys.Enter && _orderAction != OrderAction.Inquiry && dgProduct.SelectedRows.Count > 0)
             {
                 e.Handled = true;
                 await AddOrderItem();
@@ -253,7 +253,9 @@ namespace SalesPro.Forms.Orders
 
         private void searchByCode_cb_CheckedChanged(object sender, EventArgs e)
         {
-
+            search_tx.Clear();
+            search_tx.Select();
+            dgProduct.DataSource = null;
         }
     }
 }
