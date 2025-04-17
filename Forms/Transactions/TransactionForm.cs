@@ -88,6 +88,7 @@ namespace SalesPro.Forms.Transactions
             dgTrans.DataSource = allTrans;
             transactionDate_lbl.Visible = false;
             noRecordDate_lbl.Visible = false;
+
             FormatGrid();
         }
 

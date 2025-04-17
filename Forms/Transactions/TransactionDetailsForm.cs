@@ -1,5 +1,4 @@
-﻿using POS_Generic.Helpers;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -31,6 +30,8 @@ namespace SalesPro.Forms.Transactions
             CurrencyTextboxHelper.ApplyNumericProperty(transactionData_tab);
             _transactionForm = transactionForm;
             _reportService = new ReportService();
+            TextBoxHelper.FormatDecimalTextbox(begBal_tx);
+            TextBoxHelper.FormatDecimalTextbox(endingCash_tx);
         }
 
         private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
@@ -243,6 +244,11 @@ namespace SalesPro.Forms.Transactions
         }
 
         private void begBal_tx_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void begBal_tx_TextChanged(object sender, EventArgs e)
         {
 
         }
