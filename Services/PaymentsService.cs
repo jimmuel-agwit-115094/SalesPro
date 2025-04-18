@@ -6,8 +6,6 @@ using SalesPro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace SalesPro.Services
@@ -112,6 +110,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Update customer credits
+
                     var customerCredit = await context.CustomerCredits.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(customerCredit);
                     VersionCheckerHelper.ConcurrencyCheck(rowVersion, customerCredit.RowVersion);
