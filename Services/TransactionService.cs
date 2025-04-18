@@ -26,6 +26,9 @@ namespace SalesPro.Services
 
                     await context.TransactionLogs.AddAsync(log);
                     await context.SaveChangesAsync();
+
+                    // Save transaction for global using
+                    TransactionSession.SetTransactionId(transaction.TransactionId);
                 });
             }
         }
