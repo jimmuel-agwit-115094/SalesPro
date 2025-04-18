@@ -52,17 +52,11 @@
             this.total_tx = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.reference_tx = new System.Windows.Forms.TextBox();
-            this.bank_cb = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pressEsc_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPhoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // customer_tx
@@ -84,7 +78,7 @@
             this.pay_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pay_btn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pay_btn.ForeColor = System.Drawing.Color.White;
-            this.pay_btn.Location = new System.Drawing.Point(424, 462);
+            this.pay_btn.Location = new System.Drawing.Point(430, 386);
             this.pay_btn.Name = "pay_btn";
             this.pay_btn.Size = new System.Drawing.Size(388, 55);
             this.pay_btn.TabIndex = 537;
@@ -130,7 +124,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(22, 189);
+            this.label1.Location = new System.Drawing.Point(22, 147);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 21);
             this.label1.TabIndex = 544;
@@ -151,7 +145,7 @@
             this.paymentMethod_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paymentMethod_cb.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethod_cb.FormattingEnabled = true;
-            this.paymentMethod_cb.Location = new System.Drawing.Point(23, 289);
+            this.paymentMethod_cb.Location = new System.Drawing.Point(23, 247);
             this.paymentMethod_cb.Margin = new System.Windows.Forms.Padding(2);
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(343, 33);
@@ -162,7 +156,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(22, 265);
+            this.label4.Location = new System.Drawing.Point(22, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 21);
             this.label4.TabIndex = 554;
@@ -184,7 +178,7 @@
             // discRate_tx
             // 
             this.discRate_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discRate_tx.Location = new System.Drawing.Point(23, 212);
+            this.discRate_tx.Location = new System.Drawing.Point(23, 170);
             this.discRate_tx.MaxLength = 3;
             this.discRate_tx.Name = "discRate_tx";
             this.discRate_tx.Size = new System.Drawing.Size(343, 33);
@@ -206,27 +200,27 @@
             this.groupBox1.Controls.Add(this.total_tx);
             this.groupBox1.Controls.Add(this.title_lbl);
             this.groupBox1.Controls.Add(this.discountAmount_lbl);
-            this.groupBox1.Location = new System.Drawing.Point(16, 57);
+            this.groupBox1.Location = new System.Drawing.Point(430, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(388, 290);
+            this.groupBox1.Size = new System.Drawing.Size(388, 306);
             this.groupBox1.TabIndex = 562;
             this.groupBox1.TabStop = false;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.change_tx);
             this.panel3.Location = new System.Drawing.Point(8, 203);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(368, 72);
+            this.panel3.Size = new System.Drawing.Size(368, 77);
             this.panel3.TabIndex = 570;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 23);
+            this.label6.Location = new System.Drawing.Point(9, 27);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 25);
             this.label6.TabIndex = 569;
@@ -234,10 +228,10 @@
             // 
             // change_tx
             // 
-            this.change_tx.Font = new System.Drawing.Font("Segoe UI", 32.25F, System.Drawing.FontStyle.Bold);
-            this.change_tx.Location = new System.Drawing.Point(94, 9);
+            this.change_tx.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.change_tx.Location = new System.Drawing.Point(94, 1);
             this.change_tx.Name = "change_tx";
-            this.change_tx.Size = new System.Drawing.Size(269, 54);
+            this.change_tx.Size = new System.Drawing.Size(269, 70);
             this.change_tx.TabIndex = 568;
             this.change_tx.Text = "0.00";
             this.change_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -317,85 +311,23 @@
             this.groupBox2.Controls.Add(this.discRate_tx);
             this.groupBox2.Controls.Add(this.cash_tx);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(424, 57);
+            this.groupBox2.Location = new System.Drawing.Point(16, 57);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(388, 361);
+            this.groupBox2.Size = new System.Drawing.Size(388, 306);
             this.groupBox2.TabIndex = 565;
             this.groupBox2.TabStop = false;
             // 
-            // label5
+            // pressEsc_lbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(20, 22);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(149, 21);
-            this.label5.TabIndex = 591;
-            this.label5.Text = "Reference Number";
-            // 
-            // reference_tx
-            // 
-            this.reference_tx.BackColor = System.Drawing.Color.White;
-            this.reference_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.reference_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.reference_tx.Location = new System.Drawing.Point(22, 45);
-            this.reference_tx.Margin = new System.Windows.Forms.Padding(2);
-            this.reference_tx.MaxLength = 20;
-            this.reference_tx.Name = "reference_tx";
-            this.reference_tx.Size = new System.Drawing.Size(340, 33);
-            this.reference_tx.TabIndex = 590;
-            // 
-            // bank_cb
-            // 
-            this.bank_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.bank_cb.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.bank_cb.FormattingEnabled = true;
-            this.bank_cb.Items.AddRange(new object[] {
-            "CASH",
-            "CHECK",
-            "BANK TRANSFER",
-            "E-PAYMENT"});
-            this.bank_cb.Location = new System.Drawing.Point(22, 111);
-            this.bank_cb.Name = "bank_cb";
-            this.bank_cb.Size = new System.Drawing.Size(340, 33);
-            this.bank_cb.TabIndex = 588;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(25, 57);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 21);
-            this.label3.TabIndex = 589;
-            this.label3.Text = "Bank";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(21, 87);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 21);
-            this.label9.TabIndex = 593;
-            this.label9.Text = "Bank";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.reference_tx);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.bank_cb);
-            this.groupBox3.Location = new System.Drawing.Point(16, 353);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(388, 164);
-            this.groupBox3.TabIndex = 570;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Visible = false;
+            this.pressEsc_lbl.AutoSize = true;
+            this.pressEsc_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pressEsc_lbl.ForeColor = System.Drawing.Color.Red;
+            this.pressEsc_lbl.Location = new System.Drawing.Point(683, 21);
+            this.pressEsc_lbl.Name = "pressEsc_lbl";
+            this.pressEsc_lbl.Size = new System.Drawing.Size(140, 21);
+            this.pressEsc_lbl.TabIndex = 566;
+            this.pressEsc_lbl.Text = "Press Esc To Close";
+            this.pressEsc_lbl.Visible = false;
             // 
             // PaymentForm
             // 
@@ -403,8 +335,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(830, 531);
-            this.Controls.Add(this.groupBox3);
+            this.ClientSize = new System.Drawing.Size(835, 462);
+            this.Controls.Add(this.pressEsc_lbl);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pay_btn);
@@ -430,8 +362,6 @@
             this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,12 +391,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.Label label6;
         internal System.Windows.Forms.Label change_tx;
-        private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.TextBox reference_tx;
-        public System.Windows.Forms.ComboBox bank_cb;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Panel panel3;
+        internal System.Windows.Forms.Label pressEsc_lbl;
     }
 }

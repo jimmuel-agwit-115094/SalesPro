@@ -94,6 +94,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.Panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -122,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.activationGroupBox.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel1
@@ -181,6 +185,7 @@
             this.settingsTabControl.Controls.Add(this.databaseTab);
             this.settingsTabControl.Controls.Add(this.activationTab);
             this.settingsTabControl.Controls.Add(this.tabPage1);
+            this.settingsTabControl.Controls.Add(this.tabPage2);
             this.settingsTabControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.settingsTabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingsTabControl.Location = new System.Drawing.Point(0, 100);
@@ -854,7 +859,6 @@
             this.listBox1.ItemHeight = 17;
             this.listBox1.Items.AddRange(new object[] {
             "Application Name: Sales Pro",
-            "Version: v1.2.1",
             "Build Date: February 10, 2025",
             "Copyright: © 2025 JagwitDevelopment. All rights reserved.",
             "License Type: Pro",
@@ -879,6 +883,40 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(130, 5);
             this.panel13.TabIndex = 9;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listBox2);
+            this.tabPage2.Controls.Add(this.panel14);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 574);
+            this.tabPage2.TabIndex = 7;
+            this.tabPage2.Text = "   Release Notes   ";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listBox2
+            // 
+            this.listBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 17;
+            this.listBox2.Items.AddRange(new object[] {
+            "Versions",
+            "",
+            "1.0.0"});
+            this.listBox2.Location = new System.Drawing.Point(8, 30);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(1142, 446);
+            this.listBox2.TabIndex = 11;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.Green;
+            this.panel14.Location = new System.Drawing.Point(816, 1);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(130, 5);
+            this.panel14.TabIndex = 10;
             // 
             // panel10
             // 
@@ -947,6 +985,7 @@
             this.activationGroupBox.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1010,5 +1049,8 @@
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }

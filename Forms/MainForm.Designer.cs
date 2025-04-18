@@ -59,6 +59,7 @@
             this.left_nav = new System.Windows.Forms.Panel();
             this.transactions_btn = new System.Windows.Forms.Button();
             this.serttings_btn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.main_panel.SuspendLayout();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -305,10 +306,10 @@
             // PictureBox1
             // 
             this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-            this.PictureBox1.Location = new System.Drawing.Point(57, 4);
+            this.PictureBox1.Location = new System.Drawing.Point(40, 27);
             this.PictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.PictureBox1.Size = new System.Drawing.Size(114, 28);
             this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox1.TabIndex = 1;
             this.PictureBox1.TabStop = false;
@@ -425,6 +426,7 @@
             // 
             this.left_nav.BackColor = System.Drawing.Color.WhiteSmoke;
             this.left_nav.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.left_nav.Controls.Add(this.label7);
             this.left_nav.Controls.Add(this.orders_btn);
             this.left_nav.Controls.Add(this.po_btn);
             this.left_nav.Controls.Add(this.noTransactionPanel);
@@ -477,6 +479,18 @@
             this.serttings_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.serttings_btn.UseVisualStyleBackColor = false;
             this.serttings_btn.Click += new System.EventHandler(this.serttings_btn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(61, 55);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 546;
+            this.label7.Text = "Version 1.1";
             // 
             // MainForm
             // 
@@ -546,5 +560,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 }

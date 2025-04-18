@@ -82,6 +82,7 @@ namespace SalesPro.Forms.Orders
                         paymentMethod_cb.Enabled = false;
                         pay_btn.Enabled = false;
                         paymentPhoto.Image = Properties.Resources.paid;
+                        pressEsc_lbl.Visible = true;
                     }
                     await _orderForm.LoadOrderedItems(_orderId, invalidOrdersDetected);
                 }
