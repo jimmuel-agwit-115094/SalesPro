@@ -13,6 +13,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 {
     public partial class PaymentForm : Form
     {
+        public int _orderId;
         public int _referenceId;
         public int _rowVersion;
         public int _paymentRowVersion;
@@ -120,28 +121,30 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
                 if (MessageHandler.ShowQuestionGeneric("Confirm Payment?"))
                 {
-                    var model = new PaymentsModel();
+                    var paymentsModel = new PaymentsModel();
                     {
-                        model.BankName = bank_cb.Text;
-                        model.Notes = notes_tx.Text;
-                        model.OrNumber = orNunber_tx.Text;
-                        model.PaymentDate = _curDate;
-                        model.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
-                        model.PaymentType = _paymentType;
-                        model.ReferenceNumber = reference_tx.Text;
-                        model.UserName = UserSession.FullName;
-                        model.ReferenceId = _referenceId;
+                        paymentsModel.BankName = bank_cb.Text;
+                        paymentsModel.Notes = notes_tx.Text;
+                        paymentsModel.OrNumber = orNunber_tx.Text;
+                        paymentsModel.PaymentDate = _curDate;
+                        paymentsModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                        paymentsModel.PaymentType = _paymentType;
+                        paymentsModel.ReferenceNumber = reference_tx.Text;
+                        paymentsModel.UserName = UserSession.FullName;
+                        paymentsModel.ReferenceId = _referenceId;
+                        paymentsModel.OrderId = _orderId;
                     }
 
-                    var order = new OrderModel();
+                    var orderModel = new OrderModel();
                     {
-                        order.Total = _total;
-                        order.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
-                        order.DatePaid = _curDate;
+                        orderModel.OrderId = _orderId;
+                        orderModel.Total = _total;
+                        orderModel.PaymentMethod = (PaymentMethod)paymentMethod_cb.SelectedValue;
+                        orderModel.DatePaid = _curDate;
                     }
 
                     int newRowVersion = _actionForm == Constants.FormConstants.SupplierPayables ? _rowVersion : _credRowVersion;
-                    var success = await _paymentService.Pay(_referenceId, model, order, newRowVersion, _paymentRowVersion);
+                    var success = await _paymentService.Pay(_referenceId, paymentsModel, orderModel, newRowVersion, _paymentRowVersion);
                     if (success > 0)
                     {
                         Close();

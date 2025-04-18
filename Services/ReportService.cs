@@ -65,7 +65,7 @@ namespace SalesPro.Services
             using (var context = new DatabaseContext())
             {
                 var payments = await (from p in context.Payments
-                                      join o in context.Orders on p.ReferenceId equals o.OrderId
+                                      join o in context.Orders on p.OrderId equals o.OrderId
                                       where p.PaymentDate.Date >= start.Date && p.PaymentDate.Date <= end.Date
                                       && p.PaymentType == PaymentType.CustomerCredit
                                       select o.Total).SumAsync();

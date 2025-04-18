@@ -101,7 +101,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Update orders
-                    var order = await context.Orders.FindAsync(paymentModel.ReferenceId);
+                    var order = await context.Orders.FindAsync(orderModel.OrderId);
                     NullCheckerHelper.NullCheck(order);
                     order.AmountPaid = orderModel.AmountPaid;
                     order.PaymentStatus = PaymentStatus.Paid;

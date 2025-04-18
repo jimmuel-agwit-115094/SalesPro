@@ -1,5 +1,4 @@
-﻿using Renci.SshNet.Messages;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
@@ -17,12 +16,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
     public partial class ManagePayableForm : Form
     {
         public int _poId;
+        private int _orderId;
         public int _customerCreditId;
         public int _rowVersion;
         public int _credRowVersion;
         private DateTime _dateCreated;
         private DateTime _curDate;
         public string _actionForm;
+       
 
         private readonly PaymentsAndBillingForm _form;
         private readonly PaymentsService _service;
@@ -51,8 +52,8 @@ namespace SalesPro.Forms.PaymentsAndBilling
             }
             else
             {
-                var orderId = await _customerCreditService.GetOrderIdByCustomerCreditId(_customerCreditId);
-                var creditedItems = await _orderService.LoadOrderItemsByOrderId(orderId);
+                _orderId = await _customerCreditService.GetOrderIdByCustomerCreditId(_customerCreditId);
+                var creditedItems = await _orderService.LoadOrderItemsByOrderId(_orderId);
                 dgOrderedItems.DataSource = creditedItems;
                 _orderItemLists = creditedItems;
                 DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
@@ -229,6 +230,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var form = new PaymentForm(this);
                 form._actionForm =FormConstants.CustomerCredits;
                 form._paymentType = PaymentType.CustomerCredit;
+                form._orderId = _orderId;
                 form._referenceId = _customerCreditId;
                 form._credRowVersion = _credRowVersion;
                 form.ShowDialog();
