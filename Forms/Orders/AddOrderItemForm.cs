@@ -6,6 +6,7 @@ using SalesPro.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -74,6 +75,11 @@ namespace SalesPro.Forms.Orders
             else
             {
                 products = await _service.SearchProductsFromInventory();
+            }
+
+            if (!showOutOfStock_cb.Checked)
+            {
+                products = products.Where(p => p.QuantityOnHand > 0).ToList();
             }
 
             dgProduct.DataSource = products;
@@ -174,7 +180,7 @@ namespace SalesPro.Forms.Orders
             {
                 Close();
             }
-            if (e.KeyCode != Keys.Up && e.KeyCode!= Keys.Down && e.KeyCode != Keys.Enter)
+            if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode != Keys.Enter)
             {
                 search_tx.Select();
             }
@@ -231,18 +237,23 @@ namespace SalesPro.Forms.Orders
         {
             try
             {
-                if (searchByCode_cb.Checked == true)
-                {
-                    await LoadProducts(SearchByAction.Barcode);
-                }
-                else
-                {
-                    await LoadProducts(SearchByAction.ProductName);
-                }
+                await SearchByProductNameOrBarCode();
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error on search button click: {ex}");
+            }
+        }
+
+        private async Task SearchByProductNameOrBarCode()
+        {
+            if (searchByCode_cb.Checked == true)
+            {
+                await LoadProducts(SearchByAction.Barcode);
+            }
+            else
+            {
+                await LoadProducts(SearchByAction.ProductName);
             }
         }
 
@@ -255,7 +266,18 @@ namespace SalesPro.Forms.Orders
         {
             search_tx.Clear();
             search_tx.Select();
-            dgProduct.DataSource = null;
+        }
+
+        private async void showOutOfStock_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await SearchByProductNameOrBarCode();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error on clicking Show out Of Stock button:  {ex.Message}");
+            }
         }
     }
 }

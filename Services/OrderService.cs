@@ -128,9 +128,10 @@ namespace SalesPro.Services
                 }
 
                 // Apply sorting and execute the query
-                return await query.OrderBy(p => p.QuantityOnHand == 0)
-                                  .ThenByDescending(p => p.QuantityOnHand)
-                                  .ToListAsync();
+                //return await query.OrderBy(p => p.QuantityOnHand == 0)
+                //                  .ThenByDescending(p => p.QuantityOnHand)
+                //                  .ToListAsync();
+                return await query.ToListAsync();
             }
         }
 
