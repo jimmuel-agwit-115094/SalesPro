@@ -205,7 +205,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private void pay_btn_Click(object sender, EventArgs e)
         {
-            if (_actionForm == Constants.FormConstants.SupplierPayables)
+            if (_actionForm == FormConstants.SupplierPayables)
             {
                 if (!UserSession.HasAccess(RoleConstants.PaySupplier))
                 {
@@ -213,7 +213,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     return;
                 }
                 var form = new PaymentForm(this);
-                form._actionForm = Constants.FormConstants.SupplierPayables;
+                form._actionForm = FormConstants.SupplierPayables;
                 form._paymentType = PaymentType.SupplierPayable;
                 form._referenceId = _poId;
                 form._rowVersion = _rowVersion;
@@ -227,7 +227,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                     return;
                 }
                 var form = new PaymentForm(this);
-                form._actionForm = Constants.FormConstants.CustomerCredits;
+                form._actionForm =FormConstants.CustomerCredits;
                 form._paymentType = PaymentType.CustomerCredit;
                 form._referenceId = _customerCreditId;
                 form._credRowVersion = _credRowVersion;
