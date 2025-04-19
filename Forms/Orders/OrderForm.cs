@@ -100,7 +100,8 @@ namespace SalesPro.Forms.Orders
         public async Task InitializeOrCreateOrder()
         {
             var latestOrder = await _service.GetLatestOrder();
-            if (latestOrder != null && latestOrder.Total == 0)
+            int currentTransctionId = TransactionSession._transactionId;
+            if (latestOrder != null && latestOrder.Total == 0 && latestOrder.TransactionId == currentTransctionId)
             {
                 await InitializeOrderDisplay(latestOrder);
             }
