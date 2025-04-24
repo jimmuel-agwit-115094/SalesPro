@@ -447,18 +447,18 @@ namespace SalesPro.Forms.Orders
 
                 if (!string.IsNullOrWhiteSpace(text))
                 {
-                    if (text.Contains("@"))
+                    if (text.Contains("/"))
                     {
-                        // Split the input on '@'
-                        string[] parts = text.Split('@');
+                        // Split the input on '/'
+                        string[] parts = text.Split('/');
 
-                        // Handle the quantity part (before '@')
+                        // Handle the quantity part (before '/')
                         if (!string.IsNullOrWhiteSpace(parts[0]) && int.TryParse(parts[0], out int parsedQty))
                         {
                             qty = parsedQty; // Use parsed quantity if valid
                         }
 
-                        // Handle the serial part (after '@')
+                        // Handle the serial part (after '/')
                         if (parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]))
                         {
                             bcode = parts[1].Trim(); // Trim and set serial
@@ -466,7 +466,7 @@ namespace SalesPro.Forms.Orders
                     }
                     else
                     {
-                        // No '@' present, treat the entire input as serial
+                        // No '/' present, treat the entire input as serial
                         bcode = text;
                     }
                 }
@@ -509,16 +509,23 @@ namespace SalesPro.Forms.Orders
 
         private void barcode_tx_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Check if the key pressed is '@'
-            if (e.KeyChar == '@')
+            // Check if the key pressed is '/'
+            if (e.KeyChar == '/')
             {
                 // Get the current text in the TextBox
                 string currentText = barcode_tx.Text;
 
-                // Check if there is a number before '@'
+                // Block if there's already an '/' in the text
+                if (currentText.Contains("/"))
+                {
+                    e.Handled = true; // Suppress the second '/'
+                    return;
+                }
+
+                // Check if there is a number before '/'
                 if (string.IsNullOrEmpty(currentText) || !currentText.Any(char.IsDigit))
                 {
-                    // If no number before '@', cancel the key press
+                    // If no number before '/', cancel the key press
                     e.Handled = true;
                 }
             }

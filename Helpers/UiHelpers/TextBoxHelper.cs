@@ -149,8 +149,8 @@ namespace SalesPro.Helpers.UiHelpers
                     return;
                 }
 
-                // Allow digits (0-9) and the '@' symbol
-                if (!char.IsDigit(input) && input != '@')
+                // Allow digits (0-9) and the '/' symbol
+                if (!char.IsDigit(input) && input != '/')
                 {
                     e.Handled = true;
                     return;
@@ -162,7 +162,7 @@ namespace SalesPro.Helpers.UiHelpers
             {
                 // Check if the text contains only allowed characters
                 if (!string.IsNullOrEmpty(textBox.Text) &&
-                    System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, @"^[0-9@]+$"))
+                    System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, @"^[0-9/]+$"))
                 {
                     textBox.Text = textBox.Text; // Retain valid input
                 }
