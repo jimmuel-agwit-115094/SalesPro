@@ -118,6 +118,8 @@ namespace SalesPro.Forms.Reports
             else
             {
                 customDatePanel.Visible = true;
+                _startDate = _curDate.Date;
+                findBtn.PerformClick();
                 return;
             }
 
