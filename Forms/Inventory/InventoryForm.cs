@@ -51,39 +51,34 @@ namespace SalesPro.Forms.Inventory
             DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
         }
 
-        private async Task LoadLowStockProducts()
-        {
-            var lowStocks = await _service.GetLowStockProducts();
-            dgInventory.DataSource = lowStocks;
-            DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
-                  "ProductName",
-                  "Stock");
+        //private async Task LoadLowStockProducts()
+        //{
+        //    var lowStocks = await _service.GetLowStockProducts();
+        //    dgInventory.DataSource = lowStocks;
+        //    DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
+        //          "ProductName",
+        //          "Stock");
 
-            dgInventory.Columns["ProductName"].DisplayIndex = 0;
-        }
+        //    dgInventory.Columns["ProductName"].DisplayIndex = 0;
+        //}
 
-        public async Task LoadInventoriesBaseOnTabSelected()
-        {
-            _selectedTab = inventoryTabControl.SelectedIndex;
-            switch (_selectedTab)
-            {
-                case 0:
-                    await LoadFilteredInventories();
-                    print_btn.Visible = true;
-                    break;
-                case 1:
-                    await LoadLowStockProducts();
-                    print_btn.Visible = false;
-                    break;
-            }
-        }
+        //public async Task LoadInventoriesBaseOnTabSelected()
+        //{
+        //    _selectedTab = inventoryTabControl.SelectedIndex;
+        //    switch (_selectedTab)
+        //    {
+        //        case 0:
+        //            await LoadFilteredInventories();
+        //            print_btn.Visible = true;
+        //            break;
+        //        case 1:
+        //            await LoadLowStockProducts();
+        //            print_btn.Visible = false;
+        //            break;
+        //    }
+        //}
 
-        private async void inventoryTabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            await LoadInventoriesBaseOnTabSelected();
-            search_tx.Clear();
-        }
-
+      
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -135,6 +130,28 @@ namespace SalesPro.Forms.Inventory
             };
             form._formAction = Constants.FormConstants.Inventory;
             form.ShowDialog();
+        }
+
+        private async void findBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dateFilter = dateAdded_dt.Value.Date;
+                var inv = await _service.GetInventoriesByDate(dateFilter);
+                dgInventory.DataSource = inv;
+                _inventoryList = inv;
+                DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
+                         "InventoryId",
+                         "ProductName",
+                         "DateAdded",
+                         "QuantityOnHand",
+                         "RetailPrice");
+                DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error filtering inventories: {ex.Message}");
+            }
         }
     }
 }

@@ -138,7 +138,6 @@ namespace SalesPro.Forms.Inventory
 
                     }
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
-                    await _inventoryForm.LoadInventoriesBaseOnTabSelected();
                     _inventoryForm.ResetControls();
                     update_btn.Enabled = false;
                     Close();
