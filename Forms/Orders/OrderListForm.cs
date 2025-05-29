@@ -103,11 +103,14 @@ namespace SalesPro.Forms.Orders
 
         private void dgOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int orderId = DgFormatHelper.GetSelectedId(dgOrders, e, "OrderId");
-            if (orderId == 0) return;
-            var form = new OrderDetailsForm();
-            form._orderId = orderId;
-            form.ShowDialog();
+            if (_action == FormConstants.OrderLists)
+            {
+                int orderId = DgFormatHelper.GetSelectedId(dgOrders, e, "OrderId");
+                if (orderId == 0) return;
+                var form = new OrderDetailsForm();
+                form._orderId = orderId;
+                form.ShowDialog();
+            }
         }
 
         private void dgOrders_SelectionChanged(object sender, EventArgs e)
