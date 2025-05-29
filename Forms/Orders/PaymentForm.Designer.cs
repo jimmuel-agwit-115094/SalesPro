@@ -190,6 +190,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
@@ -209,18 +210,17 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.change_tx);
-            this.panel3.Location = new System.Drawing.Point(8, 203);
+            this.panel3.Location = new System.Drawing.Point(24, 220);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(368, 77);
+            this.panel3.Size = new System.Drawing.Size(352, 77);
             this.panel3.TabIndex = 570;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 27);
+            this.label6.Location = new System.Drawing.Point(19, 194);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 25);
             this.label6.TabIndex = 569;
@@ -229,9 +229,9 @@
             // change_tx
             // 
             this.change_tx.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.change_tx.Location = new System.Drawing.Point(94, 1);
+            this.change_tx.Location = new System.Drawing.Point(3, 3);
             this.change_tx.Name = "change_tx";
-            this.change_tx.Size = new System.Drawing.Size(269, 70);
+            this.change_tx.Size = new System.Drawing.Size(355, 70);
             this.change_tx.TabIndex = 568;
             this.change_tx.Text = "0.00";
             this.change_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -335,7 +335,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(835, 462);
+            this.ClientSize = new System.Drawing.Size(835, 455);
             this.Controls.Add(this.pressEsc_lbl);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
@@ -359,7 +359,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
