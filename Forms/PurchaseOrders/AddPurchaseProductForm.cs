@@ -145,6 +145,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void dgProducts_SelectionChanged(object sender, EventArgs e)
         {
+            noProductSelectedPanel.Visible = dgProducts.SelectedRows.Count == 0;
             GetPropertiesOnGrid();
         }
 
@@ -282,17 +283,17 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void qty_tx_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void supplierPrice_tx_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void markUpPrice_tx_Click(object sender, EventArgs e)
         {
-        
+
         }
     }
 }
