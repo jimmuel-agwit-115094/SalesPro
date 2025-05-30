@@ -147,6 +147,17 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<List<TransactionModel>> GetUnclosedTransactions()
+        {
+            using (var _dbContext = new DatabaseContext())
+            {
+                return await _dbContext.Transactions
+                    .Where(x => x.IsClosed == false)
+                    .OrderByDescending(x => x.TransactionId)
+                    .ToListAsync();
+            }
+        }
+
         public async Task GetMaxTransactionId()
         {
             using (var context = new DatabaseContext())

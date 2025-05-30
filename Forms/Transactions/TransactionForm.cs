@@ -1,7 +1,9 @@
 ﻿using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
+using SalesPro.Models;
 using SalesPro.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,14 +80,22 @@ namespace SalesPro.Forms.Transactions
              "BeginningBalance",
              "EndingCash",
              "IsClosed");
-
         }
 
         private async Task ProcessTransactionLoad()
         {
-            var allTrans = await _service.GetAllTransactions();
-            //var curTrans = allTrans.Where(x => x.StartDate.Date == _curDate.Date).ToList();
-            dgTrans.DataSource = allTrans;
+            var transactions = new List<TransactionModel>();
+            var unclosedTransactions = await _service.GetUnclosedTransactions();
+            if (unclosedTransactions.Any())
+            {
+                transactions = unclosedTransactions;
+            }
+            else
+            {
+                transactions = await _service.GetAllTransactions();
+            }
+             
+            dgTrans.DataSource = transactions;
             transactionDate_lbl.Visible = false;
             noRecordDate_lbl.Visible = false;
             search_tx.Clear();
@@ -155,6 +165,11 @@ namespace SalesPro.Forms.Transactions
                     e.CellStyle.SelectionBackColor = Color.LimeGreen;
                 }
             }
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
