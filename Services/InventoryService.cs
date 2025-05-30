@@ -173,33 +173,33 @@ namespace SalesPro.Services
 
 
         // Get inventory by date
-        public async Task<List<InventoryModelExtended>> GetInventoriesByDate(DateTime date)
-        {
-            using (var context = new DatabaseContext())
-            {
-                return await (from i in context.Inventories
-                              join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
-                              join p in context.Products on i.ProductId equals p.ProductId
-                              join u in context.Users on i.UserId equals u.UserId
-                              join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                              where i.DateAdded.Date == date.Date
-                              select new InventoryModelExtended
-                              {
-                                  InventoryId = i.InventoryId,
-                                  PurchaseOrderId = i.PurchaseOrderId,
-                                  ProductId = i.ProductId,
-                                  SupplierId = i.SupplierId,
-                                  UserId = i.UserId,
-                                  DateAdded = i.DateAdded,
-                                  QuantityFromPo = i.QuantityFromPo,
-                                  QuantityOnHand = i.QuantityOnHand,
-                                  SupplierPrice = i.SupplierPrice,
-                                  RetailPrice = i.RetailPrice,
-                                  ProductName = p.ProductName,
-                                  SupplierName = s.SupplierName,
-                                  UserFullName = u.Fullname
-                              }).ToListAsync();
-            }
-        }
+        //public async Task<List<InventoryModelExtended>> GetInventoriesByDate(DateTime date)
+        //{
+        //    using (var context = new DatabaseContext())
+        //    {
+        //        return await (from i in context.Inventories
+        //                      join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
+        //                      join p in context.Products on i.ProductId equals p.ProductId
+        //                      join u in context.Users on i.UserId equals u.UserId
+        //                      join s in context.Suppliers on i.SupplierId equals s.SupplierId
+        //                      where i.DateAdded.Date == date.Date
+        //                      select new InventoryModelExtended
+        //                      {
+        //                          InventoryId = i.InventoryId,
+        //                          PurchaseOrderId = i.PurchaseOrderId,
+        //                          ProductId = i.ProductId,
+        //                          SupplierId = i.SupplierId,
+        //                          UserId = i.UserId,
+        //                          DateAdded = i.DateAdded,
+        //                          QuantityFromPo = i.QuantityFromPo,
+        //                          QuantityOnHand = i.QuantityOnHand,
+        //                          SupplierPrice = i.SupplierPrice,
+        //                          RetailPrice = i.RetailPrice,
+        //                          ProductName = p.ProductName,
+        //                          SupplierName = s.SupplierName,
+        //                          UserFullName = u.Fullname
+        //                      }).ToListAsync();
+        //    }
+        //}
     }
 }

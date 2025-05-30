@@ -611,14 +611,14 @@
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="InventoryType">
+          <Textbox Name="FilterType">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!InventoryType.Value</Value>
+                    <Value>=Parameters!FilterType.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -629,11 +629,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>InventoryType</rd:DefaultName>
-            <Top>0.04167in</Top>
-            <Left>2.38417in</Left>
+            <rd:DefaultName>FilterType</rd:DefaultName>
+            <Top>0.125in</Top>
+            <Left>1.91753in</Left>
             <Height>0.25in</Height>
-            <Width>2.73997in</Width>
+            <Width>3.67535in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -758,7 +758,7 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="InventoryType">
+    <ReportParameter Name="FilterType">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -771,7 +771,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>InventoryType</ParameterName>
+          <ParameterName>FilterType</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

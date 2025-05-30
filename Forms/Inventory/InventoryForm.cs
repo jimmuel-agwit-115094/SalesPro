@@ -5,6 +5,7 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,7 +38,6 @@ namespace SalesPro.Forms.Inventory
             {
                 MessageHandler.ShowError($"Error loading inventory form: {ex.Message}");
             }
-
         }
         private async Task LoadFilteredInventories()
         {
@@ -47,7 +47,6 @@ namespace SalesPro.Forms.Inventory
             _inventoryList = inv;
             FormatGrid();
         }
-
 
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -92,11 +91,11 @@ namespace SalesPro.Forms.Inventory
             }
 
             var form = new PrintingForm();
-            form._inventoryList = _inventoryList;
             form._inventoryParam = new Dictionary<string, string>
             {
-                { "InventoryType", inventoryTabControl.SelectedTab?.Text ?? "Unknown" }
+                { "FilterType", title_lbl.Text }
             };
+            form._inventoryList = _inventoryList;
             form._formAction = Constants.FormConstants.Inventory;
             form.ShowDialog();
         }
@@ -112,14 +111,16 @@ namespace SalesPro.Forms.Inventory
             DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
         }
 
-        private async void findBtn_Click(object sender, EventArgs e)
+        private void findBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 DateTime dateFilter = dateAdded_dt.Value.Date;
-                var inv = await _service.GetInventoriesByDate(dateFilter);
-                dgInventory.DataSource = inv;
-                _inventoryList = inv;
+                var filteredDate = _inventoryList
+                    .Where(x => x.DateAdded.Date == dateFilter)
+                    .ToList();
+
+                dgInventory.DataSource = filteredDate;
                 FormatGrid();
             }
             catch (Exception ex)
@@ -133,11 +134,30 @@ namespace SalesPro.Forms.Inventory
             try
             {
                 await LoadFilteredInventories();
+                if (filter_cb.SelectedIndex == 0)
+                {
+                    title_lbl.Text = "All Inventories";
+                }
+                else if (filter_cb.SelectedIndex == 1)
+                {
+                    title_lbl.Text = "Out Of Stock";
+                }
+                else if (filter_cb.SelectedIndex == 2)
+                {
+                    title_lbl.Text = "Low Stock Inventories";
+                }
             }
+
             catch (Exception ex)
             {
                 MessageHandler.ShowError(ex.Message);
             }
+        }
+
+        private void refresh_btn_Click(object sender, EventArgs e)
+        {
+            filter_cb.SelectedIndex = 2;
+            filter_cb.SelectedIndex = 0;
         }
     }
 }
