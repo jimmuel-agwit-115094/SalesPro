@@ -7,4 +7,12 @@ namespace SalesPro.Enums
         Negative_Adjustment,
         AddedToInventory,
     }
+
+    public enum InventoryFilterType
+    {
+        AllProducts = 1,
+        OutOfStock = 2,
+        LowStocks = 3
+    }
+
 }

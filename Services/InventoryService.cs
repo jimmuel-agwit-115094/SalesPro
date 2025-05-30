@@ -12,7 +12,7 @@ namespace SalesPro.Services
 {
     public class InventoryService
     {
-        public async Task<List<InventoryModelExtended>> GetFilteredInventories()
+        public async Task<List<InventoryModelExtended>> GetFilteredInventories(InventoryFilterType filterType)
         {
             using (var context = new DatabaseContext())
             {
@@ -39,9 +39,22 @@ namespace SalesPro.Services
                                 ReorderLevel = p.ReorderLevel
                             };
 
+                // Apply filter based on enum
+                switch (filterType)
+                {
+                    case InventoryFilterType.OutOfStock:
+                        query = query.Where(x => x.QuantityOnHand <= 0);
+                        break;
+                    case InventoryFilterType.LowStocks:
+                        query = query.Where(x => x.QuantityOnHand > 0 && x.QuantityOnHand <= x.ReorderLevel);
+                        break;
+                        // case AllProducts is default, no filtering needed
+                }
+
                 return await query.OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
             }
         }
+
 
         public async Task<List<InventoryProductExtended>> GetLowStockProducts()
         {
@@ -64,7 +77,6 @@ namespace SalesPro.Services
                 return await query.ToListAsync();
             }
         }
-
 
         public async Task<InventoryModelExtended> GetExtendedInventoryById(int inventoryId)
         {

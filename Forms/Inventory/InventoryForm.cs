@@ -1,4 +1,5 @@
-﻿using SalesPro.Helpers;
+﻿using SalesPro.Enums;
+using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
@@ -27,6 +28,8 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
+                filter_cb.DataSource = Enum.GetValues(typeof(InventoryFilterType));
+                var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
                 _curDate = await ClockHelper.GetServerDateTime();
                 await LoadFilteredInventories();
             }
@@ -36,49 +39,16 @@ namespace SalesPro.Forms.Inventory
             }
 
         }
-
         private async Task LoadFilteredInventories()
         {
-            var inv = await _service.GetFilteredInventories();
+            var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
+            var inv = await _service.GetFilteredInventories(selectedFilter);
             dgInventory.DataSource = inv;
             _inventoryList = inv;
-            DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
-                     "InventoryId",
-                     "ProductName",
-                     "DateAdded",
-                     "QuantityOnHand",
-                     "RetailPrice");
-            DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
+            FormatGrid();
         }
 
-        //private async Task LoadLowStockProducts()
-        //{
-        //    var lowStocks = await _service.GetLowStockProducts();
-        //    dgInventory.DataSource = lowStocks;
-        //    DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
-        //          "ProductName",
-        //          "Stock");
 
-        //    dgInventory.Columns["ProductName"].DisplayIndex = 0;
-        //}
-
-        //public async Task LoadInventoriesBaseOnTabSelected()
-        //{
-        //    _selectedTab = inventoryTabControl.SelectedIndex;
-        //    switch (_selectedTab)
-        //    {
-        //        case 0:
-        //            await LoadFilteredInventories();
-        //            print_btn.Visible = true;
-        //            break;
-        //        case 1:
-        //            await LoadLowStockProducts();
-        //            print_btn.Visible = false;
-        //            break;
-        //    }
-        //}
-
-      
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -91,7 +61,6 @@ namespace SalesPro.Forms.Inventory
                     form._inventoryId = invId;
                     form.ShowDialog();
                 }
-
             }
             catch (Exception ex)
             {
@@ -132,6 +101,17 @@ namespace SalesPro.Forms.Inventory
             form.ShowDialog();
         }
 
+        private void FormatGrid()
+        {
+            DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
+                         "InventoryId",
+                         "ProductName",
+                         "DateAdded",
+                         "QuantityOnHand",
+                         "RetailPrice");
+            DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
+        }
+
         private async void findBtn_Click(object sender, EventArgs e)
         {
             try
@@ -140,17 +120,23 @@ namespace SalesPro.Forms.Inventory
                 var inv = await _service.GetInventoriesByDate(dateFilter);
                 dgInventory.DataSource = inv;
                 _inventoryList = inv;
-                DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
-                         "InventoryId",
-                         "ProductName",
-                         "DateAdded",
-                         "QuantityOnHand",
-                         "RetailPrice");
-                DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
+                FormatGrid();
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error filtering inventories: {ex.Message}");
+            }
+        }
+
+        private async void filter_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadFilteredInventories();
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError(ex.Message);
             }
         }
     }

@@ -224,6 +224,7 @@
     <Compile Include="Forms\Inventory\ManageInventoryForm.Designer.cs">
       <DependentUpon>ManageInventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\InventoryHelper.cs" />
     <Compile Include="Models\UserModel\RoleModel.cs" />
     <Compile Include="Models\UserModel\UserAccessModel.cs" />
     <Compile Include="Printing\CustomerCreditDataSet.Designer.cs">
