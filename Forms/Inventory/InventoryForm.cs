@@ -43,6 +43,7 @@ namespace SalesPro.Forms.Inventory
         {
             var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
             var inv = await _service.GetFilteredInventories(selectedFilter);
+         
             dgInventory.DataSource = inv;
             _inventoryList = inv;
             FormatGrid();
@@ -158,6 +159,7 @@ namespace SalesPro.Forms.Inventory
         {
             filter_cb.SelectedIndex = 2;
             filter_cb.SelectedIndex = 0;
+            search_tx.Clear();
         }
     }
 }

@@ -16,42 +16,50 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                var query = from i in context.Inventories
-                            join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
-                            join p in context.Products on i.ProductId equals p.ProductId
-                            join u in context.Users on i.UserId equals u.UserId
-                            join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                            select new InventoryModelExtended
-                            {
-                                InventoryId = i.InventoryId,
-                                PurchaseOrderId = i.PurchaseOrderId,
-                                ProductId = i.ProductId,
-                                SupplierId = i.SupplierId,
-                                UserId = i.UserId,
-                                DateAdded = i.DateAdded,
-                                QuantityFromPo = i.QuantityFromPo,
-                                QuantityOnHand = i.QuantityOnHand,
-                                SupplierPrice = i.SupplierPrice,
-                                RetailPrice = i.RetailPrice,
-                                ProductName = p.ProductName,
-                                SupplierName = s.SupplierName,
-                                UserFullName = u.Fullname,
-                                ReorderLevel = p.ReorderLevel
-                            };
+                var baseQuery = from i in context.Inventories
+                                join po in context.PurchaseOrders on i.PurchaseOrderId equals po.PurchaseOrderId
+                                join p in context.Products on i.ProductId equals p.ProductId
+                                join u in context.Users on i.UserId equals u.UserId
+                                join s in context.Suppliers on i.SupplierId equals s.SupplierId
+                                select new { i, p, u, s };
 
-                // Apply filter based on enum
+                // Filter on actual entity fields (still in IQueryable context)
                 switch (filterType)
                 {
                     case InventoryFilterType.OutOfStock:
-                        query = query.Where(x => x.QuantityOnHand <= 0);
+                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand <= 0);
                         break;
                     case InventoryFilterType.LowStocks:
-                        query = query.Where(x => x.QuantityOnHand > 0 && x.QuantityOnHand <= x.ReorderLevel);
+                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand > 0 && x.i.QuantityOnHand <= x.p.ReorderLevel);
                         break;
-                        // case AllProducts is default, no filtering needed
+                    case InventoryFilterType.AllProducts:
+                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand != 0);
+                        break;
                 }
 
-                return await query.OrderByDescending(x => x.PurchaseOrderId).ToListAsync();
+                // Then project into your DTO
+                var result = await baseQuery
+                    .OrderByDescending(x => x.i.PurchaseOrderId)
+                    .Select(x => new InventoryModelExtended
+                    {
+                        InventoryId = x.i.InventoryId,
+                        PurchaseOrderId = x.i.PurchaseOrderId,
+                        ProductId = x.i.ProductId,
+                        SupplierId = x.i.SupplierId,
+                        UserId = x.i.UserId,
+                        DateAdded = x.i.DateAdded,
+                        QuantityFromPo = x.i.QuantityFromPo,
+                        QuantityOnHand = x.i.QuantityOnHand,
+                        SupplierPrice = x.i.SupplierPrice,
+                        RetailPrice = x.i.RetailPrice,
+                        ProductName = x.p.ProductName,
+                        SupplierName = x.s.SupplierName,
+                        UserFullName = x.u.Fullname,
+                        ReorderLevel = x.p.ReorderLevel
+                    })
+                    .ToListAsync();
+
+                return result;
             }
         }
 
