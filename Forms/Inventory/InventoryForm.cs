@@ -29,8 +29,9 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                filter_cb.DataSource = Enum.GetValues(typeof(InventoryFilterType));
-                var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
+                //filter_cb.DataSource = Enum.GetValues(typeof(InventoryFilterType));
+                //var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
+                filter_cb.SelectedIndex = 0; // Default to All Inventories
                 _curDate = await ClockHelper.GetServerDateTime();
                 await LoadFilteredInventories();
             }
@@ -68,7 +69,7 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
-                if (_selectedTab == 0)
+                if (filter_cb.SelectedIndex == 0)
                 {
                     int invId = DgFormatHelper.GetSelectedId(dgInventory, e, "InventoryId");
                     if (invId == 0) return;
