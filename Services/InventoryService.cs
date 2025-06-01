@@ -12,7 +12,7 @@ namespace SalesPro.Services
 {
     public class InventoryService
     {
-        public async Task<List<InventoryModelExtended>> GetFilteredInventories(InventoryFilterType filterType)
+        public async Task<List<InventoryModelExtended>> GetAllInventories()
         {
             using (var context = new DatabaseContext())
             {
@@ -21,23 +21,9 @@ namespace SalesPro.Services
                                 join p in context.Products on i.ProductId equals p.ProductId
                                 join u in context.Users on i.UserId equals u.UserId
                                 join s in context.Suppliers on i.SupplierId equals s.SupplierId
+                                where i.QuantityOnHand != 0 // Default filter: Out of Stock
                                 select new { i, p, u, s };
 
-                // Filter on actual entity fields (still in IQueryable context)
-                switch (filterType)
-                {
-                    case InventoryFilterType.OutOfStock:
-                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand <= 0);
-                        break;
-                    case InventoryFilterType.LowStocks:
-                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand > 0 && x.i.QuantityOnHand <= x.p.ReorderLevel);
-                        break;
-                    case InventoryFilterType.AllProducts:
-                        baseQuery = baseQuery.Where(x => x.i.QuantityOnHand != 0);
-                        break;
-                }
-
-                // Then project into your DTO
                 var result = await baseQuery
                     .OrderByDescending(x => x.i.PurchaseOrderId)
                     .Select(x => new InventoryModelExtended
@@ -63,7 +49,6 @@ namespace SalesPro.Services
             }
         }
 
-
         public async Task<List<InventoryProductExtended>> GetLowStockProducts()
         {
             using (var context = new DatabaseContext())
@@ -72,19 +57,44 @@ namespace SalesPro.Services
                     .Join(context.Products,
                           i => i.ProductId,
                           p => p.ProductId,
-                          (i, p) => new { p.ProductName, p.ReorderLevel, i.QuantityOnHand })
-                    .GroupBy(x => new { x.ProductName, x.ReorderLevel })
+                          (i, p) => new { p.ProductName, p.Description, p.ReorderLevel, i.QuantityOnHand })
+                    .GroupBy(x => new { x.ProductName, x.Description, x.ReorderLevel })
                     .Where(g => g.Sum(x => x.QuantityOnHand) < g.Key.ReorderLevel || g.Sum(x => x.QuantityOnHand) < 0)
                     .Select(g => new InventoryProductExtended
                     {
                         ProductName = g.Key.ProductName,
-                        Stock = g.Sum(x => x.QuantityOnHand)
+                        Description = g.Key.Description,
+                        Stock = g.Sum(x => x.QuantityOnHand),
                     })
                     .OrderByDescending(x => x.ProductName);
 
                 return await query.ToListAsync();
             }
         }
+
+        public async Task<List<InventoryProductExtended>> GetOutOfStockProducts()
+        {
+            using (var context = new DatabaseContext())
+            {
+                var query = context.Inventories
+                    .Join(context.Products,
+                          i => i.ProductId,
+                          p => p.ProductId,
+                          (i, p) => new { p.ProductName, p.Description, i.QuantityOnHand })
+                    .GroupBy(x => new { x.ProductName, x.Description })
+                    .Where(g => g.Sum(x => x.QuantityOnHand) <= 0) // Out of stock condition
+                    .Select(g => new InventoryProductExtended
+                    {
+                        ProductName = g.Key.ProductName,
+                        Description = g.Key.Description,
+                        Stock = g.Sum(x => x.QuantityOnHand),
+                    })
+                    .OrderByDescending(x => x.ProductName);
+
+                return await query.ToListAsync();
+            }
+        }
+
 
         public async Task<InventoryModelExtended> GetExtendedInventoryById(int inventoryId)
         {

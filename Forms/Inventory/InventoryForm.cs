@@ -5,7 +5,6 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,12 +40,25 @@ namespace SalesPro.Forms.Inventory
         }
         private async Task LoadFilteredInventories()
         {
-            var selectedFilter = (InventoryFilterType)filter_cb.SelectedItem;
-            var inv = await _service.GetFilteredInventories(selectedFilter);
-         
-            dgInventory.DataSource = inv;
-            _inventoryList = inv;
-            FormatGrid();
+            if (filter_cb.SelectedIndex == 0)
+            {
+                var allInventories = await _service.GetAllInventories();
+                _inventoryList = allInventories;
+                dgInventory.DataSource = allInventories;
+                FormatInventoryGrid();
+            }
+            else if (filter_cb.SelectedIndex == 1)
+            {
+                var outOfStockProducts = await _service.GetOutOfStockProducts();
+                dgInventory.DataSource = outOfStockProducts;
+                FormatProductGrid();
+            }
+            else if (filter_cb.SelectedIndex == 2)
+            {
+                var lowStoocks = await _service.GetLowStockProducts();
+                dgInventory.DataSource = lowStoocks;
+                FormatProductGrid();
+            }
         }
 
         private void dgInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -101,7 +113,7 @@ namespace SalesPro.Forms.Inventory
             form.ShowDialog();
         }
 
-        private void FormatGrid()
+        private void FormatInventoryGrid()
         {
             DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
                          "InventoryId",
@@ -112,22 +124,13 @@ namespace SalesPro.Forms.Inventory
             DgFormatHelper.ZeroCellValuesFormat(dgInventory, "QuantityOnHand");
         }
 
-        private void findBtn_Click(object sender, EventArgs e)
+        private void FormatProductGrid()
         {
-            try
-            {
-                DateTime dateFilter = dateAdded_dt.Value.Date;
-                var filteredDate = _inventoryList
-                    .Where(x => x.DateAdded.Date == dateFilter)
-                    .ToList();
-
-                dgInventory.DataSource = filteredDate;
-                FormatGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error filtering inventories: {ex.Message}");
-            }
+            DgExtensions.ConfigureDataGrid(dgInventory, false, 0, notFound_lbl,
+                      "ProductName",
+                      "Description",
+                      "Stock");
+            dgInventory.Columns["ProductName"].DisplayIndex = 0;
         }
 
         private async void filter_cb_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,7 +148,7 @@ namespace SalesPro.Forms.Inventory
                 }
                 else if (filter_cb.SelectedIndex == 2)
                 {
-                    title_lbl.Text = "Low Stock Inventories";
+                    title_lbl.Text = "Low Stock Products";
                 }
             }
 
@@ -155,11 +158,5 @@ namespace SalesPro.Forms.Inventory
             }
         }
 
-        private void refresh_btn_Click(object sender, EventArgs e)
-        {
-            filter_cb.SelectedIndex = 2;
-            filter_cb.SelectedIndex = 0;
-            search_tx.Clear();
-        }
     }
 }

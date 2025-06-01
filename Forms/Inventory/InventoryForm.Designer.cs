@@ -41,19 +41,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.filter_cb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.customDatePanel = new System.Windows.Forms.Panel();
-            this.dateAdded_dt = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.findBtn = new System.Windows.Forms.Button();
             this.print_btn = new System.Windows.Forms.Button();
-            this.refresh_btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInventory)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.customDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,7 +117,7 @@
             this.dgInventory.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgInventory.EnableHeadersVisualStyles = false;
             this.dgInventory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgInventory.Location = new System.Drawing.Point(3, 85);
+            this.dgInventory.Location = new System.Drawing.Point(3, 66);
             this.dgInventory.MultiSelect = false;
             this.dgInventory.Name = "dgInventory";
             this.dgInventory.ReadOnly = true;
@@ -139,7 +133,7 @@
             this.dgInventory.RowHeadersWidth = 51;
             this.dgInventory.RowTemplate.Height = 32;
             this.dgInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgInventory.Size = new System.Drawing.Size(1152, 557);
+            this.dgInventory.Size = new System.Drawing.Size(1152, 576);
             this.dgInventory.TabIndex = 461;
             this.dgInventory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellClick);
             this.dgInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInventory_CellContentClick);
@@ -158,9 +152,7 @@
             // 
             this.panel3.Controls.Add(this.filter_cb);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.customDatePanel);
             this.panel3.Controls.Add(this.print_btn);
-            this.panel3.Controls.Add(this.refresh_btn);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.notFound_lbl);
             this.panel3.Controls.Add(this.dgInventory);
@@ -177,9 +169,9 @@
             this.filter_cb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filter_cb.FormattingEnabled = true;
             this.filter_cb.Items.AddRange(new object[] {
-            "AllProducts",
-            "OutOfStock",
-            "LowStocks"});
+            "All Products",
+            "Out OfStock",
+            "Low Stocks"});
             this.filter_cb.Location = new System.Drawing.Point(128, 14);
             this.filter_cb.Name = "filter_cb";
             this.filter_cb.Size = new System.Drawing.Size(154, 25);
@@ -195,52 +187,6 @@
             this.label1.Size = new System.Drawing.Size(115, 17);
             this.label1.TabIndex = 567;
             this.label1.Text = "Load Product By :";
-            // 
-            // customDatePanel
-            // 
-            this.customDatePanel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.customDatePanel.Controls.Add(this.dateAdded_dt);
-            this.customDatePanel.Controls.Add(this.label3);
-            this.customDatePanel.Controls.Add(this.findBtn);
-            this.customDatePanel.Location = new System.Drawing.Point(311, 6);
-            this.customDatePanel.Name = "customDatePanel";
-            this.customDatePanel.Size = new System.Drawing.Size(394, 39);
-            this.customDatePanel.TabIndex = 564;
-            // 
-            // dateAdded_dt
-            // 
-            this.dateAdded_dt.CustomFormat = "MMMM dd,  yyyy";
-            this.dateAdded_dt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateAdded_dt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateAdded_dt.Location = new System.Drawing.Point(97, 8);
-            this.dateAdded_dt.Name = "dateAdded_dt";
-            this.dateAdded_dt.Size = new System.Drawing.Size(161, 23);
-            this.dateAdded_dt.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 17);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Date Added :";
-            // 
-            // findBtn
-            // 
-            this.findBtn.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.findBtn.FlatAppearance.BorderSize = 0;
-            this.findBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findBtn.ForeColor = System.Drawing.Color.White;
-            this.findBtn.Location = new System.Drawing.Point(270, 6);
-            this.findBtn.Name = "findBtn";
-            this.findBtn.Size = new System.Drawing.Size(112, 27);
-            this.findBtn.TabIndex = 533;
-            this.findBtn.Text = "Find ";
-            this.findBtn.UseVisualStyleBackColor = false;
-            this.findBtn.Click += new System.EventHandler(this.findBtn_Click);
             // 
             // print_btn
             // 
@@ -259,25 +205,11 @@
             this.print_btn.UseVisualStyleBackColor = false;
             this.print_btn.Click += new System.EventHandler(this.print_btn_Click);
             // 
-            // refresh_btn
-            // 
-            this.refresh_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.refresh_btn.Image = ((System.Drawing.Image)(resources.GetObject("refresh_btn.Image")));
-            this.refresh_btn.Location = new System.Drawing.Point(711, 11);
-            this.refresh_btn.Name = "refresh_btn";
-            this.refresh_btn.Size = new System.Drawing.Size(120, 28);
-            this.refresh_btn.TabIndex = 565;
-            this.refresh_btn.Text = " Refresh";
-            this.refresh_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.refresh_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.refresh_btn.UseVisualStyleBackColor = true;
-            this.refresh_btn.Click += new System.EventHandler(this.refresh_btn_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1127, 53);
+            this.pictureBox1.Location = new System.Drawing.Point(1001, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -288,7 +220,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(838, 53);
+            this.search_tx.Location = new System.Drawing.Point(712, 13);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(317, 27);
@@ -318,8 +250,6 @@
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.customDatePanel.ResumeLayout(false);
-            this.customDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -336,12 +266,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.TextBox search_tx;
         private System.Windows.Forms.Button print_btn;
-        private System.Windows.Forms.Panel customDatePanel;
-        private System.Windows.Forms.DateTimePicker dateAdded_dt;
-        private System.Windows.Forms.Button findBtn;
-        private System.Windows.Forms.Button refresh_btn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox filter_cb;
     }
 }
