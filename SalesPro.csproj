@@ -259,6 +259,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Printing\ProductDataSet.cs">
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\ProductDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\BackupAndRestoreService.cs" />
     <Compile Include="Enums\ActionsEnum.cs" />
@@ -625,6 +633,7 @@
     <EmbeddedResource Include="Printing\rdlc\CustomerCreditRdlc.rdlc" />
     <EmbeddedResource Include="Printing\rdlc\InventoryRdlc.rdlc" />
     <EmbeddedResource Include="Printing\rdlc\PoDetailsRdlc.rdlc" />
+    <EmbeddedResource Include="Printing\rdlc\ProductRdlc.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -671,6 +680,17 @@
     </None>
     <None Include="Printing\PoDataSet.xss">
       <DependentUpon>PoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Printing\ProductDataSet.xsc">
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Printing\ProductDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Printing\ProductDataSet.xss">
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -14,6 +14,7 @@
 
         public const string Expenses = "Expenses";
         public const string Inventory = "Inventory";
+        public const string ProductInventory = "ProductInventory";
 
         public const string CustomerCreditPayment = "CustomerCreditPayment";
 

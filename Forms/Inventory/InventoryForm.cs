@@ -17,6 +17,7 @@ namespace SalesPro.Forms.Inventory
         private DateTime _curDate;
         private readonly InventoryService _service;
         private List<InventoryModelExtended> _inventoryList;
+        private List<InventoryProductExtended> _productList;
         private Dictionary<string, string> _inventoryParam;
         public InventoryForm()
         {
@@ -51,12 +52,14 @@ namespace SalesPro.Forms.Inventory
             {
                 var outOfStockProducts = await _service.GetOutOfStockProducts();
                 dgInventory.DataSource = outOfStockProducts;
+                _productList = outOfStockProducts;
                 FormatProductGrid();
             }
             else if (filter_cb.SelectedIndex == 2)
             {
                 var lowStoocks = await _service.GetLowStockProducts();
                 dgInventory.DataSource = lowStoocks;
+                _productList = lowStoocks;
                 FormatProductGrid();
             }
         }
@@ -97,19 +100,46 @@ namespace SalesPro.Forms.Inventory
 
         private void print_btn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (filter_cb.SelectedIndex == 0)
+                {
+                    PrintInventory();
+                }
+                else
+                {
+                    PrintProductInventory();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError(ex.Message);
+            }
             if (dgInventory.Rows.Count == 0)
             {
                 MessageHandler.ShowWarning("No data to print.");
                 return;
             }
+        }
 
+        private void PrintInventory()
+        {
             var form = new PrintingForm();
-            form._inventoryParam = new Dictionary<string, string>
+            form._inventoryList = _inventoryList;
+            form._formAction = Constants.FormConstants.Inventory;
+            form.ShowDialog();
+        }
+
+        // Print product inventory
+        public void PrintProductInventory()
+        {
+            var form = new PrintingForm();
+            form._productParam = new Dictionary<string, string>
             {
                 { "FilterType", title_lbl.Text }
             };
-            form._inventoryList = _inventoryList;
-            form._formAction = Constants.FormConstants.Inventory;
+            form._productList = _productList;
+            form._formAction = Constants.FormConstants.ProductInventory;
             form.ShowDialog();
         }
 
@@ -144,7 +174,7 @@ namespace SalesPro.Forms.Inventory
                 }
                 else if (filter_cb.SelectedIndex == 1)
                 {
-                    title_lbl.Text = "Out Of Stock";
+                    title_lbl.Text = "Out Of Stock Products";
                 }
                 else if (filter_cb.SelectedIndex == 2)
                 {

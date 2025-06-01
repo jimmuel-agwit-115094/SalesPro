@@ -14,10 +14,12 @@ namespace SalesPro.Forms
         public Dictionary<string, string> _poDetailsParam;
 
         public List<InventoryModelExtended> _inventoryList;
-        public Dictionary<string, string> _inventoryParam;
 
         public List<OrderItemModelExtended> _customerCreditList;
         public Dictionary<string, string> _customerCreditParam;
+
+        public List<InventoryProductExtended> _productList;
+        public Dictionary<string, string> _productParam;
 
         public PrintingForm()
         {
@@ -33,13 +35,19 @@ namespace SalesPro.Forms
         private void PrintInventory()
         {
             const string reportName = "InventoryRdlc";
-            PrintingHelper.PrintReport(reportRv, reportName, _inventoryList, "InventoryDataSet", _inventoryParam);
+            PrintingHelper.PrintReport(reportRv, reportName, _inventoryList, "InventoryDataSet");
         }
 
         private void PrintCustomerCredit()
         {
             const string reportName = "CustomerCreditRdlc";
             PrintingHelper.PrintReport(reportRv, reportName, _customerCreditList, "CustomerCreditDataSet", _customerCreditParam);
+        }
+
+        private void PrintProductInventory()
+        {
+            const string reportName = "ProductRdlc";
+            PrintingHelper.PrintReport(reportRv, reportName, _productList, "ProductDataSet", _productParam);
         }
 
         private void Printing_Load(object sender, EventArgs e)
@@ -61,7 +69,12 @@ namespace SalesPro.Forms
                     PrintCustomerCredit();
                     return;
                 }
-          
+                else if (_formAction == Constants.FormConstants.ProductInventory)
+                {
+                    PrintProductInventory();
+                    return;
+                }
+
             }
             catch (Exception ex)
             {

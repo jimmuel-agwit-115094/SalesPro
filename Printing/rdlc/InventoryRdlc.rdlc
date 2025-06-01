@@ -602,7 +602,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>InventoryDataSet</DataSetName>
-            <Top>0.38417in</Top>
+            <Top>0.13417in</Top>
             <Height>0.66667in</Height>
             <Width>7.32144in</Width>
             <Style>
@@ -611,48 +611,14 @@
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="FilterType">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!FilterType.Value</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>FilterType</rd:DefaultName>
-            <Top>0.125in</Top>
-            <Left>1.91753in</Left>
-            <Height>0.25in</Height>
-            <Width>3.67535in</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>1.25in</Height>
+        <Height>0.94792in</Height>
         <Style />
       </Body>
       <Width>7.40625in</Width>
       <Page>
         <PageHeader>
-          <Height>0.48958in</Height>
+          <Height>0.46875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -663,7 +629,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Inventory</Value>
+                      <Value>Active Inventory</Value>
                       <Style>
                         <FontSize>13pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -757,23 +723,10 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParameters>
-    <ReportParameter Name="FilterType">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
-      <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>FilterType</ParameterName>
-        </CellDefinition>
-      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
