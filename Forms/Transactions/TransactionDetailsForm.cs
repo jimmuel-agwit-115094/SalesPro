@@ -214,7 +214,7 @@ namespace SalesPro.Forms.Transactions
             if (_actionType == SystemConstants.New)
             {
                 Text = "New Transaction";
-                save_btn.Text = "Save";
+                save_btn.Text = "Create Transaction";
                 save_btn.BackColor = Color.Green;
                 date_tx.Text = DateFormatHelper.FormatDate(_curDate);
 
