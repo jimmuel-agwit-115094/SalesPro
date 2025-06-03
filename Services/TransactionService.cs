@@ -147,12 +147,12 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<TransactionModel>> GetUnclosedTransactions()
+        public async Task<List<TransactionModel>> GetUnclosedTransactions(DateTime currentDate)
         {
             using (var _dbContext = new DatabaseContext())
             {
                 return await _dbContext.Transactions
-                    .Where(x => x.IsClosed == false)
+                    .Where(x => x.IsClosed == false && x.StartDate.Date != currentDate.Date)
                     .OrderByDescending(x => x.TransactionId)
                     .ToListAsync();
             }

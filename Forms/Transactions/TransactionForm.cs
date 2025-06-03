@@ -85,21 +85,31 @@ namespace SalesPro.Forms.Transactions
         private async Task ProcessTransactionLoad()
         {
             var transactions = new List<TransactionModel>();
-            var unclosedTransactions = await _service.GetUnclosedTransactions();
+            // Get the unclosed transaction that is not dated on the current date
+            var unclosedTransactions = await _service.GetUnclosedTransactions(_curDate.Date);
+            var currentTransactions = await _service.GetTransactionByDate(_curDate.Date);
+
             if (unclosedTransactions.Any())
             {
+                // Display unclosed transactions
                 transactions = unclosedTransactions;
+                unclosed_panel.Visible = true;
             }
             else
             {
+                // Display all transactions
                 transactions = await _service.GetAllTransactions();
+                unclosed_panel.Visible = false;
             }
-             
+
+            noTransactionPanel.Visible = !currentTransactions.Any();
+
             dgTrans.DataSource = transactions;
             transactionDate_lbl.Visible = false;
             noRecordDate_lbl.Visible = false;
             search_tx.Clear();
             FormatGrid();
+            new_btn.Enabled = !currentTransactions.Any() && !unclosedTransactions.Any();
         }
 
         private async void transactionsTabControl_SelectedIndexChanged(object sender, EventArgs e)

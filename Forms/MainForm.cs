@@ -141,7 +141,6 @@ namespace SalesPro.Forms
             }
             bool hasTransactions = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
             EnableDisableButton(hasTransactions);
-            noTransactionPanel.Visible = !hasTransactions;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)

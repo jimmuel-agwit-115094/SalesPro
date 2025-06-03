@@ -44,10 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.noTransactionPanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.orders_btn = new System.Windows.Forms.Button();
@@ -68,8 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.inactivePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            this.noTransactionPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.left_nav.SuspendLayout();
             this.SuspendLayout();
@@ -149,7 +143,6 @@
             this.top_nav.Controls.Add(this.trialPanel);
             this.top_nav.Controls.Add(this.inactivePanel);
             this.top_nav.Controls.Add(this.Panel1);
-            this.top_nav.Controls.Add(this.noTransactionPanel);
             this.top_nav.Dock = System.Windows.Forms.DockStyle.Top;
             this.top_nav.Location = new System.Drawing.Point(207, 0);
             this.top_nav.Name = "top_nav";
@@ -247,52 +240,6 @@
             this.label6.Size = new System.Drawing.Size(165, 17);
             this.label6.TabIndex = 539;
             this.label6.Text = "Product Needs Activation";
-            // 
-            // noTransactionPanel
-            // 
-            this.noTransactionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.noTransactionPanel.Controls.Add(this.label2);
-            this.noTransactionPanel.Controls.Add(this.pictureBox4);
-            this.noTransactionPanel.Controls.Add(this.label5);
-            this.noTransactionPanel.ForeColor = System.Drawing.Color.Red;
-            this.noTransactionPanel.Location = new System.Drawing.Point(269, 4);
-            this.noTransactionPanel.Name = "noTransactionPanel";
-            this.noTransactionPanel.Size = new System.Drawing.Size(247, 48);
-            this.noTransactionPanel.TabIndex = 545;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(47, 24);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 17);
-            this.label2.TabIndex = 544;
-            this.label2.Text = "Please create a new transaction";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 30);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 543;
-            this.pictureBox4.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(48, 6);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 17);
-            this.label5.TabIndex = 539;
-            this.label5.Text = "No Daily Transaction ";
             // 
             // label3
             // 
@@ -518,9 +465,6 @@
             this.inactivePanel.ResumeLayout(false);
             this.inactivePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.noTransactionPanel.ResumeLayout(false);
-            this.noTransactionPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.left_nav.ResumeLayout(false);
             this.left_nav.PerformLayout();
@@ -556,10 +500,6 @@
         private System.Windows.Forms.Label remaining_tx;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel noTransactionPanel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
     }
 }
