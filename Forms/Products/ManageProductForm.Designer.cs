@@ -197,12 +197,12 @@
             // 
             this.logs_link.AutoSize = true;
             this.logs_link.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logs_link.Location = new System.Drawing.Point(351, 16);
+            this.logs_link.Location = new System.Drawing.Point(294, 16);
             this.logs_link.Name = "logs_link";
-            this.logs_link.Size = new System.Drawing.Size(85, 17);
+            this.logs_link.Size = new System.Drawing.Size(146, 17);
             this.logs_link.TabIndex = 552;
             this.logs_link.TabStop = true;
-            this.logs_link.Text = "Product Logs";
+            this.logs_link.Text = "Product Change History";
             this.logs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logs_link_LinkClicked);
             // 
             // ManageProductForm

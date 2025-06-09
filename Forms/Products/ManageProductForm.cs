@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesPro.Forms.Products
 {
@@ -100,7 +99,7 @@ namespace SalesPro.Forms.Products
                 if (MessageHandler.ShowQuestionGeneric("Confirm add/update product?"))
                 {
                     int success = 0;
-                    if (_actionType == Constants.SystemConstants.New)
+                    if (_actionType == SystemConstants.New)
                     {
                         success = await _service.SaveProduct(new ProductModel
                         {
@@ -136,10 +135,6 @@ namespace SalesPro.Forms.Products
             {
                 MessageHandler.ShowError($"Error managing product {_actionType}: {ex.Message}");
             }
-        }
-
-        private void reorder_tx_TextChanged(object sender, EventArgs e)
-        {
         }
 
         private void barCode_tx_TextChanged(object sender, EventArgs e)

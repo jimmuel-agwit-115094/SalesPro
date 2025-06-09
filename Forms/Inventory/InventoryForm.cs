@@ -101,6 +101,11 @@ namespace SalesPro.Forms.Inventory
 
         private void print_btn_Click(object sender, EventArgs e)
         {
+            if (dgInventory.Rows.Count == 0)
+            {
+                MessageHandler.ShowWarning("No data to print.");
+                return;
+            }
             try
             {
                 if (filter_cb.SelectedIndex == 0)

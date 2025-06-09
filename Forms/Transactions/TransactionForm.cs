@@ -94,12 +94,14 @@ namespace SalesPro.Forms.Transactions
                 // Display unclosed transactions
                 transactions = unclosedTransactions;
                 unclosed_panel.Visible = true;
+                find_btn.Enabled = false;
             }
             else
             {
                 // Display all transactions
                 transactions = await _service.GetAllTransactions();
                 unclosed_panel.Visible = false;
+                find_btn.Enabled = true;
             }
 
             noTransactionPanel.Visible = !currentTransactions.Any();
@@ -178,6 +180,11 @@ namespace SalesPro.Forms.Transactions
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }
