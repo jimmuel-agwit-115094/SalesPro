@@ -98,9 +98,9 @@
             // return_pb
             // 
             this.return_pb.Image = ((System.Drawing.Image)(resources.GetObject("return_pb.Image")));
-            this.return_pb.Location = new System.Drawing.Point(287, 19);
+            this.return_pb.Location = new System.Drawing.Point(266, 13);
             this.return_pb.Name = "return_pb";
-            this.return_pb.Size = new System.Drawing.Size(20, 20);
+            this.return_pb.Size = new System.Drawing.Size(40, 40);
             this.return_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.return_pb.TabIndex = 558;
             this.return_pb.TabStop = false;

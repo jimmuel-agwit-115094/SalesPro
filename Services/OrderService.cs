@@ -278,6 +278,7 @@ namespace SalesPro.Services
                     if (inventoryProductExist != null)
                     {
                         // Update the existing order item
+                        inventoryProductExist.OrderItemStatus = itemStatus;
                         inventoryProductExist.OrderQuantity += orderItem.OrderQuantity;
                         inventoryProductExist.TotalPrice = inventoryProductExist.OrderQuantity * inventoryProductExist.Price;
                         await context.SaveChangesAsync();
