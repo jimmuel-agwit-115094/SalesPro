@@ -81,7 +81,6 @@
             this.reorder_tx.Name = "reorder_tx";
             this.reorder_tx.Size = new System.Drawing.Size(277, 25);
             this.reorder_tx.TabIndex = 539;
-            this.reorder_tx.TextChanged += new System.EventHandler(this.reorder_tx_TextChanged);
             // 
             // label4
             // 

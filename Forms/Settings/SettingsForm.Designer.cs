@@ -775,7 +775,6 @@
             this.signedKey_tx.Size = new System.Drawing.Size(491, 166);
             this.signedKey_tx.TabIndex = 33;
             this.signedKey_tx.TextChanged += new System.EventHandler(this.signedKey_tx_TextChanged);
-            this.signedKey_tx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.signedKey_tx_KeyDown);
             // 
             // key_tx
             // 

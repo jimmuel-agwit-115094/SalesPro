@@ -165,9 +165,5 @@ namespace SalesPro.Forms.PaymentsAndBilling
             await SetBanks();
         }
 
-        private void bank_cb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

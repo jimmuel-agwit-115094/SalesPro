@@ -226,10 +226,5 @@ namespace SalesPro.Forms.Inventory
                 update_btn.Text = "Deduct Quantity";
             }
         }
-
-        private void adjustingQty_tx_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

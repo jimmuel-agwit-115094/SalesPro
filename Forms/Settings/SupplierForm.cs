@@ -1,16 +1,10 @@
 ﻿using SalesPro.Constants;
-using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using SalesPro.Settings;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -145,11 +139,6 @@ namespace SalesPro.Forms.Settings
             {
                 MessageHandler.ShowError($"Error saving supplier: {ex.Message}");
             }
-        }
-
-        private void tin_tx_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void tin_tx_KeyPress(object sender, KeyPressEventArgs e)

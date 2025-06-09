@@ -241,15 +241,5 @@ namespace SalesPro.Forms.Orders
         {
             _orderForm.barcode_tx.Select();
         }
-
-        private void totalAmtDue_tx_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void paymentMethod_cb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
     }
 }

@@ -97,7 +97,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 MessageHandler.ShowError($"Error saving expense: {ex.Message}");
             }
-
         }
 
         private async void ExpensesForm_Load(object sender, EventArgs e)
@@ -134,11 +133,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             {
                 MessageHandler.ShowError($"Error expense loading: {ex.Message}");
             }
-        }
-
-        private void dateAdded_dt_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

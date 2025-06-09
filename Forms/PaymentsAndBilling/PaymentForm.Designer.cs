@@ -191,7 +191,6 @@
             this.bank_cb.Name = "bank_cb";
             this.bank_cb.Size = new System.Drawing.Size(293, 29);
             this.bank_cb.TabIndex = 584;
-            this.bank_cb.SelectedIndexChanged += new System.EventHandler(this.bank_cb_SelectedIndexChanged);
             // 
             // label2
             // 

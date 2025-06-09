@@ -423,7 +423,6 @@
             this.adjustingQty_tx.Tag = "IsNumeric";
             this.adjustingQty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.adjustingQty_tx.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.adjustingQty_tx.ValueChanged += new System.EventHandler(this.adjustingQty_tx_ValueChanged);
             // 
             // reason_tx
             // 

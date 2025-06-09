@@ -105,10 +105,5 @@ namespace SalesPro.Forms.Orders
                 }
             }
         }
-
-        private void ManageCustomerForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
     }
 }

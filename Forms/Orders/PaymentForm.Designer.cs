@@ -150,7 +150,6 @@
             this.paymentMethod_cb.Name = "paymentMethod_cb";
             this.paymentMethod_cb.Size = new System.Drawing.Size(343, 33);
             this.paymentMethod_cb.TabIndex = 553;
-            this.paymentMethod_cb.SelectedIndexChanged += new System.EventHandler(this.paymentMethod_cb_SelectedIndexChanged);
             // 
             // label4
             // 

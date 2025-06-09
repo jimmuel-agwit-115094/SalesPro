@@ -59,7 +59,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 DgExtensions.ConfigureDataGrid(dgOrderedItems, false, 2, notFound_lbl,
                   "ProductName", "OrderQuantity", "Price", "Total");
             }
-
         }
 
         public async Task SetControls()
@@ -242,16 +241,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
             _form.unpaid_rd.PerformClick();
         }
 
-        private void paymentStatus_tx_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void paymentStatus_tx_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void print_btn_Click(object sender, EventArgs e)
         {
             if (_actionForm == FormConstants.CustomerCredits)
@@ -272,7 +261,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 form._formAction = FormConstants.CustomerCreditPayment;
                 form.ShowDialog();
             }
-
         }
     }
 }

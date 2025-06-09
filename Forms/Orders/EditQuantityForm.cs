@@ -92,11 +92,6 @@ namespace SalesPro.Forms.Orders
             }
         }
 
-        private void qty_tx_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void qty_tx_TextChanged(object sender, EventArgs e)
         {
             if (qty_tx.Text == string.Empty)

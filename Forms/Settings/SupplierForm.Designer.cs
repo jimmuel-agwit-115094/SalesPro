@@ -105,7 +105,6 @@
             this.tin_tx.Name = "tin_tx";
             this.tin_tx.Size = new System.Drawing.Size(303, 25);
             this.tin_tx.TabIndex = 568;
-            this.tin_tx.TextChanged += new System.EventHandler(this.tin_tx_TextChanged);
             this.tin_tx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tin_tx_KeyPress);
             // 
             // label6

@@ -11,7 +11,6 @@ using SalesPro.Forms.Transactions;
 using SalesPro.Helpers;
 using SalesPro.Models;
 using SalesPro.Models.Sessions;
-using SalesPro.Properties;
 using SalesPro.Services;
 using SalesPro.Settings;
 using System;

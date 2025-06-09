@@ -99,11 +99,6 @@ namespace SalesPro.Settings
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void newUser_btn_Click(object sender, EventArgs e)
         {
             if (settingsTabControl.SelectedIndex == 0)
@@ -302,11 +297,6 @@ namespace SalesPro.Settings
 
             // Move the cursor to the end of the text
             signedKey_tx.SelectionStart = signedKey_tx.Text.Length;
-        }
-
-        private void signedKey_tx_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
     }
 }

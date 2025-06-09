@@ -178,15 +178,5 @@ namespace SalesPro.Forms.Transactions
                 }
             }
         }
-
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

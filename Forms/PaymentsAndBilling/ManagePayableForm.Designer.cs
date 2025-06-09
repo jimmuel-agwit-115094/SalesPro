@@ -169,8 +169,6 @@
             this.pastDue_tx.Text = "Past Due";
             this.pastDue_tx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pastDue_tx.Visible = false;
-            this.pastDue_tx.TextChanged += new System.EventHandler(this.paymentStatus_tx_TextChanged);
-            this.pastDue_tx.Click += new System.EventHandler(this.paymentStatus_tx_Click);
             // 
             // label9
             // 
