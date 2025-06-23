@@ -227,6 +227,26 @@ namespace SalesPro.Services
                 inventory.QuantityOnHand += (orderItem.OrderItemStatus != OrderItemStatus.Added)
                     ? convertedQuantity
                     : -convertedQuantity;
+
+                // Add the inventory logs
+                var ds = new InventoryLogModel
+                {
+                    InventoryId = orderItem.InventoryId,
+                    UserId = UserSession.Session_UserId,
+                    DateAdjusted = DateTime.Now,
+                    InventoryAction = orderItem.OrderItemStatus == OrderItemStatus.Added
+                        ? InventoryAction.Positive_Adjustment
+                        : InventoryAction.Negative_Adjustment,
+                    Remarks = orderItem.OrderItemStatus == OrderItemStatus.Added
+                        ? $"Added {convertedQuantity} {orderItem.UnitOfMeasure} of {orderItem.ProductName} to order."
+                        : $"Returned {convertedQuantity} {orderItem.UnitOfMeasure} of {orderItem.ProductName} from order.",
+                    CurrentQuantity = inventory.QuantityOnHand,
+                    AdjustmentQuantity = convertedQuantity,
+                    FinalQuantity = inventory.QuantityOnHand
+                };
+
+                // Save log to context
+                await context.InventoryLogs.AddAsync(ds);
             }
 
             if (inventoryExceedErrors.Any())
@@ -564,7 +584,6 @@ namespace SalesPro.Services
             throw new InvalidOperationException($"Sorry, some items in your order are out of stock or have limited availability:\n{productDetails}");
 
         }
-
 
         public async Task<OrderModel> ChargeOrder(int orderId, CustomerCreditModel custCred, int rowVersion)
         {
