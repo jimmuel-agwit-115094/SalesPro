@@ -107,7 +107,7 @@
             this.notFound_lbl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.notFound_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notFound_lbl.ForeColor = System.Drawing.Color.IndianRed;
-            this.notFound_lbl.Location = new System.Drawing.Point(357, 250);
+            this.notFound_lbl.Location = new System.Drawing.Point(357, 274);
             this.notFound_lbl.Name = "notFound_lbl";
             this.notFound_lbl.Size = new System.Drawing.Size(174, 45);
             this.notFound_lbl.TabIndex = 465;

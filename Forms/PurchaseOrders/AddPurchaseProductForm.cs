@@ -1,11 +1,11 @@
 ﻿using POS_Generic.Helpers;
+using SalesPro.Constants;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Properties;
 using SalesPro.Services;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -145,7 +145,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void dgProducts_SelectionChanged(object sender, EventArgs e)
         {
-            noProductSelectedPanel.Visible = dgProducts.SelectedRows.Count == 0;
+            noProductSelectedPanel.Visible = _actionType == SystemConstants.New && dgProducts.SelectedRows.Count == 0;
             GetPropertiesOnGrid();
         }
 
