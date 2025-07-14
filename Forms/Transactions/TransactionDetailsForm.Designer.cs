@@ -161,6 +161,7 @@
             // endingCash_tx
             // 
             this.endingCash_tx.Location = new System.Drawing.Point(312, 182);
+            this.endingCash_tx.MaxLength = 8;
             this.endingCash_tx.Name = "endingCash_tx";
             this.endingCash_tx.Size = new System.Drawing.Size(261, 27);
             this.endingCash_tx.TabIndex = 530;
@@ -169,6 +170,7 @@
             // begBal_tx
             // 
             this.begBal_tx.Location = new System.Drawing.Point(312, 143);
+            this.begBal_tx.MaxLength = 8;
             this.begBal_tx.Name = "begBal_tx";
             this.begBal_tx.Size = new System.Drawing.Size(261, 27);
             this.begBal_tx.TabIndex = 529;

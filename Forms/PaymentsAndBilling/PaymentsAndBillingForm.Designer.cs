@@ -203,7 +203,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1121, 66);
+            this.pictureBox1.Location = new System.Drawing.Point(1121, 67);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(26, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -214,7 +214,7 @@
             // 
             this.search_tx.BackColor = System.Drawing.Color.White;
             this.search_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_tx.Location = new System.Drawing.Point(759, 65);
+            this.search_tx.Location = new System.Drawing.Point(759, 66);
             this.search_tx.Margin = new System.Windows.Forms.Padding(2);
             this.search_tx.Name = "search_tx";
             this.search_tx.Size = new System.Drawing.Size(389, 27);
@@ -224,7 +224,7 @@
             // payable_pb
             // 
             this.payable_pb.Image = ((System.Drawing.Image)(resources.GetObject("payable_pb.Image")));
-            this.payable_pb.Location = new System.Drawing.Point(10, 39);
+            this.payable_pb.Location = new System.Drawing.Point(373, 20);
             this.payable_pb.Name = "payable_pb";
             this.payable_pb.Size = new System.Drawing.Size(30, 30);
             this.payable_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -236,7 +236,7 @@
             this.po_title.AutoSize = true;
             this.po_title.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.po_title.ForeColor = System.Drawing.Color.Black;
-            this.po_title.Location = new System.Drawing.Point(45, 44);
+            this.po_title.Location = new System.Drawing.Point(12, 27);
             this.po_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.po_title.Name = "po_title";
             this.po_title.Size = new System.Drawing.Size(129, 21);
@@ -251,7 +251,7 @@
             this.panel5.Controls.Add(this.paid_rd);
             this.panel5.Controls.Add(this.showPastDue_cb);
             this.panel5.Controls.Add(this.unpaid_rd);
-            this.panel5.Location = new System.Drawing.Point(759, 16);
+            this.panel5.Location = new System.Drawing.Point(15, 56);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(388, 35);
             this.panel5.TabIndex = 468;
@@ -261,7 +261,7 @@
             this.paid_rd.AutoSize = true;
             this.paid_rd.BackColor = System.Drawing.Color.WhiteSmoke;
             this.paid_rd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paid_rd.Location = new System.Drawing.Point(103, 7);
+            this.paid_rd.Location = new System.Drawing.Point(103, 6);
             this.paid_rd.Name = "paid_rd";
             this.paid_rd.Size = new System.Drawing.Size(52, 21);
             this.paid_rd.TabIndex = 467;
@@ -274,7 +274,7 @@
             // 
             this.showPastDue_cb.AutoSize = true;
             this.showPastDue_cb.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showPastDue_cb.Location = new System.Drawing.Point(233, 8);
+            this.showPastDue_cb.Location = new System.Drawing.Point(233, 7);
             this.showPastDue_cb.Name = "showPastDue_cb";
             this.showPastDue_cb.Size = new System.Drawing.Size(150, 21);
             this.showPastDue_cb.TabIndex = 610;
@@ -288,7 +288,7 @@
             this.unpaid_rd.AutoSize = true;
             this.unpaid_rd.BackColor = System.Drawing.Color.WhiteSmoke;
             this.unpaid_rd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unpaid_rd.Location = new System.Drawing.Point(7, 7);
+            this.unpaid_rd.Location = new System.Drawing.Point(7, 6);
             this.unpaid_rd.Name = "unpaid_rd";
             this.unpaid_rd.Size = new System.Drawing.Size(73, 21);
             this.unpaid_rd.TabIndex = 466;
@@ -405,7 +405,7 @@
             // creditPb
             // 
             this.creditPb.Image = ((System.Drawing.Image)(resources.GetObject("creditPb.Image")));
-            this.creditPb.Location = new System.Drawing.Point(10, 39);
+            this.creditPb.Location = new System.Drawing.Point(372, 20);
             this.creditPb.Name = "creditPb";
             this.creditPb.Size = new System.Drawing.Size(30, 30);
             this.creditPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -417,7 +417,7 @@
             this.credit_lbl.AutoSize = true;
             this.credit_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.credit_lbl.ForeColor = System.Drawing.Color.Black;
-            this.credit_lbl.Location = new System.Drawing.Point(44, 44);
+            this.credit_lbl.Location = new System.Drawing.Point(14, 27);
             this.credit_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.credit_lbl.Name = "credit_lbl";
             this.credit_lbl.Size = new System.Drawing.Size(62, 21);
@@ -431,7 +431,7 @@
             this.panel11.Controls.Add(this.showPastCustomer_cb);
             this.panel11.Controls.Add(this.paidCustomer_rd);
             this.panel11.Controls.Add(this.unpaidCustomer_rd);
-            this.panel11.Location = new System.Drawing.Point(759, 16);
+            this.panel11.Location = new System.Drawing.Point(15, 56);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(388, 35);
             this.panel11.TabIndex = 615;
@@ -440,7 +440,7 @@
             // 
             this.showPastCustomer_cb.AutoSize = true;
             this.showPastCustomer_cb.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showPastCustomer_cb.Location = new System.Drawing.Point(233, 8);
+            this.showPastCustomer_cb.Location = new System.Drawing.Point(233, 7);
             this.showPastCustomer_cb.Name = "showPastCustomer_cb";
             this.showPastCustomer_cb.Size = new System.Drawing.Size(150, 21);
             this.showPastCustomer_cb.TabIndex = 618;
@@ -454,7 +454,7 @@
             this.paidCustomer_rd.AutoSize = true;
             this.paidCustomer_rd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paidCustomer_rd.ForeColor = System.Drawing.Color.Black;
-            this.paidCustomer_rd.Location = new System.Drawing.Point(103, 7);
+            this.paidCustomer_rd.Location = new System.Drawing.Point(103, 6);
             this.paidCustomer_rd.Name = "paidCustomer_rd";
             this.paidCustomer_rd.Size = new System.Drawing.Size(52, 21);
             this.paidCustomer_rd.TabIndex = 467;
@@ -468,7 +468,7 @@
             this.unpaidCustomer_rd.AutoSize = true;
             this.unpaidCustomer_rd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unpaidCustomer_rd.ForeColor = System.Drawing.Color.Black;
-            this.unpaidCustomer_rd.Location = new System.Drawing.Point(7, 7);
+            this.unpaidCustomer_rd.Location = new System.Drawing.Point(7, 6);
             this.unpaidCustomer_rd.Name = "unpaidCustomer_rd";
             this.unpaidCustomer_rd.Size = new System.Drawing.Size(69, 21);
             this.unpaidCustomer_rd.TabIndex = 466;
