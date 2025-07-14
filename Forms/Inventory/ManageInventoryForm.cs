@@ -220,13 +220,13 @@ namespace SalesPro.Forms.Inventory
         {
             if (action_cb.SelectedIndex == 0)
             {
-                actionPb.Image = Resources.up;
+                actionPb.Image = Resources.upward;
                 update_btn.BackColor = Color.Green;
                 update_btn.Text = "Adjust Quantity";
             }
             else
             {
-                actionPb.Image = Resources.down;
+                actionPb.Image = Resources.downward;
                 update_btn.BackColor = Color.Red;
                 update_btn.Text = "Deduct Quantity";
             }
