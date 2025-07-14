@@ -65,10 +65,9 @@
             this.reason_tx = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.qtyOnHand_tx = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.stock_lbl = new System.Windows.Forms.Label();
             this.productName_tx = new System.Windows.Forms.Label();
-            this.soldPb = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.stockPanel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogs)).BeginInit();
@@ -76,8 +75,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionPb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustingQty_tx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.soldPb)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.stockPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -502,59 +500,47 @@
             // 
             // qtyOnHand_tx
             // 
-            this.qtyOnHand_tx.AutoSize = true;
-            this.qtyOnHand_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtyOnHand_tx.Location = new System.Drawing.Point(59, 5);
+            this.qtyOnHand_tx.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtyOnHand_tx.Location = new System.Drawing.Point(153, 2);
             this.qtyOnHand_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.qtyOnHand_tx.Name = "qtyOnHand_tx";
-            this.qtyOnHand_tx.Size = new System.Drawing.Size(17, 20);
+            this.qtyOnHand_tx.Size = new System.Drawing.Size(103, 53);
             this.qtyOnHand_tx.TabIndex = 565;
             this.qtyOnHand_tx.Text = "0";
-            this.qtyOnHand_tx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.qtyOnHand_tx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label5
+            // stock_lbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 5);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 20);
-            this.label5.TabIndex = 563;
-            this.label5.Text = "Stock :";
+            this.stock_lbl.AutoSize = true;
+            this.stock_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stock_lbl.Location = new System.Drawing.Point(5, 19);
+            this.stock_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.stock_lbl.Name = "stock_lbl";
+            this.stock_lbl.Size = new System.Drawing.Size(54, 20);
+            this.stock_lbl.TabIndex = 563;
+            this.stock_lbl.Text = "Stock :";
             // 
             // productName_tx
             // 
             this.productName_tx.AutoSize = true;
             this.productName_tx.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productName_tx.ForeColor = System.Drawing.Color.Black;
-            this.productName_tx.Location = new System.Drawing.Point(6, 2);
+            this.productName_tx.Location = new System.Drawing.Point(13, 13);
             this.productName_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.productName_tx.Name = "productName_tx";
             this.productName_tx.Size = new System.Drawing.Size(143, 28);
             this.productName_tx.TabIndex = 566;
             this.productName_tx.Text = "Product Name";
             // 
-            // soldPb
+            // stockPanel
             // 
-            this.soldPb.Image = ((System.Drawing.Image)(resources.GetObject("soldPb.Image")));
-            this.soldPb.Location = new System.Drawing.Point(968, 11);
-            this.soldPb.Name = "soldPb";
-            this.soldPb.Size = new System.Drawing.Size(40, 40);
-            this.soldPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.soldPb.TabIndex = 567;
-            this.soldPb.TabStop = false;
-            this.soldPb.Visible = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel2.Controls.Add(this.qtyOnHand_tx);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(8, 31);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(261, 29);
-            this.panel2.TabIndex = 568;
+            this.stockPanel.BackColor = System.Drawing.Color.Aquamarine;
+            this.stockPanel.Controls.Add(this.qtyOnHand_tx);
+            this.stockPanel.Controls.Add(this.stock_lbl);
+            this.stockPanel.Location = new System.Drawing.Point(747, 2);
+            this.stockPanel.Name = "stockPanel";
+            this.stockPanel.Size = new System.Drawing.Size(261, 57);
+            this.stockPanel.TabIndex = 568;
             // 
             // ManageInventoryForm
             // 
@@ -562,8 +548,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1020, 625);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.soldPb);
+            this.Controls.Add(this.stockPanel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.productName_tx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -587,9 +572,8 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionPb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustingQty_tx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.soldPb)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.stockPanel.ResumeLayout(false);
+            this.stockPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,7 +584,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label qtyOnHand_tx;
         internal System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label stock_lbl;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label retailPrice_tx;
         private System.Windows.Forms.Label suppPrice_tx;
@@ -627,11 +611,10 @@
         internal System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label notFound_lbl;
         internal System.Windows.Forms.DataGridView dgLogs;
-        private System.Windows.Forms.PictureBox soldPb;
         internal System.Windows.Forms.Label label15;
         internal System.Windows.Forms.Label supAddress_tx;
         private System.Windows.Forms.PictureBox actionPb;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel stockPanel;
     }
 }

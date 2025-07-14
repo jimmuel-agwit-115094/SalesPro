@@ -45,12 +45,16 @@ namespace SalesPro.Forms.Inventory
                 supAddress_tx.Text = inv.SupplierAddress;
                 _rowVersion = inv.RowVersion;
 
-                if (inv.QuantityOnHand <= 0)
-                {
-                    qtyOnHand_tx.ForeColor = Color.Red;
-                    soldPb.Visible = true;
-                }
+                ChangeStockColor(inv.QuantityOnHand);
             }
+        }
+
+        private void ChangeStockColor(int stock)
+        {
+            bool isOutOfStock = stock <= 0;
+            stockPanel.BackColor = isOutOfStock ? Color.Red : Color.Aquamarine;
+            stock_lbl.ForeColor = isOutOfStock ? Color.White : Color.Black;
+            qtyOnHand_tx.ForeColor = isOutOfStock ? Color.Red : Color.Black;
         }
 
         private void LoadActionData()

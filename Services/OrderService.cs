@@ -203,7 +203,24 @@ namespace SalesPro.Services
 
         private async Task<List<OrderItemModelExtended>> UpdateInventory(DatabaseContext context, int orderId)
         {
-            var orderedItems = await LoadOrderItemsByOrderId(orderId);
+            //var orderedItems = await LoadOrderItemsByOrderId(orderId);
+            var orderedItems = await (from oi in context.OrderItems
+                                      join p in context.Products on oi.ProductId equals p.ProductId
+                                      where oi.OrderId == orderId
+                                      select new OrderItemModelExtended
+                                      {
+                                          OrderId = orderId,
+                                          InventoryId = oi.InventoryId,
+                                          OrderItemId = oi.OrderItemId,
+                                          OrderItemStatus = oi.OrderItemStatus,
+                                          OrderQuantity = oi.OrderQuantity,
+                                          Price = oi.Price,
+                                          ProductId = oi.ProductId,
+                                          ProductName = p.ProductName,
+                                          TotalPrice = oi.TotalPrice,
+                                          UnitOfMeasure = p.UnitOfMeasure
+                                      }).ToListAsync();
+
             var inventoryExceedErrors = new List<OrderItemModelExtended>();
 
             foreach (var orderItem in orderedItems)
