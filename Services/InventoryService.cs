@@ -12,7 +12,7 @@ namespace SalesPro.Services
 {
     public class InventoryService
     {
-        public async Task<List<InventoryModelExtended>> GetAllInventories()
+        public async Task<List<InventoryModelExtended>> GetAllInventories(bool showAll = false)
         {
             using (var context = new DatabaseContext())
             {
@@ -21,8 +21,12 @@ namespace SalesPro.Services
                                 join p in context.Products on i.ProductId equals p.ProductId
                                 join u in context.Users on i.UserId equals u.UserId
                                 join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                                //where i.QuantityOnHand != 0 // Default filter: Out of Stock
                                 select new { i, p, u, s };
+
+                if (!showAll)
+                {
+                    baseQuery = baseQuery.Where(x => x.i.QuantityOnHand != 0);
+                }
 
                 var result = await baseQuery
                     .OrderByDescending(x => x.i.PurchaseOrderId)

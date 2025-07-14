@@ -39,14 +39,20 @@ namespace SalesPro.Forms.Inventory
                 MessageHandler.ShowError($"Error loading inventory form: {ex.Message}");
             }
         }
+
+        private async Task LoadCurrentIventory(bool showOutOfStock)
+        {
+            var allInventories = await _service.GetAllInventories(showOutOfStock);
+            _inventoryList = allInventories;
+            dgInventory.DataSource = allInventories;
+            FormatInventoryGrid();
+        }
+
         public async Task LoadFilteredInventories()
         {
             if (filter_cb.SelectedIndex == 0)
             {
-                var allInventories = await _service.GetAllInventories();
-                _inventoryList = allInventories;
-                dgInventory.DataSource = allInventories;
-                FormatInventoryGrid();
+                await LoadCurrentIventory(false);
             }
             else if (filter_cb.SelectedIndex == 1)
             {
@@ -172,6 +178,7 @@ namespace SalesPro.Forms.Inventory
         {
             try
             {
+                outOfStock_cb.Visible = filter_cb.SelectedIndex == 0;
                 await LoadFilteredInventories();
                 if (filter_cb.SelectedIndex == 0)
                 {
@@ -193,5 +200,16 @@ namespace SalesPro.Forms.Inventory
             }
         }
 
+        private async void outOfStock_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadCurrentIventory(outOfStock_cb.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error showing out of stock: {ex.Message}");
+            }
+        }
     }
 }
