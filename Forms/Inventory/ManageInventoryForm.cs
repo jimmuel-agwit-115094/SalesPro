@@ -54,7 +54,7 @@ namespace SalesPro.Forms.Inventory
             bool isOutOfStock = stock <= 0;
             stockPanel.BackColor = isOutOfStock ? Color.Red : Color.Aquamarine;
             stock_lbl.ForeColor = isOutOfStock ? Color.White : Color.Black;
-            qtyOnHand_tx.ForeColor = isOutOfStock ? Color.Red : Color.Black;
+            qtyOnHand_tx.ForeColor = isOutOfStock ? Color.White : Color.Black;
         }
 
         private void LoadActionData()
@@ -144,6 +144,7 @@ namespace SalesPro.Forms.Inventory
                     await _service.UpdateInventory(_inventoryId, int.Parse(adjustingQty_tx.Text), selectedAction, log, _rowVersion);
                     _inventoryForm.ResetControls();
                     update_btn.Enabled = false;
+                    await _inventoryForm.LoadFilteredInventories();
                     Close();
                 }
             }

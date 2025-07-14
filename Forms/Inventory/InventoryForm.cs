@@ -39,7 +39,7 @@ namespace SalesPro.Forms.Inventory
                 MessageHandler.ShowError($"Error loading inventory form: {ex.Message}");
             }
         }
-        private async Task LoadFilteredInventories()
+        public async Task LoadFilteredInventories()
         {
             if (filter_cb.SelectedIndex == 0)
             {

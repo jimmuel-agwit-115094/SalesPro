@@ -21,7 +21,7 @@ namespace SalesPro.Services
                                 join p in context.Products on i.ProductId equals p.ProductId
                                 join u in context.Users on i.UserId equals u.UserId
                                 join s in context.Suppliers on i.SupplierId equals s.SupplierId
-                                where i.QuantityOnHand != 0 // Default filter: Out of Stock
+                                //where i.QuantityOnHand != 0 // Default filter: Out of Stock
                                 select new { i, p, u, s };
 
                 var result = await baseQuery
