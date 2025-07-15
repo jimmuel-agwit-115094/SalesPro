@@ -119,6 +119,7 @@ namespace SalesPro.Forms.Transactions
 
         }
 
+
         private async void undo_btn_Click(object sender, EventArgs e)
         {
             if (MessageHandler.ShowQuestion(Resources.ConfirmUndo, FormConstants.Transaction))
@@ -187,10 +188,11 @@ namespace SalesPro.Forms.Transactions
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, close_panel, "Closed Transaction");
                 }
 
+                bool showUndoButton = transactionData.IsClosed && transactionData.StartDate.Date == _curDate.Date;
                 // Controls
                 save_btn.Enabled = isClosed == false;
                 close_btn.Enabled = isClosed == false;
-                undo_btn.Enabled = isClosed == true;
+                undo_btn.Visible = showUndoButton;
                 begBal_tx.ReadOnly = isClosed == true;
                 endingCash_tx.ReadOnly = isClosed == true;
             }
@@ -208,34 +210,42 @@ namespace SalesPro.Forms.Transactions
 
         private async void TransactionDetailsForm_Load(object sender, EventArgs e)
         {
-            _curDate = await ClockHelper.GetServerDateTime();
-            _userFullname = UserSession.FullName;
-
-            if (_actionType == SystemConstants.New)
+            try
             {
-                Text = "New Transaction";
-                save_btn.Text = "Create Transaction";
-                save_btn.BackColor = Color.Green;
-                date_tx.Text = DateFormatHelper.FormatDate(_curDate);
+                _curDate = await ClockHelper.GetServerDateTime();
+                _userFullname = UserSession.FullName;
 
-                openedBy_tx.Text = _userFullname;
+                if (_actionType == SystemConstants.New)
+                {
+                    Text = "New Transaction";
+                    save_btn.Text = "Create Transaction";
+                    save_btn.BackColor = Color.Green;
+                    date_tx.Text = DateFormatHelper.FormatDate(_curDate);
 
-                // Controls
-                endingCash_tx.ReadOnly = true;
-                close_btn.Enabled = false;
-                undo_btn.Enabled = false;
-                begBal_tx.ReadOnly = false;
+                    openedBy_tx.Text = _userFullname;
+
+                    // Controls
+                    endingCash_tx.ReadOnly = true;
+                    close_btn.Enabled = false;
+                    undo_btn.Enabled = false;
+                    begBal_tx.ReadOnly = false;
+                }
+                else
+                {
+                    endingCash_tx.ReadOnly = false;
+                    Text = "Edit Transaction";
+                    save_btn.Text = "Update";
+                    save_btn.BackColor = SystemColors.HotTrack;
+                    await GetTransactionData();
+                    await GetTransactionLogs(_transactionId);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                endingCash_tx.ReadOnly = false;
-                Text = "Edit Transaction";
-                save_btn.Text = "Update";
-                save_btn.BackColor = SystemColors.HotTrack;
-
-                await GetTransactionData();
-                await GetTransactionLogs(_transactionId);
+                MessageHandler.ShowError($"Error loading transaction details: {ex.Message}");
             }
+
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)
