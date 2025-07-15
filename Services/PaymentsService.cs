@@ -38,6 +38,17 @@ namespace SalesPro.Services
             }
         }
 
+        public async Task<List<PaymentLogModel>> LoadPaymentLogs(int paymentId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return await context.PaymentLogs
+                    .Where(x => x.PaymentId == paymentId)
+                    .OrderByDescending(x => x.DatePerformed)
+                    .ToListAsync();
+            }
+        }
+
         public async Task<PurchaseOrderModelExtended> GetPurchaseOrderById(int poId)
         {
             using (var context = new DatabaseContext())
@@ -88,7 +99,8 @@ namespace SalesPro.Services
                 ReferenceNo = payment.ReferenceNumber,
                 OrNumber = payment.OrNumber,
                 Bank = payment.BankName,
-                Notes = payment.Notes
+                Notes = payment.Notes,
+                PerformedBy = UserSession.FullName
             };
         }
 

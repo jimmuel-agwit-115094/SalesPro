@@ -1,5 +1,6 @@
 ﻿using SalesPro.Enums;
 using SalesPro.Helpers;
+using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
 using SalesPro.Services;
 using System;
@@ -20,7 +21,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
-        private readonly PurchaseOrderService _purchaseOrderService;
         private readonly PaymentsAndBillingForm _form;
         private readonly GenericService _genericService;
         private readonly CustomerCreditService _custCredService;
@@ -28,7 +28,6 @@ namespace SalesPro.Forms.PaymentsAndBilling
         {
             InitializeComponent();
             _paymentService = new PaymentsService();
-            _purchaseOrderService = new PurchaseOrderService();
             _bankService = new BankService();
             _genericService = new GenericService();
             _custCredService = new CustomerCreditService();
@@ -61,6 +60,10 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 var payment = await _paymentService.GetPaymentByReferenceId(_referenceId, _paymentType);
                 if (payment != null)
                 {
+                    // load payment logs
+                    await LoadPaymentLogsByPaymentId(payment.PaymentId);
+
+                    // Controls
                     referenceId_tx.Text = payment.ReferenceId.ToString("D7");
                     paymentType_tx.Text = $"Update {payment.PaymentType.ToString()} Payment";
                     processedBy_tx.Text = payment.UserName.ToString();
@@ -105,6 +108,14 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         }
 
+        private async Task LoadPaymentLogsByPaymentId(int paymentId)
+        {
+            var logs = await _paymentService.LoadPaymentLogs(paymentId);
+            dgLogs.DataSource = logs;
+            DgExtensions.ConfigureDataGrid(dgLogs, false, 3, notFound_lbl,
+                 "DatePerformed", "PaymentMethod", "ReferenceNo", "OrNumber", "Bank", "Notes", "PerformedBy");
+
+        }
         private async void update_btn_Click(object sender, EventArgs e)
         {
             try

@@ -15,5 +15,6 @@ namespace SalesPro.Models
         public string OrNumber { get; set; }
         public string Bank { get; set; }
         public string Notes { get; set; }
+        public string PerformedBy { get; set; }
     }
 }
