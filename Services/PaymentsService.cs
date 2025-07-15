@@ -76,6 +76,19 @@ namespace SalesPro.Services
             }
         }
 
+        private PaymentLogModel BuildPaymentLogModel(PaymentsModel payment)
+        {
+            return new PaymentLogModel
+            {
+                PaymentId = payment.PaymentId,
+                PaymentMethod = payment.PaymentMethod,
+                ReferenceNo = payment.ReferenceNumber,
+                OrNumber = payment.OrNumber,
+                Bank = payment.BankName,
+                Notes = payment.Notes
+            };
+        }
+
         private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, OrderModel orderModel, int rowVersion)
         {
             int success = 0;
@@ -85,6 +98,10 @@ namespace SalesPro.Services
                 {
                     await context.Payments.AddAsync(paymentModel);
                     await context.SaveChangesAsync();
+
+                    // Save payment logs
+                    var paymentLog = BuildPaymentLogModel(paymentModel);
+                    await context.PaymentLogs.AddAsync(paymentLog);
 
                     var purchaseOrder = await context.PurchaseOrders.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(purchaseOrder);
@@ -100,6 +117,10 @@ namespace SalesPro.Services
                     await context.Payments.AddAsync(paymentModel);
                     await context.SaveChangesAsync();
 
+                    // Save payment logs
+                    var paymentLog = BuildPaymentLogModel(paymentModel);
+                    await context.PaymentLogs.AddAsync(paymentLog);
+
                     // Update orders
                     var order = await context.Orders.FindAsync(orderModel.OrderId);
                     NullCheckerHelper.NullCheck(order);
@@ -110,7 +131,6 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Update customer credits
-
                     var customerCredit = await context.CustomerCredits.FindAsync(paymentModel.ReferenceId);
                     NullCheckerHelper.NullCheck(customerCredit);
                     VersionCheckerHelper.ConcurrencyCheck(rowVersion, customerCredit.RowVersion);

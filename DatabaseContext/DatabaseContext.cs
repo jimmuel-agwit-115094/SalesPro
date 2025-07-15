@@ -33,6 +33,7 @@ namespace POS_Generic.Helpers
         public DbSet<ActivationModel> Activation { get; set; }
         public DbSet<UserAccessModel> UserAccess { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
+        public DbSet<PaymentLogModel> PaymentLogs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string encryptedConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
