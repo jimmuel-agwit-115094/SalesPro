@@ -94,14 +94,14 @@ namespace SalesPro.Forms.Transactions
                 // Display unclosed transactions
                 transactions = unclosedTransactions;
                 unclosed_panel.Visible = true;
-                find_btn.Enabled = false;
+                searchPanel.Visible = false;
             }
             else
             {
                 // Display all transactions
                 transactions = await _service.GetAllTransactions();
                 unclosed_panel.Visible = false;
-                find_btn.Enabled = true;
+                searchPanel.Visible = true;
             }
 
             noTransactionPanel.Visible = !currentTransactions.Any();

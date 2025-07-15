@@ -182,7 +182,7 @@ namespace SalesPro.Forms.Inventory
                 await LoadFilteredInventories();
                 if (filter_cb.SelectedIndex == 0)
                 {
-                    title_lbl.Text = "All Inventories";
+                    title_lbl.Text = "Current Inventory";
                 }
                 else if (filter_cb.SelectedIndex == 1)
                 {
