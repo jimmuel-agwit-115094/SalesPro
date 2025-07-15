@@ -17,7 +17,8 @@ namespace SalesPro.Services
         {
             using (var context = new DatabaseContext())
             {
-                return await context.Banks.Where(x => x.BankId != 1).ToListAsync();
+                //return await context.Banks.Where(x => x.BankId != 1).ToListAsync();
+                return await context.Banks.ToListAsync();
             }
         }
 
