@@ -76,18 +76,22 @@ namespace SalesPro.Services
             }
         }
 
-        private PaymentLogModel BuildPaymentLogModel(PaymentsModel payment)
+        private async Task<PaymentLogModel> BuildPaymentLogModelAsync(PaymentsModel payment)
         {
+            var curDate = await ClockHelper.GetServerDateTime();
+
             return new PaymentLogModel
             {
                 PaymentId = payment.PaymentId,
                 PaymentMethod = payment.PaymentMethod,
+                DatePerformed = curDate,
                 ReferenceNo = payment.ReferenceNumber,
                 OrNumber = payment.OrNumber,
                 Bank = payment.BankName,
                 Notes = payment.Notes
             };
         }
+
 
         private async Task<int> SavePayment(DatabaseContext context, PaymentType paymentType, PaymentsModel paymentModel, OrderModel orderModel, int rowVersion)
         {
@@ -100,7 +104,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Save payment logs
-                    var paymentLog = BuildPaymentLogModel(paymentModel);
+                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel);
                     await context.PaymentLogs.AddAsync(paymentLog);
 
                     var purchaseOrder = await context.PurchaseOrders.FindAsync(paymentModel.ReferenceId);
@@ -118,7 +122,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Save payment logs
-                    var paymentLog = BuildPaymentLogModel(paymentModel);
+                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel);
                     await context.PaymentLogs.AddAsync(paymentLog);
 
                     // Update orders
@@ -161,11 +165,18 @@ namespace SalesPro.Services
                     var payment = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == referenceId && x.PaymentType == paymentType);
                     NullCheckerHelper.NullCheck(payment);
                     VersionCheckerHelper.ConcurrencyCheck(rowVersion, payment.RowVersion);
+
+                    // Save payment details
                     payment.PaymentMethod = paymentModel.PaymentMethod;
                     payment.ReferenceNumber = paymentModel.ReferenceNumber;
                     payment.OrNumber = paymentModel.OrNumber;
                     payment.BankName = paymentModel.BankName;
                     payment.Notes = paymentModel.Notes;
+
+                    // Save payment logs
+                    var paymentLog = await BuildPaymentLogModelAsync(payment);
+                    await context.PaymentLogs.AddAsync(paymentLog);
+
                     await context.SaveChangesAsync();
                     success = 1;
                 });
