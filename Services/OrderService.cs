@@ -252,11 +252,11 @@ namespace SalesPro.Services
                     UserId = UserSession.Session_UserId,
                     DateAdjusted = DateTime.Now,
                     InventoryAction = orderItem.OrderItemStatus == OrderItemStatus.Added
-                        ? InventoryAction.Positive_Adjustment
-                        : InventoryAction.Negative_Adjustment,
+                        ? InventoryAction.Negative_Adjustment
+                        : InventoryAction.Positive_Adjustment,
                     Remarks = orderItem.OrderItemStatus == OrderItemStatus.Added
-                        ? $"Added {convertedQuantity} {orderItem.UnitOfMeasure} of {orderItem.ProductName} to order."
-                        : $"Returned {convertedQuantity} {orderItem.UnitOfMeasure} of {orderItem.ProductName} from order.",
+                        ? $"Deducted {convertedQuantity}. Added to order."
+                        : $"Returned {convertedQuantity} to inventory",
                     CurrentQuantity = inventory.QuantityOnHand,
                     AdjustmentQuantity = convertedQuantity,
                     FinalQuantity = inventory.QuantityOnHand

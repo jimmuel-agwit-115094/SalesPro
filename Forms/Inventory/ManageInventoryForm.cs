@@ -160,12 +160,12 @@ namespace SalesPro.Forms.Inventory
             dgLogs.DataSource = logs;
 
             DgExtensions.ConfigureDataGrid(dgLogs, false, 3, notFound_lbl,
-                "UserFullName", "DateAdjusted",
-                "CurrentQuantity", "AdjustmentQuantity", "FinalQuantity", "Remarks");
+                "UserFullName", "DateAdjusted", "AdjustmentQuantity", "FinalQuantity", "Remarks");
 
             dgLogs.Columns["DateAdjusted"].DisplayIndex = 0;
             // Changfe to segoe ui
             dgLogs.Columns["DateAdjusted"].DefaultCellStyle.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
+          
             // Apply row formatting based on InventoryAction
             foreach (DataGridViewRow row in dgLogs.Rows)
             {
@@ -230,6 +230,11 @@ namespace SalesPro.Forms.Inventory
                 update_btn.BackColor = Color.Red;
                 update_btn.Text = "Deduct Quantity";
             }
+        }
+
+        private void dgLogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
