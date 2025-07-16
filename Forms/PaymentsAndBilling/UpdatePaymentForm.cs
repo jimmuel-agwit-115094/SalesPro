@@ -16,8 +16,11 @@ namespace SalesPro.Forms.PaymentsAndBilling
         public int _referenceId;
         public PaymentType _paymentType;
         public int _rowVersion;
+        private int _supplierRowVesion;
+        private int _customerRowVersion;
         private DateTime _curDate;
         public string _actionForm;
+
 
         private readonly BankService _bankService;
         private readonly PaymentsService _paymentService;
@@ -61,7 +64,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                 if (payment != null)
                 {
                     // load payment logs
-                    await LoadPaymentLogsByPaymentId(payment.PaymentId);
+                    await LoadPaymentLogs_ByReferenceIdAndPaymentType(payment.ReferenceId, payment.PaymentType);
 
                     // Controls
                     referenceId_tx.Text = payment.ReferenceId.ToString("D7");
@@ -86,6 +89,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         terms_tx.Text = $"{po.CreditTerms} days";
                         supplier_tx.Text = po.SupplierName;
                         supplierCustomer_tx.Text = "Supplier";
+                        _supplierRowVesion = po.RowVersion;
                     }
                 }
                 else
@@ -97,6 +101,7 @@ namespace SalesPro.Forms.PaymentsAndBilling
                         terms_tx.Text = $"{creds.CreditTerms} days";
                         supplier_tx.Text = creds.CustomerName;
                         supplierCustomer_tx.Text = "Customer";
+                        _customerRowVersion = creds.RowVersion;
                     }
                 }
 
@@ -108,12 +113,12 @@ namespace SalesPro.Forms.PaymentsAndBilling
 
         }
 
-        private async Task LoadPaymentLogsByPaymentId(int paymentId)
+        private async Task LoadPaymentLogs_ByReferenceIdAndPaymentType(int referenceId, PaymentType pType)
         {
-            var logs = await _paymentService.LoadPaymentLogs(paymentId);
+            var logs = await _paymentService.LoadPaymentLogs(referenceId, pType);
             dgLogs.DataSource = logs;
             DgExtensions.ConfigureDataGrid(dgLogs, false, 3, notFound_lbl,
-                 "DatePerformed", "PaymentMethod", "ReferenceNo", "OrNumber", "Bank", "Notes", "PerformedBy");
+                 "DatePerformed", "PaymentMethod", "Action", "ReferenceNo", "OrNumber", "Bank", "Notes", "PerformedBy");
 
         }
         private async void update_btn_Click(object sender, EventArgs e)
@@ -168,6 +173,39 @@ namespace SalesPro.Forms.PaymentsAndBilling
             reference_tx.Text = string.Empty;
             orNunber_tx.Text = string.Empty;
             bank_cb.SelectedIndex = -1;
+        }
+
+        private async void undo_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageHandler.ShowQuestionGeneric("Are you sure you want to undo this payment? " +
+                    "This action cannot be undone."))
+                {
+                    int success = await _paymentService.UndoPayment(_referenceId, _paymentType, rowVersion: _rowVersion,
+                        customerRowVersion: _customerRowVersion, supplierRowVersion: _supplierRowVesion);
+                    if (success > 0)
+                    {
+                        MessageHandler.ShowInfo("Payment has been successfully undone.");
+                        Close();
+
+                        if (_paymentType == PaymentType.SupplierPayable)
+                        {
+                            _form.unpaid_rd.Checked = true;
+                        }
+                        else
+                        {
+                            _form.unpaidCustomer_rd.Checked = true;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error undoing payment : {ex.Message}");
+            }
         }
     }
 }

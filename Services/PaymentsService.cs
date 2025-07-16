@@ -38,12 +38,12 @@ namespace SalesPro.Services
             }
         }
 
-        public async Task<List<PaymentLogModel>> LoadPaymentLogs(int paymentId)
+        public async Task<List<PaymentLogModel>> LoadPaymentLogs(int referenceId, PaymentType paymentType)
         {
             using (var context = new DatabaseContext())
             {
                 return await context.PaymentLogs
-                    .Where(x => x.PaymentId == paymentId)
+                    .Where(x => x.ReferenceId == referenceId && x.PaymentType == paymentType)
                     .OrderByDescending(x => x.DatePerformed)
                     .ToListAsync();
             }
@@ -87,20 +87,23 @@ namespace SalesPro.Services
             }
         }
 
-        private async Task<PaymentLogModel> BuildPaymentLogModelAsync(PaymentsModel payment)
+        private async Task<PaymentLogModel> BuildPaymentLogModelAsync(PaymentsModel payment, string action)
         {
             var curDate = await ClockHelper.GetServerDateTime();
 
             return new PaymentLogModel
             {
                 PaymentId = payment.PaymentId,
+                ReferenceId = payment.ReferenceId,
                 PaymentMethod = payment.PaymentMethod,
                 DatePerformed = curDate,
                 ReferenceNo = payment.ReferenceNumber,
                 OrNumber = payment.OrNumber,
                 Bank = payment.BankName,
                 Notes = payment.Notes,
-                PerformedBy = UserSession.FullName
+                PerformedBy = UserSession.FullName,
+                Action = action,
+                PaymentType = payment.PaymentType
             };
         }
 
@@ -116,7 +119,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Save payment logs
-                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel);
+                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel, "Pay supplier");
                     await context.PaymentLogs.AddAsync(paymentLog);
 
                     var purchaseOrder = await context.PurchaseOrders.FindAsync(paymentModel.ReferenceId);
@@ -134,7 +137,7 @@ namespace SalesPro.Services
                     await context.SaveChangesAsync();
 
                     // Save payment logs
-                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel);
+                    var paymentLog = await BuildPaymentLogModelAsync(paymentModel, "Receive customer payments");
                     await context.PaymentLogs.AddAsync(paymentLog);
 
                     // Update orders
@@ -167,6 +170,45 @@ namespace SalesPro.Services
             }
         }
 
+        // Create method to undo payment
+        public async Task<int> UndoPayment(int referenceId, PaymentType paymentType, int rowVersion, int customerRowVersion, int supplierRowVersion)
+        {
+            int success = 0;
+            using (var context = new DatabaseContext())
+            {
+                await context.ExecuteInTransactionAsync(async () =>
+                {
+                    var payment = await context.Payments.FirstOrDefaultAsync(x => x.ReferenceId == referenceId && x.PaymentType == paymentType);
+                    NullCheckerHelper.NullCheck(payment);
+                    VersionCheckerHelper.ConcurrencyCheck(rowVersion, payment.RowVersion);
+
+                    // Save payment logs before deleting
+                    var paymentLog = await BuildPaymentLogModelAsync(payment, "Undo Payment");
+                    await context.PaymentLogs.AddAsync(paymentLog);
+
+                    // Remove payment
+                    context.Payments.Remove(payment);
+
+                    if (paymentType == PaymentType.SupplierPayable)
+                    {
+                        var po = await context.PurchaseOrders.FindAsync(referenceId);
+                        NullCheckerHelper.NullCheck(po);
+                        VersionCheckerHelper.ConcurrencyCheck(supplierRowVersion, po.RowVersion);
+                        po.PaymentStatus = PaymentStatus.Unpaid;
+                    }
+                    else
+                    {
+                        var customerCredit = await context.CustomerCredits.FindAsync(referenceId);
+                        NullCheckerHelper.NullCheck(customerCredit);
+                        VersionCheckerHelper.ConcurrencyCheck(customerRowVersion, customerCredit.RowVersion);
+                        customerCredit.PaymentStatus = PaymentStatus.Unpaid;
+                    }
+                    success = await context.SaveChangesAsync();
+                });
+            }
+            return success;
+        }
+
         public async Task<int> UpdatePayment(int referenceId, PaymentType paymentType, PaymentsModel paymentModel, int rowVersion)
         {
             int success = 0;
@@ -186,7 +228,7 @@ namespace SalesPro.Services
                     payment.Notes = paymentModel.Notes;
 
                     // Save payment logs
-                    var paymentLog = await BuildPaymentLogModelAsync(payment);
+                    var paymentLog = await BuildPaymentLogModelAsync(payment, "Update payment");
                     await context.PaymentLogs.AddAsync(paymentLog);
 
                     await context.SaveChangesAsync();

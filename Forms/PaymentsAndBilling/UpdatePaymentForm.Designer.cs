@@ -58,11 +58,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.paymentType_tx = new System.Windows.Forms.Label();
-            this.paid_lbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.notFound_lbl = new System.Windows.Forms.Label();
             this.dgLogs = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.undo_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogs)).BeginInit();
@@ -370,18 +370,6 @@
             this.paymentType_tx.TabIndex = 601;
             this.paymentType_tx.Text = "Payment Type :";
             // 
-            // paid_lbl
-            // 
-            this.paid_lbl.AutoSize = true;
-            this.paid_lbl.BackColor = System.Drawing.Color.Green;
-            this.paid_lbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paid_lbl.ForeColor = System.Drawing.Color.White;
-            this.paid_lbl.Location = new System.Drawing.Point(1028, 18);
-            this.paid_lbl.Name = "paid_lbl";
-            this.paid_lbl.Size = new System.Drawing.Size(57, 22);
-            this.paid_lbl.TabIndex = 608;
-            this.paid_lbl.Text = "PAID";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -468,17 +456,32 @@
             this.label9.TabIndex = 610;
             this.label9.Text = "Payment Logs";
             // 
+            // undo_btn
+            // 
+            this.undo_btn.BackColor = System.Drawing.Color.Brown;
+            this.undo_btn.FlatAppearance.BorderSize = 0;
+            this.undo_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.undo_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.undo_btn.ForeColor = System.Drawing.Color.White;
+            this.undo_btn.Location = new System.Drawing.Point(964, 11);
+            this.undo_btn.Name = "undo_btn";
+            this.undo_btn.Size = new System.Drawing.Size(122, 27);
+            this.undo_btn.TabIndex = 613;
+            this.undo_btn.Text = "Undo Payment";
+            this.undo_btn.UseVisualStyleBackColor = false;
+            this.undo_btn.Click += new System.EventHandler(this.undo_btn_Click);
+            // 
             // UpdatePaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1098, 671);
+            this.Controls.Add(this.undo_btn);
             this.Controls.Add(this.notFound_lbl);
             this.Controls.Add(this.dgLogs);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.paid_lbl);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.paymentType_tx);
@@ -528,10 +531,10 @@
         internal System.Windows.Forms.Label label13;
         internal System.Windows.Forms.Label supplier_tx;
         internal System.Windows.Forms.Label supplierCustomer_tx;
-        internal System.Windows.Forms.Label paid_lbl;
         internal System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label notFound_lbl;
         internal System.Windows.Forms.DataGridView dgLogs;
         internal System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button undo_btn;
     }
 }
