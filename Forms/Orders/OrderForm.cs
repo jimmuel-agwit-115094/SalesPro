@@ -559,7 +559,7 @@ namespace SalesPro.Forms.Orders
                 }
             }
         }
-        
+
         private void OrderForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
@@ -589,5 +589,6 @@ namespace SalesPro.Forms.Orders
         {
             barcode_tx.BackColor = Color.WhiteSmoke;
         }
+
     }
 }

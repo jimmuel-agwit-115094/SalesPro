@@ -248,5 +248,17 @@ namespace SalesPro.Forms
             var form = new SettingsForm();
             LoadFormInPanel(form);
         }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Application.Exit(); // Close the application when the form is closed
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error closing app : {ex.Message}");
+            }
+        }
     }
 }
