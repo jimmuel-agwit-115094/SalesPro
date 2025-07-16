@@ -96,6 +96,7 @@ namespace SalesPro.Forms.Transactions
                     Close();
                 }
             }
+            await _transactionForm.ProcessTransactionLoad();
         }
 
         private async void close_btn_Click(object sender, EventArgs e)
@@ -109,6 +110,7 @@ namespace SalesPro.Forms.Transactions
                     var transactionLog = BuildTransactionLogModel(ActionsEnum.Closed, _transactionId);
                     await _transactionService.CloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                     await _transactionForm.EnableDisableMenuPanel();
+                    await _transactionForm.ProcessTransactionLoad();
                     Close();
                 }
             }
@@ -116,9 +118,7 @@ namespace SalesPro.Forms.Transactions
             {
                 MessageHandler.ShowError($"Error closing transaction: {ex.Message}");
             }
-
         }
-
 
         private async void undo_btn_Click(object sender, EventArgs e)
         {
@@ -128,6 +128,7 @@ namespace SalesPro.Forms.Transactions
                 var transactionLog = BuildTransactionLogModel(ActionsEnum.UndoClosed, _transactionId);
                 await _transactionService.UndoCloseTransaction(_transactionId, _rowVersion, transaction, transactionLog);
                 await _transactionForm.EnableDisableMenuPanel();
+                await _transactionForm.ProcessTransactionLoad();
                 Close();
             }
         }
@@ -188,7 +189,8 @@ namespace SalesPro.Forms.Transactions
                     StatusIconHelper.ShowStatus(Enums.IconStatusType.Good, close_panel, "Closed Transaction");
                 }
 
-                bool showUndoButton = transactionData.IsClosed && transactionData.StartDate.Date == _curDate.Date;
+                var id = TransactionSession._transactionId;
+                bool showUndoButton = transactionData.IsClosed && transactionData.TransactionId >= id;
                 // Controls
                 save_btn.Enabled = isClosed == false;
                 close_btn.Enabled = isClosed == false;

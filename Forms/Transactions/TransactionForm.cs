@@ -37,11 +37,6 @@ namespace SalesPro.Forms.Transactions
             }
         }
 
-        private async void TransactionDetailsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            await ProcessTransactionLoad();
-        }
-
         private async void new_btn_Click(object sender, EventArgs e)
         {
             var currentTransactions = await _service.GetTransactionByDate(_curDate.Date);
@@ -58,7 +53,6 @@ namespace SalesPro.Forms.Transactions
                 return;
             }
             TransactionDetailsForm form = new TransactionDetailsForm(this);
-            form.FormClosed += TransactionDetailsForm_FormClosed;
             form._actionType = Constants.SystemConstants.New;
             form.ShowDialog();
         }
@@ -82,7 +76,7 @@ namespace SalesPro.Forms.Transactions
              "IsClosed");
         }
 
-        private async Task ProcessTransactionLoad()
+        public async Task ProcessTransactionLoad()
         {
             var transactions = new List<TransactionModel>();
             // Get the unclosed transaction that is not dated on the current date
@@ -151,7 +145,6 @@ namespace SalesPro.Forms.Transactions
             int selectedId = DgFormatHelper.GetSelectedId(dgTrans, e, "TransactionId");
             if (selectedId == 0) return;
             TransactionDetailsForm form = new TransactionDetailsForm(this);
-            form.FormClosed += TransactionDetailsForm_FormClosed;
             form._actionType = Constants.SystemConstants.Edit;
             form._transactionId = (int)selectedId;
             form.ShowDialog();
