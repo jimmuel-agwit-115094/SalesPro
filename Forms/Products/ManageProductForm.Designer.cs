@@ -42,11 +42,15 @@
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.logs_link = new System.Windows.Forms.LinkLabel();
+            this.subUnit_cb = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.subUnit_cb);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.unit_cb);
             this.groupBox1.Controls.Add(this.reorder_tx);
             this.groupBox1.Controls.Add(this.label4);
@@ -59,7 +63,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(16, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 253);
+            this.groupBox1.Size = new System.Drawing.Size(421, 292);
             this.groupBox1.TabIndex = 549;
             this.groupBox1.TabStop = false;
             // 
@@ -76,7 +80,7 @@
             // reorder_tx
             // 
             this.reorder_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reorder_tx.Location = new System.Drawing.Point(128, 214);
+            this.reorder_tx.Location = new System.Drawing.Point(128, 249);
             this.reorder_tx.MaxLength = 8;
             this.reorder_tx.Name = "reorder_tx";
             this.reorder_tx.Size = new System.Drawing.Size(277, 25);
@@ -86,7 +90,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 218);
+            this.label4.Location = new System.Drawing.Point(13, 253);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 17);
@@ -96,7 +100,7 @@
             // desc_tx
             // 
             this.desc_tx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desc_tx.Location = new System.Drawing.Point(128, 120);
+            this.desc_tx.Location = new System.Drawing.Point(128, 155);
             this.desc_tx.Multiline = true;
             this.desc_tx.Name = "desc_tx";
             this.desc_tx.Size = new System.Drawing.Size(277, 88);
@@ -106,7 +110,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 122);
+            this.label3.Location = new System.Drawing.Point(13, 157);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 17);
@@ -184,7 +188,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(297, 329);
+            this.save_btn.Location = new System.Drawing.Point(297, 360);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(140, 34);
             this.save_btn.TabIndex = 551;
@@ -204,12 +208,33 @@
             this.logs_link.Text = "Product Change History";
             this.logs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logs_link_LinkClicked);
             // 
+            // subUnit_cb
+            // 
+            this.subUnit_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.subUnit_cb.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subUnit_cb.FormattingEnabled = true;
+            this.subUnit_cb.Location = new System.Drawing.Point(128, 121);
+            this.subUnit_cb.Name = "subUnit_cb";
+            this.subUnit_cb.Size = new System.Drawing.Size(277, 25);
+            this.subUnit_cb.TabIndex = 542;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(13, 125);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 17);
+            this.label5.TabIndex = 541;
+            this.label5.Text = "Sub Unit :";
+            // 
             // ManageProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(452, 378);
+            this.ClientSize = new System.Drawing.Size(450, 407);
             this.Controls.Add(this.logs_link);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.title_lbl);
@@ -246,5 +271,7 @@
         private System.Windows.Forms.TextBox desc_tx;
         private System.Windows.Forms.Button save_btn;
         private System.Windows.Forms.LinkLabel logs_link;
+        private System.Windows.Forms.ComboBox subUnit_cb;
+        private System.Windows.Forms.Label label5;
     }
 }

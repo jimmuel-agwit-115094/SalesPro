@@ -6,6 +6,7 @@ using SalesPro.Models;
 using SalesPro.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,7 +29,6 @@ namespace SalesPro.Forms.Products
             _productForm = productForm;
             _unitOfMeasureService = new UnitOfMeasureService();
             TextBoxHelper.FormatIntegerTextbox(reorder_tx);
-            TextBoxHelper.FormatIntegerTextbox(barCode_tx);
         }
 
         private async Task DisplayProductDetails()
@@ -39,21 +39,36 @@ namespace SalesPro.Forms.Products
                 productName_tx.Text = product.ProductName;
                 barCode_tx.Text = product.BarCode;
                 unit_cb.Text = product.UnitOfMeasure;
+                subUnit_cb.Text = product.SubUnit;
                 desc_tx.Text = product.Description;
                 reorder_tx.Text = product.ReorderLevel.ToString();
                 _rowVersion = product.RowVersion;
             }
         }
 
+        private async Task SetUnitOfMeasureComboBox()
+        {
+            var uoms = await _unitOfMeasureService.GetAllUnitOfMeasures();
+            if (uoms == null) uoms = new List<UnitOfMeasuresModel>();
+
+            // Unit of measure combo box
+            unit_cb.DataSource = uoms.ToList();
+            unit_cb.DisplayMember = "UnitName";
+            unit_cb.ValueMember = "UnitOfMeasureId";
+            unit_cb.SelectedIndex = -1;
+
+            // Sub unit combo box
+            subUnit_cb.DataSource = uoms.ToList();
+            subUnit_cb.DisplayMember = "UnitName";
+            subUnit_cb.ValueMember = "UnitOfMeasureId";
+            subUnit_cb.SelectedIndex = -1;
+        }
+
         private async void ManageProductForm_Load(object sender, EventArgs e)
         {
             try
             {
-                List<UnitOfMeasuresModel> uoms = await _unitOfMeasureService.GetAllUnitOfMeasures();
-                unit_cb.DataSource = uoms;
-                unit_cb.DisplayMember = "UnitName";
-                unit_cb.ValueMember = "UnitOfMeasureId";
-
+                await SetUnitOfMeasureComboBox();
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     title_lbl.Text = "New Product";
@@ -106,6 +121,7 @@ namespace SalesPro.Forms.Products
                             ProductName = productName_tx.Text,
                             BarCode = barCode_tx.Text,
                             UnitOfMeasure = unit_cb.Text,
+                            SubUnit = subUnit_cb.Text,
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         });
@@ -117,6 +133,7 @@ namespace SalesPro.Forms.Products
                             ProductName = productName_tx.Text,
                             BarCode = barCode_tx.Text,
                             UnitOfMeasure = unit_cb.Text,
+                            SubUnit = subUnit_cb.Text,
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         }, _rowVersion);
@@ -139,7 +156,14 @@ namespace SalesPro.Forms.Products
 
         private void barCode_tx_TextChanged(object sender, EventArgs e)
         {
-            barCode_tx.Text = Regex.Replace(barCode_tx.Text, @"[^a-zA-Z0-9]", "");
+            string originalText = barCode_tx.Text;
+            string sanitizedText = Regex.Replace(originalText, @"[^a-zA-Z0-9]", "");
+            if (originalText != sanitizedText)
+            {
+                int selectionStart = barCode_tx.SelectionStart;
+                barCode_tx.Text = sanitizedText;
+                barCode_tx.SelectionStart = Math.Min(selectionStart, sanitizedText.Length);
+            }
         }
 
         private void logs_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

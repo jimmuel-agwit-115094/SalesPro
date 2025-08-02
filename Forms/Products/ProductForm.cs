@@ -22,7 +22,7 @@ namespace SalesPro.Forms.Products
             var products = await _service.GetAllProducts();
             dgProduct.DataSource = products;
             DgExtensions.ConfigureDataGrid(dgProduct, true, 0, notFound_lbl, "ProductId", "ProductName",
-                "UnitOfMeasure", "Description", "ReorderLevel");
+                "UnitOfMeasure","SubUnit", "Description", "ReorderLevel");
         }
 
         private async void ProductForm_Load(object sender, EventArgs e)
