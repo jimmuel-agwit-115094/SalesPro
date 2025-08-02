@@ -10,8 +10,9 @@ namespace SalesPro.Models
         public string BarCode { get; set; }
         public string UnitOfMeasure { get; set; }
         public string SubUnit { get; set; }
-        public string Description { get; set; }
+        public int SubQuantity { get; set; }
         public int ReorderLevel { get; set; }
+        public string Description { get; set; }
     }
 
     public class ReportProductExtended : ProductModel

@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.X509;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -29,6 +28,7 @@ namespace SalesPro.Forms.Products
             _productForm = productForm;
             _unitOfMeasureService = new UnitOfMeasureService();
             TextBoxHelper.FormatIntegerTextbox(reorder_tx);
+            TextBoxHelper.FormatIntegerTextbox(subUnitQty_tx);
         }
 
         private async Task DisplayProductDetails()
@@ -40,6 +40,7 @@ namespace SalesPro.Forms.Products
                 barCode_tx.Text = product.BarCode;
                 unit_cb.Text = product.UnitOfMeasure;
                 subUnit_cb.Text = product.SubUnit;
+                subUnitQty_tx.Text = product.SubQuantity.ToString();
                 desc_tx.Text = product.Description;
                 reorder_tx.Text = product.ReorderLevel.ToString();
                 _rowVersion = product.RowVersion;
@@ -103,12 +104,11 @@ namespace SalesPro.Forms.Products
             }
             if (!Validators.EmptyStringValidator(reorder_tx.Text, "Reorder Level")) return;
             if (!Validators.IntValidator(reorder_tx.Text, "Reorder Level")) return;
-            if (int.Parse(reorder_tx.Text) < 0)
+            if (subUnit_cb.SelectedIndex != -1 && int.Parse(subUnitQty_tx.Text) <= 0)
             {
-                MessageHandler.ShowError("Reorder level must be greater than 0");
+                MessageHandler.ShowWarning($"Please provide valid sub order quantity for a {subUnit_cb.Text}.");
                 return;
             }
-
             try
             {
                 if (MessageHandler.ShowQuestionGeneric("Confirm add/update product?"))
@@ -122,6 +122,7 @@ namespace SalesPro.Forms.Products
                             BarCode = barCode_tx.Text,
                             UnitOfMeasure = unit_cb.Text,
                             SubUnit = subUnit_cb.Text,
+                            SubQuantity = int.Parse(subUnitQty_tx.Text),
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         });
@@ -134,6 +135,7 @@ namespace SalesPro.Forms.Products
                             BarCode = barCode_tx.Text,
                             UnitOfMeasure = unit_cb.Text,
                             SubUnit = subUnit_cb.Text,
+                            SubQuantity = int.Parse(subUnitQty_tx.Text),
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         }, _rowVersion);
