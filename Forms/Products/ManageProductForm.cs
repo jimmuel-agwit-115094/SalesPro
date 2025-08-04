@@ -91,6 +91,8 @@ namespace SalesPro.Forms.Products
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
+            int subUnitQty = int.Parse(subUnitQty_tx.Text);
+
             if (!UserSession.HasAccess(RoleConstants.UpsertProduct))
             {
                 MessageHandler.ShowRestrictionMessage("You do not have permission to perform this action");
@@ -104,9 +106,19 @@ namespace SalesPro.Forms.Products
             }
             if (!Validators.EmptyStringValidator(reorder_tx.Text, "Reorder Level")) return;
             if (!Validators.IntValidator(reorder_tx.Text, "Reorder Level")) return;
-            if (subUnit_cb.SelectedIndex != -1 && int.Parse(subUnitQty_tx.Text) <= 0)
+            if (unit_cb.Text == "--Not Applicable--")
+            {
+                MessageHandler.ShowWarning($"Please select a valid unit of measure");
+                return;
+            }
+            if (subUnit_cb.Text != "--Not Applicable--" && subUnitQty <= 0)
             {
                 MessageHandler.ShowWarning($"Please provide valid sub order quantity for a {subUnit_cb.Text}.");
+                return;
+            }
+            if (subUnitQty > 0 && subUnit_cb.Text == "--Not Applicable--")
+            {
+                MessageHandler.ShowWarning($"Please remove sub quantity for it is not applicable.");
                 return;
             }
             try
