@@ -154,6 +154,8 @@ namespace SalesPro.Services
                                   ProductId = pt.ProductId,
                                   ProductName = p.ProductName,
                                   Quantity = pt.Quantity,
+                                  SubUnit = p.SubUnit,
+                                  SubQuantity = p.SubQuantity,
                                   SupplierPrice = pt.SupplierPrice,
                                   MarkUpPrice = pt.MarkUpPrice,
                                   RetailPrice = pt.RetailPrice,
@@ -219,11 +221,13 @@ namespace SalesPro.Services
                                   ProductId = pt.ProductId,
                                   ProductName = p.ProductName,
                                   Quantity = pt.Quantity,
+                                  SubQuantity = p.SubQuantity,
                                   SupplierPrice = pt.SupplierPrice,
                                   MarkUpPrice = pt.MarkUpPrice,
                                   RetailPrice = pt.RetailPrice,
                                   TotalPrice = pt.TotalPrice,
-                                  UnitOfMeasure = p.UnitOfMeasure
+                                  UnitOfMeasure = p.UnitOfMeasure,
+                                  SubUnit = p.SubUnit
                               }).FirstOrDefaultAsync();
             }
         }

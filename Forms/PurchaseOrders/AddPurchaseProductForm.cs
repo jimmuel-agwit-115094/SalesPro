@@ -21,18 +21,20 @@ namespace SalesPro.Forms.PurchaseOrders
         private bool _isProductSelected;
         public string _actionType;
         public decimal _totalPrice;
+        private bool _isSubQty;
 
         private readonly PurchaseOrderService _service;
+        private readonly ProductService _prodService;
         private readonly PurchaseOrderDetailsForm _purchaseOrderDetailsForm;
         public AddPurchaseProductForm(PurchaseOrderDetailsForm purchaseOrderDetailsForm)
         {
             InitializeComponent();
             _purchaseOrderDetailsForm = purchaseOrderDetailsForm;
             _service = new PurchaseOrderService();
+            _prodService = new ProductService();
             TextBoxHelper.FormatIntegerTextbox(qty_tx);
             TextBoxHelper.FormatDecimalTextbox(supplierPrice_tx);
             TextBoxHelper.FormatDecimalTextbox(markUpPrice_tx);
-
         }
 
         private async Task LoadProducts()
@@ -62,6 +64,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     _isProductSelected = false;
                     productName_tx.Text = "-";
                     unitOfMeasure_tx.Text = "-";
+                    subUnit_tx.Text = "-";
                     supplierPrice_tx.Text = "0";
                     poPb.Image = Resources.add;
                     prodTitel_tx.Text = "Add Product";
@@ -78,12 +81,16 @@ namespace SalesPro.Forms.PurchaseOrders
                     {
                         productName_tx.Text = poItem.ProductName;
                         unitOfMeasure_tx.Text = poItem.UnitOfMeasure;
+                        subUnit_tx.Text = poItem.SubUnit;
+                        subUnitQty_tx.Text = poItem.SubQuantity.ToString();
                         qty_tx.Text = poItem.Quantity.ToString();
                         supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
                         markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
                         retailPrice_tx.Text = poItem.RetailPrice.ToString();
                         _isProductSelected = poItem.ProductId != 0;
                         _productId = poItem.ProductId;
+                        // Check if sub unit is applicable
+                        _isSubQty = IsSubQuantity(poItem.SubUnit, poItem.SubQuantity);
                     }
                     else
                     {
@@ -106,28 +113,59 @@ namespace SalesPro.Forms.PurchaseOrders
             DgFormatHelper.SearchOnGrid(dgProducts, search_tx);
         }
 
-        private void GetPropertiesOnGrid()
+        private async Task GetPropertiesOnGrid()
         {
-            try
-            {
-                _productId = DgFormatHelper.GetSelectedRowId(dgProducts, "ProductId");
-                productName_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "ProductName");
-                unitOfMeasure_tx.Text = DgFormatHelper.GetSelectedRowString(dgProducts, "UnitOfMeasure");
-                _isProductSelected = productName_tx.Text != string.Empty;
-                supPrice_tx.Text = _service.GetLatestSupplierPrice(_productId).ToString();
-            }
-            catch (Exception ex)
+            _productId = DgFormatHelper.GetSelectedRowId(dgProducts, "ProductId");
+            if (_productId == 0)
             {
                 _isProductSelected = false;
-                MessageHandler.ShowError($"Error getting product properties {ex.Message}");
+                return;
+            }
+
+            var product = await _prodService.GetProductById(_productId);
+            if (product != null)
+            {
+                productName_tx.Text = product.ProductName;
+                unitOfMeasure_tx.Text = product.UnitOfMeasure;
+                subUnit_tx.Text = product.SubUnit;
+                subUnitQty_tx.Text = product.SubQuantity.ToString();
+
+                _isProductSelected = productName_tx.Text != string.Empty;
+                supPrice_tx.Text = _service.GetLatestSupplierPrice(_productId).ToString();
+
+                // Check if sub unit is applicable
+                _isSubQty = IsSubQuantity(product.SubUnit, product.SubQuantity);
+
+                if (product.SubUnit != string.Empty)
+                {
+                    retailPriceLabel.Text = $"Retail Price per ({product.SubUnit})";
+                }
+                else
+                {
+                    retailPriceLabel.Text = $"Retail Price per ({product.UnitOfMeasure})";
+                }
             }
         }
-
-        private void ComputeTotal()
+        private bool IsSubQuantity(string prodName, int quantity)
+        {
+            return prodName == "--Not Applicable--" && quantity > 0;
+        }
+        private void ComputeTotal(bool isSubQty)
         {
             try
             {
-                var retailPrice = decimal.Parse(supplierPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text);
+                decimal retailPrice = 0;
+                if (!isSubQty)
+                {
+                    retailPrice = decimal.Parse(supplierPrice_tx.Text) + decimal.Parse(markUpPrice_tx.Text);
+                }
+                else
+                {
+                    decimal subQty = decimal.Parse(subUnitQty_tx.Text);
+                    decimal unitMarkup = decimal.Parse(markUpPrice_tx.Text) / subQty;
+                    decimal pricePerSubUnit = decimal.Parse(supplierPrice_tx.Text) / subQty;
+                    retailPrice = pricePerSubUnit + unitMarkup;
+                }
                 retailPrice_tx.Text = retailPrice.ToString();
                 _totalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text);
                 total_tx.Text = _totalPrice.ToString("N2");
@@ -138,15 +176,29 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private void dgProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            GetPropertiesOnGrid();
+            if (_actionType == SystemConstants.New)
+            {
+                await GetPropertiesOnGrid();
+            }
         }
 
-        private void dgProducts_SelectionChanged(object sender, EventArgs e)
+        private async void dgProducts_SelectionChanged(object sender, EventArgs e)
         {
-            noProductSelectedPanel.Visible = _actionType == SystemConstants.New && dgProducts.SelectedRows.Count == 0;
-            GetPropertiesOnGrid();
+            try
+            {
+                if (_actionType == SystemConstants.New)
+                {
+                    noProductSelectedPanel.Visible = _actionType == SystemConstants.New && dgProducts.SelectedRows.Count == 0;
+                    await GetPropertiesOnGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                _isProductSelected = false;
+                MessageHandler.ShowError($"Error getting product properties on selection changed {ex.Message}");
+            }
         }
 
         private void dgProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,12 +208,12 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void supplierPrice_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal();
+            ComputeTotal(_isSubQty);
         }
 
         private void markUpPrice_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal();
+            ComputeTotal(_isSubQty);
         }
 
         private PurchaseOrderItemModel BuildPurchaseOrderItem()
@@ -178,18 +230,6 @@ namespace SalesPro.Forms.PurchaseOrders
             };
             return poItem;
         }
-
-        private PurchaseOrderModel BuildPurchaseOrder(int supplierId)
-        {
-            var poItem = new PurchaseOrderModel
-            {
-                PurchaseOrderId = _poId,
-                SupplierId = supplierId,
-                UserId = UserSession.Session_UserId,
-            };
-            return poItem;
-        }
-
         private async void add_btn_Click(object sender, EventArgs e)
         {
             try
@@ -241,7 +281,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void qty_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal();
+            ComputeTotal(_isSubQty);
         }
 
         private async void delete_btn_Click(object sender, EventArgs e)
@@ -266,34 +306,19 @@ namespace SalesPro.Forms.PurchaseOrders
         private void qty_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(qty_tx);
-            ComputeTotal();
+            ComputeTotal(_isSubQty);
         }
 
         private void supplierPrice_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(supplierPrice_tx);
-            ComputeTotal();
+            ComputeTotal(_isSubQty);
         }
 
         private void markUpPrice_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(markUpPrice_tx);
-            ComputeTotal();
-        }
-
-        private void qty_tx_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void supplierPrice_tx_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void markUpPrice_tx_Click(object sender, EventArgs e)
-        {
-
+            ComputeTotal(_isSubQty);
         }
     }
 }

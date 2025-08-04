@@ -19,5 +19,7 @@ namespace SalesPro.Models
     {
         public string ProductName { get; set; }
         public string UnitOfMeasure { get; set; }
+        public string SubUnit { get; set; }
+        public int SubQuantity { get; set; }
     }
 }
