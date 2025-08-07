@@ -18,10 +18,10 @@ namespace SalesPro.Forms.PurchaseOrders
         public int _poItemId;
         public int _rowVersion;
         private int _productId;
-        private bool _isProductSelected;
         public string _actionType;
         public decimal _totalPrice;
         private bool _isSubQty;
+        private bool _isInitialized = false;
 
         private readonly PurchaseOrderService _service;
         private readonly ProductService _prodService;
@@ -44,7 +44,16 @@ namespace SalesPro.Forms.PurchaseOrders
                 var products = await _service.LoadProducts();
                 dgProducts.DataSource = products;
                 DgExtensions.ConfigureDataGrid(dgProducts, false, 0, notFound_lbl, "ProductName");
+                dgProducts.ClearSelection();
             }
+        }
+
+        private bool IsProductSelected()
+        {
+            return dgProducts.SelectedRows.Count > 0 &&
+                   dgProducts.SelectedRows[0].Cells["ProductId"].Value != null &&
+                   int.TryParse(dgProducts.SelectedRows[0].Cells["ProductId"].Value.ToString(), out int productId) &&
+                   productId > 0;
         }
 
         private async void AddPurchaseProductForm_Load(object sender, EventArgs e)
@@ -52,19 +61,18 @@ namespace SalesPro.Forms.PurchaseOrders
             try
             {
                 qty_tx.Select();
-                await LoadProducts();
                 if (_actionType == Constants.SystemConstants.New)
                 {
+                    await LoadProducts();
                     add_btn.Text = "Add";
+                    add_btn.Enabled = false;
                     delete_btn.Visible = false;
                     dgProducts.Enabled = true;
                     search_tx.ReadOnly = false;
-
-                    dgProducts.ClearSelection();
-                    _isProductSelected = false;
                     productName_tx.Text = "-";
                     unitOfMeasure_tx.Text = "-";
                     subUnit_tx.Text = "-";
+                    subUnitQty_tx.Text = "0";
                     supplierPrice_tx.Text = "0";
                     poPb.Image = Resources.add;
                     prodTitel_tx.Text = "Add Product";
@@ -73,7 +81,6 @@ namespace SalesPro.Forms.PurchaseOrders
                 {
                     DgFormatHelper.DisableDatagrid(dgProducts);
                     search_tx.ReadOnly = true;
-                    dgProducts.ClearSelection();
                     poPb.Image = Resources.edit;
                     prodTitel_tx.Text = "Edit Product";
                     var poItem = await _service.GetPurchaseOrderItemByPoItemId(_poItemId);
@@ -87,10 +94,11 @@ namespace SalesPro.Forms.PurchaseOrders
                         supplierPrice_tx.Text = poItem.SupplierPrice.ToString();
                         markUpPrice_tx.Text = poItem.MarkUpPrice.ToString();
                         retailPrice_tx.Text = poItem.RetailPrice.ToString();
-                        _isProductSelected = poItem.ProductId != 0;
+
                         _productId = poItem.ProductId;
                         // Check if sub unit is applicable
                         _isSubQty = IsSubQuantity(poItem.SubUnit, poItem.SubQuantity);
+                        noProductSelectedPanel.Visible = false;
                     }
                     else
                     {
@@ -98,7 +106,9 @@ namespace SalesPro.Forms.PurchaseOrders
                     }
                     delete_btn.Visible = true;
                     add_btn.Text = "Update";
+                   
                 }
+                _isInitialized = true; // Mark initialization as complete
             }
             catch (Exception ex)
             {
@@ -115,13 +125,22 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private async Task GetPropertiesOnGrid()
         {
-            _productId = DgFormatHelper.GetSelectedRowId(dgProducts, "ProductId");
-            if (_productId == 0)
+            if (!IsProductSelected())
             {
-                _isProductSelected = false;
+                productName_tx.Text = "-";
+                unitOfMeasure_tx.Text = "-";
+                subUnit_tx.Text = "-";
+                subUnitQty_tx.Text = "0";
+                supPrice_tx.Text = "0";
+                retailPriceLabel.Text = "Retail Price";
+                supplierPrice_tx.Text = "0";
+
+                noProductSelectedPanel.Visible = true;
+                add_btn.Enabled = false;
                 return;
             }
 
+            _productId = DgFormatHelper.GetSelectedRowId(dgProducts, "ProductId");
             var product = await _prodService.GetProductById(_productId);
             if (product != null)
             {
@@ -129,26 +148,33 @@ namespace SalesPro.Forms.PurchaseOrders
                 unitOfMeasure_tx.Text = product.UnitOfMeasure;
                 subUnit_tx.Text = product.SubUnit;
                 subUnitQty_tx.Text = product.SubQuantity.ToString();
-
-                _isProductSelected = productName_tx.Text != string.Empty;
                 supPrice_tx.Text = _service.GetLatestSupplierPrice(_productId).ToString();
-
-                // Check if sub unit is applicable
                 _isSubQty = IsSubQuantity(product.SubUnit, product.SubQuantity);
 
-                if (product.SubUnit != string.Empty)
-                {
-                    retailPriceLabel.Text = $"Retail Price per ({product.SubUnit})";
-                }
-                else
-                {
-                    retailPriceLabel.Text = $"Retail Price per ({product.UnitOfMeasure})";
-                }
+                retailPriceLabel.Text = _isSubQty
+                    ? $"Retail Price per {product.SubUnit}"
+                    : $"Retail Price per {product.UnitOfMeasure}";
+
+                noProductSelectedPanel.Visible = false;
+                add_btn.Enabled = true;
+            }
+            else
+            {
+                productName_tx.Text = "-";
+                unitOfMeasure_tx.Text = "-";
+                subUnit_tx.Text = "-";
+                subUnitQty_tx.Text = "0";
+                supPrice_tx.Text = "0";
+                retailPriceLabel.Text = "Retail Price";
+
+                noProductSelectedPanel.Visible = true;
+                add_btn.Enabled = false;
             }
         }
+
         private bool IsSubQuantity(string prodName, int quantity)
         {
-            return prodName == "--Not Applicable--" && quantity > 0;
+            return prodName != "--Not Applicable--" && quantity > 0;
         }
         private void ComputeTotal(bool isSubQty)
         {
@@ -188,15 +214,14 @@ namespace SalesPro.Forms.PurchaseOrders
         {
             try
             {
+                if (!_isInitialized) return;
                 if (_actionType == SystemConstants.New)
                 {
-                    noProductSelectedPanel.Visible = _actionType == SystemConstants.New && dgProducts.SelectedRows.Count == 0;
                     await GetPropertiesOnGrid();
                 }
             }
             catch (Exception ex)
             {
-                _isProductSelected = false;
                 MessageHandler.ShowError($"Error getting product properties on selection changed {ex.Message}");
             }
         }
@@ -230,11 +255,12 @@ namespace SalesPro.Forms.PurchaseOrders
             };
             return poItem;
         }
+
         private async void add_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!_isProductSelected)
+                if (_actionType == SystemConstants.New && !IsProductSelected())
                 {
                     MessageHandler.ShowWarning("Please select a product");
                     return;

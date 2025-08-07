@@ -385,9 +385,9 @@
             this.supPrice_tx.Location = new System.Drawing.Point(369, 66);
             this.supPrice_tx.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.supPrice_tx.Name = "supPrice_tx";
-            this.supPrice_tx.Size = new System.Drawing.Size(41, 17);
+            this.supPrice_tx.Size = new System.Drawing.Size(32, 17);
             this.supPrice_tx.TabIndex = 553;
-            this.supPrice_tx.Text = "10000";
+            this.supPrice_tx.Text = "0.00";
             // 
             // label6
             // 
