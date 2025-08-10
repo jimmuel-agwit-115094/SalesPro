@@ -212,6 +212,9 @@ namespace SalesPro.Forms.Orders
                 case Keys.F11:
                     cancel_btn.PerformClick();
                     break;
+                case Keys.Oem3:
+                    addByPrice_btn.PerformClick();
+                    break;
             }
         }
 
@@ -219,7 +222,6 @@ namespace SalesPro.Forms.Orders
         {
             total_tx.ForeColor = decimal.Parse(total_tx.Text) < 0 ? Color.Yellow : Color.White;
         }
-
         private void edit_btn_Click(object sender, EventArgs e)
         {
             if (dgItems.SelectedRows.Count != 0)
@@ -253,7 +255,6 @@ namespace SalesPro.Forms.Orders
                 form.ShowDialog();
             }
         }
-
         private async void delete_btn_Click(object sender, EventArgs e)
         {
             try
@@ -324,7 +325,6 @@ namespace SalesPro.Forms.Orders
                 MessageHandler.ShowError($"Error add order item form load:  {ex.Message}");
             }
         }
-
 
         private void addCustomer_btn_Click(object sender, EventArgs e)
         {
@@ -568,7 +568,6 @@ namespace SalesPro.Forms.Orders
             }
 
         }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.F12)
@@ -590,5 +589,9 @@ namespace SalesPro.Forms.Orders
             barcode_tx.BackColor = Color.WhiteSmoke;
         }
 
+        private void addByPrice_btn_Click(object sender, EventArgs e)
+        {
+            ShowOrderItemForm(OrderAction.AddByPrice);
+        }
     }
 }

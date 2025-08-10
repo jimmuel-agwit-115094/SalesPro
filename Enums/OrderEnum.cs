@@ -29,7 +29,8 @@
     {
         New,
         Return,
-        Inquiry
+        Inquiry,
+        AddByPrice
     }
 
     public enum SearchByAction

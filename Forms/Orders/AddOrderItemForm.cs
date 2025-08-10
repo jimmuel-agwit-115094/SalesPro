@@ -48,9 +48,15 @@ namespace SalesPro.Forms.Orders
                     title_lbl.ForeColor = Color.Red;
                     return_pb.Visible = true;
                 }
-                else
+                else if(_orderAction == OrderAction.Inquiry)
                 {
                     title_lbl.Text = "Price Inquiry";
+                    title_lbl.ForeColor = Color.Black;
+                    return_pb.Visible = false;
+                }
+                else if (_orderAction == OrderAction.AddByPrice)
+                {
+                    title_lbl.Text = "Add Item By Price";
                     title_lbl.ForeColor = Color.Black;
                     return_pb.Visible = false;
                 }

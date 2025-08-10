@@ -224,6 +224,12 @@
     <Compile Include="Forms\Inventory\ManageInventoryForm.Designer.cs">
       <DependentUpon>ManageInventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Orders\AddByPriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\AddByPriceForm.Designer.cs">
+      <DependentUpon>AddByPriceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\InventoryHelper.cs" />
     <Compile Include="Models\PaymentLogModel.cs" />
     <Compile Include="Models\UserModel\RoleModel.cs" />
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\AddByPriceForm.resx">
+      <DependentUpon>AddByPriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
