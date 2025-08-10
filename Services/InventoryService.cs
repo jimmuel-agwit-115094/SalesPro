@@ -119,6 +119,8 @@ namespace SalesPro.Services
                                   DateAdded = i.DateAdded,
                                   QuantityFromPo = i.QuantityFromPo,
                                   QuantityOnHand = i.QuantityOnHand,
+                                  SubQuantity = p.SubQuantity,
+                                  SubUnit = p.SubUnit,
                                   SupplierPrice = i.SupplierPrice,
                                   RetailPrice = i.RetailPrice,
                                   ProductName = p.ProductName,

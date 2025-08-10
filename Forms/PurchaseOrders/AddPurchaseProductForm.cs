@@ -173,8 +173,8 @@ namespace SalesPro.Forms.PurchaseOrders
         }
 
         private bool IsSubQuantity(string prodName, int quantity)
-        {
-            return prodName != "--Not Applicable--" && quantity > 0;
+        {   
+            return prodName != SystemConstants.NotApplicable && quantity > 0;
         }
         private void ComputeTotal(bool isSubQty)
         {

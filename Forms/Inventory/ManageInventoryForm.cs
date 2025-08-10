@@ -38,10 +38,23 @@ namespace SalesPro.Forms.Inventory
                 supplier_tx.Text = inv.SupplierName;
                 processedBy_tx.Text = inv.UserFullName;
                 dateAdded_tx.Text = inv.DateAdded.ToString("MMM dd, yyyy");
-                qtyFromPo_tx.Text = inv.QuantityFromPo.ToString();
-                qtyOnHand_tx.Text = $"{inv.QuantityOnHand.ToString()} {inv.UnitOfMeasure}";
-                suppPrice_tx.Text = inv.SupplierPrice.ToString("N2");
-                retailPrice_tx.Text = inv.RetailPrice.ToString("N2");
+
+                qtyFromPo_txt.Text = inv.QuantityFromPo.ToString();
+                fromPoMeasure_tx.Text = inv.UnitOfMeasure;
+                subQty_tx.Text = inv.SubQuantity.ToString();
+                subQtyMeasure_tx.Text = inv.SubUnit;
+
+                if (inv.SubUnit == SystemConstants.NotApplicable)
+                {
+                    qtyOnHand_tx.Text = $"{inv.QuantityFromPo.ToString()} {inv.UnitOfMeasure}";
+                }
+                else
+                {
+                    qtyOnHand_tx.Text = $"{inv.SubQuantity.ToString()} {inv.SubUnit}";
+                }
+
+                suppPrice_txt.Text = inv.SupplierPrice.ToString("N2");
+                retailPrice_txt.Text = inv.RetailPrice.ToString("N2");
                 supAddress_tx.Text = inv.SupplierAddress;
                 _rowVersion = inv.RowVersion;
 
@@ -165,7 +178,7 @@ namespace SalesPro.Forms.Inventory
             dgLogs.Columns["DateAdjusted"].DisplayIndex = 0;
             // Changfe to segoe ui
             dgLogs.Columns["DateAdjusted"].DefaultCellStyle.Font = new Font("Consolas", 9.75F, FontStyle.Bold);
-          
+
             // Apply row formatting based on InventoryAction
             foreach (DataGridViewRow row in dgLogs.Rows)
             {

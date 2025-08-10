@@ -156,7 +156,7 @@ namespace SalesPro.Forms.Inventory
 
         private void FormatInventoryGrid()
         {
-            DgExtensions.ConfigureDataGrid(dgInventory, true, 7, notFound_lbl,
+            DgExtensions.ConfigureDataGrid(dgInventory, true, 9, notFound_lbl,
                          "InventoryId",
                          "ProductName",
                          "DateAdded",

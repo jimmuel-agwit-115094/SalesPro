@@ -9,5 +9,6 @@
         public const string RowVersion = "RowVersion";
 
         public const decimal VatRate = 0.12M;
+        public const string NotApplicable = "--Not Applicable--";
     }
 }

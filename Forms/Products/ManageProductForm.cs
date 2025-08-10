@@ -106,17 +106,17 @@ namespace SalesPro.Forms.Products
             }
             if (!Validators.EmptyStringValidator(reorder_tx.Text, "Reorder Level")) return;
             if (!Validators.IntValidator(reorder_tx.Text, "Reorder Level")) return;
-            if (unit_cb.Text == "--Not Applicable--")
+            if (unit_cb.Text == SystemConstants.NotApplicable)
             {
                 MessageHandler.ShowWarning($"Please select a valid unit of measure");
                 return;
             }
-            if (subUnit_cb.Text != "--Not Applicable--" && subUnitQty <= 0)
+            if (subUnit_cb.Text != SystemConstants.NotApplicable && subUnitQty <= 0)
             {
                 MessageHandler.ShowWarning($"Please provide valid sub order quantity for a {subUnit_cb.Text}.");
                 return;
             }
-            if (subUnitQty > 0 && subUnit_cb.Text == "--Not Applicable--")
+            if (subUnitQty > 0 && subUnit_cb.Text == SystemConstants.NotApplicable)
             {
                 MessageHandler.ShowWarning($"Please remove sub quantity for it is not applicable.");
                 return;
