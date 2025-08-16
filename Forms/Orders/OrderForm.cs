@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using SalesPro.Constants;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -172,7 +173,7 @@ namespace SalesPro.Forms.Orders
         private void add_btn_Click(object sender, EventArgs e)
         {
             var orderAction = _isReturn ? OrderAction.Return : OrderAction.New;
-            ShowOrderItemForm(orderAction);
+            ShowOrderItemForm(orderAction, SystemConstants.ByProduct);
         }
 
         private void OrderForm_KeyUp(object sender, KeyEventArgs e)
@@ -308,16 +309,16 @@ namespace SalesPro.Forms.Orders
             form.ShowDialog();
         }
 
-        private void ShowOrderItemForm(OrderAction orderAction)
+        private void ShowOrderItemForm(OrderAction orderAction, string addMethod)
         {
             try
             {
                 var form = new AddOrderItemForm(this);
-
                 form._orderId = _orderId;
                 form._rowVersion = _rowVersion;
                 form._quantity = _quantity;
                 form._orderAction = orderAction;
+                form._addMethod = addMethod;
                 form.ShowDialog();
             }
             catch (Exception ex)
@@ -591,7 +592,7 @@ namespace SalesPro.Forms.Orders
 
         private void addByPrice_btn_Click(object sender, EventArgs e)
         {
-            ShowOrderItemForm(OrderAction.AddByPrice);
+            ShowOrderItemForm(OrderAction.AddByPrice, SystemConstants.ByPrice);
         }
     }
 }

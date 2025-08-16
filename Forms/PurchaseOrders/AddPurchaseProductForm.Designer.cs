@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPurchaseProductForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.search_tx = new System.Windows.Forms.TextBox();
             this.notFound_lbl = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.add_btn = new System.Windows.Forms.Button();
             this.productName_tx = new System.Windows.Forms.Label();
             this.unitOfMeasure_tx = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.unitControl_gb = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.markUpPrice_tx = new System.Windows.Forms.TextBox();
             this.supplierPrice_tx = new System.Windows.Forms.TextBox();
@@ -69,7 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retailPrice_tx)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.unitControl_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poPb)).BeginInit();
             this.panel2.SuspendLayout();
             this.noProductSelectedPanel.SuspendLayout();
@@ -116,30 +116,30 @@
             this.dgProducts.AllowUserToAddRows = false;
             this.dgProducts.AllowUserToDeleteRows = false;
             this.dgProducts.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgProducts.ColumnHeadersHeight = 30;
             this.dgProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgProducts.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgProducts.EnableHeadersVisualStyles = false;
             this.dgProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgProducts.Location = new System.Drawing.Point(17, 97);
@@ -160,7 +160,7 @@
             // 
             this.retailPrice_tx.BackColor = System.Drawing.Color.WhiteSmoke;
             this.retailPrice_tx.DecimalPlaces = 2;
-            this.retailPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.retailPrice_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.retailPrice_tx.Location = new System.Drawing.Point(16, 208);
             this.retailPrice_tx.Maximum = new decimal(new int[] {
             410065408,
@@ -169,7 +169,7 @@
             0});
             this.retailPrice_tx.Name = "retailPrice_tx";
             this.retailPrice_tx.ReadOnly = true;
-            this.retailPrice_tx.Size = new System.Drawing.Size(335, 27);
+            this.retailPrice_tx.Size = new System.Drawing.Size(370, 29);
             this.retailPrice_tx.TabIndex = 539;
             this.retailPrice_tx.Tag = "IsNumeric";
             this.retailPrice_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -262,27 +262,27 @@
             this.unitOfMeasure_tx.TabIndex = 547;
             this.unitOfMeasure_tx.Text = "Box";
             // 
-            // groupBox1
+            // unitControl_gb
             // 
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.markUpPrice_tx);
-            this.groupBox1.Controls.Add(this.supplierPrice_tx);
-            this.groupBox1.Controls.Add(this.qty_tx);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.retailPriceLabel);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.retailPrice_tx);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(52, 125);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(365, 252);
-            this.groupBox1.TabIndex = 548;
-            this.groupBox1.TabStop = false;
+            this.unitControl_gb.Controls.Add(this.panel1);
+            this.unitControl_gb.Controls.Add(this.markUpPrice_tx);
+            this.unitControl_gb.Controls.Add(this.supplierPrice_tx);
+            this.unitControl_gb.Controls.Add(this.qty_tx);
+            this.unitControl_gb.Controls.Add(this.label2);
+            this.unitControl_gb.Controls.Add(this.retailPriceLabel);
+            this.unitControl_gb.Controls.Add(this.label1);
+            this.unitControl_gb.Controls.Add(this.retailPrice_tx);
+            this.unitControl_gb.Controls.Add(this.label8);
+            this.unitControl_gb.Location = new System.Drawing.Point(16, 125);
+            this.unitControl_gb.Name = "unitControl_gb";
+            this.unitControl_gb.Size = new System.Drawing.Size(401, 252);
+            this.unitControl_gb.TabIndex = 548;
+            this.unitControl_gb.TabStop = false;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Location = new System.Drawing.Point(17, 209);
+            this.panel1.Location = new System.Drawing.Point(17, 210);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(16, 25);
             this.panel1.TabIndex = 554;
@@ -290,11 +290,11 @@
             // markUpPrice_tx
             // 
             this.markUpPrice_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.markUpPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.markUpPrice_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.markUpPrice_tx.Location = new System.Drawing.Point(16, 151);
             this.markUpPrice_tx.MaxLength = 10;
             this.markUpPrice_tx.Name = "markUpPrice_tx";
-            this.markUpPrice_tx.Size = new System.Drawing.Size(334, 27);
+            this.markUpPrice_tx.Size = new System.Drawing.Size(370, 29);
             this.markUpPrice_tx.TabIndex = 563;
             this.markUpPrice_tx.Text = "0.00";
             this.markUpPrice_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -303,11 +303,11 @@
             // supplierPrice_tx
             // 
             this.supplierPrice_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.supplierPrice_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.supplierPrice_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supplierPrice_tx.Location = new System.Drawing.Point(16, 93);
             this.supplierPrice_tx.MaxLength = 10;
             this.supplierPrice_tx.Name = "supplierPrice_tx";
-            this.supplierPrice_tx.Size = new System.Drawing.Size(334, 27);
+            this.supplierPrice_tx.Size = new System.Drawing.Size(370, 29);
             this.supplierPrice_tx.TabIndex = 562;
             this.supplierPrice_tx.Text = "0.00";
             this.supplierPrice_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -316,11 +316,11 @@
             // qty_tx
             // 
             this.qty_tx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.qty_tx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qty_tx.Location = new System.Drawing.Point(17, 37);
             this.qty_tx.MaxLength = 7;
             this.qty_tx.Name = "qty_tx";
-            this.qty_tx.Size = new System.Drawing.Size(334, 27);
+            this.qty_tx.Size = new System.Drawing.Size(369, 29);
             this.qty_tx.TabIndex = 561;
             this.qty_tx.Text = "0";
             this.qty_tx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -430,7 +430,7 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.noProductSelectedPanel);
             this.panel2.Controls.Add(this.productName_tx);
-            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.unitControl_gb);
             this.panel2.Controls.Add(this.unitOfMeasure_tx);
             this.panel2.Controls.Add(this.delete_btn);
             this.panel2.Controls.Add(this.label6);
@@ -564,8 +564,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retailPrice_tx)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.unitControl_gb.ResumeLayout(false);
+            this.unitControl_gb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poPb)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -591,7 +591,7 @@
         private System.Windows.Forms.Button add_btn;
         internal System.Windows.Forms.Label unitOfMeasure_tx;
         internal System.Windows.Forms.Label productName_tx;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox unitControl_gb;
         private System.Windows.Forms.Label total_tx;
         internal System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button delete_btn;

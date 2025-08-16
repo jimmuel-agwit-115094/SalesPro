@@ -19,6 +19,7 @@ namespace SalesPro.Forms.Orders
         public int _orderId;
         public int _quantity;
         public OrderAction _orderAction;
+        public string _addMethod;
 
         private readonly OrderService _service;
         private readonly OrderForm _orderForm;
@@ -96,11 +97,19 @@ namespace SalesPro.Forms.Orders
         {
             if (_orderAction == OrderAction.New)
             {
-                await ProcessOrderItem(OrderItemStatus.Added);
+                await ProcessOrderItem(OrderItemStatus.Added, _quantity);
             }
             else if (_orderAction == OrderAction.Return)
             {
-                await ProcessOrderItem(OrderItemStatus.Returned);
+                await ProcessOrderItem(OrderItemStatus.Returned, _quantity);
+            }
+            else if (_orderAction == OrderAction.AddByPrice)
+            {
+                var form = new AddByPriceForm(this)
+                {
+                    _inventoryId = _inventoryId 
+                };
+                form.ShowDialog();
             }
         }
 
@@ -115,17 +124,22 @@ namespace SalesPro.Forms.Orders
 
         }
 
-        private async Task ProcessOrderItem(OrderItemStatus itemStatus)
+        private async void dgProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            await AddOrderItem();
+        }
+
+        public async Task<bool> ProcessOrderItem(OrderItemStatus itemStatus, int quantity)
         {
             try
             {
                 if (_quantity <= 0)
                 {
                     MessageHandler.ShowWarning("Quantity cannot be 0");
-                    return;
+                    return false;
                 }
 
-                var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, _quantity, _rowVersion);
+                var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, quantity, _rowVersion);
                 // Set order controls
                 _orderForm.SetOrderControls(savedOrder.OrderModel);
 
@@ -143,25 +157,25 @@ namespace SalesPro.Forms.Orders
                 {
                     Close();
                 }
+                return true;
             }
             catch (InvalidOperationException inEx)
             {
                 MessageHandler.ShowWarning($"Validation error: \n {inEx.Message}");
+                return false;
             }
             catch (NullReferenceException nullEx)
             {
                 MessageHandler.ShowWarning($"Not Found: \n {nullEx.Message}");
+                return false;
             }
             catch (Exception ex)
             {
                 MessageHandler.ShowWarning($"Validation error: \n {ex.Message}");
+                return false;
             }
         }
 
-        private async void dgProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            await AddOrderItem();
-        }
 
         private async void search_tx_TextChanged(object sender, EventArgs e)
         {

@@ -20,7 +20,7 @@ namespace SalesPro.Forms.PurchaseOrders
         private int _productId;
         public string _actionType;
         public decimal _totalPrice;
-        private bool _isSubQty;
+        private bool _isSubUnit;
         private bool _isInitialized = false;
 
         private readonly PurchaseOrderService _service;
@@ -97,7 +97,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
                         _productId = poItem.ProductId;
                         // Check if sub unit is applicable
-                        _isSubQty = IsSubQuantity(poItem.SubUnit, poItem.SubQuantity);
+                        _isSubUnit = IsSubUnit(poItem.SubUnit, poItem.SubQuantity);
                         noProductSelectedPanel.Visible = false;
                     }
                     else
@@ -106,7 +106,7 @@ namespace SalesPro.Forms.PurchaseOrders
                     }
                     delete_btn.Visible = true;
                     add_btn.Text = "Update";
-                   
+
                 }
                 _isInitialized = true; // Mark initialization as complete
             }
@@ -149,9 +149,9 @@ namespace SalesPro.Forms.PurchaseOrders
                 subUnit_tx.Text = product.SubUnit;
                 subUnitQty_tx.Text = product.SubQuantity.ToString();
                 supPrice_tx.Text = _service.GetLatestSupplierPrice(_productId).ToString();
-                _isSubQty = IsSubQuantity(product.SubUnit, product.SubQuantity);
+                _isSubUnit = IsSubUnit(product.SubUnit, product.SubQuantity);
 
-                retailPriceLabel.Text = _isSubQty
+                retailPriceLabel.Text = _isSubUnit
                     ? $"Retail Price per {product.SubUnit}"
                     : $"Retail Price per {product.UnitOfMeasure}";
 
@@ -172,8 +172,8 @@ namespace SalesPro.Forms.PurchaseOrders
             }
         }
 
-        private bool IsSubQuantity(string prodName, int quantity)
-        {   
+        private bool IsSubUnit(string prodName, int quantity)
+        {
             return prodName != SystemConstants.NotApplicable && quantity > 0;
         }
         private void ComputeTotal(bool isSubQty)
@@ -233,12 +233,12 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void supplierPrice_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
 
         private void markUpPrice_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
 
         private PurchaseOrderItemModel BuildPurchaseOrderItem()
@@ -247,13 +247,25 @@ namespace SalesPro.Forms.PurchaseOrders
             {
                 PurchaseOrderId = _poId,
                 ProductId = _productId,
-                Quantity = int.Parse(qty_tx.Text),
+                Quantity = SetQuantity(),
                 SupplierPrice = decimal.Parse(supplierPrice_tx.Text),
                 MarkUpPrice = decimal.Parse(markUpPrice_tx.Text),
                 RetailPrice = decimal.Parse(retailPrice_tx.Text),
                 TotalPrice = decimal.Parse(supplierPrice_tx.Text) * int.Parse(qty_tx.Text)
             };
             return poItem;
+        }
+
+        private int SetQuantity()
+        {
+            if (_isSubUnit)
+            {
+                return (int.Parse(qty_tx.Text) * int.Parse(subUnitQty_tx.Text));
+            }
+            else
+            {
+                return int.Parse(qty_tx.Text);
+            }
         }
 
         private async void add_btn_Click(object sender, EventArgs e)
@@ -307,7 +319,7 @@ namespace SalesPro.Forms.PurchaseOrders
 
         private void qty_tx_ValueChanged(object sender, EventArgs e)
         {
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
 
         private async void delete_btn_Click(object sender, EventArgs e)
@@ -332,19 +344,19 @@ namespace SalesPro.Forms.PurchaseOrders
         private void qty_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(qty_tx);
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
 
         private void supplierPrice_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(supplierPrice_tx);
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
 
         private void markUpPrice_tx_TextChanged(object sender, EventArgs e)
         {
             TextBoxHelper.HandleEmptyDecimalTextbox(markUpPrice_tx);
-            ComputeTotal(_isSubQty);
+            ComputeTotal(_isSubUnit);
         }
     }
 }

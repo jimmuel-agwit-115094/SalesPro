@@ -10,5 +10,7 @@
 
         public const decimal VatRate = 0.12M;
         public const string NotApplicable = "--Not Applicable--";
+        public const string ByProduct = "ByProduct";
+        public const string ByPrice = "ByPrice";
     }
 }
