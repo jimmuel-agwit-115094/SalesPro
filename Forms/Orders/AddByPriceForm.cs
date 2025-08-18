@@ -81,12 +81,13 @@ namespace SalesPro.Forms.Orders
                     return;
                 }
 
-                bool success = await _addOrderItemForm.ProcessOrderItem(Enums.OrderItemStatus.Added, _quantity);
-                if (success)
+                var result = await _addOrderItemForm.ProcessOrderItem(Enums.OrderItemStatus.Added, _quantity);
+                if (!result.IsSuccess)
                 {
-                    Close();
+                    MessageHandler.ShowWarning(result.Message);
+                    return;
                 }
-             
+                Close();
             }
             catch (Exception ex)
             {

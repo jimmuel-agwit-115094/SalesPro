@@ -1,4 +1,5 @@
-﻿using SalesPro.Enums;
+﻿using MySqlX.XDevAPI.Common;
+using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Helpers.UiHelpers;
 using SalesPro.Models;
@@ -49,7 +50,7 @@ namespace SalesPro.Forms.Orders
                     title_lbl.ForeColor = Color.Red;
                     return_pb.Visible = true;
                 }
-                else if(_orderAction == OrderAction.Inquiry)
+                else if (_orderAction == OrderAction.Inquiry)
                 {
                     title_lbl.Text = "Price Inquiry";
                     title_lbl.ForeColor = Color.Black;
@@ -97,17 +98,27 @@ namespace SalesPro.Forms.Orders
         {
             if (_orderAction == OrderAction.New)
             {
-                await ProcessOrderItem(OrderItemStatus.Added, _quantity);
+                var newOrder = await ProcessOrderItem(OrderItemStatus.Added, _quantity);
+                if (!newOrder.IsSuccess)
+                {
+                    MessageHandler.ShowWarning(newOrder.Message);
+                    return;
+                }
             }
             else if (_orderAction == OrderAction.Return)
             {
-                await ProcessOrderItem(OrderItemStatus.Returned, _quantity);
+                var returnOrder = await ProcessOrderItem(OrderItemStatus.Returned, _quantity);
+                if (!returnOrder.IsSuccess)
+                {
+                    MessageHandler.ShowWarning(returnOrder.Message);
+                    return;
+                }
             }
             else if (_orderAction == OrderAction.AddByPrice)
             {
                 var form = new AddByPriceForm(this)
                 {
-                    _inventoryId = _inventoryId 
+                    _inventoryId = _inventoryId
                 };
                 form.ShowDialog();
             }
@@ -129,14 +140,14 @@ namespace SalesPro.Forms.Orders
             await AddOrderItem();
         }
 
-        public async Task<bool> ProcessOrderItem(OrderItemStatus itemStatus, int quantity)
+        public async Task<ProcessOrderResult> ProcessOrderItem(OrderItemStatus itemStatus, int quantity)
         {
             try
             {
                 if (_quantity <= 0)
                 {
                     MessageHandler.ShowWarning("Quantity cannot be 0");
-                    return false;
+                    return new ProcessOrderResult { IsSuccess = false, Message = "Quantity cannot be 0" };
                 }
 
                 var savedOrder = await _service.ProcessOrderItem(itemStatus, _inventoryId, _orderId, quantity, _rowVersion);
@@ -157,22 +168,22 @@ namespace SalesPro.Forms.Orders
                 {
                     Close();
                 }
-                return true;
+                return new ProcessOrderResult { IsSuccess = true };
             }
             catch (InvalidOperationException inEx)
             {
-                MessageHandler.ShowWarning($"Validation error: \n {inEx.Message}");
-                return false;
+                var error = $"Validation error: \n {inEx.Message}";
+                return new ProcessOrderResult { IsSuccess = false, Message = error };
             }
             catch (NullReferenceException nullEx)
             {
-                MessageHandler.ShowWarning($"Not Found: \n {nullEx.Message}");
-                return false;
+                var error = $"Not Found: \n {nullEx.Message}";
+                return new ProcessOrderResult { IsSuccess = false, Message = error };
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowWarning($"Validation error: \n {ex.Message}");
-                return false;
+                var error = $"Validation error: \n {ex.Message}";
+                return new ProcessOrderResult { IsSuccess = false, Message = error };
             }
         }
 

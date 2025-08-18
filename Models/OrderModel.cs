@@ -41,4 +41,10 @@ namespace SalesPro.Models
         public OrderModel OrderModel { get; set; }
         public int SuccessResult { get; set; }
     }
+
+    public class ProcessOrderResult
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+    }
 }
