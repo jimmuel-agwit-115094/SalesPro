@@ -67,6 +67,8 @@ namespace SalesPro.Forms.Orders
 
         public async Task LoadOrderedItems(int orderId, List<OrderItemModelExtended> invalidOrders = null)
         {
+            // Note : Loading of the order items, we added filter on the service to check if it is 
+            // Sub Unit so we will display proper  unit of measure
             var items = await _service.LoadOrderItemsByOrderId(orderId);
             dgItems.DataSource = items;
 

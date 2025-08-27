@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using POS_Generic.Helpers;
+using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Helpers;
 using SalesPro.Models;
@@ -88,7 +89,9 @@ namespace SalesPro.Services
                                   ProductId = oi.ProductId,
                                   ProductName = p.ProductName,
                                   TotalPrice = oi.TotalPrice,
-                                  UnitOfMeasure = p.UnitOfMeasure
+                                  UnitOfMeasure = p.SubUnit == SystemConstants.NotApplicable
+                                            ? p.UnitOfMeasure
+                                            : p.SubUnit
                               }).ToListAsync();
             }
         }
