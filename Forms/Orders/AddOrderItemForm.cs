@@ -91,7 +91,7 @@ namespace SalesPro.Forms.Orders
             }
 
             dgProduct.DataSource = products;
-            DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "RetailPrice");
+            DgExtensions.ConfigureDataGrid(dgProduct, false, 1, notFound_lbl, "ProductName", "QuantityOnHand", "UnitOfMeasure", "RetailPrice");
         }
 
         private async Task AddOrderItem()

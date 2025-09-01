@@ -116,7 +116,10 @@ namespace SalesPro.Services
                                 SupplierPrice = i.SupplierPrice,
                                 UserId = i.UserId,
                                 ProductName = p.ProductName,
-                                BarCode = p.BarCode
+                                BarCode = p.BarCode,
+                                UnitOfMeasure = p.SubUnit == SystemConstants.NotApplicable
+                                            ? p.UnitOfMeasure
+                                            : p.SubUnit
                             };
 
                 // Apply filtering if optional parameters are provided
