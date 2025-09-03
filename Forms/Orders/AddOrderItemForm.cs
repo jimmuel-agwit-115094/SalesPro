@@ -24,10 +24,12 @@ namespace SalesPro.Forms.Orders
 
         private readonly OrderService _service;
         private readonly OrderForm _orderForm;
+        private readonly ProductService _productService;
         public AddOrderItemForm(OrderForm orderForm)
         {
             InitializeComponent();
             _service = new OrderService();
+            _productService = new ProductService();
             _orderForm = orderForm;
             KeyPreview = true;
         }
@@ -96,32 +98,47 @@ namespace SalesPro.Forms.Orders
 
         private async Task AddOrderItem()
         {
-            if (_orderAction == OrderAction.New)
+            try
             {
-                var newOrder = await ProcessOrderItem(OrderItemStatus.Added, _quantity);
-                if (!newOrder.IsSuccess)
+                if (_orderAction == OrderAction.New)
                 {
-                    MessageHandler.ShowWarning(newOrder.Message);
-                    return;
+                    var newOrder = await ProcessOrderItem(OrderItemStatus.Added, _quantity);
+                    if (!newOrder.IsSuccess)
+                    {
+                        MessageHandler.ShowWarning(newOrder.Message);
+                        return;
+                    }
+                }
+                else if (_orderAction == OrderAction.Return)
+                {
+                    var returnOrder = await ProcessOrderItem(OrderItemStatus.Returned, _quantity);
+                    if (!returnOrder.IsSuccess)
+                    {
+                        MessageHandler.ShowWarning(returnOrder.Message);
+                        return;
+                    }
+                }
+                else if (_orderAction == OrderAction.AddByPrice)
+                {
+                    var inventory = await _service.GetInventoryById(_inventoryId);
+                    if (inventory == null) return;
+
+                    var product = await _productService.GetProductById(inventory.ProductId);
+                    if (product?.IsSoldByPrice == true)
+                    {
+                        new AddByPriceForm(this) { _inventoryId = _inventoryId }.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageHandler.ShowWarning("This product is not sold by price.");
+                    }
                 }
             }
-            else if (_orderAction == OrderAction.Return)
+            catch (Exception ex)
             {
-                var returnOrder = await ProcessOrderItem(OrderItemStatus.Returned, _quantity);
-                if (!returnOrder.IsSuccess)
-                {
-                    MessageHandler.ShowWarning(returnOrder.Message);
-                    return;
-                }
+                MessageHandler.ShowError("Error on adding order item:" + ex.Message);
             }
-            else if (_orderAction == OrderAction.AddByPrice)
-            {
-                var form = new AddByPriceForm(this)
-                {
-                    _inventoryId = _inventoryId
-                };
-                form.ShowDialog();
-            }
+          
         }
 
         private void dgProduct_SelectionChanged(object sender, EventArgs e)

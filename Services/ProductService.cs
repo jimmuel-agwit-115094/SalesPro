@@ -60,6 +60,7 @@ namespace SalesPro.Services
                     product.SubUnit = productModel.SubUnit;
                     product.SubQuantity = product.SubQuantity;
                     product.Description = productModel.Description;
+                    product.IsSoldByPrice = productModel.IsSoldByPrice;
                     product.ReorderLevel = productModel.ReorderLevel;
                     await context.SaveChangesAsync();
 

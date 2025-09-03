@@ -11,6 +11,7 @@ namespace SalesPro.Models
         public string UnitOfMeasure { get; set; }
         public string SubUnit { get; set; }
         public int SubQuantity { get; set; }
+        public bool IsSoldByPrice { get; set; }
         public int ReorderLevel { get; set; }
         public string Description { get; set; }
     }

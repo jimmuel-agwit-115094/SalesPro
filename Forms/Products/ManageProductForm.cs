@@ -43,6 +43,7 @@ namespace SalesPro.Forms.Products
                 subUnitQty_tx.Text = product.SubQuantity.ToString();
                 desc_tx.Text = product.Description;
                 reorder_tx.Text = product.ReorderLevel.ToString();
+                isSoldByPrice_cb.SelectedItem = product.IsSoldByPrice ? "YES" : "NO";
                 _rowVersion = product.RowVersion;
             }
         }
@@ -121,6 +122,11 @@ namespace SalesPro.Forms.Products
                 MessageHandler.ShowWarning($"Please remove sub quantity for it is not applicable.");
                 return;
             }
+            if(isSoldByPrice_cb.SelectedIndex == -1)
+            {
+                MessageHandler.ShowWarning($"Please select if product is sold by price.");
+                return;
+            }
             try
             {
                 if (MessageHandler.ShowQuestionGeneric("Confirm add/update product?"))
@@ -135,6 +141,7 @@ namespace SalesPro.Forms.Products
                             UnitOfMeasure = unit_cb.Text,
                             SubUnit = subUnit_cb.Text,
                             SubQuantity = int.Parse(subUnitQty_tx.Text),
+                            IsSoldByPrice = isSoldByPrice_cb.SelectedItem != null && bool.TryParse(isSoldByPrice_cb.SelectedItem.ToString(), out var isSoldByPrice) ? isSoldByPrice : false,
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         });
@@ -148,6 +155,7 @@ namespace SalesPro.Forms.Products
                             UnitOfMeasure = unit_cb.Text,
                             SubUnit = subUnit_cb.Text,
                             SubQuantity = int.Parse(subUnitQty_tx.Text),
+                            IsSoldByPrice = isSoldByPrice_cb.SelectedItem != null && bool.TryParse(isSoldByPrice_cb.SelectedItem.ToString(), out var isSoldByPrice) ? isSoldByPrice : false,
                             Description = desc_tx.Text,
                             ReorderLevel = int.Parse(reorder_tx.Text),
                         }, _rowVersion);
