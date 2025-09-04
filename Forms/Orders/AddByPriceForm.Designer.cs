@@ -163,6 +163,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add By Price";
             this.Load += new System.EventHandler(this.AddByPriceForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddByPriceForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

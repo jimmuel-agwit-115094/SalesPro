@@ -28,6 +28,7 @@ namespace SalesPro.Forms.Orders
             _inventoryService = new InventoryService();
             _addOrderItemForm = addOrderItemForm;
             TextBoxHelper.FormatIntegerTextbox(amt_tx);
+            KeyPreview = true;
         }
 
         private async void AddByPriceForm_Load(object sender, EventArgs e)
@@ -109,6 +110,14 @@ namespace SalesPro.Forms.Orders
             catch (Exception ex)
             {
                 MessageHandler.ShowError("Error on amount text change: " + ex.Message);
+            }
+        }
+
+        private void AddByPriceForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
             }
         }
     }

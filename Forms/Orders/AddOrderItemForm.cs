@@ -130,7 +130,7 @@ namespace SalesPro.Forms.Orders
                     }
                     else
                     {
-                        MessageHandler.ShowWarning("This product is not sold by price.");
+                        MessageHandler.ShowWarning($"{product.ProductName} is not sold by price.");
                     }
                 }
             }
