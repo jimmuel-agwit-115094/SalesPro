@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.isSoldByPrice_cb = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.subUnitQty_tx = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.subUnit_cb = new System.Windows.Forms.ComboBox();
@@ -46,8 +48,6 @@
             this.title_lbl = new System.Windows.Forms.Label();
             this.save_btn = new System.Windows.Forms.Button();
             this.logs_link = new System.Windows.Forms.LinkLabel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.isSoldByPrice_cb = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,9 +71,33 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(19, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 418);
+            this.groupBox1.Size = new System.Drawing.Size(500, 414);
             this.groupBox1.TabIndex = 549;
             this.groupBox1.TabStop = false;
+            // 
+            // isSoldByPrice_cb
+            // 
+            this.isSoldByPrice_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.isSoldByPrice_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.isSoldByPrice_cb.FormattingEnabled = true;
+            this.isSoldByPrice_cb.Items.AddRange(new object[] {
+            "YES",
+            "NO"});
+            this.isSoldByPrice_cb.Location = new System.Drawing.Point(141, 263);
+            this.isSoldByPrice_cb.Name = "isSoldByPrice_cb";
+            this.isSoldByPrice_cb.Size = new System.Drawing.Size(340, 28);
+            this.isSoldByPrice_cb.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 268);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(116, 20);
+            this.label7.TabIndex = 545;
+            this.label7.Text = "Is Sold By Price :";
             // 
             // subUnitQty_tx
             // 
@@ -105,6 +129,7 @@
             this.subUnit_cb.Name = "subUnit_cb";
             this.subUnit_cb.Size = new System.Drawing.Size(340, 28);
             this.subUnit_cb.TabIndex = 4;
+            this.subUnit_cb.SelectedIndexChanged += new System.EventHandler(this.subUnit_cb_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -150,7 +175,7 @@
             // desc_tx
             // 
             this.desc_tx.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desc_tx.Location = new System.Drawing.Point(141, 309);
+            this.desc_tx.Location = new System.Drawing.Point(141, 306);
             this.desc_tx.Multiline = true;
             this.desc_tx.Name = "desc_tx";
             this.desc_tx.Size = new System.Drawing.Size(340, 88);
@@ -160,7 +185,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 310);
+            this.label3.Location = new System.Drawing.Point(13, 307);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 20);
@@ -257,30 +282,6 @@
             this.logs_link.TabStop = true;
             this.logs_link.Text = "Product Change History";
             this.logs_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logs_link_LinkClicked);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 270);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 20);
-            this.label7.TabIndex = 545;
-            this.label7.Text = "Is Sold By Price :";
-            // 
-            // isSoldByPrice_cb
-            // 
-            this.isSoldByPrice_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.isSoldByPrice_cb.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.isSoldByPrice_cb.FormattingEnabled = true;
-            this.isSoldByPrice_cb.Items.AddRange(new object[] {
-            "YES",
-            "NO"});
-            this.isSoldByPrice_cb.Location = new System.Drawing.Point(141, 265);
-            this.isSoldByPrice_cb.Name = "isSoldByPrice_cb";
-            this.isSoldByPrice_cb.Size = new System.Drawing.Size(340, 28);
-            this.isSoldByPrice_cb.TabIndex = 7;
             // 
             // ManageProductForm
             // 

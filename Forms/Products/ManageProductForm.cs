@@ -71,6 +71,7 @@ namespace SalesPro.Forms.Products
             try
             {
                 await SetUnitOfMeasureComboBox();
+                subUnit_cb.SelectedIndex = 0;
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     title_lbl.Text = "New Product";
@@ -112,6 +113,7 @@ namespace SalesPro.Forms.Products
                 MessageHandler.ShowWarning($"Please select a valid unit of measure");
                 return;
             }
+           
             if (subUnit_cb.Text != SystemConstants.NotApplicable && subUnitQty <= 0)
             {
                 MessageHandler.ShowWarning($"Please provide valid sub order quantity for a {subUnit_cb.Text}.");
@@ -122,7 +124,12 @@ namespace SalesPro.Forms.Products
                 MessageHandler.ShowWarning($"Please remove sub quantity for it is not applicable.");
                 return;
             }
-            if(isSoldByPrice_cb.SelectedIndex == -1)
+            if (isSoldByPrice_cb.SelectedIndex == -1)
+            {
+                MessageHandler.ShowWarning($"Please select if product is sold by price.");
+                return;
+            }
+            if (isSoldByPrice_cb.SelectedIndex == -1)
             {
                 MessageHandler.ShowWarning($"Please select if product is sold by price.");
                 return;
@@ -193,6 +200,14 @@ namespace SalesPro.Forms.Products
             var form = new ProductLogsForm();
             form._productId = _productId;
             form.ShowDialog();
+        }
+
+        private void subUnit_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(subUnit_cb.SelectedIndex == 0)
+            {
+                subUnitQty_tx.Text = "0";
+            }
         }
     }
 }

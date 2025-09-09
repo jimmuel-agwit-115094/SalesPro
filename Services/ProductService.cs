@@ -58,7 +58,7 @@ namespace SalesPro.Services
                     product.BarCode = productModel.BarCode;
                     product.UnitOfMeasure = productModel.UnitOfMeasure;
                     product.SubUnit = productModel.SubUnit;
-                    product.SubQuantity = product.SubQuantity;
+                    product.SubQuantity = productModel.SubQuantity;
                     product.Description = productModel.Description;
                     product.IsSoldByPrice = productModel.IsSoldByPrice;
                     product.ReorderLevel = productModel.ReorderLevel;
