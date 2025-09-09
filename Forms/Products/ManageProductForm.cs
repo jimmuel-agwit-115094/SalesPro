@@ -72,6 +72,7 @@ namespace SalesPro.Forms.Products
             {
                 await SetUnitOfMeasureComboBox();
                 subUnit_cb.SelectedIndex = 0;
+                isSoldByPrice_cb.SelectedIndex = 1; // Default to NO
                 if (_actionType == Constants.SystemConstants.New)
                 {
                     title_lbl.Text = "New Product";
@@ -103,7 +104,7 @@ namespace SalesPro.Forms.Products
             if (!Validators.EmptyStringValidator(productName_tx.Text, "Product Name")) return;
             if (unit_cb.SelectedIndex == -1)
             {
-                MessageHandler.ShowError("Please select a unit of measure");
+                MessageHandler.ShowWarning("Please select a unit of measure");
                 return;
             }
             if (!Validators.EmptyStringValidator(reorder_tx.Text, "Reorder Level")) return;
@@ -113,7 +114,7 @@ namespace SalesPro.Forms.Products
                 MessageHandler.ShowWarning($"Please select a valid unit of measure");
                 return;
             }
-           
+
             if (subUnit_cb.Text != SystemConstants.NotApplicable && subUnitQty <= 0)
             {
                 MessageHandler.ShowWarning($"Please provide valid sub order quantity for a {subUnit_cb.Text}.");
@@ -129,9 +130,14 @@ namespace SalesPro.Forms.Products
                 MessageHandler.ShowWarning($"Please select if product is sold by price.");
                 return;
             }
-            if (isSoldByPrice_cb.SelectedIndex == -1)
+            if (isSoldByPrice_cb.SelectedIndex == 0 && subUnit_cb.SelectedIndex == 0)
             {
-                MessageHandler.ShowWarning($"Please select if product is sold by price.");
+                MessageHandler.ShowWarning($"Please select a valid sub unit if the product is sold by price");
+                return;
+            }
+            if (unit_cb.Text == subUnit_cb.Text)
+            {
+                MessageHandler.ShowWarning($"Unit of measure and sub unit cannot be the same.");
                 return;
             }
             try
@@ -174,6 +180,7 @@ namespace SalesPro.Forms.Products
                     }
 
                     await _productForm.LoadProducts();
+                    _productForm.search_tx.Clear();
                 }
 
             }
@@ -204,9 +211,14 @@ namespace SalesPro.Forms.Products
 
         private void subUnit_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(subUnit_cb.SelectedIndex == 0)
+            if (subUnit_cb.SelectedIndex == 0)
             {
                 subUnitQty_tx.Text = "0";
+                subUnitQty_tx.Enabled = false;
+            }
+            else
+            {
+                subUnitQty_tx.Enabled = true;
             }
         }
     }
