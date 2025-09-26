@@ -19,19 +19,19 @@ namespace SalesPro.Helpers
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    MessageHandler.ShowError($"Null data error:\n{nullEx.Message}");
+                    MessageHandler.ShowError($"Null data error:\n{nullEx}");
                 }
                 catch (DBConcurrencyException concurrencyEx)
                 {
-                    MessageHandler.ShowError($"Dirty data error:\n{concurrencyEx.Message}");
+                    MessageHandler.ShowError($"Dirty data error:\n{concurrencyEx}");
                 }
                 catch (InvalidOperationException opEx)
                 {
-                    MessageHandler.ShowError($"Invalid operation error: \n{opEx.Message}");
+                    MessageHandler.ShowError($"Invalid operation error: \n{opEx}");
                 }
                 catch (Exception ex)
                 {
-                    MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex.Message}");
+                    MessageHandler.ShowError($"Error occured on executing tranasaction async:\n{ex}");
                 }
             }
         }

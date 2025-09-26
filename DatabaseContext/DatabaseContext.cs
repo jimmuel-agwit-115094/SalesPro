@@ -34,6 +34,9 @@ namespace POS_Generic.Helpers
         public DbSet<UserAccessModel> UserAccess { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
         public DbSet<PaymentLogModel> PaymentLogs { get; set; }
+
+        // Note : The password for the database connection string is encrypted and will use the License Generator 
+        // app to decrypt the password.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string encryptedConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;

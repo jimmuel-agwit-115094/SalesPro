@@ -67,36 +67,44 @@ namespace SalesPro.Forms.Transactions
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
-            if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
-            var hasTransaction = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
+            try
+            {
+                if (!Validators.AmountValidator(begBal_tx.Text, "Beginning Balance")) return;
+                var hasTransaction = await _transactionService.HasTransactionsCurrentDay(_curDate.Date);
 
-            if (_actionType == SystemConstants.New)
-            {
-                if (hasTransaction)
+                if (_actionType == SystemConstants.New)
                 {
-                    MessageHandler.ShowWarning("Transaction already exists for the current date");
-                    return;
+                    if (hasTransaction)
+                    {
+                        MessageHandler.ShowWarning("Transaction already exists for the current date");
+                        return;
+                    }
+                    if (MessageHandler.ShowQuestionGeneric("Save Transaction?"))
+                    {
+                        var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
+                        var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, _transactionId); // We set to 1 because we don't have the transactionId yet
+                        await _transactionService.SaveTransaction(transaction, saveLogModel);
+                        await _transactionForm.EnableDisableMenuPanel();
+                        Close();
+                    }
                 }
-                if (MessageHandler.ShowQuestionGeneric("Save Transaction?"))
+                else
                 {
-                    var transaction = BuilTransactionModel(balanceStatus: BalanceStatusEnum.NotSet, isClosed: false);
-                    var saveLogModel = BuildTransactionLogModel(ActionsEnum.Addded, _transactionId); // We set to 1 because we don't have the transactionId yet
-                    await _transactionService.SaveTransaction(transaction, saveLogModel);
-                    await _transactionForm.EnableDisableMenuPanel();
-                    Close();
+                    if (MessageHandler.ShowQuestionGeneric("Update transaction?"))
+                    {
+                        var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
+                        var begBal = decimal.Parse(begBal_tx.Text);
+                        await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel, _rowVersion);
+                        Close();
+                    }
                 }
+                await _transactionForm.ProcessTransactionLoad();
             }
-            else
+            catch (Exception ex)
             {
-                if (MessageHandler.ShowQuestionGeneric("Update transaction?"))
-                {
-                    var updateLogModel = BuildTransactionLogModel(ActionsEnum.Updated, _transactionId);
-                    var begBal = decimal.Parse(begBal_tx.Text);
-                    await _transactionService.UpdateTransaction(_transactionId, begBal, updateLogModel, _rowVersion);
-                    Close();
-                }
+                MessageHandler.ShowError($"Error saving transaction: {ex.Message}");
             }
-            await _transactionForm.ProcessTransactionLoad();
+
         }
 
         private async void close_btn_Click(object sender, EventArgs e)
@@ -245,7 +253,7 @@ namespace SalesPro.Forms.Transactions
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowError($"Error loading transaction details: {ex.Message}");
+                MessageHandler.ShowError($"Error loading transaction details: {ex}");
             }
 
         }
