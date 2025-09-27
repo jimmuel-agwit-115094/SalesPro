@@ -2,7 +2,7 @@
 
 namespace SalesPro.Models
 {
-    public class Orders : BaseEntity
+    public class SupplierModel : BaseEntity
     {
         [Key]
         public int SupplierId { get; set; }

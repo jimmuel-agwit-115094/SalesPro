@@ -23,6 +23,7 @@ namespace SalesPro.Forms.Transactions
 
         private readonly ReportService _reportService;
         private readonly TransactionService _transactionService;
+
         public TransactionDetailsForm(TransactionForm transactionForm)
         {
             _transactionService = new TransactionService();
@@ -32,6 +33,46 @@ namespace SalesPro.Forms.Transactions
             _reportService = new ReportService();
             TextBoxHelper.FormatDecimalTextbox(begBal_tx);
             TextBoxHelper.FormatDecimalTextbox(endingCash_tx);
+        }
+
+        private async void TransactionDetailsForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _curDate = await ClockHelper.GetServerDateTime();
+                _userFullname = UserSession.FullName;
+
+                if (_actionType == SystemConstants.New)
+                {
+                    Text = "New Transaction";
+                    save_btn.Text = "Create Transaction";
+                    save_btn.BackColor = Color.Green;
+                    date_tx.Text = DateFormatHelper.FormatDate(_curDate);
+
+                    openedBy_tx.Text = _userFullname;
+
+                    // Controls
+                    endingCash_tx.ReadOnly = true;
+                    close_btn.Enabled = false;
+                    undo_btn.Enabled = false;
+                    begBal_tx.ReadOnly = false;
+                }
+                else
+                {
+                    endingCash_tx.ReadOnly = false;
+                    Text = "Edit Transaction";
+                    save_btn.Text = "Update";
+                    save_btn.BackColor = SystemColors.HotTrack;
+                    await GetTransactionData();
+                    await GetTransactionLogs(_transactionId);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error loading transaction details: {ex}");
+            }
+
         }
 
         private TransactionLogModel BuildTransactionLogModel(ActionsEnum action, int transactionId)
@@ -216,46 +257,6 @@ namespace SalesPro.Forms.Transactions
              "EndingBalance",
              "UserFullname",
              "ActionTaken");
-        }
-
-        private async void TransactionDetailsForm_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                _curDate = await ClockHelper.GetServerDateTime();
-                _userFullname = UserSession.FullName;
-
-                if (_actionType == SystemConstants.New)
-                {
-                    Text = "New Transaction";
-                    save_btn.Text = "Create Transaction";
-                    save_btn.BackColor = Color.Green;
-                    date_tx.Text = DateFormatHelper.FormatDate(_curDate);
-
-                    openedBy_tx.Text = _userFullname;
-
-                    // Controls
-                    endingCash_tx.ReadOnly = true;
-                    close_btn.Enabled = false;
-                    undo_btn.Enabled = false;
-                    begBal_tx.ReadOnly = false;
-                }
-                else
-                {
-                    endingCash_tx.ReadOnly = false;
-                    Text = "Edit Transaction";
-                    save_btn.Text = "Update";
-                    save_btn.BackColor = SystemColors.HotTrack;
-                    await GetTransactionData();
-                    await GetTransactionLogs(_transactionId);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageHandler.ShowError($"Error loading transaction details: {ex}");
-            }
-
         }
 
         private void search_tx_TextChanged(object sender, EventArgs e)

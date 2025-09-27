@@ -715,7 +715,7 @@
             this.label4.Location = new System.Drawing.Point(57, 30);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(427, 30);
+            this.label4.Size = new System.Drawing.Size(428, 30);
             this.label4.TabIndex = 544;
             this.label4.Text = "To activate this product. Please enter the License key and signed keyprovided by\r" +
     "\nthe distributor of this software.";

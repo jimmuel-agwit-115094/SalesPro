@@ -54,7 +54,7 @@ namespace SalesPro.Forms.Settings
 
         private async Task<int> SaveSupplier()
         {
-            var model = new Models.Orders
+            var model = new Models.SupplierModel
             {
                 SupplierName = supplier_tx.Text,
                 SupplierAddress = address_tx.Text,
@@ -67,7 +67,7 @@ namespace SalesPro.Forms.Settings
 
         private async Task<int> UpdateSupplier()
         {
-            var model = new Models.Orders
+            var model = new Models.SupplierModel
             {
                 SupplierName = supplier_tx.Text,
                 SupplierAddress = address_tx.Text,

@@ -15,7 +15,7 @@ namespace POS_Generic.Helpers
         public DbSet<CustomerModel> Customers { get; set; }
         public DbSet<TransactionModel> Transactions { get; set; }
         public DbSet<TransactionLogModel> TransactionLogs { get; set; }
-        public DbSet<Orders> Suppliers { get; set; }
+        public DbSet<SupplierModel> Suppliers { get; set; }
         public DbSet<PurchaseOrderModel> PurchaseOrders { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<PurchaseOrderItemModel> PurchaseOrderItems { get; set; }
