@@ -55,7 +55,7 @@
             // 
             this.title_lbl.AutoSize = true;
             this.title_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title_lbl.Location = new System.Drawing.Point(8, 11);
+            this.title_lbl.Location = new System.Drawing.Point(8, 5);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(95, 25);
             this.title_lbl.TabIndex = 462;
@@ -134,12 +134,12 @@
             // select_lbl
             // 
             this.select_lbl.AutoSize = true;
-            this.select_lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.select_lbl.Location = new System.Drawing.Point(11, 35);
+            this.select_lbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select_lbl.Location = new System.Drawing.Point(11, 29);
             this.select_lbl.Name = "select_lbl";
-            this.select_lbl.Size = new System.Drawing.Size(193, 15);
+            this.select_lbl.Size = new System.Drawing.Size(402, 17);
             this.select_lbl.TabIndex = 463;
-            this.select_lbl.Text = "Select an order you want to resume";
+            this.select_lbl.Text = "Select an order you want to resume and press enter or double click";
             // 
             // resume_pb
             // 
@@ -172,7 +172,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(595, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
+            this.label2.Size = new System.Drawing.Size(33, 15);
             this.label2.TabIndex = 469;
             this.label2.Text = "Total";
             // 
