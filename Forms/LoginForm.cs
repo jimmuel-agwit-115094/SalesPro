@@ -16,6 +16,7 @@ namespace SalesPro
 {
     public partial class LoginForm : Form
     {
+        public bool _isLogout = false;
         private readonly ActivationService _activationService;
         private DateTime _curDate;
         private readonly DatabaseContext _dbContext;
@@ -152,7 +153,10 @@ namespace SalesPro
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (_isLogout)
+            {
+                Application.Exit();
+            }
         }
 
         private async void LoginForm_Load(object sender, EventArgs e)

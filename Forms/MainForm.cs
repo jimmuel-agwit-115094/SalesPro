@@ -164,6 +164,7 @@ namespace SalesPro.Forms
             {
                 Close();
                 LoginForm loginForm = new LoginForm();
+                loginForm._isLogout = true;
                 loginForm.Show();
             }
         }
