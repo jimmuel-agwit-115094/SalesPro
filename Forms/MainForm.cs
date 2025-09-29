@@ -1,5 +1,4 @@
-﻿using POS_Generic.Helpers;
-using SalesPro.Constants;
+﻿using SalesPro.Constants;
 using SalesPro.Enums;
 using SalesPro.Forms.Inventory;
 using SalesPro.Forms.Orders;
@@ -24,12 +23,11 @@ namespace SalesPro.Forms
     public partial class MainForm : Form
     {
         private DateTime _curDate;
-        private readonly DatabaseContext _context;
+        private bool _isLogout = false;
         private readonly TransactionService _transactionService;
         public MainForm()
         {
             InitializeComponent();
-            _context = new DatabaseContext();
             _transactionService = new TransactionService();
         }
 
@@ -162,9 +160,10 @@ namespace SalesPro.Forms
         {
             if (MessageHandler.ShowQuestion("Confirm logout", String.Empty))
             {
+                _isLogout = true;
                 Close();
                 LoginForm loginForm = new LoginForm();
-                loginForm._isLogout = true;
+                loginForm._isLogout = _isLogout;
                 loginForm.Show();
             }
         }
@@ -254,7 +253,10 @@ namespace SalesPro.Forms
         {
             try
             {
-                Application.Exit(); // Close the application when the form is closed
+                if (!_isLogout)
+                {
+                    Application.Exit();
+                }
             }
             catch (Exception ex)
             {
