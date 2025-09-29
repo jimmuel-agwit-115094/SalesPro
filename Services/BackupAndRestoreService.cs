@@ -41,6 +41,10 @@ namespace SalesPro.Services
                     MySqlBackup mb = new MySqlBackup(command);
                     mb.ExportToFile(backupFilePath);
                     connection.Close();
+                    
+                    // Also save a plain text SQL script to the DbScripts folder in the project
+                    BackupToProjectFolderAsTextFile(command);
+                    
                     MessageHandler.ShowInfo($"Database with file name : {backupFileName} " +
                         $"successfully completed. Backup file saved to: {backupFilePath}");
                 }
@@ -48,6 +52,45 @@ namespace SalesPro.Services
             catch (Exception ex)
             {
                 MessageHandler.ShowError($"Error database backup: {ex}");
+            }
+        }
+
+        private void BackupToProjectFolderAsTextFile(MySqlCommand command)
+        {
+            try
+            {
+                // Get the solution directory path
+                string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)));
+                
+                // Set the path to the DbScripts folder
+                string dbScriptsFolder = Path.Combine(solutionDir, "DbScripts");
+                
+                // Create the DbScripts folder if it doesn't exist
+                Directory.CreateDirectory(dbScriptsFolder);
+                
+                string backupFileName = $"SalesPro_{DateTime.Now:yyyy.MMdd_hh.mm}.txt";
+                string targetFilePath = Path.Combine(dbScriptsFolder, backupFileName);
+
+                // Create a new MySQL backup with text file format
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
+                    
+                    MySqlBackup mb = new MySqlBackup(cmd);
+                    
+                    // Export to the target file path
+                    mb.ExportToFile(targetFilePath);
+                    
+                    conn.Close();
+                }
+                
+                MessageHandler.ShowInfo($"SQL script backup saved to project folder at: {targetFilePath}");
+            }
+            catch (Exception ex)
+            {
+                MessageHandler.ShowError($"Error saving text backup to project folder: {ex}");
             }
         }
 
